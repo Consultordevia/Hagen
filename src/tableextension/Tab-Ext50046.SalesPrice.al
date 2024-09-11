@@ -120,5 +120,17 @@ tableextension 50046 "SalesPrice" extends "Sales Price"
         field(50104; "Fecha hora modif web"; DateTime)
         {
         }
+        field(50105; "Codigo INNER o MASTET"; Code[10])
+        {
+
+            trigger OnValidate()
+            begin
+                "Codigo concatenado" := "Item No." + "Codigo INNER o MASTET";
+            end;
+        }
+        field(50106; "Codigo concatenado"; Code[20])
+        {
+        }
+
     }
 }
