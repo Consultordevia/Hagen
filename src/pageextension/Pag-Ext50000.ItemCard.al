@@ -4,6 +4,7 @@ pageextension 50000 "Item Card" extends "Item Card"
     {
 
 
+
         addlast(InventoryGrp)
         {
             group(Hagen_)
@@ -210,6 +211,30 @@ pageextension 50000 "Item Card" extends "Item Card"
 
             }
 
+        }
+    }
+    actions
+    {
+        addlast(processing)
+        {
+
+
+            action(AutomaticoLeroyMerlin)
+            {
+                Caption = 'AutomaticoLeroyMerlin';
+                Image = Capacity;
+                Promoted = true;
+                PromotedCategory = Process;
+
+                trigger OnAction()
+                var
+                    CUAutomaticoLeroyMerlin: Codeunit "Automaticos Leroy Merlin";
+                begin
+                    Clear(CuAutomaticoLeroyMerlin);
+                    CuAutomaticoLeroyMerlin.RUN
+
+                end;
+            }
         }
     }
 }
