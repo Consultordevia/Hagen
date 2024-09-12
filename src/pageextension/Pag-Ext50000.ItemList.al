@@ -1,4 +1,4 @@
-pageextension 50000 "Item List" extends "Item List"
+pageextension 50020 "Item List" extends "Item List"
 {
     layout
     {
