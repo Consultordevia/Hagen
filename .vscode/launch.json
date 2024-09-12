@@ -2,22 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Your own server",
+            "name": "Sandbox",
             "request": "launch",
             "type": "al",
-            "environmentType": "OnPrem",
-            "server": "http://localhost",
-            "serverInstance": "BC240",
-            "authentication": "Windows",
-            "startupObjectId": 22,
+            "environmentType": "Sandbox",
+            "tenant": "266e7657-7e87-4100-9f10-9293df757a06",
+            "environmentName": "SandboxOscar",
+            "startupObjectId": 1,
             "startupObjectType": "Page",
             "breakOnError": "All",
             "launchBrowser": true,
             "enableLongRunningSqlStatements": true,
-            "enableSqlInformationDebugger": true,
-            "tenant": "default",
-            "usePublicURLFromServer": true,
-            "schemaUpdateMode": "ForceSync"
+            "enableSqlInformationDebugger": true
         }
     ]
 }
