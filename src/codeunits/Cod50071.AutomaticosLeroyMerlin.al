@@ -57,7 +57,7 @@ Codeunit 50071 "Automaticos Leroy Merlin"
     begin
 
         SalesReceivablesSetup.Get;
-        SalesReceivablesSetup."Ruta fiche. Stock Leroy Merlin" := 'c:\pruebas\';
+        SalesReceivablesSetup."Ruta fiche. Stock Leroy Merlin" := 'C:/prueba';
         ArchExt4 := SalesReceivablesSetup."Ruta fiche. Stock Leroy Merlin" + 'LeroyMerlin.csv';
         TempBlob.CreateOutStream(OutStream);
         //ArchSalida4.TextMode := true;
@@ -355,7 +355,7 @@ Codeunit 50071 "Automaticos Leroy Merlin"
 
 
                     OutStream.Write(TextoSalida1);
-                    Message('%1', TextoSalida1);
+                    //Message('%1', TextoSalida1);
 
 
                 end;
