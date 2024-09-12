@@ -225,6 +225,7 @@ pageextension 50000 "Item Card" extends "Item Card"
                 Image = Capacity;
                 Promoted = true;
                 PromotedCategory = Process;
+                ApplicationArea = all;
 
                 trigger OnAction()
                 var
