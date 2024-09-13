@@ -8,49 +8,31 @@ pageextension 50020 "Item List" extends "Item List"
 
 
             field("Existencia SILLA"; Rec."Existencia SILLA") { ApplicationArea = All; }
-            field("Existencia FOB"; Rec."Existencia FOB") { ApplicationArea = All; }
             field("Producto almacenable"; Rec."Producto almacenable") { ApplicationArea = All; }
             field("Permite fraccionar venta"; Rec."Permite fraccionar venta") { ApplicationArea = All; }
             field("Fecha recalcula no permitir"; Rec."Fecha recalcula no permitir") { ApplicationArea = All; }
-
-
             field("Usuario última modificación"; Rec."Usuario última modificación") { ApplicationArea = All; }
             field("Fecha Alta"; Rec."Fecha Alta") { ApplicationArea = All; }
             field("Fecha Lanzamiento"; Rec."Fecha Lanzamiento") { ApplicationArea = All; }
             field("Fecha última modificación"; Rec."Fecha última modificación") { ApplicationArea = All; }
             field("Acumu. A,B,C"; Rec."Acumu. A,B,C") { ApplicationArea = All; }
             field("Clase logistica"; Rec."Clase logistica") { ApplicationArea = All; }
-            field("Envíos (cdad.)"; Rec."Envíos (cdad.)") { ApplicationArea = All; }
-            field("Ajustes (cdad.)"; Rec."Ajustes (cdad.)") { ApplicationArea = All; }
-            field("Pro.Ped.Compra (cdad.)"; Rec."Pro.Ped.Compra (cdad.)") { ApplicationArea = All; }
             field("Prohibido Amazon"; Rec."Prohibido Amazon") { ApplicationArea = All; }
             field("Producto FRAGIL"; Rec."Producto FRAGIL") { ApplicationArea = All; }
             field("Observaciones AMAZON"; Rec."Observaciones AMAZON") { ApplicationArea = All; }
             field("Fecha prohibido Amazon"; Rec."Fecha prohibido Amazon") { ApplicationArea = All; }
             field("Usuario modificación"; Rec."Usuario modificación") { ApplicationArea = All; }
             field("Hora modificación"; Rec."Hora modificación") { ApplicationArea = All; }
-            field("Stock para Catit"; Rec."Stock para Catit") { ApplicationArea = All; }
-            field("Precio recomendado"; Rec."Precio recomendado") { ApplicationArea = All; }
-
             field("Tipo proveedor"; Rec."Tipo proveedor") { ApplicationArea = All; }
             field("Criterio rotación"; Rec."Criterio rotación") { ApplicationArea = All; }
             field("Unidades venta"; Rec."Unidades venta") { ApplicationArea = All; }
-
             field("Exit Point"; Rec."Exit Point") { ApplicationArea = All; }
             field("Stock Bloqueo Amz"; Rec."Stock Bloqueo Amz") { ApplicationArea = All; }
             field("Kgs. de plástico"; Rec."Kgs. de plástico") { ApplicationArea = All; }
             field("Pdte. Enviar a WEB"; Rec."Pdte. Enviar a WEB") { ApplicationArea = All; }
             field("Ref. AMAZON"; Rec."Ref. AMAZON") { ApplicationArea = All; }
             field("RII-AAEE"; Rec."RII-AAEE") { ApplicationArea = All; }
-            field("Cantidad palets"; Rec."Cantidad palets") { ApplicationArea = All; }
-            field("Cantidad master"; Rec."Cantidad master") { ApplicationArea = All; }
-            field("Cantidad inner"; Rec."Cantidad inner") { ApplicationArea = All; }
             field("Fecha proxima recepción conten"; Rec."Fecha proxima recepción conten") { ApplicationArea = All; }
-            field("Cantidad facturada"; Rec."Cantidad facturada") { ApplicationArea = All; }
-            field("Cantidad abonada"; Rec."Cantidad abonada") { ApplicationArea = All; }
-            field("Importe facturado"; Rec."Importe facturado") { ApplicationArea = All; }
-            field("Importe abonado"; Rec."Importe abonado") { ApplicationArea = All; }
-            field("Cantidad fabricada"; Rec."Cantidad fabricada") { ApplicationArea = All; }
             field("Unidad compra"; Rec."Unidad compra") { ApplicationArea = All; }
             field("Fecha proxima recepción pedido"; Rec."Fecha proxima recepción pedido") { ApplicationArea = All; }
             field("Comentario para pedido1"; Rec."Comentario para pedido1") { ApplicationArea = All; }
@@ -58,11 +40,7 @@ pageextension 50020 "Item List" extends "Item List"
             field("Tipo palet"; Rec."Tipo palet") { ApplicationArea = All; }
 
             field("Tiene productos asociados"; Rec."Tiene productos asociados") { ApplicationArea = All; }
-
-            field("Cdad. en oferta compra"; Rec."Cdad. en oferta compra") { ApplicationArea = All; }
             field("Enviar siempre"; Rec."Enviar siempre") { ApplicationArea = All; }
-            field("Cantidad palet transporte alma"; Rec."Cantidad palet transporte alma") { ApplicationArea = All; }
-            field("Cantidad palet americano"; Rec."Cantidad palet americano") { ApplicationArea = All; }
             field("Fecha en picking"; Rec."Fecha en picking") { ApplicationArea = All; }
             field("Ref. hagen"; Rec."Ref. hagen") { ApplicationArea = All; }
             field("Fecha disponible Web"; Rec."Fecha disponible Web") { ApplicationArea = All; }
@@ -74,14 +52,8 @@ pageextension 50020 "Item List" extends "Item List"
             field("EAN MASTER"; Rec."EAN MASTER") { ApplicationArea = All; }
             field("Etiqueta portugues"; Rec."Etiqueta portugues") { ApplicationArea = All; }
             field("Tamaño etiqueta"; Rec."Tamaño etiqueta") { ApplicationArea = All; }
-            field("Ventas"; Rec."Ventas") { ApplicationArea = All; }
-            field("Promedio"; Rec."Promedio") { ApplicationArea = All; }
-            field("Rotacion"; Rec."Rotacion") { ApplicationArea = All; }
-            field("Dias"; Rec."Dias") { ApplicationArea = All; }
             field("Producto web"; Rec."Producto web") { ApplicationArea = All; }
             field("Unidad expedicion ECI"; Rec."Unidad expedicion ECI") { ApplicationArea = All; }
-
-
             field("+ Familia 2"; Rec."+ Familia 2") { ApplicationArea = All; }
             field("+ Familia 3"; Rec."+ Familia 3") { ApplicationArea = All; }
             field("+ Familia 4"; Rec."+ Familia 4") { ApplicationArea = All; }
@@ -119,30 +91,10 @@ pageextension 50020 "Item List" extends "Item List"
             field("Filtro Cliente"; Rec."Filtro Cliente") { ApplicationArea = All; }
             field("Imagen Articulo WEB"; Rec."Imagen Articulo WEB") { ApplicationArea = All; }
             field("NO MULTIPEDIDO"; Rec."NO MULTIPEDIDO") { ApplicationArea = All; }
-            field("Importe ABC"; Rec."Importe ABC") { ApplicationArea = All; }
-            field("Importe total ABC"; Rec."Importe total ABC") { ApplicationArea = All; }
-            field("Cantidad colchon web"; Rec."Cantidad colchon web") { ApplicationArea = All; }
-            field("Stock para la web"; Rec."Stock para la web") { ApplicationArea = All; }
-            field("Stock en HAGEN"; Rec."Stock en HAGEN") { ApplicationArea = All; }
-            field("PVP Recomendado 2019"; Rec."PVP Recomendado 2019") { ApplicationArea = All; }
-            field("CUANTOS UDS EANS"; Rec."CUANTOS UDS EANS") { ApplicationArea = All; }
-            field("Tarifa 2021"; Rec."Tarifa 2021") { ApplicationArea = All; }
-            field("PVP Recomendado 2021"; Rec."PVP Recomendado 2021") { ApplicationArea = All; }
             field("Voluminoso web"; Rec."Voluminoso web") { ApplicationArea = All; }
 
             field("Excluir de dropbox"; Rec."Excluir de dropbox") { ApplicationArea = All; }
             field("FIJO Excluir de dropbox"; Rec."FIJO Excluir de dropbox") { ApplicationArea = All; }
-            field("Tarifa 2021-2"; Rec."Tarifa 2021-2") { ApplicationArea = All; }
-            field("PVP Recomendado 2021-2"; Rec."PVP Recomendado 2021-2") { ApplicationArea = All; }
-            field("Tarifa 2021 amazon21"; Rec."Tarifa 2021 amazon21") { ApplicationArea = All; }
-            field("PVP Recomendado 2021 amazon21"; Rec."PVP Recomendado 2021 amazon21") { ApplicationArea = All; }
-            field("Tarifa 2021 AMZ2021-3"; Rec."Tarifa 2021 AMZ2021-3") { ApplicationArea = All; }
-            field("PVP Recomendado 2021 AMZ2021-3"; Rec."PVP Recomendado 2021 AMZ2021-3") { ApplicationArea = All; }
-            field("Tarifa 2022"; Rec."Tarifa 2022") { ApplicationArea = All; }
-            field("PVP Recomendado 2022"; Rec."PVP Recomendado 2022") { ApplicationArea = All; }
-            field("Tarifa AMZ2023"; Rec."Tarifa AMZ2023") { ApplicationArea = All; }
-            field("PVP Recomendado AMZ2023"; Rec."PVP Recomendado AMZ2023") { ApplicationArea = All; }
-            field("Precio inv 2009"; Rec."Precio inv 2009") { ApplicationArea = All; }
             field("URL IMAGEN 1"; Rec."URL IMAGEN 1") { ApplicationArea = All; }
             field("Actualizar WEB"; Rec."Actualizar WEB") { ApplicationArea = All; }
             field("Imagen Articulo WEB 2"; Rec."Imagen Articulo WEB 2") { ApplicationArea = All; }
