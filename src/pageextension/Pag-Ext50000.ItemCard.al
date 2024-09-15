@@ -229,10 +229,10 @@ pageextension 50000 "Item Card" extends "Item Card"
 
                 trigger OnAction()
                 var
-                    CUAutomaticoLeroyMerlin: Codeunit "Automaticos Leroy Merlin";
+                ///                    CUAutomaticoLeroyMerlin: Codeunit "Automaticos Leroy Merlin";
                 begin
-                    Clear(CuAutomaticoLeroyMerlin);
-                    CuAutomaticoLeroyMerlin.RUN
+                    ///Clear(CuAutomaticoLeroyMerlin);
+                    ///CuAutomaticoLeroyMerlin.RUN
 
                 end;
             }
