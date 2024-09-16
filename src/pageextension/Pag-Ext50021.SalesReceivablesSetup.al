@@ -14,13 +14,7 @@ pageextension 50021 "Sales & Receivables Setup" extends "Sales & Receivables Set
                 field("Ruta fiche. pedido OTROS COPIA"; Rec."Ruta fiche. pedido OTROS COPIA") { ApplicationArea = All; }
                 field("Ruta fiche. dropbox"; Rec."Ruta fiche. dropbox") { ApplicationArea = All; }
                 field("Ruta fiche. pedido KIWOKO nuev"; Rec."Ruta fiche. pedido KIWOKO nuev") { ApplicationArea = All; }
-                field("Multi-picking kilos"; Rec."Multi-picking kilos") { ApplicationArea = All; }
-                field("Multi-picking lineas"; Rec."Multi-picking lineas") { ApplicationArea = All; }
                 field("Ruta fiche. FTP"; Rec."Ruta fiche. FTP") { ApplicationArea = All; }
-                field("Ruta doc. PAJAROS"; Rec."Ruta doc. PAJAROS") { ApplicationArea = All; }
-                field("Ruta doc. PEQ.ANIMALES"; Rec."Ruta doc. PEQ.ANIMALES") { ApplicationArea = All; }
-                field("Ruta doc. PERROS"; Rec."Ruta doc. PERROS") { ApplicationArea = All; }
-                field("Ruta doc. ESTANQUES"; Rec."Ruta doc. ESTANQUES") { ApplicationArea = All; }
                 field("Ruta fiche. pedido Leroy Merli"; Rec."Ruta fiche. pedido Leroy Merli") { ApplicationArea = All; }
                 field("Ruta fiche. pedido catit"; Rec."Ruta fiche. pedido catit") { ApplicationArea = All; }
                 field("Ruta fiche. pedido catit COPIA"; Rec."Ruta fiche. pedido catit COPIA") { ApplicationArea = All; }
