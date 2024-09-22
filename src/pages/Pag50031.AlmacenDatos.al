@@ -15,7 +15,7 @@ Page 50031 "Almacen Datos"
             cuegroup(Control1000000009)
             {
                 Caption = 'URGENTES';
-                field(SUPERURGENTES;SUPERURGENTES)
+                field(SUPERURGENTES; SUPERURGENTES)
                 {
                     ApplicationArea = Basic;
                     Caption = 'SUPER URGENTES';
@@ -24,17 +24,17 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."Super urgente",true);
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange(SalesHeader."Super urgente", true);
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(URGENTES;URGENTES)
+                field(URGENTES; URGENTES)
                 {
                     ApplicationArea = Basic;
                     Caption = 'URGENTES';
@@ -43,17 +43,17 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader.Urgente,true);
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange(SalesHeader.Urgente, true);
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(SUPERURGENTESPDTEENVIAR;SUPERURGENTESPDTEENVIAR)
+                field(SUPERURGENTESPDTEENVIAR; SUPERURGENTESPDTEENVIAR)
                 {
                     ApplicationArea = Basic;
                     Caption = 'SUPERURGENTES PDTE. ENVIAR';
@@ -62,18 +62,18 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."Super urgente",true);
-                        SalesHeader.SetRange("Nº expedición",'');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange(SalesHeader."Super urgente", true);
+                        SalesHeader.SetRange("Nº expedición", '');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(URGENTESPDTEENVIAR;URGENTESPDTEENVIAR)
+                field(URGENTESPDTEENVIAR; URGENTESPDTEENVIAR)
                 {
                     ApplicationArea = Basic;
                     Caption = 'URGENTES PDTE. ENVIAR';
@@ -82,14 +82,14 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader.Urgente,true);
-                        SalesHeader.SetRange("Nº expedición",'');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange(SalesHeader.Urgente, true);
+                        SalesHeader.SetRange("Nº expedición", '');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
@@ -97,7 +97,7 @@ Page 50031 "Almacen Datos"
             cuegroup(RETRASADOS)
             {
                 Caption = 'RETRASADOS';
-                field("Retrasado 72 horas";PEDIDORETRA72)
+                field("Retrasado 72 horas"; PEDIDORETRA72)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Retrasado 72 horas';
@@ -106,19 +106,19 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."Fecha para preparar",20000101D,FECHA72);
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange(SalesHeader."Fecha para preparar", 20000101D, FECHA72);
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field("Retrasado 48 horas";PEDIDORETRA48)
+                field("Retrasado 48 horas"; PEDIDORETRA48)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'RETENIDO';
                     DrillDownPageID = "Pantalla Almacen";
                     ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
@@ -127,17 +127,17 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."Fecha para preparar",FECHA48,FECHA48);
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange(SalesHeader."Fecha para preparar", FECHA48, FECHA48);
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field("Retrasado 24 horas";PEDIDORETRA24)
+                field("Retrasado 24 horas"; PEDIDORETRA24)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Retrasado 24 horas';
@@ -146,17 +146,17 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."Fecha para preparar",FECHA24,FECHA24);
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange(SalesHeader."Fecha para preparar", FECHA24, FECHA24);
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(PEDIDORETRA72pdteenviar;PEDIDORETRA72pdteenviar)
+                field(PEDIDORETRA72pdteenviar; PEDIDORETRA72pdteenviar)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Retrasado 72 horas PDTE. ENVIAR';
@@ -165,20 +165,20 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."Fecha para preparar",20000101D,FECHA72);
-                        SalesHeader.SetRange("Nº expedición",'');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange(SalesHeader."Fecha para preparar", 20000101D, FECHA72);
+                        SalesHeader.SetRange("Nº expedición", '');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(PEDIDORETRA48pdteenviar;PEDIDORETRA48pdteenviar)
+                field(PEDIDORETRA48pdteenviar; PEDIDORETRA48pdteenviar)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'RETENIDO';
                     DrillDownPageID = "Pantalla Almacen";
                     ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
@@ -187,18 +187,18 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."Fecha para preparar",FECHA48,FECHA48);
-                        SalesHeader.SetRange("Nº expedición",'');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange(SalesHeader."Fecha para preparar", FECHA48, FECHA48);
+                        SalesHeader.SetRange("Nº expedición", '');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(PEDIDORETRA24pdteenviar;PEDIDORETRA24pdteenviar)
+                field(PEDIDORETRA24pdteenviar; PEDIDORETRA24pdteenviar)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Retrasado 24 horas PDTE. ENVIAR';
@@ -207,14 +207,14 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."Fecha para preparar",FECHA24,FECHA24);
-                        SalesHeader.SetRange("Nº expedición",'');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange(SalesHeader."Fecha para preparar", FECHA24, FECHA24);
+                        SalesHeader.SetRange("Nº expedición", '');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
@@ -222,9 +222,9 @@ Page 50031 "Almacen Datos"
             cuegroup("PARA PREPARAR")
             {
                 Caption = 'PARA PREPARAR';
-                field("ESPAÑA";ESPAÑA)
+                field("ESPAÑA"; ESPAÑA)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'ESPAÑA';
                     DrillDownPageID = "Pantalla Almacen";
                     ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
@@ -234,19 +234,19 @@ Page 50031 "Almacen Datos"
 
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."VAT Country/Region Code",'ES');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange(SalesHeader."VAT Country/Region Code", 'ES');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(ECI;ECI)
+                field(ECI; ECI)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Pedidos - Retenidos';
                     DrillDownPageID = "Sales Order List";
                     ToolTip = 'Especifica el número de pedidos de venta Retenidos.';
@@ -256,17 +256,17 @@ Page 50031 "Almacen Datos"
 
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange("Customer Price Group",'ECI');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange("Customer Price Group", 'ECI');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(AMAZON;AMAZON)
+                field(AMAZON; AMAZON)
                 {
                     ApplicationArea = Basic;
                     Caption = 'AMAZON';
@@ -276,17 +276,17 @@ Page 50031 "Almacen Datos"
 
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange("Grupo clientes",'G10');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange("Grupo clientes", 'G10');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(CATIT;CATIT)
+                field(CATIT; CATIT)
                 {
                     ApplicationArea = Basic;
                     Caption = 'CATIT';
@@ -295,17 +295,17 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange("Grupo clientes",'G52');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange("Grupo clientes", 'G52');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(MANOMANO;MANOMANO)
+                field(MANOMANO; MANOMANO)
                 {
                     ApplicationArea = Basic;
                     Caption = 'MANOMANO';
@@ -314,17 +314,17 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange("Sell-to Customer No.",'NAV0127');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange("Sell-to Customer No.", 'NAV0127');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(TIENDAANIMAL;TIENDAANIMAL)
+                field(TIENDAANIMAL; TIENDAANIMAL)
                 {
                     ApplicationArea = Basic;
                     Caption = 'TIENDAANIMAL';
@@ -333,19 +333,19 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange("Sell-to Customer No.",'12496');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange("Sell-to Customer No.", '12496');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(PORTUGAL;PORTUGAL)
+                field(PORTUGAL; PORTUGAL)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Pedidos Pendiente Comercial';
                     DrillDownPageID = "Sales Order List";
                     ToolTip = 'Especifica el número de pedidos de venta Pendiente Comercial.';
@@ -355,19 +355,19 @@ Page 50031 "Almacen Datos"
 
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."VAT Country/Region Code",'PT');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange(SalesHeader."VAT Country/Region Code", 'PT');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(CANARIAS;CANARIAS)
+                field(CANARIAS; CANARIAS)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Pedidos Para Preparar';
                     DrillDownPageID = "Sales Order List";
                     ToolTip = 'Especifica el número de pedidos de venta Para Preparar';
@@ -377,17 +377,17 @@ Page 50031 "Almacen Datos"
 
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(Comunidad,'7');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange(Comunidad, '7');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(TODOS;TODOS)
+                field(TODOS; TODOS)
                 {
                     ApplicationArea = Basic;
                     Caption = 'TODOS';
@@ -396,18 +396,18 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field("ESPAÑAPDTE";ESPAÑAPDTE)
+                field("ESPAÑAPDTE"; ESPAÑAPDTE)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'ESPAÑA';
                     DrillDownPageID = "Pantalla Almacen";
                     ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
@@ -417,20 +417,20 @@ Page 50031 "Almacen Datos"
 
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."VAT Country/Region Code",'ES');
-                        SalesHeader.SetRange("Nº expedición",'');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange(SalesHeader."VAT Country/Region Code", 'ES');
+                        SalesHeader.SetRange("Nº expedición", '');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(ECIPDTE;ECIPDTE)
+                field(ECIPDTE; ECIPDTE)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Pedidos - Retenidos';
                     DrillDownPageID = "Sales Order List";
                     ToolTip = 'Especifica el número de pedidos de venta Retenidos.';
@@ -440,20 +440,20 @@ Page 50031 "Almacen Datos"
 
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange("Customer Price Group",'ECI');
-                        SalesHeader.SetRange("Nº expedición",'');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange("Customer Price Group", 'ECI');
+                        SalesHeader.SetRange("Nº expedición", '');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(PORTUGALPDTE;PORTUGALPDTE)
+                field(PORTUGALPDTE; PORTUGALPDTE)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Pedidos Pendiente Comercial';
                     DrillDownPageID = "Sales Order List";
                     ToolTip = 'Especifica el número de pedidos de venta Pendiente Comercial.';
@@ -463,20 +463,20 @@ Page 50031 "Almacen Datos"
 
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."VAT Country/Region Code",'PT');
-                        SalesHeader.SetRange("Nº expedición",'');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange(SalesHeader."VAT Country/Region Code", 'PT');
+                        SalesHeader.SetRange("Nº expedición", '');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(CANARIASPDTE;CANARIASPDTE)
+                field(CANARIASPDTE; CANARIASPDTE)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Pedidos Para Preparar';
                     DrillDownPageID = "Sales Order List";
                     ToolTip = 'Especifica el número de pedidos de venta Para Preparar';
@@ -486,18 +486,18 @@ Page 50031 "Almacen Datos"
 
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(Comunidad,'7');
-                        SalesHeader.SetRange("Nº expedición",'');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange(Comunidad, '7');
+                        SalesHeader.SetRange("Nº expedición", '');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(TODOSPDTE;TODOSPDTE)
+                field(TODOSPDTE; TODOSPDTE)
                 {
                     ApplicationArea = Basic;
                     Caption = 'TODOS PDTE. ENVIAR';
@@ -506,19 +506,19 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange("Nº expedición",'');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange("Nº expedición", '');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(DROPSHIPMENT;DROPSHIPMENT)
+                field(DROPSHIPMENT; DROPSHIPMENT)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'DROPSHIPMENT';
                     DrillDownPageID = "Pantalla Almacen";
 
@@ -527,20 +527,20 @@ Page 50031 "Almacen Datos"
 
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader.Dropshipping,true);
-                        SalesHeader.SetFilter("Grupo clientes",'<>G52');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange(SalesHeader.Dropshipping, true);
+                        SalesHeader.SetFilter("Grupo clientes", '<>G52');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field("G12 KIWOKO";G12KIWOKO)
+                field("G12 KIWOKO"; G12KIWOKO)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'G12  KIWOKO';
                     DrillDownPageID = "Pantalla Almacen";
 
@@ -548,13 +548,13 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange("Grupo clientes",'G12');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                        SalesHeader.SetRange("Grupo clientes", 'G12');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
@@ -562,9 +562,9 @@ Page 50031 "Almacen Datos"
             cuegroup("PROXIMOS PEDIDOS")
             {
                 Caption = 'PROXIMOS PEDIDOS';
-                field(RETENIDO;RETENIDO)
+                field(RETENIDO; RETENIDO)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Retenido';
                     DrillDownPageID = "Pantalla Almacen";
                     ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
@@ -572,19 +572,19 @@ Page 50031 "Almacen Datos"
                     trigger OnDrillDown()
                     begin
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::Retenido);
-                        SalesHeader.SetFilter(SalesHeader."Payment Method Code",'<>P.ANTICIPA&<>TRANSFWEB');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::Retenido);
+                        SalesHeader.SetFilter(SalesHeader."Payment Method Code", '<>P.ANTICIPA&<>TRANSFWEB');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(PDTETRANF;PDTETRANF)
+                field(PDTETRANF; PDTETRANF)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Pendiente Transferencia';
                     DrillDownPageID = "Pantalla Almacen";
                     ToolTip = 'Especifica el número de Pedidos pendiente transferencia.';
@@ -592,18 +592,18 @@ Page 50031 "Almacen Datos"
                     trigger OnDrillDown()
                     begin
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::Retenido);
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::Retenido);
 
-                        SalesHeader.SetFilter(SalesHeader."Payment Method Code",'P.ANTICIPA|TRANSFWEB');
+                        SalesHeader.SetFilter(SalesHeader."Payment Method Code", 'P.ANTICIPA|TRANSFWEB');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(PDTECOMERCIAL;PDTECOMERCIAL)
+                field(PDTECOMERCIAL; PDTECOMERCIAL)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Pdte. Comercial';
@@ -612,13 +612,13 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Pdte. comercial");
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Pdte. comercial");
 
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
@@ -626,7 +626,7 @@ Page 50031 "Almacen Datos"
             cuegroup(Control1000000015)
             {
                 Caption = 'PROXIMOS PEDIDOS';
-                field(PEDIDOCONTENEDORact;PEDIDOCONTENEDORact)
+                field(PEDIDOCONTENEDORact; PEDIDOCONTENEDORact)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Pedido Contenedor Semana Actual';
@@ -637,18 +637,18 @@ Page 50031 "Almacen Datos"
                     begin
 
                         PurchaseHeader.Reset;
-                        PurchaseHeader.SetRange("Document Type",PurchaseHeader."document type"::Order);
-                        PurchaseHeader.SetRange(Status,PurchaseHeader.Status::Open);
-                        PurchaseHeader.SetRange(Receive,false);
-                        PurchaseHeader.SetRange(PurchaseHeader."Expected Receipt Date",lunes,viernes);
+                        PurchaseHeader.SetRange("Document Type", PurchaseHeader."document type"::Order);
+                        PurchaseHeader.SetRange(Status, PurchaseHeader.Status::Open);
+                        PurchaseHeader.SetRange(Receive, false);
+                        PurchaseHeader.SetRange(PurchaseHeader."Expected Receipt Date", lunes, viernes);
                         if PurchaseHeader.FindFirst then begin
-                             Clear(PurchaseOrderList);
-                             PurchaseOrderList.SetTableview(PurchaseHeader);
-                             PurchaseOrderList.RunModal;
+                            Clear(PurchaseOrderList);
+                            PurchaseOrderList.SetTableview(PurchaseHeader);
+                            PurchaseOrderList.RunModal;
                         end;
                     end;
                 }
-                field(PEDIDOCONTENEDOR;PEDIDOCONTENEDOR)
+                field(PEDIDOCONTENEDOR; PEDIDOCONTENEDOR)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Pedido Contenedor Total';
@@ -661,13 +661,13 @@ Page 50031 "Almacen Datos"
 
 
                         PurchaseHeader.Reset;
-                        PurchaseHeader.SetRange("Document Type",PurchaseHeader."document type"::Order);
-                        PurchaseHeader.SetRange(Status,PurchaseHeader.Status::Open);
-                        PurchaseHeader.SetRange(Receive,false);
+                        PurchaseHeader.SetRange("Document Type", PurchaseHeader."document type"::Order);
+                        PurchaseHeader.SetRange(Status, PurchaseHeader.Status::Open);
+                        PurchaseHeader.SetRange(Receive, false);
                         if PurchaseHeader.FindFirst then begin
-                             Clear(PurchaseOrderList);
-                             PurchaseOrderList.SetTableview(PurchaseHeader);
-                             PurchaseOrderList.RunModal;
+                            Clear(PurchaseOrderList);
+                            PurchaseOrderList.SetTableview(PurchaseHeader);
+                            PurchaseOrderList.RunModal;
                         end;
                     end;
                 }
@@ -675,7 +675,7 @@ Page 50031 "Almacen Datos"
             cuegroup("Historico Albaranes")
             {
                 Caption = 'Historico Albaranes';
-                field(HistoricoAlbaranes;HiatoricoAlbaranes)
+                field(HistoricoAlbaranes; HiatoricoAlbaranes)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Historico Albaranes';
@@ -686,15 +686,15 @@ Page 50031 "Almacen Datos"
                     begin
 
                         SalesShipmentHeader.Reset;
-                        SalesShipmentHeader.SetRange(SalesShipmentHeader."Posting Date",Today);
+                        SalesShipmentHeader.SetRange(SalesShipmentHeader."Posting Date", Today);
                         if SalesShipmentHeader.FindFirst then begin
-                             Clear(PostedSalesShipments);
-                             PostedSalesShipments.SetTableview(SalesShipmentHeader);
-                             PostedSalesShipments.RunModal;
+                            Clear(PostedSalesShipments);
+                            PostedSalesShipments.SetTableview(SalesShipmentHeader);
+                            PostedSalesShipments.RunModal;
                         end;
                     end;
                 }
-                field(HiatoricoAlbaranesTodos;HiatoricoAlbaranesTodos)
+                field(HiatoricoAlbaranesTodos; HiatoricoAlbaranesTodos)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Historico Albaranes';
@@ -704,14 +704,14 @@ Page 50031 "Almacen Datos"
                     trigger OnDrillDown()
                     begin
 
-                        DESDEFECHA:=CalcDate('-1M',Today);
+                        DESDEFECHA := CalcDate('-1M', Today);
 
                         SalesShipmentHeader.Reset;
-                        SalesShipmentHeader.SetRange(SalesShipmentHeader."Posting Date",DESDEFECHA,Today);
+                        SalesShipmentHeader.SetRange(SalesShipmentHeader."Posting Date", DESDEFECHA, Today);
                         if SalesShipmentHeader.FindFirst then begin
-                             Clear(PostedSalesShipments);
-                             PostedSalesShipments.SetTableview(SalesShipmentHeader);
-                             PostedSalesShipments.RunModal;
+                            Clear(PostedSalesShipments);
+                            PostedSalesShipments.SetTableview(SalesShipmentHeader);
+                            PostedSalesShipments.RunModal;
                         end;
                     end;
                 }
@@ -719,7 +719,7 @@ Page 50031 "Almacen Datos"
             cuegroup("Diarios de inventario")
             {
                 Caption = 'Diarios de inventario';
-                field(DiarioInv;DiarioInv)
+                field(DiarioInv; DiarioInv)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Diario inventario';
@@ -731,7 +731,7 @@ Page 50031 "Almacen Datos"
                         PhysInventoryJournal.RunModal;
                     end;
                 }
-                field(Cola;Cola)
+                field(Cola; Cola)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Diario inventario';
@@ -743,7 +743,7 @@ Page 50031 "Almacen Datos"
                         JobQueueEntries.RunModal;
                     end;
                 }
-                field(DiarioProd;DiarioProd)
+                field(DiarioProd; DiarioProd)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Diario producto';
@@ -755,7 +755,7 @@ Page 50031 "Almacen Datos"
                         /////- ItemJournal.RunModal;
                     end;
                 }
-                field(Preparadores;Preparadores)
+                field(Preparadores; Preparadores)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Preparadores';
@@ -782,110 +782,111 @@ Page 50031 "Almacen Datos"
     begin
 
 
-             SalesCue2.Get;
-             SalesCue2.CalcFields("Pedidos MANOMANO","Pedidos TIEDAANIMAL");
-             SalesCue2.CalcFields("Pedidos CATIT","Pedidos españa",SalesCue2."Pedidos eci",SalesCue2."Pedidos portugal",SalesCue2."Pedidos canarias",SalesCue2."Pedidos todos","Pedidos DROPSHIMENT");
-             SalesCue2.CalcFields(SalesCue2."Pedidos Pdte. comercial",SalesCue2."Pedidos Retenido",SalesCue2."Pedidos Urgentes",SalesCue2."Pedidos Super Urgentes",SalesCue2."Pedidos Transferencia");
-             SalesCue2.CalcFields(SalesCue2."Pedidos Urgentes PDTE. ENV.",SalesCue2."Pedidos Super Urgentes PDTE. E","Pedidos Retrasado PDTE.ENVIAR","Pedidos AMAZON","Pedidos G12 (KIWOKO)");
-             SalesCue2.CalcFields(
-        SalesCue2."Pedidos españa PDTE ENVIAR",SalesCue2."Pedidos eci PDTE ENVIAR",SalesCue2."Pedidos portugal PDTE ENVIAR",SalesCue2."Pedidos canarias PDTE ENVIAR",SalesCue2."Pedidos todos PDTE ENVIAR");
+        SalesCue2.Get;
+        SalesCue2.CalcFields("Pedidos MANOMANO", "Pedidos TIEDAANIMAL");
+        SalesCue2.CalcFields("Pedidos CATIT", "Pedidos españa", SalesCue2."Pedidos eci", SalesCue2."Pedidos portugal", SalesCue2."Pedidos canarias", SalesCue2."Pedidos todos", "Pedidos DROPSHIMENT");
+        SalesCue2.CalcFields(SalesCue2."Pedidos Pdte. comercial", SalesCue2."Pedidos Retenido", SalesCue2."Pedidos Urgentes", SalesCue2."Pedidos Super Urgentes", SalesCue2."Pedidos Transferencia");
+        SalesCue2.CalcFields(SalesCue2."Pedidos Urgentes PDTE. ENV.", SalesCue2."Pedidos Super Urgentes PDTE. E", "Pedidos Retrasado PDTE.ENVIAR", "Pedidos AMAZON", "Pedidos G12 (KIWOKO)");
+        SalesCue2.CalcFields(
+   SalesCue2."Pedidos españa PDTE ENVIAR", SalesCue2."Pedidos eci PDTE ENVIAR", SalesCue2."Pedidos portugal PDTE ENVIAR", SalesCue2."Pedidos canarias PDTE ENVIAR", SalesCue2."Pedidos todos PDTE ENVIAR");
 
 
-             CATIT:=SalesCue2."Pedidos CATIT";
-             MANOMANO:=SalesCue2."Pedidos MANOMANO";
-             TIENDAANIMAL:=SalesCue2."Pedidos TIEDAANIMAL";
-             AMAZON:=SalesCue2."Pedidos AMAZON";
-             SUPERURGENTESPDTEENVIAR:=SalesCue2."Pedidos Super Urgentes PDTE. E";
-             URGENTESPDTEENVIAR:=SalesCue2."Pedidos Urgentes PDTE. ENV.";
-             SUPERURGENTES:=SalesCue2."Pedidos Super Urgentes";
-             URGENTES:=SalesCue2."Pedidos Urgentes";
-             ECI:=SalesCue2."Pedidos eci";
-             PORTUGAL:=SalesCue2."Pedidos portugal";
-             CANARIAS:=SalesCue2."Pedidos canarias";
-             ESPAÑA:=SalesCue2."Pedidos españa"-ECI-CANARIAS;
-             DROPSHIPMENT:=SalesCue2."Pedidos DROPSHIMENT";
-             G12KIWOKO:=SalesCue2."Pedidos G12 (KIWOKO)";
-             RESTO:=SalesCue2."Pedidos todos"-ESPAÑA-PORTUGAL;
-             TODOS:=SalesCue2."Pedidos todos";
+        CATIT := SalesCue2."Pedidos CATIT";
+        MANOMANO := SalesCue2."Pedidos MANOMANO";
+        TIENDAANIMAL := SalesCue2."Pedidos TIEDAANIMAL";
+        AMAZON := SalesCue2."Pedidos AMAZON";
+        SUPERURGENTESPDTEENVIAR := SalesCue2."Pedidos Super Urgentes PDTE. E";
+        URGENTESPDTEENVIAR := SalesCue2."Pedidos Urgentes PDTE. ENV.";
+        SUPERURGENTES := SalesCue2."Pedidos Super Urgentes";
+        URGENTES := SalesCue2."Pedidos Urgentes";
+        ECI := SalesCue2."Pedidos eci";
+        PORTUGAL := SalesCue2."Pedidos portugal";
+        CANARIAS := SalesCue2."Pedidos canarias";
+        ESPAÑA := SalesCue2."Pedidos españa" - ECI - CANARIAS;
+        DROPSHIPMENT := SalesCue2."Pedidos DROPSHIMENT";
+        G12KIWOKO := SalesCue2."Pedidos G12 (KIWOKO)";
+        RESTO := SalesCue2."Pedidos todos" - ESPAÑA - PORTUGAL;
+        TODOS := SalesCue2."Pedidos todos";
 
-             ECIPDTE:=SalesCue2."Pedidos eci PDTE ENVIAR";
-             PORTUGALPDTE:=SalesCue2."Pedidos portugal PDTE ENVIAR";
-             CANARIASPDTE:=SalesCue2."Pedidos canarias PDTE ENVIAR";
-             ESPAÑAPDTE:=SalesCue2."Pedidos españa PDTE ENVIAR"-ECIPDTE-CANARIASPDTE;
-             TODOSPDTE:=SalesCue2."Pedidos todos PDTE ENVIAR";
+        ECIPDTE := SalesCue2."Pedidos eci PDTE ENVIAR";
+        PORTUGALPDTE := SalesCue2."Pedidos portugal PDTE ENVIAR";
+        CANARIASPDTE := SalesCue2."Pedidos canarias PDTE ENVIAR";
+        ESPAÑAPDTE := SalesCue2."Pedidos españa PDTE ENVIAR" - ECIPDTE - CANARIASPDTE;
+        TODOSPDTE := SalesCue2."Pedidos todos PDTE ENVIAR";
 
-             RETENIDO:=SalesCue2."Pedidos Retenido";
-             PDTETRANF:=SalesCue2."Pedidos Transferencia";
-             PDTECOMERCIAL:=SalesCue2."Pedidos Pdte. comercial";
-             FECHA24:=CalcDate('-1D',Today);
-             SalesCue2.SetRange("Date Filter",FECHA24,FECHA24);
-             SalesCue2.CalcFields("Pedidos Retrasado");
-             PEDIDORETRA24:=SalesCue2."Pedidos Retrasado";
+        RETENIDO := SalesCue2."Pedidos Retenido";
+        PDTETRANF := SalesCue2."Pedidos Transferencia";
+        PDTECOMERCIAL := SalesCue2."Pedidos Pdte. comercial";
+        FECHA24 := CalcDate('-1D', Today);
+        SalesCue2.SetRange("Date Filter", FECHA24, FECHA24);
+        SalesCue2.CalcFields("Pedidos Retrasado");
+        PEDIDORETRA24 := SalesCue2."Pedidos Retrasado";
 
-             FECHA48:=CalcDate('-2D',Today);
-             SalesCue2.SetRange("Date Filter",FECHA48,FECHA48);
-             SalesCue2.CalcFields("Pedidos Retrasado");
-             PEDIDORETRA48:=SalesCue2."Pedidos Retrasado";
+        FECHA48 := CalcDate('-2D', Today);
+        SalesCue2.SetRange("Date Filter", FECHA48, FECHA48);
+        SalesCue2.CalcFields("Pedidos Retrasado");
+        PEDIDORETRA48 := SalesCue2."Pedidos Retrasado";
 
-             FECHA72:=CalcDate('-3D',Today);
-             SalesCue2.SetRange("Date Filter",20000101D,FECHA72);
-             SalesCue2.CalcFields("Pedidos Retrasado");
-             PEDIDORETRA72:=SalesCue2."Pedidos Retrasado";
+        FECHA72 := CalcDate('-3D', Today);
+        SalesCue2.SetRange("Date Filter", 20000101D, FECHA72);
+        SalesCue2.CalcFields("Pedidos Retrasado");
+        PEDIDORETRA72 := SalesCue2."Pedidos Retrasado";
 
-             SalesCue2.SetRange("Date Filter",FECHA24,FECHA24);
-             SalesCue2.CalcFields("Pedidos Retrasado PDTE.ENVIAR");
-             PEDIDORETRA24pdteenviar:=SalesCue2."Pedidos Retrasado PDTE.ENVIAR";
+        SalesCue2.SetRange("Date Filter", FECHA24, FECHA24);
+        SalesCue2.CalcFields("Pedidos Retrasado PDTE.ENVIAR");
+        PEDIDORETRA24pdteenviar := SalesCue2."Pedidos Retrasado PDTE.ENVIAR";
 
-             FECHA48:=CalcDate('-2D',Today);
-             SalesCue2.SetRange("Date Filter",FECHA48,FECHA48);
-             SalesCue2.CalcFields("Pedidos Retrasado PDTE.ENVIAR");
-             PEDIDORETRA48pdteenviar:=SalesCue2."Pedidos Retrasado PDTE.ENVIAR";
+        FECHA48 := CalcDate('-2D', Today);
+        SalesCue2.SetRange("Date Filter", FECHA48, FECHA48);
+        SalesCue2.CalcFields("Pedidos Retrasado PDTE.ENVIAR");
+        PEDIDORETRA48pdteenviar := SalesCue2."Pedidos Retrasado PDTE.ENVIAR";
 
-             FECHA72:=CalcDate('-3D',Today);
-             SalesCue2.SetRange("Date Filter",20000101D,FECHA72);
-             SalesCue2.CalcFields("Pedidos Retrasado PDTE.ENVIAR");
-             PEDIDORETRA72pdteenviar:=SalesCue2."Pedidos Retrasado PDTE.ENVIAR";
+        FECHA72 := CalcDate('-3D', Today);
+        SalesCue2.SetRange("Date Filter", 20000101D, FECHA72);
+        SalesCue2.CalcFields("Pedidos Retrasado PDTE.ENVIAR");
+        PEDIDORETRA72pdteenviar := SalesCue2."Pedidos Retrasado PDTE.ENVIAR";
 
 
-        DiarioInv:=0;
-        ItemJournalBatch.SetRange("Journal Template Name",'INVENT. FÍ');
-        if ItemJournalBatch.FindFirst then repeat
-             DiarioInv:=DiarioInv+1;
-        until ItemJournalBatch.Next=0;
+        DiarioInv := 0;
+        ItemJournalBatch.SetRange("Journal Template Name", 'INVENT. FÍ');
+        if ItemJournalBatch.FindFirst then
+            repeat
+                DiarioInv := DiarioInv + 1;
+            until ItemJournalBatch.Next = 0;
 
 
         SalesShipmentHeader.Reset;
-        SalesShipmentHeader.SetRange(SalesShipmentHeader."Posting Date",Today);
+        SalesShipmentHeader.SetRange(SalesShipmentHeader."Posting Date", Today);
         if SalesShipmentHeader.FindFirst then begin
-        HiatoricoAlbaranes  :=SalesShipmentHeader.Count;
+            HiatoricoAlbaranes := SalesShipmentHeader.Count;
         end;
 
 
-             SalesCue2.CalcFields(SalesCue2."Pedidos contenedor");
-             PEDIDOCONTENEDOR:=SalesCue2."Pedidos contenedor";
+        SalesCue2.CalcFields(SalesCue2."Pedidos contenedor");
+        PEDIDOCONTENEDOR := SalesCue2."Pedidos contenedor";
 
-             dia:= Date2dwy(Today,1);
-             if dia=1 then begin lunes:=Today;end;  ///// Lunes
-             if dia=2 then begin lunes:=CalcDate('-1D',Today);end;  ///// Martes
-             if dia=3 then begin lunes:=CalcDate('-2D',Today);end;  ///// Miercoles
-             if dia=4 then begin lunes:=CalcDate('-3D',Today);end;  ///// Jueves
-             if dia=5 then begin lunes:=CalcDate('-4D',Today);end;  ///// Viernes
-             if dia=6 then begin lunes:=CalcDate('-5D',Today);end;  ///// Sabado
-             if dia=7 then begin lunes:=CalcDate('-6D',Today);end;  ///// Domingo
-
-
-             if dia=1 then begin viernes:=CalcDate('+6D',Today);end;  ///// Martes
-             if dia=2 then begin viernes:=CalcDate('+5D',Today);end;  ///// Martes
-             if dia=3 then begin viernes:=CalcDate('+4D',Today);end;  ///// Miercoles
-             if dia=4 then begin viernes:=CalcDate('+3D',Today);end;  ///// Jueves
-             if dia=5 then begin viernes:=CalcDate('+2D',Today);end;  ///// Viernes
-             if dia=6 then begin viernes:=CalcDate('+1D',Today);end;  ///// Sabado
-             if dia=7 then begin viernes:=Today;end;  ///// Domingo
+        dia := Date2dwy(Today, 1);
+        if dia = 1 then begin lunes := Today; end;  ///// Lunes
+        if dia = 2 then begin lunes := CalcDate('-1D', Today); end;  ///// Martes
+        if dia = 3 then begin lunes := CalcDate('-2D', Today); end;  ///// Miercoles
+        if dia = 4 then begin lunes := CalcDate('-3D', Today); end;  ///// Jueves
+        if dia = 5 then begin lunes := CalcDate('-4D', Today); end;  ///// Viernes
+        if dia = 6 then begin lunes := CalcDate('-5D', Today); end;  ///// Sabado
+        if dia = 7 then begin lunes := CalcDate('-6D', Today); end;  ///// Domingo
 
 
-             SalesCue2.SetRange("Date Filter",lunes,viernes);
-             SalesCue2.CalcFields("Pedidos contenedor sem.actual");
-             PEDIDOCONTENEDORact:=SalesCue2."Pedidos contenedor sem.actual";
+        if dia = 1 then begin viernes := CalcDate('+6D', Today); end;  ///// Martes
+        if dia = 2 then begin viernes := CalcDate('+5D', Today); end;  ///// Martes
+        if dia = 3 then begin viernes := CalcDate('+4D', Today); end;  ///// Miercoles
+        if dia = 4 then begin viernes := CalcDate('+3D', Today); end;  ///// Jueves
+        if dia = 5 then begin viernes := CalcDate('+2D', Today); end;  ///// Viernes
+        if dia = 6 then begin viernes := CalcDate('+1D', Today); end;  ///// Sabado
+        if dia = 7 then begin viernes := Today; end;  ///// Domingo
+
+
+        SalesCue2.SetRange("Date Filter", lunes, viernes);
+        SalesCue2.CalcFields("Pedidos contenedor sem.actual");
+        PEDIDOCONTENEDORact := SalesCue2."Pedidos contenedor sem.actual";
     end;
 
     trigger OnOpenPage()
@@ -893,8 +894,8 @@ Page 50031 "Almacen Datos"
         RoleCenterNotificationMgt: Codeunit "Role Center Notification Mgt.";
     begin
 
-        HiatoricoAlbaranesTodos:=9999;
-        CuantosProductos:=9999;
+        HiatoricoAlbaranesTodos := 9999;
+        CuantosProductos := 9999;
         if UserSetup.Get(UserId) then begin
 
         end;
@@ -902,8 +903,8 @@ Page 50031 "Almacen Datos"
 
         /////-Reset;
         /////-if not Get then begin
-          /////-Init;
-          /////-Insert;
+        /////-Init;
+        /////-Insert;
         /////-end;
 
         /////-SetRespCenterFilter;
@@ -1002,17 +1003,17 @@ Page 50031 "Almacen Datos"
 
     local procedure CalculateCueFieldValues()
     begin
-/////-        if FieldActive("Average Days Delayed") then
-          /////-"Average Days Delayed" := CalculateAverageDaysDelayed;
-/////-
+        /////-        if FieldActive("Average Days Delayed") then
+        /////-"Average Days Delayed" := CalculateAverageDaysDelayed;
+        /////-
         /////-if FieldActive("Ready to Ship") then
-          /////-"Ready to Ship" := CountOrders(FieldNo("Ready to Ship"));
-/////-
+        /////-"Ready to Ship" := CountOrders(FieldNo("Ready to Ship"));
+        /////-
         /////-if FieldActive("Partially Shipped") then
-          /////-"Partially Shipped" := CountOrders(FieldNo("Partially Shipped"));
+        /////-"Partially Shipped" := CountOrders(FieldNo("Partially Shipped"));
 
         /////-if FieldActive(Delayed) then
-          /////-Delayed := CountOrders(FieldNo(Delayed));
+        /////-Delayed := CountOrders(FieldNo(Delayed));
     end;
 }
 

@@ -3,6 +3,7 @@ Page 50030 "Menu Almacen"
 {
     Caption = 'Menu Almacen';
     PageType = RoleCenter;
+    UsageCategory = Lists;
 
     layout
     {
@@ -10,10 +11,10 @@ Page 50030 "Menu Almacen"
         {
             group(Control1900724808)
             {
-                part(Control1901851508;"Almacen Datos")
+                part(Control1901851508; "Almacen Datos")
                 {
-                    AccessByPermission = TableData "Sales Shipment Header"=R;
-                    ApplicationArea = Basic,Suite;
+                    AccessByPermission = TableData "Sales Shipment Header" = R;
+                    ApplicationArea = Basic, Suite;
                 }
             }
         }
@@ -36,7 +37,7 @@ Page 50030 "Menu Almacen"
             action("Etiquetas EDI")
             {
                 ApplicationArea = Basic;
-///                RunObject = Page "Lineas Albaran EDI";
+                ///                RunObject = Page "Lineas Albaran EDI";
             }
             action("Modifica expedicion")
             {
@@ -52,6 +53,6 @@ Page 50030 "Menu Almacen"
     }
 
     var
-        ///Automaticosvarios: Codeunit UnknownCodeunit50010;
+    ///Automaticosvarios: Codeunit UnknownCodeunit50010;
 }
 
