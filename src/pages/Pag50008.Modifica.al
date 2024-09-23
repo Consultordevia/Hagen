@@ -23,6 +23,8 @@ Page 50008 Modifica
     InsertAllowed = false;
     PageType = Card;
     SourceTable = "Integer";
+    UsageCategory = Lists;
+    ApplicationArea = All;
 
     layout
     {
@@ -245,7 +247,7 @@ Page 50008 Modifica
                     trigger OnValidate()
                     begin
 
-                        /*/////-
+
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
                         RecMtU.SetRange(RecMtU.Código, tipopalet);
@@ -263,7 +265,7 @@ Page 50008 Modifica
                                 esalto := RecMtU.Alto;
                             end;
                         end;
-                        */
+
                     end;
                 }
                 field(eslargo; eslargo)
@@ -298,7 +300,7 @@ Page 50008 Modifica
 
                     trigger OnValidate()
                     begin
-/* /////-
+
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
                         RecMtU.SetRange(RecMtU.Código, tipopalet2);
@@ -316,7 +318,7 @@ Page 50008 Modifica
                                 esalto2 := RecMtU.Alto;
                             end;
                         end;
-                        */
+
                     end;
                 }
                 field(eslargo2; eslargo2)
@@ -350,7 +352,7 @@ Page 50008 Modifica
 
                     trigger OnValidate()
                     begin
-                        /*                         /////-
+
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
                         RecMtU.SetRange(RecMtU.Código, tipopalet3);
@@ -368,7 +370,7 @@ Page 50008 Modifica
                                 esalto3 := RecMtU.Alto;
                             end;
                         end;
-                        */
+
                     end;
                 }
                 field(eslargo3; eslargo3)
@@ -402,7 +404,7 @@ Page 50008 Modifica
 
                     trigger OnValidate()
                     begin
-                        /* /////-
+
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
                         RecMtU.SetRange(RecMtU.Código, tipopalet4);
@@ -420,7 +422,7 @@ Page 50008 Modifica
                                 esalto4 := RecMtU.Alto;
                             end;
                         end;
-                        */
+
                     end;
                 }
                 field(eslargo4; eslargo4)
@@ -454,7 +456,7 @@ Page 50008 Modifica
 
                     trigger OnValidate()
                     begin
-/* /////-
+
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
                         RecMtU.SetRange(RecMtU.Código, tipopalet5);
@@ -472,7 +474,7 @@ Page 50008 Modifica
                                 esalto5 := RecMtU.Alto;
                             end;
                         end;
-                        */
+
                     end;
                 }
                 field(eslargo5; eslargo5)
@@ -506,7 +508,7 @@ Page 50008 Modifica
 
                     trigger OnValidate()
                     begin
-/* /////-
+
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
                         RecMtU.SetRange(RecMtU.Código, tipopalet6);
@@ -524,7 +526,7 @@ Page 50008 Modifica
                                 esalto6 := RecMtU.Alto;
                             end;
                         end;
-                        */
+
                     end;
                 }
                 field(eslargo6; eslargo6)
@@ -558,7 +560,7 @@ Page 50008 Modifica
 
                     trigger OnValidate()
                     begin
-/*  /////-
+
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
                         RecMtU.SetRange(RecMtU.Código, tipopalet7);
@@ -576,7 +578,7 @@ Page 50008 Modifica
                                 esalto7 := RecMtU.Alto;
                             end;
                         end;
-                        */
+
                     end;
                 }
                 field(eslargo7; eslargo7)
@@ -610,7 +612,7 @@ Page 50008 Modifica
 
                     trigger OnValidate()
                     begin
-/* /////-
+
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
                         RecMtU.SetRange(RecMtU.Código, tipopalet8);
@@ -628,7 +630,7 @@ Page 50008 Modifica
                                 esalto8 := RecMtU.Alto;
                             end;
                         end;
-                        */
+
                     end;
                 }
                 field(eslargo8; eslargo8)
@@ -662,7 +664,7 @@ Page 50008 Modifica
 
                     trigger OnValidate()
                     begin
-/* /////-
+
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
                         RecMtU.SetRange(RecMtU.Código, tipopalet9);
@@ -680,7 +682,7 @@ Page 50008 Modifica
                                 esalto9 := RecMtU.Alto;
                             end;
                         end;
-                        */
+
                     end;
                 }
                 field(eslargo9; eslargo9)
@@ -714,7 +716,7 @@ Page 50008 Modifica
 
                     trigger OnValidate()
                     begin
-/* /////-
+
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
                         RecMtU.SetRange(RecMtU.Código, tipopalet10);
@@ -732,7 +734,7 @@ Page 50008 Modifica
                                 esalto10 := RecMtU.Alto;
                             end;
                         end;
-                        */
+
                     end;
                 }
                 field(eslargo10; eslargo10)
@@ -947,7 +949,7 @@ Page 50008 Modifica
         peso: Decimal;
         Rec36: Record "Sales Header";
         Rec362: Record "Sales Header";
-        /////-RecAcc: Record UnknownRecord50006;
+        RecAcc: Record "Comisiones por grupo";
         INCIDENCIASPDTES: Integer;
         RecCVP: Record "Sales & Receivables Setup";
         /////-CU: Codeunit UnknownCodeunit50010;
@@ -956,7 +958,7 @@ Page 50008 Modifica
         X: Integer;
         CUENTAPT: Integer;
         CUENTAES: Integer;
-        /////-RecMT: Record UnknownRecord50005;
+        RecMT: Record Multitabla;
         RecItem: Record Item;
         CUENTAECI: Integer;
         REC2: Record "Sales Header";
@@ -978,7 +980,7 @@ Page 50008 Modifica
         npalets: Integer;
         Rec36Pepe: Record "Sales Header";
         /////-RepETAD: Report UnknownReport50009;
-        /////-RecMtU: Record UnknownRecord50005;
+        RecMtU: Record Multitabla;
         /////-RepDropShi: Report UnknownReport50013;
         tipopalet: Code[20];
         tipopalet2: Code[20];

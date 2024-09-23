@@ -7,6 +7,8 @@ Page 50013 "Estado pendientes de cobro"
     InsertAllowed = false;
     ModifyAllowed = false;
     PageType = List;
+    ApplicationArea = All;
+    UsageCategory = Lists;
     SourceTable = "Cust. Ledger Entry";
 
     layout
@@ -25,7 +27,7 @@ Page 50013 "Estado pendientes de cobro"
         {
             action(Open)
             {
-                ApplicationArea = Basic,Suite;
+                ApplicationArea = Basic, Suite;
                 Caption = 'Open';
                 Image = ViewDetails;
                 RunObject = Page "Customer Card";

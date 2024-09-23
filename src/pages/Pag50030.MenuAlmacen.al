@@ -4,6 +4,7 @@ Page 50030 "Menu Almacen"
     Caption = 'Menu Almacen';
     PageType = RoleCenter;
     UsageCategory = Lists;
+    ApplicationArea = All;
 
     layout
     {

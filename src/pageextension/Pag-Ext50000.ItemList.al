@@ -138,12 +138,31 @@ pageextension 50020 "Item List" extends "Item List"
 
             field("Familia"; Rec."Familia") { ApplicationArea = All; }
             field("Subfamilia"; Rec."Subfamilia") { ApplicationArea = All; }
-
+            field("Gross Weight"; Rec."Gross Weight") { ApplicationArea = All; }
+            field("Unit Volume"; Rec."Unit Volume") { ApplicationArea = All; }
+            field(DescripMarca; DescripMarca) { ApplicationArea = All; }
+            field(Disponible; dispo) { ApplicationArea = ALL; }
 
 
         }
     }
     ///
+    trigger OnAfterGetRecord()
+    begiN
+        DescripMarca := '';
+        IF RecMulti.GET(RecMulti.Tabla::Marcas, Rec.Marca) then begin
+            DescripMarca := RecMulti."Descripción";
+        end;
+        rec.CalcFields("Existencia SILLA", "Qty. on Sales Order");
+        dispo := rec."Existencia SILLA" - rec."Qty. on Sales Order" - rec."Stock para Catit";
+
+
+    end;
+
+    var
+        dispo: Decimal;
+        RecMulti: Record Multitabla;
+        DescripMarca: Text;
 
 
 

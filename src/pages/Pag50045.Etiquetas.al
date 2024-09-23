@@ -30,17 +30,7 @@ Page 50045 Etiquetas
                 }
             }
         }
-        area(factboxes)
-        {
-            systempart(Control1900383207; Links)
-            {
-                Visible = false;
-            }
-            systempart(Control1905767507; Notes)
-            {
-                Visible = false;
-            }
-        }
+
     }
 
     actions

@@ -8,9 +8,9 @@ Page 50016 "Mis Impagados"
     ModifyAllowed = false;
     PageType = List;
     SourceTable = "Cust. Ledger Entry";
-    /////-SourceTableView = sorting("Salesperson Code","Posting Date",Open)
-          /////-            where(Open=const(true),
-                /////-            "Category Code"=filter(IMPAGADO));
+    SourceTableView = sorting("Salesperson Code", "Posting Date", Open)
+                      where(Open = const(true),
+                            "Category Code" = filter('IMPAGADO'));
 
     layout
     {
@@ -18,25 +18,25 @@ Page 50016 "Mis Impagados"
         {
             repeater(Control1)
             {
-                /* /////-
-                field("Customer No.";"Customer No.")                
+
+                field("Customer No."; Rec."Customer No.")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Due Date";"Due Date")
+                field("Due Date"; Rec."Due Date")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Remaining Amt. (LCY)";"Remaining Amt. (LCY)")
+                field("Remaining Amt. (LCY)"; Rec."Remaining Amt. (LCY)")
                 {
                     ApplicationArea = Basic;
                 }
-                field(Cliente;Nombre)
+                field(Cliente; Nombre)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Cliente';
                 }
-                */
+
             }
         }
     }
@@ -66,21 +66,21 @@ Page 50016 "Mis Impagados"
     trigger OnAfterGetRecord()
     begin
 
-        Nombre:='';
+        Nombre := '';
         Cust.Init;
-        /////-if Cust.Get("Customer No.") then begin
-             /////-Nombre:=Cust."Search Name";
-        /////-end;
+        if Cust.Get(Rec."Customer No.") then begin
+            Nombre := Cust."Search Name";
+        end;
     end;
 
     trigger OnOpenPage()
     begin
 
         UserSetup.Get(UserId);
-        if UserSetup."Salespers./Purch. Code"<>'' then begin
-             /////-FilterGroup(2);
-             /////-SetRange("Salesperson Code",UserSetup."Salespers./Purch. Code");
-             /////-FilterGroup(0);
+        if UserSetup."Salespers./Purch. Code" <> '' then begin
+            Rec.FilterGroup(2);
+            Rec.SetRange("Salesperson Code", UserSetup."Salespers./Purch. Code");
+            Rec.FilterGroup(0);
         end;
     end;
 
@@ -97,15 +97,16 @@ Page 50016 "Mis Impagados"
     begin
 
 
-        Total:=0;
+        Total := 0;
         CustLedgerEntry.CopyFilters(Rec);
-        if CustLedgerEntry.FindFirst then repeat
-              CustLedgerEntry.CalcFields(CustLedgerEntry."Remaining Amt. (LCY)");
-              Total:=Total+CustLedgerEntry."Remaining Amt. (LCY)";
-        until CustLedgerEntry.Next = 0;
+        if CustLedgerEntry.FindFirst then
+            repeat
+                CustLedgerEntry.CalcFields(CustLedgerEntry."Remaining Amt. (LCY)");
+                Total := Total + CustLedgerEntry."Remaining Amt. (LCY)";
+            until CustLedgerEntry.Next = 0;
 
 
-        Message('Total: %1',Total);
+        Message('Total: %1', Total);
     end;
 }
 

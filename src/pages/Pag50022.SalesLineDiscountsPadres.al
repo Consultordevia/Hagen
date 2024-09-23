@@ -7,7 +7,7 @@ Page 50022 "Sales Line Discounts Padres"
     PageType = List;
     SaveValues = true;
     ShowFilter = false;
-    /////-SourceTable = UnknownTable50001;
+    SourceTable = "Sales Line Discount Padre";
 
     layout
     {
@@ -172,25 +172,25 @@ Page 50022 "Sales Line Discounts Padres"
                   }
               }
               */
-              /* /////-
-            group(Filters)
-            {
-                Caption = 'Filters';
-              /////-  Visible = IsOnMobile;
-                /////-field(GetFilterDescription;GetFilterDescription)
-                {
-                    ApplicationArea = Basic,Suite;
-                    Editable = false;
-                    ToolTip = 'Specifies a filter for which sales line discounts to display.';
+            /* /////-
+          group(Filters)
+          {
+              Caption = 'Filters';
+            /////-  Visible = IsOnMobile;
+              /////-field(GetFilterDescription;GetFilterDescription)
+              {
+                  ApplicationArea = Basic,Suite;
+                  Editable = false;
+                  ToolTip = 'Specifies a filter for which sales line discounts to display.';
 
-                    trigger OnAssistEdit()
-                    begin
-                        FilterLines;
-                        CurrPage.Update(false);
-                    end;
-                }
-            }
-            */ 
+                  trigger OnAssistEdit()
+                  begin
+                      FilterLines;
+                      CurrPage.Update(false);
+                  end;
+              }
+          }
+          */
             /* /////-
             repeater(Control1)
             {
@@ -255,17 +255,7 @@ Page 50022 "Sales Line Discounts Padres"
             }
             */
         }
-        area(factboxes)
-        {
-            systempart(Control1900383207;Links)
-            {
-                Visible = false;
-            }
-            systempart(Control1905767507;Notes)
-            {
-                Visible = false;
-            }
-        }
+
     }
 
     actions
@@ -274,7 +264,7 @@ Page 50022 "Sales Line Discounts Padres"
         {
             action("Filter")
             {
-                ApplicationArea = Basic,Suite;
+                ApplicationArea = Basic, Suite;
                 Caption = 'Filter';
                 Image = "Filter";
                 Promoted = true;
@@ -282,14 +272,14 @@ Page 50022 "Sales Line Discounts Padres"
                 ToolTip = 'Apply filter.';
                 Visible = IsOnMobile;
 
-            /////-    trigger OnAction()
+                /////-    trigger OnAction()
                 /////-begin
-                    /////-FilterLines;
+                /////-FilterLines;
                 /////-end;
             }
             action(ClearFilter)
             {
-                ApplicationArea = Basic,Suite;
+                ApplicationArea = Basic, Suite;
                 Caption = 'Clear Filter';
                 Image = ClearFilter;
                 Promoted = true;
@@ -299,9 +289,9 @@ Page 50022 "Sales Line Discounts Padres"
 
                 trigger OnAction()
                 begin
-              /////-      Reset;
-/////-                    UpdateBasicRecFilters;
-      /////-              SetEditableFields;
+                    /////-      Reset;
+                    /////-                    UpdateBasicRecFilters;
+                    /////-              SetEditableFields;
                 end;
             }
         }
@@ -350,7 +340,7 @@ Page 50022 "Sales Line Discounts Padres"
     local procedure GetRecFilters()
     begin
         /////-if GetFilters <> '' then
-          /////-UpdateBasicRecFilters;
+        /////-UpdateBasicRecFilters;
     end;
 
 
@@ -360,46 +350,46 @@ Page 50022 "Sales Line Discounts Padres"
         CodeFilterCtrlEnable := true;
 
         /////-if SalesTypeFilter <> Salestypefilter::None then
-          /////-SetRange("Sales Type",SalesTypeFilter)
+        /////-SetRange("Sales Type",SalesTypeFilter)
         /////-else
-          /////-SetRange("Sales Type");
+        /////-SetRange("Sales Type");
 
-        if SalesTypeFilter in [Salestypefilter::"All Customers",Salestypefilter::None] then begin
-          SalesCodeFilterCtrlEnable := false;
-          SalesCodeFilter := '';
+        if SalesTypeFilter in [Salestypefilter::"All Customers", Salestypefilter::None] then begin
+            SalesCodeFilterCtrlEnable := false;
+            SalesCodeFilter := '';
         end;
 
         /////-if SalesCodeFilter <> '' then
-          /////-SetFilter("Sales Code",SalesCodeFilter)
+        /////-SetFilter("Sales Code",SalesCodeFilter)
         /////-else
-          /////-SetRange("Sales Code");
+        /////-SetRange("Sales Code");
 
         /////-if ItemTypeFilter <> Itemtypefilter::None then
-          /////-SetRange(Type,ItemTypeFilter)
+        /////-SetRange(Type,ItemTypeFilter)
         /////-else
-          /////-SetRange(Type);
+        /////-SetRange(Type);
 
         if ItemTypeFilter = Itemtypefilter::None then begin
-          CodeFilterCtrlEnable := false;
-          CodeFilter := '';
+            CodeFilterCtrlEnable := false;
+            CodeFilter := '';
         end;
 
-/* /////-
-        if CodeFilter <> '' then begin
-          SetFilter(Code,CodeFilter);
-        end else
-          SetRange(Code);
+        /* /////-
+                if CodeFilter <> '' then begin
+                  SetFilter(Code,CodeFilter);
+                end else
+                  SetRange(Code);
 
-        if CurrencyCodeFilter <> '' then begin
-          SetFilter("Currency Code",CurrencyCodeFilter);
-        end else
-          SetRange("Currency Code");
+                if CurrencyCodeFilter <> '' then begin
+                  SetFilter("Currency Code",CurrencyCodeFilter);
+                end else
+                  SetRange("Currency Code");
 
-        if StartingDateFilter <> '' then
-          SetFilter("Starting Date",StartingDateFilter)
-        else
-          SetRange("Starting Date");
-          */
+                if StartingDateFilter <> '' then
+                  SetFilter("Starting Date",StartingDateFilter)
+                else
+                  SetRange("Starting Date");
+                  */
 
         CurrPage.Update(false);
     end;
@@ -407,74 +397,74 @@ Page 50022 "Sales Line Discounts Padres"
     local procedure GetCaption(): Text[250]
     begin
         if IsOnMobile then
-          exit('');
+            exit('');
 
-      /////-  exit(GetFilterDescription);
+        /////-  exit(GetFilterDescription);
     end;
 
-/* /////-
-    local procedure GetFilterDescription(): Text
-    var
-        ObjTranslation: Record "Object Translation";
-        SourceTableName: Text;
-        SalesSrcTableName: Text;
-        Description: Text;
-    begin
-        GetRecFilters;
+    /* /////-
+        local procedure GetFilterDescription(): Text
+        var
+            ObjTranslation: Record "Object Translation";
+            SourceTableName: Text;
+            SalesSrcTableName: Text;
+            Description: Text;
+        begin
+            GetRecFilters;
 
-        SourceTableName := '';
-        case ItemTypeFilter of
-          Itemtypefilter::Item:
-            begin
-              SourceTableName := ObjTranslation.TranslateObject(ObjTranslation."object type"::Table,27);
-              Item.SetFilter("No.",CodeFilter);
-              if not Item.FindFirst then
-                Clear(Item);
+            SourceTableName := '';
+            case ItemTypeFilter of
+              Itemtypefilter::Item:
+                begin
+                  SourceTableName := ObjTranslation.TranslateObject(ObjTranslation."object type"::Table,27);
+                  Item.SetFilter("No.",CodeFilter);
+                  if not Item.FindFirst then
+                    Clear(Item);
+                end;
+              Itemtypefilter::"Item Discount Group":
+                begin
+                  SourceTableName := ObjTranslation.TranslateObject(ObjTranslation."object type"::Table,341);
+                  ItemDiscGr.SetFilter(Code,CodeFilter);
+                  if not ItemDiscGr.FindFirst then
+                    Clear(ItemDiscGr);
+                end;
             end;
-          Itemtypefilter::"Item Discount Group":
-            begin
-              SourceTableName := ObjTranslation.TranslateObject(ObjTranslation."object type"::Table,341);
-              ItemDiscGr.SetFilter(Code,CodeFilter);
-              if not ItemDiscGr.FindFirst then
-                Clear(ItemDiscGr);
+
+            SalesSrcTableName := '';
+            case SalesTypeFilter of
+              Salestypefilter::Customer:
+                begin
+                  SalesSrcTableName := ObjTranslation.TranslateObject(ObjTranslation."object type"::Table,18);
+                  Cust.SetFilter("No.",SalesCodeFilter);
+                  if Cust.FindFirst then
+                    Description := Cust.Name;
+                end;
+              Salestypefilter::"Customer Discount Group":
+                begin
+                  SalesSrcTableName := ObjTranslation.TranslateObject(ObjTranslation."object type"::Table,340);
+                  CustDiscGr.SetFilter(Code,SalesCodeFilter);
+                  if CustDiscGr.FindFirst then
+                    Description := CustDiscGr.Description;
+                end;
+              Salestypefilter::Campaign:
+                begin
+                  SalesSrcTableName := ObjTranslation.TranslateObject(ObjTranslation."object type"::Table,5071);
+                  Campaign.SetFilter("No.",SalesCodeFilter);
+                  if Campaign.FindFirst then
+                    Description := Campaign.Description;
+                end;
+              Salestypefilter::"All Customers":
+                begin
+                  SalesSrcTableName := Text000;
+                  Description := '';
+                end;
             end;
+
+            if SalesSrcTableName = Text000 then
+              exit(StrSubstNo('%1 %2 %3 %4 %5',SalesSrcTableName,SalesCodeFilter,Description,SourceTableName,CodeFilter));
+            exit(StrSubstNo('%1 %2 %3 %4 %5',SalesSrcTableName,SalesCodeFilter,Description,SourceTableName,CodeFilter));
         end;
-
-        SalesSrcTableName := '';
-        case SalesTypeFilter of
-          Salestypefilter::Customer:
-            begin
-              SalesSrcTableName := ObjTranslation.TranslateObject(ObjTranslation."object type"::Table,18);
-              Cust.SetFilter("No.",SalesCodeFilter);
-              if Cust.FindFirst then
-                Description := Cust.Name;
-            end;
-          Salestypefilter::"Customer Discount Group":
-            begin
-              SalesSrcTableName := ObjTranslation.TranslateObject(ObjTranslation."object type"::Table,340);
-              CustDiscGr.SetFilter(Code,SalesCodeFilter);
-              if CustDiscGr.FindFirst then
-                Description := CustDiscGr.Description;
-            end;
-          Salestypefilter::Campaign:
-            begin
-              SalesSrcTableName := ObjTranslation.TranslateObject(ObjTranslation."object type"::Table,5071);
-              Campaign.SetFilter("No.",SalesCodeFilter);
-              if Campaign.FindFirst then
-                Description := Campaign.Description;
-            end;
-          Salestypefilter::"All Customers":
-            begin
-              SalesSrcTableName := Text000;
-              Description := '';
-            end;
-        end;
-
-        if SalesSrcTableName = Text000 then
-          exit(StrSubstNo('%1 %2 %3 %4 %5',SalesSrcTableName,SalesCodeFilter,Description,SourceTableName,CodeFilter));
-        exit(StrSubstNo('%1 %2 %3 %4 %5',SalesSrcTableName,SalesCodeFilter,Description,SourceTableName,CodeFilter));
-    end;
-    */
+        */
 
     local procedure SalesCodeFilterOnAfterValidate()
     begin
@@ -514,83 +504,83 @@ Page 50022 "Sales Line Discounts Padres"
         SetRecFilters;
     end;
 
-/* /////-
-    local procedure GetSalesTypeFilter(): Integer
-    begin
-        case GetFilter("Sales Type") of
-          Format("sales type"::Customer):
-            exit(0);
-          Format("sales type"::"Customer Disc. Group"):
-            exit(1);
-          Format("sales type"::"All Customers"):
-            exit(2);
-          Format("sales type"::Campaign):
-            exit(3);
+    /* /////-
+        local procedure GetSalesTypeFilter(): Integer
+        begin
+            case GetFilter("Sales Type") of
+              Format("sales type"::Customer):
+                exit(0);
+              Format("sales type"::"Customer Disc. Group"):
+                exit(1);
+              Format("sales type"::"All Customers"):
+                exit(2);
+              Format("sales type"::Campaign):
+                exit(3);
+            end;
         end;
-    end;
 
-    local procedure GetTypeFilter(): Integer
-    begin
-        case GetFilter(Type) of
-          Format(Type::Item):
-            exit(0);
-          Format(Type::"Item Disc. Group"):
-            exit(1);
+        local procedure GetTypeFilter(): Integer
+        begin
+            case GetFilter(Type) of
+              Format(Type::Item):
+                exit(0);
+              Format(Type::"Item Disc. Group"):
+                exit(1);
+            end;
         end;
-    end;
-    
 
-    local procedure FilterLines()
-    var
-        FilterPageBuilder: FilterPageBuilder;
-    begin
-        FilterPageBuilder.AddTable(TableCaption,Database::"Sales Line Discount");
-        FilterPageBuilder.SetView(TableCaption,GetView);
 
-        if GetFilter("Sales Type") = '' then
-          FilterPageBuilder.AddFieldNo(TableCaption,FieldNo("Sales Type"));
-        if GetFilter("Sales Code") = '' then
-          FilterPageBuilder.AddFieldNo(TableCaption,FieldNo("Sales Code"));
-        if GetFilter(Type) = '' then
-          FilterPageBuilder.AddFieldNo(TableCaption,FieldNo(Type));
-        if GetFilter(Code) = '' then
-          FilterPageBuilder.AddFieldNo(TableCaption,FieldNo(Code));
-        if GetFilter("Starting Date") = '' then
-          FilterPageBuilder.AddFieldNo(TableCaption,FieldNo("Starting Date"));
-        if GetFilter("Currency Code") = '' then
-          FilterPageBuilder.AddFieldNo(TableCaption,FieldNo("Currency Code"));
+        local procedure FilterLines()
+        var
+            FilterPageBuilder: FilterPageBuilder;
+        begin
+            FilterPageBuilder.AddTable(TableCaption,Database::"Sales Line Discount");
+            FilterPageBuilder.SetView(TableCaption,GetView);
 
-        if FilterPageBuilder.RunModal then
-          SetView(FilterPageBuilder.GetView(TableCaption));
+            if GetFilter("Sales Type") = '' then
+              FilterPageBuilder.AddFieldNo(TableCaption,FieldNo("Sales Type"));
+            if GetFilter("Sales Code") = '' then
+              FilterPageBuilder.AddFieldNo(TableCaption,FieldNo("Sales Code"));
+            if GetFilter(Type) = '' then
+              FilterPageBuilder.AddFieldNo(TableCaption,FieldNo(Type));
+            if GetFilter(Code) = '' then
+              FilterPageBuilder.AddFieldNo(TableCaption,FieldNo(Code));
+            if GetFilter("Starting Date") = '' then
+              FilterPageBuilder.AddFieldNo(TableCaption,FieldNo("Starting Date"));
+            if GetFilter("Currency Code") = '' then
+              FilterPageBuilder.AddFieldNo(TableCaption,FieldNo("Currency Code"));
 
-        UpdateBasicRecFilters;
-        SetEditableFields;
-    end;
-    
+            if FilterPageBuilder.RunModal then
+              SetView(FilterPageBuilder.GetView(TableCaption));
 
-    local procedure UpdateBasicRecFilters()
-    begin
-        if GetFilter("Sales Type") <> '' then
-          SalesTypeFilter := GetSalesTypeFilter
-        else
-          SalesTypeFilter := Salestypefilter::None;
+            UpdateBasicRecFilters;
+            SetEditableFields;
+        end;
 
-        if GetFilter(Type) <> '' then
-          ItemTypeFilter := GetTypeFilter
-        else
-          ItemTypeFilter := Itemtypefilter::None;
 
-        SalesCodeFilter := GetFilter("Sales Code");
-        CodeFilter := GetFilter(Code);
-        CurrencyCodeFilter := GetFilter("Currency Code");
-        Evaluate(StartingDateFilter,GetFilter("Starting Date"));
-    end;
-    
+        local procedure UpdateBasicRecFilters()
+        begin
+            if GetFilter("Sales Type") <> '' then
+              SalesTypeFilter := GetSalesTypeFilter
+            else
+              SalesTypeFilter := Salestypefilter::None;
 
-    local procedure SetEditableFields()
-    begin
-        SalesCodeEditable := "Sales Type" <> "sales type"::"All Customers";
-    end;
-    */
+            if GetFilter(Type) <> '' then
+              ItemTypeFilter := GetTypeFilter
+            else
+              ItemTypeFilter := Itemtypefilter::None;
+
+            SalesCodeFilter := GetFilter("Sales Code");
+            CodeFilter := GetFilter(Code);
+            CurrencyCodeFilter := GetFilter("Currency Code");
+            Evaluate(StartingDateFilter,GetFilter("Starting Date"));
+        end;
+
+
+        local procedure SetEditableFields()
+        begin
+            SalesCodeEditable := "Sales Type" <> "sales type"::"All Customers";
+        end;
+        */
 }
 

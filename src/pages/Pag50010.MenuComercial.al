@@ -3,6 +3,10 @@ Page 50010 "Menu Comercial"
 {
     Caption = 'Menu Comercial';
     PageType = RoleCenter;
+    ApplicationArea = All;
+    UsageCategory = Lists;
+
+
 
     layout
     {
@@ -10,10 +14,10 @@ Page 50010 "Menu Comercial"
         {
             group(Control1900724808)
             {
-                part(Control1901851508;"Comercial Datos")
+                part(Control1901851508; "Comercial Datos")
                 {
-                    AccessByPermission = TableData "Sales Shipment Header"=R;
-                    ApplicationArea = Basic,Suite;
+                    AccessByPermission = TableData "Sales Shipment Header" = R;
+                    ApplicationArea = Basic, Suite;
                 }
             }
         }
@@ -30,7 +34,7 @@ Page 50010 "Menu Comercial"
                 ToolTip = 'View history for sales, shipments, and inventory.';
                 action("Posted Sales Shipments")
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Posted Sales Shipments';
                     Image = PostedShipment;
                     RunObject = Page "Posted Sales Shipments";
@@ -38,7 +42,7 @@ Page 50010 "Menu Comercial"
                 }
                 action("Posted Sales Invoices")
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Posted Sales Invoices';
                     Image = PostedOrder;
                     RunObject = Page "Posted Sales Invoices";
@@ -53,7 +57,7 @@ Page 50010 "Menu Comercial"
                 }
                 action("Posted Sales Credit Memos")
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Posted Sales Credit Memos';
                     Image = PostedOrder;
                     RunObject = Page "Posted Sales Credit Memos";
@@ -67,7 +71,7 @@ Page 50010 "Menu Comercial"
                 ToolTip = 'View history for sales, shipments, and inventory.';
                 action(Action7141746)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Posted Sales Shipments';
                     Image = PostedShipment;
                     RunObject = Report "Customer Detailed Aging";

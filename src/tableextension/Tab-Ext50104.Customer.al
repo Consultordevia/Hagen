@@ -1,5 +1,6 @@
 tableextension 50104 Customer extends Customer
 {
+
     fields
     {
         field(50000; "Permite seguir adelante"; Boolean)

@@ -1218,26 +1218,26 @@ Page 50011 "Comercial Datos"
 
         mes := Date2dmy(Today, 2);
 
-        /* /////-
-                Rec3.Reset;
-                Rec3.SetRange(Rec3.Vendedor,UserSetup."Salespers./Purch. Code");
-                Rec3.SetRange(Rec3.Año,año);
-                Rec3.SetRange(Rec3.Tipo,0);
-                if Rec3.FindSet then begin
-                     if mes=1 then tantorecu:=Rec3.Enero;
-                     if mes=2 then tantorecu:=Rec3.Febrero;
-                     if mes=3 then tantorecu:=Rec3.Marzo;
-                     if mes=4 then tantorecu:=Rec3.Abril;
-                     if mes=5 then tantorecu:=Rec3.Mayo;
-                     if mes=6 then tantorecu:=Rec3.Junio;
-                     if mes=7 then tantorecu:=Rec3.Julio;
-                     if mes=8 then tantorecu:=Rec3.Agosto;
-                     if mes=9 then tantorecu:=Rec3.Septiembre;
-                     if mes=10 then tantorecu:=Rec3.Octubre;
-                     if mes=11 then tantorecu:=Rec3.Noviembre;
-                     if mes=12 then tantorecu:=Rec3.Diciembre;
-                end;
-                */
+
+        Rec3.Reset;
+        Rec3.SetRange(Rec3.Vendedor, UserSetup."Salespers./Purch. Code");
+        Rec3.SetRange(Rec3.Año, año);
+        Rec3.SetRange(Rec3.Tipo, 0);
+        if Rec3.FindSet then begin
+            if mes = 1 then tantorecu := Rec3.Enero;
+            if mes = 2 then tantorecu := Rec3.Febrero;
+            if mes = 3 then tantorecu := Rec3.Marzo;
+            if mes = 4 then tantorecu := Rec3.Abril;
+            if mes = 5 then tantorecu := Rec3.Mayo;
+            if mes = 6 then tantorecu := Rec3.Junio;
+            if mes = 7 then tantorecu := Rec3.Julio;
+            if mes = 8 then tantorecu := Rec3.Agosto;
+            if mes = 9 then tantorecu := Rec3.Septiembre;
+            if mes = 10 then tantorecu := Rec3.Octubre;
+            if mes = 11 then tantorecu := Rec3.Noviembre;
+            if mes = 12 then tantorecu := Rec3.Diciembre;
+        end;
+
 
         Total := FacturadoMesAct + Albaranado + pedidos;
         Objetivoeuros := tantorecu;
@@ -1336,7 +1336,7 @@ Page 50011 "Comercial Datos"
         HiatoricoAlbaranes: Decimal;
         PostedSalesShipments: Page "Posted Sales Shipments";
         item2: Record Item;
-        /////-Rec3: Record UnknownRecord50014;
+        Rec3: Record "Objetivos vendedores";
         tantorecu: Decimal;
         Total: Decimal;
         ComoVoy: Decimal;

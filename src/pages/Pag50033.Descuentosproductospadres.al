@@ -2,10 +2,10 @@
 Page 50033 "Descuentos productos padres"
 
 {
-    /*
- /////-
+
+
     PageType = List;
-    /////-SourceTable = UnknownTable50001;
+    SourceTable = "Sales Line Discount Padre";
 
     layout
     {
@@ -13,120 +13,120 @@ Page 50033 "Descuentos productos padres"
         {
             repeater(Group)
             {
-              /////-
-                field("Code";Code)
+                /////-
+                field("Code"; Rec.Code)
                 {
                     ApplicationArea = Basic;
                 }
-                field("Descripción";Descripción)
+                field("Descripción"; Rec.Descripción)
                 {
                     ApplicationArea = Basic;
                 }
-                field("Sales Code";"Sales Code")
+                field("Sales Code"; Rec."Sales Code")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Currency Code";"Currency Code")
+                field("Currency Code"; Rec."Currency Code")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Starting Date";"Starting Date")
+                field("Starting Date"; Rec."Starting Date")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Line Discount %";"Line Discount %")
+                field("Line Discount %"; Rec."Line Discount %")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Sales Type";"Sales Type")
+                field("Sales Type"; Rec."Sales Type")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Minimum Quantity";"Minimum Quantity")
+                field("Minimum Quantity"; Rec."Minimum Quantity")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Ending Date";"Ending Date")
+                field("Ending Date"; Rec."Ending Date")
                 {
                     ApplicationArea = Basic;
                 }
-                field(Type;Type)
+                field(Type; Rec.Type)
                 {
                     ApplicationArea = Basic;
                 }
-                field("Unit of Measure Code";"Unit of Measure Code")
+                field("Unit of Measure Code"; Rec."Unit of Measure Code")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Variant Code";"Variant Code")
+                field("Variant Code"; Rec."Variant Code")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Producto en promocion";"Producto en promocion")
+                field("Producto en promocion"; Rec."Producto en promocion")
                 {
                     ApplicationArea = Basic;
                 }
-                field("+ Linea";"+ Linea")
+                field("+ Linea"; Rec."+ Linea")
                 {
                     ApplicationArea = Basic;
                 }
-                field("+ Familia";"+ Familia")
+                field("+ Familia"; Rec."+ Familia")
                 {
                     ApplicationArea = Basic;
                 }
-                field("+ Subfamilia";"+ Subfamilia")
+                field("+ Subfamilia"; Rec."+ Subfamilia")
                 {
                     ApplicationArea = Basic;
                 }
-                field("+ Linea 1";"+ Linea 1")
+                field("+ Linea 1"; Rec."+ Linea 1")
                 {
                     ApplicationArea = Basic;
                 }
-                field("+ Familia 1";"+ Familia 1")
+                field("+ Familia 1"; Rec."+ Familia 1")
                 {
                     ApplicationArea = Basic;
                 }
-                field("+ Subfamilia 1";"+ Subfamilia 1")
+                field("+ Subfamilia 1"; Rec."+ Subfamilia 1")
                 {
                     ApplicationArea = Basic;
                 }
-                field("+ Linea 2";"+ Linea 2")
+                field("+ Linea 2"; Rec."+ Linea 2")
                 {
                     ApplicationArea = Basic;
                 }
-                field("+ Familia 2";"+ Familia 2")
+                field("+ Familia 2"; Rec."+ Familia 2")
                 {
                     ApplicationArea = Basic;
                 }
-                field("+ Subfamilia 2";"+ Subfamilia 2")
+                field("+ Subfamilia 2"; Rec."+ Subfamilia 2")
                 {
                     ApplicationArea = Basic;
                 }
-                field("+ Linea 3";"+ Linea 3")
+                field("+ Linea 3"; Rec."+ Linea 3")
                 {
                     ApplicationArea = Basic;
                 }
-                field("+ Familia 3";"+ Familia 3")
+                field("+ Familia 3"; Rec."+ Familia 3")
                 {
                     ApplicationArea = Basic;
                 }
-                field("+ Subfamilia 3";"+ Subfamilia 3")
+                field("+ Subfamilia 3"; Rec."+ Subfamilia 3")
                 {
                     ApplicationArea = Basic;
                 }
-                field("+ Linea 4";"+ Linea 4")
+                field("+ Linea 4"; Rec."+ Linea 4")
                 {
                     ApplicationArea = Basic;
                 }
-                field("+ Familia 4";"+ Familia 4")
+                field("+ Familia 4"; Rec."+ Familia 4")
                 {
                     ApplicationArea = Basic;
                 }
-                field("+ Subfamilia 4";"+ Subfamilia 4")
+                field("+ Subfamilia 4"; Rec."+ Subfamilia 4")
                 {
                     ApplicationArea = Basic;
                 }
-                
+
             }
         }
     }
@@ -145,7 +145,7 @@ Page 50033 "Descuentos productos padres"
                 trigger OnAction()
                 begin
 
-                    Automaticos.DescuentosGrupos2;
+                    /////-Automaticos.DescuentosGrupos2;
 
                     Message('Hecho.');
                 end;
@@ -162,15 +162,15 @@ Page 50033 "Descuentos productos padres"
                 trigger OnAction()
                 begin
 
-                    Clear(ImportaDescuentosPadre);
-                    ImportaDescuentosPadre.Run;
+                    /////-Clear(ImportaDescuentosPadre);
+                    /////-ImportaDescuentosPadre.Run;
                 end;
             }
         }
     }
 
     var
-        Automaticos: Codeunit UnknownCodeunit50001;
-        ImportaDescuentosPadre: XmlPort UnknownXmlPort50000;
-        */
+    /////-Automaticos: Codeunit UnknownCodeunit50001;
+    /////-ImportaDescuentosPadre: XmlPort UnknownXmlPort50000;
+
 }

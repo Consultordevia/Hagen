@@ -9,8 +9,8 @@ Page 50018 Productos
     ModifyAllowed = false;
     PageType = List;
     SourceTable = Item;
-    /////-SourceTableView = sorting("Search Description")
-                      /////-where("Estado Producto"=filter(Activo|Descatalogado|"Sin actualizar"|4|5));
+    SourceTableView = sorting("Search Description")
+                      where("Estado Producto" = filter('Activo' | 'Descatalogado' | 'Sin actualizar' | '4' | '5'));
 
     layout
     {
@@ -19,72 +19,72 @@ Page 50018 Productos
             repeater(Item)
             {
                 Caption = 'Item';
-                /* /////-
-                field("No.";"No.")
+
+                field("No."; Rec."No.")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies the number of the item.';
                 }
-                field(Description;Description)
+                field(Description; Rec.Description)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies a description of the item.';
                 }
-                field("Stock disponible";Existencia)
+                field("Stock disponible"; Existencia)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                 }
-                field("Qty. on Sales Order";"Qty. on Sales Order")
+                field("Qty. on Sales Order"; Rec."Qty. on Sales Order")
                 {
                     ApplicationArea = Basic;
                 }
-                field(PVenta;PVenta)
+                field(PVenta; PVenta)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Precio venta';
                 }
-                field(PVPrecomendado;PVPrecomendado)
+                field(PVPrecomendado; PVPrecomendado)
                 {
                     ApplicationArea = Basic;
                     Caption = 'PVP recomendado';
                 }
-                field("Fecha proxima recepción conten";"Fecha proxima recepción conten")
+                field("Fecha proxima recepción conten"; Rec."Fecha proxima recepción conten")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Fecha proxima recepción pedido";"Fecha proxima recepción pedido")
+                field("Fecha proxima recepción pedido"; Rec."Fecha proxima recepción pedido")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Estado Producto";"Estado Producto")
+                field("Estado Producto"; Rec."Estado Producto")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Cantidad facturada";"Cantidad facturada")
+                field("Cantidad facturada"; Rec."Cantidad facturada")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Cantidad abonada";"Cantidad abonada")
+                field("Cantidad abonada"; Rec."Cantidad abonada")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Importe facturado";"Importe facturado")
+                field("Importe facturado"; Rec."Importe facturado")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Importe abonado";"Importe abonado")
+                field("Importe abonado"; Rec."Importe abonado")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Cantidad fabricada";"Cantidad fabricada")
+                field("Cantidad fabricada"; Rec."Cantidad fabricada")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Etiqueta portugues";"Etiqueta portugues")
+                field("Etiqueta portugues"; Rec."Etiqueta portugues")
                 {
                     ApplicationArea = Basic;
                 }
-                */
+
             }
         }
     }
@@ -100,7 +100,7 @@ Page 50018 Productos
         SetSocialListeningFactboxVisibility;
 
         /////-CRMIsCoupledToRecord :=
-          /////-CRMCouplingManagement.IsRecordCoupledToCRM(RecordId) and CRMIntegrationEnabled;
+        /////-CRMCouplingManagement.IsRecordCoupledToCRM(RecordId) and CRMIntegrationEnabled;
 
         /////-OpenApprovalEntriesExist := ApprovalsMgmt.HasOpenApprovalEntries(RecordId);
 
@@ -111,15 +111,15 @@ Page 50018 Productos
     begin
 
         SalesPrice.Reset;
-        /////-SalesPrice.SetRange(SalesPrice."Item No.","No.");
-        SalesPrice.SetRange(SalesPrice."Sales Code",TarifaVigente);
+        SalesPrice.SetRange(SalesPrice."Item No.", Rec."No.");
+        SalesPrice.SetRange(SalesPrice."Sales Code", TarifaVigente);
         if SalesPrice.FindLast then begin
-             PVenta:=SalesPrice."Unit Price";
-             PVPrecomendado:=SalesPrice."Precio recomendado";
+            PVenta := SalesPrice."Unit Price";
+            PVPrecomendado := SalesPrice."Precio recomendado";
         end;
 
-        Rec.CalcFields(Rec.Inventory,Rec."Existencia FOB",Rec."Qty. on Sales Order");
-        Existencia:=Rec.Inventory-Rec."Existencia FOB"-Rec."Qty. on Sales Order";
+        Rec.CalcFields(Rec.Inventory, Rec."Existencia FOB", Rec."Qty. on Sales Order");
+        Existencia := Rec.Inventory - Rec."Existencia FOB" - Rec."Qty. on Sales Order";
     end;
 
     trigger OnOpenPage()
@@ -128,7 +128,7 @@ Page 50018 Productos
     begin
 
         SalesReceivablesSetup.Get;
-        TarifaVigente:=SalesReceivablesSetup."Tarifa vigente";
+        TarifaVigente := SalesReceivablesSetup."Tarifa vigente";
     end;
 
     var
@@ -178,7 +178,7 @@ Page 50018 Productos
 
     local procedure SetSocialListeningFactboxVisibility()
     var
-        /////-SocialListeningMgt: Codeunit UnknownCodeunit871;
+    /////-SocialListeningMgt: Codeunit UnknownCodeunit871;
     begin
         /////-SocialListeningMgt.GetItemFactboxVisibility(Rec,SocialListeningSetupVisible,SocialListeningVisible);
     end;
@@ -197,7 +197,7 @@ Page 50018 Productos
         EventFilter := WorkflowEventHandling.RunWorkflowOnSendItemForApprovalCode + '|' +
           WorkflowEventHandling.RunWorkflowOnItemChangedCode;
 
-        EnabledApprovalWorkflowsExist := WorkflowManagement.EnabledWorkflowExist(Database::Item,EventFilter);
+        EnabledApprovalWorkflowsExist := WorkflowManagement.EnabledWorkflowExist(Database::Item, EventFilter);
     end;
 }
 

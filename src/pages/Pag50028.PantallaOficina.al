@@ -15,9 +15,9 @@ Page 50028 "Pantalla Oficina"
             cuegroup("PROXIMOS PEDIDOS")
             {
                 Caption = 'PROXIMOS PEDIDOS';
-                field(RETENIDO;RETENIDO)
+                field(RETENIDO; RETENIDO)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Retenido';
                     DrillDownPageID = "Pantalla Almacen";
                     ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
@@ -25,19 +25,19 @@ Page 50028 "Pantalla Oficina"
                     trigger OnDrillDown()
                     begin
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::Retenido);
-                        SalesHeader.SetFilter(SalesHeader."Payment Method Code",'<>P.ANTICIPA&<>TRANSFWEB');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::Retenido);
+                        SalesHeader.SetFilter(SalesHeader."Payment Method Code", '<>P.ANTICIPA&<>TRANSFWEB');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(PDTETRANF;PDTETRANF)
+                field(PDTETRANF; PDTETRANF)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Pendiente Transferencia';
                     DrillDownPageID = "Pantalla Almacen";
                     ToolTip = 'Especifica el número de Pedidos pendiente transferencia.';
@@ -45,18 +45,18 @@ Page 50028 "Pantalla Oficina"
                     trigger OnDrillDown()
                     begin
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::Retenido);
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::Retenido);
 
-                        SalesHeader.SetFilter(SalesHeader."Payment Method Code",'P.ANTICIPA|TRANSFWEB');
+                        SalesHeader.SetFilter(SalesHeader."Payment Method Code", 'P.ANTICIPA|TRANSFWEB');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(PDTECOMERCIAL;PDTECOMERCIAL)
+                field(PDTECOMERCIAL; PDTECOMERCIAL)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Pdte. Comercial';
@@ -65,17 +65,17 @@ Page 50028 "Pantalla Oficina"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::"Pdte. comercial");
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Pdte. comercial");
 
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(CATIT;CATIT)
+                field(CATIT; CATIT)
                 {
                     ApplicationArea = Basic;
                     Caption = 'CATIT';
@@ -84,17 +84,17 @@ Page 50028 "Pantalla Oficina"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido",SalesHeader."estado pedido"::Retenido);
-                        SalesHeader.SetRange("Grupo clientes",'G52');
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::Retenido);
+                        SalesHeader.SetRange("Grupo clientes", 'G52');
                         if SalesHeader.FindFirst then begin
-                             Clear(PantallaAlmacen);
-                             PantallaAlmacen.SetTableview(SalesHeader);
-                             PantallaAlmacen.RunModal;
+                            Clear(PantallaAlmacen);
+                            PantallaAlmacen.SetTableview(SalesHeader);
+                            PantallaAlmacen.RunModal;
                         end;
                     end;
                 }
-                field(EDIPENDIENTE;EDIPENDIENTE)
+                field(EDIPENDIENTE; EDIPENDIENTE)
                 {
                     ApplicationArea = Basic;
                     Caption = 'EDI PENDIENTE';
@@ -103,13 +103,13 @@ Page 50028 "Pantalla Oficina"
                     begin
 
                         SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type",SalesHeader."document type"::Quote);
-                        SalesHeader.SetRange("Factura EDI",true);
-                        SalesHeader.SetRange("Estado presupuesto",SalesHeader."estado presupuesto"::Activo);
+                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Quote);
+                        SalesHeader.SetRange("Factura EDI", true);
+                        SalesHeader.SetRange("Estado presupuesto", SalesHeader."estado presupuesto"::Activo);
                         if SalesHeader.FindFirst then begin
-                             Clear(ComercialPresupuestos);
-                             ComercialPresupuestos.SetTableview(SalesHeader);
-                             ComercialPresupuestos.RunModal;
+                            Clear(ComercialPresupuestos);
+                            ComercialPresupuestos.SetTableview(SalesHeader);
+                            ComercialPresupuestos.RunModal;
                         end;
                     end;
                 }
@@ -117,7 +117,7 @@ Page 50028 "Pantalla Oficina"
             cuegroup(Historicos)
             {
                 Caption = 'Historicos';
-                field(HistoricoAlbaranes;HiatoricoAlbaranes)
+                field(HistoricoAlbaranes; HiatoricoAlbaranes)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Historico Albaranes';
@@ -128,15 +128,15 @@ Page 50028 "Pantalla Oficina"
                     begin
 
                         SalesShipmentHeader.Reset;
-                        SalesShipmentHeader.SetRange("Posting Date",unasemana,Today);
+                        SalesShipmentHeader.SetRange("Posting Date", unasemana, Today);
                         if SalesShipmentHeader.FindFirst then begin
-                             Clear(PostedSalesShipments);
-                             PostedSalesShipments.SetTableview(SalesShipmentHeader);
-                             PostedSalesShipments.RunModal;
+                            Clear(PostedSalesShipments);
+                            PostedSalesShipments.SetTableview(SalesShipmentHeader);
+                            PostedSalesShipments.RunModal;
                         end;
                     end;
                 }
-                field(HiatoricoFacturas;HiatoricoFacturas)
+                field(HiatoricoFacturas; HiatoricoFacturas)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Historico Albaranes';
@@ -147,15 +147,15 @@ Page 50028 "Pantalla Oficina"
                     begin
 
                         SalesInvoiceHeader.Reset;
-                        SalesInvoiceHeader.SetRange("Posting Date",unasemana,Today);
+                        SalesInvoiceHeader.SetRange("Posting Date", unasemana, Today);
                         if SalesInvoiceHeader.FindFirst then begin
-                             Clear(PostedSalesInvoices);
-                             PostedSalesInvoices.SetTableview(SalesInvoiceHeader);
-                             PostedSalesInvoices.RunModal;
+                            Clear(PostedSalesInvoices);
+                            PostedSalesInvoices.SetTableview(SalesInvoiceHeader);
+                            PostedSalesInvoices.RunModal;
                         end;
                     end;
                 }
-                field(HiatoricoAbonos;HiatoricoAbonos)
+                field(HiatoricoAbonos; HiatoricoAbonos)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Historico Albaranes';
@@ -166,11 +166,11 @@ Page 50028 "Pantalla Oficina"
                     begin
 
                         SalesCrMemoHeader.Reset;
-                        SalesCrMemoHeader.SetRange("Posting Date",unasemana,Today);
+                        SalesCrMemoHeader.SetRange("Posting Date", unasemana, Today);
                         if SalesCrMemoHeader.FindFirst then begin
-                             Clear(PostedSalesCreditMemos);
-                             PostedSalesCreditMemos.SetTableview(SalesCrMemoHeader);
-                             PostedSalesCreditMemos.RunModal;
+                            Clear(PostedSalesCreditMemos);
+                            PostedSalesCreditMemos.SetTableview(SalesCrMemoHeader);
+                            PostedSalesCreditMemos.RunModal;
                         end;
                     end;
                 }
@@ -178,7 +178,7 @@ Page 50028 "Pantalla Oficina"
             cuegroup(Control1000000006)
             {
                 Caption = 'Productos';
-                field(Productos;Productos)
+                field(Productos; Productos)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Productos';
@@ -189,15 +189,15 @@ Page 50028 "Pantalla Oficina"
                     begin
 
                         SalesShipmentHeader.Reset;
-                        SalesShipmentHeader.SetRange(SalesShipmentHeader."Posting Date",Today);
+                        SalesShipmentHeader.SetRange(SalesShipmentHeader."Posting Date", Today);
                         if SalesShipmentHeader.FindFirst then begin
-                             Clear(PostedSalesShipments);
-                             PostedSalesShipments.SetTableview(SalesShipmentHeader);
-                             PostedSalesShipments.RunModal;
+                            Clear(PostedSalesShipments);
+                            PostedSalesShipments.SetTableview(SalesShipmentHeader);
+                            PostedSalesShipments.RunModal;
                         end;
                     end;
                 }
-                field("Menu Almacen";menu)
+                field("Menu Almacen"; menu)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Menu Almacen';
@@ -236,114 +236,114 @@ Page 50028 "Pantalla Oficina"
         SalesCue2.Get;
 
 
-             SalesCue2.Get;
-             SalesCue2.CalcFields("Pedidos CATIT retenido","Pedidos EDIPENDIENTE");
-             SalesCue2.CalcFields(SalesCue2."Pedidos españa",SalesCue2."Pedidos eci",SalesCue2."Pedidos portugal",SalesCue2."Pedidos canarias",SalesCue2."Pedidos todos");
-             SalesCue2.CalcFields(SalesCue2."Pedidos Pdte. comercial",SalesCue2."Pedidos Retenido",SalesCue2."Pedidos Urgentes",SalesCue2."Pedidos Super Urgentes",SalesCue2."Pedidos Transferencia");
-             SalesCue2.CalcFields(SalesCue2."Pedidos Urgentes PDTE. ENV.",SalesCue2."Pedidos Super Urgentes PDTE. E","Pedidos Retrasado PDTE.ENVIAR");
-             SalesCue2.CalcFields(
-        SalesCue2."Pedidos españa PDTE ENVIAR",SalesCue2."Pedidos eci PDTE ENVIAR",SalesCue2."Pedidos portugal PDTE ENVIAR",SalesCue2."Pedidos canarias PDTE ENVIAR",SalesCue2."Pedidos todos PDTE ENVIAR");
+        SalesCue2.Get;
+        SalesCue2.CalcFields("Pedidos CATIT retenido", "Pedidos EDIPENDIENTE");
+        SalesCue2.CalcFields(SalesCue2."Pedidos españa", SalesCue2."Pedidos eci", SalesCue2."Pedidos portugal", SalesCue2."Pedidos canarias", SalesCue2."Pedidos todos");
+        SalesCue2.CalcFields(SalesCue2."Pedidos Pdte. comercial", SalesCue2."Pedidos Retenido", SalesCue2."Pedidos Urgentes", SalesCue2."Pedidos Super Urgentes", SalesCue2."Pedidos Transferencia");
+        SalesCue2.CalcFields(SalesCue2."Pedidos Urgentes PDTE. ENV.", SalesCue2."Pedidos Super Urgentes PDTE. E", "Pedidos Retrasado PDTE.ENVIAR");
+        SalesCue2.CalcFields(
+   SalesCue2."Pedidos españa PDTE ENVIAR", SalesCue2."Pedidos eci PDTE ENVIAR", SalesCue2."Pedidos portugal PDTE ENVIAR", SalesCue2."Pedidos canarias PDTE ENVIAR", SalesCue2."Pedidos todos PDTE ENVIAR");
 
 
-             CATIT:=SalesCue2."Pedidos CATIT retenido";
-             SUPERURGENTESPDTEENVIAR:=SalesCue2."Pedidos Super Urgentes PDTE. E";
-             URGENTESPDTEENVIAR:=SalesCue2."Pedidos Urgentes PDTE. ENV.";
-             SUPERURGENTES:=SalesCue2."Pedidos Super Urgentes";
-             URGENTES:=SalesCue2."Pedidos Urgentes";
-             ECI:=SalesCue2."Pedidos eci";
-             EDIPENDIENTE:=SalesCue2."Pedidos EDIPENDIENTE";
-             PORTUGAL:=SalesCue2."Pedidos portugal";
-             CANARIAS:=SalesCue2."Pedidos canarias";
-             ESPAÑA:=SalesCue2."Pedidos españa"-ECI-CANARIAS;
-             RESTO:=SalesCue2."Pedidos todos"-ESPAÑA-PORTUGAL;
-             TODOS:=SalesCue2."Pedidos todos";
+        CATIT := SalesCue2."Pedidos CATIT retenido";
+        SUPERURGENTESPDTEENVIAR := SalesCue2."Pedidos Super Urgentes PDTE. E";
+        URGENTESPDTEENVIAR := SalesCue2."Pedidos Urgentes PDTE. ENV.";
+        SUPERURGENTES := SalesCue2."Pedidos Super Urgentes";
+        URGENTES := SalesCue2."Pedidos Urgentes";
+        ECI := SalesCue2."Pedidos eci";
+        EDIPENDIENTE := SalesCue2."Pedidos EDIPENDIENTE";
+        PORTUGAL := SalesCue2."Pedidos portugal";
+        CANARIAS := SalesCue2."Pedidos canarias";
+        ESPAÑA := SalesCue2."Pedidos españa" - ECI - CANARIAS;
+        RESTO := SalesCue2."Pedidos todos" - ESPAÑA - PORTUGAL;
+        TODOS := SalesCue2."Pedidos todos";
 
-             ECIPDTE:=SalesCue2."Pedidos eci PDTE ENVIAR";
-             PORTUGALPDTE:=SalesCue2."Pedidos portugal PDTE ENVIAR";
-             CANARIASPDTE:=SalesCue2."Pedidos canarias PDTE ENVIAR";
-             ESPAÑAPDTE:=SalesCue2."Pedidos españa PDTE ENVIAR"-ECIPDTE-CANARIASPDTE;
-             TODOSPDTE:=SalesCue2."Pedidos todos PDTE ENVIAR";
+        ECIPDTE := SalesCue2."Pedidos eci PDTE ENVIAR";
+        PORTUGALPDTE := SalesCue2."Pedidos portugal PDTE ENVIAR";
+        CANARIASPDTE := SalesCue2."Pedidos canarias PDTE ENVIAR";
+        ESPAÑAPDTE := SalesCue2."Pedidos españa PDTE ENVIAR" - ECIPDTE - CANARIASPDTE;
+        TODOSPDTE := SalesCue2."Pedidos todos PDTE ENVIAR";
 
-             RETENIDO:=SalesCue2."Pedidos Retenido";
-             PDTETRANF:=SalesCue2."Pedidos Transferencia";
-             PDTECOMERCIAL:=SalesCue2."Pedidos Pdte. comercial";
-             FECHA24:=CalcDate('-1D',Today);
-             SalesCue2.SetRange("Date Filter",FECHA24,FECHA24);
-             SalesCue2.CalcFields("Pedidos Retrasado");
-             PEDIDORETRA24:=SalesCue2."Pedidos Retrasado";
+        RETENIDO := SalesCue2."Pedidos Retenido";
+        PDTETRANF := SalesCue2."Pedidos Transferencia";
+        PDTECOMERCIAL := SalesCue2."Pedidos Pdte. comercial";
+        FECHA24 := CalcDate('-1D', Today);
+        SalesCue2.SetRange("Date Filter", FECHA24, FECHA24);
+        SalesCue2.CalcFields("Pedidos Retrasado");
+        PEDIDORETRA24 := SalesCue2."Pedidos Retrasado";
 
-             FECHA48:=CalcDate('-2D',Today);
-             SalesCue2.SetRange("Date Filter",FECHA48,FECHA48);
-             SalesCue2.CalcFields("Pedidos Retrasado");
-             PEDIDORETRA48:=SalesCue2."Pedidos Retrasado";
+        FECHA48 := CalcDate('-2D', Today);
+        SalesCue2.SetRange("Date Filter", FECHA48, FECHA48);
+        SalesCue2.CalcFields("Pedidos Retrasado");
+        PEDIDORETRA48 := SalesCue2."Pedidos Retrasado";
 
-             FECHA72:=CalcDate('-3D',Today);
-             SalesCue2.SetRange("Date Filter",20000101D,FECHA72);
-             SalesCue2.CalcFields("Pedidos Retrasado");
-             PEDIDORETRA72:=SalesCue2."Pedidos Retrasado";
+        FECHA72 := CalcDate('-3D', Today);
+        SalesCue2.SetRange("Date Filter", 20000101D, FECHA72);
+        SalesCue2.CalcFields("Pedidos Retrasado");
+        PEDIDORETRA72 := SalesCue2."Pedidos Retrasado";
 
-             SalesCue2.SetRange("Date Filter",FECHA24,FECHA24);
-             SalesCue2.CalcFields("Pedidos Retrasado PDTE.ENVIAR");
-             PEDIDORETRA24pdteenviar:=SalesCue2."Pedidos Retrasado PDTE.ENVIAR";
+        SalesCue2.SetRange("Date Filter", FECHA24, FECHA24);
+        SalesCue2.CalcFields("Pedidos Retrasado PDTE.ENVIAR");
+        PEDIDORETRA24pdteenviar := SalesCue2."Pedidos Retrasado PDTE.ENVIAR";
 
-             FECHA48:=CalcDate('-2D',Today);
-             SalesCue2.SetRange("Date Filter",FECHA48,FECHA48);
-             SalesCue2.CalcFields("Pedidos Retrasado PDTE.ENVIAR");
-             PEDIDORETRA48pdteenviar:=SalesCue2."Pedidos Retrasado PDTE.ENVIAR";
+        FECHA48 := CalcDate('-2D', Today);
+        SalesCue2.SetRange("Date Filter", FECHA48, FECHA48);
+        SalesCue2.CalcFields("Pedidos Retrasado PDTE.ENVIAR");
+        PEDIDORETRA48pdteenviar := SalesCue2."Pedidos Retrasado PDTE.ENVIAR";
 
-             FECHA72:=CalcDate('-3D',Today);
-             SalesCue2.SetRange("Date Filter",20000101D,FECHA72);
-             SalesCue2.CalcFields("Pedidos Retrasado PDTE.ENVIAR");
-             PEDIDORETRA72pdteenviar:=SalesCue2."Pedidos Retrasado PDTE.ENVIAR";
-
-
+        FECHA72 := CalcDate('-3D', Today);
+        SalesCue2.SetRange("Date Filter", 20000101D, FECHA72);
+        SalesCue2.CalcFields("Pedidos Retrasado PDTE.ENVIAR");
+        PEDIDORETRA72pdteenviar := SalesCue2."Pedidos Retrasado PDTE.ENVIAR";
 
 
-        Productos:=Item.Count;
 
-        unasemana:=CalcDate('-1S',Today);
+
+        Productos := Item.Count;
+
+        unasemana := CalcDate('-1S', Today);
         SalesShipmentHeader.Reset;
-        SalesShipmentHeader.SetRange("Posting Date",unasemana,Today);
+        SalesShipmentHeader.SetRange("Posting Date", unasemana, Today);
         if SalesShipmentHeader.FindFirst then begin
-              HiatoricoAlbaranes  :=SalesShipmentHeader.Count;
+            HiatoricoAlbaranes := SalesShipmentHeader.Count;
         end;
         SalesInvoiceHeader.Reset;
-        SalesInvoiceHeader.SetRange("Posting Date",unasemana,Today);
+        SalesInvoiceHeader.SetRange("Posting Date", unasemana, Today);
         if SalesInvoiceHeader.FindFirst then begin
-        HiatoricoFacturas :=SalesInvoiceHeader.Count;
+            HiatoricoFacturas := SalesInvoiceHeader.Count;
         end;
         SalesCrMemoHeader.Reset;
-        SalesCrMemoHeader.SetRange("Posting Date",unasemana,Today);
+        SalesCrMemoHeader.SetRange("Posting Date", unasemana, Today);
         if SalesCrMemoHeader.FindFirst then begin
-        HiatoricoAbonos :=SalesCrMemoHeader.Count;
+            HiatoricoAbonos := SalesCrMemoHeader.Count;
         end;
 
 
-             SalesCue2.CalcFields(SalesCue2."Pedidos contenedor");
-             PEDIDOCONTENEDOR:=SalesCue2."Pedidos contenedor";
+        SalesCue2.CalcFields(SalesCue2."Pedidos contenedor");
+        PEDIDOCONTENEDOR := SalesCue2."Pedidos contenedor";
 
-             dia:= Date2dwy(Today,1);
-             if dia=1 then begin lunes:=Today;end;  ///// Lunes
-             if dia=2 then begin lunes:=CalcDate('-1D',Today);end;  ///// Martes
-             if dia=3 then begin lunes:=CalcDate('-2D',Today);end;  ///// Miercoles
-             if dia=4 then begin lunes:=CalcDate('-3D',Today);end;  ///// Jueves
-             if dia=5 then begin lunes:=CalcDate('-4D',Today);end;  ///// Viernes
-             if dia=6 then begin lunes:=CalcDate('-5D',Today);end;  ///// Sabado
-             if dia=7 then begin lunes:=CalcDate('-6D',Today);end;  ///// Domingo
-
-
-             if dia=1 then begin viernes:=CalcDate('+6D',Today);end;  ///// Martes
-             if dia=2 then begin viernes:=CalcDate('+5D',Today);end;  ///// Martes
-             if dia=3 then begin viernes:=CalcDate('+4D',Today);end;  ///// Miercoles
-             if dia=4 then begin viernes:=CalcDate('+3D',Today);end;  ///// Jueves
-             if dia=5 then begin viernes:=CalcDate('+2D',Today);end;  ///// Viernes
-             if dia=6 then begin viernes:=CalcDate('+1D',Today);end;  ///// Sabado
-             if dia=7 then begin viernes:=Today;end;  ///// Domingo
+        dia := Date2dwy(Today, 1);
+        if dia = 1 then begin lunes := Today; end;  ///// Lunes
+        if dia = 2 then begin lunes := CalcDate('-1D', Today); end;  ///// Martes
+        if dia = 3 then begin lunes := CalcDate('-2D', Today); end;  ///// Miercoles
+        if dia = 4 then begin lunes := CalcDate('-3D', Today); end;  ///// Jueves
+        if dia = 5 then begin lunes := CalcDate('-4D', Today); end;  ///// Viernes
+        if dia = 6 then begin lunes := CalcDate('-5D', Today); end;  ///// Sabado
+        if dia = 7 then begin lunes := CalcDate('-6D', Today); end;  ///// Domingo
 
 
-             SalesCue2.SetRange("Date Filter",lunes,viernes);
-             SalesCue2.CalcFields("Pedidos contenedor sem.actual");
-             PEDIDOCONTENEDORact:=SalesCue2."Pedidos contenedor sem.actual";
+        if dia = 1 then begin viernes := CalcDate('+6D', Today); end;  ///// Martes
+        if dia = 2 then begin viernes := CalcDate('+5D', Today); end;  ///// Martes
+        if dia = 3 then begin viernes := CalcDate('+4D', Today); end;  ///// Miercoles
+        if dia = 4 then begin viernes := CalcDate('+3D', Today); end;  ///// Jueves
+        if dia = 5 then begin viernes := CalcDate('+2D', Today); end;  ///// Viernes
+        if dia = 6 then begin viernes := CalcDate('+1D', Today); end;  ///// Sabado
+        if dia = 7 then begin viernes := Today; end;  ///// Domingo
+
+
+        SalesCue2.SetRange("Date Filter", lunes, viernes);
+        SalesCue2.CalcFields("Pedidos contenedor sem.actual");
+        PEDIDOCONTENEDORact := SalesCue2."Pedidos contenedor sem.actual";
     end;
 
     trigger OnOpenPage()
@@ -352,21 +352,21 @@ Page 50028 "Pantalla Oficina"
     begin
 
 
-        CuantosProductos:=9999;
+        CuantosProductos := 9999;
         if UserSetup.Get(UserId) then begin
 
         end;
 
 
-        /////-Reset;
-        /////-if not Get then begin
-          /////-Init;
-          /////-Insert;
-        /////-end;
+        Rec.Reset;
+        if not Rec.Get then begin
+            Rec.Init;
+            Rec.Insert;
+        end;
 
-        /////-SetRespCenterFilter;
-        /////-SetRange("Date Filter",0D,WorkDate - 1);
-        /////-SetFilter("Date Filter2",'>=%1',WorkDate);
+        Rec.SetRespCenterFilter;
+        Rec.SetRange("Date Filter", 0D, WorkDate - 1);
+        Rec.SetFilter("Date Filter2", '>=%1', WorkDate);
 
         RoleCenterNotificationMgt.ShowNotifications;
     end;
@@ -455,19 +455,5 @@ Page 50028 "Pantalla Oficina"
         EDIPENDIENTE: Integer;
         ComercialPresupuestos: Page "Comercial presupuestos";
 
-    local procedure CalculateCueFieldValues()
-    begin
-        /////-if FieldActive("Average Days Delayed") then
-          /////-"Average Days Delayed" := CalculateAverageDaysDelayed;
-
-        /////-if FieldActive("Ready to Ship") then
-          /////-"Ready to Ship" := CountOrders(FieldNo("Ready to Ship"));
-
-        /////-if FieldActive("Partially Shipped") then
-          /////-"Partially Shipped" := CountOrders(FieldNo("Partially Shipped"));
-
-        /////-if FieldActive(Delayed) then
-          /////-Delayed := CountOrders(FieldNo(Delayed));
-    end;
 }
 

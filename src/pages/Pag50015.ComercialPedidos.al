@@ -8,7 +8,7 @@ Page 50015 "Comercial Pedidos"
     PageType = List;
     PromotedActionCategories = 'New,Process,Report,Request Approval,Order';
     SourceTable = "Sales Header";
-    SourceTableView = where("Document Type"=const(Order));
+    SourceTableView = where("Document Type" = const(Order));
 
     layout
     {
@@ -17,81 +17,75 @@ Page 50015 "Comercial Pedidos"
             repeater(Control1)
             {
 
-/* /////-
-                field("No.";"No.")                
+
+                field("No."; Rec."No.")
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the number of the sales document.';
                 }
-                field("Order Date";"Order Date")
+                field("Order Date"; Rec."Order Date")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Estado pedido";"Estado pedido")
+                field("Estado pedido"; Rec."Estado pedido")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Sell-to Customer No.";"Sell-to Customer No.")
+                field("Sell-to Customer No."; Rec."Sell-to Customer No.")
                 {
                     ApplicationArea = Basic;
                     ToolTip = 'Specifies the number of the customer who will receive the products and be billed by default.';
                 }
-                field("Sell-to Customer Name";"Sell-to Customer Name")
+                field("Sell-to Customer Name"; Rec."Sell-to Customer Name")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Sell-to Customer Name 2";"Sell-to Customer Name 2")
+                field("Sell-to Customer Name 2"; Rec."Sell-to Customer Name 2")
                 {
                     ApplicationArea = Basic;
                 }
-                field(TLinea;TLinea)
+                field(TLinea; TLinea)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Total Lineas';
                 }
-                field(dtoaplicado;dtoaplicado)
+                field(dtoaplicado; dtoaplicado)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Descuento aplicado';
                 }
-                field(Amount;Amount)
+                field(Amount; Rec.Amount)
                 {
                     ApplicationArea = Basic;
                 }
-                field("Fecha alta";"Fecha alta")
+                field("Fecha alta"; Rec."Fecha alta")
                 {
                     ApplicationArea = Basic;
                 }
-                */
+
             }
         }
         area(factboxes)
         {
-            part(Control1902018507;"Customer Statistics FactBox")
+            part(Control1902018507; "Customer Statistics FactBox")
             {
-                ApplicationArea = Basic,Suite;
-                SubPageLink = "No."=field("Bill-to Customer No."),
-                              "Date Filter"=field("Date Filter");
+                ApplicationArea = Basic, Suite;
+                SubPageLink = "No." = field("Bill-to Customer No."),
+                              "Date Filter" = field("Date Filter");
             }
-            part(Control1900316107;"Customer Details FactBox")
+            part(Control1900316107; "Customer Details FactBox")
             {
-                ApplicationArea = Basic,Suite;
-                SubPageLink = "No."=field("Bill-to Customer No."),
-                              "Date Filter"=field("Date Filter");
+                ApplicationArea = Basic, Suite;
+                SubPageLink = "No." = field("Bill-to Customer No."),
+                              "Date Filter" = field("Date Filter");
             }
-            part(IncomingDocAttachFactBox;"Incoming Doc. Attach. FactBox")
+            part(IncomingDocAttachFactBox; "Incoming Doc. Attach. FactBox")
             {
-                ApplicationArea = Basic,Suite;
+                ApplicationArea = Basic, Suite;
                 ShowFilter = false;
                 Visible = false;
             }
-            systempart(Control1900383207;Links)
-            {
-                Visible = false;
-            }
-            systempart(Control1905767507;Notes)
-            {
-            }
+
         }
     }
 
@@ -105,7 +99,7 @@ Page 50015 "Comercial Pedidos"
                 Image = "Order";
                 action(Dimensions)
                 {
-                    AccessByPermission = TableData Dimension=R;
+                    AccessByPermission = TableData Dimension = R;
                     ApplicationArea = Suite;
                     Caption = 'Dimensions';
                     Image = Dimensions;
@@ -114,7 +108,7 @@ Page 50015 "Comercial Pedidos"
 
                     trigger OnAction()
                     begin
-                        /////-ShowDocDim;
+                        Rec.ShowDocDim;
                     end;
                 }
                 action(Statistics)
@@ -128,7 +122,7 @@ Page 50015 "Comercial Pedidos"
 
                     trigger OnAction()
                     begin
-                        /////-OpenSalesOrderStatistics;
+                        Rec.OpenSalesOrderStatistics;
                     end;
                 }
                 action(Approvals)
@@ -155,9 +149,9 @@ Page 50015 "Comercial Pedidos"
                     Caption = 'Co&mments';
                     Image = ViewComments;
                     RunObject = Page "Sales Comment Sheet";
-                    RunPageLink = "Document Type"=field("Document Type"),
-                                  "No."=field("No."),
-                                  "Document Line No."=const(0);
+                    RunPageLink = "Document Type" = field("Document Type"),
+                                  "No." = field("No."),
+                                  "Document Line No." = const(0);
                 }
             }
             group(Documents)
@@ -166,21 +160,21 @@ Page 50015 "Comercial Pedidos"
                 Image = Documents;
                 action("S&hipments")
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'S&hipments';
                     Image = Shipment;
                     RunObject = Page "Posted Sales Shipments";
-                    RunPageLink = "Order No."=field("No.");
+                    RunPageLink = "Order No." = field("No.");
                     RunPageView = sorting("Order No.");
                     ToolTip = 'View the history of posted sales shipments that have been posted for the document.';
                 }
                 action(PostedSalesInvoices)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Invoices';
                     Image = Invoice;
                     RunObject = Page "Posted Sales Invoices";
-                    RunPageLink = "Order No."=field("No.");
+                    RunPageLink = "Order No." = field("No.");
                     RunPageView = sorting("Order No.");
                     ToolTip = 'View the history of posted sales invoices that have been posted for the document.';
                 }
@@ -190,7 +184,7 @@ Page 50015 "Comercial Pedidos"
                     Caption = 'Prepa&yment Invoices';
                     Image = PrepaymentInvoice;
                     RunObject = Page "Posted Sales Invoices";
-                    RunPageLink = "Prepayment Order No."=field("No.");
+                    RunPageLink = "Prepayment Order No." = field("No.");
                     RunPageView = sorting("Prepayment Order No.");
                 }
                 action("Prepayment Credi&t Memos")
@@ -199,7 +193,7 @@ Page 50015 "Comercial Pedidos"
                     Caption = 'Prepayment Credi&t Memos';
                     Image = PrepaymentCreditMemo;
                     RunObject = Page "Posted Sales Credit Memos";
-                    RunPageLink = "Prepayment Order No."=field("No.");
+                    RunPageLink = "Prepayment Order No." = field("No.");
                     RunPageView = sorting("Prepayment Order No.");
                 }
             }
@@ -213,10 +207,10 @@ Page 50015 "Comercial Pedidos"
                     Caption = 'Whse. Shipment Lines';
                     Image = ShipmentLines;
                     RunObject = Page "Whse. Shipment Lines";
-                    RunPageLink = "Source Type"=const(37),
-                                  "Source Subtype"=field("Document Type"),
-                                  "Source No."=field("No.");
-                    RunPageView = sorting("Source Type","Source Subtype","Source No.","Source Line No.");
+                    RunPageLink = "Source Type" = const(37),
+                                  "Source Subtype" = field("Document Type"),
+                                  "Source No." = field("No.");
+                    RunPageView = sorting("Source Type", "Source Subtype", "Source No.", "Source Line No.");
                 }
                 action("In&vt. Put-away/Pick Lines")
                 {
@@ -224,9 +218,9 @@ Page 50015 "Comercial Pedidos"
                     Caption = 'In&vt. Put-away/Pick Lines';
                     Image = PickLines;
                     RunObject = Page "Warehouse Activity List";
-                    RunPageLink = "Source Document"=const("Sales Order"),
-                                  "Source No."=field("No.");
-                    RunPageView = sorting("Source Document","Source No.","Location Code");
+                    RunPageLink = "Source Document" = const("Sales Order"),
+                                  "Source No." = field("No.");
+                    RunPageView = sorting("Source Document", "Source No.", "Location Code");
                 }
             }
             group(ActionGroupCRM)
@@ -235,7 +229,7 @@ Page 50015 "Comercial Pedidos"
                 Visible = CRMIntegrationEnabled;
                 action(CRMGoToSalesOrderListInNAV)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Sales Order List';
                     Enabled = CRMIntegrationEnabled;
                     Image = "Order";
@@ -246,7 +240,7 @@ Page 50015 "Comercial Pedidos"
                     var
                         CRMSalesorder: Record "CRM Salesorder";
                     begin
-                        Page.Run(Page::"CRM Sales Order List",CRMSalesorder);
+                        Page.Run(Page::"CRM Sales Order List", CRMSalesorder);
                     end;
                 }
             }
@@ -304,13 +298,13 @@ Page 50015 "Comercial Pedidos"
                     var
                         SalesOrderPlanningForm: Page "Sales Order Planning";
                     begin
-                        /////-SalesOrderPlanningForm.SetSalesOrder("No.");
+                        SalesOrderPlanningForm.SetSalesOrder(Rec."No.");
                         SalesOrderPlanningForm.RunModal;
                     end;
                 }
                 action("Order &Promising")
                 {
-                    AccessByPermission = TableData "Order Promising Line"=R;
+                    AccessByPermission = TableData "Order Promising Line" = R;
                     ApplicationArea = Basic;
                     Caption = 'Order &Promising';
                     Image = OrderPromising;
@@ -319,14 +313,14 @@ Page 50015 "Comercial Pedidos"
                     var
                         OrderPromisingLine: Record "Order Promising Line" temporary;
                     begin
-                        /////-OrderPromisingLine.SetRange("Source Type","Document Type");
-                        /////-OrderPromisingLine.SetRange("Source ID","No.");
-                        Page.RunModal(Page::"Order Promising Lines",OrderPromisingLine);
+                        OrderPromisingLine.SetRange("Source Type", Rec."Document Type");
+                        OrderPromisingLine.SetRange("Source ID", Rec."No.");
+                        Page.RunModal(Page::"Order Promising Lines", OrderPromisingLine);
                     end;
                 }
                 action("Send IC Sales Order Cnfmn.")
                 {
-                    AccessByPermission = TableData "IC G/L Account"=R;
+                    AccessByPermission = TableData "IC G/L Account" = R;
                     ApplicationArea = Basic;
                     Caption = 'Send IC Sales Order Cnfmn.';
                     Image = IntercompanyOrder;
@@ -337,7 +331,7 @@ Page 50015 "Comercial Pedidos"
                         ApprovalsMgmt: Codeunit "Approvals Mgmt.";
                     begin
                         if ApprovalsMgmt.PrePostApprovalCheckSales(Rec) then
-                          ICInOutboxMgt.SendSalesDoc(Rec,false);
+                            ICInOutboxMgt.SendSalesDoc(Rec, false);
                     end;
                 }
             }
@@ -361,7 +355,7 @@ Page 50015 "Comercial Pedidos"
                         ApprovalsMgmt: Codeunit "Approvals Mgmt.";
                     begin
                         if ApprovalsMgmt.CheckSalesApprovalPossible(Rec) then
-                          ApprovalsMgmt.OnSendSalesDocForApproval(Rec);
+                            ApprovalsMgmt.OnSendSalesDocForApproval(Rec);
                     end;
                 }
                 action(CancelApprovalRequest)
@@ -390,7 +384,7 @@ Page 50015 "Comercial Pedidos"
                 Image = Warehouse;
                 action("Create Inventor&y Put-away/Pick")
                 {
-                    AccessByPermission = TableData "Posted Invt. Pick Header"=R;
+                    AccessByPermission = TableData "Posted Invt. Pick Header" = R;
                     ApplicationArea = Basic;
                     Caption = 'Create Inventor&y Put-away/Pick';
                     Ellipsis = true;
@@ -398,15 +392,15 @@ Page 50015 "Comercial Pedidos"
 
                     trigger OnAction()
                     begin
-                        /////-CreateInvtPutAwayPick;
+                        Rec.CreateInvtPutAwayPick;
 
-                        /////-if not Find('=><') then
-                          /////-Init;
+                        if not Rec.Find('=><') then
+                            Rec.Init;
                     end;
                 }
                 action("Create &Whse. Shipment")
                 {
-                    AccessByPermission = TableData "Warehouse Shipment Header"=R;
+                    AccessByPermission = TableData "Warehouse Shipment Header" = R;
                     ApplicationArea = Basic;
                     Caption = 'Create &Whse. Shipment';
                     Image = NewShipment;
@@ -417,8 +411,8 @@ Page 50015 "Comercial Pedidos"
                     begin
                         GetSourceDocOutbound.CreateFromSalesOrder(Rec);
 
-                        /////-if not Find('=><') then
-                          /////-Init;
+                        if not Rec.Find('=><') then
+                            Rec.Init;
                     end;
                 }
             }
@@ -426,8 +420,8 @@ Page 50015 "Comercial Pedidos"
             {
                 Caption = 'P&osting';
                 Image = Post;
-                /* /////-
-                action(Post)
+
+                action(Post1)
                 {
                     ApplicationArea = Basic;
                     Caption = 'P&ost';
@@ -444,7 +438,7 @@ Page 50015 "Comercial Pedidos"
                         Post(Codeunit::"Sales-Post (Yes/No)");
                     end;
                 }
-                */
+
                 action(PostAndSend)
                 {
                     ApplicationArea = Basic;
@@ -485,7 +479,7 @@ Page 50015 "Comercial Pedidos"
 
                     trigger OnAction()
                     begin
-                        Report.RunModal(Report::"Batch Post Sales Orders",true,true,Rec);
+                        Report.RunModal(Report::"Batch Post Sales Orders", true, true, Rec);
                         CurrPage.Update(false);
                     end;
                 }
@@ -499,7 +493,7 @@ Page 50015 "Comercial Pedidos"
 
                     trigger OnAction()
                     begin
-                        /////-CancelBackgroundPosting;
+                        Rec.CancelBackgroundPosting;
                     end;
                 }
                 action("Preview Posting")
@@ -528,7 +522,7 @@ Page 50015 "Comercial Pedidos"
 
                     trigger OnAction()
                     begin
-                        DocPrint.PrintSalesOrder(Rec,Usage::"Work Order");
+                        DocPrint.PrintSalesOrder(Rec, Usage::"Work Order");
                     end;
                 }
                 action("Pick Instruction")
@@ -539,7 +533,7 @@ Page 50015 "Comercial Pedidos"
 
                     trigger OnAction()
                     begin
-                        DocPrint.PrintSalesOrder(Rec,Usage::"Pick Instruction");
+                        DocPrint.PrintSalesOrder(Rec, Usage::"Pick Instruction");
                     end;
                 }
             }
@@ -573,7 +567,7 @@ Page 50015 "Comercial Pedidos"
 
                     trigger OnAction()
                     begin
-                        DocPrint.PrintSalesOrder(Rec,Usage::"Order Confirmation");
+                        DocPrint.PrintSalesOrder(Rec, Usage::"Order Confirmation");
                     end;
                 }
             }
@@ -635,7 +629,7 @@ Page 50015 "Comercial Pedidos"
 
     trigger OnFindRecord(Which: Text): Boolean
     begin
-        /////-exit(Find(Which) and ShowHeader);
+        exit(Rec.Find(Which) and ShowHeader);
     end;
 
     trigger OnNextRecord(Steps: Integer): Integer
@@ -643,7 +637,7 @@ Page 50015 "Comercial Pedidos"
         NewStepCount: Integer;
     begin
         repeat
-          /////-NewStepCount := Next(Steps);
+            NewStepCount := Rec.Next(Steps);
         until (NewStepCount = 0) or ShowHeader;
 
         exit(NewStepCount);
@@ -660,40 +654,38 @@ Page 50015 "Comercial Pedidos"
         Def(Tipopantalla);
 
 
-        if Tipopantalla=0  then begin
-             mes := Date2dmy(Today,2);
-             año := Date2dmy(Today,3);
-             Desde := Dmy2date(1, mes, año);
-             Date.Reset;
-             Date.SetRange("Period Type",2);
-             Date.SetRange("Period Start",Desde);
-             if Date.FindLast then begin
-                  Hasta:=Date."Period End";
-             end;
-             Desde:=20180101D;
-             /* /////-
-             SetRange("Order Date",Desde,Hasta);
-             UserSetup.Get(UserId);
-             if UserSetup."Salespers./Purch. Code"<>'' then begin
-                  SetRange("Salesperson Code",UserSetup."Salespers./Purch. Code");
-                  FilterGroup(1);
-             end;
-             */
+        if Tipopantalla = 0 then begin
+            mes := Date2dmy(Today, 2);
+            año := Date2dmy(Today, 3);
+            Desde := Dmy2date(1, mes, año);
+            Date.Reset;
+            Date.SetRange("Period Type", 2);
+            Date.SetRange("Period Start", Desde);
+            if Date.FindLast then begin
+                Hasta := Date."Period End";
+            end;
+            Desde := 20180101D;
+            Rec.SetRange(Rec."Order Date", Desde, Hasta);
+            UserSetup.Get(UserId);
+            if UserSetup."Salespers./Purch. Code" <> '' then begin
+                Rec.SetRange(Rec."Salesperson Code", UserSetup."Salespers./Purch. Code");
+                Rec.FilterGroup(1);
+            end;
+
         end;
-        if Tipopantalla=1  then begin
-             mes := Date2dmy(Today,2);
-             año := Date2dmy(Today,3);
-             Desde:=20000101D;
-             Hasta := Dmy2date(1, mes, año);
-             Hasta:=CalcDate('-1D',Hasta);
-             /* /////-
-             SetRange("Order Date",Desde,Hasta);
-             UserSetup.Get(UserId);
-             if UserSetup."Salespers./Purch. Code"<>'' then begin
-                  SetRange("Salesperson Code",UserSetup."Salespers./Purch. Code");
-                  FilterGroup(1);
-             end;
-             */
+        if Tipopantalla = 1 then begin
+            mes := Date2dmy(Today, 2);
+            año := Date2dmy(Today, 3);
+            Desde := 20000101D;
+            Hasta := Dmy2date(1, mes, año);
+            Hasta := CalcDate('-1D', Hasta);
+            Rec.SetRange("Order Date", Desde, Hasta);
+            UserSetup.Get(UserId);
+            if UserSetup."Salespers./Purch. Code" <> '' then begin
+                Rec.SetRange("Salesperson Code", UserSetup."Salespers./Purch. Code");
+                Rec.FilterGroup(1);
+            end;
+
         end;
     end;
 
@@ -749,7 +741,7 @@ Page 50015 "Comercial Pedidos"
     begin
 
         /////-if ApplicationAreaSetup.IsFoundationEnabled then
-          /////-LinesInstructionMgt.SalesCheckAllLinesHaveQuantityAssigned(Rec);
+        /////-LinesInstructionMgt.SalesCheckAllLinesHaveQuantityAssigned(Rec);
 
         /////-SendToPosting(PostingCodeunitID);
 
@@ -767,7 +759,7 @@ Page 50015 "Comercial Pedidos"
         CashFlowManagement: Codeunit "Cash Flow Management";
     begin
         if SkipLinesWithoutVAT and (CashFlowManagement.GetTaxAmountFromSalesOrder(Rec) = 0) then
-          exit(false);
+            exit(false);
 
         exit(true);
     end;
@@ -776,7 +768,7 @@ Page 50015 "Comercial Pedidos"
     procedure Def(opcion: Integer)
     begin
 
-        Tipopantalla:=opcion;
+        Tipopantalla := opcion;
     end;
 }
 
