@@ -56,9 +56,6 @@ Codeunit 50071 "Automaticos Leroy Merlin"
         FicherosHagen: Codeunit FicherosHagen;
     begin
 
-        SalesReceivablesSetup.Get;
-        SalesReceivablesSetup."Ruta fiche. Stock Leroy Merlin" := 'C:/prueba';
-        ArchExt4 := SalesReceivablesSetup."Ruta fiche. Stock Leroy Merlin" + 'LeroyMerlin.csv';
         TempBlob.CreateOutStream(OutStream);
         //ArchSalida4.TextMode := true;
         //ArchSalida4.WriteMode := true;
@@ -355,19 +352,23 @@ Codeunit 50071 "Automaticos Leroy Merlin"
 
 
                     OutStream.Write(TextoSalida1);
-                    //Message('%1', TextoSalida1);
+
 
 
                 end;
 
             until Item.Next = 0;
 
+
+        SalesReceivablesSetup.Get;
+
         TempBlob.CreateInStream(InStream);
+        Message('%1', SalesReceivablesSetup."Ruta fiche. Stock Leroy Merlin");
         FicherosHagen.CrearFichero(SalesReceivablesSetup."Ruta fiche. Stock Leroy Merlin", 'LeroyMerlin.csv', InStream);
-        //Base64Text := Base64Convert.ToBase64(InStream);
 
 
-        //ArchSalida4.Close;
+
+
     end;
 
 
