@@ -418,8 +418,7 @@ Codeunit 50010 "Automaticos Cartas"
         ///FILE.Rename(DAT1,DAT2);
 
         TempBlob.CreateInStream(InStream);
-        Message('%1 %2', RecCE."Ruta salida de_gestion", DAT2);
-        RecCE."Ruta salida de_gestion" := 'C:/prueba';
+        //Message('%1 %2', RecCE."Ruta salida de_gestion", DAT2);        
         FicherosHagen.CrearFichero(RecCE."Ruta salida de_gestion", DAT2, InStream);
 
 
