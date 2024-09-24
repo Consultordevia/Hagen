@@ -130,9 +130,9 @@ tableextension 50046 "SalesPrice" extends "Sales Price"
         field(50106; "Codigo concatenado"; Code[20])
         {
         }
-        field(50107; ean; Code[20])
+        field(50107; ean; Code[50])
         {
-            CalcFormula = lookup("Item Cross Reference"."Cross-Reference No." where("Item No." = field("Item No."), "Unit of Measure" = field("Codigo INNER o MASTET")));
+            CalcFormula = lookup("Item Reference"."Reference No." where("Item No." = field("Item No."), "Unit of Measure" = field("Codigo INNER o MASTET")));
             FieldClass = FlowField;
         }
 
