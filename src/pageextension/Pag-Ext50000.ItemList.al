@@ -88,7 +88,7 @@ pageextension 50020 "Item List" extends "Item List"
             field("Fecha modif"; Rec."Fecha modif") { ApplicationArea = All; }
             field("Fecha sub web"; Rec."Fecha sub web") { ApplicationArea = All; }
             field("Existencia SILLA SALDO"; Rec."Existencia SILLA SALDO") { ApplicationArea = All; }
-            field("Filtro Cliente"; Rec."Filtro Cliente") { ApplicationArea = All; }
+            //field("Filtro Cliente"; Rec."Filtro Cliente") { ApplicationArea = All; }
             field("Imagen Articulo WEB"; Rec."Imagen Articulo WEB") { ApplicationArea = All; }
             field("NO MULTIPEDIDO"; Rec."NO MULTIPEDIDO") { ApplicationArea = All; }
             field("Voluminoso web"; Rec."Voluminoso web") { ApplicationArea = All; }
