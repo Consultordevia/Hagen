@@ -27,6 +27,7 @@ pageextension 50019 "Sales Prices" extends "Sales Prices"
             field("Fecha hora modif"; Rec."Fecha hora modif") { ApplicationArea = All; }
             field("Fecha hora modif web"; Rec."Fecha hora modif web") { ApplicationArea = All; }
             field("Codigo concatenado"; Rec."Codigo concatenado") { ApplicationArea = All; }
+            field(ean; Rec.ean) { ApplicationArea = All; }
 
 
 

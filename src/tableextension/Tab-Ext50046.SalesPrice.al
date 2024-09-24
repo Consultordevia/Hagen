@@ -104,8 +104,7 @@ tableextension 50046 "SalesPrice" extends "Sales Price"
         }
         field(50100; cuantos; Integer)
         {
-            CalcFormula = count("Sales Price" where("Item No." = field("Item No."),
-                                                     "Sales Code" = field("Sales Code")));
+            CalcFormula = count("Sales Price" where("Item No." = field("Item No."), "Sales Code" = field("Sales Code")));
             FieldClass = FlowField;
         }
         field(50101; "Fecha modif"; Date)
@@ -130,6 +129,14 @@ tableextension 50046 "SalesPrice" extends "Sales Price"
         }
         field(50106; "Codigo concatenado"; Code[20])
         {
+        }
+        field(50107; ean; Code[20])
+        {
+            CalcFormula = lookup("Item Cross Reference"."Cross-Reference No." where("Item No." = field("Item No."), "Unit of Measure" = field("Codigo INNER o MASTET")));
+            ///CalcFormula = count("Sales Price" where("Item No." = field("Item No."), "Sales Code" = field("Sales Code")));
+
+
+            FieldClass = FlowField;
         }
 
     }
