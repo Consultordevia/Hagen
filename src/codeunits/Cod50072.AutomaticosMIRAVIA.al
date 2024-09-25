@@ -170,24 +170,16 @@ Codeunit 50072 "Automaticos MIRAVIA"
         ArchExt4 := 'c:\tmp\Miravia\UpdatePriceAndStock_Basic_MRAQ.csv';
         TempBlob.CreateOutStream(OutStream);
 
-
-
-
-        //ArchSalida4.TextMode := true;
-        //ArchSalida4.WriteMode := true;
-        //ArchSalida4.Create(ArchExt4);
-
-
         TextoSalida1 := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
                       'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
         TextoSalida2 := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
-        //ArchSalida4.Write(TextoSalida1+TextoSalida2);
+
         OutStream.Write(TextoSalida1 + TextoSalida2);
 
 
 
         TextoSalida1 := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
-        //ArchSalida4.Write(TextoSalida1);
+
         OutStream.Write(TextoSalida1);
 
 
@@ -208,7 +200,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
         TextoSalida8 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
 
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
+
         OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
 
 
@@ -228,7 +220,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
         TextoSalida8 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
 
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
+
         OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
 
 
@@ -333,11 +325,6 @@ Codeunit 50072 "Automaticos MIRAVIA"
                                   Format('');    ///// 14
 
 
-
-
-
-
-                    ///ArchSalida4.Write(TextoSalida1);
                     OutStream.Write(TextoSalida1);
 
 
@@ -346,9 +333,9 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('c:\tmp\Miravia\', 'UpdatePriceAndStock_Basic_MRAQ.csv', InStream);
+        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRAQ.csv', InStream);
 
-        ///ArchSalida4.Close;
+
     end;
 
     local procedure MIRAVIA_MRCAIT()
@@ -364,13 +351,11 @@ Codeunit 50072 "Automaticos MIRAVIA"
         TextoSalida1 := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
                       'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
         TextoSalida2 := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2);
         OutStream.Write(TextoSalida1 + TextoSalida2);
 
 
 
         TextoSalida1 := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
-        ///ArchSalida4.Write(TextoSalida1);
         OutStream.Write(TextoSalida1);
 
 
@@ -391,7 +376,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
         TextoSalida8 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
 
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
+
         OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
 
 
@@ -411,7 +396,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
         TextoSalida8 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
 
-        ////ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
+
         OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
 
 
@@ -534,7 +519,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('c:\tmp\Miravia\', 'UpdatePriceAndStock_Basic_MRCAIT.csv', InStream);
+        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRCAIT.csv', InStream);
         ///ArchSalida4.Close;
     end;
 
@@ -720,7 +705,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('c:\tmp\Miravia\', 'UpdatePriceAndStock_Basic_MRDG.csv', InStream);
+        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRDG.csv', InStream);
 
     end;
 
@@ -906,7 +891,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('c:\tmp\Miravia\', 'UpdatePriceAndStock_Basic_MREXO.csv', InStream);
+        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MREXO.csv', InStream);
 
     end;
 
@@ -1092,7 +1077,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('c:\tmp\Miravia\', 'UpdatePriceAndStock_Basic_MRFLU.csv', InStream);
+        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRFLU.csv', InStream);
 
     end;
 
@@ -1278,7 +1263,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('c:\tmp\Miravia\', 'UpdatePriceAndStock_Basic_MRLAG.csv', InStream);
+        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRLAG.csv', InStream);
 
     end;
 
@@ -1466,7 +1451,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('c:\tmp\Miravia\', 'UpdatePriceAndStock_Basic_MRMAR.csv', InStream);
+        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRMAR.csv', InStream);
 
 
     end;
@@ -1653,7 +1638,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('c:\tmp\Miravia\', 'UpdatePriceAndStock_Basic_MRTRO.csv', InStream);
+        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRTRO.csv', InStream);
 
     end;
 
@@ -1835,7 +1820,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('c:\tmp\Miravia\', 'UpdatePriceAndStock_Basic_MRHAR.csv', InStream);
+        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRHAR.csv', InStream);
 
     end;
 
@@ -2012,7 +1997,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
 
 
-                    ///ArchSalida4.Write(TextoSalida1);
+
                     OutStream.Write(TextoSalida1);
 
 
@@ -2021,7 +2006,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('c:\tmp\Miravia\', 'UpdatePriceAndStock_Basic_MRLIV.csv', InStream);
+        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRLIV.csv', InStream);
 
     end;
 }

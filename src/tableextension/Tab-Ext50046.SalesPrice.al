@@ -132,9 +132,18 @@ tableextension 50046 "SalesPrice" extends "Sales Price"
         }
         field(50107; ean; Code[50])
         {
-            CalcFormula = lookup("Item Reference"."Reference No." where("Item No." = field("Item No."), "Unit of Measure" = field("Codigo INNER o MASTET")));
+            CalcFormula = lookup("Item Reference"."Reference No." where("Item No." = field("Item No."), "Unit of Measure" = field("Unit of Measure Code")));
             FieldClass = FlowField;
         }
+        field(50108; "Cantidad unidades medida"; Decimal)
+        {
+            CalcFormula = lookup("Item Unit of Measure"."Qty. per Unit of Measure" where("Item No." = field("Item No."), Code = field("Unit of Measure Code")));
+            FieldClass = FlowField;
+        }
+        field(50109; "Producto_web"; Boolean)
+        {
+        }
+
 
     }
 }
