@@ -3,6 +3,9 @@ Codeunit 50079 "Importacion Pedidos mano mano"
 {
 
     trigger OnRun()
+    var
+        FicherosHagen: Codeunit FicherosHagen;
+        Tipo: option PedidosManoMano;
     begin
 
 
@@ -23,8 +26,11 @@ Codeunit 50079 "Importacion Pedidos mano mano"
         nomdir := SalesReceivablesSetup."Ruta fiche. Stock mano mano pe";
         RUTACOPIA := SalesReceivablesSetup."Ruta fiche. Stock mano mano pe" + 'copia\';
         Commit;
+        tipo := Tipo::PedidosManoMano;
 
-        Clear(recFicheros);
+        FicherosHagen.LeerArchivosCarpeta(nomdir, RUTACOPIA, Tipo)
+
+        /*Clear(recFicheros);
         recFicheros.SetRange(Path, nomdir);
         if recFicheros.Find('-') then
             repeat
@@ -50,25 +56,16 @@ Codeunit 50079 "Importacion Pedidos mano mano"
                 end;
             until recFicheros.Next = 0;
         Commit;
+        */
 
+        //exit;
 
-        exit;
-
-
-
-        Clear(recFicheros);
-        recFicheros.SetRange(Path, ruta2);
-        if recFicheros.Find('-') then
-            repeat
-            until recFicheros.Next = 0;
-        Commit;
     end;
 
     var
         varXmlFile: File;
         varInputStream: InStream;
         NombreFichero: Code[200];
-        recFicheros: Record File;
         lon1: Decimal;
         NOMFIC: Code[200];
         QUETIENDAES: Code[10];
@@ -137,17 +134,13 @@ Codeunit 50079 "Importacion Pedidos mano mano"
         ReleaseSalesDoc: Codeunit "Release Sales Document";
         CodeCV: Codeunit "Automaticos Cartas";
         TIENE: Boolean;
-        DATAIMPLEUTEROM: XmlPort UnknownXmlPort50127;
-        DATAIMPLEUTEREXP: XmlPort UnknownXmlPort50008;
-        DATAIMPLEUTERSTOART: XmlPort UnknownXmlPort50005;
+
 
         CURegMov: Codeunit "Item Jnl.-Post Batch";
-        ImportacionPEDIDOSKIWOKO2: XmlPort UnknownXmlPort50022;
+
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
-        ImportacionPEDIDOSAMAZON: XmlPort UnknownXmlPort50023;
+
         JobQueueLogEntry: Record "Job Queue Log Entry";
-        ImportacionPEDIDOScatit: XmlPort UnknownXmlPort50003;
-        ImportacionPEDIDOScatittnew: XmlPort UnknownXmlPort50055;
 
 
 
