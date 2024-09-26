@@ -141,7 +141,10 @@ pageextension 50020 "Item List" extends "Item List"
             field("Gross Weight"; Rec."Gross Weight") { ApplicationArea = All; }
             field("Unit Volume"; Rec."Unit Volume") { ApplicationArea = All; }
             field(DescripMarca; DescripMarca) { ApplicationArea = All; }
+
             field(Disponible; dispo) { ApplicationArea = ALL; }
+            field(NombreItemCategoria; NombreItemCategoria) { ApplicationArea = ALL; }
+
 
 
         }
@@ -155,6 +158,10 @@ pageextension 50020 "Item List" extends "Item List"
         end;
         rec.CalcFields("Existencia SILLA", "Qty. on Sales Order");
         dispo := rec."Existencia SILLA" - rec."Qty. on Sales Order" - rec."Stock para Catit";
+        NombreItemCategoria := '';
+        if itemcat.get(Rec."Item Category Code") then begin
+            NombreItemCategoria := itemcat.Description;
+        end;
 
 
     end;
@@ -163,6 +170,8 @@ pageextension 50020 "Item List" extends "Item List"
         dispo: Decimal;
         RecMulti: Record Multitabla;
         DescripMarca: Text;
+        itemcat: Record "Item Category";
+        NombreItemCategoria: text;
 
 
 
