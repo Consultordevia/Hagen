@@ -238,7 +238,7 @@ Codeunit 50027 "Actualiza stock COVALDROPER"
 
         /////  ArchExt4:='E:\FICHEROSBC\tmp\covaldroper\enviocsv\actptosexternos_'+CODEXTERNO+'.txt';
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp\covaldroper/enviocsv', 'actptosexternos_' + CODEXTERNO + '.txt', InStream);
+        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/covaldroper/enviocsv', 'actptosexternos_' + CODEXTERNO + '.txt', InStream);
 
 
     end;
