@@ -58,6 +58,7 @@ codeunit 50999 FicherosHagen
 
         GetFilesFromPath(NameValueBuffer, Path);
         NameValueBuffer.RESET;
+        NameValueBuffer.SetFilter(Value, '<>%1', '');
         IF NameValueBuffer.FINDSET THEN
             REPEAT
                 UploadFile(NameValueBuffer.Name, Tipo);
