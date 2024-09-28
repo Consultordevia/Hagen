@@ -24,7 +24,7 @@ Codeunit 50079 "Importacion Pedidos mano mano"
 
         SalesReceivablesSetup.Get;
         nomdir := SalesReceivablesSetup."Ruta fiche. Stock mano mano pe";
-        RUTACOPIA := SalesReceivablesSetup."Ruta fiche. Stock mano mano pe" + 'copia';
+        RUTACOPIA := SalesReceivablesSetup."Ruta fiche. Stock mano mano pe" + 'copia/';
         Commit;
         tipo := Tipo::PedidosManoMano;
 
