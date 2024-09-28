@@ -24,12 +24,11 @@ Codeunit 50079 "Importacion Pedidos mano mano"
 
         SalesReceivablesSetup.Get;
         nomdir := SalesReceivablesSetup."Ruta fiche. Stock mano mano pe";
-        RUTACOPIA := SalesReceivablesSetup."Ruta fiche. Stock mano mano pe" + 'copia/';
+        RUTACOPIA := SalesReceivablesSetup."Ruta fiche. Stock mano mano pe" + '/copia';
         Commit;
         tipo := Tipo::PedidosManoMano;
 
         Message('%1 %2', nomdir, RUTACOPIA);
-
         FicherosHagen.LeerArchivosCarpeta(nomdir, RUTACOPIA, Tipo)
 
         /*Clear(recFicheros);
