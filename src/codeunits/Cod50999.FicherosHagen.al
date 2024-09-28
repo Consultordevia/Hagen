@@ -55,8 +55,8 @@ codeunit 50999 FicherosHagen
     begin
         NameValueBuffer.RESET;
         NameValueBuffer.DELETEALL(FALSE);
-        Message('GetFilesFromPath %1 %2"', NameValueBuffer, Path);
         GetFilesFromPath(NameValueBuffer, Path);
+
         NameValueBuffer.RESET;
         NameValueBuffer.SetFilter(Value, '<>%1', '');
         IF NameValueBuffer.FINDSET THEN
