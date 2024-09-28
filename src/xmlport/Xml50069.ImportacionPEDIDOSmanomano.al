@@ -449,7 +449,7 @@ XmlPort 50069 "Importacion PEDIDOS mano mano"
                 RecCV."Super urgente" := true;
                 RecCV."No incluir portes" := true;
                 RecCV."No agrupar en ADAIA" := false;
-                RecCV."Usuario alta" := UserId;
+                /////RecCV."Usuario alta" := UserId;
                 RecCV."Fecha alta" := Today;
                 RecCV."Hora alta" := Time;
                 RecCV."No. Series" := SalesSetup."Order Nos.";
@@ -595,7 +595,7 @@ XmlPort 50069 "Importacion PEDIDOS mano mano"
                 RecLV.Type := 2;
                 RecLV.Validate(RecLV."No.", CODPROD);
                 ///// RecLV.INSERT(TRUE);
-                RecLV."Usuario alta" := UserId;
+                /////RecLV."Usuario alta" := UserId;
                 RecLV."Fecha alta" := Today;
                 RecLV."Hora alta" := Time;
                 RecLV."Shortcut Dimension 1 Code" := RecCV."Salesperson Code";

@@ -58,10 +58,12 @@ codeunit 50999 FicherosHagen
         GetFilesFromPath(NameValueBuffer, Path);
 
         NameValueBuffer.RESET;
-        NameValueBuffer.SetFilter(Value, '<>%1', '');
+        ///NameValueBuffer.SetFilter(Value, '<>%1', '');
+        NameValueBuffer.SetRange(id, 2, 9999999);
         IF NameValueBuffer.FINDSET THEN
             REPEAT
                 Message('upload %1', NameValueBuffer.Name);
+
                 UploadFile(NameValueBuffer.Name, Tipo);
 
                 IF hasta <> '' THEN BEGIN
@@ -95,8 +97,11 @@ codeunit 50999 FicherosHagen
                         Error(ResponseMessage.ReasonPhrase);
                         //exit(false);
                     end;
+
                 END;
+
             UNTIL NameValueBuffer.NEXT = 0;
+
     end;
 
     procedure GetFilesFromPath(var NameValueBuffer: Record "Name/Value Buffer"; Path: Text)
