@@ -4,6 +4,7 @@ page 50001 "Rutas Procesos"
     Caption = 'Rutas Procesos';
     PageType = List;
     SourceTable = adaia;
+    UsageCategory = Lists;
 
     layout
     {
@@ -11,7 +12,7 @@ page 50001 "Rutas Procesos"
         {
             repeater(General)
             {
-                field(Proceso; Rec.Proceso)
+                field(Proceso; Rec.texto)
                 {
                     ToolTip = 'Specifies the value of the Proceso field.', Comment = '%';
                 }
