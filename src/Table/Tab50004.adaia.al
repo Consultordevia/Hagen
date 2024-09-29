@@ -4,14 +4,17 @@ Table 50004 adaia
 
     fields
     {
-        field(1;texto;Code[250])
+        field(1; Texto; Code[50])
+        {
+        }
+        field(2; Ruta; Code[250])
         {
         }
     }
 
     keys
     {
-        key(Key1;texto)
+        key(Key1; Texto)
         {
             Clustered = true;
         }

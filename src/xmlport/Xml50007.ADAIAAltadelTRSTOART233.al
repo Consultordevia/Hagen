@@ -16,10 +16,10 @@ XmlPort 50007 "ADAIA_Alta del TRSTOART233"
             {
                 AutoSave = false;
                 XmlName = 'DataExchDocument';
-                fieldattribute(uno; adaia.texto)
-                {
-                    Width = 255;
-                }
+                //    fieldattribute(uno; adaia.texto)
+                //  {
+                //    Width = 255;
+                //}
             }
         }
     }
