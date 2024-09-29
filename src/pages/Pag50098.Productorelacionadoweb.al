@@ -3,7 +3,9 @@ Page 50098 "Producto relacionado web"
 {
     PageType = List;
     SourceTable = "Multitabla 2";
-    SourceTableView = where(Tabla=const("Relacionado web"));
+    SourceTableView = where(Tabla = const("Relacionado web"));
+    ApplicationArea = all;
+    UsageCategory = Lists;
 
     layout
     {
@@ -11,15 +13,15 @@ Page 50098 "Producto relacionado web"
         {
             repeater(Group)
             {
-                field(Tabla;Rec.Tabla)
+                field(Tabla; Rec.Tabla)
                 {
                     ApplicationArea = Basic;
                 }
-                field("Código 1";Rec."Código 1")
+                field("Código 1"; Rec."Código 1")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Código 2";Rec."Código 2")
+                field("Código 2"; Rec."Código 2")
                 {
                     ApplicationArea = Basic;
                 }
