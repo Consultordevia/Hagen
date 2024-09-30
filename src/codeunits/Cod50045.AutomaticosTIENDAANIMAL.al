@@ -182,6 +182,8 @@ Codeunit 50045 "Automaticos TIENDA ANIMAL"
         tfechafin: Code[10];
         SalesLineDiscount: Record "Sales Line Discount";
         dto: Decimal;
+        ADAIA: Record ADAIA;
+        NOMDIR: Text;
 
     local procedure TiendaAnimal()
     var
@@ -380,10 +382,15 @@ Codeunit 50045 "Automaticos TIENDA ANIMAL"
         SalesReceivablesSetup.Get;
 
 
-
+        nomdir := '';
+        ADAIA.Reset();
+        ADAIA.SetRange(texto, 'AUTOMATICOS TIEDAANIMAL-CU-50045');
+        IF ADAIA.FindSet() THEN begin
+            nomdir := ADAIA.Ruta;
+        end;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/tiendaminal', 'Tanimal-stock.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'Tanimal-stock.csv', InStream);
 
     end;
 }

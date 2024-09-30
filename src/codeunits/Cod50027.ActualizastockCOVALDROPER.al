@@ -91,6 +91,8 @@ Codeunit 50027 "Actualiza stock COVALDROPER"
         codfamiliacov: Code[10];
         codsubfamiliacov: Code[10];
         CODEXTERNO: Code[4];
+        adaia: Record adaia;
+        Nomdir: Text;
 
 
     procedure GrabaStockCOVAL()
@@ -234,11 +236,14 @@ Codeunit 50027 "Actualiza stock COVALDROPER"
 
             until Item.Next = 0;
 
-        SalesReceivablesSetup.Get;
-
-        /////  ArchExt4:='E:\FICHEROSBC\tmp\covaldroper\enviocsv\actptosexternos_'+CODEXTERNO+'.txt';
+        nomdir := '';
+        ADAIA.Reset();
+        ADAIA.SetRange(texto, 'AUTOMATICOS COVALDROPER-CU-50027');
+        IF ADAIA.FindSet() THEN begin
+            nomdir := ADAIA.Ruta;
+        end;
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/covaldroper/enviocsv', 'actptosexternos_' + CODEXTERNO + '.txt', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'actptosexternos_' + CODEXTERNO + '.txt', InStream);
 
 
     end;

@@ -46,6 +46,8 @@ Codeunit 50071 "Automaticos Leroy Merlin"
         dd1: Code[10];
         mm: Integer;
         dd: Integer;
+        adaia: Record adaia;
+        nomdir: Text;
 
     local procedure TiendaAnimal()
     var
@@ -360,10 +362,16 @@ Codeunit 50071 "Automaticos Leroy Merlin"
             until Item.Next = 0;
 
 
-        SalesReceivablesSetup.Get;
+
+        nomdir := '';
+        ADAIA.Reset();
+        ADAIA.SetRange(texto, 'AUTOMATICOS LEROY MERLIN-CU-50071');
+        IF ADAIA.FindSet() THEN begin
+            nomdir := ADAIA.Ruta;
+        end;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(SalesReceivablesSetup."Ruta fiche. Stock Leroy Merlin", 'LeroyMerlin.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'LeroyMerlin.csv', InStream);
 
 
 

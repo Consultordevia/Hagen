@@ -135,6 +135,8 @@ Codeunit 50067 "Automaticos Carrefour"
         dd1: Code[10];
         fechainiDTO: Text;
         fechafinDTO: Text;
+        adaia: Record adaia;
+        nomdir: text;
 
     local procedure TiendaAnimal()
     var
@@ -379,10 +381,14 @@ Codeunit 50067 "Automaticos Carrefour"
             until Item.Next = 0;
 
 
-
-
+        nomdir := '';
+        ADAIA.Reset();
+        ADAIA.SetRange(texto, 'AUTOMATICOS CARREFOUR-CU-50067');
+        IF ADAIA.FindSet() THEN begin
+            nomdir := ADAIA.Ruta;
+        end;
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/carrefour', 'carrefour.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'carrefour.csv', InStream);
 
 
     end;

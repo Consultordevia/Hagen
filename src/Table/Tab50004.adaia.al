@@ -6,9 +6,11 @@ Table 50004 adaia
     {
         field(1; texto; Code[250])
         {
+            Caption = 'Proceso';
         }
         field(2; Ruta; Code[250])
         {
+            Caption = 'Ruta';
         }
     }
 

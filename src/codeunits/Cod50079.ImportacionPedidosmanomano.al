@@ -23,8 +23,15 @@ Codeunit 50079 "Importacion Pedidos mano mano"
 
 
         SalesReceivablesSetup.Get;
-        nomdir := SalesReceivablesSetup."Ruta fiche. Stock mano mano pe";
-        RUTACOPIA := SalesReceivablesSetup."Ruta fiche. Stock mano mano pe" + 'copia/';
+        //nomdir := SalesReceivablesSetup."Ruta fiche. Stock mano mano pe";
+        //RUTACOPIA := SalesReceivablesSetup."Ruta fiche. Stock mano mano pe" + 'copia/';
+
+        ADAIA.Reset();
+        ADAIA.SetRange(texto, 'IMPORTACION MANOMANO-CU-50079');
+        IF ADAIA.FindSet() THEN begin
+            nomdir := ADAIA.Ruta;
+            RUTACOPIA := ADAIA.Ruta + 'copia/';
+        end;
         Commit;
         tipo := Tipo::PedidosManoMano;
 
@@ -142,6 +149,8 @@ Codeunit 50079 "Importacion Pedidos mano mano"
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
 
         JobQueueLogEntry: Record "Job Queue Log Entry";
+
+        ADAIA: Record adaia;
 
 
 

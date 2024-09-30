@@ -108,6 +108,8 @@ Codeunit 50028 "Automaticos Catit"
         pvpr: Decimal;
         SalesLineDiscount: Record "Sales Line Discount";
         codinner: Code[10];
+        ADAIA: RECORD adaia;
+        NOMDIR: Text;
 
 
     procedure GrabaStockCatit()
@@ -355,8 +357,15 @@ Codeunit 50028 "Automaticos Catit"
             until Item.Next = 0;
 
 
+        nomdir := '';
+        ADAIA.Reset();
+        ADAIA.SetRange(texto, 'AUTOMATICOS CATIT-CU-50028');
+        IF ADAIA.FindSet() THEN begin
+            nomdir := ADAIA.Ruta;
+        end;
+
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/json/catit/stock', 'catit.csv', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'catit.csv', InStream);
 
     end;
 

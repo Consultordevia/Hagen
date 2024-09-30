@@ -129,6 +129,8 @@ Codeunit 50062 "Automaticos MANOMANO"
         tfechafin: Code[10];
         PRECIO22: Decimal;
         tprecio4: Text;
+        ADAIA: Record ADAIA;
+        nOMDIR: TEXT;
 
     local procedure MANOMANO()
     var
@@ -223,11 +225,15 @@ Codeunit 50062 "Automaticos MANOMANO"
             until Item.Next = 0;
 
 
-        SalesReceivablesSetup.Get;
-
+        nomdir := '';
+        ADAIA.Reset();
+        ADAIA.SetRange(texto, 'AUTOMATICOS MANOMANO-CU-50062');
+        IF ADAIA.FindSet() THEN begin
+            nomdir := ADAIA.Ruta;
+        end;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/manomano', 'MANOMANO-stock.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'MANOMANO-stock.csv', InStream);
 
     end;
 }

@@ -19,6 +19,13 @@ Codeunit 50072 "Automaticos MIRAVIA"
     trigger OnRun()
     begin
 
+        nomdir := '';
+        ADAIA.Reset();
+        ADAIA.SetRange(texto, 'AUTOMATICOS MIRAVIA-CU-50072');
+        IF ADAIA.FindSet() THEN begin
+            nomdir := ADAIA.Ruta;
+        end;
+
         MIRAVIA_MRAQ;
         MIRAVIA_MRCAIT;
         MIRAVIA_MRDG;
@@ -160,6 +167,8 @@ Codeunit 50072 "Automaticos MIRAVIA"
         FileName: Text;
         InStream: InStream;
         FicherosHagen: Codeunit FicherosHagen;
+        ADAIA: Record ADAIA;
+        NOMDIR: Text;
 
 
     local procedure MIRAVIA_MRAQ()
@@ -332,8 +341,9 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
             until Item.Next = 0;
 
+
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRAQ.csv', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRAQ.csv', InStream);
 
 
     end;
@@ -518,8 +528,9 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
             until Item.Next = 0;
 
+
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRCAIT.csv', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRCAIT.csv', InStream);
         ///ArchSalida4.Close;
     end;
 
@@ -705,7 +716,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRDG.csv', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRDG.csv', InStream);
 
     end;
 
@@ -891,7 +902,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MREXO.csv', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MREXO.csv', InStream);
 
     end;
 
@@ -1077,7 +1088,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRFLU.csv', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRFLU.csv', InStream);
 
     end;
 
@@ -1263,7 +1274,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRLAG.csv', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRLAG.csv', InStream);
 
     end;
 
@@ -1451,7 +1462,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRMAR.csv', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRMAR.csv', InStream);
 
 
     end;
@@ -1638,7 +1649,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRTRO.csv', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRTRO.csv', InStream);
 
     end;
 
@@ -1820,7 +1831,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRHAR.csv', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRHAR.csv', InStream);
 
     end;
 
@@ -2006,7 +2017,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/Miravia', 'UpdatePriceAndStock_Basic_MRLIV.csv', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRLIV.csv', InStream);
 
     end;
 }

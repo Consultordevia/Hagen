@@ -113,6 +113,8 @@ Codeunit 50075 "Automaticos Catit estados NEW"
         ANSIASCIIconverter2: Codeunit "ANSI <-> ASCII converter2";
         PostCode: Record "Post Code";
         in_transit: Code[20];
+        ADAIA: RECORD ADAIA;
+        NOMDIR: TEXT;
 
 
     local procedure EstadoPreparadoNuevo()
@@ -573,11 +575,16 @@ Codeunit 50075 "Automaticos Catit estados NEW"
         SalesReceivablesSetup.Get;
 
 
-
+        nomdir := '';
+        ADAIA.Reset();
+        ADAIA.SetRange(texto, 'AUTOMATICOS CATIT-ESTADOS-CU-50075');
+        IF ADAIA.FindSet() THEN begin
+            nomdir := ADAIA.Ruta;
+        end;
 
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/json/catit/transporte', 'Orderscsv.csv', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'Orderscsv.csv', InStream);
 
 
     end;

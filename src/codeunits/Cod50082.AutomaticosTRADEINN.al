@@ -137,6 +137,8 @@ Codeunit 50082 "Automaticos TRADE INN"
         imp: Code[20];
         resto: Decimal;
         cresto: Code[2];
+        ADAIA: Record adaia;
+        NOMDIR: TEXT;
 
 
     procedure GrabaStockCatit()
@@ -347,8 +349,14 @@ Codeunit 50082 "Automaticos TRADE INN"
             until Item.Next = 0;
 
 
+        nomdir := '';
+        ADAIA.Reset();
+        ADAIA.SetRange(texto, 'AUTOMATICOS TRADEINN-CU-50082');
+        IF ADAIA.FindSet() THEN begin
+            nomdir := ADAIA.Ruta;
+        end;
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero('E:/FICHEROSBC/tmp/TRADEINN', 'INN.csv', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'INN.csv', InStream);
 
     end;
 

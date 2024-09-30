@@ -19,6 +19,13 @@ Codeunit 50038 "Automaticos EDICOM facturas"
     begin
 
 
+        nomdir := '';
+        ADAIA.Reset();
+        ADAIA.SetRange(texto, 'AUTOMATICOS EDICOM-CU-50038');
+        IF ADAIA.FindSet() THEN begin
+            nomdir := ADAIA.Ruta;
+        end;
+
 
         SalesInvoiceHeader3.Reset;
         SalesInvoiceHeader3.SetCurrentkey("EDI factueas enviar", "EDI factueas enviado");
@@ -323,6 +330,8 @@ Codeunit 50038 "Automaticos EDICOM facturas"
         CustomerPriceGroup: Record "Customer Discount Group";
         Multitabla: Record Multitabla;
         CAPITALSOCIAL: Code[10];
+        ADAIA: Record ADAIA;
+        NOMDIR: TEXT;
 
 
     procedure GrabaEDICOM(codefac: Code[20])
@@ -848,8 +857,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
         SalesReceivablesSetup.get;
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(SalesReceivablesSetup."Ruta fiche. ENVIO A EDICOM", 'CABFAC' + Format(codefac) + '.TXT', InStream);
-
+        FicherosHagen.CrearFichero(NOMDIR, 'CABFAC' + Format(codefac) + '.TXT', InStream);
 
         if HACERLINEAS then begin
             Lineas;
@@ -1071,8 +1079,9 @@ Codeunit 50038 "Automaticos EDICOM facturas"
             until SalesInvoiceLine.Next = 0;
 
         SalesReceivablesSetup.get;
+
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(SalesReceivablesSetup."Ruta fiche. ENVIO A EDICOM", 'LINFAC' + Format(SalesInvoiceHeader."No.") + '.TXT', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'LINFAC' + Format(SalesInvoiceHeader."No.") + '.TXT', InStream);
 
     end;
 
@@ -1603,8 +1612,8 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
         SalesReceivablesSetup.get;
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(SalesReceivablesSetup."Ruta fiche. ENVIO A EDICOM", 'CABFAC' + Format(codefac) + '.TXT', InStream);
-        
+        FicherosHagen.CrearFichero(NOMDIR, 'CABFAC' + Format(codefac) + '.TXT', InStream);
+
 
 
         if HACERLINEAS then begin
@@ -1822,7 +1831,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
         SalesReceivablesSetup.get;
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(SalesReceivablesSetup."Ruta fiche. ENVIO A EDICOM", 'LINFAC' + Format(SalesCrMemoHeader."No.") + '.TXT', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'LINFAC' + Format(SalesCrMemoHeader."No.") + '.TXT', InStream);
 
     end;
 }
