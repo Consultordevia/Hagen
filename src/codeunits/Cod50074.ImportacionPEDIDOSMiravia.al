@@ -16,7 +16,7 @@ Codeunit 50074 "Importacion PEDIDOS Miravia"
     trigger OnRun()
     var
         FicherosHagen: Codeunit FicherosHagen;
-        Tipo: option MIRAVIA;
+        Tipo: enum Ficherets;
 
     begin
 

@@ -40,7 +40,7 @@ codeunit 50999 FicherosHagen
         end;
     end;
 
-    procedure LeerArchivosCarpeta(Path: text; hasta: text; Tipo: option PedidosManoMano,KIWOKO,COVALDROPER,EDICOM,AMAZON,TAMK,SENDING,TRANSAHER,MASKOKOTAS,CARREFOUR,MIRAVIA,GLS,TXT,CATITNUEVO,LEROYMERLIN);
+    procedure LeerArchivosCarpeta(Path: text; hasta: text; Tipo: enum Ficherets);
     var
         NameValueBuffer: Record "Name/Value Buffer" temporary;
         InStream: InStream;
@@ -183,7 +183,7 @@ codeunit 50999 FicherosHagen
             exit('');
     end;
 
-    local procedure UploadFile(parFilePath: Text[1024]; Tipo: option PedidosManoMano,KIWOKO,COVALDROPER,EDICOM,AMAZON,TAMK,SENDING,TRANSAHER,MASKOKOTAS,CARREFOUR,MIRAVIA,GLS,TXT,CATITNUEVO,LEROYMERLIN);                    )
+    local procedure UploadFile(parFilePath: Text[1024]; Tipo: enum Ficherets)
     var
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
         Body: Text;
@@ -291,7 +291,7 @@ codeunit 50999 FicherosHagen
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
                     end;
                     */
-                    
+
                 end;
             end;
             //exit(true);

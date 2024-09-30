@@ -5,8 +5,7 @@ Codeunit 50046 "Importacion PEDIDOS TAMK"
     trigger OnRun()
     var
         FicherosHagen: Codeunit FicherosHagen;
-        Tipo: option PedidosManoMano,KIWOKO,COVALDROPER,EDICOM,AMAZON,TAMK,SENDING,TRANSAHER,MASKOKOTAS,CARREFOUR,MIRAVIA,GLS,TXT,CATITNUEVO,LEROYMERLIN;
-
+        Tipo: enum Ficherets;
     begin
 
 

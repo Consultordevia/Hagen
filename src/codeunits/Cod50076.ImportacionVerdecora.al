@@ -5,8 +5,7 @@ Codeunit 50076 "Importacion Verdecora"
     trigger OnRun()
     var
         FicherosHagen: Codeunit FicherosHagen;
-        Tipo: option VERDECORA;
-
+        Tipo: enum Ficherets;
     begin
 
 
