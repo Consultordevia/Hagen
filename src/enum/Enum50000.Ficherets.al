@@ -1,7 +1,7 @@
 enum 50000 Ficherets
 {
     Extensible = true;
-    
+
     value(0; PedidosManoMano)
     {
         Caption = 'PedidosManoMano';
@@ -61,5 +61,9 @@ enum 50000 Ficherets
     value(14; LEROYMERLIN)
     {
         Caption = 'LEROYMERLIN';
+    }
+    value(15; VERDECORA)
+    {
+        Caption = 'VERDECORA';
     }
 }
