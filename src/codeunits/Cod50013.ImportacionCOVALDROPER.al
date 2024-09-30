@@ -5,7 +5,7 @@ Codeunit 50013 "Importacion COVALDROPER"
     trigger OnRun()
     var
         FicherosHagen: Codeunit FicherosHagen;
-        Tipo: option COVALDROPER;
+        Tipo: option PedidosManoMano,KIWOKO,COVALDROPER,EDICOM,AMAZON,TAMK,SENDING,TRANSAHER,MASKOKOTAS,CARREFOUR,MIRAVIA,GLS,TXT,CATITNUEVO,LEROYMERLIN;
 
     begin
 

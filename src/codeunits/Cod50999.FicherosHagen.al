@@ -40,7 +40,7 @@ codeunit 50999 FicherosHagen
         end;
     end;
 
-    procedure LeerArchivosCarpeta(Path: text; hasta: text; Tipo: option PedidosManoMano)
+    procedure LeerArchivosCarpeta(Path: text; hasta: text; Tipo: option PedidosManoMano,KIWOKO,COVALDROPER,EDICOM,AMAZON,TAMK,SENDING,TRANSAHER,MASKOKOTAS,CARREFOUR,MIRAVIA,GLS,TXT,CATITNUEVO,LEROYMERLIN);
     var
         NameValueBuffer: Record "Name/Value Buffer" temporary;
         InStream: InStream;
@@ -62,7 +62,7 @@ codeunit 50999 FicherosHagen
         NameValueBuffer.SetRange(id, 2, 9999999);
         IF NameValueBuffer.FINDSET THEN
             REPEAT
-                Message('upload %1', NameValueBuffer.Name);
+                ///Message('upload %1', NameValueBuffer.Name);
 
                 UploadFile(NameValueBuffer.Name, Tipo);
 
@@ -183,7 +183,7 @@ codeunit 50999 FicherosHagen
             exit('');
     end;
 
-    local procedure UploadFile(parFilePath: Text[1024]; Tipo: option PedidosManoMano)
+    local procedure UploadFile(parFilePath: Text[1024]; Tipo: option PedidosManoMano,KIWOKO,COVALDROPER,EDICOM,AMAZON,TAMK,SENDING,TRANSAHER,MASKOKOTAS,CARREFOUR,MIRAVIA,GLS,TXT,CATITNUEVO,LEROYMERLIN);                    )
     var
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
         Body: Text;
@@ -240,9 +240,58 @@ codeunit 50999 FicherosHagen
                     FileText := Base64Convert.FromBase64(FileText);
                     OutStream.WriteText(FileText);
                     TempBlob.CreateInStream(InStream);
+                    ///// PedidosManoMano,KIWOKO,COVALDROPER,EDICOM,AMAZON,TAMK,SENDING,TRANSAHER,MASKOKOTAS,CARREFOUR,MIRAVIA,GLS,TXT,CATITNUEVO,LEROYMERLIN);                    
+                    /*
                     if Tipo = Tipo::PedidosManoMano then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);                        
+                    end;                                        
+                    if Tipo = Tipo::KIWOKO then begin
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
                     end;
+                    if Tipo = Tipo::COVALDROPER then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
+                    end;
+                    if Tipo = Tipo::EDICOM then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
+                    end;
+                    if Tipo = Tipo::AMAZON then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
+                    end;
+                    if Tipo = Tipo::TAMK begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
+                    end;
+                    if Tipo = Tipo::SENDING then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
+                    end;
+                    if Tipo = Tipo::TRANSAHER then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
+                    end;
+                    if Tipo = Tipo::MASKOKOTAS then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
+                    end;
+                    if Tipo = Tipo::MASKOKOTAS then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
+                    end;
+                    if Tipo = Tipo::CARREFOUR then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
+                    end;
+                    if Tipo = Tipo::MIRAVIA then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
+                    end;
+                    if Tipo = Tipo::GLS then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
+                    end;
+                    if Tipo = Tipo::TXT then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
+                    end;
+                    if Tipo = Tipo::CATITNUEVO then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
+                    end;
+                    if Tipo = Tipo::LEROYMERLIN then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
+                    end;
+                    */
+                    
                 end;
             end;
             //exit(true);
