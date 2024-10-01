@@ -18,6 +18,8 @@ Codeunit 50010 "Automaticos Cartas"
     end;
 
     var
+        adaia: Record adaia;
+        nomdir: text;
         TempBlob: Codeunit "Temp Blob";
         OutStream: OutStream;
         FileName: Text;
@@ -350,7 +352,7 @@ Codeunit 50010 "Automaticos Cartas"
         xx: Integer;
 
 
-    procedure adaia()
+    procedure etiadaia()
     var
         ChangeLogEntry: Record "Change Log Entry";
         InventorySetup: Record "Inventory Setup";
@@ -1757,6 +1759,7 @@ Codeunit 50010 "Automaticos Cartas"
     begin
 
         RecCE.Get;
+        TempBlob.CreateOutStream(OutStream);
 
         DESNOM := ConvertStr(CopyStr(RecCust.Name, 1, 30), 'ª', '.');
         DESNOM := ConvertStr(DESNOM, 'º', '.');
@@ -1823,9 +1826,15 @@ Codeunit 50010 "Automaticos Cartas"
 
 
         TIPO := 3;
-        RUTA := RecCE."Ruta salida de_gestion";
+
+        RUTA := '';
+        ADAIA.Reset();
+        ADAIA.SetRange(texto, 'ADAIA-RUTA SALIDA DE_GESTION');
+        IF ADAIA.FindSet() THEN begin
+            RUTA := ADAIA.Ruta;
+        end;
         BUSCAEXTENSION;
-        DAT2 := 'TRTER.' + EXTEN + Format(ALEA);
+        DAT2 := 'TRTER.' + EXTEN + Format(ALEA) + Format(RecCust."No.") + Format(LOGCAMBIOA);
         TempBlob.CreateInStream(InStream);
         FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
 

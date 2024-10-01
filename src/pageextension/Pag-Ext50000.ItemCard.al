@@ -1,7 +1,10 @@
 pageextension 50000 "Item Card" extends "Item Card"
 {
+
     layout
+
     {
+
 
 
 
@@ -10,6 +13,8 @@ pageextension 50000 "Item Card" extends "Item Card"
             group(Hagen_)
             {
 
+
+                field("Precio medio ponderado"; pmp) { ApplicationArea = All; }
                 field("Existencia SILLA"; Rec."Existencia SILLA") { ApplicationArea = All; }
                 field("Existencia FOB"; Rec."Existencia FOB") { ApplicationArea = All; }
                 field("Producto almacenable"; Rec."Producto almacenable") { ApplicationArea = All; }
@@ -237,5 +242,21 @@ pageextension 50000 "Item Card" extends "Item Card"
                 end;
             }
         }
+
     }
+
+    trigger OnAfterGetRecord()
+    var
+        InventarioPMP: Record "Inventario PMP";
+        pmp: Decimal;
+    begin
+        pmp := 0;
+        InventarioPMP.RESET;
+        InventarioPMP.SETRANGE(InventarioPMP."Item No.", Rec."No.");
+        IF InventarioPMP.FINDLAST THEN BEGIN
+            pmp := InventarioPMP."Unit Cost";
+        END;
+    end;
+
+
 }

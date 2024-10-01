@@ -16,6 +16,26 @@ codeunit 50002 Eventos
     var
         EnvioFicheros: Codeunit "Automaticos Cartas";
     begin
-        EnvioFicheros.MODIFCLIENTES(Rec);
+        EnvioFicheros.ALTACLIENTES(Rec);
     end;
+
+    /*[EventSubscriber(ObjectType::Table, 27, 'OnAfterOnInsert', '', true, true)]
+    local procedure OnAfterOnInsert(var Item: Record Item; xItem: Record Item)
+    var
+        EnvioFicheros: Codeunit "Automaticos Cartas";
+    begin
+
+        EnvioFicheros.MODIFPROD(Item);
+
+
+    end;
+
+    [EventSubscriber(ObjectType::Table, 27, OnAfterModifyEvent, '', true, true)]
+    local procedure OnAfterModifyEvent(RunTrigger: Boolean; var Rec: Record Item);
+    var
+        EnvioFicheros: Codeunit "Automaticos Cartas";
+    begin
+        EnvioFicheros.ALTAPROD(Rec);
+    end;
+    */
 }
