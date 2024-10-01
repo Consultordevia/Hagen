@@ -248,7 +248,7 @@ pageextension 50000 "Item Card" extends "Item Card"
     trigger OnAfterGetRecord()
     var
         InventarioPMP: Record "Inventario PMP";
-        pmp: Decimal;
+
     begin
         pmp := 0;
         InventarioPMP.RESET;
@@ -258,5 +258,7 @@ pageextension 50000 "Item Card" extends "Item Card"
         END;
     end;
 
+    var
+        pmp: Decimal;
 
 }
