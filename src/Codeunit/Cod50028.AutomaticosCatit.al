@@ -111,6 +111,11 @@ Codeunit 50028 "Automaticos Catit"
         ADAIA: RECORD adaia;
         NOMDIR: Text;
 
+    var
+        InventarioPMP: Record "Inventario PMP";
+        pmp: Decimal;
+
+
 
     procedure GrabaStockCatit()
     var
@@ -132,7 +137,7 @@ Codeunit 50028 "Automaticos Catit"
 
 
 
-        TextoSalida4 := 'sku;price;Stock;status;pvpr';
+        TextoSalida4 := 'sku;price;Stock;status;pvpr;coste';
 
         OutStream.Write(TextoSalida4);
 
@@ -319,12 +324,26 @@ Codeunit 50028 "Automaticos Catit"
 
                                     if Item."Estatus Web" = Item."estatus web"::Activo then begin estatus := 'Active'; end;
                                     if Item."Estatus Web" = Item."estatus web"::Inactivo then begin estatus := 'Draft'; end;
+
+
+
+                                    pmp := 0;
+                                    InventarioPMP.RESET;
+                                    InventarioPMP.SETRANGE(InventarioPMP."Item No.", Item."No.");
+                                    IF InventarioPMP.FINDLAST THEN BEGIN
+                                        pmp := InventarioPMP."Unit Cost";
+                                    END;
+
+
+
+
                                     if codinner = '' then begin
                                         TextoSalida1 := Format(refcattit) + ';' +
                                                Format(PRECIO) + ';' +
                                                Format(DISPONI) + ';' +
                                                Format(estatus) + ';' +
-                                               Format(pvpr);
+                                               Format(pvpr) + ';' +
+                                               Format(pmp);
                                         OutStream.Write(TextoSalida1);
                                     end;
 
@@ -343,7 +362,8 @@ Codeunit 50028 "Automaticos Catit"
                                         Format(PRECIO) + ';' +
                                         Format(ROUND(DISPONI / RecUMP."Qty. per Unit of Measure", 1)) + ';' +
                                         Format(estatus) + ';' +
-                                        Format(pvpr);
+                                        Format(pvpr) + ';' +
+                                        Format(pmp);
                                         OutStream.Write(TextoSalida1);
 
                                     end;

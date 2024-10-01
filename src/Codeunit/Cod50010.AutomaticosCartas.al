@@ -1996,6 +1996,7 @@ Codeunit 50010 "Automaticos Cartas"
 
 
         RecCE.Get;
+        TempBlob.CreateOutStream(OutStream);
 
 
 
@@ -2061,12 +2062,19 @@ Codeunit 50010 "Automaticos Cartas"
 
 
 
-        TIPO := 3;
-        RUTA := RecCE."Ruta salida de_gestion";
+        ADAIA.Reset();
+        ADAIA.SetRange(texto, 'ADAIA-RUTA SALIDA DE_GESTION');
+        IF ADAIA.FindSet() THEN begin
+            RUTA := ADAIA.Ruta;
+        end;
         BUSCAEXTENSION;
-        DAT2 := 'TRTER.' + EXTEN + Format(ALEA);
+        DAT2 := 'TRTER.' + EXTEN + Format(ALEA) + Format(Rec1."No.") + Format(LOGCAMBIOA);
+
         TempBlob.CreateInStream(InStream);
         FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+
+
+
 
     end;
 
@@ -2493,6 +2501,7 @@ Codeunit 50010 "Automaticos Cartas"
 
 
         RecCE.Get;
+        TempBlob.CreateOutStream(OutStream);
 
 
 

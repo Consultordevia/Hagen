@@ -6,7 +6,7 @@ codeunit 50002 Eventos
         EnvioFicheros: Codeunit "Automaticos Cartas";
     begin
 
-        EnvioFicheros.MODIFCLIENTES(Customer);
+        EnvioFicheros.ALTACLIENTES(Customer);
 
 
     end;
@@ -16,26 +16,42 @@ codeunit 50002 Eventos
     var
         EnvioFicheros: Codeunit "Automaticos Cartas";
     begin
-        EnvioFicheros.ALTACLIENTES(Rec);
+        EnvioFicheros.MODIFCLIENTES(Rec);
     end;
 
-    /*[EventSubscriber(ObjectType::Table, 27, 'OnAfterOnInsert', '', true, true)]
-    local procedure OnAfterOnInsert(var Item: Record Item; xItem: Record Item)
+    [EventSubscriber(ObjectType::Table, 23, 'OnAfterOnInsert', '', true, true)]
+    local procedure OnAfterOnInsertV(var Vendor: Record Vendor)
+    var
+        EnvioFicheros: Codeunit "Automaticos Cartas";
+    begin
+        EnvioFicheros.ALTAPROVEE(Vendor);
+    end;
+
+    [EventSubscriber(ObjectType::Table, 23, OnAfterModifyEvent, '', true, true)]
+    local procedure OnAfterModifyEventV(RunTrigger: Boolean; var Rec: Record Vendor);
+    var
+        EnvioFicheros: Codeunit "Automaticos Cartas";
+    begin
+        EnvioFicheros.MODIFPROVEE(Rec);
+    end;
+
+    [EventSubscriber(ObjectType::Table, 27, 'OnAfterOnInsert', '', true, true)]
+    local procedure OnAfterOnInsertProd(var Item: Record Item; xItem: Record Item)
     var
         EnvioFicheros: Codeunit "Automaticos Cartas";
     begin
 
-        EnvioFicheros.MODIFPROD(Item);
+        EnvioFicheros.ALTAPROD(item);
 
 
     end;
 
     [EventSubscriber(ObjectType::Table, 27, OnAfterModifyEvent, '', true, true)]
-    local procedure OnAfterModifyEvent(RunTrigger: Boolean; var Rec: Record Item);
+    local procedure OnAfterModifyEventProd(RunTrigger: Boolean; var Rec: Record Item);
     var
         EnvioFicheros: Codeunit "Automaticos Cartas";
     begin
-        EnvioFicheros.ALTAPROD(Rec);
+        EnvioFicheros.MODIFPROD(Rec);
     end;
-    */
+
 }
