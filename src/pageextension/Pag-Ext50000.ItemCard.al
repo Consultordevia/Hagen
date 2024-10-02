@@ -14,7 +14,7 @@ pageextension 50000 "Item Card" extends "Item Card"
             {
 
 
-                ///field("Precio medio ponderado"; pmp) { ApplicationArea = All; }
+                field("Precio medio ponderado"; pmp) { ApplicationArea = All; }
                 field("Existencia SILLA"; Rec."Existencia SILLA") { ApplicationArea = All; }
                 field("Existencia FOB"; Rec."Existencia FOB") { ApplicationArea = All; }
                 field("Producto almacenable"; Rec."Producto almacenable") { ApplicationArea = All; }
