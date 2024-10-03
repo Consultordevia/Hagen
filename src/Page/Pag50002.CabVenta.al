@@ -5,7 +5,9 @@ page 50002 CabVenta
     PageType = List;
     SourceTable = "Sales Header";
     UsageCategory = Lists;
-    
+    SourceTableView = where("Document Type" = filter(Order));
+
+
     layout
     {
         area(Content)

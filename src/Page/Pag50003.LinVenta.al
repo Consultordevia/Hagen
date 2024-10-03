@@ -5,7 +5,8 @@ page 50003 LinVenta
     PageType = List;
     SourceTable = "Sales Line";
     UsageCategory = Lists;
-    
+    SourceTableView = where("Document Type" = filter(Order));
+
     layout
     {
         area(Content)
