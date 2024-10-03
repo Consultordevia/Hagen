@@ -1251,6 +1251,15 @@ tableextension 50113 Item extends Item
         field(50336; Diciembre; Decimal)
         {
         }
+        field(50337; "Umbral stock"; Decimal)
+        {
+        }
+        field(50338; "Variante1"; Decimal)
+        {
+        }
+        field(50339; "Variante2"; Decimal)
+        {
+        }
         field(60000; "Actualizar WEB"; Boolean)
         {
         }
