@@ -2,8 +2,9 @@
 Page 50033 "Descuentos productos padres"
 
 {
-
-
+    ApplicationArea = All;
+    Caption = 'Descuentos productos padres';
+    UsageCategory = Lists;
     PageType = List;
     SourceTable = "Sales Line Discount Padre";
 
