@@ -5,7 +5,7 @@ page 50007 LinAbonos
     PageType = List;
     SourceTable = "Sales Cr.Memo Line";
     UsageCategory = Lists;
-    
+
     layout
     {
         area(Content)
@@ -64,14 +64,14 @@ page 50007 LinAbonos
                 {
                     ToolTip = 'Specifies the number of the blanket order that the record originates from.';
                 }
-                field("Cantidad inner"; Rec."Cantidad inner")
-                {
-                    ToolTip = 'Specifies the value of the Cantidad inner field.', Comment = '%';
-                }
-                field("Cantidad master"; Rec."Cantidad master")
-                {
-                    ToolTip = 'Specifies the value of the Cantidad master field.', Comment = '%';
-                }
+                // field("Cantidad inner"; Rec."Cantidad inner")
+                // {
+                //     ToolTip = 'Specifies the value of the Cantidad inner field.', Comment = '%';
+                // }
+                // field("Cantidad master"; Rec."Cantidad master")
+                // {
+                //     ToolTip = 'Specifies the value of the Cantidad master field.', Comment = '%';
+                // }
                 field("Cod. Oferta"; Rec."Cod. Oferta")
                 {
                     ToolTip = 'Specifies the value of the Cod. Oferta field.', Comment = '%';
@@ -408,10 +408,10 @@ page 50007 LinAbonos
                 {
                     ToolTip = 'Specifies the value of the SystemCreatedBy field.', Comment = '%';
                 }
-                field(SystemId; Rec.SystemId)
-                {
-                    ToolTip = 'Specifies the value of the SystemId field.', Comment = '%';
-                }
+                // field(SystemId; Rec.SystemId)
+                // {
+                //     ToolTip = 'Specifies the value of the SystemId field.', Comment = '%';
+                // }
                 field(SystemModifiedAt; Rec.SystemModifiedAt)
                 {
                     ToolTip = 'Specifies the value of the SystemModifiedAt field.', Comment = '%';
