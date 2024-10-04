@@ -6,8 +6,8 @@ Table 50020 "Multitabla 2"
     {
         field(1; Tabla; Option)
         {
-            OptionCaption = 'Referenciado,Permitir pedido,Estadistica cliente,Ficha web,Repuestos web,Relacionado web,ClasificaCliente,ProductoCliente,ProductoAtributo,LineasNegoWEB,VariosRepres,RutaCodPost,URLImagenes,WebGradoInt,WebMarca,GDC,FamiliaCatit,SubfailiaCatit,CajasPedido,Venta cruzada WEB';
-            OptionMembers = Referenciado,"Permitir pedido","Estadistica cliente","Ficha web","Repuestos web","Relacionado web",ClasificaCliente,ProductoCliente,ProductoAtributo,LineasNegoWEB,VariosRepres,RutaCodPost,URLImagenes,WebGradoInt,WebMarca,GDC,FamiliaCatit,SubfailiaCatit,CajasPedido,"Venta cruzada WEB";
+            OptionCaption = 'Referenciado,Permitir pedido,Estadistica cliente,Ficha web,Repuestos web,Relacionado web,ClasificaCliente,ProductoCliente,ProductoAtributo,LineasNegoWEB,VariosRepres,RutaCodPost,URLImagenes,WebGradoInt,WebMarca,GDC,FamiliaCatit,SubfailiaCatit,CajasPedido,Venta cruzada WEB,Variante';
+            OptionMembers = Referenciado,"Permitir pedido","Estadistica cliente","Ficha web","Repuestos web","Relacionado web",ClasificaCliente,ProductoCliente,ProductoAtributo,LineasNegoWEB,VariosRepres,RutaCodPost,URLImagenes,WebGradoInt,WebMarca,GDC,FamiliaCatit,SubfailiaCatit,CajasPedido,"Venta cruzada WEB",Variante;
         }
         field(2; "Código 1"; Code[20])
         {
@@ -19,9 +19,11 @@ Table 50020 "Multitabla 2"
             else if (Tabla = const("Relacionado web")) Item."No."
             else if (Tabla = const(ClasificaCliente)) Customer."No."
             else if (Tabla = const(RutaCodPost)) Multitabla.Código where(Tabla = const("Ruta comercial"))
+            else if (Tabla = const(Variante)) Multitabla.Código where(Tabla = const(Variante))
             else if (Tabla = const(WebGradoInt)) Customer."No."
             else if (Tabla = const(WebMarca)) Customer."No."
             else if (Tabla = const(GDC)) Customer."No.";
+
         }
         field(3; "Código 2"; Code[20])
         {

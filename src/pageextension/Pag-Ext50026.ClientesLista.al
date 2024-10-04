@@ -8,6 +8,8 @@ pageextension 50026 ClientesLista extends "Customer List"
 
 
 
+            field("Payment Method Code"; Rec."Payment Method Code") { ApplicationArea = All; }
+            field("VAT Registration No."; Rec."VAT Registration No.") { ApplicationArea = All; }
             field(NombreVendedor; NombreVendedor) { ApplicationArea = All; }
             field("Top produccto.1"; Rec."Top produccto 1") { ApplicationArea = All; }
             field("Top produccto.2"; Rec."Top produccto 2") { ApplicationArea = All; }

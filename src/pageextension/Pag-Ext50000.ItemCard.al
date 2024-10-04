@@ -12,7 +12,13 @@ pageextension 50000 "Item Card" extends "Item Card"
         {
             group(Hagen_)
             {
+                field("Umbral stock"; Rec."Umbral stock") { ApplicationArea = ALL; }
 
+                field(CodVariante1; Rec.CodVariante1) { ApplicationArea = ALL; }
+                field("Dato Variante1"; Rec."Dato Variante1") { ApplicationArea = ALL; }
+
+                field(CodVariante2; Rec.codVariante2) { ApplicationArea = ALL; }
+                field("Dato Variante2"; Rec."Dato Variante2") { ApplicationArea = ALL; }
 
                 field("Precio medio ponderado"; pmp) { ApplicationArea = All; }
                 field("Existencia SILLA"; Rec."Existencia SILLA") { ApplicationArea = All; }
@@ -248,6 +254,7 @@ pageextension 50000 "Item Card" extends "Item Card"
     trigger OnAfterGetRecord()
     var
         InventarioPMP: Record "Inventario PMP";
+
 
     begin
         pmp := 0;

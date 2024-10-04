@@ -141,9 +141,11 @@ pageextension 50020 "Item List" extends "Item List"
             field(NombreItemCategoria; NombreItemCategoria) { ApplicationArea = ALL; }
             field("Umbral stock"; Rec."Umbral stock") { ApplicationArea = ALL; }
 
-            field(Variante1; Rec.Variante1) { ApplicationArea = ALL; }
+            field(CodVariante1; Rec.CodVariante1) { ApplicationArea = ALL; }
+            field("Dato Variante1"; Rec."Dato Variante1") { ApplicationArea = ALL; }
 
-            field(Variante2; Rec.Variante2) { ApplicationArea = ALL; }
+            field(CodVariante2; Rec.CodVariante2) { ApplicationArea = ALL; }
+            field("Dato Variante2"; Rec."Dato Variante2") { ApplicationArea = ALL; }
         }
 
 

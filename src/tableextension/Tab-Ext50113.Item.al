@@ -1260,6 +1260,23 @@ tableextension 50113 Item extends Item
         field(50339; "Variante2"; Decimal)
         {
         }
+        field(50340; "Dato Variante1"; Code[20])
+        {
+            TableRelation = "Multitabla 2"."Código 2" where(Tabla = const(Variante), "Código 1" = field(CodVariante1));
+        }
+        field(50341; "Dato Variante2"; Code[20])
+        {
+            TableRelation = "Multitabla 2"."Código 2" where(Tabla = const(Variante), "Código 1" = field(CodVariante2));
+        }
+        field(50342; "CodVariante1"; Code[20])
+        {
+            TableRelation = Multitabla.Código where(Tabla = const(Variante));
+        }
+        field(50343; "CodVariante2"; Code[20])
+        {
+            TableRelation = Multitabla.Código where(Tabla = const(Variante));
+        }
+
         field(60000; "Actualizar WEB"; Boolean)
         {
         }
