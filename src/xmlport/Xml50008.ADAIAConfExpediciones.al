@@ -496,7 +496,7 @@ XmlPort 50008 "ADAIA_Conf. Expediciones"
                                 end;
                             until SALE;
                             if RecItem.Get(REF) then begin
-                                if RecItem."Criterio rotación" = 0 then begin
+                                if RecItem."Criterio rotacion" = 0 then begin
                                     if FECHACAD <> '|' then begin
                                         FAÑO := CopyStr(FECHACAD, 1, 4);
                                         Evaluate(DAÑO, FAÑO);

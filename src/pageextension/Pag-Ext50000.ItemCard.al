@@ -55,7 +55,7 @@ pageextension 50000 "Item Card" extends "Item Card"
                 field("Precio recomendado"; Rec."Precio recomendado") { ApplicationArea = All; }
 
                 field("Tipo proveedor"; Rec."Tipo proveedor") { ApplicationArea = All; }
-                field("Criterio rotación"; Rec."Criterio rotación") { ApplicationArea = All; }
+                field("Criterio rotacion"; Rec."Criterio rotacion") { ApplicationArea = All; }
                 field("Unidades venta"; Rec."Unidades venta") { ApplicationArea = All; }
 
                 field("Exit Point"; Rec."Exit Point") { ApplicationArea = All; }

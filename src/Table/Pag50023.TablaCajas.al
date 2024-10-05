@@ -156,6 +156,21 @@ page 50023 TablaCajas
         RecTC: Record TablaCajas;
         RecItem: Record Item;
         RecSP: Record "Sales Price";
+        dispo: Decimal;
+        RecMulti: Record Multitabla;
+        DescripMarca: Text;
+        itemcat: Record "Item Category";
+        NombreItemCategoria: text;
+        pmp: Decimal;
+        RecUMP: Record "Item Unit of Measure";
+        RecBom: Record "BOM Component";
+        RecVPG: Record "VAT Posting Setup";
+        RecITREF: Record "Item Reference";
+
+
+
+
+
 
     begiN        
 
@@ -171,36 +186,71 @@ page 50023 TablaCajas
             RecItem.GET(RecSP."Item No.");
             RecTC.Alto:=RecItem.Alto;                              
             RecTC.Ancho:=RecItem.Ancho;
-            //RecTC."Atributo Variante1":=RecItem.Variante1;
-            //RecTC."Atributo Variante2":=RecItem.Variante2;
-            ///RecTC."Cantidad x caja":=
-            ///RecTC."Criterio de Rotacion":=
-            ///RecTC."Descricion marca":=
+            DescripMarca := '';
+            IF RecMulti.GET(RecMulti.Tabla::Marcas, RecItem.Marca) then begin
+                DescripMarca := RecMulti."Descripción";
+            end;
+            RecItem.CalcFields("Existencia SILLA", "Qty. on Sales Order");
+            dispo := RecItem."Existencia SILLA" - RecItem."Qty. on Sales Order" - RecItem."Stock para Catit";
+            NombreItemCategoria := '';
+            if itemcat.get(RecItem."Item Category Code") then begin
+                NombreItemCategoria := itemcat.Description;
+            end;
+            RecTC."Atributo Variante1":=RecItem.CodVariante1;
+            RecTC."Atributo Variante2":=RecItem.CodVariante2;
+            RecUMP.Reset();;
+            RecUMP.SetRange("Item No.",RecItem."No.");
+            RecUMP.SetRange(Code,RecSP."Codigo INNER o MASTET");
+            IF RecUMP.FindFirst() THEN begin
+                RecTC."Cantidad x caja":=RecUMP."Qty. per Unit of Measure";               
+            end;             
+            RecTC."Criterio Rotacion":=RecItem."Criterio rotacion";
+            RecTC."Descricion marca":=DescripMarca;
             RecTC.Descripcion:=RecItem.Description;
-            RecTC.Ean:=RecItem.ean;
+            RecITREF.Reset();
+            RecITREF.SetRange("Item No.",RecItem."No.");
+            RecITREF.SetRange("Unit of Measure",RecSP."Codigo INNER o MASTET");
+            IF RecITREF.FindSet THEN BEGIN
+                RecTC.Ean:=RecItem.ean;
+            END;
             RecTC."El producto es Caja":=true;
-            //RecTC."Estado web Inactivo":=
+            RecTC."Estado web Inactivo":=RecItem."Estado WEB Inactivo";
             RecTC."IVA IGIC Canario":=RecItem."IVA IGIC";
-            ///RecTC.Iva:= 
+ 
+            RecVPG.Reset();
+            RecVPG.SetRange("VAT Prod. Posting Group",RecItem."VAT Prod. Posting Group");
+            RecVPG.SetRange("VAT Bus. Posting Group",'NACIONAL');
+            IF RecVPG.FindFirst() THEN begin
+                RecTC.Iva:= RecVPG."VAT %";
+            END;
             RecTC.Largo:=RecItem.Largo;
-            ///RecTC."NombreUtem Categoria":=
+            RecTC."NombreUtem Categoria":=NombreItemCategoria;
             RecTC.Peso:=RecItem."Net Weight";
-            //RecTC."Precio unitario":=
-            //RecTC."Producto padre":= 
-            //RecTC."Producto web":= 
-            ///RecTC."Proxima fecha de llegada":=RecItem.fec
-            //RecTC.Stock:= 
-            //RecTC."Umbral de Stock":=
-            //RecTC."Unidad de medida":=
-            //RecTC."Unidades venta":= 
+            RecTC."Precio unitario":=RecSP."Unit Price";
+            RecBom.Reset();;
+            RecBom.SetRange("No.",RecSP."Item No.");
+            IF RecBom.FindSet THEN BEGIN
+                RecTC."Producto padre":=RecBom."Parent Item No."; 
+            END;
+            RecTC."Producto web":=RecItem."Producto web"; 
+            RecTC."Proxima fecha de llegada":=RecItem."Fecha proxima recepción conten";
+            RecTC.Stock:=dispo;
+            IF RecTC."Cantidad x caja"<>0 THEN begin
+                    RecTC.Stock:=round(dispo/RecTC."Cantidad x caja");
+            END;
+            RecTC."Umbral Stock":=RecItem."Umbral stock";
+            RecTC."Unidad de medida":=RecSP."Unit of Measure Code";
+            RecTC."Unidades venta":=RecItem."Unidades venta"; 
             RecTC."Valor Atributo Variante1":=RecItem."Dato Variante1";
             RecTC."Valor Atributo Variante2":=RecItem."Dato Variante2";
             RecTC.Volumen:=RecItem."Unit Volume";
-            ///RecTC."Voluminoso web":=
+            RecTC."Voluminoso  web":=RecItem."Voluminoso web";
             RecTC.INSERT;                          
         end;    
-    until RecTC.next=0;            
+    until RecSP.next=0;            
+
     end;
+     
 }    
     
 

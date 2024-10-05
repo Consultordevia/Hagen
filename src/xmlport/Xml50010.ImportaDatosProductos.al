@@ -918,10 +918,10 @@ XmlPort 50010 "Importa Datos Productos"
             D28ROTA := D28;
             if D28ROTA <> '' then begin
                 if RecItem.Get(D1) then begin
-                    if D28ROTA = 'FC' then RecItem."Criterio rotación" := 0;
-                    if D28ROTA = 'FE' then RecItem."Criterio rotación" := 1;
-                    if D28ROTA = 'FF' then RecItem."Criterio rotación" := 2;
-                    if D28ROTA = 'LO' then RecItem."Criterio rotación" := 3;
+                    if D28ROTA = 'FC' then RecItem."Criterio rotacion" := 0;
+                    if D28ROTA = 'FE' then RecItem."Criterio rotacion" := 1;
+                    if D28ROTA = 'FF' then RecItem."Criterio rotacion" := 2;
+                    if D28ROTA = 'LO' then RecItem."Criterio rotacion" := 3;
                     RecItem.Modify;
                 end;
             end;

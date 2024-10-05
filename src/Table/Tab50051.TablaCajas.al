@@ -122,6 +122,23 @@ table 50051 TablaCajas
         {
             Caption = 'Umbral de Stock';
         }
+        field(30; "Criterio Rotacion"; Option)
+        {
+            Caption = 'Criterio Rotacion';
+            InitValue = FE;
+            OptionMembers = FC,FE,FF,LO;
+        }
+        field(31; "Umbral Stock"; Decimal)
+        {
+            Caption = 'Umbral Stock';
+        }
+        field(32; "Voluminoso  web"; Boolean)
+        {
+            Caption = 'Voluminoso web';
+        }
+
+
+
     }
     keys
     {

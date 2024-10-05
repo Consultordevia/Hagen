@@ -25,7 +25,7 @@ pageextension 50020 "Item List" extends "Item List"
             field("Usuario modificación"; Rec."Usuario modificación") { ApplicationArea = All; }
             field("Hora modificación"; Rec."Hora modificación") { ApplicationArea = All; }
             field("Tipo proveedor"; Rec."Tipo proveedor") { ApplicationArea = All; }
-            field("Criterio rotación"; Rec."Criterio rotación") { ApplicationArea = All; }
+            field("Criterio rotacion"; Rec."Criterio rotacion") { ApplicationArea = All; }
             field("Unidades venta"; Rec."Unidades venta") { ApplicationArea = All; }
             field("Exit Point"; Rec."Exit Point") { ApplicationArea = All; }
             field("Stock Bloqueo Amz"; Rec."Stock Bloqueo Amz") { ApplicationArea = All; }

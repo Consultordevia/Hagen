@@ -56,6 +56,7 @@ tableextension 50104 Customer extends Customer
         }
         field(50015; "No enviar cartas contables"; Boolean)
         {
+            Caption = 'No enviar cartas contables';
         }
         field(50017; Televendedor; Code[10])
         {

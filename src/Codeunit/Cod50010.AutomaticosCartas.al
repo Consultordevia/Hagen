@@ -622,7 +622,7 @@ Codeunit 50010 "Automaticos Cartas"
                 CODI := Format(RecItem."No.", 16);
                 CODI := ConvertStr(CODI, ' ', ' ');
                 CONTROLAEA := 'N';
-                CRITERIO := RecItem."Criterio rotación";
+                CRITERIO := RecItem."Criterio rotacion";
                 TextoSalida := 'AR' + '|' +
                                   'AG' + '|' +
                                  RecItem."No." + '|' +
@@ -2103,7 +2103,7 @@ Codeunit 50010 "Automaticos Cartas"
             CODI := Format(RecI."No.", 16);
             CODI := ConvertStr(CODI, ' ', ' ');
             CONTROLAEA := 'N';
-            CRITERIO := RecI."Criterio rotación";
+            CRITERIO := RecI."Criterio rotacion";
             TextoSalida := 'AR' + '|' +
                            'AG' + '|' +
                           RecI."No." + '|' +
@@ -2527,7 +2527,7 @@ Codeunit 50010 "Automaticos Cartas"
             CODI := Format(RecI."No.", 16);
             CODI := ConvertStr(CODI, ' ', ' ');
             CONTROLAEA := 'N';
-            CRITERIO := RecI."Criterio rotación";
+            CRITERIO := RecI."Criterio rotacion";
             TextoSalida := 'AR' + '|' +
                            'AG' + '|' +
                           RecI."No." + '|' +
@@ -3032,10 +3032,16 @@ Codeunit 50010 "Automaticos Cartas"
 
 
     procedure ENVIARECEPCIONES(var RecCC: Record "Purchase Header")
+    var
+        retorno: Char;
+        carro: char;
+
     begin
 
+        retorno := 13;
+        carro := 10;
 
-
+        TempBlob.CreateOutStream(OutStream);
 
         if RecCC."Order Date" <> 0D then begin
             ESDIA1 := Date2dmy(RecCC."Order Date", 1);
@@ -3113,7 +3119,9 @@ Codeunit 50010 "Automaticos Cartas"
                        '|' +    //11
                        '|' +    //12
                        '|' +    //13
-                       '|';    //15                              
+                       '|' +    //15                            
+                       retorno;
+
         OutStream.Write(TextoSalida);
 
         NLIN := 0;
@@ -3144,7 +3152,8 @@ Codeunit 50010 "Automaticos Cartas"
                                '|' +                          //13
                                NLINC + '|' +                          //14
                                '|' +                          //15
-                               '|';                          //16
+                               '|' +                          //16
+                               retorno;
 
                 OutStream.Write(TextoSalida);
 
@@ -3161,15 +3170,23 @@ Codeunit 50010 "Automaticos Cartas"
         DAT2 := 'TRRECORD.' + contaser + EXTEN + Format(ALEA) + Format(RecI."No.") + Format(LOGCAMBIOA);
         TempBlob.CreateInStream(InStream);
         FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
-
     end;
 
 
     procedure ENVIAEXPEDICIONES(var RecCV: Record "Sales Header")
+    var
+        retorno: Char;
+        carro: Char;
+
     begin
 
 
+        retorno := 13;
+        carro := 10;
 
+
+
+        TempBlob.CreateOutStream(OutStream);
 
         NPEDIDO := RecCV."Nº expedición";
         RecCVE.Reset;
@@ -3260,7 +3277,7 @@ Codeunit 50010 "Automaticos Cartas"
                            FECORD1 + '|' +
                            HH + MI + '|' +
                            'N|' +
-                           Format(OBS, 40) + '|||||';
+                           Format(OBS, 40) + '|||||' + retorno;
             OutStream.Write(TextoSalida);
         end;
 
@@ -3341,7 +3358,7 @@ Codeunit 50010 "Automaticos Cartas"
                                                'UD' + '|' +
                                                '1' + '|' +
                                                '' + '|' +
-                                               '' + '||||';
+                                               '' + '||||' + retorno;
                                     OutStream.Write(TextoSalida);
                                     RecLV."Nº expedición" := RecCV."Nº expedición";
                                     RecLV."Linea Nº expedición" := CONTALIN;
@@ -3375,8 +3392,8 @@ Codeunit 50010 "Automaticos Cartas"
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||';
-        if ENVIAR then begin
+                       '' + '||||' + retorno;
+        If ENVIAR then begin
             OutStream.Write(TextoSalida);
         end;
 
@@ -3389,7 +3406,7 @@ Codeunit 50010 "Automaticos Cartas"
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||';
+                       '' + '||||' + retorno;
         if ENVIAR then begin
             OutStream.Write(TextoSalida);
         end;
@@ -3403,7 +3420,7 @@ Codeunit 50010 "Automaticos Cartas"
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||';
+                       '' + '||||' + retorno;
         OutStream.Write(TextoSalida);
 
 
@@ -3416,7 +3433,8 @@ Codeunit 50010 "Automaticos Cartas"
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||';
+                       '' + '||||' + retorno;
+        OutStream.Write(TextoSalida);
 
 
         RecCE.Get;
@@ -13515,9 +13533,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
     procedure ReENVIAEXPEDICIONES(var RecCV: Record "Sales Header")
+    var
+        retorno: Char;
+
     begin
 
-
+        retorno := 13;
 
 
         NPEDIDO := RecCV."Nº expedición";
@@ -13609,7 +13630,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                            FECORD1 + '|' +
                            HH + MI + '|' +
                            'N|' +
-                           Format(OBS, 40) + '|||||';
+                           Format(OBS, 40) + '|||||' + retorno;
             OutStream.Write(TextoSalida);
         end;
 
@@ -13691,7 +13712,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                                'UD' + '|' +
                                                '1' + '|' +
                                                '' + '|' +
-                                               '' + '||||';
+                                               '' + '||||' + retorno;
                                     OutStream.Write(TextoSalida);
                                     /////RecLV."Nº expedición":=RecCV."Nº expedición";
                                     /////RecLV."Linea Nº expedición":=CONTALIN;
@@ -13725,7 +13746,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||';
+                       '' + '||||' + retorno;
         if ENVIAR then begin
             OutStream.Write(TextoSalida);
         end;
@@ -13739,7 +13760,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||';
+                       '' + '||||' + retorno;
         if ENVIAR then begin
             OutStream.Write(TextoSalida);
         end;
@@ -13753,7 +13774,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||';
+                       '' + '||||' + retorno;
         OutStream.Write(TextoSalida);
 
 
@@ -13766,7 +13787,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||';
+                       '' + '||||' + retorno;
         ///           ArchSalida.WRITE(TextoSalida);
 
 

@@ -344,7 +344,7 @@ tableextension 50113 Item extends Item
 
             end;
         }
-        field(50028; "Criterio rotación"; Option)
+        field(50028; "Criterio rotacion"; Option)
         {
             InitValue = FE;
             OptionMembers = FC,FE,FF,LO;

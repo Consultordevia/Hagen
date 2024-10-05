@@ -47,4 +47,42 @@ pageextension 50014 "Purchase Order" extends "Purchase Order"
         }
     }
 
+    actions
+    {
+
+        addafter("O&rder")
+        {
+            action("Enviar a adaia")
+            {
+                ApplicationArea = All;
+                Caption = 'Enviar a adaia';
+                Promoted = true;
+                Image = Report;
+
+                trigger OnAction()
+                var
+                    PurchaseHeader: Record "Purchase Header";
+                    AutomaticosAdaia: Codeunit "Automaticos Cartas";
+                begin
+
+                    IF rec."Enviado adaia" THEN BEGIN
+                        ///                        MESSAGE('Ya se ha enviado a adaia.');
+                    END;
+                    PurchaseHeader.RESET;
+                    PurchaseHeader.SETRANGE("Document Type", Rec."Document Type");
+                    PurchaseHeader.SETRANGE("No.", Rec."No.");
+                    IF PurchaseHeader.FINDFIRST THEN BEGIN
+                        AutomaticosAdaia.ENVIARECEPCIONES(PurchaseHeader);
+                        PurchaseHeader."Enviado adaia" := TRUE;
+                        PurchaseHeader."Fecha enviado adaia" := TODAY;
+                        PurchaseHeader."Usuario enviado adaia" := USERID;
+                        PurchaseHeader.MODIFY;
+                    END;
+                    MESSAGE('Enviado.');
+
+                end;
+            }
+        }
+    }
+
 }
