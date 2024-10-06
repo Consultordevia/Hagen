@@ -4,7 +4,7 @@ Page 50107 "Permitir pedido"
     PageType = List;
     SourceTable = "Multitabla 2";
     SourceTableView = sorting(Tabla)
-                      where(Tabla=const("Permitir pedido"));
+                      where(Tabla = const("Permitir pedido"));
 
     layout
     {
@@ -12,87 +12,87 @@ Page 50107 "Permitir pedido"
         {
             repeater(Group)
             {
-                field("Código 1";Rec."Código 1")
+                field("Código 1"; Rec."Código 1")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Descripcion 1";Rec."Descripcion 1")
+                field("Descripcion 1"; Rec."Descripcion 1")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Proveedor ref.";Rec."Proveedor ref.")
+                field("Proveedor ref."; Rec."Proveedor ref.")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Estado Producto";Rec."Estado Producto")
+                field("Estado Producto"; Rec."Estado Producto")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Código 2";Rec."Código 2")
+                field("Código 2"; Rec."Código 2")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Descripcion 2";Rec."Descripcion 2")
+                field("Descripcion 2"; Rec."Descripcion 2")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Venta global";Rec."Venta global")
+                field("Venta global"; Rec."Venta global")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Cantidad en pedido";Rec."Cantidad en pedido")
+                field("Cantidad en pedido"; Rec."Cantidad en pedido")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Venta diaria general";Rec."Venta diaria general")
+                field("Venta diaria general"; Rec."Venta diaria general")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Venta grupos";Rec."Venta grupos")
+                field("Venta grupos"; Rec."Venta grupos")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Venta diaria grupo";Rec."Venta diaria grupo")
+                field("Venta diaria grupo"; Rec."Venta diaria grupo")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Stock actual";Rec."Stock actual")
+                field("Stock actual"; Rec."Stock actual")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Para dias general";Rec."Para dias general")
+                field("Para dias general"; Rec."Para dias general")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Para dias grupos";Rec."Para dias grupos")
+                field("Para dias grupos"; Rec."Para dias grupos")
                 {
                     ApplicationArea = Basic;
                 }
-                field(Reservar;Rec.Reservar)
+                field(Reservar; Rec.Reservar)
                 {
                     ApplicationArea = Basic;
                 }
-                field("No permite pedido";Rec."No permite pedido")
+                field("No permite pedido"; Rec."No permite pedido")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Pedido contenedor";Rec."Pedido contenedor")
+                field("Pedido contenedor"; Rec."Pedido contenedor")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Venta de contenedor";Rec."Venta de contenedor")
+                field("Venta de contenedor"; Rec."Venta de contenedor")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Dias para llegada";Rec."Dias para llegada")
+                field("Dias para llegada"; Rec."Dias para llegada")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Fecha pedido contenedor";Rec."Fecha pedido contenedor")
+                field("Fecha pedido contenedor"; Rec."Fecha pedido contenedor")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Bloquear a dias";Rec."Bloquear a dias")
+                field("Bloquear a dias"; Rec."Bloquear a dias")
                 {
                     ApplicationArea = Basic;
                 }
@@ -116,7 +116,7 @@ Page 50107 "Permitir pedido"
                 trigger OnAction()
                 begin
 
-                    /////- Automaticos.PermitirPedidos;
+                    Automaticos.PermitirPedidos;
                 end;
             }
             action(Importacion)
@@ -129,6 +129,6 @@ Page 50107 "Permitir pedido"
     }
 
     var
-        /////- Automaticos: Codeunit UnknownCodeunit50001;
+        Automaticos: Codeunit Automaticos;
 }
 

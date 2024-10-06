@@ -294,17 +294,20 @@ codeunit 50999 FicherosHagen
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS Leroy Merl", InStream);
                     end;
                     if Tipo = Tipo::TRSTOMOV then begin
-                        ///Error();CopyStr(NOM,1,8)='TRSTOMOV' then begin
-                        Message('%1', FileText);
-                        /*
-                        Xmlport.Import(Xmlport::"ADAIA_Alta del TRSTOMOV", InStream);
-                        Rec83.Reset;
-                        Rec83.SetRange(Rec83."Journal Template Name", 'ELEMENTO');
-                        Rec83.SetRange(Rec83."Journal Batch Name", 'ADAIA');
-                        if Rec83.FindFirst then begin
-                            CURegMov.Run(Rec83);
+                        if CopyStr(FileText, 1, 4) = 'STAJ' then begin
+                            Xmlport.Import(Xmlport::"ADAIA_Alta del TRSTOMOV", InStream);
+                            Rec83.Reset;
+                            Rec83.SetRange(Rec83."Journal Template Name", 'ELEMENTO');
+                            Rec83.SetRange(Rec83."Journal Batch Name", 'ADAIA');
+                            if Rec83.FindFirst then begin
+                                CURegMov.Run(Rec83);
+                            end;
+
                         end;
-*/
+                        if CopyStr(FileText, 1, 4) = 'STSI' then begin
+                            Xmlport.Import(Xmlport::"ADAIA_Alta del TRSTO", InStream);
+                        end;
+
 
                     end;
 

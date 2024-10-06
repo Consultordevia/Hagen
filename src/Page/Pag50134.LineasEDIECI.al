@@ -136,8 +136,8 @@ Page 50134 "Lineas EDI - ECI"
                     /////- SalesShipmentHeader.SetFilter("Nº expedición",Rec."Num expedicion"+'*');
                     if SalesShipmentHeader.FindSet then
                         repeat
-                        /////- Clear(CU);
-                        /////- CU.ETIECI(SalesShipmentHeader);
+                            Clear(CU);
+                            CU.ETIECI(SalesShipmentHeader);
                         until SalesShipmentHeader.Next = 0;
                 end;
             }
@@ -296,9 +296,9 @@ Page 50134 "Lineas EDI - ECI"
         if REC1132.FindSet then
             repeat
                 ventana.Update(1, REC1132."Document No.");
-                /////- REC1132.CalcFields(REC1132."Num expedicion");
+                /////-REC1132.CalcFields(REC1132."Num expedicion");
                 if REC11322.Get(REC1132."Document No.", REC1132."Line No.") then begin
-                    /////- REC11322."Nº expedición ECI":=REC1132."Num expedicion";
+                    /////-REC11322."Nº expedición ECI":=REC1132."Num expedicion";
                     REC11322.Modify;
                 end;
             until REC1132.Next = 0;

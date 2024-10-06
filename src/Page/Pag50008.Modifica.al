@@ -954,7 +954,7 @@ Page 50008 Modifica
         RecCVP: Record "Sales & Receivables Setup";
         CU: Codeunit "Automaticos Cartas";
         RecTA: Record "Extended Text Header";
-        /////-RepEti: Report UnknownReport50054;
+        RepEti: Report "ETI. PORTUGES";
         X: Integer;
         CUENTAPT: Integer;
         CUENTAES: Integer;
@@ -963,7 +963,7 @@ Page 50008 Modifica
         CUENTAECI: Integer;
         REC2: Record "Sales Header";
         REC3: Record "Sales Header";
-        /////-RecpEtiEci: Report UnknownReport50085;
+        RecpEtiEci: Report "Etiqueta ECI NUEVA";
         CU_Exporta: Codeunit "Automaticos Cartas";
         ventana: Dialog;
         nexpediexp: Code[20];
@@ -1008,9 +1008,9 @@ Page 50008 Modifica
         SalesSetup: Record "Sales & Receivables Setup";
         contadordeagrup: Code[20];
         RecCV22: Record "Sales Header";
-        /////-EtiAgrppeque: Report UnknownReport50025;
+        EtiAgrppeque: Report "ETI. envio agrupado";
         RecCV222: Record "Sales Header";
-        /////-RepEtieci: Report UnknownReport50026;
+        RepEtieci: Report "ETI. ECI";
         eslargo4: Integer;
         esancho4: Integer;
         esalto4: Integer;
@@ -1127,7 +1127,7 @@ Page 50008 Modifica
                     Rec1102.Reset;
                     Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                     if Rec1102.FindSet then begin
-                        /////-CU50001.ETISTD(Rec1102);
+                        CU50001.ETISTD(Rec1102);
                     end;
                 end;
                 if RecTra."Fichero estandar" = false then begin

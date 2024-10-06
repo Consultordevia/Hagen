@@ -3040,8 +3040,9 @@ Codeunit 50010 "Automaticos Cartas"
 
         retorno := 13;
         carro := 10;
-
+        Clear(TempBlob);
         TempBlob.CreateOutStream(OutStream);
+
 
         if RecCC."Order Date" <> 0D then begin
             ESDIA1 := Date2dmy(RecCC."Order Date", 1);
@@ -3119,8 +3120,8 @@ Codeunit 50010 "Automaticos Cartas"
                        '|' +    //11
                        '|' +    //12
                        '|' +    //13
-                       '|' +    //15                            
-                       retorno;
+                       '|';    //15                            
+                               ///retorno;
 
         OutStream.Write(TextoSalida);
 
@@ -3152,8 +3153,8 @@ Codeunit 50010 "Automaticos Cartas"
                                '|' +                          //13
                                NLINC + '|' +                          //14
                                '|' +                          //15
-                               '|' +                          //16
-                               retorno;
+                               '|';                          //16
+                                                             ///retorno;
 
                 OutStream.Write(TextoSalida);
 
@@ -3185,7 +3186,7 @@ Codeunit 50010 "Automaticos Cartas"
         carro := 10;
 
 
-
+        Clear(TempBlob);
         TempBlob.CreateOutStream(OutStream);
 
         NPEDIDO := RecCV."Nº expedición";
@@ -3277,7 +3278,7 @@ Codeunit 50010 "Automaticos Cartas"
                            FECORD1 + '|' +
                            HH + MI + '|' +
                            'N|' +
-                           Format(OBS, 40) + '|||||' + retorno;
+                           Format(OBS, 40) + '|||||';/// + retorno;
             OutStream.Write(TextoSalida);
         end;
 
@@ -3358,7 +3359,7 @@ Codeunit 50010 "Automaticos Cartas"
                                                'UD' + '|' +
                                                '1' + '|' +
                                                '' + '|' +
-                                               '' + '||||' + retorno;
+                                               '' + '||||';/// + retorno;
                                     OutStream.Write(TextoSalida);
                                     RecLV."Nº expedición" := RecCV."Nº expedición";
                                     RecLV."Linea Nº expedición" := CONTALIN;
@@ -3392,7 +3393,7 @@ Codeunit 50010 "Automaticos Cartas"
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||' + retorno;
+                       '' + '||||';/// + retorno;
         If ENVIAR then begin
             OutStream.Write(TextoSalida);
         end;
@@ -3406,7 +3407,7 @@ Codeunit 50010 "Automaticos Cartas"
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||' + retorno;
+                       '' + '||||';//// + retorno;
         if ENVIAR then begin
             OutStream.Write(TextoSalida);
         end;
@@ -3420,7 +3421,7 @@ Codeunit 50010 "Automaticos Cartas"
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||' + retorno;
+                       '' + '||||';////+ retorno;
         OutStream.Write(TextoSalida);
 
 
@@ -3433,7 +3434,7 @@ Codeunit 50010 "Automaticos Cartas"
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||' + retorno;
+                       '' + '||||';/// + retorno;
         OutStream.Write(TextoSalida);
 
 

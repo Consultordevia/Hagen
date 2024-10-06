@@ -102,6 +102,8 @@ XmlPort 50100 "ADAIA_Alta del TRSTOMOV"
     begin
 
 
+
+
         RecSDP.Reset;
         RecSDP.SetRange(RecSDP."Journal Template Name", 'ELEMENTO');
         RecSDP.SetRange(RecSDP.Name, 'ADAIA');
@@ -188,6 +190,7 @@ XmlPort 50100 "ADAIA_Alta del TRSTOMOV"
         DCanti: Decimal;
         TIPO2: Integer;
         ITEM: Record Item;
+
 
     local procedure InitializeGlobals()
     var

@@ -110,7 +110,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
         VENTANA: Dialog;
         TAcumu: Decimal;
         Tcanti: Decimal;
-        /////- Facturarimprimir: Codeunit "Facturar + imprimir";
+        Facturarimprimir: Codeunit "Facturar + imprimir";
         SalesHeader: Record "Sales Header";
         RecCV2: Record "Sales Header";
         pendi: Decimal;
@@ -147,7 +147,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
         Multitabla: Record Multitabla;
         SALE2: Boolean;
         L1: Integer;
-        /////- ItemCrossReference: Record "Item Cross Reference";
+        ItemCrossReference: Record "Item Reference";
         STOCKWEB: Decimal;
         SalesPrice2: Record "Sales Price";
         uod: Text;

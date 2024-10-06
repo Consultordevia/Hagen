@@ -317,7 +317,6 @@ Codeunit 50038 "Automaticos EDICOM facturas"
         SalesInvoiceHeader2: Record "Sales Invoice Header";
         SalesInvoiceHeader3: Record "Sales Invoice Header";
         ItemLedgerEntryCOPIA: Record "Item Ledger Entry-COPIA";
-        /////- ValueEntrycopia: Record UnknownRecord55802;
         HACERLINEAS: Boolean;
         SalesCrMemoHeader2: Record "Sales Cr.Memo Header";
         SalesCrMemoHeader3: Record "Sales Cr.Memo Header";
