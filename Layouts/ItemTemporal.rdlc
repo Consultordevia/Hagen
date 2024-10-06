@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_1000000000">
+          <DataField>ReportForNavId_1000000000</DataField>
+        </Field>
+        <Field Name="Ean">
+          <DataField>Ean</DataField>
+        </Field>
+        <Field Name="Referencia">
+          <DataField>Referencia</DataField>
+        </Field>
+        <Field Name="Descripcion">
+          <DataField>Descripcion</DataField>
+        </Field>
+        <Field Name="Estado">
+          <DataField>Estado</DataField>
+        </Field>
+        <Field Name="Linea">
+          <DataField>Linea</DataField>
+        </Field>
+        <Field Name="Familia">
+          <DataField>Familia</DataField>
+        </Field>
+        <Field Name="Tarifa">
+          <DataField>Tarifa</DataField>
+        </Field>
+        <Field Name="TarifaFormat">
+          <DataField>TarifaFormat</DataField>
+        </Field>
+        <Field Name="PVPR">
+          <DataField>PVPR</DataField>
+        </Field>
+        <Field Name="PVPRFormat">
+          <DataField>PVPRFormat</DataField>
+        </Field>
+        <Field Name="Disponibilidad">
+          <DataField>Disponibilidad</DataField>
+        </Field>
+        <Field Name="DisponibilidadFormat">
+          <DataField>DisponibilidadFormat</DataField>
+        </Field>
+        <Field Name="Unidad_minima_compra">
+          <DataField>Unidad_minima_compra</DataField>
+        </Field>
+        <Field Name="Unidad_minima_compraFormat">
+          <DataField>Unidad_minima_compraFormat</DataField>
+        </Field>
+        <Field Name="Fecha_Prox">
+          <DataField>Fecha_Prox</DataField>
+        </Field>
+        <Field Name="Pesos">
+          <DataField>Pesos</DataField>
+        </Field>
+        <Field Name="PesosFormat">
+          <DataField>PesosFormat</DataField>
+        </Field>
+        <Field Name="Largo">
+          <DataField>Largo</DataField>
+        </Field>
+        <Field Name="LargoFormat">
+          <DataField>LargoFormat</DataField>
+        </Field>
+        <Field Name="Alto">
+          <DataField>Alto</DataField>
+        </Field>
+        <Field Name="AltoFormat">
+          <DataField>AltoFormat</DataField>
+        </Field>
+        <Field Name="Ancho">
+          <DataField>Ancho</DataField>
+        </Field>
+        <Field Name="AnchoFormat">
+          <DataField>AnchoFormat</DataField>
+        </Field>
+        <Field Name="Volumen">
+          <DataField>Volumen</DataField>
+        </Field>
+        <Field Name="VolumenFormat">
+          <DataField>VolumenFormat</DataField>
+        </Field>
+        <Field Name="Marca">
+          <DataField>Marca</DataField>
+        </Field>
+        <Field Name="URL_imagen">
+          <DataField>URL_imagen</DataField>
+        </Field>
+        <Field Name="Iva">
+          <DataField>Iva</DataField>
+        </Field>
+        <Field Name="Fecha_Lanzamiento">
+          <DataField>Fecha_Lanzamiento</DataField>
+        </Field>
+        <Field Name="grip">
+          <DataField>grip</DataField>
+        </Field>
+        <Field Name="Cantidad_1">
+          <DataField>Cantidad_1</DataField>
+        </Field>
+        <Field Name="Cantidad_1Format">
+          <DataField>Cantidad_1Format</DataField>
+        </Field>
+        <Field Name="Descuento_1">
+          <DataField>Descuento_1</DataField>
+        </Field>
+        <Field Name="Descuento_1Format">
+          <DataField>Descuento_1Format</DataField>
+        </Field>
+        <Field Name="Cantidad_2">
+          <DataField>Cantidad_2</DataField>
+        </Field>
+        <Field Name="Cantidad_2Format">
+          <DataField>Cantidad_2Format</DataField>
+        </Field>
+        <Field Name="Descuento_2">
+          <DataField>Descuento_2</DataField>
+        </Field>
+        <Field Name="Descuento_2Format">
+          <DataField>Descuento_2Format</DataField>
+        </Field>
+        <Field Name="Cantidad_3">
+          <DataField>Cantidad_3</DataField>
+        </Field>
+        <Field Name="Cantidad_3Format">
+          <DataField>Cantidad_3Format</DataField>
+        </Field>
+        <Field Name="Descuento_3">
+          <DataField>Descuento_3</DataField>
+        </Field>
+        <Field Name="Descuento_3Format">
+          <DataField>Descuento_3Format</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

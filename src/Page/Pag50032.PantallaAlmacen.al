@@ -966,15 +966,15 @@ Page 50032 "Pantalla Almacen"
         npedidos: Integer;
         SalesHeader33: Record "Sales Header";
         SalesHeader35: Record "Sales Header";
-        /////-RepETAD: Report UnknownReport50009;
-        /////-RepDropShi: Report UnknownReport50013;
+        RepETAD: Report "ETI. envio";
+        RepDropShi: Report "Etiqueta DROPSHIPPING";
         /////-EtiAgrppeque: Report UnknownReport50025;
         Multitabla: Record Multitabla;
         ExtendedTextHeader: Record "Extended Text Header";
         /////-RepEti: Report UnknownReport50054;
         Item: Record Item;
         X: Integer;
-    /////-AutomaticosAdaia: Codeunit UnknownCodeunit50010;
+        AutomaticosAdaia: Codeunit "Automaticos Cartas";
 
 
     procedure ShowPreview()
@@ -1025,7 +1025,7 @@ Page 50032 "Pantalla Almacen"
 
     local procedure EnviaraADAIA()
     var
-        /////-  AutomaticosAdaia: Codeunit UnknownCodeunit50010;
+        AutomaticosAdaia: Codeunit "Automaticos Cartas";
         SalesHeader: Record "Sales Header";
     begin
 
@@ -1353,7 +1353,7 @@ Page 50032 "Pantalla Almacen"
 
     local procedure ReenviaraADAIA()
     var
-        /////-AutomaticosAdaia: Codeunit UnknownCodeunit50010;
+        AutomaticosAdaia: Codeunit "Automaticos Cartas";
         SalesHeader: Record "Sales Header";
     begin
 
@@ -1362,8 +1362,8 @@ Page 50032 "Pantalla Almacen"
         SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
         SalesHeader3.SetRange(SalesHeader3."Nº expedición", Rec."Nº expedición");
         if SalesHeader3.FindFirst then begin
-            /////-Clear(AutomaticosAdaia);
-            /////-AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);
+            Clear(AutomaticosAdaia);
+            AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);
 
         end;
     end;

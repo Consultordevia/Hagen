@@ -239,7 +239,7 @@ XmlPort 50045 "Importa Datos Objetivos"
         peso1: Decimal;
         tariff: Code[20];
         igicc: Code[20];
-        /////- CUADAIA: Codeunit UnknownCodeunit50010;
+        CUADAIA: Codeunit "Automaticos Cartas";
         RecItem22: Record Item;
         Mulatributos: Record "Mul.atributos";
         coded: DateFormula;

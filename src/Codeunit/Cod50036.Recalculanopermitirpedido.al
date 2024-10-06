@@ -86,7 +86,7 @@ Codeunit 50036 "Recalcula no permitir pedido"
         VENTANA: Dialog;
         TAcumu: Decimal;
         Tcanti: Decimal;
-        /////- Facturarimprimir: Codeunit "Facturar + imprimir";
+        Facturarimprimir: Codeunit "Facturar + imprimir";
         SalesHeader: Record "Sales Header";
         RecItem3: Record Item;
         RecItem2: Record Item;

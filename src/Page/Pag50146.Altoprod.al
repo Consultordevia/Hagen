@@ -30,7 +30,7 @@ Page 50146 "Alto prod"
         {
             group(Group)
             {
-                field(nuevoprod;nuevoprod)
+                field(nuevoprod; nuevoprod)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Nuevo codigo';
@@ -90,7 +90,7 @@ Page 50146 "Alto prod"
         CODPED: Code[10];
         /////- CUADAIAI: Codeunit UnknownCodeunit50015;
         ACTIVO: Boolean;
-        /////-CUADAIA: Codeunit UnknownCodeunit50010;
+        CUADAIA: Codeunit "Automaticos Cartas";
         Commenta: Boolean;
         RecLV: Record "Sales Line";
         RecCV4: Record "Sales Header";
@@ -103,25 +103,25 @@ Page 50146 "Alto prod"
         /////-RecAcc: Record UnknownRecord50006;
         INCIDENCIASPDTES: Integer;
         RecCVP: Record "Sales & Receivables Setup";
-        /////-CU: Codeunit UnknownCodeunit50010;
+        CU: Codeunit "Automaticos Cartas";
         RecTA: Record "Extended Text Header";
         /////-RepEti: Report UnknownReport50054;
         X: Integer;
         CUENTAPT: Integer;
         CUENTAES: Integer;
-        /////-RecMT: Record UnknownRecord50005;
+        RecMT: Record Multitabla;
         RecItem: Record Item;
         CUENTAECI: Integer;
         REC2: Record "Sales Header";
         REC3: Record "Sales Header";
         /////-RecpEtiEci: Report UnknownReport50085;
-        /////-CU_Exporta: Codeunit UnknownCodeunit50010;
+        CU_Exporta: Codeunit "Automaticos Cartas";
         ventana: Dialog;
         nexpediexp: Code[10];
         nbultos: Integer;
         Rec110: Record "Sales Shipment Header";
         Rec1102: Record "Sales Shipment Header";
-        /////-CU50001: Codeunit UnknownCodeunit50010;
+        CU50001: Codeunit "Automaticos Cartas";
         ELPESO: Decimal;
         REC1112: Record "Sales Shipment Line";
         TOTALPALE: Decimal;
@@ -130,9 +130,9 @@ Page 50146 "Alto prod"
         CODTRAS: Code[10];
         npalets: Integer;
         Rec36Pepe: Record "Sales Header";
-        /////-RepETAD: Report UnknownReport50009;
-        /////-RecMtU: Record UnknownRecord50005;
-        /////-RepDropShi: Report UnknownReport50013;
+        RepETAD: Report "ETI. ECI";
+        RecMtU: Record Multitabla;
+        RepDropShi: Report "Etiqueta DROPSHIPPING";
         tipopalet: Code[10];
         tipopalet2: Code[10];
         tipopalet3: Code[10];
@@ -146,7 +146,7 @@ Page 50146 "Alto prod"
         eslargo3: Integer;
         esancho3: Integer;
         esalto3: Integer;
-        sumavol: array [10] of Decimal;
+        sumavol: array[10] of Decimal;
         sumavolT: Decimal;
         volpalet: Decimal;
         PESOVOL: Decimal;
@@ -228,52 +228,54 @@ Page 50146 "Alto prod"
 
 
 
-        if nuevoprod<>'' then begin
-             RecItem:=RecItem2;
-             RecItem."No.":=nuevoprod;
-             RecItem.ean:='';
-             RecItem."Fecha Alta":=Today;
-             RecItem."Fecha Lanzamiento":=0D;
-             RecItem."Unit Cost":=0;
-             RecItem."Standard Cost":=0;
-             RecItem."Last Direct Cost":=0;
-             RecItem."Indirect Cost %":=0;
-             RecItem.ean:='';
-             RecItem.Insert(true);
-             RecSP.Reset;
-             RecSP.SetRange(RecSP."Item No.",RecItem2."No.");
-             if RecSP.FindFirst then repeat
-                  RecSP2.Init;
-                  RecSP2:=RecSP;
-                  RecSP2."Item No.":=nuevoprod;
-                  RecSP2.Insert(true);
-             until RecSP.Next=0;
-             RecUMP.Reset;
-             RecUMP.SetRange(RecUMP."Item No.",RecItem2."No.");
-             if RecUMP.FindFirst then repeat
-            ///      RecUMP2.RESET;
-              ///    RecUMP2.SETRANGE(RecUMP2."Item No.",RecUMP."Item No.");
-               ///   RecUMP2.SETRANGE(RecUMP2.Code,RecUMP.Code);
-               ///   IF NOT RecUMP2.FINDFIRST THEN BEGIN
-                       RecUMP2.Init;
-                       RecUMP2:=RecUMP;
-                       RecUMP2."Item No.":=nuevoprod;
-                       if RecUMP2.Insert(true) then;
-                 /// END;
-             until RecUMP.Next=0;
+        if nuevoprod <> '' then begin
+            RecItem := RecItem2;
+            RecItem."No." := nuevoprod;
+            RecItem.ean := '';
+            RecItem."Fecha Alta" := Today;
+            RecItem."Fecha Lanzamiento" := 0D;
+            RecItem."Unit Cost" := 0;
+            RecItem."Standard Cost" := 0;
+            RecItem."Last Direct Cost" := 0;
+            RecItem."Indirect Cost %" := 0;
+            RecItem.ean := '';
+            RecItem.Insert(true);
+            RecSP.Reset;
+            RecSP.SetRange(RecSP."Item No.", RecItem2."No.");
+            if RecSP.FindFirst then
+                repeat
+                    RecSP2.Init;
+                    RecSP2 := RecSP;
+                    RecSP2."Item No." := nuevoprod;
+                    RecSP2.Insert(true);
+                until RecSP.Next = 0;
+            RecUMP.Reset;
+            RecUMP.SetRange(RecUMP."Item No.", RecItem2."No.");
+            if RecUMP.FindFirst then
+                repeat
+                    ///      RecUMP2.RESET;
+                    ///    RecUMP2.SETRANGE(RecUMP2."Item No.",RecUMP."Item No.");
+                    ///   RecUMP2.SETRANGE(RecUMP2.Code,RecUMP.Code);
+                    ///   IF NOT RecUMP2.FINDFIRST THEN BEGIN
+                    RecUMP2.Init;
+                    RecUMP2 := RecUMP;
+                    RecUMP2."Item No." := nuevoprod;
+                    if RecUMP2.Insert(true) then;
+                /// END;
+                until RecUMP.Next = 0;
 
 
-/*  /////-
-             RecMT22.Reset;        
-             RecMT22.SetRange(RecMT22."Código 1",RecItem2."No.");
-             if RecMT22.FindFirst then repeat
-                  RecMT2:=RecMT22;
-                  RecMT22."Código 1":=nuevoprod;
-                  RecMT2.Insert;
-             until RecMT22.Next=0;
-             */
+            /*  /////-
+                         RecMT22.Reset;        
+                         RecMT22.SetRange(RecMT22."Código 1",RecItem2."No.");
+                         if RecMT22.FindFirst then repeat
+                              RecMT2:=RecMT22;
+                              RecMT22."Código 1":=nuevoprod;
+                              RecMT2.Insert;
+                         until RecMT22.Next=0;
+                         */
 
-             Message('Producto copiado.');
+            Message('Producto copiado.');
         end;
     end;
 
@@ -282,7 +284,7 @@ Page 50146 "Alto prod"
     begin
 
 
-        codprod:=codp;
+        codprod := codp;
     end;
 }
 

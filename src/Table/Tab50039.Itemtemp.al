@@ -2632,7 +2632,7 @@ Table 50039 "Item temp"
         CreateNewItemTxt: label 'Create a new item card for %1.', Comment = '%1 is the name to be used to create the customer. ';
         ItemNotRegisteredTxt: label 'This item is not registered. To continue, choose one of the following options:';
         SelectItemTxt: label 'Select an existing item.';
-        //CUADAIA: Codeunit UnknownCodeunit50010;
+        CUADAIA: Codeunit "Automaticos Cartas";
         RecUMP: Record "Item Unit of Measure";
     //RecRefCruz: Record "Item Cross Reference";
 }

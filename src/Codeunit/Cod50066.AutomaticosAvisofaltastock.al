@@ -314,7 +314,7 @@ Codeunit 50066 "Automaticos Aviso falta stock"
         Vendor: Record Vendor;
         NEXPEDICION: Text[30];
         codexpedico: Code[40];
-        /////- EtiquetaECINUEVAALB: Report UnknownReport50105;
+        EtiquetaECINUEVAALB: Report "Etiqueta ECI NUEVA ALB.";
         CODPAIES2: Code[1];
         SalesHeader2: Record "Sales Header";
         SalesLine2: Record "Sales Line";
@@ -322,7 +322,7 @@ Codeunit 50066 "Automaticos Aviso falta stock"
         tienerotura: Boolean;
         NEXPEDI: Code[20];
         Customer: Record Customer;
-        /////- CartaavisotransfarenciasES: Report UnknownReport50106;
+        CartaavisotransfarenciasES: Report "Carta aviso transf-ES";
         Customer2: Record Customer;
         Fechalimite: Date;
         totalImpPdte: Decimal;

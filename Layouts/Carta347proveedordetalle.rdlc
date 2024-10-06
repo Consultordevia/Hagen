@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_1">
+          <DataField>ReportForNavId_1</DataField>
+        </Field>
+        <Field Name="Proveedor">
+          <DataField>Proveedor</DataField>
+        </Field>
+        <Field Name="V1oTrim">
+          <DataField>V1oTrim</DataField>
+        </Field>
+        <Field Name="V2oTrim">
+          <DataField>V2oTrim</DataField>
+        </Field>
+        <Field Name="V3oTrim">
+          <DataField>V3oTrim</DataField>
+        </Field>
+        <Field Name="V4oTrim">
+          <DataField>V4oTrim</DataField>
+        </Field>
+        <Field Name="Total">
+          <DataField>Total</DataField>
+        </Field>
+        <Field Name="IMPNSUIRPF1_IMPNSUIRPF2_IMPNSUIRPF3_IMPNSUIRPF4">
+          <DataField>IMPNSUIRPF1_IMPNSUIRPF2_IMPNSUIRPF3_IMPNSUIRPF4</DataField>
+        </Field>
+        <Field Name="IMPNSUIRPF1_IMPNSUIRPF2_IMPNSUIRPF3_IMPNSUIRPF4Format">
+          <DataField>IMPNSUIRPF1_IMPNSUIRPF2_IMPNSUIRPF3_IMPNSUIRPF4Format</DataField>
+        </Field>
+        <Field Name="IMPNSUIRPF4">
+          <DataField>IMPNSUIRPF4</DataField>
+        </Field>
+        <Field Name="IMPNSUIRPF4Format">
+          <DataField>IMPNSUIRPF4Format</DataField>
+        </Field>
+        <Field Name="IMPNSUIRPF3">
+          <DataField>IMPNSUIRPF3</DataField>
+        </Field>
+        <Field Name="IMPNSUIRPF3Format">
+          <DataField>IMPNSUIRPF3Format</DataField>
+        </Field>
+        <Field Name="IMPNSUIRPF2">
+          <DataField>IMPNSUIRPF2</DataField>
+        </Field>
+        <Field Name="IMPNSUIRPF2Format">
+          <DataField>IMPNSUIRPF2Format</DataField>
+        </Field>
+        <Field Name="IMPNSUIRPF1">
+          <DataField>IMPNSUIRPF1</DataField>
+        </Field>
+        <Field Name="IMPNSUIRPF1Format">
+          <DataField>IMPNSUIRPF1Format</DataField>
+        </Field>
+        <Field Name="IRPF">
+          <DataField>IRPF</DataField>
+        </Field>
+        <Field Name="Total2">
+          <DataField>Total2</DataField>
+        </Field>
+        <Field Name="IMPNSU1_IMPNSU2_IMPNSU3_IMPNSU4">
+          <DataField>IMPNSU1_IMPNSU2_IMPNSU3_IMPNSU4</DataField>
+        </Field>
+        <Field Name="IMPNSU1_IMPNSU2_IMPNSU3_IMPNSU4Format">
+          <DataField>IMPNSU1_IMPNSU2_IMPNSU3_IMPNSU4Format</DataField>
+        </Field>
+        <Field Name="Normal">
+          <DataField>Normal</DataField>
+        </Field>
+        <Field Name="SujetoPas">
+          <DataField>SujetoPas</DataField>
+        </Field>
+        <Field Name="IMP1_IMP2_IMP3_IMP4_IMPSU1_IMPSU2_IMPSU3_IMPSU4_IMPNSU1_IMPN">
+          <DataField>IMP1_IMP2_IMP3_IMP4_IMPSU1_IMPSU2_IMPSU3_IMPSU4_IMPNSU1_IMPN</DataField>
+        </Field>
+        <Field Name="IMP1_IMP2_IMP3_IMP4_IMPSU1_IMPSU2_IMPSU3_IMPSU4_IMPNSU1_IMPNFormat">
+          <DataField>IMP1_IMP2_IMP3_IMP4_IMPSU1_IMPSU2_IMPSU3_IMPSU4_IMPNSU1_IMPNFormat</DataField>
+        </Field>
+        <Field Name="IMPSU1_IMPSU2_IMPSU3_IMPSU4">
+          <DataField>IMPSU1_IMPSU2_IMPSU3_IMPSU4</DataField>
+        </Field>
+        <Field Name="IMPSU1_IMPSU2_IMPSU3_IMPSU4Format">
+          <DataField>IMPSU1_IMPSU2_IMPSU3_IMPSU4Format</DataField>
+        </Field>
+        <Field Name="VendorVATRegistrationNo">
+          <DataField>VendorVATRegistrationNo</DataField>
+        </Field>
+        <Field Name="IMPNSU4">
+          <DataField>IMPNSU4</DataField>
+        </Field>
+        <Field Name="IMPNSU4Format">
+          <DataField>IMPNSU4Format</DataField>
+        </Field>
+        <Field Name="IMPSU4">
+          <DataField>IMPSU4</DataField>
+        </Field>
+        <Field Name="IMPSU4Format">
+          <DataField>IMPSU4Format</DataField>
+        </Field>
+        <Field Name="IMPNSU3">
+          <DataField>IMPNSU3</DataField>
+        </Field>
+        <Field Name="IMPNSU3Format">
+          <DataField>IMPNSU3Format</DataField>
+        </Field>
+        <Field Name="IMPSU3">
+          <DataField>IMPSU3</DataField>
+        </Field>
+        <Field Name="IMPSU3Format">
+          <DataField>IMPSU3Format</DataField>
+        </Field>
+        <Field Name="IMPNSU2">
+          <DataField>IMPNSU2</DataField>
+        </Field>
+        <Field Name="IMPNSU2Format">
+          <DataField>IMPNSU2Format</DataField>
+        </Field>
+        <Field Name="IMPSU2">
+          <DataField>IMPSU2</DataField>
+        </Field>
+        <Field Name="IMPSU2Format">
+          <DataField>IMPSU2Format</DataField>
+        </Field>
+        <Field Name="IMPNSU1">
+          <DataField>IMPNSU1</DataField>
+        </Field>
+        <Field Name="IMPNSU1Format">
+          <DataField>IMPNSU1Format</DataField>
+        </Field>
+        <Field Name="IMPSU1">
+          <DataField>IMPSU1</DataField>
+        </Field>
+        <Field Name="IMPSU1Format">
+          <DataField>IMPSU1Format</DataField>
+        </Field>
+        <Field Name="IMP4">
+          <DataField>IMP4</DataField>
+        </Field>
+        <Field Name="IMP4Format">
+          <DataField>IMP4Format</DataField>
+        </Field>
+        <Field Name="IMP2">
+          <DataField>IMP2</DataField>
+        </Field>
+        <Field Name="IMP2Format">
+          <DataField>IMP2Format</DataField>
+        </Field>
+        <Field Name="IMP3">
+          <DataField>IMP3</DataField>
+        </Field>
+        <Field Name="IMP3Format">
+          <DataField>IMP3Format</DataField>
+        </Field>
+        <Field Name="IMP1">
+          <DataField>IMP1</DataField>
+        </Field>
+        <Field Name="IMP1Format">
+          <DataField>IMP1Format</DataField>
+        </Field>
+        <Field Name="IMP1_IMP2_IMP3_IMP4">
+          <DataField>IMP1_IMP2_IMP3_IMP4</DataField>
+        </Field>
+        <Field Name="IMP1_IMP2_IMP3_IMP4Format">
+          <DataField>IMP1_IMP2_IMP3_IMP4Format</DataField>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

@@ -323,7 +323,7 @@ Page 50134 "Lineas EDI - ECI"
         Rec113: Record "Sales Invoice Line";
         CODSSCC2: Code[30];
         SalesShipmentHeader: Record "Sales Shipment Header";
-        /////- CU: Codeunit UnknownCodeunit50010;
+        CU: Codeunit "Automaticos Cartas";
         nalba2: Code[10];
         RecSSH: Record "Sales Shipment Header";
         REC1132: Record "Sales Invoice Line";

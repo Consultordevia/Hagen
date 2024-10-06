@@ -4,8 +4,8 @@ Page 50083 "Productos Lista ubicaciones"
     PageType = List;
     SourceTable = Item;
     SourceTableView = sorting("Search Description")
-                      where("Estado Producto"=filter(Activo|Descatalogado|"Sin actualizar"));
-                      /////- where("Estado Producto"=filter(Activo|Descatalogado|"Sin actualizar"|4|5));
+                      where("Estado Producto" = filter(Activo | Descatalogado | "Sin actualizar"));
+    /////- where("Estado Producto"=filter(Activo|Descatalogado|"Sin actualizar"|4|5));
 
     layout
     {
@@ -13,31 +13,31 @@ Page 50083 "Productos Lista ubicaciones"
         {
             repeater(Group)
             {
-                field("No.";Rec."No.")
+                field("No."; Rec."No.")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Existencia SILLA";Rec."Existencia SILLA")
+                field("Existencia SILLA"; Rec."Existencia SILLA")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Qty. on Sales Order";Rec."Qty. on Sales Order")
+                field("Qty. on Sales Order"; Rec."Qty. on Sales Order")
                 {
                     ApplicationArea = Basic;
                 }
-                field("""Existencia SILLA""-""Qty. on Sales Order""";Rec."Existencia SILLA"-Rec."Qty. on Sales Order")
+                field("""Existencia SILLA""-""Qty. on Sales Order"""; Rec."Existencia SILLA" - Rec."Qty. on Sales Order")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Etiqueta portugues";Rec."Etiqueta portugues")
+                field("Etiqueta portugues"; Rec."Etiqueta portugues")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Producto almacenable";Rec."Producto almacenable")
+                field("Producto almacenable"; Rec."Producto almacenable")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Cantidad palets";Rec."Cantidad palets")
+                field("Cantidad palets"; Rec."Cantidad palets")
                 {
                     ApplicationArea = Basic;
 
@@ -47,58 +47,58 @@ Page 50083 "Productos Lista ubicaciones"
                         EnviaAadaia;
                     end;
                 }
-                field("Unidad compra";Rec."Unidad compra")
+                field("Unidad compra"; Rec."Unidad compra")
                 {
                     ApplicationArea = Basic;
                 }
-                field("NO MULTIPEDIDO";Rec."NO MULTIPEDIDO")
+                field("NO MULTIPEDIDO"; Rec."NO MULTIPEDIDO")
                 {
                     ApplicationArea = Basic;
                 }
-                field(Description;Rec.Description)
+                field(Description; Rec.Description)
                 {
                     ApplicationArea = Basic;
                 }
-                field("Unidad expedicion ECI";Rec."Unidad expedicion ECI")
+                field("Unidad expedicion ECI"; Rec."Unidad expedicion ECI")
                 {
                     ApplicationArea = Basic;
                 }
-                field(ean;Rec.ean)
+                field(ean; Rec.ean)
                 {
                     ApplicationArea = Basic;
                 }
-                field(Inventory;Rec.Inventory)
+                field(Inventory; Rec.Inventory)
                 {
                     ApplicationArea = Basic;
                 }
-                field("No permite pedido";Rec."No permite pedido")
+                field("No permite pedido"; Rec."No permite pedido")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Vendor No.";Rec."Vendor No.")
+                field("Vendor No."; Rec."Vendor No.")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Texto no permite pedido";Rec."Texto no permite pedido")
+                field("Texto no permite pedido"; Rec."Texto no permite pedido")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Estado Producto";Rec."Estado Producto")
+                field("Estado Producto"; Rec."Estado Producto")
                 {
                     ApplicationArea = Basic;
                 }
-                field(Blocked;Rec.Blocked)
+                field(Blocked; Rec.Blocked)
                 {
                     ApplicationArea = Basic;
                 }
-                field("Fecha Alta";Rec."Fecha Alta")
+                field("Fecha Alta"; Rec."Fecha Alta")
                 {
                     ApplicationArea = Basic;
                 }
             }
             /////- part(Control1000000021;"Unidades medida producto')
             /////-{
-                /////- SubPageLink = "Item No."=field("No.");
+            /////- SubPageLink = "Item No."=field("No.");
             /////-}
         }
     }
@@ -130,7 +130,7 @@ Page 50083 "Productos Lista ubicaciones"
     end;
 
     var
-        /////- CUADAIA: Codeunit UnknownCodeunit50010;
+        CUADAIA: Codeunit "Automaticos Cartas";
 
     local procedure EnviaAadaia()
     begin
@@ -138,9 +138,9 @@ Page 50083 "Productos Lista ubicaciones"
 
 
 
-          if CopyStr(COMPANYNAME,1,4)='ROLF' then begin
-               /////- CUADAIA.MODIFPROD(Rec);
-          end;
+        if CopyStr(COMPANYNAME, 1, 4) = 'ROLF' then begin
+            CUADAIA.MODIFPROD(Rec);
+        end;
     end;
 }
 

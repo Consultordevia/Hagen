@@ -937,9 +937,9 @@ Page 50008 Modifica
         RecCV3: Record "Sales Header";
         RecCV33: Record "Sales Header";
         CODPED: Code[20];
-        /////-CUADAIAI: Codeunit UnknownCodeunit50015;
+        CUADAIAI: Codeunit "Importacion ADAIA";
         ACTIVO: Boolean;
-        /////-CUADAIA: Codeunit UnknownCodeunit50010;
+        CUADAIA: Codeunit "Automaticos Cartas";
         Commenta: Boolean;
         RecLV: Record "Sales Line";
         RecCV4: Record "Sales Header";
@@ -952,7 +952,7 @@ Page 50008 Modifica
         RecAcc: Record "Comisiones por grupo";
         INCIDENCIASPDTES: Integer;
         RecCVP: Record "Sales & Receivables Setup";
-        /////-CU: Codeunit UnknownCodeunit50010;
+        CU: Codeunit "Automaticos Cartas";
         RecTA: Record "Extended Text Header";
         /////-RepEti: Report UnknownReport50054;
         X: Integer;
@@ -964,13 +964,13 @@ Page 50008 Modifica
         REC2: Record "Sales Header";
         REC3: Record "Sales Header";
         /////-RecpEtiEci: Report UnknownReport50085;
-        /////-CU_Exporta: Codeunit UnknownCodeunit50010;
+        CU_Exporta: Codeunit "Automaticos Cartas";
         ventana: Dialog;
         nexpediexp: Code[20];
         nbultos: Integer;
         Rec110: Record "Sales Shipment Header";
         Rec1102: Record "Sales Shipment Header";
-        /////-CU50001: Codeunit UnknownCodeunit50010;
+        CU50001: Codeunit "Automaticos Cartas";
         ELPESO: Decimal;
         REC1112: Record "Sales Shipment Line";
         TOTALPALE: Decimal;
@@ -979,9 +979,9 @@ Page 50008 Modifica
         CODTRAS: Code[20];
         npalets: Integer;
         Rec36Pepe: Record "Sales Header";
-        /////-RepETAD: Report UnknownReport50009;
+        RepETAD: Report "ETI. envio";
         RecMtU: Record Multitabla;
-        /////-RepDropShi: Report UnknownReport50013;
+        RepDropShi: Report "Etiqueta DROPSHIPPING";
         tipopalet: Code[20];
         tipopalet2: Code[20];
         tipopalet3: Code[20];
@@ -1142,35 +1142,35 @@ Page 50008 Modifica
                         Rec1102.Reset;
                         Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                         if Rec1102.FindSet then begin
-                            /////-CU50001.EtiTNT2(Rec1102);
+                            CU50001.EtiTNT2(Rec1102);
                         end;
                     end;
                     if Rec110."Shipping Agent Code" = 'CRON' then begin
                         Rec1102.Reset;
                         Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                         if Rec1102.FindSet then begin
-                            /////-CU50001.Eticrono2(Rec1102);
+                            CU50001.Eticrono2(Rec1102);
                         end;
                     end;
                     if Rec110."Shipping Agent Code" = 'SEUR' then begin
                         Rec1102.Reset;
                         Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                         if Rec1102.FindSet then begin
-                            /////-CU50001.EtiSEUR(Rec1102);
+                            CU50001.EtiSEUR(Rec1102);
                         end;
                     end;
                     if Rec110."Shipping Agent Code" = 'TIPSA' then begin
                         Rec1102.Reset;
                         Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                         if Rec1102.FindSet then begin
-                            /////-CU50001.EtiTIPSA2(Rec1102);
+                            CU50001.EtiTIPSA2(Rec1102);
                         end;
                     end;
                     if Rec110."Shipping Agent Code" = 'CORR' then begin
                         Rec1102.Reset;
                         Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                         if Rec1102.FindSet then begin
-                            /////-CU50001.EtiTCORR2(Rec1102);
+                            CU50001.EtiTCORR2(Rec1102);
                         end;
                     end;
                 end;
@@ -1196,7 +1196,7 @@ Page 50008 Modifica
                     Rec1102.Reset;
                     Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                     if Rec1102.FindSet then begin
-                        /////-CU50001.ETISTD(Rec1102);
+                        CU50001.ETISTD(Rec1102);
                     end;
                 end;
                 if RecTra."Fichero estandar" = false then begin
@@ -1204,42 +1204,42 @@ Page 50008 Modifica
                         Rec1102.Reset;
                         Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                         if Rec1102.FindSet then begin
-                            /////-CU50001.EtiDHL2(Rec1102);
+                            CU50001.EtiDHL2(Rec1102);
                         end;
                     end;
                     if Rec110."Shipping Agent Code" = 'TNT' then begin
                         Rec1102.Reset;
                         Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                         if Rec1102.FindSet then begin
-                            /////-CU50001.EtiTNT2(Rec1102);
+                            CU50001.EtiTNT2(Rec1102);
                         end;
                     end;
                     if Rec110."Shipping Agent Code" = 'CRON' then begin
                         Rec1102.Reset;
                         Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                         if Rec1102.FindSet then begin
-                            /////-CU50001.Eticrono2(Rec1102);
+                            CU50001.Eticrono2(Rec1102);
                         end;
                     end;
                     if Rec110."Shipping Agent Code" = 'SEUR' then begin
                         Rec1102.Reset;
                         Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                         if Rec1102.FindSet then begin
-                            /////-CU50001.EtiSEUR(Rec1102);
+                            CU50001.EtiSEUR(Rec1102);
                         end;
                     end;
                     if Rec110."Shipping Agent Code" = 'TIPSA' then begin
                         Rec1102.Reset;
                         Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                         if Rec1102.FindSet then begin
-                            /////-CU50001.EtiTIPSA2(Rec1102);
+                            CU50001.EtiTIPSA2(Rec1102);
                         end;
                     end;
                     if Rec110."Shipping Agent Code" = 'CORR' then begin
                         Rec1102.Reset;
                         Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                         if Rec1102.FindSet then begin
-                            /////-CU50001.EtiTCORR2(Rec1102);
+                            CU50001.EtiTCORR2(Rec1102);
                         end;
                     end;
                 end;

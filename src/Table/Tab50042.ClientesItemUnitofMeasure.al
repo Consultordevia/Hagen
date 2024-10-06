@@ -47,7 +47,7 @@ Table 50042 "Clientes Item Unit of Measure"
         //RecRC: Record "Item Cross Reference";
         //RecRC2: Record "Item Cross Reference";
         RecItem: Record Item;
-        //CUADAIA: Codeunit UnknownCodeunit50010;
+        CUADAIA: Codeunit "Automaticos Cartas";
         xx: Integer;
         Rec1: Record "Item Unit of Measure";
         Item2: Record Item;

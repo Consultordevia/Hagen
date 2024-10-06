@@ -78,7 +78,7 @@ Codeunit 50027 "Actualiza stock COVALDROPER"
         VENTANA: Dialog;
         TAcumu: Decimal;
         Tcanti: Decimal;
-        /////- Facturarimprimir: Codeunit "Facturar + imprimir";
+        Facturarimprimir: Codeunit "Facturar + imprimir";
         SalesHeader: Record "Sales Header";
         RecCV2: Record "Sales Header";
         pendi: Decimal;

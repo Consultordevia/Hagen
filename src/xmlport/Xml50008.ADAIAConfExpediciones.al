@@ -734,7 +734,7 @@ XmlPort 50008 "ADAIA_Conf. Expediciones"
         Rec83: Record "Item Journal Line";
         RecItem: Record Item;
         cantideci: Decimal;
-        /////- Codeunit50010: Codeunit UnknownCodeunit50010;
+        Codeunit50010: Codeunit "Automaticos Cartas";
         DOC: Code[20];
         RecCusto: Record Customer;
         RecItem2: Record Item;
@@ -753,7 +753,7 @@ XmlPort 50008 "ADAIA_Conf. Expediciones"
         REC111: Record "Sales Shipment Line";
         EXPEDI: Code[20];
         PESO: Decimal;
-        /////- CUEXP: Codeunit UnknownCodeunit50010;
+        CUEXP: Codeunit "Automaticos Cartas";
         Rec36Pepe: Record "Sales Header";
         Rec832: Record "Item Journal Line";
         LIN2: Integer;
@@ -769,7 +769,7 @@ XmlPort 50008 "ADAIA_Conf. Expediciones"
         RecLVSuma: Record "Sales Line";
         Rec1102: Record "Sales Shipment Header";
         ArchiveManagement: Codeunit ArchiveManagement;
-    /////- CodeCV: Codeunit UnknownCodeunit50010;
+        CodeCV: Codeunit "Automaticos Cartas";
 
     local procedure InitializeGlobals()
     var

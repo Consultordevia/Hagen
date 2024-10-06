@@ -328,7 +328,7 @@ Codeunit 50010 "Automaticos Cartas"
         Vendor: Record Vendor;
         NEXPEDICION: Text[30];
         codexpedico: Code[40];
-        /////- EtiquetaECINUEVAALB: Report UnknownReport50105;
+        EtiquetaECINUEVAALB: Report "Etiqueta ECI NUEVA ALB.";
         CODPAIES2: Code[1];
         SalesHeader2: Record "Sales Header";
         SalesLine2: Record "Sales Line";
@@ -336,7 +336,7 @@ Codeunit 50010 "Automaticos Cartas"
         tienerotura: Boolean;
         NEXPEDI: Code[20];
         Customer: Record Customer;
-        /////- CartaavisotransfarenciasES: Report UnknownReport50106;
+        CartaavisotransfarenciasES: Report "Carta aviso transf-ES";
         Customer2: Record Customer;
         Fechalimite: Date;
         totalImpPdte: Decimal;
@@ -3566,19 +3566,19 @@ Codeunit 50010 "Automaticos Cartas"
 
 
         if RecCusto."Tipo facturación" = 0 then begin
-            /////-Codeunit.Run(Codeunit::"Albaranar + imprimir", Rec36);
+            Codeunit.Run(Codeunit::"Albaranar + imprimir", Rec36);
             if not RecCusto."No imprimir facturas" then begin
-                /////-Codeunit.Run(Codeunit::"Facturar sin imprimir", Rec36);
+                Codeunit.Run(Codeunit::"Facturar sin imprimir", Rec36);
             end;
             if RecCusto."No imprimir facturas" then begin
-                /////-Codeunit.Run(Codeunit::"Facturar sin imprimir", Rec36);
+                Codeunit.Run(Codeunit::"Facturar sin imprimir", Rec36);
             end;
             NCLIE := Rec36."Sell-to Customer No.";
             NFACT := Rec36."Last Posting No.";
             IMPRIMEFAC;
         end;
         if RecCusto."Tipo facturación" <> 0 then begin
-            /////-Codeunit.Run(Codeunit::"Albaranar + imprimir", Rec36);
+            Codeunit.Run(Codeunit::"Albaranar + imprimir", Rec36);
         end;
 
 

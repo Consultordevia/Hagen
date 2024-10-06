@@ -193,7 +193,7 @@ Page 50055 "Expediciones transportistas"
         IsOfficeAddin: Boolean;
         RecTra: Record "Shipping Agent";
         Rec110: Record "Sales Shipment Header";
-        /////- AutomaticosAdaia: Codeunit UnknownCodeunit50010;
+        AutomaticosAdaia: Codeunit "Automaticos Cartas";
         /////- REP50030: Report UnknownReport50030;
         Customer: Record Customer;
         /////- OKAlbaranValoradoECI: Report UnknownReport50905;

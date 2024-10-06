@@ -676,17 +676,17 @@ Page 50044 "Pantalla almacen Pascual4"
         npedidos: Integer;
         SalesHeader33: Record "Sales Header";
         SalesHeader35: Record "Sales Header";
-        /////- RepETAD: Report UnknownReport50009;
-        /////- RepDropShi: Report UnknownReport50013;
+        RepETAD: Report "ETI. envio";
+        RepDropShi: Report "Etiqueta DROPSHIPPING";
         /////- EtiAgrppeque: Report UnknownReport50025;
         Multitabla: Record Multitabla;
         ExtendedTextHeader: Record "Extended Text Header";
         /////- RepEti: Report UnknownReport50054;
         Item: Record Item;
         X: Integer;
-        /////- AutomaticosAdaia: Codeunit UnknownCodeunit50010;
+        AutomaticosAdaia: Codeunit "Automaticos Cartas";
         SalesOrder: Page "Sales Order";
-        /////- Automaticosvarios: Codeunit UnknownCodeunit50010;
+        Automaticosvarios: Codeunit "Automaticos Cartas";
         ESTILOLINEA: Text;
         CODTRANS: Code[20];
         TextoColores: Code[20];
@@ -718,7 +718,7 @@ Page 50044 "Pantalla almacen Pascual4"
 
     local procedure EnviaraADAIA()
     var
-        /////- AutomaticosAdaia: Codeunit UnknownCodeunit50010;
+        AutomaticosAdaia: Codeunit "Automaticos Cartas";
         SalesHeader: Record "Sales Header";
     begin
 

@@ -10,83 +10,83 @@ Page 50141 "CUSTOMEWER 2"
         {
             repeater(Group)
             {
-                field("No.";Rec."No.")
+                field("No."; Rec."No.")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Last Date Modified";Rec."Last Date Modified")
+                field("Last Date Modified"; Rec."Last Date Modified")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Location Code";Rec."Location Code")
+                field("Location Code"; Rec."Location Code")
                 {
                     ApplicationArea = Basic;
                 }
-                field(Name;Rec.Name)
+                field(Name; Rec.Name)
                 {
                     ApplicationArea = Basic;
                 }
-                field("Grupo descuento mensual";Rec."Grupo descuento mensual")
+                field("Grupo descuento mensual"; Rec."Grupo descuento mensual")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Partner Type";Rec."Partner Type")
+                field("Partner Type"; Rec."Partner Type")
                 {
                     ApplicationArea = Basic;
                 }
-                field(Balance;Rec.Balance)
+                field(Balance; Rec.Balance)
                 {
                     ApplicationArea = Basic;
                 }
-                field("Balance (LCY)";Rec."Balance (LCY)")
+                field("Balance (LCY)"; Rec."Balance (LCY)")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Net Change";Rec."Net Change")
+                field("Net Change"; Rec."Net Change")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Net Change (LCY)";Rec."Net Change (LCY)")
+                field("Net Change (LCY)"; Rec."Net Change (LCY)")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Balance Due";Rec."Balance Due")
+                field("Balance Due"; Rec."Balance Due")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Balance Due (LCY)";Rec."Balance Due (LCY)")
+                field("Balance Due (LCY)"; Rec."Balance Due (LCY)")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Observación para transporte";Rec."Observación para transporte")
+                field("Observación para transporte"; Rec."Observación para transporte")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Salesperson Code";Rec."Salesperson Code")
+                field("Salesperson Code"; Rec."Salesperson Code")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Customer Posting Group";Rec."Customer Posting Group")
+                field("Customer Posting Group"; Rec."Customer Posting Group")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Customer Price Group";Rec."Customer Price Group")
+                field("Customer Price Group"; Rec."Customer Price Group")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Grupo clientes";Rec."Grupo clientes")
+                field("Grupo clientes"; Rec."Grupo clientes")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Post Code";Rec."Post Code")
+                field("Post Code"; Rec."Post Code")
                 {
                     ApplicationArea = Basic;
                 }
-                field(County;Rec.County)
+                field(County; Rec.County)
                 {
                     ApplicationArea = Basic;
                 }
-                field("Country/Region Code";Rec."Country/Region Code")
+                field("Country/Region Code"; Rec."Country/Region Code")
                 {
                     ApplicationArea = Basic;
                 }
@@ -107,13 +107,13 @@ Page 50141 "CUSTOMEWER 2"
                 begin
                     Rec.Modify(true);
 
-                    /////- CUADAIA.ALTACLIENTES(Rec);
+                    CUADAIA.ALTACLIENTES(Rec);
                 end;
             }
         }
     }
 
     var
-        /////- CUADAIA: Codeunit UnknownCodeunit50010;
+        CUADAIA: Codeunit "Automaticos Cartas";
 }
 

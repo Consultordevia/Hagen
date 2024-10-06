@@ -1,0 +1,695 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_72004">
+          <DataField>ReportForNavId_72004</DataField>
+        </Field>
+        <Field Name="VATEntry_EntryNo">
+          <DataField>VATEntry_EntryNo</DataField>
+        </Field>
+        <Field Name="Label_1000000001">
+          <DataField>Label_1000000001</DataField>
+        </Field>
+        <Field Name="FORMAT_TODAY_0_4">
+          <DataField>FORMAT_TODAY_0_4</DataField>
+        </Field>
+        <Field Name="COMPANYNAME">
+          <DataField>COMPANYNAME</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENO">
+          <DataField>CurrReport_PAGENO</DataField>
+        </Field>
+        <Field Name="Lbl_CurrReport_PAGENO">
+          <DataField>Lbl_CurrReport_PAGENO</DataField>
+        </Field>
+        <Field Name="USERID">
+          <DataField>USERID</DataField>
+        </Field>
+        <Field Name="N_documento">
+          <DataField>N_documento</DataField>
+        </Field>
+        <Field Name="Proveedor">
+          <DataField>Proveedor</DataField>
+        </Field>
+        <Field Name="Nombre_proveedor">
+          <DataField>Nombre_proveedor</DataField>
+        </Field>
+        <Field Name="CIF_NIF">
+          <DataField>CIF_NIF</DataField>
+        </Field>
+        <Field Name="Base">
+          <DataField>Base</DataField>
+        </Field>
+        <Field Name="IVA">
+          <DataField>IVA</DataField>
+        </Field>
+        <Field Name="Importe">
+          <DataField>Importe</DataField>
+        </Field>
+        <Field Name="Gr_IVA_neg">
+          <DataField>Gr_IVA_neg</DataField>
+        </Field>
+        <Field Name="Gr_IVA_prod">
+          <DataField>Gr_IVA_prod</DataField>
+        </Field>
+        <Field Name="Total_Fra">
+          <DataField>Total_Fra</DataField>
+        </Field>
+        <Field Name="Fecha_fra">
+          <DataField>Fecha_fra</DataField>
+        </Field>
+        <Field Name="F_opera">
+          <DataField>F_opera</DataField>
+        </Field>
+        <Field Name="Num">
+          <DataField>Num</DataField>
+        </Field>
+        <Field Name="FILTROFECHA">
+          <DataField>FILTROFECHA</DataField>
+        </Field>
+        <Field Name="Label_1000000011">
+          <DataField>Label_1000000011</DataField>
+        </Field>
+        <Field Name="Label_1000000099">
+          <DataField>Label_1000000099</DataField>
+        </Field>
+        <Field Name="Label_1000000103">
+          <DataField>Label_1000000103</DataField>
+        </Field>
+        <Field Name="No_Series">
+          <DataField>No_Series</DataField>
+        </Field>
+        <Field Name="No_Series_1">
+          <DataField>No_Series_1</DataField>
+        </Field>
+        <Field Name="Posting_Date">
+          <DataField>Posting_Date</DataField>
+        </Field>
+        <Field Name="VAT_Entry_External_Document_No">
+          <DataField>VAT_Entry_External_Document_No</DataField>
+        </Field>
+        <Field Name="Bill_to_Pay_to_No">
+          <DataField>Bill_to_Pay_to_No</DataField>
+        </Field>
+        <Field Name="Base_1">
+          <DataField>Base_1</DataField>
+        </Field>
+        <Field Name="Base_1Format">
+          <DataField>Base_1Format</DataField>
+        </Field>
+        <Field Name="VAT_Entry_Amount">
+          <DataField>VAT_Entry_Amount</DataField>
+        </Field>
+        <Field Name="VAT_Entry_AmountFormat">
+          <DataField>VAT_Entry_AmountFormat</DataField>
+        </Field>
+        <Field Name="VAT_Bus_Posting_Group">
+          <DataField>VAT_Bus_Posting_Group</DataField>
+        </Field>
+        <Field Name="VAT_Prod_Posting_Group">
+          <DataField>VAT_Prod_Posting_Group</DataField>
+        </Field>
+        <Field Name="VAT_Registration_No">
+          <DataField>VAT_Registration_No</DataField>
+        </Field>
+        <Field Name="VAT">
+          <DataField>VAT</DataField>
+        </Field>
+        <Field Name="VATFormat">
+          <DataField>VATFormat</DataField>
+        </Field>
+        <Field Name="NOMBRECLIENTE">
+          <DataField>NOMBRECLIENTE</DataField>
+        </Field>
+        <Field Name="VAT_Entry_Amount_Base_Irpf">
+          <DataField>VAT_Entry_Amount_Base_Irpf</DataField>
+        </Field>
+        <Field Name="VAT_Entry_Amount_Base_IrpfFormat">
+          <DataField>VAT_Entry_Amount_Base_IrpfFormat</DataField>
+        </Field>
+        <Field Name="Document_Date">
+          <DataField>Document_Date</DataField>
+        </Field>
+        <Field Name="fechaope">
+          <DataField>fechaope</DataField>
+        </Field>
+        <Field Name="VAT_Entry_Document_No">
+          <DataField>VAT_Entry_Document_No</DataField>
+        </Field>
+        <Field Name="irpf2">
+          <DataField>irpf2</DataField>
+        </Field>
+        <Field Name="irpf2Format">
+          <DataField>irpf2Format</DataField>
+        </Field>
+        <Field Name="VAT_Entry_Amount_Base">
+          <DataField>VAT_Entry_Amount_Base</DataField>
+        </Field>
+        <Field Name="VAT_Entry_Amount_BaseFormat">
+          <DataField>VAT_Entry_Amount_BaseFormat</DataField>
+        </Field>
+        <Field Name="VAT_Entry_No_Series">
+          <DataField>VAT_Entry_No_Series</DataField>
+        </Field>
+        <Field Name="Base_2">
+          <DataField>Base_2</DataField>
+        </Field>
+        <Field Name="Base_2Format">
+          <DataField>Base_2Format</DataField>
+        </Field>
+        <Field Name="Amount">
+          <DataField>Amount</DataField>
+        </Field>
+        <Field Name="AmountFormat">
+          <DataField>AmountFormat</DataField>
+        </Field>
+        <Field Name="Label_1000000033">
+          <DataField>Label_1000000033</DataField>
+        </Field>
+        <Field Name="Base_VAT_Entry_Amount">
+          <DataField>Base_VAT_Entry_Amount</DataField>
+        </Field>
+        <Field Name="Base_VAT_Entry_AmountFormat">
+          <DataField>Base_VAT_Entry_AmountFormat</DataField>
+        </Field>
+        <Field Name="Base_VAT_Entry_Amount_Tirpf">
+          <DataField>Base_VAT_Entry_Amount_Tirpf</DataField>
+        </Field>
+        <Field Name="Base_VAT_Entry_Amount_TirpfFormat">
+          <DataField>Base_VAT_Entry_Amount_TirpfFormat</DataField>
+        </Field>
+        <Field Name="Tirpf">
+          <DataField>Tirpf</DataField>
+        </Field>
+        <Field Name="TirpfFormat">
+          <DataField>TirpfFormat</DataField>
+        </Field>
+        <Field Name="No_Series_2">
+          <DataField>No_Series_2</DataField>
+        </Field>
+        <Field Name="Posting_Date_1">
+          <DataField>Posting_Date_1</DataField>
+        </Field>
+        <Field Name="Document_No">
+          <DataField>Document_No</DataField>
+        </Field>
+        <Field Name="VAT_Bus_Posting_Group_1">
+          <DataField>VAT_Bus_Posting_Group_1</DataField>
+        </Field>
+        <Field Name="VAT_Prod_Posting_Group_1">
+          <DataField>VAT_Prod_Posting_Group_1</DataField>
+        </Field>
+        <Field Name="VAT_1">
+          <DataField>VAT_1</DataField>
+        </Field>
+        <Field Name="VAT_1Format">
+          <DataField>VAT_1Format</DataField>
+        </Field>
+        <Field Name="EC">
+          <DataField>EC</DataField>
+        </Field>
+        <Field Name="ECFormat">
+          <DataField>ECFormat</DataField>
+        </Field>
+        <Field Name="ReportForNavId_72149">
+          <DataField>ReportForNavId_72149</DataField>
+        </Field>
+        <Field Name="Purch_Inv_Header_Fecha_DUA">
+          <DataField>Purch_Inv_Header_Fecha_DUA</DataField>
+        </Field>
+        <Field Name="Purch_Inv_Header_Fecha_DUAFormat">
+          <DataField>Purch_Inv_Header_Fecha_DUAFormat</DataField>
+        </Field>
+        <Field Name="Purch_Inv_Header_DUA">
+          <DataField>Purch_Inv_Header_DUA</DataField>
+        </Field>
+        <Field Name="Purch_Inv_Header_DUAFormat">
+          <DataField>Purch_Inv_Header_DUAFormat</DataField>
+        </Field>
+        <Field Name="Purch_Inv_Header_Pay_to_Name">
+          <DataField>Purch_Inv_Header_Pay_to_Name</DataField>
+        </Field>
+        <Field Name="Purch_Inv_Header_Vendor_Invoice_No">
+          <DataField>Purch_Inv_Header_Vendor_Invoice_No</DataField>
+        </Field>
+        <Field Name="Label_1000000144">
+          <DataField>Label_1000000144</DataField>
+        </Field>
+        <Field Name="Label_1000000145">
+          <DataField>Label_1000000145</DataField>
+        </Field>
+        <Field Name="N_factura">
+          <DataField>N_factura</DataField>
+        </Field>
+        <Field Name="Nombre_proveedor_1">
+          <DataField>Nombre_proveedor_1</DataField>
+        </Field>
+        <Field Name="ReportForNavId_72121">
+          <DataField>ReportForNavId_72121</DataField>
+        </Field>
+        <Field Name="PURCHLINE">
+          <DataField>PURCHLINE</DataField>
+        </Field>
+        <Field Name="IVA_importaci_n">
+          <DataField>IVA_importaci_n</DataField>
+        </Field>
+        <Field Name="Proveedor_Importaci_n">
+          <DataField>Proveedor_Importaci_n</DataField>
+        </Field>
+        <Field Name="Proveedor_Importaci_nFormat">
+          <DataField>Proveedor_Importaci_nFormat</DataField>
+        </Field>
+        <Field Name="Base_IVA_Aduanas">
+          <DataField>Base_IVA_Aduanas</DataField>
+        </Field>
+        <Field Name="NOMBREPROV">
+          <DataField>NOMBREPROV</DataField>
+        </Field>
+        <Field Name="NDUA">
+          <DataField>NDUA</DataField>
+        </Field>
+        <Field Name="FECHADUA">
+          <DataField>FECHADUA</DataField>
+        </Field>
+        <Field Name="VATEntry8_Amount">
+          <DataField>VATEntry8_Amount</DataField>
+        </Field>
+        <Field Name="VATEntry8_AmountFormat">
+          <DataField>VATEntry8_AmountFormat</DataField>
+        </Field>
+        <Field Name="Label_1000000083">
+          <DataField>Label_1000000083</DataField>
+        </Field>
+        <Field Name="Label_1000000085">
+          <DataField>Label_1000000085</DataField>
+        </Field>
+        <Field Name="Label_1000000086">
+          <DataField>Label_1000000086</DataField>
+        </Field>
+        <Field Name="Label_1000000087">
+          <DataField>Label_1000000087</DataField>
+        </Field>
+        <Field Name="Label_1000000107">
+          <DataField>Label_1000000107</DataField>
+        </Field>
+        <Field Name="Label_1000000108">
+          <DataField>Label_1000000108</DataField>
+        </Field>
+        <Field Name="Label_1000000109">
+          <DataField>Label_1000000109</DataField>
+        </Field>
+        <Field Name="Base_IVA_Aduanas_1">
+          <DataField>Base_IVA_Aduanas_1</DataField>
+        </Field>
+        <Field Name="TCUOTA">
+          <DataField>TCUOTA</DataField>
+        </Field>
+        <Field Name="TCUOTAFormat">
+          <DataField>TCUOTAFormat</DataField>
+        </Field>
+        <Field Name="VATEntrry8_DocumentNo">
+          <DataField>VATEntrry8_DocumentNo</DataField>
+        </Field>
+        <Field Name="PurchInvLine_Amount">
+          <DataField>PurchInvLine_Amount</DataField>
+        </Field>
+        <Field Name="PurchInvLine_AmountFormat">
+          <DataField>PurchInvLine_AmountFormat</DataField>
+        </Field>
+        <Field Name="ReportForNavId_72161">
+          <DataField>ReportForNavId_72161</DataField>
+        </Field>
+        <Field Name="Code">
+          <DataField>Code</DataField>
+        </Field>
+        <Field Name="Base_3">
+          <DataField>Base_3</DataField>
+        </Field>
+        <Field Name="Base_3Format">
+          <DataField>Base_3Format</DataField>
+        </Field>
+        <Field Name="Importe_1">
+          <DataField>Importe_1</DataField>
+        </Field>
+        <Field Name="Importe_1Format">
+          <DataField>Importe_1Format</DataField>
+        </Field>
+        <Field Name="RESUMEN_SERIES">
+          <DataField>RESUMEN_SERIES</DataField>
+        </Field>
+        <Field Name="Lbl_Importe">
+          <DataField>Lbl_Importe</DataField>
+        </Field>
+        <Field Name="Lbl_Base">
+          <DataField>Lbl_Base</DataField>
+        </Field>
+        <Field Name="FORMAT_TODAY_0_4_1">
+          <DataField>FORMAT_TODAY_0_4_1</DataField>
+        </Field>
+        <Field Name="USERID_1">
+          <DataField>USERID_1</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENO_1">
+          <DataField>CurrReport_PAGENO_1</DataField>
+        </Field>
+        <Field Name="Lbl_CurrReport_PAGENO_1">
+          <DataField>Lbl_CurrReport_PAGENO_1</DataField>
+        </Field>
+        <Field Name="Label_1000000119">
+          <DataField>Label_1000000119</DataField>
+        </Field>
+        <Field Name="COMPANYNAME_1">
+          <DataField>COMPANYNAME_1</DataField>
+        </Field>
+        <Field Name="FILTROFECHA_1">
+          <DataField>FILTROFECHA_1</DataField>
+        </Field>
+        <Field Name="Lbl_Code">
+          <DataField>Lbl_Code</DataField>
+        </Field>
+        <Field Name="Importe_2">
+          <DataField>Importe_2</DataField>
+        </Field>
+        <Field Name="Importe_2Format">
+          <DataField>Importe_2Format</DataField>
+        </Field>
+        <Field Name="Base_4">
+          <DataField>Base_4</DataField>
+        </Field>
+        <Field Name="Base_4Format">
+          <DataField>Base_4Format</DataField>
+        </Field>
+        <Field Name="FORMAT_Base_Importe">
+          <DataField>FORMAT_Base_Importe</DataField>
+        </Field>
+        <Field Name="TextBox_1000000034">
+          <DataField>TextBox_1000000034</DataField>
+        </Field>
+        <Field Name="ReportForNavId_72186">
+          <DataField>ReportForNavId_72186</DataField>
+        </Field>
+        <Field Name="VATPostingGroup_Base">
+          <DataField>VATPostingGroup_Base</DataField>
+        </Field>
+        <Field Name="VATPostingGroup_BaseFormat">
+          <DataField>VATPostingGroup_BaseFormat</DataField>
+        </Field>
+        <Field Name="VATPostingGroup_Importe">
+          <DataField>VATPostingGroup_Importe</DataField>
+        </Field>
+        <Field Name="VATPostingGroup_ImporteFormat">
+          <DataField>VATPostingGroup_ImporteFormat</DataField>
+        </Field>
+        <Field Name="Importe_3">
+          <DataField>Importe_3</DataField>
+        </Field>
+        <Field Name="Importe_3Format">
+          <DataField>Importe_3Format</DataField>
+        </Field>
+        <Field Name="Base_5">
+          <DataField>Base_5</DataField>
+        </Field>
+        <Field Name="Base_5Format">
+          <DataField>Base_5Format</DataField>
+        </Field>
+        <Field Name="VAT_Prod_Posting_Group_2">
+          <DataField>VAT_Prod_Posting_Group_2</DataField>
+        </Field>
+        <Field Name="VAT_Bus_Posting_Group_2">
+          <DataField>VAT_Bus_Posting_Group_2</DataField>
+        </Field>
+        <Field Name="Label_1000000036">
+          <DataField>Label_1000000036</DataField>
+        </Field>
+        <Field Name="Label_1000000038">
+          <DataField>Label_1000000038</DataField>
+        </Field>
+        <Field Name="Label_1000000040">
+          <DataField>Label_1000000040</DataField>
+        </Field>
+        <Field Name="Label_1000000041">
+          <DataField>Label_1000000041</DataField>
+        </Field>
+        <Field Name="RESUMEN_I_V_A">
+          <DataField>RESUMEN_I_V_A</DataField>
+        </Field>
+        <Field Name="Importe_4">
+          <DataField>Importe_4</DataField>
+        </Field>
+        <Field Name="Importe_4Format">
+          <DataField>Importe_4Format</DataField>
+        </Field>
+        <Field Name="Base_6">
+          <DataField>Base_6</DataField>
+        </Field>
+        <Field Name="Base_6Format">
+          <DataField>Base_6Format</DataField>
+        </Field>
+        <Field Name="TextBox_1000000123">
+          <DataField>TextBox_1000000123</DataField>
+        </Field>
+        <Field Name="FORMAT_Base_Importe_1">
+          <DataField>FORMAT_Base_Importe_1</DataField>
+        </Field>
+        <Field Name="Base_7">
+          <DataField>Base_7</DataField>
+        </Field>
+        <Field Name="Base_7Format">
+          <DataField>Base_7Format</DataField>
+        </Field>
+        <Field Name="Importe_5">
+          <DataField>Importe_5</DataField>
+        </Field>
+        <Field Name="Importe_5Format">
+          <DataField>Importe_5Format</DataField>
+        </Field>
+        <Field Name="ReportForNavId_72207">
+          <DataField>ReportForNavId_72207</DataField>
+        </Field>
+        <Field Name="DATOC1">
+          <DataField>DATOC1</DataField>
+        </Field>
+        <Field Name="DATOC2">
+          <DataField>DATOC2</DataField>
+        </Field>
+        <Field Name="DATOC3">
+          <DataField>DATOC3</DataField>
+        </Field>
+        <Field Name="DATOC4">
+          <DataField>DATOC4</DataField>
+        </Field>
+        <Field Name="DATOC5">
+          <DataField>DATOC5</DataField>
+        </Field>
+        <Field Name="IMPBASEC">
+          <DataField>IMPBASEC</DataField>
+        </Field>
+        <Field Name="IMPBASECFormat">
+          <DataField>IMPBASECFormat</DataField>
+        </Field>
+        <Field Name="TIMPIMPC">
+          <DataField>TIMPIMPC</DataField>
+        </Field>
+        <Field Name="TIMPIMPCFormat">
+          <DataField>TIMPIMPCFormat</DataField>
+        </Field>
+        <Field Name="IMPIMP_Y">
+          <DataField>IMPIMP_Y</DataField>
+        </Field>
+        <Field Name="IMPIMP_YFormat">
+          <DataField>IMPIMP_YFormat</DataField>
+        </Field>
+        <Field Name="IMPBASE_Y">
+          <DataField>IMPBASE_Y</DataField>
+        </Field>
+        <Field Name="IMPBASE_YFormat">
+          <DataField>IMPBASE_YFormat</DataField>
+        </Field>
+        <Field Name="DATO2_Y">
+          <DataField>DATO2_Y</DataField>
+        </Field>
+        <Field Name="DATO1_Y">
+          <DataField>DATO1_Y</DataField>
+        </Field>
+        <Field Name="DATO3_Y">
+          <DataField>DATO3_Y</DataField>
+        </Field>
+        <Field Name="DATO4_Y">
+          <DataField>DATO4_Y</DataField>
+        </Field>
+        <Field Name="DATO5_Y">
+          <DataField>DATO5_Y</DataField>
+        </Field>
+        <Field Name="Label_1000000066">
+          <DataField>Label_1000000066</DataField>
+        </Field>
+        <Field Name="Label_1000000068">
+          <DataField>Label_1000000068</DataField>
+        </Field>
+        <Field Name="RESUMEN_I_V_A_SERIE">
+          <DataField>RESUMEN_I_V_A_SERIE</DataField>
+        </Field>
+        <Field Name="Label_1000000070">
+          <DataField>Label_1000000070</DataField>
+        </Field>
+        <Field Name="Label_1000000071">
+          <DataField>Label_1000000071</DataField>
+        </Field>
+        <Field Name="Label_1000000072">
+          <DataField>Label_1000000072</DataField>
+        </Field>
+        <Field Name="Label_1000000073">
+          <DataField>Label_1000000073</DataField>
+        </Field>
+        <Field Name="Label_1000000074">
+          <DataField>Label_1000000074</DataField>
+        </Field>
+        <Field Name="USERID_2">
+          <DataField>USERID_2</DataField>
+        </Field>
+        <Field Name="FORMAT_TODAY_0_4_2">
+          <DataField>FORMAT_TODAY_0_4_2</DataField>
+        </Field>
+        <Field Name="Label_1000000126">
+          <DataField>Label_1000000126</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENO_2">
+          <DataField>CurrReport_PAGENO_2</DataField>
+        </Field>
+        <Field Name="TIMPIMP">
+          <DataField>TIMPIMP</DataField>
+        </Field>
+        <Field Name="TIMPIMPFormat">
+          <DataField>TIMPIMPFormat</DataField>
+        </Field>
+        <Field Name="TIMPBASE">
+          <DataField>TIMPBASE</DataField>
+        </Field>
+        <Field Name="TIMPBASEFormat">
+          <DataField>TIMPBASEFormat</DataField>
+        </Field>
+        <Field Name="TextBox_1000000125">
+          <DataField>TextBox_1000000125</DataField>
+        </Field>
+        <Field Name="FORMAT_TIMPBASE_TIMPIMP">
+          <DataField>FORMAT_TIMPBASE_TIMPIMP</DataField>
+        </Field>
+        <Field Name="ReportForNavId_72240">
+          <DataField>ReportForNavId_72240</DataField>
+        </Field>
+        <Field Name="Posting_Date_2">
+          <DataField>Posting_Date_2</DataField>
+        </Field>
+        <Field Name="Document_Type">
+          <DataField>Document_Type</DataField>
+        </Field>
+        <Field Name="Document_No_1">
+          <DataField>Document_No_1</DataField>
+        </Field>
+        <Field Name="NOMBREPROVEE">
+          <DataField>NOMBREPROVEE</DataField>
+        </Field>
+        <Field Name="Amount_1">
+          <DataField>Amount_1</DataField>
+        </Field>
+        <Field Name="Amount_1Format">
+          <DataField>Amount_1Format</DataField>
+        </Field>
+        <Field Name="Lbl__Posting_Date">
+          <DataField>Lbl__Posting_Date</DataField>
+        </Field>
+        <Field Name="Lbl__Document_Type">
+          <DataField>Lbl__Document_Type</DataField>
+        </Field>
+        <Field Name="Lbl__Document_No">
+          <DataField>Lbl__Document_No</DataField>
+        </Field>
+        <Field Name="Lbl_NOMBREPROVEE">
+          <DataField>Lbl_NOMBREPROVEE</DataField>
+        </Field>
+        <Field Name="Lbl_Amount">
+          <DataField>Lbl_Amount</DataField>
+        </Field>
+        <Field Name="DETALLE_I_R_P_F">
+          <DataField>DETALLE_I_R_P_F</DataField>
+        </Field>
+        <Field Name="Amount_2">
+          <DataField>Amount_2</DataField>
+        </Field>
+        <Field Name="Amount_2Format">
+          <DataField>Amount_2Format</DataField>
+        </Field>
+        <Field Name="Total_IRPF">
+          <DataField>Total_IRPF</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

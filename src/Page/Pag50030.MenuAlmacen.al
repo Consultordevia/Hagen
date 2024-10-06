@@ -54,6 +54,6 @@ Page 50030 "Menu Almacen"
     }
 
     var
-    ///Automaticosvarios: Codeunit UnknownCodeunit50010;
+        Automaticosvarios: Codeunit "Automaticos Cartas";
 }
 

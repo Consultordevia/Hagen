@@ -236,7 +236,7 @@ XmlPort 50011 "Importa pedidos compra"
         peso1: Decimal;
         tariff: Code[20];
         igicc: Code[20];
-        /////- CUADAIA: Codeunit UnknownCodeunit50010;
+        CUADAIA: Codeunit "Automaticos Cartas";
         RecItem22: Record Item;
 
     local procedure InitializeGlobals()

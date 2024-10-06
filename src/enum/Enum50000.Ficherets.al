@@ -66,4 +66,14 @@ enum 50000 Ficherets
     {
         Caption = 'VERDECORA';
     }
+    value(16; TRSTOMOV) { Caption = 'TRSTOMOV'; }
+    value(17; TRUNITCON) { Caption = 'TRUNITCON'; }
+
+    value(18; TRAREA) { Caption = 'TRAREA'; }
+    value(19; TRSTOART) { Caption = 'TRSTOART'; }
+    value(20; TRSTO) { Caption = 'TRSTO'; }
+    value(21; TRREC) { Caption = 'TRREC'; }
+
+    value(22; TREXP) { Caption = 'TREXP'; }
+
 }

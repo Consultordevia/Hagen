@@ -399,7 +399,6 @@ Page 50011 "Comercial Datos"
                 {
                     ApplicationArea = Basic, Suite;
                     Caption = 'Impagados';
-                    /////-DecimalPlaces = 0:0;
                     DrillDownPageID = "Sales Order List";
                     ToolTip = 'Especifica el importe Impagados.';
 

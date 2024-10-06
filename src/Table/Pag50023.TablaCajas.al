@@ -36,7 +36,7 @@ page 50023 TablaCajas
                 {
                     ToolTip = 'Specifies the value of the Cantidad x caja field.', Comment = '%';
                 }
-                field("Criterio de Rotacion"; Rec."Criterio de Rotacion")
+                field("Criterio Rotacion"; Rec."Criterio Rotacion")
                 {
                     ToolTip = 'Specifies the value of the Criterio de Rotacion field.', Comment = '%';
                 }
@@ -184,8 +184,6 @@ page 50023 TablaCajas
         IF RecSP."Codigo concatenado"<>'' THEN begin
             RecTC.Sku:=RecSP."Codigo concatenado";
             RecItem.GET(RecSP."Item No.");
-            RecTC.Alto:=RecItem.Alto;                              
-            RecTC.Ancho:=RecItem.Ancho;
             DescripMarca := '';
             IF RecMulti.GET(RecMulti.Tabla::Marcas, RecItem.Marca) then begin
                 DescripMarca := RecMulti."Descripción";
@@ -200,18 +198,22 @@ page 50023 TablaCajas
             RecTC."Atributo Variante2":=RecItem.CodVariante2;
             RecUMP.Reset();;
             RecUMP.SetRange("Item No.",RecItem."No.");
-            RecUMP.SetRange(Code,RecSP."Codigo INNER o MASTET");
+            RecUMP.SetRange(Code,RecSP."Unit of Measure Code");
             IF RecUMP.FindFirst() THEN begin
                 RecTC."Cantidad x caja":=RecUMP."Qty. per Unit of Measure";               
+                RecTC.Largo:=RecUMP.Length;
+                RecTC.Peso:=RecUMP.Weight;
+                RecTC.Alto:=RecUMP.Height;                              
+                RecTC.Ancho:=RecUMP.Width;            
             end;             
             RecTC."Criterio Rotacion":=RecItem."Criterio rotacion";
             RecTC."Descricion marca":=DescripMarca;
             RecTC.Descripcion:=RecItem.Description;
             RecITREF.Reset();
             RecITREF.SetRange("Item No.",RecItem."No.");
-            RecITREF.SetRange("Unit of Measure",RecSP."Codigo INNER o MASTET");
+            RecITREF.SetRange("Unit of Measure",RecSP."Unit of Measure Code");
             IF RecITREF.FindSet THEN BEGIN
-                RecTC.Ean:=RecItem.ean;
+                RecTC.Ean:=RecITREF."Reference No.";
             END;
             RecTC."El producto es Caja":=true;
             RecTC."Estado web Inactivo":=RecItem."Estado WEB Inactivo";
@@ -223,9 +225,9 @@ page 50023 TablaCajas
             IF RecVPG.FindFirst() THEN begin
                 RecTC.Iva:= RecVPG."VAT %";
             END;
-            RecTC.Largo:=RecItem.Largo;
+          
             RecTC."NombreUtem Categoria":=NombreItemCategoria;
-            RecTC.Peso:=RecItem."Net Weight";
+            
             RecTC."Precio unitario":=RecSP."Unit Price";
             RecBom.Reset();;
             RecBom.SetRange("No.",RecSP."Item No.");
@@ -236,7 +238,7 @@ page 50023 TablaCajas
             RecTC."Proxima fecha de llegada":=RecItem."Fecha proxima recepción conten";
             RecTC.Stock:=dispo;
             IF RecTC."Cantidad x caja"<>0 THEN begin
-                    RecTC.Stock:=round(dispo/RecTC."Cantidad x caja");
+                    RecTC.Stock:=round(dispo/RecTC."Cantidad x caja",1);
             END;
             RecTC."Umbral Stock":=RecItem."Umbral stock";
             RecTC."Unidad de medida":=RecSP."Unit of Measure Code";

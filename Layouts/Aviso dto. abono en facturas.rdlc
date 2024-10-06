@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_72004">
+          <DataField>ReportForNavId_72004</DataField>
+        </Field>
+        <Field Name="Label_1">
+          <DataField>Label_1</DataField>
+        </Field>
+        <Field Name="P_gina_FORMAT_CurrReport_PAGENO">
+          <DataField>P_gina_FORMAT_CurrReport_PAGENO</DataField>
+        </Field>
+        <Field Name="Muro_del_Alcoy_FORMAT_TODAY_0_4">
+          <DataField>Muro_del_Alcoy_FORMAT_TODAY_0_4</DataField>
+        </Field>
+        <Field Name="Label_4">
+          <DataField>Label_4</DataField>
+        </Field>
+        <Field Name="Label_5">
+          <DataField>Label_5</DataField>
+        </Field>
+        <Field Name="Label_6">
+          <DataField>Label_6</DataField>
+        </Field>
+        <Field Name="Label_8">
+          <DataField>Label_8</DataField>
+        </Field>
+        <Field Name="Label_10">
+          <DataField>Label_10</DataField>
+        </Field>
+        <Field Name="Label_12">
+          <DataField>Label_12</DataField>
+        </Field>
+        <Field Name="Label_13">
+          <DataField>Label_13</DataField>
+        </Field>
+        <Field Name="Label_15">
+          <DataField>Label_15</DataField>
+        </Field>
+        <Field Name="Label_16">
+          <DataField>Label_16</DataField>
+        </Field>
+        <Field Name="DirClie_1">
+          <DataField>DirClie_1</DataField>
+        </Field>
+        <Field Name="DirClie_3">
+          <DataField>DirClie_3</DataField>
+        </Field>
+        <Field Name="DirClie_4">
+          <DataField>DirClie_4</DataField>
+        </Field>
+        <Field Name="Clie_VAT_Registration_No">
+          <DataField>Clie_VAT_Registration_No</DataField>
+        </Field>
+        <Field Name="DirClie_5">
+          <DataField>DirClie_5</DataField>
+        </Field>
+        <Field Name="DirClie_6">
+          <DataField>DirClie_6</DataField>
+        </Field>
+        <Field Name="DirClie_7">
+          <DataField>DirClie_7</DataField>
+        </Field>
+        <Field Name="DirClie_2">
+          <DataField>DirClie_2</DataField>
+        </Field>
+        <Field Name="Account_No">
+          <DataField>Account_No</DataField>
+        </Field>
+        <Field Name="Lbl__Account_No">
+          <DataField>Lbl__Account_No</DataField>
+        </Field>
+        <Field Name="Document_No">
+          <DataField>Document_No</DataField>
+        </Field>
+        <Field Name="Label_27">
+          <DataField>Label_27</DataField>
+        </Field>
+        <Field Name="Label_28">
+          <DataField>Label_28</DataField>
+        </Field>
+        <Field Name="Label_29">
+          <DataField>Label_29</DataField>
+        </Field>
+        <Field Name="Label_30">
+          <DataField>Label_30</DataField>
+        </Field>
+        <Field Name="Label_31">
+          <DataField>Label_31</DataField>
+        </Field>
+        <Field Name="infoemp_Name">
+          <DataField>infoemp_Name</DataField>
+        </Field>
+        <Field Name="TxtFooter1">
+          <DataField>TxtFooter1</DataField>
+        </Field>
+        <Field Name="TxtFooter2">
+          <DataField>TxtFooter2</DataField>
+        </Field>
+        <Field Name="Account_Type">
+          <DataField>Account_Type</DataField>
+        </Field>
+        <Field Name="Account_No_1">
+          <DataField>Account_No_1</DataField>
+        </Field>
+        <Field Name="ReportForNavId_72061">
+          <DataField>ReportForNavId_72061</DataField>
+        </Field>
+        <Field Name="Posting_Date">
+          <DataField>Posting_Date</DataField>
+        </Field>
+        <Field Name="Document_Type">
+          <DataField>Document_Type</DataField>
+        </Field>
+        <Field Name="Document_No_1">
+          <DataField>Document_No_1</DataField>
+        </Field>
+        <Field Name="TxtDesc">
+          <DataField>TxtDesc</DataField>
+        </Field>
+        <Field Name="Remaining_Amt_LCY">
+          <DataField>Remaining_Amt_LCY</DataField>
+        </Field>
+        <Field Name="Remaining_Amt_LCYFormat">
+          <DataField>Remaining_Amt_LCYFormat</DataField>
+        </Field>
+        <Field Name="Due_Date">
+          <DataField>Due_Date</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

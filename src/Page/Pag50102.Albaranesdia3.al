@@ -743,7 +743,7 @@ Page 50102 "Albaranes dia-3"
         IsOfficeAddin: Boolean;
         RecTra: Record "Shipping Agent";
         Rec110: Record "Sales Shipment Header";
-        /////- AutomaticosAdaia: Codeunit UnknownCodeunit50010;
+        AutomaticosAdaia: Codeunit "Automaticos Cartas";
         /////- REP50030: Report UnknownReport50030;
         /////- OKAlbaranValoradoECI: Report UnknownReport50905;
         /////- OKAlbaranValorado: Report UnknownReport50901;

@@ -717,9 +717,9 @@ Page 50099 "Pantalla almacen Pascual5"
         /////- RepEti: Report UnknownReport50054;
         Item: Record Item;
         X: Integer;
-        /////- AutomaticosAdaia: Codeunit UnknownCodeunit50010;
+        AutomaticosAdaia: Codeunit "Automaticos Cartas";
         SalesOrder: Page "Sales Order";
-        /////- Automaticosvarios: Codeunit UnknownCodeunit50010;
+        Automaticosvarios: Codeunit "Automaticos Cartas";
         ESTILOLINEA: Text;
         CODTRANS: Code[20];
         TextoColores: Code[20];

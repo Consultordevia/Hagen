@@ -252,7 +252,7 @@ XmlPort 50000 "Importa Descuentos Padre"
         peso1: Decimal;
         tariff: Code[20];
         igicc: Code[20];
-        /////- CUADAIA: Codeunit UnknownCodeunit50010;
+        CUADAIA: Codeunit "Automaticos Cartas";
         RecItem22: Record Item;
         SalesLineDiscountPadre: Record "Sales Line Discount Padre";
         MINIMO: Decimal;

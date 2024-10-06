@@ -205,6 +205,9 @@ codeunit 50999 FicherosHagen
         JsonToken: JsonToken;
         streamText: Text;
         TotalstreamText: Text;
+        Rec83: Record "Item Journal Line";
+        CURegMov: Codeunit "Item Jnl.-Post Batch";
+
     begin
         //COMMIT;
         IF parFilePath = '' THEN EXIT;
@@ -290,6 +293,23 @@ codeunit 50999 FicherosHagen
                     if Tipo = Tipo::LEROYMERLIN then begin
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS Leroy Merl", InStream);
                     end;
+                    if Tipo = Tipo::TRSTOMOV then begin
+                        ///Error();CopyStr(NOM,1,8)='TRSTOMOV' then begin
+                        Message('%1', FileText);
+                        /*
+                        Xmlport.Import(Xmlport::"ADAIA_Alta del TRSTOMOV", InStream);
+                        Rec83.Reset;
+                        Rec83.SetRange(Rec83."Journal Template Name", 'ELEMENTO');
+                        Rec83.SetRange(Rec83."Journal Batch Name", 'ADAIA');
+                        if Rec83.FindFirst then begin
+                            CURegMov.Run(Rec83);
+                        end;
+*/
+
+                    end;
+
+
+
 
                 end;
             end;
