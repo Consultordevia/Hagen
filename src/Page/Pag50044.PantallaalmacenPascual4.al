@@ -349,8 +349,8 @@ Page 50044 "Pantalla almacen Pascual4"
                     begin
 
 
-                        /////-Clear(Automaticosvarios);
-                        /////-Automaticosvarios.Imprimeetiqueta;
+                        Clear(Automaticosvarios);
+                        Automaticosvarios.Imprimeetiqueta;
                     end;
                 }
                 action("Eti. ADAIA")
@@ -372,9 +372,9 @@ Page 50044 "Pantalla almacen Pascual4"
                         SalesHeader32.SetRange(SalesHeader32."Document Type", Rec."Document Type");
                         SalesHeader32.SetRange(SalesHeader32."No.", Rec."No.");
                         if SalesHeader32.FindSet then begin
-                            /////-Clear(RepETAD);
-                            /////-RepETAD.SetTableview(SalesHeader32);
-                            /////-RepETAD.RunModal;
+                            Clear(RepETAD);
+                            RepETAD.SetTableview(SalesHeader32);
+                            RepETAD.RunModal;
                         end;
                         if Rec."Marcar para agrupar" then begin
                             SalesHeader3.Reset;
@@ -387,9 +387,9 @@ Page 50044 "Pantalla almacen Pascual4"
                                     SalesHeader22.SetRange(SalesHeader22."Document Type", SalesHeader3."Document Type");
                                     SalesHeader22.SetRange(SalesHeader22."No.", SalesHeader3."No.");
                                     if SalesHeader22.FindSet then begin
-                                        /////-Clear(EtiAgrppeque);
-                                        /////-EtiAgrppeque.SetTableview(SalesHeader22);
-                                        /////-EtiAgrppeque.RunModal;
+                                        Clear(EtiAgrppeque);
+                                        EtiAgrppeque.SetTableview(SalesHeader22);
+                                        EtiAgrppeque.RunModal;
                                     end;
 
                                 until SalesHeader3.Next = 0;
@@ -428,9 +428,9 @@ Page 50044 "Pantalla almacen Pascual4"
                         SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
                         SalesHeader3.SetRange(SalesHeader3."No.", Rec."No.");
                         if SalesHeader3.FindSet then begin
-                            /////-Clear(ETIenvioagrupadoresumen);
-                            /////-ETIenvioagrupadoresumen.SetTableview(SalesHeader3);
-                            /////-ETIenvioagrupadoresumen.RunModal;
+                            Clear(ETIenvioagrupadoresumen);
+                            ETIenvioagrupadoresumen.SetTableview(SalesHeader3);
+                            ETIenvioagrupadoresumen.RunModal;
                         end;
                     end;
                 }
@@ -451,9 +451,9 @@ Page 50044 "Pantalla almacen Pascual4"
                         SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
                         SalesHeader3.SetRange(SalesHeader3."Nº expedición", Rec."Nº expedición");
                         if SalesHeader3.FindSet then begin
-                            /////-Clear(ETIenvioagrupadod);
-                            /////-ETIenvioagrupadod.SetTableview(SalesHeader3);
-                            /////-ETIenvioagrupadod.RunModal;
+                            Clear(ETIenvioagrupadod);
+                            ETIenvioagrupadod.SetTableview(SalesHeader3);
+                            ETIenvioagrupadod.RunModal;
                         end;
                     end;
                 }
@@ -474,9 +474,9 @@ Page 50044 "Pantalla almacen Pascual4"
                         SalesLine.SetRange("Document Type", 1);
                         SalesLine.SetRange("Nº expedición", Rec."Nº expedición");
                         if SalesLine.FindSet then begin
-                            /////-Clear(LineaspedidoAMAZON);
-                            /////-LineaspedidoAMAZON.SetTableview(SalesLine);
-                            /////-LineaspedidoAMAZON.RunModal;
+                            Clear(LineaspedidoAMAZON);
+                            LineaspedidoAMAZON.SetTableview(SalesLine);
+                            LineaspedidoAMAZON.RunModal;
                         end;
                     end;
                 }
@@ -502,7 +502,7 @@ Page 50044 "Pantalla almacen Pascual4"
         if Customer.Get(Rec."Sell-to Customer No.") then begin
         end;
 
-        ///// TOTALPedido:=COUNT;
+        TOTALPedido := Rec.COUNT;
 
 
         TLinea := 0;
@@ -678,10 +678,10 @@ Page 50044 "Pantalla almacen Pascual4"
         SalesHeader35: Record "Sales Header";
         RepETAD: Report "ETI. envio";
         RepDropShi: Report "Etiqueta DROPSHIPPING";
-        /////- EtiAgrppeque: Report UnknownReport50025;
+        EtiAgrppeque: Report "ETI. envio agrupado";
         Multitabla: Record Multitabla;
         ExtendedTextHeader: Record "Extended Text Header";
-        /////- RepEti: Report UnknownReport50054;
+        RepEti: Report "ETI. PORTUGES";
         Item: Record Item;
         X: Integer;
         AutomaticosAdaia: Codeunit "Automaticos Cartas";
@@ -706,13 +706,13 @@ Page 50044 "Pantalla almacen Pascual4"
         Tipocajaporpedido: Page "Tipo caja por pedido";
         EXPEDROP: Code[10];
         NoSeriesManagement: Codeunit NoSeriesManagement;
-        /////- ETIenvioagrupadoresumen: Report UnknownReport50046;
-        /////- ETIenvioagrupadod: Report UnknownReport50050;
+        ETIenvioagrupadoresumen: Report "ETI. envio agrupado resumen";
+        ETIenvioagrupadod: Report "ETI. envio agrupado d";
         cajas7: Integer;
         cajas8: Integer;
         cajas9: Integer;
         cajas10: Integer;
-        /////- LineaspedidoAMAZON: Report UnknownReport50104;
+        LineaspedidoAMAZON: Report "Lineas pedido AMAZON";
         SalesLine33: Record "Sales Line";
         npedi: Code[20];
 
@@ -955,8 +955,8 @@ Page 50044 "Pantalla almacen Pascual4"
         SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
         SalesHeader3.SetRange(SalesHeader3."Nº expedición", NPEDIDO);
         if SalesHeader3.FindFirst then begin
-            /////-Clear(AutomaticosAdaia);
-            /////-AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);
+            Clear(AutomaticosAdaia);
+            AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);
 
         end;
 
@@ -967,7 +967,7 @@ Page 50044 "Pantalla almacen Pascual4"
         SalesHeader35.SetRange(SalesHeader35."No.", Rec."No.");
         if SalesHeader35.FindFirst then begin
             if CopyStr(SalesHeader35."No.", 3, 3) <> 'WEB' then begin
-                /////-AutomaticosAdaia.ENVIAREMAILPARAPREPARAR(SalesHeader35);
+                AutomaticosAdaia.ENVIAREMAILPARAPREPARAR(SalesHeader35);
             end;
         end;
 
@@ -1010,9 +1010,9 @@ Page 50044 "Pantalla almacen Pascual4"
         SalesHeader32.SetRange(SalesHeader32."Document Type", Rec."Document Type");
         SalesHeader32.SetRange(SalesHeader32."No.", Rec."No.");
         if SalesHeader32.FindSet then begin
-            /////- Clear(RepETAD);
-            /////- RepETAD.SetTableview(SalesHeader32);
-            /////- RepETAD.RunModal;
+            Clear(RepETAD);
+            RepETAD.SetTableview(SalesHeader32);
+            RepETAD.RunModal;
         end;
         if Rec."Marcar para agrupar" then begin
             /*
@@ -1038,9 +1038,9 @@ Page 50044 "Pantalla almacen Pascual4"
             SalesHeader3.SetRange(SalesHeader3."No.", Rec."No.");
             if SalesHeader3.FindSet then begin
                 if SalesHeader3.Dropshipping = true then begin
-                    /////- Clear(ETIenvioagrupadoresumen);
-                    /////- ETIenvioagrupadoresumen.SetTableview(SalesHeader3);
-                    /////- ETIenvioagrupadoresumen.RunModal;
+                    Clear(ETIenvioagrupadoresumen);
+                    ETIenvioagrupadoresumen.SetTableview(SalesHeader3);
+                    ETIenvioagrupadoresumen.RunModal;
                 end;
             end;
 
@@ -1050,9 +1050,9 @@ Page 50044 "Pantalla almacen Pascual4"
             SalesHeader3.SetRange(SalesHeader3."Nº expedición", NPEDIDO);
             if SalesHeader3.FindSet then begin
                 if SalesHeader3.Dropshipping = true then begin
-                    /////- Clear(ETIenvioagrupadod);
-                    /////- ETIenvioagrupadod.SetTableview(SalesHeader3);
-                    /////- ETIenvioagrupadod.RunModal;
+                    Clear(ETIenvioagrupadod);
+                    ETIenvioagrupadod.SetTableview(SalesHeader3);
+                    ETIenvioagrupadod.RunModal;
                 end;
             end;
         end;
@@ -1084,13 +1084,14 @@ Page 50044 "Pantalla almacen Pascual4"
                                     repeat
                                         X := X + 1;
                                         ExtendedTextHeader.Reset;
-                                        /////- ExtendedTextHeader.SetRange(ExtendedTextHeader."Table Name",ExtendedTextHeader."table name"::Etiquetas);
+                                        ExtendedTextHeader.SetRange(ExtendedTextHeader."Table Name", ExtendedTextHeader."table name"::Item);
+                                        ExtendedTextHeader.SetRange(ExtendedTextHeader.TableName2, ExtendedTextHeader.tablename2::Etiquetas);
                                         ExtendedTextHeader.SetRange(ExtendedTextHeader."No.", SalesLine."No.");
                                         if ExtendedTextHeader.FindFirst then begin
-                                            /////- Clear(RepEti);
-                                            /////- RepEti.NEXPE(NPEDIDO);
-                                            /////- RepEti.SetTableview(ExtendedTextHeader);
-                                            /////- RepEti.RunModal;
+                                            Clear(RepEti);
+                                            RepEti.NEXPE(NPEDIDO);
+                                            RepEti.SetTableview(ExtendedTextHeader);
+                                            RepEti.RunModal;
                                         end;
                                     until X = SalesLine."Outstanding Quantity";
                                 end;

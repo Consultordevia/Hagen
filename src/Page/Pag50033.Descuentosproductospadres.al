@@ -163,15 +163,15 @@ Page 50033 "Descuentos productos padres"
                 trigger OnAction()
                 begin
 
-                    /////-Clear(ImportaDescuentosPadre);
-                    /////-ImportaDescuentosPadre.Run;
+                    Clear(ImportaDescuentosPadre);
+                    ImportaDescuentosPadre.Run;
                 end;
             }
         }
     }
 
     var
-    /////-Automaticos: Codeunit UnknownCodeunit50001;
-    /////-ImportaDescuentosPadre: XmlPort UnknownXmlPort50000;
+        Automaticos: Codeunit Automaticos;
+        ImportaDescuentosPadre: XmlPort "Importa Descuentos Padre";
 
 }

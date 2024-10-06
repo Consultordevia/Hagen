@@ -150,7 +150,7 @@ Page 50026 "Albaranes dia"
 
                     trigger OnAction()
                     begin
-                        /////-ShowDimensions;
+                        Rec.ShowDimensions;
                     end;
                 }
                 action(CertificateOfSupplyDetails)
@@ -254,7 +254,7 @@ Page 50026 "Albaranes dia"
                             Rec110.Reset;
                             Rec110.SetRange(Rec110."No.", Rec."No.");
                             if Rec110.FindFirst then begin
-                                /////-AutomaticosAdaia.ETISTD(Rec110);
+                                AutomaticosAdaia.ETISTD(Rec110);
                             end;
                         end;
                     end;

@@ -926,7 +926,6 @@ Page 50032 "Pantalla Almacen"
         ReportPrint: Codeunit "Test Report-Print";
         UserMgt: Codeunit "User Setup Management";
         Usage: Option "Order Confirmation","Work Order","Pick Instruction";
-        [InDataSet]
         JobQueueActive: Boolean;
         OpenApprovalEntriesExist: Boolean;
         CRMIntegrationEnabled: Boolean;
@@ -968,10 +967,10 @@ Page 50032 "Pantalla Almacen"
         SalesHeader35: Record "Sales Header";
         RepETAD: Report "ETI. envio";
         RepDropShi: Report "Etiqueta DROPSHIPPING";
-        /////-EtiAgrppeque: Report UnknownReport50025;
+        EtiAgrppeque: Report "Etiqueta DROPSHIPPING";
         Multitabla: Record Multitabla;
         ExtendedTextHeader: Record "Extended Text Header";
-        /////-RepEti: Report UnknownReport50054;
+        RepEti: Report "ETI. PORTUGES";
         Item: Record Item;
         X: Integer;
         AutomaticosAdaia: Codeunit "Automaticos Cartas";
@@ -1227,8 +1226,8 @@ Page 50032 "Pantalla Almacen"
         SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
         SalesHeader3.SetRange(SalesHeader3."Nº expedición", NPEDIDO);
         if SalesHeader3.FindFirst then begin
-            /////-Clear(AutomaticosAdaia);
-            /////-AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);
+            Clear(AutomaticosAdaia);
+            AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);
 
         end;
 
@@ -1239,7 +1238,7 @@ Page 50032 "Pantalla Almacen"
         SalesHeader35.SetRange(SalesHeader35."No.", Rec."No.");
         if SalesHeader35.FindFirst then begin
             if CopyStr(SalesHeader35."No.", 3, 3) <> 'WEB' then begin
-                /////-AutomaticosAdaia.ENVIAREMAILPARAPREPARAR(SalesHeader35);
+                AutomaticosAdaia.ENVIAREMAILPARAPREPARAR(SalesHeader35);
             end;
         end;
 
@@ -1283,9 +1282,9 @@ Page 50032 "Pantalla Almacen"
         SalesHeader32.SetRange(SalesHeader32."Document Type", Rec."Document Type");
         SalesHeader32.SetRange(SalesHeader32."No.", Rec."No.");
         if SalesHeader32.FindSet then begin
-            /////-Clear(RepETAD);
-            /////-RepETAD.SetTableview(SalesHeader32);
-            /////-RepETAD.RunModal;
+            Clear(RepETAD);
+            RepETAD.SetTableview(SalesHeader32);
+            RepETAD.RunModal;
         end;
         if Rec."Marcar para agrupar" then begin
             SalesHeader3.Reset;
@@ -1298,9 +1297,9 @@ Page 50032 "Pantalla Almacen"
                     SalesHeader22.SetRange(SalesHeader22."Document Type", SalesHeader3."Document Type");
                     SalesHeader22.SetRange(SalesHeader22."No.", SalesHeader3."No.");
                     if SalesHeader22.FindSet then begin
-                        /////-Clear(EtiAgrppeque);
-                        /////-EtiAgrppeque.SetTableview(SalesHeader22);
-                        /////-EtiAgrppeque.RunModal;
+                        Clear(EtiAgrppeque);
+                        EtiAgrppeque.SetTableview(SalesHeader22);
+                        EtiAgrppeque.RunModal;
                     end;
 
                 until SalesHeader3.Next = 0;
@@ -1334,13 +1333,14 @@ Page 50032 "Pantalla Almacen"
                                     repeat
                                         X := X + 1;
                                         ExtendedTextHeader.Reset;
-                                        /////-ExtendedTextHeader.SetRange(ExtendedTextHeader."Table Name", ExtendedTextHeader."table name"::'Etiquetas');
+                                        ExtendedTextHeader.SetRange(ExtendedTextHeader."Table Name", ExtendedTextHeader."table name"::Item);
+                                        ExtendedTextHeader.SetRange(ExtendedTextHeader.TableName2, ExtendedTextHeader.tablename2::Etiquetas);
                                         ExtendedTextHeader.SetRange(ExtendedTextHeader."No.", SalesLine."No.");
                                         if ExtendedTextHeader.FindFirst then begin
-                                            /////-Clear(RepEti);
-                                            /////-RepEti.NEXPE("Nº expedición");
-                                            /////-RepEti.SetTableview(ExtendedTextHeader);
-                                            /////-RepEti.RunModal;
+                                            Clear(RepEti);
+                                            RepEti.NEXPE(Rec."Nº expedición");
+                                            RepEti.SetTableview(ExtendedTextHeader);
+                                            RepEti.RunModal;
                                         end;
                                     until X = SalesLine."Outstanding Quantity";
                                 end;

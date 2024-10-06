@@ -36,6 +36,7 @@ table 50051 TablaCajas
         field(8; "Stock"; Decimal)
         {
             Caption = 'Stock"';
+            DecimalPlaces = 0 : 0;
         }
         field(9; "Unidades venta"; Decimal)
         {
