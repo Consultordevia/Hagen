@@ -760,11 +760,11 @@ Report 50063 "OK Nueva Factura Venta"
                             AutoFormatExpression = "Sales Invoice Header"."Currency Code";
                             AutoFormatType = 1;
                         }
-                        column(VATAmtLineInvDiscountAmt; VATAmountLine."Invoice Discount Amount" + VATAmountLine."Pmt. Disc. Given Amount")
-                        {
-                            AutoFormatExpression = "Sales Invoice Header"."Currency Code";
-                            AutoFormatType = 1;
-                        }
+                        ///column(VATAmtLineInvDiscountAmt; VATAmountLine."Invoice Discount Amount" + VATAmountLine."Pmt. Disc. Given Amount")
+                        ///{
+                        ///AutoFormatExpression = "Sales Invoice Header"."Currency Code";
+                        ///AutoFormatType = 1;
+                        ///}
                         column(VATAmtLineECAmount; VATAmountLine."EC Amount")
                         {
                             AutoFormatExpression = "Sales Invoice Header"."Currency Code";
