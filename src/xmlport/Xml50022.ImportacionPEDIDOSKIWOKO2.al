@@ -207,7 +207,7 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
         RecCV2: Record "Sales Header";
         SalesSetup: Record "Sales & Receivables Setup";
         Rec91: Record "User Setup";
-        /////- RepRepo: Report UnknownReport50019;
+
         RecLCV: Record "Sales Comment Line";
         SUPRA: Code[20];
         RecProd: Record Item;
@@ -379,8 +379,8 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
                     end;
                 end else begin
                     RecRefCruz.Reset;
-                    /////- RecRefCruz.SetCurrentkey(RecRefCruz."Cross-Reference No.");
-                    /////- RecRefCruz.SetRange(RecRefCruz."Cross-Reference No.",D10);
+                    RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
+                    RecRefCruz.SetRange(RecRefCruz."Reference No.", D10);
                     if RecRefCruz.FindFirst then begin
                         ref := RecRefCruz."Item No.";
                         if RecProd.Get(ref) then begin

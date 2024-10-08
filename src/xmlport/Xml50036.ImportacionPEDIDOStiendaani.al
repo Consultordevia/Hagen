@@ -423,7 +423,7 @@ XmlPort 50036 "Importacion PEDIDOS tienda ani"
         RecCV2: Record "Sales Header";
         SalesSetup: Record "Sales & Receivables Setup";
         Rec91: Record "User Setup";
-        /////- RepRepo: Report UnknownReport50019;
+
         RecLCV: Record "Sales Comment Line";
         SUPRA: Code[20];
         RecProd: Record Item;
@@ -441,7 +441,6 @@ XmlPort 50036 "Importacion PEDIDOS tienda ani"
         asunto: Text[250];
         codcli: Code[10];
         UserSetup: Record "User Setup";
-        /////- smtp: Codeunit UnknownCodeunit400;
         codcliente: Code[20];
         codpedido: Code[20];
         CANTitrans: Decimal;
@@ -675,8 +674,8 @@ XmlPort 50036 "Importacion PEDIDOS tienda ani"
                         end;
                     end else begin
                         RecRefCruz.Reset;
-                        /////- RecRefCruz.SetCurrentkey(RecRefCruz."Cross-Reference No.");
-                        /////- RecRefCruz.SetRange(RecRefCruz."Cross-Reference No.",D11);
+                        RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
+                        RecRefCruz.SetRange(RecRefCruz."Reference No.", D11);
                         if RecRefCruz.FindFirst then begin
                             ref := RecRefCruz."Item No.";
                             if RecProd.Get(ref) then begin
@@ -754,7 +753,7 @@ XmlPort 50036 "Importacion PEDIDOS tienda ani"
         lin := 0;
         SalesLineDiscount.Reset;
         SalesLineDiscount.SetRange(SalesLineDiscount."Sales Code", clie);
-        /////- SalesLineDiscount.SetRange(SalesLineDiscount."Sales Type",SalesLineDiscount."sales type"::'Regalo');
+        /////-SalesLineDiscount.SetRange(SalesLineDiscount."Sales Type",SalesLineDiscount."sales type"::'Regalo');
         if SalesLineDiscount.FindFirst then
             repeat
                 if (SalesLineDiscount."Starting Date" <> 0D) and (SalesLineDiscount."Ending Date" <> 0D) then begin

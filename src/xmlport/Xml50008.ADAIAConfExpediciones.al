@@ -580,8 +580,8 @@ XmlPort 50008 "ADAIA_Conf. Expediciones"
                 ///RecCV.MODIFY;
                 Clear(ReleaseSalesDoc);
                 ReleaseSalesDoc.Run(RecCV);
-            ///CODEUNIT.RUN(CODEUNIT::"Sales-Post",RecCV);
-            /////- CodeCV.REGISTRAEXPE(RecCV);
+                ///CODEUNIT.RUN(CODEUNIT::"Sales-Post",RecCV);
+                CodeCV.REGISTRAEXPE(RecCV);
             until RecCV.Next = 0;
 
         /*
@@ -615,30 +615,30 @@ XmlPort 50008 "ADAIA_Conf. Expediciones"
                         if Rec1102."Nº Palets" = 0 then begin
                             if RecTra.Get(Rec1102."Shipping Agent Code") then begin
                                 if RecTra."Fichero estandar" = true then begin
-                                    /////- CUEXP.ETISTD(Rec1102);
+                                    CUEXP.ETISTD(Rec1102);
                                 end;
                                 if RecTra."Fichero estandar" = false then begin
                                     if Rec1102."Shipping Agent Code" = 'DHL' then begin
-                                        /////- CUEXP.EtiDHL2NUEVA(Rec1102);
+                                        CUEXP.EtiDHL2NUEVA(Rec1102);
                                     end;
                                     if Rec1102."Shipping Agent Code" = 'TIPSA' then begin
-                                        /////- CUEXP.Etitipsa2NUEVA(Rec1102);
+                                        CUEXP.Etitipsa2NUEVA(Rec1102);
                                     end;
                                     if Rec1102."Shipping Agent Code" = 'CORR' then begin
-                                        /////- CUEXP.EtiCORRa2NUEVA(Rec1102);
+                                        CUEXP.EtiCORRa2NUEVA(Rec1102);
                                     end;
                                     if Rec1102."Shipping Agent Code" = 'CRON' then begin
-                                        /////- CUEXP.EtiCRON2NUEVA(Rec1102);
+                                        CUEXP.EtiCRON2NUEVA(Rec1102);
                                     end;
                                     if Rec1102."Shipping Agent Code" = 'SEUR' then begin
-                                        /////- CUEXP.EtiSEURNUEVA(Rec1102);
+                                        CUEXP.EtiSEURNUEVA(Rec1102);
                                     end;
                                     if Rec1102."Shipping Agent Code" = 'TNT' then begin
-                                        /////- CUEXP.EtiTNT2NUEVA(Rec1102);
+                                        CUEXP.EtiTNT2NUEVA(Rec1102);
                                     end;
                                 end;
                                 if Rec1102."Shipping Agent Code" = 'ECI' then begin
-                                    /////- CUEXP.ETIECI(Rec1102);
+                                    CUEXP.ETIECI(Rec1102);
                                 end;
                             end;
                         end;

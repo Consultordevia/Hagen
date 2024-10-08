@@ -448,7 +448,7 @@ XmlPort 50031 "Importacion PEDLIN ECI EDICOM"
         RecCV2: Record "Sales Header";
         SalesSetup: Record "Sales & Receivables Setup";
         Rec91: Record "User Setup";
-        /////- RepRepo: Report UnknownReport50019;
+
         RecLCV: Record "Sales Comment Line";
         SUPRA: Code[20];
         RecProd: Record Item;
@@ -542,8 +542,8 @@ XmlPort 50031 "Importacion PEDLIN ECI EDICOM"
             end;
             if D3 <> '' then begin
                 RecRefCruz.Reset;
-                /////- RecRefCruz.SetCurrentkey(RecRefCruz."Cross-Reference No.");
-                /////- RecRefCruz.SetRange(RecRefCruz."Cross-Reference No.",D3);
+                RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
+                RecRefCruz.SetRange(RecRefCruz."Reference No.", D3);
                 if RecRefCruz.FindFirst then begin
                     ref := RecRefCruz."Item No.";
                     if RecProd.Get(ref) then begin

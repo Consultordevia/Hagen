@@ -104,6 +104,9 @@ rLS9tm5fZuq5tFW2g/iFEr3Z9DuZeHcqufV+/j8=
         <Field Name="Silla__FORMAT_TODAY_0_4">
           <DataField>Silla__FORMAT_TODAY_0_4</DataField>
         </Field>
+        <Field Name="Pagina_FORMAT_ReportForNavPageNo">
+          <DataField>Pagina_FORMAT_ReportForNavPageNo</DataField>
+        </Field>
         <Field Name="TxtFooter2">
           <DataField>TxtFooter2</DataField>
         </Field>

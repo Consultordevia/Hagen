@@ -173,7 +173,6 @@ XmlPort 50002 "Importa Descuentos"
         RecCV2: Record "Purchase Header";
         SalesSetup: Record "Sales & Receivables Setup";
         Rec91: Record "User Setup";
-        /////- RepRepo: Report UnknownReport50019;
         RecLCV: Record "Sales Comment Line";
         lineas: Integer;
         RecProd: Record Item;

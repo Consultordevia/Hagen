@@ -201,7 +201,6 @@ XmlPort 50070 "Importacion PEDIDOS KIWOKO3"
         asunto: Text[250];
         codcli: Code[10];
         UserSetup: Record "User Setup";
-        /////- smtp: Codeunit UnknownCodeunit400;
         RelacionproductogrupoMetros: Record "Relacion producto-grupo Metros";
         NoSeriesManagement: Codeunit NoSeriesManagement;
 

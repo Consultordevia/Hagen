@@ -9,7 +9,7 @@ Report 50109 "Lineas Albaran AMAZON"
         dataitem("Sales Shipment Line"; "Sales Shipment Line")
         {
             CalcFields = "Cantidad master", "Cantidad inner";
-            /////-DataItemTableView = where("Excluir del exel amazon"=const(No),Quantity=filter(>0));
+            DataItemTableView = where("Excluir del exel amazon" = const(false), Quantity = filter(> 0));
             RequestFilterFields = "Nº expedición";
             column(ReportForNavId_1000000000; 1000000000)
             {

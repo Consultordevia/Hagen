@@ -9,7 +9,7 @@ Report 50111 "Carta aviso vencidas PT"
     {
         dataitem(Customer; Customer)
         {
-            /////-DataItemTableView = sorting("No.") where("No enviar cartas contables"=const(No));
+            DataItemTableView = sorting("No.") where("No enviar cartas contables" = const(false));
             PrintOnlyIfDetail = true;
             RequestFilterFields = "No.", "Search Name", "Customer Posting Group", "Date Filter";
             column(ReportForNavId_6836; 6836)

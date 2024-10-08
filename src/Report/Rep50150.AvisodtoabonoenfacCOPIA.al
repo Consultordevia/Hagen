@@ -46,9 +46,9 @@ Report 50150 "Aviso dto. abono en fac COPIA"
             column(Silla__FORMAT_TODAY_0_4; 'Silla, ' + Format(Today, 0, 4))
             {
             }
-            /////-column(Pagina_FORMAT_ReportForNavPageNo; 'Página ' + Format(pagen  ReportForNav.PageNo))
-            /////-{
-            /////-}
+            column(Pagina_FORMAT_ReportForNavPageNo; 'Página ' + Format(page))
+            {
+            }
             column(TxtFooter2; TxtFooter2)
             {
             }

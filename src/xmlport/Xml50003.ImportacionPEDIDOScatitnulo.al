@@ -230,7 +230,6 @@ XmlPort 50003 "Importacion PEDIDOS catit nulo"
         RecCV2: Record "Sales Header";
         SalesSetup: Record "Sales & Receivables Setup";
         Rec91: Record "User Setup";
-        /////- RepRepo: Report UnknownReport50019;
         RecLCV: Record "Sales Comment Line";
         SUPRA: Code[20];
         RecProd: Record Item;

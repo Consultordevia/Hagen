@@ -233,7 +233,8 @@ Report 50289 "Carta 347 clientes"
     local procedure OnPreSectionCustomer_GroupHeader3(var Customer: Record Customer);
     begin
         with Customer do begin
-            /////-ReportForNav.ShowOutput := FooterPrinted;
+            /////-Report.ShowOutput := FooterPrinted;
+
             FooterPrinted := false;
         end;
     end;

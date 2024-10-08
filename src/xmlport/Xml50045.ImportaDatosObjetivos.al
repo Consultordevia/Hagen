@@ -164,7 +164,6 @@ XmlPort 50045 "Importa Datos Objetivos"
         RecCV2: Record "Purchase Header";
         SalesSetup: Record "Sales & Receivables Setup";
         Rec91: Record "User Setup";
-        /////- RepRepo: Report UnknownReport50019;
         RecLCV: Record "Sales Comment Line";
         lineas: Integer;
         RecProd: Record Item;
