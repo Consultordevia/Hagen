@@ -309,8 +309,8 @@ XmlPort 50044 "Importacion PEDIDOS VARIOS"
                 end;
                 if not RecProd.Get(D2) then begin
                     RecRefCruz.Reset;
-                    /////- RecRefCruz.SetCurrentkey(RecRefCruz."Cross-Reference No.");
-                    /////- RecRefCruz.SetRange(RecRefCruz."Cross-Reference No.",D2);
+                    RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
+                    RecRefCruz.SetRange(RecRefCruz."Reference No.", D2);
                     if RecRefCruz.FindFirst then begin
                         D2 := RecRefCruz."Item No.";
                         if RecProd.Get(D2) then begin

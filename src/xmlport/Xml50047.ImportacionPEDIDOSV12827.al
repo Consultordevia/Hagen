@@ -353,8 +353,8 @@ XmlPort 50047 "Importacion PEDIDOS V-12827"
                 end;
                 if not RecProd.Get(D13) then begin
                     RecRefCruz.Reset;
-                    /////- RecRefCruz.SetCurrentkey(RecRefCruz."Cross-Reference No.");
-                    /////- RecRefCruz.SetRange(RecRefCruz."Cross-Reference No.",D13);
+                    RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
+                    RecRefCruz.SetRange(RecRefCruz."Reference No.", D13);
                     if RecRefCruz.FindFirst then begin
                         D13 := RecRefCruz."Item No.";
                         if RecProd.Get(D13) then begin
