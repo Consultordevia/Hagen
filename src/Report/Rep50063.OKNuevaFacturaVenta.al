@@ -646,7 +646,7 @@ Report 50063 "OK Nueva Factura Venta"
                                 VATAmountLine."VAT Base" := "Sales Invoice Line".Amount;
                                 VATAmountLine."Amount Including VAT" := "Sales Invoice Line"."Amount Including VAT";
                                 VATAmountLine."Line Amount" := "Line Amount";
-                                /////-VATAmountLine."Pmt. Disc. Given Amount" := "Pmt. Disc. Given Amount";
+                                -VATAmountLine."Pmt. Discount Amount" := "Pmt. Discount Amount";
                                 if "Allow Invoice Disc." then
                                     VATAmountLine."Inv. Disc. Base Amount" := "Line Amount";
                                 VATAmountLine."Invoice Discount Amount" := "Inv. Discount Amount";
@@ -663,8 +663,8 @@ Report 50063 "OK Nueva Factura Venta"
                                 TotalAmount += Amount;
                                 TotalAmountVAT += "Amount Including VAT" - Amount;
                                 TotalAmountInclVAT += "Amount Including VAT";
-                                /////-TotalGivenAmount -= "Pmt. Disc. Given Amount";
-                                /////-TotalPaymentDiscountOnVAT += -("Line Amount" - "Inv. Discount Amount" - "Pmt. Disc. Given Amount" - "Amount Including VAT");
+                                TotalGivenAmount -= "Pmt. Discount Amount";
+                                TotalPaymentDiscountOnVAT += -("Line Amount" - "Inv. Discount Amount" - "Pmt. Discount Amount" - "Amount Including VAT");
                             end;
 
 
@@ -731,7 +731,7 @@ Report 50063 "OK Nueva Factura Venta"
                                 CurrReport.Break;
                             LineNoWithTotal := "Line No.";
                             SetRange("Line No.", 0, "Line No.");
-                            /////-CurrReport.CreateTotals("Line Amount",Amount,"Amount Including VAT","Inv. Discount Amount","Pmt. Disc. Given Amount");
+                            CurrReport.CreateTotals("Line Amount", Amount, "Amount Including VAT", "Inv. Discount Amount", "Pmt. Discount Amount");
                         end;
                     }
                     dataitem(VATCounter; "Integer")
@@ -760,11 +760,11 @@ Report 50063 "OK Nueva Factura Venta"
                             AutoFormatExpression = "Sales Invoice Header"."Currency Code";
                             AutoFormatType = 1;
                         }
-                        ///column(VATAmtLineInvDiscountAmt; VATAmountLine."Invoice Discount Amount" + VATAmountLine."Pmt. Disc. Given Amount")
-                        ///{
-                        ///AutoFormatExpression = "Sales Invoice Header"."Currency Code";
-                        ///AutoFormatType = 1;
-                        ///}
+                        column(VATAmtLineInvDiscountAmt; VATAmountLine."Invoice Discount Amount" + VATAmountLine."Pmt. Discount Amount")
+                        {
+                            AutoFormatExpression = "Sales Invoice Header"."Currency Code";
+                            AutoFormatType = 1;
+                        }
                         column(VATAmtLineECAmount; VATAmountLine."EC Amount")
                         {
                             AutoFormatExpression = "Sales Invoice Header"."Currency Code";
@@ -828,10 +828,10 @@ Report 50063 "OK Nueva Factura Venta"
                         trigger OnPreDataItem()
                         begin
                             SetRange(Number, 1, VATAmountLine.Count);
-                            /////-CurrReport.CreateTotals(
-                            /////-VATAmountLine."Line Amount",VATAmountLine."Inv. Disc. Base Amount",
-                            /////-VATAmountLine."Invoice Discount Amount",VATAmountLine."VAT Base",VATAmountLine."VAT Amount",
-                            /////-VATAmountLine."EC Amount",VATAmountLine."Pmt. Disc. Given Amount");
+                            CurrReport.CreateTotals(
+                            VATAmountLine."Line Amount", VATAmountLine."Inv. Disc. Base Amount",
+                            VATAmountLine."Invoice Discount Amount", VATAmountLine."VAT Base", VATAmountLine."VAT Amount",
+                            VATAmountLine."EC Amount", VATAmountLine."Pmt. Discount Amount");
                         end;
                     }
                     dataitem(VATClauseEntryCounter; "Integer")

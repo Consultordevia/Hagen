@@ -9952,6 +9952,12 @@ QgghhBBCCCGEEEIIIYQQQgghhBBCCCl2KGYjhBBCCCGEEEIIIYQQQgghhBBCCCGEEFLsUMxGCCGEEEII
         <Field Name="VATAmtLineInvDiscBaseAmtFormat">
           <DataField>VATAmtLineInvDiscBaseAmtFormat</DataField>
         </Field>
+        <Field Name="VATAmtLineInvDiscountAmt">
+          <DataField>VATAmtLineInvDiscountAmt</DataField>
+        </Field>
+        <Field Name="VATAmtLineInvDiscountAmtFormat">
+          <DataField>VATAmtLineInvDiscountAmtFormat</DataField>
+        </Field>
         <Field Name="VATAmtLineECAmount">
           <DataField>VATAmtLineECAmount</DataField>
         </Field>

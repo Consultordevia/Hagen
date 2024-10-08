@@ -229,11 +229,7 @@ page 50023 TablaCajas
             RecTC."NombreUtem Categoria":=NombreItemCategoria;
             
             RecTC."Precio unitario":=RecSP."Unit Price";
-            RecBom.Reset();;
-            RecBom.SetRange("No.",RecSP."Item No.");
-            IF RecBom.FindSet THEN BEGIN
-                RecTC."Producto padre":=RecBom."Parent Item No."; 
-            END;
+            RecTC."Producto padre":=RecItem."Producto PADRE";
             RecTC."Producto web":=RecItem."Producto web"; 
             RecTC."Proxima fecha de llegada":=RecItem."Fecha proxima recepción conten";
             RecTC.Stock:=dispo;
