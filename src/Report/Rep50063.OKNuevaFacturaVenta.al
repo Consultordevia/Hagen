@@ -646,7 +646,7 @@ Report 50063 "OK Nueva Factura Venta"
                                 VATAmountLine."VAT Base" := "Sales Invoice Line".Amount;
                                 VATAmountLine."Amount Including VAT" := "Sales Invoice Line"."Amount Including VAT";
                                 VATAmountLine."Line Amount" := "Line Amount";
-                                -VATAmountLine."Pmt. Discount Amount" := "Pmt. Discount Amount";
+                                VATAmountLine."Pmt. Discount Amount" := "Pmt. Discount Amount";
                                 if "Allow Invoice Disc." then
                                     VATAmountLine."Inv. Disc. Base Amount" := "Line Amount";
                                 VATAmountLine."Invoice Discount Amount" := "Inv. Discount Amount";
