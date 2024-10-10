@@ -132,6 +132,11 @@ page 50041 ItemListWeb
                 {
                     ApplicationArea = All;
                 }
+                field("Descripcion web"; Rec."Descripcion web")
+                {
+                    ApplicationArea = All;
+                }
+
 
             }
         }
