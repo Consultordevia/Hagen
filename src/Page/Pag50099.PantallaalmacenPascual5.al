@@ -353,14 +353,14 @@ Page 50099 "Pantalla almacen Pascual5"
                 action(asd)
                 {
                     ApplicationArea = Basic;
-                    Visible = false;
+                    Visible = true;
 
                     trigger OnAction()
                     begin
 
-
-                        /////- Clear(Automaticosvarios);
-                        /////- Automaticosvarios.Imprimeetiqueta;
+                        iMPORTANAV2018.Run();
+                        /////-Clear(Automaticosvarios);
+                        /////-Automaticosvarios.Imprimeetiqueta;
                     end;
                 }
                 action("Eti. ADAIA")
@@ -407,7 +407,8 @@ Page 50099 "Pantalla almacen Pascual5"
                         end;
                     end;
                 }
-                action("Cajas DROPSHIMENT1")
+
+                /*action("Cajas DROPSHIMENT1")
                 {
                     ApplicationArea = Basic;
                     Ellipsis = true;
@@ -422,6 +423,7 @@ Page 50099 "Pantalla almacen Pascual5"
                         CajasDrop;
                     end;
                 }
+                */
                 action("Eti. drop.agrupada")
                 {
                     ApplicationArea = Basic;
@@ -484,9 +486,9 @@ Page 50099 "Pantalla almacen Pascual5"
                         SalesLine.SetRange("Document Type", 1);
                         SalesLine.SetRange("Nº expedición", Rec."Nº expedición");
                         if SalesLine.FindSet then begin
-                            /////- Clear(LineaspedidoAMAZON);
-                            /////- LineaspedidoAMAZON.SetTableview(SalesLine);
-                            /////- LineaspedidoAMAZON.RunModal;
+                            Clear(LineaspedidoAMAZON);
+                            LineaspedidoAMAZON.SetTableview(SalesLine);
+                            LineaspedidoAMAZON.RunModal;
                         end;
                     end;
                 }
@@ -511,8 +513,8 @@ Page 50099 "Pantalla almacen Pascual5"
                     trigger OnAction()
                     begin
 
-                        /////-Clear(LineasPedidosexpedicion);
-                        /////-LineasPedidosexpedicion.Run;
+                        Clear(LineasPedidosexpedicion);
+                        LineasPedidosexpedicion.Run;
                     end;
                 }
             }
@@ -527,7 +529,7 @@ Page 50099 "Pantalla almacen Pascual5"
         if Customer.Get(Rec."Sell-to Customer No.") then begin
         end;
 
-        ///// TOTALPedido:=COUNT;
+        TOTALPedido := Rec.COUNT;
 
 
         TotalCantidad := 0;
@@ -714,7 +716,7 @@ Page 50099 "Pantalla almacen Pascual5"
         EtiAgrppeque: Report "ETI. envio agrupado";
         Multitabla: Record Multitabla;
         ExtendedTextHeader: Record "Extended Text Header";
-        /////- RepEti: Report UnknownReport50054;
+        RepEti: Report "ETI. PORTUGES";
         Item: Record Item;
         X: Integer;
         AutomaticosAdaia: Codeunit "Automaticos Cartas";
@@ -745,11 +747,14 @@ Page 50099 "Pantalla almacen Pascual5"
         cajas8: Integer;
         cajas9: Integer;
         cajas10: Integer;
-        /////- LineaspedidoAMAZON: Report UnknownReport50104;
+        LineaspedidoAMAZON: Report "Lineas Albaran AMAZON";
         SalesLine33: Record "Sales Line";
         npedi: Code[20];
-        /////- LineasPedidosexpedicion: Report UnknownReport50229;
+        LineasPedidosexpedicion: Report "Lineas albaran expedicion";
         TotalCantidad: Decimal;
+
+
+        iMPORTANAV2018: XmlPort "Importa datos nav2018";
 
     local procedure EnviaraADAIA()
     var
@@ -1014,7 +1019,7 @@ Page 50099 "Pantalla almacen Pascual5"
         SalesHeader35.SetRange(SalesHeader35."No.", Rec."No.");
         if SalesHeader35.FindFirst then begin
             if CopyStr(SalesHeader35."No.", 3, 3) <> 'WEB' then begin
-                /////- AutomaticosAdaia.ENVIAREMAILPARAPREPARAR(SalesHeader35);
+                AutomaticosAdaia.ENVIAREMAILPARAPREPARAR(SalesHeader35);
             end;
         end;
 
@@ -1057,9 +1062,9 @@ Page 50099 "Pantalla almacen Pascual5"
         SalesHeader32.SetRange(SalesHeader32."Document Type", Rec."Document Type");
         SalesHeader32.SetRange(SalesHeader32."No.", Rec."No.");
         if SalesHeader32.FindSet then begin
-            /////- Clear(RepETAD);
-            /////- RepETAD.SetTableview(SalesHeader32);
-            /////- RepETAD.RunModal;
+            Clear(RepETAD);
+            RepETAD.SetTableview(SalesHeader32);
+            RepETAD.RunModal;
         end;
         if Rec."Marcar para agrupar" then begin
             /*
@@ -1085,9 +1090,9 @@ Page 50099 "Pantalla almacen Pascual5"
             SalesHeader3.SetRange(SalesHeader3."No.", Rec."No.");
             if SalesHeader3.FindSet then begin
                 if SalesHeader3.Dropshipping = true then begin
-                    /////- Clear(ETIenvioagrupadoresumen);
-                    /////- ETIenvioagrupadoresumen.SetTableview(SalesHeader3);
-                    /////- ETIenvioagrupadoresumen.RunModal;
+                    Clear(ETIenvioagrupadoresumen);
+                    ETIenvioagrupadoresumen.SetTableview(SalesHeader3);
+                    ETIenvioagrupadoresumen.RunModal;
                 end;
             end;
 
@@ -1097,9 +1102,9 @@ Page 50099 "Pantalla almacen Pascual5"
             SalesHeader3.SetRange(SalesHeader3."Nº expedición", NPEDIDO);
             if SalesHeader3.FindSet then begin
                 if SalesHeader3.Dropshipping = true then begin
-                    /////- Clear(ETIenvioagrupadod);
-                    /////- ETIenvioagrupadod.SetTableview(SalesHeader3);
-                    /////- ETIenvioagrupadod.RunModal;
+                    Clear(ETIenvioagrupadod);
+                    ETIenvioagrupadod.SetTableview(SalesHeader3);
+                    ETIenvioagrupadod.RunModal;
                 end;
             end;
         end;
@@ -1131,13 +1136,13 @@ Page 50099 "Pantalla almacen Pascual5"
                                     repeat
                                         X := X + 1;
                                         ExtendedTextHeader.Reset;
-                                        /////- ExtendedTextHeader.SetRange(ExtendedTextHeader."Table Name",ExtendedTextHeader."table name"::Etiquetas);
+                                        ExtendedTextHeader.SetRange(ExtendedTextHeader."Table Name", ExtendedTextHeader.tablename2::Etiquetas);
                                         ExtendedTextHeader.SetRange(ExtendedTextHeader."No.", SalesLine."No.");
                                         if ExtendedTextHeader.FindFirst then begin
-                                            /////- Clear(RepEti);
-                                            /////- RepEti.NEXPE(NPEDIDO);
-                                            /////- RepEti.SetTableview(ExtendedTextHeader);
-                                            /////- RepEti.RunModal;
+                                            Clear(RepEti);
+                                            RepEti.NEXPE(NPEDIDO);
+                                            RepEti.SetTableview(ExtendedTextHeader);
+                                            RepEti.RunModal;
                                         end;
                                     until X = SalesLine."Outstanding Quantity";
                                 end;
@@ -1147,91 +1152,79 @@ Page 50099 "Pantalla almacen Pascual5"
             until Multitabla.Next = 0;
     end;
 
-    local procedure CajasDrop()
-    begin
+    /*
+        local procedure CajasDrop()
+        begin
 
 
-
-        Multitabla2.Reset;
-        Multitabla2.SetRange("Código 1", Rec."No.");
-        if not Multitabla2.FindFirst then begin
 
             Multitabla2.Reset;
             Multitabla2.SetRange("Código 1", Rec."No.");
-            if Multitabla2.FindFirst then
-                repeat
-                    Multitabla2.Delete;
-                until Multitabla2.Next = 0;
+            if not Multitabla2.FindFirst then begin
+
+                Multitabla2.Reset;
+                Multitabla2.SetRange("Código 1", Rec."No.");
+                if Multitabla2.FindFirst then
+                    repeat
+                        Multitabla2.Delete;
+                    until Multitabla2.Next = 0;
 
 
-            pesopedido := 0;
-            cajas0 := 0;
-            cajas6 := 0;
-            SalesLineTC.Reset;
-            SalesLineTC.SetRange(SalesLineTC."Document No.", Rec."No.");
-            if SalesLineTC.FindFirst then
-                repeat
-                    if Item.Get(SalesLineTC."No.") then begin
-                        if Item."Tipo preparacion" = Item."tipo preparacion"::"0-Sin Caja" then begin
-                            cajas0 := cajas0 + SalesLineTC."Quantity (Base)";
+                pesopedido := 0;
+                cajas0 := 0;
+                cajas6 := 0;
+                SalesLineTC.Reset;
+                SalesLineTC.SetRange(SalesLineTC."Document No.", Rec."No.");
+                if SalesLineTC.FindFirst then
+                    repeat
+                        if Item.Get(SalesLineTC."No.") then begin
+                            if Item."Tipo preparacion" = Item."tipo preparacion"::"0-Sin Caja" then begin
+                                cajas0 := cajas0 + SalesLineTC."Quantity (Base)";
+                            end;
+                            if Item."Tipo preparacion" = Item."tipo preparacion"::"6-Tubo" then begin
+                                cajas6 := cajas6 + SalesLineTC."Quantity (Base)";
+                            end;
+                            if (Item."Tipo preparacion" = Item."tipo preparacion"::"1-Muy pequeño") or
+                               (Item."Tipo preparacion" = Item."tipo preparacion"::"2-Pequeño") or
+                               (Item."Tipo preparacion" = Item."tipo preparacion"::"3-Mediano") or
+                               (Item."Tipo preparacion" = Item."tipo preparacion"::"4-Grande") or
+                               (Item."Tipo preparacion" = Item."tipo preparacion"::"5- Extra Grande") then begin
+                                pesopedido := pesopedido + (SalesLineTC."Quantity (Base)" * SalesLineTC."Net Weight");
+                            end;
                         end;
-                        if Item."Tipo preparacion" = Item."tipo preparacion"::"6-Tubo" then begin
-                            cajas6 := cajas6 + SalesLineTC."Quantity (Base)";
-                        end;
-                        if (Item."Tipo preparacion" = Item."tipo preparacion"::"1-Muy pequeño") or
-                           (Item."Tipo preparacion" = Item."tipo preparacion"::"2-Pequeño") or
-                           (Item."Tipo preparacion" = Item."tipo preparacion"::"3-Mediano") or
-                           (Item."Tipo preparacion" = Item."tipo preparacion"::"4-Grande") or
-                           (Item."Tipo preparacion" = Item."tipo preparacion"::"5- Extra Grande") then begin
-                            pesopedido := pesopedido + (SalesLineTC."Quantity (Base)" * SalesLineTC."Net Weight");
-                        end;
-                    end;
-                until SalesLineTC.Next = 0;
+                    until SalesLineTC.Next = 0;
 
 
 
-            textocaja := '';
-            if cajas0 <> 0 then begin
-                textocaja := textocaja + ' CJ00: ' + Format(cajas0);
-                Multitabla2.Init;
-                Multitabla2."Código 1" := Rec."No.";
-                Multitabla2."Código 2" := 'CJ00';
-                Multitabla2."Cantidad caja" := cajas0;
-                Multitabla2.Insert;
-            end;
-            if cajas6 <> 0 then begin
-                NCAJAS := cajas6 / 6;
-                NCAJAS := ROUND(NCAJAS, 1);
-                if NCAJAS = 0 then NCAJAS := 1;
-                textocaja := textocaja + ' CJT: ' + Format(NCAJAS);
-                Multitabla2.Init;
-                Multitabla2."Código 1" := Rec."No.";
-                Multitabla2."Código 2" := 'CJT';
-                Multitabla2."Cantidad caja" := cajas6;
-                Multitabla2.Insert;
-
-            end;
-
-
-            if pesopedido <> 0 then begin
-                Tipocaja.Reset;
-                Tipocaja.SetRange(Combinable, true);
-                Tipocaja.SetRange("Maximo kilos", pesopedido, 999999);
-                if Tipocaja.FindFirst then begin
-                    NCAJAS := ROUND(PESO / Tipocaja."Maximo kilos", 1);
-                    if NCAJAS = 0 then NCAJAS := 1;
-                    textocaja := textocaja + ' ' + Tipocaja."Tipo caja" + ': ' + Format(NCAJAS);
+                textocaja := '';
+                if cajas0 <> 0 then begin
+                    textocaja := textocaja + ' CJ00: ' + Format(cajas0);
                     Multitabla2.Init;
                     Multitabla2."Código 1" := Rec."No.";
-                    Multitabla2."Código 2" := Tipocaja."Tipo caja";
-                    Multitabla2."Cantidad caja" := NCAJAS;
+                    Multitabla2."Código 2" := 'CJ00';
+                    Multitabla2."Cantidad caja" := cajas0;
                     Multitabla2.Insert;
                 end;
-                if not Tipocaja.FindFirst then begin
+                if cajas6 <> 0 then begin
+                    NCAJAS := cajas6 / 6;
+                    NCAJAS := ROUND(NCAJAS, 1);
+                    if NCAJAS = 0 then NCAJAS := 1;
+                    textocaja := textocaja + ' CJT: ' + Format(NCAJAS);
+                    Multitabla2.Init;
+                    Multitabla2."Código 1" := Rec."No.";
+                    Multitabla2."Código 2" := 'CJT';
+                    Multitabla2."Cantidad caja" := cajas6;
+                    Multitabla2.Insert;
+
+                end;
+
+
+                if pesopedido <> 0 then begin
                     Tipocaja.Reset;
                     Tipocaja.SetRange(Combinable, true);
-                    if Tipocaja.FindLast then begin
-                        NCAJAS := ROUND(pesopedido / 10, 1);
+                    Tipocaja.SetRange("Maximo kilos", pesopedido, 999999);
+                    if Tipocaja.FindFirst then begin
+                        NCAJAS := ROUND(PESO / Tipocaja."Maximo kilos", 1);
                         if NCAJAS = 0 then NCAJAS := 1;
                         textocaja := textocaja + ' ' + Tipocaja."Tipo caja" + ': ' + Format(NCAJAS);
                         Multitabla2.Init;
@@ -1239,21 +1232,35 @@ Page 50099 "Pantalla almacen Pascual5"
                         Multitabla2."Código 2" := Tipocaja."Tipo caja";
                         Multitabla2."Cantidad caja" := NCAJAS;
                         Multitabla2.Insert;
+                    end;
+                    if not Tipocaja.FindFirst then begin
+                        Tipocaja.Reset;
+                        Tipocaja.SetRange(Combinable, true);
+                        if Tipocaja.FindLast then begin
+                            NCAJAS := ROUND(pesopedido / 10, 1);
+                            if NCAJAS = 0 then NCAJAS := 1;
+                            textocaja := textocaja + ' ' + Tipocaja."Tipo caja" + ': ' + Format(NCAJAS);
+                            Multitabla2.Init;
+                            Multitabla2."Código 1" := Rec."No.";
+                            Multitabla2."Código 2" := Tipocaja."Tipo caja";
+                            Multitabla2."Cantidad caja" := NCAJAS;
+                            Multitabla2.Insert;
 
+                        end;
                     end;
                 end;
             end;
-        end;
-        Commit;
+            Commit;
 
-        Multitabla2.Reset;
-        Multitabla2.SetRange("Código 1", Rec."No.");
-        if Multitabla2.FindFirst then begin
-            Clear(Tipocajaporpedido);
-            Tipocajaporpedido.SetTableview(Multitabla2);
-            Tipocajaporpedido.RunModal
+            Multitabla2.Reset;
+            Multitabla2.SetRange("Código 1", Rec."No.");
+            if Multitabla2.FindFirst then begin
+                Clear(Tipocajaporpedido);
+                Tipocajaporpedido.SetTableview(Multitabla2);
+                Tipocajaporpedido.RunModal
+            end;
         end;
-    end;
+        */
 
     local procedure ReenviaraADAIA()
     begin
