@@ -6,7 +6,7 @@ pageextension 50020 "Item List" extends "Item List"
         {
 
 
-
+            /*
             field("Precio medio ponderado"; pmp) { ApplicationArea = All; }
             field("Existencia SILLA"; Rec."Existencia SILLA") { ApplicationArea = All; }
             field("Producto almacenable"; Rec."Producto almacenable") { ApplicationArea = All; }
@@ -135,6 +135,7 @@ pageextension 50020 "Item List" extends "Item List"
             field("Subfamilia"; Rec."Subfamilia") { ApplicationArea = All; }
             field("Gross Weight"; Rec."Gross Weight") { ApplicationArea = All; }
             field("Unit Volume"; Rec."Unit Volume") { ApplicationArea = All; }
+            */
             field(DescripMarca; DescripMarca) { ApplicationArea = All; }
 
             field(Disponible; dispo) { ApplicationArea = ALL; }
