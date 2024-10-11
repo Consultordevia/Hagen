@@ -1,7 +1,7 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
-XmlPort 50500 "Importa datos nav2018"
+XmlPort 50501 "Importa datos nav2018-2"
 {
-    Caption = 'Importa datos nav2018';
+    Caption = 'Importa datos nav2018-2';
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
@@ -20,27 +20,6 @@ XmlPort 50500 "Importa datos nav2018"
                 {
                 }
                 textelement(D2)
-                {
-                }
-                textelement(D3)
-                {
-                }
-                textelement(D4)
-                {
-                }
-                textelement(D5)
-                {
-                }
-                textelement(D6)
-                {
-                }
-                textelement(D7)
-                {
-                }
-                textelement(D8)
-                {
-                }
-                textelement(D9)
                 {
 
                     trigger OnAfterAssignVariable()
@@ -325,13 +304,6 @@ XmlPort 50500 "Importa datos nav2018"
             IF UpperCase(D2) = 'N' THEN BEGIN
                 RecItem."Producto web" := FALSE;
             END;
-            RecItem."Producto PADRE" := D3;
-            RecItem.Description := D4;
-            RecItem."Descripcion web" := D5;
-            RecItem.CodVariante1 := CopyStr(D6, 1, 20);
-            RecItem.CodVariante2 := CopyStr(D8, 1, 20);
-            RecItem."Dato Variante1" := CopyStr(D7, 1, 20);
-            RecItem."Dato Variante2" := CopyStr(D9, 1, 20);
             RecItem.Modify;
             v.Update(1, RecItem."No.");
             v.Close();

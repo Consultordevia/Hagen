@@ -838,7 +838,6 @@ Page 50077 "Productos Lista"
                 {
                     ApplicationArea = Basic;
                 }
-                /////- field("Product Group Code";Rec."Product Group Code")  {                    ApplicationArea = Basic;                }
                 field("Substitutes Exist"; Rec."Substitutes Exist")
                 {
                     ApplicationArea = Basic;
@@ -955,6 +954,7 @@ Page 50077 "Productos Lista"
                 {
                     ApplicationArea = Basic;
                 }
+                /*
                 field("Clasificación A,B,C"; Rec."Clasificación A,B,C")
                 {
                     ApplicationArea = Basic;
@@ -1479,6 +1479,7 @@ Page 50077 "Productos Lista"
                 {
                     ApplicationArea = Basic;
                 }
+                */
             }
         }
     }

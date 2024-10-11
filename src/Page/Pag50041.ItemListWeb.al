@@ -132,16 +132,31 @@ page 50041 ItemListWeb
                 {
                     ApplicationArea = All;
                 }
+
+                field("Item Category Code"; Rec."Item Category Code")
+                {
+                    ApplicationArea = All;
+                }
+
+                field(NombreItemCategoria; NombreItemCategoria)
+                {
+                    ApplicationArea = All;
+                }
                 field("Descripcion web"; Rec."Descripcion web")
                 {
                     ApplicationArea = All;
                 }
 
 
+
             }
         }
     }
     trigger OnAfterGetRecord()
+    var
+        pmp: Decimal;
+        InventarioPMP: Record "Inventario PMP";
+
     begin
         DescripMarca := '';
         IF RecMulti.GET(RecMulti.Tabla::Marcas, Rec.Marca) then begin
@@ -149,10 +164,31 @@ page 50041 ItemListWeb
         end;
         rec.CalcFields("Existencia SILLA", "Qty. on Sales Order");
         dispo := rec."Existencia SILLA" - rec."Qty. on Sales Order" - rec."Stock para Catit";
+
+        NombreItemCategoria := '';
+        if itemcat.get(Rec."Item Category Code") then begin
+            NombreItemCategoria := itemcat.Description;
+        end;
+
+        pmp := 0;
+        InventarioPMP.RESET;
+        InventarioPMP.SETRANGE(InventarioPMP."Item No.", Rec."No.");
+        IF InventarioPMP.FINDLAST THEN BEGIN
+            pmp := InventarioPMP."Unit Cost";
+        end;
     end;
 
     var
         dispo: Decimal;
         RecMulti: Record Multitabla;
         DescripMarca: Text;
+
+
+        itemcat: Record "Item Category";
+        NombreItemCategoria: text;
+        pmp: Decimal;
+        InventarioPMP: Record "Inventario PMP";
+
+
+
 }
