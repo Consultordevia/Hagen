@@ -25,6 +25,15 @@ pageextension 50026 ClientesLista extends "Customer List"
             field("Grupo clientes"; Rec."Grupo clientes") { ApplicationArea = All; }
             field(Latitud; Rec.Latitud) { ApplicationArea = All; }
             field(Longitud; Rec.Longitud) { ApplicationArea = All; }
+            field(City; Rec.city) { ApplicationArea = All; }
+            field(County; Rec.County) { ApplicationArea = All; }
+            field(Address; Rec.Address) { ApplicationArea = All; }
+            field("Address 2"; Rec."Address 2") { ApplicationArea = All; }
+
+
+
+
+
 
 
 

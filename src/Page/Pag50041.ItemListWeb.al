@@ -146,6 +146,47 @@ page 50041 ItemListWeb
                 {
                     ApplicationArea = All;
                 }
+                field(Level1; Rec.Level1)
+                {
+                    ApplicationArea = All;
+                }
+                field(Level2; Rec.Level2)
+                {
+                    ApplicationArea = All;
+                }
+                field(Level3; Rec.Level3)
+                {
+                    ApplicationArea = All;
+                }
+                field(Level4; Rec.Level4)
+                {
+                    ApplicationArea = All;
+                }
+                field(Level5; Rec.Level5)
+                {
+                    ApplicationArea = All;
+                }
+                field(Level6; Rec.Level6)
+                {
+                    ApplicationArea = All;
+                }
+                field(Level7; Rec.Level7)
+                {
+                    ApplicationArea = All;
+                }
+                field(Level8; Rec.Level8)
+                {
+                    ApplicationArea = All;
+                }
+                field(Level9; Rec.Level9)
+                {
+                    ApplicationArea = All;
+                }
+                field(Level10; Rec.Level10)
+                {
+                    ApplicationArea = All;
+                }
+
 
 
 

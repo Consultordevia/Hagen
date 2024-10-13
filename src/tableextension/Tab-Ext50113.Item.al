@@ -1381,10 +1381,23 @@ tableextension 50113 Item extends Item
         field(60052; "coste ult"; Decimal)
         {
         }
+        field(50555; "Level1"; Text[100]) { }
+        field(50556; "Level2"; Text[100]) { }
+        field(50557; "Level3"; Text[100]) { }
+        field(50558; "Level4"; Text[100]) { }
+        field(50559; "Level5"; Text[100]) { }
+        field(50560; "Level6"; Text[100]) { }
+        field(50561; "Level7"; Text[100]) { }
+        field(50562; "Level8"; Text[100]) { }
+        field(50563; "Level9"; Text[100]) { }
+        field(50564; "Level10"; Text[100]) { }
+
     }
 
     var
         RecUMP: Record "Item Unit of Measure";
         RecRefCruz: Record "Item Reference";
+
+        itemcategory: Record "Item Category";
 
 }

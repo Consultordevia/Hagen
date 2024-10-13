@@ -1,4 +1,3 @@
-#pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
 Codeunit 50010 "Automaticos Cartas"
 {
     // Potyugal
@@ -3121,7 +3120,7 @@ Codeunit 50010 "Automaticos Cartas"
                        '|' +    //12
                        '|' +    //13
                        '|';    //15                            
-                               ///retorno;
+
 
         OutStream.Write(TextoSalida);
 
@@ -3154,7 +3153,7 @@ Codeunit 50010 "Automaticos Cartas"
                                NLINC + '|' +                          //14
                                '|' +                          //15
                                '|';                          //16
-                                                             ///retorno;
+
 
                 OutStream.Write(TextoSalida);
 
@@ -3278,7 +3277,7 @@ Codeunit 50010 "Automaticos Cartas"
                            FECORD1 + '|' +
                            HH + MI + '|' +
                            'N|' +
-                           Format(OBS, 40) + '|||||';/// + retorno;
+                           Format(OBS, 40) + '|||||' + retorno;
             OutStream.Write(TextoSalida);
         end;
 
@@ -3359,7 +3358,7 @@ Codeunit 50010 "Automaticos Cartas"
                                                'UD' + '|' +
                                                '1' + '|' +
                                                '' + '|' +
-                                               '' + '||||';/// + retorno;
+                                               '' + '||||' + retorno;
                                     OutStream.Write(TextoSalida);
                                     RecLV."Nº expedición" := RecCV."Nº expedición";
                                     RecLV."Linea Nº expedición" := CONTALIN;
@@ -3393,7 +3392,7 @@ Codeunit 50010 "Automaticos Cartas"
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||';/// + retorno;
+                       '' + '||||' + retorno;
         If ENVIAR then begin
             OutStream.Write(TextoSalida);
         end;
@@ -3407,7 +3406,7 @@ Codeunit 50010 "Automaticos Cartas"
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||';//// + retorno;
+                       '' + '||||' + retorno;
         if ENVIAR then begin
             OutStream.Write(TextoSalida);
         end;
@@ -3421,7 +3420,7 @@ Codeunit 50010 "Automaticos Cartas"
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||';////+ retorno;
+                       '' + '||||' + retorno;
         OutStream.Write(TextoSalida);
 
 
@@ -3434,7 +3433,7 @@ Codeunit 50010 "Automaticos Cartas"
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||';/// + retorno;
+                       '' + '||||' + retorno;
         OutStream.Write(TextoSalida);
 
 

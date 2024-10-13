@@ -50,8 +50,24 @@ codeunit 50002 Eventos
     local procedure OnAfterModifyEventProd(RunTrigger: Boolean; var Rec: Record Item);
     var
         EnvioFicheros: Codeunit "Automaticos Cartas";
+        ItemCategory: Record "Item Category";
+        ItemCategory1: Record "Item Category";
+        ItemCategory2: Record "Item Category";
+        ItemCategory3: Record "Item Category";
+        ItemCategory4: Record "Item Category";
+        ItemCategory5: Record "Item Category";
+        ItemCategory6: Record "Item Category";
+        ItemCategory7: Record "Item Category";
+        ItemCategory8: Record "Item Category";
+        ItemCategory9: Record "Item Category";
+        ItemCategory10: Record "Item Category";
+        Recitem: Record item;
+
     begin
         EnvioFicheros.MODIFPROD(Rec);
+
+
+
     end;
 
 }

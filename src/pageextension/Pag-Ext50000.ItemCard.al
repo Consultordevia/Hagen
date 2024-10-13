@@ -13,6 +13,20 @@ pageextension 50000 "Item Card" extends "Item Card"
             group(Hagen_)
             {
 
+                field(Level1; Rec.Level1) { ApplicationArea = ALL; }
+                field(Level2; Rec.Level2) { ApplicationArea = ALL; }
+                field(Level3; Rec.Level3) { ApplicationArea = ALL; }
+                field(Level4; Rec.Level4) { ApplicationArea = ALL; }
+                field(Level5; Rec.Level5) { ApplicationArea = ALL; }
+                field(Level6; Rec.Level6) { ApplicationArea = ALL; }
+                field(Level7; Rec.Level7) { ApplicationArea = ALL; }
+                field(Level8; Rec.Level8) { ApplicationArea = ALL; }
+                field(Level9; Rec.Level9) { ApplicationArea = ALL; }
+                field(Level10; Rec.Level10)
+                {
+                    ApplicationArea = ALL;
+                }
+
                 field("Umbral stock"; Rec."Umbral stock") { ApplicationArea = ALL; }
 
                 field(CodVariante1; Rec.CodVariante1) { ApplicationArea = ALL; }

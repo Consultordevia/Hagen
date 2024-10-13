@@ -147,6 +147,16 @@ pageextension 50020 "Item List" extends "Item List"
 
             field(CodVariante2; Rec.CodVariante2) { ApplicationArea = ALL; }
             field("Dato Variante2"; Rec."Dato Variante2") { ApplicationArea = ALL; }
+            field(Level1; Rec.Level1) { ApplicationArea = ALL; }
+            field(Level2; Rec.Level2) { ApplicationArea = ALL; }
+            field(Level3; Rec.Level3) { ApplicationArea = ALL; }
+            field(Level4; Rec.Level4) { ApplicationArea = ALL; }
+            field(Level5; Rec.Level5) { ApplicationArea = ALL; }
+            field(Level6; Rec.Level6) { ApplicationArea = ALL; }
+            field(Level7; Rec.Level7) { ApplicationArea = ALL; }
+            field(Level8; Rec.Level8) { ApplicationArea = ALL; }
+            field(Level9; Rec.Level9) { ApplicationArea = ALL; }
+            field(Level10; Rec.Level10) { ApplicationArea = ALL; }
         }
 
 
@@ -171,7 +181,8 @@ pageextension 50020 "Item List" extends "Item List"
 
         pmp := 0;
         InventarioPMP.RESET;
-        InventarioPMP.SETRANGE(InventarioPMP."Item No.", Rec."No.");
+        InventarioPMP.SetCurrentKey("Item No.");
+        InventarioPMP.SETRANGE("Item No.", Rec."No.");
         IF InventarioPMP.FINDLAST THEN BEGIN
             pmp := InventarioPMP."Unit Cost";
         END;
