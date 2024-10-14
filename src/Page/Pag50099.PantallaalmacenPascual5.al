@@ -350,7 +350,7 @@ Page 50099 "Pantalla almacen Pascual5"
                         Rec.Modify;
                     end;
                 }
-                action(asd)
+                action(Importa_nav_2018)
                 {
                     ApplicationArea = Basic;
                     Visible = true;

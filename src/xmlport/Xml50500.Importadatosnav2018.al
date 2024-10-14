@@ -325,8 +325,8 @@ XmlPort 50500 "Importa datos nav2018"
             IF UpperCase(D2) = 'N' THEN BEGIN
                 RecItem."Producto web" := FALSE;
             END;
-            RecItem."Producto PADRE" := D3;
-            RecItem.Description := D4;
+            RecItem."Producto PADRE" := D4;
+            RecItem."IVA IGIC" := d3;
             RecItem."Descripcion web" := D5;
             RecItem.CodVariante1 := CopyStr(D6, 1, 20);
             RecItem.CodVariante2 := CopyStr(D8, 1, 20);
