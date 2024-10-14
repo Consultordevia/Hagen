@@ -250,7 +250,7 @@ Page 50008 Modifica
 
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
-                        RecMtU.SetRange(RecMtU.Código, tipopalet);
+                        RecMtU.SetRange(RecMtU.Codigo, tipopalet);
                         if not RecMtU.FindSet then begin
                             Error('Este tipo palet no existe');
                         end;
@@ -303,7 +303,7 @@ Page 50008 Modifica
 
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
-                        RecMtU.SetRange(RecMtU.Código, tipopalet2);
+                        RecMtU.SetRange(RecMtU.Codigo, tipopalet2);
                         if not RecMtU.FindSet then begin
                             Error('Este tipo palet no existe');
                         end;
@@ -355,7 +355,7 @@ Page 50008 Modifica
 
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
-                        RecMtU.SetRange(RecMtU.Código, tipopalet3);
+                        RecMtU.SetRange(RecMtU.Codigo, tipopalet3);
                         if not RecMtU.FindSet then begin
                             Error('Este tipo palet no existe');
                         end;
@@ -407,7 +407,7 @@ Page 50008 Modifica
 
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
-                        RecMtU.SetRange(RecMtU.Código, tipopalet4);
+                        RecMtU.SetRange(RecMtU.Codigo, tipopalet4);
                         if not RecMtU.FindSet then begin
                             Error('Este tipo palet no existe');
                         end;
@@ -459,7 +459,7 @@ Page 50008 Modifica
 
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
-                        RecMtU.SetRange(RecMtU.Código, tipopalet5);
+                        RecMtU.SetRange(RecMtU.Codigo, tipopalet5);
                         if not RecMtU.FindSet then begin
                             Error('Este tipo palet no existe');
                         end;
@@ -511,7 +511,7 @@ Page 50008 Modifica
 
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
-                        RecMtU.SetRange(RecMtU.Código, tipopalet6);
+                        RecMtU.SetRange(RecMtU.Codigo, tipopalet6);
                         if not RecMtU.FindSet then begin
                             Error('Este tipo palet no existe');
                         end;
@@ -563,7 +563,7 @@ Page 50008 Modifica
 
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
-                        RecMtU.SetRange(RecMtU.Código, tipopalet7);
+                        RecMtU.SetRange(RecMtU.Codigo, tipopalet7);
                         if not RecMtU.FindSet then begin
                             Error('Este tipo palet no existe');
                         end;
@@ -615,7 +615,7 @@ Page 50008 Modifica
 
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
-                        RecMtU.SetRange(RecMtU.Código, tipopalet8);
+                        RecMtU.SetRange(RecMtU.Codigo, tipopalet8);
                         if not RecMtU.FindSet then begin
                             Error('Este tipo palet no existe');
                         end;
@@ -667,7 +667,7 @@ Page 50008 Modifica
 
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
-                        RecMtU.SetRange(RecMtU.Código, tipopalet9);
+                        RecMtU.SetRange(RecMtU.Codigo, tipopalet9);
                         if not RecMtU.FindSet then begin
                             Error('Este tipo palet no existe');
                         end;
@@ -719,7 +719,7 @@ Page 50008 Modifica
 
                         RecMtU.Reset;
                         RecMtU.SetRange(RecMtU.Tabla, 29);
-                        RecMtU.SetRange(RecMtU.Código, tipopalet10);
+                        RecMtU.SetRange(RecMtU.Codigo, tipopalet10);
                         if not RecMtU.FindSet then begin
                             Error('Este tipo palet no existe');
                         end;

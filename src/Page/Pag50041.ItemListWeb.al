@@ -201,7 +201,7 @@ page 50041 ItemListWeb
     begin
         DescripMarca := '';
         IF RecMulti.GET(RecMulti.Tabla::Marcas, Rec.Marca) then begin
-            DescripMarca := RecMulti."Descripción";
+            DescripMarca := RecMulti."Descripcion";
         end;
         rec.CalcFields("Existencia SILLA", "Qty. on Sales Order");
         dispo := rec."Existencia SILLA" - rec."Qty. on Sales Order" - rec."Stock para Catit";

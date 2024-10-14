@@ -170,22 +170,23 @@ pageextension 50020 "Item List" extends "Item List"
     begiN
         DescripMarca := '';
         IF RecMulti.GET(RecMulti.Tabla::Marcas, Rec.Marca) then begin
-            DescripMarca := RecMulti."Descripción";
+            DescripMarca := RecMulti."Descripcion";
         end;
         rec.CalcFields("Existencia SILLA", "Qty. on Sales Order");
-        dispo := rec."Existencia SILLA" - rec."Qty. on Sales Order" - rec."Stock para Catit";
+        ///dispo := rec."Existencia SILLA" - rec."Qty. on Sales Order" - rec."Stock para Catit";
         NombreItemCategoria := '';
         if itemcat.get(Rec."Item Category Code") then begin
             NombreItemCategoria := itemcat.Description;
         end;
 
-        pmp := 0;
+        /*pmp := 0;
         InventarioPMP.RESET;
         InventarioPMP.SetCurrentKey("Item No.");
         InventarioPMP.SETRANGE("Item No.", Rec."No.");
         IF InventarioPMP.FINDLAST THEN BEGIN
             pmp := InventarioPMP."Unit Cost";
         END;
+        */
 
 
 

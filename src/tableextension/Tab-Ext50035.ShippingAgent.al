@@ -85,7 +85,7 @@ tableextension 50035 ShippingAgent extends "Shipping Agent"
         }
         field(50029; "Grupo clientes"; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const("Grupo de clientes"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Grupo de clientes"));
         }
         field(50030; "Carta Tamaño A4"; Boolean)
         {

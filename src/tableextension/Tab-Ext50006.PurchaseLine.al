@@ -26,7 +26,7 @@ tableextension 50006 PurchaseLine extends "Purchase Line"
         }
         field(50011; "Analisis margenes"; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const("Grupo de clientes"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Grupo de clientes"));
         }
         field(50018; "Estado Producto"; Option)
         {

@@ -52,7 +52,7 @@ tableextension 50104 Customer extends Customer
         }
         field(50014; "Frecuencia visita comercial"; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const("Frecuencia visita"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Frecuencia visita"));
         }
         field(50015; "No enviar cartas contables"; Boolean)
         {
@@ -116,11 +116,11 @@ tableextension 50104 Customer extends Customer
         }
         field(50029; "Grupo clientes"; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const("Grupo de clientes"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Grupo de clientes"));
         }
         field(50030; "Zona de ventas"; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const("Zona de ventas"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Zona de ventas"));
         }
         field(50031; "Observación para ALMACEN"; Text[60])
         {
@@ -282,7 +282,7 @@ tableextension 50104 Customer extends Customer
         }
         field(50105; "Grupo descuento mensual"; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const("Grupo descuento mensual"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Grupo descuento mensual"));
         }
         field(50110; "No enviar emial de preparacion"; Boolean)
         {
@@ -390,25 +390,25 @@ tableextension 50104 Customer extends Customer
         }
         field(50149; "Grupo ventas"; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(GV));
+            TableRelation = Multitabla.Codigo where(Tabla = const(GV));
         }
         field(50150; Nombre_Cliente; Text[70])
         {
         }
         field(50151; "Localizacion tienda"; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(LT));
+            TableRelation = Multitabla.Codigo where(Tabla = const(LT));
         }
         field(50152; "Tipo negocio"; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(TN));
+            TableRelation = Multitabla.Codigo where(Tabla = const(TN));
         }
         field(50153; "Año apertura"; Date)
         {
         }
         field(50154; "Ruta comercial"; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const("Ruta comercial"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Ruta comercial"));
         }
         field(50160; "A quien se factura"; Code[13])
         {
@@ -641,35 +641,35 @@ tableextension 50104 Customer extends Customer
         }
         field(60010; "Como nos conocio"; Code[2])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(WebComoCono));
+            TableRelation = Multitabla.Codigo where(Tabla = const(WebComoCono));
         }
         field(60011; Perros; Code[2])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(WGI1));
+            TableRelation = Multitabla.Codigo where(Tabla = const(WGI1));
         }
         field(60012; Gatos; Code[2])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(WGI2));
+            TableRelation = Multitabla.Codigo where(Tabla = const(WGI2));
         }
         field(60013; Pajaros; Code[2])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(WGI3));
+            TableRelation = Multitabla.Codigo where(Tabla = const(WGI3));
         }
         field(60014; Acuariofilia; Code[2])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(WGI4));
+            TableRelation = Multitabla.Codigo where(Tabla = const(WGI4));
         }
         field(60015; Reptiles; Code[2])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(WGI5));
+            TableRelation = Multitabla.Codigo where(Tabla = const(WGI5));
         }
         field(60016; "Pequeños animales"; Code[2])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(WGI6));
+            TableRelation = Multitabla.Codigo where(Tabla = const(WGI6));
         }
         field(60017; Estanques; Code[2])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(WGI7));
+            TableRelation = Multitabla.Codigo where(Tabla = const(WGI7));
         }
         field(66000; "Emite nuestras facturas"; Boolean)
         {

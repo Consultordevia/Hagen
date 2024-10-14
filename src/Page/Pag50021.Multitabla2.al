@@ -5,7 +5,7 @@ page 50021 Multitabla2
     PageType = List;
     SourceTable = "Multitabla 2";
     UsageCategory = Lists;
-    
+
     layout
     {
         area(Content)
@@ -16,11 +16,11 @@ page 50021 Multitabla2
                 {
                     ToolTip = 'Specifies the value of the Tabla field.', Comment = '%';
                 }
-                field("Código 1"; Rec."Código 1")
+                field("Codigo 1"; Rec."Codigo 1")
                 {
                     ToolTip = 'Specifies the value of the Código 1 field.', Comment = '%';
                 }
-                field("Código 2"; Rec."Código 2")
+                field("Codigo 2"; Rec."Codigo 2")
                 {
                     ToolTip = 'Specifies the value of the Código 2 field.', Comment = '%';
                 }

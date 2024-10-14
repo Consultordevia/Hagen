@@ -4,7 +4,7 @@ tableextension 50032 "Area" extends "Area"
     {
         field(50000; Comunidad; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const("Comunidades autonomas"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Comunidades autonomas"));
 
             trigger OnValidate()
             begin
@@ -14,8 +14,8 @@ tableextension 50032 "Area" extends "Area"
         }
         field(50001; "Nombre comunidad"; Text[50])
         {
-            CalcFormula = lookup(Multitabla.Descripción where(Tabla = const("Comunidades autonomas"),
-                                                               Código = field(Comunidad)));
+            CalcFormula = lookup(Multitabla.Descripcion where(Tabla = const("Comunidades autonomas"),
+                                                               Codigo = field(Comunidad)));
             FieldClass = FlowField;
         }
         field(50002; "Id Estado PrestaShop"; BigInteger)

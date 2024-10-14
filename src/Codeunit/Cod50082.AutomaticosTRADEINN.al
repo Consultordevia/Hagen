@@ -254,9 +254,9 @@ Codeunit 50082 "Automaticos TRADE INN"
                             CMARCA := '';
                             RecMt.Reset;
                             RecMt.SetRange(RecMt.Tabla, 24);
-                            RecMt.SetRange(RecMt.Código, Item.Marca);
+                            RecMt.SetRange(RecMt.Codigo, Item.Marca);
                             if RecMt.FindFirst then begin
-                                CMARCA := RecMt.Descripción;
+                                CMARCA := RecMt.Descripcion;
                             end;
                             RecUMP.Init;
                             RecUMP.Reset;

@@ -33,7 +33,7 @@ tableextension 50022 PurchRcptLine extends "Purch. Rcpt. Line"
         }
         field(50011; "Analisis margenes"; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const("Grupo de clientes"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Grupo de clientes"));
         }
         field(50020; "Nº oferta"; Code[20])
         {

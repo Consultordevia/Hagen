@@ -4,7 +4,7 @@ tableextension 50028 "Post Code" extends "Post Code"
     {
         field(50000; "Zona Venta"; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const("Zona de ventas"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Zona de ventas"));
 
             trigger OnValidate()
             begin

@@ -344,7 +344,7 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
             conta := conta + 1;
             RecMT.INIT;
             RecMT.Tabla := 17;
-            RecMT.Código := FORMAT(conta);
+            RecMT.Codigo := FORMAT(conta);
             RecMT.Producto := REF;
             RecMT.Ubicacion := UBICA;
             RecMT.Cantidad := DCanti;

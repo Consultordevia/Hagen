@@ -28,7 +28,7 @@ tableextension 50024 PurchInvLine extends "Purch. Inv. Line"
         }
         field(50011; "Analisis margenes"; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const("Grupo de clientes"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Grupo de clientes"));
         }
         field(50021; "Fecha oferta"; Date)
         {

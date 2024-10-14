@@ -11,10 +11,10 @@ Table 50005 Multitabla
             OptionCaption = 'Actividades,Caracteres,Resultado,Ruta de reparto,Zona de ventas,Grupo de clientes,Tipo cliente,Descripción incidencia,Causa incidencia,Corrección incidencia,Marca competencia,Distribuidor competencia,Zona competencia,Frecuencia visita,Preparadores,Comunidades autonomas,Dimensión hueco,Ubicaciones,Grupo dto. cabecera,Responsable incidencia,Resultado incidencia,Morivo devol,Estadistica,Grupo descuento mensual,Marcas,Categoria,Actividades nuevas,Clasificacion WEB,MAPA,TipoPalet,lp,GV,BIC,LT,TN,ME,EE,Esca,aa,igic,Ruta comercial,WebComoCono,WebGradoInt,WebMarca,WGI1,WGI2,WGI3,WGI4,WGI5,WGI6,WGI7,SII,SII2,Variante';
             OptionMembers = Actividades,Caracteres,Resultado,"Ruta de reparto","Zona de ventas","Grupo de clientes","Tipo cliente","Descripción incidencia","Causa incidencia","Corrección incidencia","Marca competencia","Distribuidor competencia","Zona competencia","Frecuencia visita",Preparadores,"Comunidades autonomas","Dimensión hueco",Ubicaciones,"Grupo dto. cabecera","Responsable incidencia","Resultado incidencia","Morivo devol",Estadistica,"Grupo descuento mensual",Marcas,Categoria,"Actividades nuevas","Clasificacion WEB",MAPA,TipoPalet,lp,GV,BIC,LT,TN,ME,EE,Esca,aa,igic,"Ruta comercial",WebComoCono,WebGradoInt,WebMarca,WGI1,WGI2,WGI3,WGI4,WGI5,WGI6,WGI7,SII,SII2,Variante;
         }
-        field(2; "Código"; Code[10])
+        field(2; "Codigo"; Code[10])
         {
         }
-        field(3; "Descripción"; Text[50])
+        field(3; "Descripcion"; Text[50])
         {
         }
         field(4; Ok; Boolean)
@@ -48,7 +48,7 @@ Table 50005 Multitabla
         }
         field(11; ALMACENABLE; Boolean)
         {
-            CalcFormula = lookup(Item."Producto almacenable" where("No." = field(Código)));
+            CalcFormula = lookup(Item."Producto almacenable" where("No." = field(Codigo)));
             FieldClass = FlowField;
         }
         field(12; "Cantidad venta"; Decimal)
@@ -370,11 +370,11 @@ Table 50005 Multitabla
 
     keys
     {
-        key(Key1; Tabla, "Código")
+        key(Key1; Tabla, "Codigo")
         {
             Clustered = true;
         }
-        key(Key2; Tabla, "Descripción")
+        key(Key2; Tabla, "Descripcion")
         {
         }
         key(Key3; Producto)
@@ -390,10 +390,10 @@ Table 50005 Multitabla
 
     fieldgroups
     {
-        fieldgroup(DropDown; "Código", "Descripción")
+        fieldgroup(DropDown; "Codigo", "Descripcion")
         {
         }
-        fieldgroup(Brick; "Código", "Descripción")
+        fieldgroup(Brick; "Codigo", "Descripcion")
         {
         }
     }

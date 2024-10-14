@@ -133,8 +133,8 @@ Codeunit 50036 "Recalcula no permitir pedido"
                     if RecGP."Es producto" then begin
                         RecMT2.Reset;
                         RecMT2.SetRange(RecMT2.Tabla, 7);
-                        RecMT2.SetRange(RecMT2."Código 1", Item."No.");
-                        RecMT2.SetRange(RecMT2."Código 2", '4703');
+                        RecMT2.SetRange(RecMT2."Codigo 1", Item."No.");
+                        RecMT2.SetRange(RecMT2."Codigo 2", '4703');
                         if RecMT2.FindFirst then begin
                             RecMT2."Eliminar de WEB" := false;
                             RecMT2.Modify;
@@ -142,8 +142,8 @@ Codeunit 50036 "Recalcula no permitir pedido"
                         if not RecMT2.FindFirst then begin
                             Customer.Get('4703');
                             RecMT2.Tabla := 7;
-                            RecMT2."Código 1" := Item."No.";
-                            RecMT2."Código 2" := '4703';
+                            RecMT2."Codigo 1" := Item."No.";
+                            RecMT2."Codigo 2" := '4703';
                             RecMT2."Actualizar WEB" := true;
                             RecMT2."Eliminar de WEB" := false;
                             RecMT2."Fecha eliminar" := 0D;
@@ -159,8 +159,8 @@ Codeunit 50036 "Recalcula no permitir pedido"
                             repeat
                                 RecMT2.Reset;
                                 RecMT2.SetRange(RecMT2.Tabla, 7);
-                                RecMT2.SetRange(RecMT2."Código 1", Item."No.");
-                                RecMT2.SetRange(RecMT2."Código 2", Rec32."Source No.");
+                                RecMT2.SetRange(RecMT2."Codigo 1", Item."No.");
+                                RecMT2.SetRange(RecMT2."Codigo 2", Rec32."Source No.");
                                 if RecMT2.FindFirst then begin
                                     RecMT2."Eliminar de WEB" := false;
                                     RecMT2.Modify;
@@ -168,8 +168,8 @@ Codeunit 50036 "Recalcula no permitir pedido"
                                 if not RecMT2.FindFirst then begin
                                     Customer.Get(Rec32."Source No.");
                                     RecMT2.Tabla := 7;
-                                    RecMT2."Código 1" := Item."No.";
-                                    RecMT2."Código 2" := Rec32."Source No.";
+                                    RecMT2."Codigo 1" := Item."No.";
+                                    RecMT2."Codigo 2" := Rec32."Source No.";
                                     RecMT2."Actualizar WEB" := true;
                                     RecMT2."Eliminar de WEB" := false;
                                     RecMT2."Fecha eliminar" := 0D;
@@ -213,7 +213,7 @@ Codeunit 50036 "Recalcula no permitir pedido"
 
         RecMT2.Reset;
         RecMT2.SetRange(RecMT2.Tabla, 1);
-        RecMT2.SetRange("Código 1", CodProd);
+        RecMT2.SetRange("Codigo 1", CodProd);
         if RecMT2.FindSet then
             repeat
                 RecMT2."Venta global" := 0;
@@ -228,7 +228,7 @@ Codeunit 50036 "Recalcula no permitir pedido"
                 RecMT2.Reservar := false;
                 RecMT2."Dias para llegada" := 0;
                 RecMT2.Modify;
-                if Item2.Get(RecMT2."Código 1") then begin
+                if Item2.Get(RecMT2."Codigo 1") then begin
                     Item2."Producto con reserva" := false;
                     Item2.Modify;
                 end;
@@ -236,7 +236,7 @@ Codeunit 50036 "Recalcula no permitir pedido"
 
         RecMT2.Reset;
         RecMT2.SetRange(RecMT2.Tabla, 1);
-        RecMT2.SetRange("Código 1", CodProd);
+        RecMT2.SetRange("Codigo 1", CodProd);
         if RecMT2.FindSet then
             repeat
                 if Item3.Get(CodProd) then begin
@@ -268,7 +268,7 @@ Codeunit 50036 "Recalcula no permitir pedido"
                             until RecLC.Next = 0;
                         suma := 0;
                         Customer.Reset;
-                        Customer.SetRange("Grupo clientes", RecMT2."Código 2");
+                        Customer.SetRange("Grupo clientes", RecMT2."Codigo 2");
                         if Customer.FindSet then
                             repeat
                                 Rec32.Reset;
@@ -312,7 +312,7 @@ Codeunit 50036 "Recalcula no permitir pedido"
                         if RecMT2."Para dias grupos" <> 0 then begin
                             if (DIASPARALLEGADA + RecMT2."Para dias grupos") < diasprov then begin
                                 RecMT2.Reservar := true;
-                                if Item2.Get(RecMT2."Código 1") then begin
+                                if Item2.Get(RecMT2."Codigo 1") then begin
                                     Item2."Producto con reserva" := true;
                                     Item2.Modify;
                                 end;
@@ -321,7 +321,7 @@ Codeunit 50036 "Recalcula no permitir pedido"
                         RecMT2."Venta de contenedor" := RecMT2."Venta diaria general" * DIASPARALLEGADA;
                         if RecMT2."Venta de contenedor" < RecMT2."Pedido contenedor" then begin
                             RecMT2.Reservar := false;
-                            if Item2.Get(RecMT2."Código 1") then begin
+                            if Item2.Get(RecMT2."Codigo 1") then begin
                                 Item2."Producto con reserva" := false;
                                 Item2.Modify;
                             end;

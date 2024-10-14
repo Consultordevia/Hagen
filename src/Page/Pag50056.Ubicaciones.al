@@ -7,7 +7,7 @@ Page 50056 Ubicaciones
     ModifyAllowed = false;
     PageType = List;
     SourceTable = Multitabla;
-    SourceTableView = sorting(Tabla, Código)
+    SourceTableView = sorting(Tabla, Codigo)
                       where(Tabla = const(Ubicaciones));
 
     layout
@@ -20,7 +20,7 @@ Page 50056 Ubicaciones
                 {
                     ApplicationArea = Basic;
                 }
-                field("Descripción"; Rec.Descripción)
+                field("Descripción"; Rec.Descripcion)
                 {
                     ApplicationArea = Basic;
                 }

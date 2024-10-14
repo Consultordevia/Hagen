@@ -14,11 +14,11 @@ Page 50054 "Lista multitabla"
                 {
                     ApplicationArea = Basic;
                 }
-                field("Código"; Rec.Código)
+                field("Código"; Rec.Codigo)
                 {
                     ApplicationArea = Basic;
                 }
-                field("Descripción"; Rec.Descripción)
+                field("Descripción"; Rec.Descripcion)
                 {
                     ApplicationArea = Basic;
                 }

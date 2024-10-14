@@ -668,7 +668,7 @@ tableextension 50113 Item extends Item
         }
         field(50101; Marca; Code[20])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(Marcas));
+            TableRelation = Multitabla.Codigo where(Tabla = const(Marcas));
         }
         field(50107; "Descripcion web"; Text[200])
         {
@@ -1031,7 +1031,7 @@ tableextension 50113 Item extends Item
         field(50292; "Filtro Grupo clientes"; Code[20])
         {
             FieldClass = FlowFilter;
-            TableRelation = Multitabla.Código where(Tabla = const("Grupo de clientes"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Grupo de clientes"));
         }
         field(50293; "NO MULTIPEDIDO"; Boolean)
         {
@@ -1262,19 +1262,19 @@ tableextension 50113 Item extends Item
         }
         field(50340; "Dato Variante1"; Code[20])
         {
-            TableRelation = "Multitabla 2"."Código 2" where(Tabla = const(Variante), "Código 1" = field(CodVariante1));
+            TableRelation = "Multitabla 2"."Codigo 2" where(Tabla = const(Variante), "Codigo 1" = field(CodVariante1));
         }
         field(50341; "Dato Variante2"; Code[20])
         {
-            TableRelation = "Multitabla 2"."Código 2" where(Tabla = const(Variante), "Código 1" = field(CodVariante2));
+            TableRelation = "Multitabla 2"."Codigo 2" where(Tabla = const(Variante), "Codigo 1" = field(CodVariante2));
         }
         field(50342; "CodVariante1"; Code[20])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(Variante));
+            TableRelation = Multitabla.Codigo where(Tabla = const(Variante));
         }
         field(50343; "CodVariante2"; Code[20])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(Variante));
+            TableRelation = Multitabla.Codigo where(Tabla = const(Variante));
         }
 
         field(60000; "Actualizar WEB"; Boolean)

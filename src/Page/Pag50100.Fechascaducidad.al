@@ -15,7 +15,7 @@ Page 50100 "Fechas caducidad"
                 {
                     ApplicationArea = Basic;
                 }
-                field("Descripción"; Rec.Descripción)
+                field("Descripción"; Rec.Descripcion)
                 {
                     ApplicationArea = Basic;
                 }
@@ -138,9 +138,9 @@ Page 50100 "Fechas caducidad"
 
                     Rec.Init;
                     Rec.Tabla := Rec.Tabla::Ubicaciones;
-                    Rec.Código := Item."No.";
+                    Rec.Codigo := Item."No.";
                     Rec.Producto := Item."No.";
-                    Rec.Descripción := Item.Description;
+                    Rec.Descripcion := Item.Description;
                     Rec.">6 meses" := D1;
                     Rec."6 a 9 meses" := D2;
                     Rec."9 a 12 meses" := D3;

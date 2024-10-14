@@ -4,20 +4,20 @@ Table 50027 "Multitabla DTOS"
 
     fields
     {
-        field(1;Tabla;Option)
+        field(1; Tabla; Option)
         {
             OptionCaption = 'Dtos';
             OptionMembers = Dtos;
         }
-        field(2;Entero;Integer)
+        field(2; Entero; Integer)
         {
             AutoIncrement = true;
         }
-        field(3;"Codigo descuento";Code[20])
+        field(3; "Codigo descuento"; Code[20])
         {
-            TableRelation = Multitabla.Código where (Tabla=const("Clasificacion WEB"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Clasificacion WEB"));
         }
-        field(4;"Descuento cabecera";Decimal)
+        field(4; "Descuento cabecera"; Decimal)
         {
 
             trigger OnValidate()
@@ -31,7 +31,7 @@ Table 50027 "Multitabla DTOS"
 
             end;
         }
-        field(5;Descuento;Decimal)
+        field(5; Descuento; Decimal)
         {
 
             trigger OnValidate()
@@ -44,20 +44,20 @@ Table 50027 "Multitabla DTOS"
 
             end;
         }
-        field(6;"Total descuento";Decimal)
+        field(6; "Total descuento"; Decimal)
         {
         }
-        field(7;"Dtos. cabecera";Decimal)
+        field(7; "Dtos. cabecera"; Decimal)
         {
         }
-        field(8;"Dtos. 2";Decimal)
+        field(8; "Dtos. 2"; Decimal)
         {
         }
     }
 
     keys
     {
-        key(Key1;Tabla,Entero)
+        key(Key1; Tabla, Entero)
         {
             Clustered = true;
         }

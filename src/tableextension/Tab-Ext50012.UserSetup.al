@@ -72,7 +72,7 @@ tableextension 50012 UserSetup extends "User Setup"
         }
         field(50024; "Grupo clientes"; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const("Grupo de clientes"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Grupo de clientes"));
         }
         field(50025; "Permite modif. objetivos"; Boolean)
         {
@@ -150,7 +150,7 @@ tableextension 50012 UserSetup extends "User Setup"
         }
         field(50045; "Analisis margenes"; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const("Grupo de clientes"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Grupo de clientes"));
         }
         field(50046; "hasta mes"; Integer)
         {

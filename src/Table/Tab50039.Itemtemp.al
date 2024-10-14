@@ -1796,7 +1796,7 @@ Table 50039 "Item temp"
         }
         field(50101; Marca; Code[20])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(Marcas));
+            TableRelation = Multitabla.Codigo where(Tabla = const(Marcas));
         }
         field(50107; "Descripcion web"; Text[200])
         {
@@ -2022,7 +2022,7 @@ Table 50039 "Item temp"
         field(50292; "Filtro Grupo clientes"; Code[20])
         {
             FieldClass = FlowFilter;
-            TableRelation = Multitabla.Código where(Tabla = const("Grupo de clientes"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Grupo de clientes"));
         }
         field(50293; "NO MULTIPEDIDO"; Boolean)
         {

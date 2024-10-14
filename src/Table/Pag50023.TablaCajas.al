@@ -186,7 +186,7 @@ page 50023 TablaCajas
             RecItem.GET(RecSP."Item No.");
             DescripMarca := '';
             IF RecMulti.GET(RecMulti.Tabla::Marcas, RecItem.Marca) then begin
-                DescripMarca := RecMulti."Descripción";
+                DescripMarca := RecMulti."Descripcion";
             end;
             RecItem.CalcFields("Existencia SILLA", "Qty. on Sales Order");
             dispo := RecItem."Existencia SILLA" - RecItem."Qty. on Sales Order" - RecItem."Stock para Catit";

@@ -4,40 +4,40 @@ Table 50014 "Objetivos vendedores"
 
     fields
     {
-        field(1;Vendedor;Code[10])
+        field(1; Vendedor; Code[10])
         {
             TableRelation = "Salesperson/Purchaser";
         }
-        field(2;Tipo;Option)
+        field(2; Tipo; Option)
         {
             OptionCaption = 'Vendedor,Zonas,Lineas,Referencia,Familia,Descuento,Visitas,Entregas a cuentas,Imp DATOS,Recu.imp DATOS,Por impa,Por impa-recu,Vendedor-meses,Vendedordia,Hagen,NoHagen,Vendedor-mesesNoHagen,Comi-dto,Plus';
             OptionMembers = Vendedor,Zonas,Lineas,Referencia,Familia,Descuento,Visitas,"Entregas a cuentas","Imp DATOS","Recu.imp DATOS","Por impa","Por impa-recu","Vendedor-meses",Vendedordia,Hagen,NoHagen,"Vendedor-mesesNoHagen","Comi-dto",Plus;
         }
-        field(3;"Código";Code[30])
+        field(3; "Código"; Code[30])
         {
-            TableRelation = if (Tipo=const(Vendedor)) "Salesperson/Purchaser".Code where (Code=field(Código))
-                            else if (Tipo=const(Lineas)) "Gen. Product Posting Group".Code where (Code=field(Código))
-                            else if (Tipo=const(Referencia)) Item."No." where ("No."=field(Código))
-                            else if (Tipo=const(Zonas)) Multitabla.Código where (Tabla=const("Zona de ventas"),
-                                                                                 Código=field(Código))
-                                                                                 else if (Tipo=const(Familia)) Familias.Familia where (Familia=field(Código))
-                                                                                 else if (Tipo=const(Descuento)) "Salesperson/Purchaser".Code where (Code=field(Código))
-                                                                                 else if (Tipo=const(Hagen)) "Salesperson/Purchaser".Code where (Code=field(Código))
-                                                                                 else if (Tipo=const(NoHagen)) "Salesperson/Purchaser".Code where (Code=field(Código))
-                                                                                 else if (Tipo=const("Comi-dto")) "Customer Discount Group".Code where (Code=field(Código))
-                                                                                 else if (Tipo=const(Plus)) Item."No." where ("No."=field(Código));
+            TableRelation = if (Tipo = const(Vendedor)) "Salesperson/Purchaser".Code where(Code = field(Código))
+            else if (Tipo = const(Lineas)) "Gen. Product Posting Group".Code where(Code = field(Código))
+            else if (Tipo = const(Referencia)) Item."No." where("No." = field(Código))
+            else if (Tipo = const(Zonas)) Multitabla.Codigo where(Tabla = const("Zona de ventas"),
+                                                                                 Codigo = field(Código))
+            else if (Tipo = const(Familia)) Familias.Familia where(Familia = field(Código))
+            else if (Tipo = const(Descuento)) "Salesperson/Purchaser".Code where(Code = field(Código))
+            else if (Tipo = const(Hagen)) "Salesperson/Purchaser".Code where(Code = field(Código))
+            else if (Tipo = const(NoHagen)) "Salesperson/Purchaser".Code where(Code = field(Código))
+            else if (Tipo = const("Comi-dto")) "Customer Discount Group".Code where(Code = field(Código))
+            else if (Tipo = const(Plus)) Item."No." where("No." = field(Código));
         }
-        field(4;"Año";Integer)
+        field(4; "Año"; Integer)
         {
         }
-        field(5;Enero;Integer)
+        field(5; Enero; Integer)
         {
 
             trigger OnValidate()
             begin
-                
-                
-                
+
+
+
                 SUMA;
                 /*
                 
@@ -111,12 +111,12 @@ Table 50014 "Objetivos vendedores"
 
             end;
         }
-        field(6;Febrero;Integer)
+        field(6; Febrero; Integer)
         {
 
             trigger OnValidate()
             begin
-                
+
                 SUMA;
                 /*
                 
@@ -191,12 +191,12 @@ Table 50014 "Objetivos vendedores"
 
             end;
         }
-        field(7;Marzo;Integer)
+        field(7; Marzo; Integer)
         {
 
             trigger OnValidate()
             begin
-                
+
                 SUMA;
                 /*
                 
@@ -270,13 +270,13 @@ Table 50014 "Objetivos vendedores"
 
             end;
         }
-        field(8;Abril;Integer)
+        field(8; Abril; Integer)
         {
 
             trigger OnValidate()
             begin
-                
-                
+
+
                 SUMA;
                 /*
                 
@@ -352,12 +352,12 @@ Table 50014 "Objetivos vendedores"
 
             end;
         }
-        field(9;Mayo;Integer)
+        field(9; Mayo; Integer)
         {
 
             trigger OnValidate()
             begin
-                
+
                 SUMA;
                 /*
                 
@@ -433,12 +433,12 @@ Table 50014 "Objetivos vendedores"
 
             end;
         }
-        field(10;Junio;Integer)
+        field(10; Junio; Integer)
         {
 
             trigger OnValidate()
             begin
-                
+
                 SUMA;
                 /*
                 
@@ -515,12 +515,12 @@ Table 50014 "Objetivos vendedores"
 
             end;
         }
-        field(11;Julio;Integer)
+        field(11; Julio; Integer)
         {
 
             trigger OnValidate()
             begin
-                
+
                 SUMA;
                 /*
                 
@@ -594,15 +594,15 @@ Table 50014 "Objetivos vendedores"
 
             end;
         }
-        field(12;Agosto;Integer)
+        field(12; Agosto; Integer)
         {
 
             trigger OnValidate()
             begin
-                
-                
+
+
                 SUMA;
-                
+
                 /*
                 IF Tipo=0 THEN BEGIN
                      CODM:=FORMAT('8')+'-'+FORMAT(Año);
@@ -674,15 +674,15 @@ Table 50014 "Objetivos vendedores"
 
             end;
         }
-        field(13;Septiembre;Integer)
+        field(13; Septiembre; Integer)
         {
 
             trigger OnValidate()
             begin
-                
-                
+
+
                 SUMA;
-                
+
                 /*
                 
                 
@@ -760,12 +760,12 @@ Table 50014 "Objetivos vendedores"
 
             end;
         }
-        field(14;Octubre;Integer)
+        field(14; Octubre; Integer)
         {
 
             trigger OnValidate()
             begin
-                
+
                 SUMA;
                 /*
                 
@@ -842,12 +842,12 @@ Table 50014 "Objetivos vendedores"
 
             end;
         }
-        field(15;Noviembre;Integer)
+        field(15; Noviembre; Integer)
         {
 
             trigger OnValidate()
             begin
-                
+
                 SUMA;
                 /*
                 
@@ -921,13 +921,13 @@ Table 50014 "Objetivos vendedores"
 
             end;
         }
-        field(16;Diciembre;Integer)
+        field(16; Diciembre; Integer)
         {
 
             trigger OnValidate()
             begin
-                
-                
+
+
                 SUMA;
                 /*
                 
@@ -1002,67 +1002,67 @@ Table 50014 "Objetivos vendedores"
 
             end;
         }
-        field(17;Anual;Integer)
+        field(17; Anual; Integer)
         {
             Editable = false;
         }
-        field(18;Texto;Text[50])
+        field(18; Texto; Text[50])
         {
             Enabled = false;
             FieldClass = FlowField;
         }
-        field(20;"Importe tramos";Decimal)
+        field(20; "Importe tramos"; Decimal)
         {
         }
-        field(21;"% Incremento por tramo";Decimal)
+        field(21; "% Incremento por tramo"; Decimal)
         {
         }
-        field(22;"% Decremento 1";Decimal)
+        field(22; "% Decremento 1"; Decimal)
         {
         }
-        field(23;"% Decremento 2";Decimal)
+        field(23; "% Decremento 2"; Decimal)
         {
         }
-        field(24;Desde;Date)
+        field(24; Desde; Date)
         {
         }
-        field(25;"Decremento comisión";Decimal)
+        field(25; "Decremento comisión"; Decimal)
         {
         }
-        field(26;Porcentaje;Decimal)
+        field(26; Porcentaje; Decimal)
         {
         }
-        field(27;Importe;Decimal)
+        field(27; Importe; Decimal)
         {
         }
-        field(28;"Descripicon producto";Text[60])
+        field(28; "Descripicon producto"; Text[60])
         {
-            CalcFormula = lookup(Item.Description where ("No."=field(Código)));
+            CalcFormula = lookup(Item.Description where("No." = field(Código)));
             FieldClass = FlowField;
         }
-        field(29;Cantidad;Integer)
+        field(29; Cantidad; Integer)
         {
         }
-        field(30;"Cantidad vendida";Decimal)
+        field(30; "Cantidad vendida"; Decimal)
         {
         }
-        field(31;Hasta;Date)
+        field(31; Hasta; Date)
         {
         }
-        field(32;"Importe conseguido";Decimal)
+        field(32; "Importe conseguido"; Decimal)
         {
         }
-        field(33;"% objetivo conseguido";Decimal)
+        field(33; "% objetivo conseguido"; Decimal)
         {
         }
-        field(34;"% para calculo comision";Decimal)
+        field(34; "% para calculo comision"; Decimal)
         {
         }
     }
 
     keys
     {
-        key(Key1;Vendedor,Tipo,"Código","Año",Desde)
+        key(Key1; Vendedor, Tipo, "Código", "Año", Desde)
         {
             Clustered = true;
         }
@@ -1076,7 +1076,7 @@ Table 50014 "Objetivos vendedores"
     begin
 
 
-        Anual:=Enero+Febrero+Marzo+Abril+Mayo+Junio+Julio+Agosto+Septiembre+Octubre+Noviembre+Diciembre;
+        Anual := Enero + Febrero + Marzo + Abril + Mayo + Junio + Julio + Agosto + Septiembre + Octubre + Noviembre + Diciembre;
     end;
 }
 

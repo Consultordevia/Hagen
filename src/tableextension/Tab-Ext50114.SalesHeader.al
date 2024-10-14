@@ -56,7 +56,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
         }
         field(50011; Preparador; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(Preparadores));
+            TableRelation = Multitabla.Codigo where(Tabla = const(Preparadores));
         }
         field(50012; Urgente; Boolean)
         {
@@ -324,7 +324,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
         {
             CalcFormula = lookup(Customer."Frecuencia visita comercial" where("No." = field("Sell-to Customer No.")));
             FieldClass = FlowField;
-            TableRelation = Multitabla.Código where(Tabla = const("Frecuencia visita"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Frecuencia visita"));
         }
         field(50223; "E-MAIL"; Text[80])
         {
@@ -402,7 +402,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
         {
             CalcFormula = lookup(Customer."Grupo clientes" where("No." = field("Sell-to Customer No.")));
             FieldClass = FlowField;
-            TableRelation = Multitabla.Código where(Tabla = const("Grupo de clientes"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Grupo de clientes"));
         }
         field(50363; "Multi-picking"; Boolean)
         {

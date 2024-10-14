@@ -48,7 +48,7 @@ tableextension 50002 SalesInvoiceHeader extends "Sales Invoice Header"
         }
         field(50010; Actividad; Code[1])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(Actividades));
+            TableRelation = Multitabla.Codigo where(Tabla = const(Actividades));
         }
         field(50011; Preparador; Code[20])
         {
@@ -258,7 +258,7 @@ tableextension 50002 SalesInvoiceHeader extends "Sales Invoice Header"
         {
             CalcFormula = lookup(Customer."No enviar excel" where("No." = field("Sell-to Customer No.")));
             FieldClass = FlowField;
-            TableRelation = Multitabla.Código where(Tabla = const("Tipo cliente"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Tipo cliente"));
         }
         field(50306; "Tipo facturación 2"; Option)
         {
@@ -300,7 +300,7 @@ tableextension 50002 SalesInvoiceHeader extends "Sales Invoice Header"
         {
             CalcFormula = lookup(Customer."Grupo clientes" where("No." = field("Sell-to Customer No.")));
             FieldClass = FlowField;
-            TableRelation = Multitabla.Código where(Tabla = const("Grupo de clientes"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Grupo de clientes"));
         }
         field(50364; "Dpto.ECI"; Code[10])
         {

@@ -48,11 +48,11 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
         }
         field(50010; Actividad; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(Actividades));
+            TableRelation = Multitabla.Codigo where(Tabla = const(Actividades));
         }
         field(50011; Preparador; Code[20])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(Preparadores));
+            TableRelation = Multitabla.Codigo where(Tabla = const(Preparadores));
         }
         field(50012; Urgente; Boolean)
         {
@@ -332,7 +332,7 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
         {
             CalcFormula = lookup(Customer."Grupo clientes" where("No." = field("Sell-to Customer No.")));
             FieldClass = FlowField;
-            TableRelation = Multitabla.Código where(Tabla = const("Grupo de clientes"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Grupo de clientes"));
         }
         field(50360; "Cantidad enviada"; Decimal)
         {

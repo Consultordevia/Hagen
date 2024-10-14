@@ -16,7 +16,7 @@ page 50020 Multitabla
                 {
                     ToolTip = 'Specifies the value of the Tabla field.', Comment = '%';
                 }
-                field("Código"; Rec."Código")
+                field("Codigo"; Rec."Codigo")
                 {
                     ToolTip = 'Specifies the value of the Código field.', Comment = '%';
                 }
@@ -117,7 +117,7 @@ page 50020 Multitabla
                 {
                     ToolTip = 'Specifies the value of the Descripcion provincia field.', Comment = '%';
                 }
-                field("Descripción"; Rec."Descripción")
+                field("Descripción"; Rec."Descripcion")
                 {
                     ToolTip = 'Specifies the value of the Descripción field.', Comment = '%';
                 }

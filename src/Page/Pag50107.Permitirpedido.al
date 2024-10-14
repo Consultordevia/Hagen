@@ -12,7 +12,7 @@ Page 50107 "Permitir pedido"
         {
             repeater(Group)
             {
-                field("Código 1"; Rec."Código 1")
+                field("Codigo 1"; Rec."Codigo 1")
                 {
                     ApplicationArea = Basic;
                 }
@@ -28,7 +28,7 @@ Page 50107 "Permitir pedido"
                 {
                     ApplicationArea = Basic;
                 }
-                field("Código 2"; Rec."Código 2")
+                field("Codigo 2"; Rec."Codigo 2")
                 {
                     ApplicationArea = Basic;
                 }

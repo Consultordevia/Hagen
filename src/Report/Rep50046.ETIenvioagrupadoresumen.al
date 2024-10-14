@@ -60,7 +60,7 @@ Report 50046 "ETI. envio agrupado resumen"
                 if SalesHeader.FindFirst then
                     repeat
                         Multitabla2.Reset;
-                        Multitabla2.SetRange("Código 1", SalesHeader."No.");
+                        Multitabla2.SetRange("Codigo 1", SalesHeader."No.");
                         if not Multitabla2.FindFirst then begin
                             pesopedido := 0;
                             cajas0 := 0;
@@ -175,12 +175,12 @@ Report 50046 "ETI. envio agrupado resumen"
                             end;
                         end;
                         Multitabla2.Reset;
-                        Multitabla2.SetRange("Código 1", SalesHeader."No.");
+                        Multitabla2.SetRange("Codigo 1", SalesHeader."No.");
                         if Multitabla2.FindFirst then
                             repeat
                                 /////textocaja:=textocaja+' '+Multitabla2."Código 2"+': '+FORMAT(Multitabla2."Cantidad caja");
                                 if Multitabla2."Cantidad caja" <> 0 then begin
-                                    TipocajaG.Get(Multitabla2."Código 2");
+                                    TipocajaG.Get(Multitabla2."Codigo 2");
                                     TipocajaG.cabtidad := TipocajaG.cabtidad + Multitabla2."Cantidad caja";
                                     TipocajaG.Modify;
                                 end;

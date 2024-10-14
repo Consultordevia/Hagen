@@ -51,7 +51,7 @@ Table 50049 Promociones
         }
         field(10; "Grupo clientes"; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const("Grupo de clientes"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Grupo de clientes"));
         }
         field(13; "Sales Type"; Option)
         {

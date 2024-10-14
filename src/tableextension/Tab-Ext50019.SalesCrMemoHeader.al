@@ -48,7 +48,7 @@ tableextension 50019 SalesCrMemoHeader extends "Sales Cr.Memo Header"
         }
         field(50010; Actividad; Code[10])
         {
-            TableRelation = Multitabla.Código where(Tabla = const(Actividades));
+            TableRelation = Multitabla.Codigo where(Tabla = const(Actividades));
         }
         field(50011; Preparador; Code[10])
         {
@@ -147,7 +147,7 @@ tableextension 50019 SalesCrMemoHeader extends "Sales Cr.Memo Header"
         {
             CalcFormula = lookup(Customer."Grupo clientes" where("No." = field("Sell-to Customer No.")));
             FieldClass = FlowField;
-            TableRelation = Multitabla.Código where(Tabla = const("Grupo de clientes"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Grupo de clientes"));
         }
         field(50365; "Enviado pdf web"; Boolean)
         {

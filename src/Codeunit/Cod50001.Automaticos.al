@@ -223,8 +223,8 @@ Codeunit 50001 Automaticos
                     if RecGP."Es producto" then begin
                         RecMT2.Reset;
                         RecMT2.SetRange(RecMT2.Tabla, 7);
-                        RecMT2.SetRange(RecMT2."Código 1", Item."No.");
-                        RecMT2.SetRange(RecMT2."Código 2", '4703');
+                        RecMT2.SetRange(RecMT2."Codigo 1", Item."No.");
+                        RecMT2.SetRange(RecMT2."Codigo 2", '4703');
                         if RecMT2.FindFirst then begin
                             RecMT2."Eliminar de WEB" := false;
                             RecMT2.Modify;
@@ -232,8 +232,8 @@ Codeunit 50001 Automaticos
                         if not RecMT2.FindFirst then begin
                             if Customer.Get('4703') then begin
                                 RecMT2.Tabla := 7;
-                                RecMT2."Código 1" := Item."No.";
-                                RecMT2."Código 2" := '4703';
+                                RecMT2."Codigo 1" := Item."No.";
+                                RecMT2."Codigo 2" := '4703';
                                 RecMT2."Actualizar WEB" := true;
                                 RecMT2."Eliminar de WEB" := false;
                                 RecMT2."Fecha eliminar" := 0D;
@@ -250,8 +250,8 @@ Codeunit 50001 Automaticos
                             repeat
                                 RecMT2.Reset;
                                 RecMT2.SetRange(RecMT2.Tabla, 7);
-                                RecMT2.SetRange(RecMT2."Código 1", Item."No.");
-                                RecMT2.SetRange(RecMT2."Código 2", Rec32."Source No.");
+                                RecMT2.SetRange(RecMT2."Codigo 1", Item."No.");
+                                RecMT2.SetRange(RecMT2."Codigo 2", Rec32."Source No.");
                                 if RecMT2.FindFirst then begin
                                     RecMT2."Eliminar de WEB" := false;
                                     RecMT2.Modify;
@@ -259,8 +259,8 @@ Codeunit 50001 Automaticos
                                 if not RecMT2.FindFirst then begin
                                     if Customer.Get(Rec32."Source No.") then begin
                                         RecMT2.Tabla := 7;
-                                        RecMT2."Código 1" := Item."No.";
-                                        RecMT2."Código 2" := Rec32."Source No.";
+                                        RecMT2."Codigo 1" := Item."No.";
+                                        RecMT2."Codigo 2" := Rec32."Source No.";
                                         RecMT2."Actualizar WEB" := true;
                                         RecMT2."Eliminar de WEB" := false;
                                         RecMT2."Fecha eliminar" := 0D;
@@ -305,7 +305,7 @@ Codeunit 50001 Automaticos
 
         RecMT2.Reset;
         RecMT2.SetRange(RecMT2.Tabla, 1);
-        RecMT2.SetRange("Código 1", CodProd);
+        RecMT2.SetRange("Codigo 1", CodProd);
         if RecMT2.FindSet then
             repeat
                 RecMT2."Venta global" := 0;
@@ -320,7 +320,7 @@ Codeunit 50001 Automaticos
                 RecMT2.Reservar := false;
                 RecMT2."Dias para llegada" := 0;
                 RecMT2.Modify;
-                if Item2.Get(RecMT2."Código 1") then begin
+                if Item2.Get(RecMT2."Codigo 1") then begin
                     Item2."Producto con reserva" := false;
                     Item2.Modify;
                 end;
@@ -328,7 +328,7 @@ Codeunit 50001 Automaticos
 
         RecMT2.Reset;
         RecMT2.SetRange(RecMT2.Tabla, 1);
-        RecMT2.SetRange("Código 1", CodProd);
+        RecMT2.SetRange("Codigo 1", CodProd);
         if RecMT2.FindSet then
             repeat
                 if Item3.Get(CodProd) then begin
@@ -360,7 +360,7 @@ Codeunit 50001 Automaticos
                             until RecLC.Next = 0;
                         suma := 0;
                         Customer.Reset;
-                        Customer.SetRange("Grupo clientes", RecMT2."Código 2");
+                        Customer.SetRange("Grupo clientes", RecMT2."Codigo 2");
                         if Customer.FindSet then
                             repeat
                                 Rec32.Reset;
@@ -404,7 +404,7 @@ Codeunit 50001 Automaticos
                         if RecMT2."Para dias grupos" <> 0 then begin
                             if (DIASPARALLEGADA + RecMT2."Para dias grupos") < diasprov then begin
                                 RecMT2.Reservar := true;
-                                if Item2.Get(RecMT2."Código 1") then begin
+                                if Item2.Get(RecMT2."Codigo 1") then begin
                                     Item2."Producto con reserva" := true;
                                     Item2.Modify;
                                 end;
@@ -413,7 +413,7 @@ Codeunit 50001 Automaticos
                         RecMT2."Venta de contenedor" := RecMT2."Venta diaria general" * DIASPARALLEGADA;
                         if RecMT2."Venta de contenedor" < RecMT2."Pedido contenedor" then begin
                             RecMT2.Reservar := false;
-                            if Item2.Get(RecMT2."Código 1") then begin
+                            if Item2.Get(RecMT2."Codigo 1") then begin
                                 Item2."Producto con reserva" := false;
                                 Item2.Modify;
                             end;
@@ -923,7 +923,7 @@ Codeunit 50001 Automaticos
         RecMT2.SetRange(RecMT2.Tabla, 1);
         if RecMT2.FindSet then
             repeat
-                VENTANA2.Update(1, RecMT2."Código 1");
+                VENTANA2.Update(1, RecMT2."Codigo 1");
                 RecMT2."Venta global" := 0;
                 RecMT2."Venta grupos" := 0;
                 RecMT2."Stock actual" := 0;
@@ -936,7 +936,7 @@ Codeunit 50001 Automaticos
                 RecMT2.Reservar := false;
                 RecMT2."Dias para llegada" := 0;
                 RecMT2.Modify;
-                if RecItem2.Get(RecMT2."Código 1") then begin
+                if RecItem2.Get(RecMT2."Codigo 1") then begin
                     RecItem2."Producto con reserva" := false;
                     RecItem2.Modify;
                 end;
@@ -947,8 +947,8 @@ Codeunit 50001 Automaticos
         RecMT2.SetRange(RecMT2.Tabla, 1);
         if RecMT2.FindSet then
             repeat
-                VENTANA2.Update(1, RecMT2."Código 1");
-                if RecItem.Get(RecMT2."Código 1") then begin
+                VENTANA2.Update(1, RecMT2."Codigo 1");
+                if RecItem.Get(RecMT2."Codigo 1") then begin
                     if not RecItem."Producto NO automatico" then begin
                         cantidadPVta := 0;
                         ///RecItem.SETRANGE(RecItem."Location Filter",'SILLA','SILLA');
@@ -958,7 +958,7 @@ Codeunit 50001 Automaticos
                         RecMT2."Stock actual" := RecItem.Inventory - RecItem."Stock para Catit" - RecItem."Existencia FOB";
                         RecLV.Reset;
                         RecLV.SetRange(RecLV."Document Type", 1);
-                        RecLV.SetRange(RecLV."No.", RecMT2."Código 1");
+                        RecLV.SetRange(RecLV."No.", RecMT2."Codigo 1");
                         if RecLV.FindFirst then
                             repeat
                                 cantidadPVta := cantidadPVta + RecLV."Outstanding Quantity";
@@ -1009,12 +1009,12 @@ Codeunit 50001 Automaticos
                         end;
                         suma := 0;
                         RecClie.Reset;
-                        RecClie.SetRange(RecClie."Grupo clientes", RecMT2."Código 2");
+                        RecClie.SetRange(RecClie."Grupo clientes", RecMT2."Codigo 2");
                         if RecClie.FindSet then
                             repeat
                                 Rec32.Reset;
                                 Rec32.SetCurrentkey(Rec32."Item No.", Rec32."Posting Date", Rec32."Source No.", Rec32."Source Type");
-                                Rec32.SetRange(Rec32."Item No.", RecMT2."Código 1");
+                                Rec32.SetRange(Rec32."Item No.", RecMT2."Codigo 1");
                                 Rec32.SetRange(Rec32."Posting Date", DESDE, Today);
                                 Rec32.SetRange(Rec32."Source No.", RecClie."No.");
                                 Rec32.SetRange(Rec32."Entry Type", 1);
@@ -1024,7 +1024,7 @@ Codeunit 50001 Automaticos
                                     until Rec32.Next = 0;
                                 RecLV.Reset;
                                 RecLV.SetRange(RecLV."Document Type", 1);
-                                RecLV.SetRange(RecLV."No.", RecMT2."Código 1");
+                                RecLV.SetRange(RecLV."No.", RecMT2."Codigo 1");
                                 RecLV.SetRange(RecLV."Sell-to Customer No.", RecClie."No.");
                                 if RecLV.FindFirst then
                                     repeat
@@ -1067,7 +1067,7 @@ Codeunit 50001 Automaticos
                         if RecMT2."Para dias grupos" <> 0 then begin
                             if (DIASPARALLEGADA + RecMT2."Para dias grupos") < diasprov then begin
                                 RecMT2.Reservar := true;
-                                if RecItem2.Get(RecMT2."Código 1") then begin
+                                if RecItem2.Get(RecMT2."Codigo 1") then begin
                                     RecItem2."Producto con reserva" := true;
                                     RecItem2.Modify;
                                 end;
@@ -1076,7 +1076,7 @@ Codeunit 50001 Automaticos
                         RecMT2."Venta de contenedor" := RecMT2."Venta diaria general" * DIASPARALLEGADA;
                         if RecMT2."Venta de contenedor" < RecMT2."Pedido contenedor" then begin
                             RecMT2.Reservar := false;
-                            if RecItem2.Get(RecMT2."Código 1") then begin
+                            if RecItem2.Get(RecMT2."Codigo 1") then begin
                                 RecItem2."Producto con reserva" := false;
                                 RecItem2.Modify;
                             end;

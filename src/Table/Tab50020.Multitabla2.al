@@ -9,7 +9,7 @@ Table 50020 "Multitabla 2"
             OptionCaption = 'Referenciado,Permitir pedido,Estadistica cliente,Ficha web,Repuestos web,Relacionado web,ClasificaCliente,ProductoCliente,ProductoAtributo,LineasNegoWEB,VariosRepres,RutaCodPost,URLImagenes,WebGradoInt,WebMarca,GDC,FamiliaCatit,SubfailiaCatit,CajasPedido,Venta cruzada WEB,Variante';
             OptionMembers = Referenciado,"Permitir pedido","Estadistica cliente","Ficha web","Repuestos web","Relacionado web",ClasificaCliente,ProductoCliente,ProductoAtributo,LineasNegoWEB,VariosRepres,RutaCodPost,URLImagenes,WebGradoInt,WebMarca,GDC,FamiliaCatit,SubfailiaCatit,CajasPedido,"Venta cruzada WEB",Variante;
         }
-        field(2; "Código 1"; Code[20])
+        field(2; "Codigo 1"; Code[20])
         {
             TableRelation = if (Tabla = const(Referenciado)) Item."No."
             else if (Tabla = const("Permitir pedido")) Item."No."
@@ -18,21 +18,21 @@ Table 50020 "Multitabla 2"
             else if (Tabla = const("Repuestos web")) Item."No."
             else if (Tabla = const("Relacionado web")) Item."No."
             else if (Tabla = const(ClasificaCliente)) Customer."No."
-            else if (Tabla = const(RutaCodPost)) Multitabla.Código where(Tabla = const("Ruta comercial"))
-            else if (Tabla = const(Variante)) Multitabla.Código where(Tabla = const(Variante))
+            else if (Tabla = const(RutaCodPost)) Multitabla.Codigo where(Tabla = const("Ruta comercial"))
+            else if (Tabla = const(Variante)) Multitabla.Codigo where(Tabla = const(Variante))
             else if (Tabla = const(WebGradoInt)) Customer."No."
             else if (Tabla = const(WebMarca)) Customer."No."
             else if (Tabla = const(GDC)) Customer."No.";
 
         }
-        field(3; "Código 2"; Code[20])
+        field(3; "Codigo 2"; Code[20])
         {
-            TableRelation = if (Tabla = const(Referenciado)) Multitabla.Código where(Tabla = const("Grupo de clientes"))
-            else if (Tabla = const("Permitir pedido")) Multitabla.Código where(Tabla = const("Grupo de clientes"))
+            TableRelation = if (Tabla = const(Referenciado)) Multitabla.Codigo where(Tabla = const("Grupo de clientes"))
+            else if (Tabla = const("Permitir pedido")) Multitabla.Codigo where(Tabla = const("Grupo de clientes"))
             else if (Tabla = const("Estadistica cliente")) "Gen. Product Posting Group".Code where(Estadistica = const(true))
             else if (Tabla = const("Repuestos web")) Item."No."
             else if (Tabla = const("Relacionado web")) Item."No."
-            else if (Tabla = const(ClasificaCliente)) Multitabla.Código where(Tabla = const("Clasificacion WEB"))
+            else if (Tabla = const(ClasificaCliente)) Multitabla.Codigo where(Tabla = const("Clasificacion WEB"))
             else if (Tabla = const(RutaCodPost)) "Post Code".Code
             else if (Tabla = const(GDC)) "Customer Discount Group".Code
             else if (Tabla = const(CajasPedido)) "Tipo caja"."Tipo caja"
@@ -83,13 +83,13 @@ Table 50020 "Multitabla 2"
         }
         field(4; "Descripcion 1"; Text[100])
         {
-            CalcFormula = lookup(Item.Description where("No." = field("Código 1")));
+            CalcFormula = lookup(Item.Description where("No." = field("Codigo 1")));
             Editable = false;
             FieldClass = FlowField;
         }
         field(5; "Descripcion 2"; Text[70])
         {
-            CalcFormula = lookup(Multitabla.Descripción where(Código = field("Código 2"),
+            CalcFormula = lookup(Multitabla.Descripcion where(Codigo = field("Codigo 2"),
                                                                Tabla = const("Grupo de clientes")));
             Editable = false;
             FieldClass = FlowField;
@@ -132,7 +132,7 @@ Table 50020 "Multitabla 2"
         }
         field(18; "No permite pedido"; Boolean)
         {
-            CalcFormula = lookup(Item."No permite pedido" where("No." = field("Código 1")));
+            CalcFormula = lookup(Item."No permite pedido" where("No." = field("Codigo 1")));
             FieldClass = FlowField;
         }
         field(19; "Dias para llegada"; Decimal)
@@ -150,7 +150,7 @@ Table 50020 "Multitabla 2"
         field(50000; Vendedor; Code[10])
         {
             TableRelation = Multitabla.Vendedor where(Tabla = const("Ruta comercial"),
-                                                       Código = field("Código 1"));
+                                                       Codigo = field("Codigo 1"));
         }
         field(50005; "Importe minimo para descuento"; Decimal)
         {
@@ -160,7 +160,7 @@ Table 50020 "Multitabla 2"
         }
         field(50018; "Estado Producto"; Option)
         {
-            CalcFormula = lookup(Item."Estado Producto" where("No." = field("Código 1")));
+            CalcFormula = lookup(Item."Estado Producto" where("No." = field("Codigo 1")));
             Editable = false;
             FieldClass = FlowField;
             OptionMembers = Activo,Descatalogado,Anulado,Liquidacion,"Disminución",Toxico;
@@ -188,7 +188,7 @@ Table 50020 "Multitabla 2"
         }
         field(50026; "Nombre cliente"; Code[100])
         {
-            CalcFormula = lookup(Customer."Search Name" where("No." = field("Código 2")));
+            CalcFormula = lookup(Customer."Search Name" where("No." = field("Codigo 2")));
             FieldClass = FlowField;
         }
         field(60000; "Actualizar WEB"; Boolean)
@@ -223,14 +223,14 @@ Table 50020 "Multitabla 2"
         }
         field(60011; "Descripcion Grado interes"; Text[50])
         {
-            CalcFormula = lookup(Multitabla.Descripción where(Tabla = const(WebGradoInt),
-                                                               Código = field("Código 2")));
+            CalcFormula = lookup(Multitabla.Descripcion where(Tabla = const(WebGradoInt),
+                                                               Codigo = field("Codigo 2")));
             FieldClass = FlowField;
         }
         field(60012; "Descripcion Marca"; Text[50])
         {
-            CalcFormula = lookup(Multitabla.Descripción where(Tabla = const(WebMarca),
-                                                               Código = field("Código 2")));
+            CalcFormula = lookup(Multitabla.Descripcion where(Tabla = const(WebMarca),
+                                                               Codigo = field("Codigo 2")));
             FieldClass = FlowField;
         }
         field(60013; "Marca Interes"; Boolean)
@@ -246,7 +246,7 @@ Table 50020 "Multitabla 2"
 
     keys
     {
-        key(Key1; Tabla, "Código 1", "Código 2")
+        key(Key1; Tabla, "Codigo 1", "Codigo 2")
         {
             Clustered = true;
         }

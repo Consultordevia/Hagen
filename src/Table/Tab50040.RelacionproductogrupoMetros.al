@@ -14,7 +14,7 @@ Table 50040 "Relacion producto-grupo Metros"
         }
         field(3; "Grupo Cliente"; Code[20])
         {
-            TableRelation = Multitabla.Código where(Tabla = const("Grupo de clientes"));
+            TableRelation = Multitabla.Codigo where(Tabla = const("Grupo de clientes"));
         }
     }
 

@@ -4,58 +4,58 @@ Table 50028 "Multitabla WEB"
 
     fields
     {
-        field(1;Tabla;Option)
+        field(1; Tabla; Option)
         {
             OptionCaption = 'ClasificaCliente,ClasificaProducto';
             OptionMembers = ClasificaCliente,ClasificaProducto;
         }
-        field(2;"Código 1";Code[20])
+        field(2; "Codigo 1"; Code[20])
         {
         }
-        field(3;"Código 2";Code[20])
+        field(3; "Código 2"; Code[20])
         {
-            TableRelation = if (Tabla=const(ClasificaCliente)) Multitabla.Código where (Tabla=const("Clasificacion WEB"))
-                            else if (Tabla=const(ClasificaProducto)) Multitabla.Código where (Tabla=const("Clasificacion WEB"));
+            TableRelation = if (Tabla = const(ClasificaCliente)) Multitabla.Codigo where(Tabla = const("Clasificacion WEB"))
+            else if (Tabla = const(ClasificaProducto)) Multitabla.Codigo where(Tabla = const("Clasificacion WEB"));
             //This property is currently not supported
             //TestTableRelation = true;
             ValidateTableRelation = true;
         }
-        field(5;"Descripcion 2";Text[70])
+        field(5; "Descripcion 2"; Text[70])
         {
             Editable = false;
         }
-        field(10;"Minimum Quantity";Decimal)
+        field(10; "Minimum Quantity"; Decimal)
         {
             Caption = 'Minimum Quantity';
             MinValue = 0;
         }
-        field(11;"Starting Date";Date)
+        field(11; "Starting Date"; Date)
         {
             Caption = 'Starting Date';
         }
-        field(14;NETO;Boolean)
+        field(14; NETO; Boolean)
         {
         }
-        field(15;Descuento;Decimal)
+        field(15; Descuento; Decimal)
         {
         }
-        field(50024;"ID WEB";Integer)
+        field(50024; "ID WEB"; Integer)
         {
-            CalcFormula = lookup(Multitabla."ID WEB" where (Código=field("Código 2"),
-                                                            Tabla=const("Clasificacion WEB")));
+            CalcFormula = lookup(Multitabla."ID WEB" where(Codigo = field("Código 2"),
+                                                            Tabla = const("Clasificacion WEB")));
             FieldClass = FlowField;
         }
-        field(50025;"Por defecto";Boolean)
+        field(50025; "Por defecto"; Boolean)
         {
         }
-        field(60000;"Actualizar WEB";Boolean)
+        field(60000; "Actualizar WEB"; Boolean)
         {
         }
     }
 
     keys
     {
-        key(Key1;Tabla)
+        key(Key1; Tabla)
         {
             Clustered = true;
         }
