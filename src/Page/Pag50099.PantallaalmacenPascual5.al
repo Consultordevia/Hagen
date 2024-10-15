@@ -363,6 +363,20 @@ Page 50099 "Pantalla almacen Pascual5"
                         /////-Automaticosvarios.Imprimeetiqueta;
                     end;
                 }
+                action(Importa_nav_2018_CLIENTES)
+                {
+                    ApplicationArea = Basic;
+                    Visible = true;
+
+                    trigger OnAction()
+                    begin
+
+                        iMPORTANAV2018CLIE.Run();
+                        /////-Clear(Automaticosvarios);
+                        /////-Automaticosvarios.Imprimeetiqueta;
+                    end;
+                }
+
                 action(Importa_nav_2018_2)
                 {
                     ApplicationArea = Basic;
@@ -17108,7 +17122,8 @@ Page 50099 "Pantalla almacen Pascual5"
 
 
         iMPORTANAV2018: XmlPort "Importa datos nav2018";
-        iMPORTANAV20182: XmlPort "Importa datos nav2018-2";
+        iMPORTANAV20182: XmlPort "Importa datos nav2018-3";
+        iMPORTANAV2018CLIE: XmlPort "Importa datos nav2018-CLIE";
         RecItem: Record item;
         codprod: code[20];
         codcate: code[20];

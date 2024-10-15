@@ -1,5 +1,5 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
-XmlPort 50502 "Importa datos nav2018-CLIE"
+XmlPort 50501 "Importa datos nav2018-3"
 {
     Caption = 'Importa datos nav2018-2';
     Direction = Import;
@@ -19,15 +19,7 @@ XmlPort 50502 "Importa datos nav2018-CLIE"
                 textelement(D1)
                 {
                 }
-
                 textelement(D2)
-                {
-                }
-                textelement(D3)
-                {
-                }
-
-                textelement(D4)
                 {
 
                     trigger OnAfterAssignVariable()
@@ -245,7 +237,6 @@ XmlPort 50502 "Importa datos nav2018-CLIE"
         mm: Integer;
         aa: Integer;
         v: Dialog;
-        rECcUST: Record CUSTOMER;
 
     local procedure InitializeGlobals()
     var
@@ -306,23 +297,15 @@ XmlPort 50502 "Importa datos nav2018-CLIE"
     local procedure ValidateHeaderTag()
     begin
         v.Open('#1#######################################');
-        if rECcUST.get(d1) then begin
-            IF UpperCase(CopyStr(D2, 1, 1)) = 'V' THEN BEGIN
-                rECcUST."Enviar a Web" := TRUE;
+        if RecItem.get(d1) then begin
+            IF UpperCase(D2) = 'S' THEN BEGIN
+                RecItem."Producto web" := TRUE;
             END;
-            IF UpperCase(CopyStr(D2, 1, 1)) = 'F' THEN BEGIN
-                rECcUST."Enviar a Web" := false;
+            IF UpperCase(D2) = 'N' THEN BEGIN
+                RecItem."Producto web" := FALSE;
             END;
-            IF UpperCase(CopyStr(D3, 1, 1)) = 'V' THEN BEGIN
-                rECcUST."Enviar a Web Distribuidor" := TRUE;
-            END;
-            IF UpperCase(CopyStr(D3, 1, 1)) = 'F' THEN BEGIN
-                rECcUST."Enviar a Web Distribuidor" := false;
-            END;
-            rECcUST."Usuario Web" := D4;
-
-            rECcUST.Modify;
-            v.Update(1, rECcUST."No.");
+            RecItem.Modify;
+            v.Update(1, RecItem."No.");
             v.Close();
 
 
