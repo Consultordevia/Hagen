@@ -417,7 +417,7 @@ Codeunit 50010 "Automaticos Cartas"
                                     '|' +                     //18
                                     '|' +                      //19
                                     '|';                   //20
-                    OutStream.Write(TextoSalida4);
+                    OutStream.Writetext(TextoSalida4);
 
 
                 end;
@@ -661,7 +661,7 @@ Codeunit 50010 "Automaticos Cartas"
 
 
 
-                OutStream.Write(TextoSalida);
+                OutStream.Writetext(TextoSalida);
 
 
 
@@ -703,7 +703,7 @@ Codeunit 50010 "Automaticos Cartas"
                                 '|' +
                                 'N|';
 
-                OutStream.Write(TextoSalida3);
+                OutStream.Writetext(TextoSalida3);
 
                 TextoSalida3 := 'ARPR' + '|' +
                                 'AG' + '|' +
@@ -723,7 +723,7 @@ Codeunit 50010 "Automaticos Cartas"
                                 '|' +
                                 'N|';
 
-                OutStream.Write(TextoSalida3);
+                OutStream.Writetext(TextoSalida3);
 
                 CD1 := Format(UNICAJA, 6, '<integer>');
                 CD2 := Format(CAJASPAL, 6, '<integer>');
@@ -745,7 +745,7 @@ Codeunit 50010 "Automaticos Cartas"
                                 '|' +
                                 'N|';
 
-                OutStream.Write(TextoSalida3);
+                OutStream.Writetext(TextoSalida3);
 
                 CD1 := Format(UNIPAL, 6, '<integer>');
 
@@ -788,7 +788,7 @@ Codeunit 50010 "Automaticos Cartas"
                                 '|' +
                                 'N|';
 
-                OutStream.Write(TextoSalida3);
+                OutStream.Writetext(TextoSalida3);
 
 
                 UNICAJA := RecItem."Cantidad inner";
@@ -834,7 +834,7 @@ Codeunit 50010 "Automaticos Cartas"
                                 '|' +
                                 'N|';
 
-                OutStream.Write(TextoSalida3);
+                OutStream.Writetext(TextoSalida3);
 
 
                 CD1 := Format(UNIMA, 6, '<integer>');
@@ -859,7 +859,7 @@ Codeunit 50010 "Automaticos Cartas"
                                 '|' +
                                 'N|';
 
-                OutStream.Write(TextoSalida3);
+                OutStream.Writetext(TextoSalida3);
 
 
 
@@ -881,14 +881,14 @@ Codeunit 50010 "Automaticos Cartas"
                                    RecItem."No." + '|' +
                                    RecItem.ean + '|' +
                                    CODBAR + '|';
-                    OutStream.Write(TextoSalida4);
+                    OutStream.Writetext(TextoSalida4);
                     if StrLen(RecItem.ean) = 12 then begin
                         TextoSalida4 := 'AREA' + '|' +
                                                   'AG' + '|' +
                                                    RecItem."No." + '|' +
                                                    '0' + RecItem.ean + '|' +
                                                    'E13|';
-                        OutStream.Write(TextoSalida4);
+                        OutStream.Writetext(TextoSalida4);
                     end;
                     if StrLen(RecItem.ean) = 11 then begin
                         TextoSalida4 := 'AREA' + '|' +
@@ -896,7 +896,7 @@ Codeunit 50010 "Automaticos Cartas"
                                                   RecItem."No." + '|' +
                                                   '00' + RecItem.ean + '|' +
                                                   'E13|';
-                        OutStream.Write(TextoSalida4);
+                        OutStream.Writetext(TextoSalida4);
                     end;
 
                 end;
@@ -905,7 +905,7 @@ Codeunit 50010 "Automaticos Cartas"
                                    RecItem."No." + '|' +
                                    RecItem."No." + '|' +
                                    'E13|';
-                OutStream.Write(TextoSalida4);
+                OutStream.Writetext(TextoSalida4);
 
 
                 RecRefCruz.Reset;
@@ -927,7 +927,7 @@ Codeunit 50010 "Automaticos Cartas"
                                              RecItem."No." + '|' +
                                              RecRefCruz."Reference No." + '|' +
                                              CODBAR + '|';
-                            OutStream.Write(TextoSalida4);
+                            OutStream.Writetext(TextoSalida4);
                         end;
                         if StrLen(RecRefCruz."Reference No.") = 12 then begin
                             TextoSalida4 := 'AREA' + '|' +
@@ -935,7 +935,7 @@ Codeunit 50010 "Automaticos Cartas"
                                              RecItem."No." + '|' +
                                              '0' + RecRefCruz."Reference No." + '|' +
                                              'E13|';
-                            OutStream.Write(TextoSalida4);
+                            OutStream.Writetext(TextoSalida4);
                         end;
                         if StrLen(RecRefCruz."Reference No.") = 11 then begin
                             TextoSalida4 := 'AREA' + '|' +
@@ -943,7 +943,7 @@ Codeunit 50010 "Automaticos Cartas"
                                              RecItem."No." + '|' +
                                              '00' + RecRefCruz."Reference No." + '|' +
                                              'E13|';
-                            OutStream.Write(TextoSalida4);
+                            OutStream.Writetext(TextoSalida4);
                         end;
 
                     until RecRefCruz.Next = 0;
@@ -1043,8 +1043,8 @@ Codeunit 50010 "Automaticos Cartas"
                                '|' +    //11
                                '|' +    //12
                                '|' +    //13
-                               '|';    //15                              
-                OutStream.Write(TextoSalida);
+                               '|\r\n';    //15                              
+                OutStream.Writetext(TextoSalida);
 
                 NLIN := 0;
                 RecLC.Reset;
@@ -1078,9 +1078,9 @@ Codeunit 50010 "Automaticos Cartas"
                                        '|' +                          //13
                                        NLINC + '|' +                          //14
                                        '|' +                          //15
-                                       '|';                          //16
+                                       '|\r\n';                          //16
 
-                        OutStream.Write(TextoSalida);
+                        OutStream.Writetext(TextoSalida);
 
                     until RecLC.Next = 0;
 
@@ -1150,7 +1150,7 @@ Codeunit 50010 "Automaticos Cartas"
                                HH + MI + '|' +
                                'N|' +
                                '|||||';
-                OutStream.Write(TextoSalida);
+                OutStream.Writetext(TextoSalida);
 
 
 
@@ -1181,7 +1181,7 @@ Codeunit 50010 "Automaticos Cartas"
                                            '1' + '|' +
                                            '' + '|' +
                                            '' + '||||';
-                            OutStream.Write(TextoSalida);
+                            OutStream.Writetext(TextoSalida);
 
                         end;
                     until RecLV.Next = 0;
@@ -1274,7 +1274,7 @@ Codeunit 50010 "Automaticos Cartas"
                                     'AG' + '|' +       //2
                                     Format(Recterri.Code) + '|' +  //3
                                     'RR|';   //4                                    
-                    OutStream.Write(TextoSalida3);
+                    OutStream.Writetext(TextoSalida3);
 
                     Clie.Init;
                     Clie.Reset;
@@ -1288,7 +1288,7 @@ Codeunit 50010 "Automaticos Cartas"
                                                 Format(Clie."Territory Code") + '|' +  //3
                                                 Format(Clie."No.") + '|' +   //4
                                                 'CLI||';  //5                                    
-                                OutStream.Write(TextoSalida3);
+                                OutStream.Writetext(TextoSalida3);
 
                             end;
                         until Clie.Next = 0;
@@ -1391,7 +1391,7 @@ Codeunit 50010 "Automaticos Cartas"
                                 '|' +                     //18
                                 '|' +                      //19
                                 '|';                   //20                                    
-                OutStream.Write(TextoSalida4);
+                OutStream.Writetext(TextoSalida4);
                 Clie.Modify;
 
             until Clie.Next = 0;
@@ -1432,7 +1432,7 @@ Codeunit 50010 "Automaticos Cartas"
                                 '|' +                     //18
                                 '|' +                      //19
                                 '|';                   //20                                    
-                OutStream.Write(TextoSalida4);
+                OutStream.Writetext(TextoSalida4);
                 Clie.Modify;
 
             until Clie.Next = 0;
@@ -1472,7 +1472,7 @@ Codeunit 50010 "Automaticos Cartas"
                                 '|' +                     //18
                                 '|' +                      //19
                                 '|';                   //20                                    
-                OutStream.Write(TextoSalida4);
+                OutStream.Writetext(TextoSalida4);
                 Prov.Modify;
 
             until Prov.Next = 0;
@@ -1512,7 +1512,7 @@ Codeunit 50010 "Automaticos Cartas"
                                 '|';                   //20
 
 
-                OutStream.Write(TextoSalida4);
+                OutStream.Writetext(TextoSalida4);
                 Prov.Modify;
             until Prov.Next = 0;
 
@@ -1543,7 +1543,7 @@ Codeunit 50010 "Automaticos Cartas"
                                 '|';                   //20
 
 
-                OutStream.Write(TextoSalida4);
+                OutStream.Writetext(TextoSalida4);
                 Recterri.Modify;
             until Recterri.Next = 0;
     end;
@@ -1608,7 +1608,7 @@ Codeunit 50010 "Automaticos Cartas"
                              '|';
 
 
-                OutStream.Write(TextoSalida);
+                OutStream.Writetext(TextoSalida);
 
 
 
@@ -1669,7 +1669,7 @@ Codeunit 50010 "Automaticos Cartas"
 
 
 
-                OutStream.Write(TextoSalida);
+                OutStream.Writetext(TextoSalida);
 
 
 
@@ -1740,7 +1740,7 @@ Codeunit 50010 "Automaticos Cartas"
                         '|' +                      //19
                         '|';                   //20
 
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
 
         RecCE.Get;
@@ -1796,7 +1796,7 @@ Codeunit 50010 "Automaticos Cartas"
                         '|' +                     //18
                         '|' +                      //19
                         '|';                   //20                                    
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
 
         TextoSalida4 := 'TE' + '|' +       //1
@@ -1819,7 +1819,7 @@ Codeunit 50010 "Automaticos Cartas"
                         '|' +                     //18
                         '|' +                      //19
                         '|';                   //20                                    
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
 
 
@@ -1908,7 +1908,7 @@ Codeunit 50010 "Automaticos Cartas"
 
 
                         end;
-                        OutStream.Write(TextoSalida5);
+                        OutStream.Writetext(TextoSalida5);
 
 
 
@@ -1976,7 +1976,7 @@ Codeunit 50010 "Automaticos Cartas"
                         '|' +                     //18
                         '|' +                      //19
                         '|';                   //20
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
 
         RecCE.Get;
@@ -2035,7 +2035,7 @@ Codeunit 50010 "Automaticos Cartas"
                         '|' +                      //19
                         '|';                   //20
 
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := 'TE' + '|' +       //1
                         'MO' + '|' +       //2
                         Format(Rec1."No.") + '|' +  //3
@@ -2057,7 +2057,7 @@ Codeunit 50010 "Automaticos Cartas"
                         '|' +                      //19
                         '|';                   //20
 
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
 
 
@@ -2140,7 +2140,7 @@ Codeunit 50010 "Automaticos Cartas"
                       '|' +
                       '|';
 
-            OutStream.Write(TextoSalida);
+            OutStream.Writetext(TextoSalida);
 
 
 
@@ -2181,7 +2181,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Write(TextoSalida3);
+            OutStream.Writetext(TextoSalida3);
 
             TextoSalida3 := 'ARPR' + '|' +
                             'AG' + '|' +
@@ -2200,7 +2200,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Write(TextoSalida3);
+            OutStream.Writetext(TextoSalida3);
 
             CD1 := Format(UNICAJA, 6, '<integer>');
             CD2 := Format(CAJASPAL, 6, '<integer>');
@@ -2221,7 +2221,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Write(TextoSalida3);
+            OutStream.Writetext(TextoSalida3);
 
             CD1 := Format(UNIPAL, 6, '<integer>');
 
@@ -2262,7 +2262,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Write(TextoSalida3);
+            OutStream.Writetext(TextoSalida3);
 
 
             UNICAJA := RecI."Cantidad inner";
@@ -2307,7 +2307,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Write(TextoSalida3);
+            OutStream.Writetext(TextoSalida3);
 
 
             CD1 := Format(UNIMA, 6, '<integer>');
@@ -2331,7 +2331,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Write(TextoSalida3);
+            OutStream.Writetext(TextoSalida3);
 
 
 
@@ -2354,7 +2354,7 @@ Codeunit 50010 "Automaticos Cartas"
                            RecI.ean + '|' +
                            CODBAR + '|';
 
-                OutStream.Write(TextoSalida4);
+                OutStream.Writetext(TextoSalida4);
             end;
 
             if StrLen(RecItem.ean) = 12 then begin
@@ -2363,7 +2363,7 @@ Codeunit 50010 "Automaticos Cartas"
                                 RecI."No." + '|' +
                                 '0' + RecI.ean + '|' +
                                 'E13|';
-                OutStream.Write(TextoSalida4);
+                OutStream.Writetext(TextoSalida4);
             end;
             if StrLen(RecItem.ean) = 11 then begin
                 TextoSalida4 := 'AREA' + '|' +
@@ -2371,7 +2371,7 @@ Codeunit 50010 "Automaticos Cartas"
                                RecI."No." + '|' +
                                '00' + RecI.ean + '|' +
                                'E13|';
-                OutStream.Write(TextoSalida4);
+                OutStream.Writetext(TextoSalida4);
             end;
 
             TextoSalida4 := 'AREA' + '|' +
@@ -2380,7 +2380,7 @@ Codeunit 50010 "Automaticos Cartas"
                        RecI."No." + '|' +
                        'E13|';
 
-            OutStream.Write(TextoSalida4);
+            OutStream.Writetext(TextoSalida4);
 
             RecRefCruz.Reset;
             RecRefCruz.SetRange(RecRefCruz."Item No.", RecI."No.");
@@ -2401,14 +2401,14 @@ Codeunit 50010 "Automaticos Cartas"
                                          RecI."No." + '|' +
                                          RecRefCruz."Reference No." + '|' +
                                          CODBAR + '|';
-                        OutStream.Write(TextoSalida4);
+                        OutStream.Writetext(TextoSalida4);
                         if StrLen(RecRefCruz."Reference No.") = 12 then begin
                             TextoSalida4 := 'AREA' + '|' +
                                             'AG' + '|' +
                                              RecI."No." + '|' +
                                              '0' + RecRefCruz."Reference No." + '|' +
                                              'E13|';
-                            OutStream.Write(TextoSalida4);
+                            OutStream.Writetext(TextoSalida4);
                         end;
                         if StrLen(RecRefCruz."Reference No.") = 11 then begin
                             TextoSalida4 := 'AREA' + '|' +
@@ -2416,7 +2416,7 @@ Codeunit 50010 "Automaticos Cartas"
                                              RecI."No." + '|' +
                                              '00' + RecRefCruz."Reference No." + '|' +
                                              'E13|';
-                            OutStream.Write(TextoSalida4);
+                            OutStream.Writetext(TextoSalida4);
                         end;
 
                     end;
@@ -2566,7 +2566,7 @@ Codeunit 50010 "Automaticos Cartas"
 
 
 
-            OutStream.Write(TextoSalida);
+            OutStream.Writetext(TextoSalida);
 
 
             TextoSalida := 'AR' + '|' +
@@ -2607,7 +2607,7 @@ Codeunit 50010 "Automaticos Cartas"
                       '|';
 
 
-            OutStream.Write(TextoSalida);
+            OutStream.Writetext(TextoSalida);
 
 
 
@@ -2656,7 +2656,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Write(TextoSalida3);
+            OutStream.Writetext(TextoSalida3);
 
             dc1 := ConvertStr(Format(RecIUM.Cubage * 1000, 9, Text1100007), ' ', '0');
             dc1 := '000000000';
@@ -2682,7 +2682,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Write(TextoSalida3);
+            OutStream.Writetext(TextoSalida3);
 
             CD1 := Format(UNICAJA, 6, '<integer>');
             CD2 := Format(CAJASPAL, 6, '<integer>');
@@ -2711,7 +2711,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Write(TextoSalida3);
+            OutStream.Writetext(TextoSalida3);
 
             CD1 := Format(UNIPAL, 6, '<integer>');
 
@@ -2771,7 +2771,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Write(TextoSalida3);
+            OutStream.Writetext(TextoSalida3);
 
 
             UNICAJA := RecIUMIN."Qty. per Unit of Measure";
@@ -2825,7 +2825,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Write(TextoSalida3);
+            OutStream.Writetext(TextoSalida3);
 
 
             CD1 := Format(UNIMA, 6, '<integer>');
@@ -2858,7 +2858,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Write(TextoSalida3);
+            OutStream.Writetext(TextoSalida3);
 
 
 
@@ -2880,7 +2880,7 @@ Codeunit 50010 "Automaticos Cartas"
                            RecI."No." + '|' +
                            RecI.ean + '|' +
                            CODBAR + '|';
-                OutStream.Write(TextoSalida4);
+                OutStream.Writetext(TextoSalida4);
             end;
             if StrLen(RecItem.ean) = 12 then begin
                 TextoSalida4 := 'AREA' + '|' +
@@ -2888,7 +2888,7 @@ Codeunit 50010 "Automaticos Cartas"
                                 RecI."No." + '|' +
                                 '0' + RecI.ean + '|' +
                                 'E13|';
-                OutStream.Write(TextoSalida4);
+                OutStream.Writetext(TextoSalida4);
             end;
             if StrLen(RecItem.ean) = 11 then begin
                 TextoSalida4 := 'AREA' + '|' +
@@ -2896,7 +2896,7 @@ Codeunit 50010 "Automaticos Cartas"
                                RecI."No." + '|' +
                                '00' + RecI.ean + '|' +
                                'E13|';
-                OutStream.Write(TextoSalida4);
+                OutStream.Writetext(TextoSalida4);
             end;
 
             TextoSalida4 := 'AREA' + '|' +
@@ -2904,7 +2904,7 @@ Codeunit 50010 "Automaticos Cartas"
                        RecI."No." + '|' +
                        RecI."No." + '|' +
                        'E13|';
-            OutStream.Write(TextoSalida4);
+            OutStream.Writetext(TextoSalida4);
 
             RecRefCruz.Reset;
             RecRefCruz.SetRange(RecRefCruz."Item No.", RecI."No.");
@@ -2925,7 +2925,7 @@ Codeunit 50010 "Automaticos Cartas"
                                          RecI."No." + '|' +
                                          RecRefCruz."Reference No." + '|' +
                                          CODBAR + '|';
-                        OutStream.Write(TextoSalida4);
+                        OutStream.Writetext(TextoSalida4);
 
                     end;
                     if StrLen(RecRefCruz."Reference No.") = 12 then begin
@@ -2934,7 +2934,7 @@ Codeunit 50010 "Automaticos Cartas"
                                          RecI."No." + '|' +
                                          '0' + RecRefCruz."Reference No." + '|' +
                                          'E13|';
-                        OutStream.Write(TextoSalida4);
+                        OutStream.Writetext(TextoSalida4);
                     end;
                     if StrLen(RecRefCruz."Reference No.") = 11 then begin
                         TextoSalida4 := 'AREA' + '|' +
@@ -2942,7 +2942,7 @@ Codeunit 50010 "Automaticos Cartas"
                                          RecI."No." + '|' +
                                          '00' + RecRefCruz."Reference No." + '|' +
                                          'E13|';
-                        OutStream.Write(TextoSalida4);
+                        OutStream.Writetext(TextoSalida4);
                     end;
 
 
@@ -2996,7 +2996,7 @@ Codeunit 50010 "Automaticos Cartas"
                              PICCOMPAR + '||||100|C|||||||||||';
                 ///PICCOMPAR+'|||'+FORMAT(RecI."Zona almacenaje")+'|100|C|||||||||||';
             end;
-            OutStream.Write(TextoSalida5);
+            OutStream.Writetext(TextoSalida5);
 
 
 
@@ -3032,13 +3032,23 @@ Codeunit 50010 "Automaticos Cartas"
 
     procedure ENVIARECEPCIONES(var RecCC: Record "Purchase Header")
     var
-        retorno: Char;
-        carro: char;
+        CarriageReturn: Char;
+        LineFeed: Char;
+    /*
+    var
+
+
+// Escribimos en el archivo utilizando ambos caracteres para un salto de línea estilo Windows
+OutStream.Write('Primera línea' + Format(CarriageReturn) + Format(LineFeed));
+OutStream.Write('Segunda línea después del salto' + Format(CarriageReturn) + Format(LineFeed));
+OutStream.Write('Tercera línea después del salto');
+    */
 
     begin
 
-        retorno := 13;
-        carro := 10;
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
         Clear(TempBlob);
         TempBlob.CreateOutStream(OutStream);
 
@@ -3119,10 +3129,11 @@ Codeunit 50010 "Automaticos Cartas"
                        '|' +    //11
                        '|' +    //12
                        '|' +    //13
-                       '|';    //15                            
+                       '|';    //15                          
+        /////OutStream.Writetext(TextoSalida);
+        ///OutStream.Write(TextoSalida + Format(CarriageReturn) + Format(LineFeed));
+        OutStream.Write(TextoSalida + Format(LineFeed));
 
-
-        OutStream.Write(TextoSalida);
 
         NLIN := 0;
         RecLC.Reset;
@@ -3153,9 +3164,9 @@ Codeunit 50010 "Automaticos Cartas"
                                NLINC + '|' +                          //14
                                '|' +                          //15
                                '|';                          //16
-
-
-                OutStream.Write(TextoSalida);
+                ///OutStream.Writetext(TextoSalida);
+                /////OutStream.Write(TextoSalida + Format(CarriageReturn) + Format(LineFeed));
+                OutStream.Write(TextoSalida + Format(LineFeed));
 
             until RecLC.Next = 0;
 
@@ -3278,7 +3289,7 @@ Codeunit 50010 "Automaticos Cartas"
                            HH + MI + '|' +
                            'N|' +
                            Format(OBS, 40) + '|||||' + retorno;
-            OutStream.Write(TextoSalida);
+            OutStream.Writetext(TextoSalida);
         end;
 
         codtras := '';
@@ -3359,7 +3370,7 @@ Codeunit 50010 "Automaticos Cartas"
                                                '1' + '|' +
                                                '' + '|' +
                                                '' + '||||' + retorno;
-                                    OutStream.Write(TextoSalida);
+                                    OutStream.Writetext(TextoSalida);
                                     RecLV."Nº expedición" := RecCV."Nº expedición";
                                     RecLV."Linea Nº expedición" := CONTALIN;
                                 end;
@@ -3394,7 +3405,7 @@ Codeunit 50010 "Automaticos Cartas"
                        '' + '|' +
                        '' + '||||' + retorno;
         If ENVIAR then begin
-            OutStream.Write(TextoSalida);
+            OutStream.Writetext(TextoSalida);
         end;
 
         TextoSalida := 'OELI' + '|' +
@@ -3408,7 +3419,7 @@ Codeunit 50010 "Automaticos Cartas"
                        '' + '|' +
                        '' + '||||' + retorno;
         if ENVIAR then begin
-            OutStream.Write(TextoSalida);
+            OutStream.Writetext(TextoSalida);
         end;
 
         TextoSalida := 'OELI' + '|' +
@@ -3421,7 +3432,7 @@ Codeunit 50010 "Automaticos Cartas"
                        '1' + '|' +
                        '' + '|' +
                        '' + '||||' + retorno;
-        OutStream.Write(TextoSalida);
+        OutStream.Writetext(TextoSalida);
 
 
         TextoSalida := 'OELI' + '|' +
@@ -3434,7 +3445,7 @@ Codeunit 50010 "Automaticos Cartas"
                        '1' + '|' +
                        '' + '|' +
                        '' + '||||' + retorno;
-        OutStream.Write(TextoSalida);
+        OutStream.Writetext(TextoSalida);
 
 
         RecCE.Get;
@@ -3699,7 +3710,7 @@ Codeunit 50010 "Automaticos Cartas"
                                RecItem."No." + '|' +
                                RecItem.ean + '|' +
                                CODBAR + '|';
-                    OutStream.Write(TextoSalida4);
+                    OutStream.Writetext(TextoSalida4);
                 end;
                 if StrLen(RecItem.ean) = 12 then begin
                     TextoSalida4 := 'AREA' + '|' +
@@ -3707,7 +3718,7 @@ Codeunit 50010 "Automaticos Cartas"
                                     RecItem."No." + '|' +
                                     '0' + RecItem.ean + '|' +
                                     'E13|';
-                    OutStream.Write(TextoSalida4);
+                    OutStream.Writetext(TextoSalida4);
                 end;
                 if StrLen(RecItem.ean) = 11 then begin
                     TextoSalida4 := 'AREA' + '|' +
@@ -3715,7 +3726,7 @@ Codeunit 50010 "Automaticos Cartas"
                                    RecItem."No." + '|' +
                                    '00' + RecItem.ean + '|' +
                                    'E13|';
-                    OutStream.Write(TextoSalida4);
+                    OutStream.Writetext(TextoSalida4);
                 end;
 
                 TextoSalida4 := 'AREA' + '|' +
@@ -3723,7 +3734,7 @@ Codeunit 50010 "Automaticos Cartas"
                                    RecItem."No." + '|' +
                                    RecItem."No." + '|' +
                                    'E13|';
-                OutStream.Write(TextoSalida4);
+                OutStream.Writetext(TextoSalida4);
 
 
                 RecRefCruz.Reset;
@@ -3745,7 +3756,7 @@ Codeunit 50010 "Automaticos Cartas"
                                              RecItem."No." + '|' +
                                              RecRefCruz."Reference No." + '|' +
                                              CODBAR + '|';
-                            OutStream.Write(TextoSalida4);
+                            OutStream.Writetext(TextoSalida4);
                         end;
                         if StrLen(RecRefCruz."Reference No.") = 12 then begin
                             TextoSalida4 := 'AREA' + '|' +
@@ -3753,7 +3764,7 @@ Codeunit 50010 "Automaticos Cartas"
                                              RecI."No." + '|' +
                                              '0' + RecRefCruz."Reference No." + '|' +
                                              'E13|';
-                            OutStream.Write(TextoSalida4);
+                            OutStream.Writetext(TextoSalida4);
                         end;
                         if StrLen(RecRefCruz."Reference No.") = 11 then begin
                             TextoSalida4 := 'AREA' + '|' +
@@ -3761,7 +3772,7 @@ Codeunit 50010 "Automaticos Cartas"
                                              RecI."No." + '|' +
                                              '00' + RecRefCruz."Reference No." + '|' +
                                              'E13|';
-                            OutStream.Write(TextoSalida4);
+                            OutStream.Writetext(TextoSalida4);
                         end;
 
 
@@ -3814,72 +3825,72 @@ Codeunit 50010 "Automaticos Cartas"
 
         NEXPE := '4612345670';
         TextoSalida4 := '';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := 'FR"DHL"';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '?';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := DESNOM;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := TELEFONO;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := DESNOM2;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := Rec110."Ship-to City";
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := Rec110."Ship-to Post Code";
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := Rec110."Ship-to County";
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := NEXPE;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '8';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := Format(Rec110."Total bultos");
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '46';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '1234567';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '0';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := RecIE.Name;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := CopyStr(Rec110."Ship-to Post Code", 1, 2);
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '+02';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '00';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
         TextoSalida4 := '0';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '000';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '006';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := 'ES';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := Rec110."Ship-to Post Code";
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
         TextoSalida4 := 'TOTAL BULTOS: ' + Format(Rec110."Total bultos");
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := Rec110."Nº expedición";
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '1';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '001';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
         TextoSalida4 := 'P' + Format(Rec110."Total bultos");
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
         /*
 01.INTRO
@@ -4257,7 +4268,7 @@ Codeunit 50010 "Automaticos Cartas"
         */
 
 
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7);
+        OutStream.Writetext(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7);
 
         Sleep(3000);
 
@@ -4327,79 +4338,79 @@ Codeunit 50010 "Automaticos Cartas"
 
         NEXPE := '4612345670';
         TextoSalida4 := '';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := 'FR"DHL"';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '?';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := DESNOM;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := TELEFONO;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := DESNOM2;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := Rec110."Ship-to City";
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := Rec110."Ship-to Post Code";
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := Rec110."Ship-to County";
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := NEXPE;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
         TextoSalida4 := '8';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := Format(Rec110."Total bultos");
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '46';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '1234567';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '0';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := RecIE.Name;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := CopyStr(Rec110."Ship-to Post Code", 1, 2);
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '+02';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '00';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
         TextoSalida4 := '0';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '000';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '006';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := 'ES';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := Rec110."Ship-to Post Code";
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
         TextoSalida4 := 'TOTAL BULTOS: ' + Format(Rec110."Total bultos");
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := NEXPEDICION;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '1';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '001';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
         TextoSalida4 := 'P' + Format(Rec110."Total bultos");
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TEMAIL := RecCusto."E-Mail";
         if Rec110."E-MAIL" <> '' then begin
             TEMAIL := Rec110."E-MAIL";
         end;
         TextoSalida4 := TEMAIL;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
         /*
 1.INTRO
@@ -4492,79 +4503,79 @@ Codeunit 50010 "Automaticos Cartas"
 
         NEXPE := '4612345670';
         TextoSalida4 := '';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := 'FR"CORR"';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '?';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := DESNOM;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := TELEFONO;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := DESNOM2;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := Rec110."Ship-to City";
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := Rec110."Ship-to Post Code";
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := Rec110."Ship-to County";
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := NEXPE;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
         TextoSalida4 := '8';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := Format(Rec110."Total bultos");
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '46';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '1234567';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '0';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := RecIE.Name;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := CopyStr(Rec110."Ship-to Post Code", 1, 2);
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '+02';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '00';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
         TextoSalida4 := '0';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '000';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '006';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := 'ES';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := Rec110."Ship-to Post Code";
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
         TextoSalida4 := 'TOTAL BULTOS: ' + Format(Rec110."Total bultos");
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := NEXPEDICION;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '1';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '001';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
         TextoSalida4 := 'P' + Format(Rec110."Total bultos");
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '';
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
         TEMAIL := RecCusto."E-Mail";
         if Rec110."E-MAIL" <> '' then begin
             TEMAIL := Rec110."E-MAIL";
         end;
         TextoSalida4 := TEMAIL;
-        OutStream.Write(TextoSalida4);
+        OutStream.Writetext(TextoSalida4);
 
         /*
 1.INTRO
@@ -4797,7 +4808,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                   '0';
 
 
-        OutStream.Write(TextoSalida4 + TextoSalida5);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5);
 
 
         /// Exportación a dhl
@@ -4959,7 +4970,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                Format(Rec110."Ship-to Post Code", 5) +
                                TEMAIL;
 
-        OutStream.Write(TextoSalida4 + TextoSalida5 + TextoSalida3);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
         /// Exportación a dhl
@@ -5146,7 +5157,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                Format('', 5) +
                                Format(TEMAIL);
 
-        OutStream.Write(TextoSalida4 + TextoSalida5 + TextoSalida3);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
         /// Exportación a dhl
@@ -5310,7 +5321,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                '102' +
                                Format(Rec110."Ship-to Post Code", 5);
 
-        OutStream.Write(TextoSalida4 + TextoSalida5 + TextoSalida3);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
         /// Exportación a dhl
 
@@ -5474,7 +5485,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                'CPT' +
                                '102' +
                                Format(Rec110."Ship-to Post Code", 5);
-        OutStream.Write(TextoSalida4 + TextoSalida5 + TextoSalida3);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
         /// Exportación a dhl
@@ -5658,7 +5669,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                '102' +
                                Format(Format(DESNOM2) + ' ' + Format(DESNOM3), 50);
 
-        OutStream.Write(TextoSalida4 + TextoSalida5 + TextoSalida3);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
         /// Exportación a dhl
@@ -5884,7 +5895,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                '102' +
                                Format(Rec112."Ship-to Post Code", 5);
 
-        OutStream.Write(TextoSalida4 + TextoSalida5 + TextoSalida3);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
         /// Exportación a dhl
@@ -6091,7 +6102,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                TEMAIL;
 
 
-        OutStream.Write(TextoSalida4 + TextoSalida5 + TextoSalida3);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
         /// Exportación a dhl
@@ -6310,7 +6321,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                Format(TEMAIL);
 
 
-        OutStream.Write(TextoSalida4 + TextoSalida5 + TextoSalida3);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
         /// Exportación a dhl
@@ -6500,7 +6511,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                '102' +
                                Format(Format(DESNOM2) + ' ' + Format(DESNOM3), 50);
 
-        OutStream.Write(TextoSalida4 + TextoSalida5 + TextoSalida3);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
 
@@ -6793,7 +6804,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                '102' +
                                Format(Format(DESNOM2) + ' ' + Format(DESNOM3), 50);
 
-        OutStream.Write(TextoSalida4 + TextoSalida5 + TextoSalida3);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
         /// Exportación a dhl
@@ -6966,7 +6977,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                   '0';
 
 
-        OutStream.Write(TextoSalida4 + TextoSalida5);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5);
 
         /*
                         TextoSalida4 := FORMAT('004855',6)+
@@ -7208,7 +7219,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                '102' +
                                Format(Rec110."Ship-to Post Code", 5) +
                                TEMAIL;
-        OutStream.Write(TextoSalida4 + TextoSalida5 + TextoSalida3);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
         /// Exportación a dhl
@@ -7429,7 +7440,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                Format(Rec110."Ship-to Post Code", 5) +
                                Format('', 5) +
                                Format(TEMAIL);
-        OutStream.Write(TextoSalida4 + TextoSalida5 + TextoSalida3);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
         /// Exportación a dhl
@@ -7655,7 +7666,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
 
-        OutStream.Write(TextoSalida4 + TextoSalida5);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5);
 
 
 
@@ -7835,7 +7846,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                'CPT' +
                                '102' +
                                Format(Format(DESNOM2) + ' ' + Format(DESNOM3), 50);
-        OutStream.Write(TextoSalida4 + TextoSalida5 + TextoSalida3);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
         /// Exportación a dhl
@@ -7984,7 +7995,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                'CPT' +
                                '102' +
                                Format(RecDEC."Post Code");
-        OutStream.Write(TextoSalida4 + TextoSalida5 + TextoSalida3);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
         /// Exportación a dhl
@@ -8136,7 +8147,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                '102' +
                                Format(RecDEC."Post Code", 9) +
                                TEMAIL;
-        OutStream.Write(TextoSalida4 + TextoSalida5 + TextoSalida3);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
         /// Exportación a dhl
@@ -8302,7 +8313,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                Format(RecDEC."Post Code", 5) +
                                Format('', 5) +
                                Format(TEMAIL);
-        OutStream.Write(TextoSalida4 + TextoSalida5 + TextoSalida3);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
         /// Exportación a dhl
@@ -11101,7 +11112,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                '102' +
                                Format(Rec110."Ship-to Post Code", 9) +
                                emailde;
-        OutStream.Write(TextoSalida4 + TextoSalida5 + TextoSalida3);
+        OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
         /////////////////////////////////////////////////////////////////////////////////////////////////
         /// Exportación a dhl
@@ -12425,7 +12436,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                       Format(cospostat, 6);
 
 
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
+        OutStream.Writetext(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
 
         Sleep(3000);
 
@@ -13631,7 +13642,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                            HH + MI + '|' +
                            'N|' +
                            Format(OBS, 40) + '|||||' + retorno;
-            OutStream.Write(TextoSalida);
+            OutStream.Writetext(TextoSalida);
         end;
 
         codtras := '';
@@ -13713,7 +13724,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                                '1' + '|' +
                                                '' + '|' +
                                                '' + '||||' + retorno;
-                                    OutStream.Write(TextoSalida);
+                                    OutStream.Writetext(TextoSalida);
                                     /////RecLV."Nº expedición":=RecCV."Nº expedición";
                                     /////RecLV."Linea Nº expedición":=CONTALIN;
                                 end;
@@ -13748,7 +13759,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                        '' + '|' +
                        '' + '||||' + retorno;
         if ENVIAR then begin
-            OutStream.Write(TextoSalida);
+            OutStream.Writetext(TextoSalida);
         end;
 
         TextoSalida := 'OELI' + '|' +
@@ -13762,7 +13773,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                        '' + '|' +
                        '' + '||||' + retorno;
         if ENVIAR then begin
-            OutStream.Write(TextoSalida);
+            OutStream.Writetext(TextoSalida);
         end;
 
         TextoSalida := 'OELI' + '|' +
@@ -13775,7 +13786,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                        '1' + '|' +
                        '' + '|' +
                        '' + '||||' + retorno;
-        OutStream.Write(TextoSalida);
+        OutStream.Writetext(TextoSalida);
 
 
         TextoSalida := 'OELI' + '|' +
@@ -14355,7 +14366,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         */
 
 
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5);
+        OutStream.Writetext(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5);
 
         Sleep(3000);
 

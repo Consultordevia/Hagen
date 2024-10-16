@@ -53,7 +53,7 @@ codeunit 50002 Eventos
 
 
     begin
-        EnvioFicheros.MODIFPROD(Rec);
+        /////        EnvioFicheros.MODIFPROD(Rec);
     end;
 
     [EventSubscriber(ObjectType::Table, 27, 'OnAfterValidateEvent', 'Item Category Code', false, false)]
