@@ -41,7 +41,7 @@ codeunit 50002 Eventos
         EnvioFicheros: Codeunit "Automaticos Cartas";
     begin
 
-        EnvioFicheros.ALTAPROD(item);
+        //EnvioFicheros.ALTAPROD(item);
 
 
     end;
