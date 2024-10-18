@@ -3034,6 +3034,8 @@ Codeunit 50010 "Automaticos Cartas"
     var
         CarriageReturn: Char;
         LineFeed: Char;
+        Data: BigText;
+        OutTxt: Text;
     /*
     var
 
@@ -3050,7 +3052,7 @@ OutStream.Write('Tercera línea después del salto');
         LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
 
         Clear(TempBlob);
-        TempBlob.CreateOutStream(OutStream);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
 
 
         if RecCC."Order Date" <> 0D then begin
@@ -3116,7 +3118,7 @@ OutStream.Write('Tercera línea después del salto');
         end;
 
         TENDA := RecCC."Buy-from Vendor No.";
-        TextoSalida := 'ORCA' + '|' +                                             //1
+        OutTxt := 'ORCA' + '|' +                                             //1
                        'AG' + '|' +                                               //2
                        RecCC."No." + '|' +                                 //3
                        '01' + '|' +                                               //4
@@ -3131,8 +3133,10 @@ OutStream.Write('Tercera línea después del salto');
                        '|' +    //13
                        '|';    //15                          
         /////OutStream.Writetext(TextoSalida);
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
         ///OutStream.Write(TextoSalida + Format(CarriageReturn) + Format(LineFeed));
-        OutStream.Write(TextoSalida + Format(LineFeed));
+        //OutStream.Write(TextoSalida + Format(LineFeed));
 
 
         NLIN := 0;
@@ -3148,10 +3152,11 @@ OutStream.Write('Tercera línea después del salto');
                 CANTIPEDI := Format(RecLC.Quantity, 5, '<integer>');
                 if RecItem.Get(RecLC."No.") then begin
                 end;
-                TextoSalida := 'ORLI' + '|' +                 //1
+                OutTxt := 'ORLI' + '|' +                 //1
                                'AG' + '|' +                   //2
                                RecCC."No." + '|' +                //3
                                RecLC."No." + '|' +                 //4
+
                                CANTIPEDI + '|' +               //5
                                'UD' + '|' +                   //6
                                '1' + '|' +                    //7
@@ -3164,9 +3169,11 @@ OutStream.Write('Tercera línea después del salto');
                                NLINC + '|' +                          //14
                                '|' +                          //15
                                '|';                          //16
-                ///OutStream.Writetext(TextoSalida);
+                                                             ///OutStream.Writetext(TextoSalida);
                 /////OutStream.Write(TextoSalida + Format(CarriageReturn) + Format(LineFeed));
-                OutStream.Write(TextoSalida + Format(LineFeed));
+                //OutStream.Write(TextoSalida + Format(LineFeed));
+                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                data.AddText(OutTxt);
 
             until RecLC.Next = 0;
 
@@ -3179,7 +3186,8 @@ OutStream.Write('Tercera línea después del salto');
         TIPO := 3;
         BUSCAEXTENSION;
         DAT2 := 'TRRECORD.' + contaser + EXTEN + Format(ALEA) + Format(RecI."No.") + Format(LOGCAMBIOA);
-        TempBlob.CreateInStream(InStream);
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
         FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
     end;
 
