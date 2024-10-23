@@ -1697,7 +1697,7 @@ Codeunit 50010 "Automaticos Cartas"
 
 
 
-
+        TempBlob.CreateOutStream(OutStream);
 
 
 
