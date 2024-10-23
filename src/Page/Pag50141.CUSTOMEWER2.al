@@ -38,6 +38,10 @@ Page 50141 "CUSTOMEWER 2"
                 {
                     ApplicationArea = Basic;
                 }
+                field("Estatus del cliente"; Rec."Estatus del cliente")
+                {
+                    ApplicationArea = Basic;
+                }
                 field("Balance (LCY)"; Rec."Balance (LCY)")
                 {
                     ApplicationArea = Basic;

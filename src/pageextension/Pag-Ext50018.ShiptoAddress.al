@@ -6,13 +6,13 @@ pageextension 50018 "Ship-to Address" extends "Ship-to Address"
         {
             group(Hagen)
             {
-                field("Dirección habitual"; Rec."Dirección habitual") { ApplicationArea = All; }
-                field("Dirección postal"; Rec."Dirección postal") { ApplicationArea = All; }
+                field("Direccion habitual"; Rec."Direccion habitual") { ApplicationArea = All; }
+                field("Direccion postal"; Rec."Direccion postal") { ApplicationArea = All; }
                 field("Transportista ficha cliente"; Rec."Transportista ficha cliente") { ApplicationArea = All; }
                 field("Dropshipping"; Rec."Dropshipping") { ApplicationArea = All; }
                 field("Direccion Ruta"; Rec."Direccion Ruta") { ApplicationArea = All; }
                 field("Estatus del cliente"; Rec."Estatus del cliente") { ApplicationArea = All; }
-                field("Cód. forma de pago"; Rec."Cód. forma de pago") { ApplicationArea = All; }
+                field("Cód. forma de pago"; Rec."Cod. forma de pago") { ApplicationArea = All; }
                 ///field("Salesperson Code"; Rec."Salesperson Code") { ApplicationArea = All; }
                 field("Cod. entrega ECI"; Rec."Cod. entrega ECI") { ApplicationArea = All; }
                 field("Filtro ECI"; Rec."Filtro ECI") { ApplicationArea = All; }

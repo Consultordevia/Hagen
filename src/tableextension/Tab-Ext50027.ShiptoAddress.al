@@ -2,10 +2,10 @@ tableextension 50027 ShiptoAddress extends "Ship-to Address"
 {
     fields
     {
-        field(50000; "Dirección habitual"; Boolean)
+        field(50000; "Direccion habitual"; Boolean)
         {
         }
-        field(50001; "Dirección postal"; Boolean)
+        field(50001; "Direccion postal"; Boolean)
         {
         }
         field(50002; "Transportista ficha cliente"; Code[10])
@@ -25,7 +25,7 @@ tableextension 50027 ShiptoAddress extends "Ship-to Address"
             FieldClass = FlowField;
             OptionMembers = Activo,"Posible cliente",Transformado,Cerrado;
         }
-        field(50055; "Cód. forma de pago"; Code[10])
+        field(50055; "Cod. forma de pago"; Code[10])
         {
             CalcFormula = lookup(Customer."Payment Method Code" where("No." = field("Customer No.")));
             FieldClass = FlowField;

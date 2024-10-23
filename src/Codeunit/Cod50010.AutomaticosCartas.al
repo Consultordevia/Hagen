@@ -960,11 +960,11 @@ Codeunit 50010 "Automaticos Cartas"
 
 
 
-        VENTANA.Update(1, 'CIONES');
+        VENTANA.Update(1, 'RECEPCIONES');
 
         RecCC.Reset;
         RecCC.SetRange(RecCC."Document Type", 1);
-        RecCC.SetRange(RecCC."No.", '106209');
+        ////RecCC.SetRange(RecCC."No.", '106209');
         if RecCC.FindSet then
             repeat
                 VENTANA.Update(2, RecCC."No.");
@@ -3194,18 +3194,21 @@ OutStream.Write('Tercera línea después del salto');
 
     procedure ENVIAEXPEDICIONES(var RecCV: Record "Sales Header")
     var
-        retorno: Char;
-        carro: Char;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+        OutTxt: Text;
 
     begin
 
 
-        retorno := 13;
-        carro := 10;
-
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
 
         Clear(TempBlob);
-        TempBlob.CreateOutStream(OutStream);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
+
+
 
         NPEDIDO := RecCV."Nº expedición";
         RecCVE.Reset;
@@ -3283,7 +3286,7 @@ OutStream.Write('Tercera línea después del salto');
 
 
 
-            TextoSalida := 'OECA' + '|' +
+            OutTxt := 'OECA' + '|' +
                            'AG' + '|' +
                            NPEDIDO + '|' +
                            '01' + '|' +
@@ -3296,8 +3299,10 @@ OutStream.Write('Tercera línea después del salto');
                            FECORD1 + '|' +
                            HH + MI + '|' +
                            'N|' +
-                           Format(OBS, 40) + '|||||' + retorno;
-            OutStream.Writetext(TextoSalida);
+                           Format(OBS, 40) + '|||||';
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+
         end;
 
         codtras := '';
@@ -3368,7 +3373,7 @@ OutStream.Write('Tercera línea después del salto');
                                     PRECIO := Format(RecLV."Unit Price", 6, '<integer>');
                                     KILOSTRAS := '';
 
-                                    TextoSalida := 'OELI' + '|' +
+                                    OutTxt := 'OELI' + '|' +
                                                'AG' + '|' +
                                                NPEDIDO + '|' +
                                                NLINC + '|' +
@@ -3377,8 +3382,10 @@ OutStream.Write('Tercera línea después del salto');
                                                'UD' + '|' +
                                                '1' + '|' +
                                                '' + '|' +
-                                               '' + '||||' + retorno;
-                                    OutStream.Writetext(TextoSalida);
+                                               '' + '||||';
+                                    OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                                    data.AddText(OutTxt);
+
                                     RecLV."Nº expedición" := RecCV."Nº expedición";
                                     RecLV."Linea Nº expedición" := CONTALIN;
                                 end;
@@ -3402,7 +3409,7 @@ OutStream.Write('Tercera línea después del salto');
 
 
 
-        TextoSalida := 'OELI' + '|' +
+        OutTxt := 'OELI' + '|' +
                        'AG' + '|' +
                        NPEDIDO + '|' +
                        '000000001|' +
@@ -3411,12 +3418,14 @@ OutStream.Write('Tercera línea después del salto');
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||' + retorno;
+                       '' + '||||';
         If ENVIAR then begin
-            OutStream.Writetext(TextoSalida);
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+
         end;
 
-        TextoSalida := 'OELI' + '|' +
+        OutTxt := 'OELI' + '|' +
                        'AG' + '|' +
                        NPEDIDO + '|' +
                        '000000002|' +
@@ -3425,12 +3434,14 @@ OutStream.Write('Tercera línea después del salto');
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||' + retorno;
+                       '' + '||||';
         if ENVIAR then begin
-            OutStream.Writetext(TextoSalida);
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+
         end;
 
-        TextoSalida := 'OELI' + '|' +
+        OutTxt := 'OELI' + '|' +
                        'AG' + '|' +
                        NPEDIDO + '|' +
                        '000000003|' +
@@ -3439,11 +3450,13 @@ OutStream.Write('Tercera línea después del salto');
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||' + retorno;
-        OutStream.Writetext(TextoSalida);
+                       '' + '||||';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
 
 
-        TextoSalida := 'OELI' + '|' +
+
+        OutTxt := 'OELI' + '|' +
                        'AG' + '|' +
                        NPEDIDO + '|' +
                        '000000003|' +
@@ -3452,8 +3465,10 @@ OutStream.Write('Tercera línea después del salto');
                        'UD' + '|' +
                        '1' + '|' +
                        '' + '|' +
-                       '' + '||||' + retorno;
-        OutStream.Writetext(TextoSalida);
+                       '' + '||||';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+
 
 
         RecCE.Get;
@@ -3461,7 +3476,8 @@ OutStream.Write('Tercera línea después del salto');
         TIPO := 3;
         BUSCAEXTENSION;
         DAT2 := 'TREXPORD.' + contaser + EXTEN + Format(ALEA) + Format(RecI."No.") + Format(LOGCAMBIOA);
-        TempBlob.CreateInStream(InStream);
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
         FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
 
     end;
@@ -7714,7 +7730,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         RecDEC.Init;
         RecDEC.Reset;
         RecDEC.SetRange(RecDEC."Customer No.", RecCusto."No.");
-        RecDEC.SetRange(RecDEC."Dirección habitual", true);
+        RecDEC.SetRange(RecDEC."Direccion habitual", true);
         if RecDEC.FindFirst then begin
         end;
 
@@ -7879,7 +7895,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         RecDEC.Init;
         RecDEC.Reset;
         RecDEC.SetRange(RecDEC."Customer No.", RecCUSTO."No.");
-        RecDEC.SetRange(RecDEC."Dirección habitual", true);
+        RecDEC.SetRange(RecDEC."Direccion habitual", true);
         if RecDEC.FindFirst then begin
         end;
 
@@ -8028,7 +8044,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         RecDEC.Init;
         RecDEC.Reset;
         RecDEC.SetRange(RecDEC."Customer No.", RecCUSTO."No.");
-        RecDEC.SetRange(RecDEC."Dirección habitual", true);
+        RecDEC.SetRange(RecDEC."Direccion habitual", true);
         if RecDEC.FindFirst then begin
         end;
 
@@ -8183,8 +8199,9 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         RecDEC.Init;
         RecDEC.Reset;
+
         RecDEC.SetRange(RecDEC."Customer No.", RecCUSTO."No.");
-        RecDEC.SetRange(RecDEC."Dirección habitual", true);
+        RecDEC.SetRange(RecDEC."Direccion habitual", true);
         if RecDEC.FindFirst then begin
         end;
 

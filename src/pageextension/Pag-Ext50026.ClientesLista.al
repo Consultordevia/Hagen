@@ -31,6 +31,7 @@ pageextension 50026 ClientesLista extends "Customer List"
             field("Address 2"; Rec."Address 2") { ApplicationArea = All; }
             field("Enviar a Web"; Rec."Enviar a Web") { ApplicationArea = All; }
             field("Enviar a Web Distribuidor"; Rec."Enviar a Web Distribuidor") { ApplicationArea = All; }
+            field("Estatus del cliente"; Rec."Estatus del cliente") { ApplicationArea = All; }
 
 
 
