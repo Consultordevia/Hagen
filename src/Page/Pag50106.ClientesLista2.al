@@ -10,39 +10,43 @@ Page 50106 "Clientes Lista2"
         {
             repeater(Group)
             {
-                field("Last Modified Date Time";Rec."Last Modified Date Time")
+                field("Last Modified Date Time"; Rec."Last Modified Date Time")
                 {
                     ApplicationArea = Basic;
                 }
-                field("No.";Rec."No.")
+                field("No."; Rec."No.")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Email facturacion 1";Rec."Email facturacion 1")
+                field("Email facturacion 1"; Rec."Email facturacion 1")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Email facturacion 2";Rec."Email facturacion 2")
+                field("Email facturacion 2"; Rec."Email facturacion 2")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Email facturacion 3";Rec."Email facturacion 3")
+                field("Email facturacion 3"; Rec."Email facturacion 3")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Email abono 1";Rec."Email abono 1")
+                field("Email abono 1"; Rec."Email abono 1")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Email abono 2";Rec."Email abono 2")
+                field("Email abono 2"; Rec."Email abono 2")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Email albaran sin detalle 1";Rec."Email albaran sin detalle 1")
+                field("Email albaran sin detalle 1"; Rec."Email albaran sin detalle 1")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Customer Price Group";Rec."Customer Price Group")
+                field("Customer Price Group"; Rec."Customer Price Group")
+                {
+                    ApplicationArea = Basic;
+                }
+                field("Estatus del cliente"; Rec."Estatus del cliente")
                 {
                     ApplicationArea = Basic;
                 }
@@ -64,12 +68,12 @@ Page 50106 "Clientes Lista2"
 
 
 
-                    Rec."Email albaran sin detalle 1":='info@catit.es';
-                    Rec."Email facturacion 1":='info@catit.es';
-                    Rec."Email facturacion 2":='';
-                    Rec."Email facturacion 3":='';
-                    Rec."Email abono 1":='info@catit.es';
-                    Rec."Email abono 2":='';
+                    Rec."Email albaran sin detalle 1" := 'info@catit.es';
+                    Rec."Email facturacion 1" := 'info@catit.es';
+                    Rec."Email facturacion 2" := '';
+                    Rec."Email facturacion 3" := '';
+                    Rec."Email abono 1" := 'info@catit.es';
+                    Rec."Email abono 2" := '';
                     Rec.Modify;
 
                     /////VALIDATE("Search Name");
@@ -86,6 +90,6 @@ Page 50106 "Clientes Lista2"
     }
 
     var
-        /////- C50000: Codeunit UnknownCodeunit50000;
+    /////- C50000: Codeunit UnknownCodeunit50000;
 }
 
