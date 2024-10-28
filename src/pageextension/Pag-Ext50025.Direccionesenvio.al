@@ -10,7 +10,7 @@ pageextension 50025 "Direcciones envio" extends "Ship-to Address List"
 
             field("Estatus del cliente"; Rec."Estatus del cliente") { ApplicationArea = All; }
             field("Direccion Ruta"; Rec."Direccion Ruta") { ApplicationArea = All; }
-            field("Dirección habitual"; Rec."Direccion habitual") { ApplicationArea = All; }
+            field("Direccion habitual"; Rec."Direccion habitual") { ApplicationArea = All; }
             field("Direccion postal"; Rec."Direccion postal") { ApplicationArea = All; }
             field(Dni; Rec.Dni) { ApplicationArea = All; }
 
