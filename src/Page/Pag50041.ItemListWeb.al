@@ -182,24 +182,6 @@ page 50041 ItemListWeb
                 {
                     ApplicationArea = All;
                 }
-                field("Imagen Articulo WEB"; Rec."Imagen Articulo WEB")
-                {
-                    ApplicationArea = All;
-                }
-                field("Imagen Articulo WEB 2"; Rec."Imagen Articulo WEB 2")
-                {
-                    ApplicationArea = All;
-                }
-
-                field("Imagen Articulo WEB 3"; Rec."Imagen Articulo WEB 3")
-                {
-                    ApplicationArea = All;
-                }
-
-                field("Imagen Articulo WEB 4"; Rec."Imagen Articulo WEB 4")
-                {
-                    ApplicationArea = All;
-                }
                 field(Level10; Rec.Level10)
                 {
                     ApplicationArea = All;
