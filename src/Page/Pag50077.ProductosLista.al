@@ -954,6 +954,24 @@ Page 50077 "Productos Lista"
                 {
                     ApplicationArea = Basic;
                 }
+                field("Imagen Articulo WEB"; Rec."Imagen Articulo WEB")
+                {
+                    ApplicationArea = Basic;
+                }
+                field("Imagen Articulo WEB 2"; Rec."Imagen Articulo WEB 2")
+                {
+                    ApplicationArea = Basic;
+                }
+                field("Imagen Articulo WEB 3"; Rec."Imagen Articulo WEB 3")
+                {
+                    ApplicationArea = Basic;
+                }
+                field("Imagen Articulo WEB 4"; Rec."Imagen Articulo WEB 4")
+                {
+                    ApplicationArea = Basic;
+                }
+
+
                 /*
                 field("Clasificación A,B,C"; Rec."Clasificación A,B,C")
                 {
