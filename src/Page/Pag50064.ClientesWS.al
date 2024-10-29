@@ -294,6 +294,7 @@ page 50064 ClientesWS
                 field("Address2"; Rec."Address 2") { ApplicationArea = All; }
                 field("EnviaraWeb"; Rec."Enviar a Web") { ApplicationArea = All; }
                 field("EnviaraWebDistribuidor"; Rec."Enviar a Web Distribuidor") { ApplicationArea = All; }
+                field("Estatusdelcliente"; Rec."Estatus del cliente") { ApplicationArea = All; }
             }
         }
     }
