@@ -2,7 +2,11 @@
   "id": "4c82943b-44ff-4cd2-9606-25a7de64c606",
   "name": "Hagen",
   "publisher": "DevConsultIA",
+<<<<<<< HEAD
   "version": "1.0.0.234",
+=======
+  "version": "1.0.0.233",
+>>>>>>> 84f257399d810e9aa35d185a0212f0d048852f0f
   "brief": "",
   "description": "",
   "privacyStatement": "",

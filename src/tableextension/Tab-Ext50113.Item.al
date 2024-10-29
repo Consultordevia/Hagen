@@ -1025,7 +1025,7 @@ tableextension 50113 Item extends Item
         field(50289; "Volumen INNER"; Decimal)
         {
         }
-        field(50291; "Imagen Articulo WEB"; Text[100])
+        field(50291; "Imagen Articulo WEB"; Text[200])
         {
         }
         field(50292; "Filtro Grupo clientes"; Code[20])
@@ -1280,13 +1280,13 @@ tableextension 50113 Item extends Item
         field(60000; "Actualizar WEB"; Boolean)
         {
         }
-        field(60001; "Imagen Articulo WEB 2"; Text[80])
+        field(60001; "Imagen Articulo WEB 2"; Text[200])
         {
         }
-        field(60002; "Imagen Articulo WEB 3"; Text[60])
+        field(60002; "Imagen Articulo WEB 3"; Text[200])
         {
         }
-        field(60003; "Imagen Articulo WEB 4"; Text[60])
+        field(60003; "Imagen Articulo WEB 4"; Text[200])
         {
         }
         field(60004; "Actualizar WEB Imagenes"; Boolean)

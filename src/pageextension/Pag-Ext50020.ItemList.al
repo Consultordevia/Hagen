@@ -157,6 +157,10 @@ pageextension 50020 "Item List" extends "Item List"
             field(Level8; Rec.Level8) { ApplicationArea = ALL; }
             field(Level9; Rec.Level9) { ApplicationArea = ALL; }
             field(Level10; Rec.Level10) { ApplicationArea = ALL; }
+            field("Imagen Articulo WEB"; Rec."Imagen Articulo WEB") { ApplicationArea = ALL; }
+            field("Imagen Articulo WEB 2"; Rec."Imagen Articulo WEB 2") { ApplicationArea = ALL; }
+            field("Imagen Articulo WEB 3"; Rec."Imagen Articulo WEB 3") { ApplicationArea = ALL; }
+            field("Imagen Articulo WEB 4"; Rec."Imagen Articulo WEB 4") { ApplicationArea = ALL; }
         }
 
 
