@@ -970,6 +970,13 @@ Page 50077 "Productos Lista"
                 {
                     ApplicationArea = Basic;
                 }
+                field("Estado Producto"; Rec."Estado Producto") { ApplicationArea = All; }
+
+                field("Permite fraccionar venta"; Rec."Permite fraccionar venta") { ApplicationArea = All; }
+                field("Criterio rotacion"; Rec."Criterio rotacion") { ApplicationArea = All; }
+                field("Fecha en picking"; Rec."Fecha en picking") { ApplicationArea = All; }
+                field("Producto FRAGIL"; Rec."Producto FRAGIL") { ApplicationArea = All; }
+
 
 
                 /*

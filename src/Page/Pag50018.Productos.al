@@ -100,6 +100,12 @@ Page 50018 Productos
                 {
                     ApplicationArea = Basic;
                 }
+                field("Fecha Lanzamiento"; Rec."Fecha Lanzamiento") { ApplicationArea = All; }
+                field("Permite fraccionar venta"; Rec."Permite fraccionar venta") { ApplicationArea = All; }
+                field("Criterio rotacion"; Rec."Criterio rotacion") { ApplicationArea = All; }
+                field("Fecha en picking"; Rec."Fecha en picking") { ApplicationArea = All; }
+                field("Producto FRAGIL"; Rec."Producto FRAGIL") { ApplicationArea = All; }
+
             }
         }
     }

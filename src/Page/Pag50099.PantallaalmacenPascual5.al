@@ -389,6 +389,25 @@ Page 50099 "Pantalla almacen Pascual5"
                     end;
                 }
 
+                action(Importa_nav_2018_url_borra)
+                {
+                    ApplicationArea = Basic;
+                    Visible = true;
+
+                    trigger OnAction()
+                    begin
+
+                        if RecItem.FindSet() then
+                            repeat
+                                RecItem."Imagen Articulo WEB" := '';
+                                RecItem."Imagen Articulo WEB 2" := '';
+                                RecItem."Imagen Articulo WEB 3" := '';
+                                RecItem."Imagen Articulo WEB 4" := '';
+                                RecItem.Modify();
+                            until RecItem.next = 0;
+                        Message('hecho');
+                    end;
+                }
                 action(Importa_nav_2018_url)
                 {
                     ApplicationArea = Basic;
@@ -400,7 +419,6 @@ Page 50099 "Pantalla almacen Pascual5"
                         iMPORTANAV20184.Run();
                     end;
                 }
-
 
                 action(Importa_cat_nav_2018)
                 {

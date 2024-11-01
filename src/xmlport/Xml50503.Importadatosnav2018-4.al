@@ -22,8 +22,14 @@ XmlPort 50503 "Importa datos nav2018-4"
                 textelement(D2)
                 {
                 }
-
                 textelement(D3)
+                {
+                }
+                textelement(D4)
+                {
+                }
+
+                textelement(d5)
                 {
 
                     trigger OnAfterAssignVariable()
@@ -301,19 +307,19 @@ XmlPort 50503 "Importa datos nav2018-4"
     local procedure ValidateHeaderTag()
     begin
         v.Open('#1#######################################');
-        if RecItem.get(d2) then begin
-            IF UpperCase(D1) = 'IMAGEN ARTICULO WEB' THEN BEGIN
-                RecItem."Imagen Articulo WEB" := d3;
-            END;
-            IF UpperCase(D1) = 'IMAGEN ARTICULO WEB 2' THEN BEGIN
-                RecItem."Imagen Articulo WEB 2" := d3;
-            END;
-            IF UpperCase(D1) = 'IMAGEN ARTICULO WEB 3' THEN BEGIN
-                RecItem."Imagen Articulo WEB 3" := d3;
-            END;
-            IF UpperCase(D1) = 'IMAGEN ARTICULO WEB 4' THEN BEGIN
-                RecItem."Imagen Articulo WEB 4" := d3;
-            END;
+        if RecItem.get(d1) then begin
+            //IF UpperCase(D1) = 'IMAGEN ARTICULO WEB' THEN BEGIN
+            RecItem."Imagen Articulo WEB" := d2;
+            //END;
+            //IF UpperCase(D1) = 'IMAGEN ARTICULO WEB 2' THEN BEGIN
+            RecItem."Imagen Articulo WEB 2" := d3;
+            //END;
+            //IF UpperCase(D1) = 'IMAGEN ARTICULO WEB 3' THEN BEGIN
+            RecItem."Imagen Articulo WEB 3" := d4;
+            //END;
+            //IF UpperCase(D1) = 'IMAGEN ARTICULO WEB 4' THEN BEGIN
+            RecItem."Imagen Articulo WEB 4" := d5;
+            //END;
             RecItem.Modify;
             v.Update(1, RecItem."No.");
             v.Close();
