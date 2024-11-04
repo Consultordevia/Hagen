@@ -7,6 +7,7 @@ page 50023 TablaCajas
     UsageCategory = Lists;
 
     layout
+
     {
         area(Content)
         {
@@ -147,10 +148,47 @@ page 50023 TablaCajas
                 field("Voluminoso web"; Rec."Voluminoso web")
                 {
                     ToolTip = 'Specifies the value of the Voluminoso web field.', Comment = '%';
+                }                
+                
+                field("Estado Producto";Rec."Estado Producto")                 
+                {
+                    ToolTip = 'Estado Producto';                    
+
                 }
+
+                field("Fecha Lanzamiento";Rec."Fecha Lanzamiento")
+                {
+                    ToolTip = 'Fecha Lanzamiento';
+                }
+                field("Permite fraccionar venta";Rec."Permite fraccionar venta")
+                {
+                    ToolTip = 'Permite_fraccionar_venta';
+                }
+                field("Criterio de Rotacion";Rec."Criterio de Rotacion")
+                {
+                    ToolTip = 'Criterio_rotacion';
+                }
+                field("Fecha en picking";Rec."Fecha en picking")
+                {
+                    ToolTip = 'Criterio_rotacion';
+                }
+                field("Producto FRAGIL";Rec."Producto FRAGIL")
+                {
+                    ToolTip = 'Producto_FRAGIL';
+                }
+                
+ 
+                
+
+
             }
         }
     }
+
+
+
+    
+
     trigger OnInit()
     var
         RecTC: Record TablaCajas;
@@ -166,12 +204,6 @@ page 50023 TablaCajas
         RecBom: Record "BOM Component";
         RecVPG: Record "VAT Posting Setup";
         RecITREF: Record "Item Reference";
-
-
-
-
-
-
     begiN        
 
     RecTC.Reset();;
@@ -205,7 +237,12 @@ page 50023 TablaCajas
                 RecTC.Peso:=RecUMP.Weight;
                 RecTC.Alto:=RecUMP.Height;                              
                 RecTC.Ancho:=RecUMP.Width;            
-            end;             
+            end;    
+            RecTC."Estado Producto":=RecItem."Estado Producto";
+            RecTC."Fecha Lanzamiento":=RecItem."Fecha Lanzamiento";
+            RecTC."Permite fraccionar venta":=RecItem."Permite fraccionar venta";
+            RecTC."Fecha en picking":=RecItem."Fecha en picking";
+            RecTC."Producto FRAGIL":=RecItem."Producto FRAGIL";
             RecTC."Criterio Rotacion":=RecItem."Criterio rotacion";
             RecTC."Descricion marca":=DescripMarca;
             RecTC.Descripcion:=RecItem.Description;
@@ -248,6 +285,11 @@ page 50023 TablaCajas
     until RecSP.next=0;            
 
     end;
+
+
+
+
+
      
 }    
     

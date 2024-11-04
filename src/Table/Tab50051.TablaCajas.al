@@ -138,6 +138,23 @@ table 50051 TablaCajas
             Caption = 'Voluminoso web';
         }
 
+        field(33; "Estado Producto"; Option)
+        {
+            OptionCaption = 'Activo,Descatalogado,Anulado,Sin actualizar';
+            OptionMembers = Activo,Descatalogado,Anulado,"Sin actualizar";
+        }
+        field(34; "Fecha Lanzamiento"; Date)
+        {
+        }
+        field(35; "Permite fraccionar venta"; Boolean)
+        {
+        }
+        field(36; "Fecha en picking"; Date)
+        {
+        }
+        field(37; "Producto FRAGIL"; Boolean)
+        {
+        }
 
 
     }
