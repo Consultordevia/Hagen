@@ -242,8 +242,8 @@ page 50023 TablaCajas
             RecTC."Fecha Lanzamiento":=RecItem."Fecha Lanzamiento";
             RecTC."Permite fraccionar venta":=RecItem."Permite fraccionar venta";
             RecTC."Fecha en picking":=RecItem."Fecha en picking";
-            RecTC."Producto FRAGIL":=RecItem."Producto FRAGIL";
-            RecTC."Criterio Rotacion":=RecItem."Criterio rotacion";
+            RecTC."Producto FRAGIL":=RecItem."Producto FRAGIL";             
+            RecTC."Criterio de Rotacion":=format(RecItem."Criterio rotacion");
             RecTC."Descricion marca":=DescripMarca;
             RecTC.Descripcion:=RecItem.Description;
             RecITREF.Reset();
