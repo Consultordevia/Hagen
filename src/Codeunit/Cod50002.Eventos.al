@@ -4,9 +4,24 @@ codeunit 50002 Eventos
     local procedure OnAfterOnInsert(var Customer: Record Customer; xCustomer: Record Customer)
     var
         EnvioFicheros: Codeunit "Automaticos Cartas";
+        RMSetup: Record "Marketing Setup";
+        UpdateContFromCust: Codeunit "CustCont-Update";
     begin
 
         EnvioFicheros.ALTACLIENTES(Customer);
+
+        //Commit;
+        if Customer.ContactoAInsertar <> '' then begin
+            Customer.Contact := Customer.ContactoAInsertar;
+            if RMSetup.Get() then
+                if RMSetup."Bus. Rel. Code for Customers" <> '' then
+                    if (xCustomer.Contact = '') and (xCustomer."Primary Contact No." = '') and (Customer.Contact <> '') then begin
+                        //Modify();
+                        OnModify(Customer);
+                        UpdateContFromCust.InsertNewContactPerson(Customer, false);
+                        //Customer.Modify();
+                    end
+        end;
 
 
     end;
@@ -191,5 +206,51 @@ codeunit 50002 Eventos
                 until RecPMTemp.next = 0;
         end;
         Commit();
+    end;
+
+
+    procedure OnModify(var Cust: Record Customer)
+    var
+        ContactBusinessRelation: Record "Contact Business Relation";
+        Contact: Record Contact;
+        OldContact: Record Contact;
+        ContactNo: Code[20];
+        NoSeries: Code[20];
+        IsHandled: Boolean;
+    begin
+        IsHandled := false;
+        //OnBeforeOnModify(Cust, ContactBusinessRelation, IsHandled);
+        if not IsHandled then begin
+            ContactBusinessRelation.SetCurrentKey("Link to Table", "No.");
+            ContactBusinessRelation.SetRange("Link to Table", ContactBusinessRelation."Link to Table"::Customer);
+            ContactBusinessRelation.SetRange("No.", Cust."No.");
+            if not ContactBusinessRelation.FindFirst() then
+                exit;
+            if not Contact.Get(ContactBusinessRelation."Contact No.") then begin
+                ContactBusinessRelation.Delete();
+                //Session.LogMessage('0000B37', CustContactUpdateTelemetryMsg, Verbosity::Normal, DataClassification::SystemMetadata, TelemetryScope::ExtensionPublisher, 'Category', CustContactUpdateCategoryTxt);
+                exit;
+            end;
+            OldContact := Contact;
+
+            ContactNo := Contact."No.";
+            NoSeries := Contact."No. Series";
+            Contact.Validate("E-Mail", Cust."E-Mail");
+
+            //OnModifyOnBeforeTransferFieldsFromCustToContact(Contact, Cust);
+            Contact.TransferFields(Cust);
+            Contact."No." := ContactNo;
+            Contact."No. Series" := NoSeries;
+            //OnAfterTransferFieldsFromCustToCont(Contact, Cust);
+
+            Contact.Type := OldContact.Type;
+            Contact.Validate(Name);
+            Contact.DoModify(OldContact);
+            Contact.Modify(true);
+
+            //Cust.Get(Cust."No.");
+        end;
+
+        //OnAfterOnModify(Contact, OldContact, Cust);
     end;
 }

@@ -18,4 +18,29 @@ pageextension 50024 "Inventary Setup" extends "Inventory Setup"
         }
     }
 
+    actions
+    {
+        addafter("Import Item Pictures")
+        {
+            action(Prueba)
+            {
+                ApplicationArea = All;
+                Caption = 'Caption', comment = 'NLB="YourLanguageCaption"';
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                Image = Image;
+                trigger OnAction()
+                var
+                    Customer: Record Customer;
+                begin
+                    Customer.Init();
+                    Customer.Name := 'Prueba';
+                    Customer.ContactoAInsertar := 'Prueba';
+                    Customer.Insert(true);
+                end;
+            }
+        }
+    }
+
 }
