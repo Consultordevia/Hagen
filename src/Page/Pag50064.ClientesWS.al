@@ -79,6 +79,11 @@ page 50064 ClientesWS
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the name of the person you regularly contact when you do business with this customer.';
                 }
+                field(ContactoInsertar; ContactoInsertar)
+                {
+                    ApplicationArea = All;
+                }
+
                 field("SalespersonCode"; Rec."Salesperson Code")
                 {
                     ApplicationArea = Suite;
@@ -253,7 +258,6 @@ page 50064 ClientesWS
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the sum of payments received from the customer.';
                 }
-#if not CLEAN23
                 field("CoupledtoCRM"; Rec."Coupled to CRM")
                 {
                     ApplicationArea = All;
@@ -263,7 +267,6 @@ page 50064 ClientesWS
                     ObsoleteReason = 'Replaced by flow field Coupled to Dataverse';
                     ObsoleteTag = '23.0';
                 }
-#endif
                 field("CoupledtoDataverse"; Rec."Coupled to Dataverse")
                 {
                     ApplicationArea = All;
@@ -299,6 +302,12 @@ page 50064 ClientesWS
         }
     }
 
+    trigger OnInsertRecord(BelowxRec: Boolean): Boolean
+    begin
+        if ContactoInsertar <> '' then
+            rec.Validate(Contact, ContactoInsertar);
+    end;
+
     trigger OnAfterGetRecord()
     begin
         NombreVendedor := '';
@@ -310,6 +319,7 @@ page 50064 ClientesWS
     var
         RecVendedores: Record "Salesperson/Purchaser";
         NombreVendedor: text;
+        ContactoInsertar: code[100];
 
 
 }
