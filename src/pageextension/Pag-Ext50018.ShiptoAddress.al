@@ -20,6 +20,7 @@ pageextension 50018 "Ship-to Address" extends "Ship-to Address"
                 field("Longitud"; Rec."Longitud") { ApplicationArea = All; }
                 field("Nº Movil"; Rec."Nº Movil") { ApplicationArea = All; }
                 field("Dni"; Rec."Dni") { ApplicationArea = All; }
+                field("Enviar a Web Distribuidor";Rec."Enviar a Web Distribuidor") {ApplicationArea = All; }
             }
         }
     }

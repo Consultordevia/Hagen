@@ -200,6 +200,10 @@ page 50085 DirEnvioClientes
                 {
                     ToolTip = 'Specifies the value of the Transportista ficha cliente field.', Comment = '%';
                 }
+                field("Enviar a Web Distribuidor"; Rec."Enviar a Web Distribuidor")
+                {
+                    ToolTip = 'Enviar a Web Distribuidor';
+                }
             }
         }
     }

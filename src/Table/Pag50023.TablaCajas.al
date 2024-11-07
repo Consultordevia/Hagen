@@ -17,6 +17,11 @@ page 50023 TablaCajas
                 {
                     ToolTip = 'Specifies the value of the Sku field.', Comment = '%';
                 }
+                field(CodTarifa;Rec.CodTarifa)
+                {
+                    ToolTip = 'Specifies the value of the Sku field.', Comment = '%';
+                }
+                
                 field(Alto; Rec.Alto)
                 {
                     ToolTip = 'Specifies the value of the Alto field.', Comment = '%';
@@ -280,6 +285,7 @@ page 50023 TablaCajas
             RecTC."Valor Atributo Variante2":=RecItem."Dato Variante2";
             RecTC.Volumen:=RecItem."Unit Volume";
             RecTC."Voluminoso  web":=RecItem."Voluminoso web";
+            RecTC.CodTarifa:=RecSP."Sales Code";
             RecTC.INSERT;                          
         end;    
     until RecSP.next=0;            

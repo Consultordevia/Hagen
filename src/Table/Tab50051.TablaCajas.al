@@ -155,12 +155,16 @@ table 50051 TablaCajas
         field(37; "Producto FRAGIL"; Boolean)
         {
         }
+        field(38; "CodTarifa"; Code[20])
+        {
+        }
+
 
 
     }
     keys
     {
-        key(Key1; Sku)
+        key(Key1; Sku, CodTarifa)
         {
             Clustered = true;
         }
