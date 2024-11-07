@@ -278,7 +278,10 @@ page 50023 TablaCajas
             IF RecTC."Cantidad x caja"<>0 THEN begin
                     RecTC.Stock:=round(dispo/RecTC."Cantidad x caja",1);
             END;
-            RecTC."Umbral Stock":=RecItem."Umbral stock";
+            IF RecTC."Cantidad x caja"<>0 THEN BEGIN
+                RecTC."Umbral Stock":=RecItem."Umbral stock"/ RecTC."Cantidad x caja";
+            END;
+
             RecTC."Unidad de medida":=RecSP."Unit of Measure Code";
             RecTC."Unidades venta":=RecItem."Unidades venta"; 
             RecTC."Valor Atributo Variante1":=RecItem."Dato Variante1";
