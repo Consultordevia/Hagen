@@ -6,10 +6,11 @@ page 50064 ClientesWS
     Editable = true;
     InsertAllowed = true;
     PageType = API;
+    //PageType = List;
     SourceTable = Customer;
     //InsertAllowed = true;
     DelayedInsert = true;
-    //UsageCategory = Lists;
+    UsageCategory = Lists;
     APIPublisher = 'HAGENapi';
     APIGroup = 'HAGENapp';
     APIVersion = 'v1.0';
@@ -79,7 +80,7 @@ page 50064 ClientesWS
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the name of the person you regularly contact when you do business with this customer.';
                 }
-                field(ContactoInsertar; ContactoInsertar)
+                field(ContactoAInsertar; Rec.ContactoAInsertar)
                 {
                     ApplicationArea = All;
                 }
@@ -298,15 +299,15 @@ page 50064 ClientesWS
                 field("EnviaraWeb"; Rec."Enviar a Web") { ApplicationArea = All; }
                 field("EnviaraWebDistribuidor"; Rec."Enviar a Web Distribuidor") { ApplicationArea = All; }
                 field("Estatusdelcliente"; Rec."Estatus del cliente") { ApplicationArea = All; }
-                 
+
             }
         }
     }
 
     trigger OnInsertRecord(BelowxRec: Boolean): Boolean
     begin
-        if ContactoInsertar <> '' then
-            rec.Validate(Contact, ContactoInsertar);
+        //if ContactoInsertar <> '' then
+        //  rec.Validate(Contact, ContactoInsertar);
     end;
 
     trigger OnAfterGetRecord()
@@ -320,7 +321,7 @@ page 50064 ClientesWS
     var
         RecVendedores: Record "Salesperson/Purchaser";
         NombreVendedor: text;
-        ContactoInsertar: code[100];
+    //ContactoInsertar: code[100];
 
 
 }

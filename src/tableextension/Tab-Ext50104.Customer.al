@@ -598,6 +598,11 @@ tableextension 50104 Customer extends Customer
             OptionCaption = '1-Vista,2-Telefono,3-Telefono/Visita';
             OptionMembers = "1-Vista","2-Telefono","3-Telefono/Visita";
         }
+        field(50999; "ContactoAInsertar"; code[100])
+        {
+            Caption = 'ContactoAInsertar', comment = 'NLB="YourLanguageText"';
+            DataClassification = SystemMetadata;
+        }
         field(60000; "Actualizar WEB"; Boolean)
         {
             Description = 'WEB1.00';
