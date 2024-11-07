@@ -18,7 +18,7 @@ pageextension 50024 "Inventary Setup" extends "Inventory Setup"
         }
     }
 
-    actions
+    /*actions
     {
         addafter("Import Item Pictures")
         {
@@ -41,6 +41,6 @@ pageextension 50024 "Inventary Setup" extends "Inventory Setup"
                 end;
             }
         }
-    }
+    }*/
 
 }
