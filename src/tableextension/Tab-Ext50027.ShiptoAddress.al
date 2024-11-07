@@ -59,6 +59,10 @@ tableextension 50027 ShiptoAddress extends "Ship-to Address"
                 ///ActualizazaMT2;
             end;
         }
+        field(50142; "Enviar a Web Distribuidor"; Boolean)
+        {
+
+        }
         field(60000; "Nº Movil"; Text[30])
         {
         }
