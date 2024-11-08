@@ -126,10 +126,10 @@ page 50023 TablaCajas
                 {
                     ToolTip = 'Specifies the value of the SystemModifiedBy field.', Comment = '%';
                 }
-                field("Umbral de Stock"; Rec."Umbral de Stock")
-                {
-                    ToolTip = 'Specifies the value of the Umbral de Stock field.', Comment = '%';
-                }
+                ///field("Umbral de Stock"; Rec."Umbral de Stock")
+                ///{
+                    ///ToolTip = 'Specifies the value of the Umbral de Stock field.', Comment = '%';
+                ///}
                 field("Unidad de medida"; Rec."Unidad de medida")
                 {
                     ToolTip = 'Specifies the value of the Unidad de medida field.', Comment = '%';
@@ -182,7 +182,10 @@ page 50023 TablaCajas
                     ToolTip = 'Producto_FRAGIL';
                 }
                 
- 
+                field("Umbral Stock";Rec."Umbral Stock")
+                {
+                    ToolTip = 'Specifies the value of the Umbral de Stock field.', Comment = '%';
+                }
                 
 
 
