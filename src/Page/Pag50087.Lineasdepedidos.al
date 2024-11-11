@@ -1,8 +1,11 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
 Page 50087 "Lineas de pedidos"
 {
+    ApplicationArea = All;
+    Caption = 'Lineas AMAZON Pedidos';
     PageType = List;
     SourceTable = "Lineas AMAZON Pedidos";
+    UsageCategory = Lists;
 
     layout
     {
@@ -10,56 +13,56 @@ Page 50087 "Lineas de pedidos"
         {
             repeater(Group)
             {
-                field(conta;Rec.conta)
+                field(conta; Rec.conta)
                 {
                     ApplicationArea = Basic;
                     StyleExpr = color;
                 }
-                field("Numero de pedido";Rec."Numero de pedido")
+                field("Numero de pedido"; Rec."Numero de pedido")
                 {
                     ApplicationArea = Basic;
                     StyleExpr = color;
                 }
-                field("Id. externo";Rec."Id. externo")
+                field("Id. externo"; Rec."Id. externo")
                 {
                     ApplicationArea = Basic;
                     StyleExpr = color;
                 }
-                field(Modelo;Rec.Modelo)
+                field(Modelo; Rec.Modelo)
                 {
                     ApplicationArea = Basic;
                 }
-                field(ASIN;Rec.ASIN)
-                {
-                    ApplicationArea = Basic;
-                    StyleExpr = color;
-                }
-                field(Descripcion;Rec.Descripcion)
+                field(ASIN; Rec.ASIN)
                 {
                     ApplicationArea = Basic;
                     StyleExpr = color;
                 }
-                field(Precio;Rec.Precio)
+                field(Descripcion; Rec.Descripcion)
                 {
                     ApplicationArea = Basic;
                     StyleExpr = color;
                 }
-                field(Descuento;Rec.Descuento)
+                field(Precio; Rec.Precio)
                 {
                     ApplicationArea = Basic;
                     StyleExpr = color;
                 }
-                field(Coste;Rec.Coste)
+                field(Descuento; Rec.Descuento)
                 {
                     ApplicationArea = Basic;
                     StyleExpr = color;
                 }
-                field("Cantidad  Pedida";Rec."Cantidad  Pedida")
+                field(Coste; Rec.Coste)
                 {
                     ApplicationArea = Basic;
                     StyleExpr = color;
                 }
-                field("Cantidad Servida";Rec."Cantidad Servida")
+                field("Cantidad  Pedida"; Rec."Cantidad  Pedida")
+                {
+                    ApplicationArea = Basic;
+                    StyleExpr = color;
+                }
+                field("Cantidad Servida"; Rec."Cantidad Servida")
                 {
                     ApplicationArea = Basic;
                     StyleExpr = color;
@@ -70,7 +73,8 @@ Page 50087 "Lineas de pedidos"
 
     actions
     {
-        area(processing)
+
+        area(Navigation)
         {
             action(Refresca)
             {
@@ -86,26 +90,27 @@ Page 50087 "Lineas de pedidos"
 
 
                     LineasAMAZONPedidos.Reset;
-                    if LineasAMAZONPedidos.FindFirst then repeat
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange(SalesHeader."Document Type",SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Your Reference",LineasAMAZONPedidos."Numero de pedido");
-                        if SalesHeader.FindFirst then begin
-                            Item.Reset;
-                            Item.SetRange("Ref. AMAZON",LineasAMAZONPedidos.ASIN);
-                            if Item.FindFirst then begin
-                                SalesLine.Reset;
-                                SalesLine.SetRange(SalesLine."Document Type",SalesHeader."Document Type");
-                                SalesLine.SetRange(SalesLine."Document No.",SalesHeader."No.");
-                                /// SalesLine.SETRANGE(ean,COPYSTR(LineasAMAZONPedidos."Id. externo",2));
-                                SalesLine.SetRange("No.",Item."No.");
-                                if SalesLine.FindFirst then begin
-                                    LineasAMAZONPedidos."Cantidad Servida":=SalesLine.Quantity;
-                                    LineasAMAZONPedidos.Modify;
+                    if LineasAMAZONPedidos.FindFirst then
+                        repeat
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange(SalesHeader."Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Your Reference", LineasAMAZONPedidos."Numero de pedido");
+                            if SalesHeader.FindFirst then begin
+                                Item.Reset;
+                                Item.SetRange("Ref. AMAZON", LineasAMAZONPedidos.ASIN);
+                                if Item.FindFirst then begin
+                                    SalesLine.Reset;
+                                    SalesLine.SetRange(SalesLine."Document Type", SalesHeader."Document Type");
+                                    SalesLine.SetRange(SalesLine."Document No.", SalesHeader."No.");
+                                    /// SalesLine.SETRANGE(ean,COPYSTR(LineasAMAZONPedidos."Id. externo",2));
+                                    SalesLine.SetRange("No.", Item."No.");
+                                    if SalesLine.FindFirst then begin
+                                        LineasAMAZONPedidos."Cantidad Servida" := SalesLine.Quantity;
+                                        LineasAMAZONPedidos.Modify;
+                                    end;
                                 end;
                             end;
-                        end;
-                    until LineasAMAZONPedidos.Next=0;
+                        until LineasAMAZONPedidos.Next = 0;
                     Message('hecho.');
                 end;
             }
@@ -115,9 +120,9 @@ Page 50087 "Lineas de pedidos"
     trigger OnAfterGetRecord()
     begin
 
-        color:='';
-        if Rec."Cantidad Servida"=0 then begin
-          color:='Unfavorable';
+        color := '';
+        if Rec."Cantidad Servida" = 0 then begin
+            color := 'Unfavorable';
         end;
     end;
 

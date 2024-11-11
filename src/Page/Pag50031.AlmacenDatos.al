@@ -10,769 +10,833 @@ Page 50031 "Almacen Datos"
 
     layout
     {
-        area(content)
-        {
-            cuegroup(Control1000000009)
-            {
-                Caption = 'URGENTES';
-                field(SUPERURGENTES; SUPERURGENTES)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'SUPER URGENTES';
 
-                    trigger OnDrillDown()
-                    begin
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."Super urgente", true);
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
-                        end;
-                    end;
-                }
-                field(URGENTES; URGENTES)
+    }
+    /*
+                cuegroup(Control1000000009)
+
                 {
-                    ApplicationArea = Basic;
+
                     Caption = 'URGENTES';
 
-                    trigger OnDrillDown()
-                    begin
+                    field(SUPERURGENTES; SUPERURGENTES)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'SUPER URGENTES';
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader.Urgente, true);
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                        trigger OnDrillDown()
+                        begin
+
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange(SalesHeader."Super urgente", true);
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(SUPERURGENTESPDTEENVIAR; SUPERURGENTESPDTEENVIAR)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'SUPERURGENTES PDTE. ENVIAR';
+                    }
+                    field(URGENTES; URGENTES)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'URGENTES';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."Super urgente", true);
-                        SalesHeader.SetRange("Nº expedición", '');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange(SalesHeader.Urgente, true);
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(URGENTESPDTEENVIAR; URGENTESPDTEENVIAR)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'URGENTES PDTE. ENVIAR';
+                    }
+                    field(SUPERURGENTESPDTEENVIAR; SUPERURGENTESPDTEENVIAR)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'SUPERURGENTES PDTE. ENVIAR';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader.Urgente, true);
-                        SalesHeader.SetRange("Nº expedición", '');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange(SalesHeader."Super urgente", true);
+                            SalesHeader.SetRange("Nº expedición", '');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-            }
-            cuegroup(RETRASADOS)
-            {
-                Caption = 'RETRASADOS';
-                field("Retrasado 72 horas"; PEDIDORETRA72)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'Retrasado 72 horas';
+                    }
+                    field(URGENTESPDTEENVIAR; URGENTESPDTEENVIAR)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'URGENTES PDTE. ENVIAR';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."Fecha para preparar", 20000101D, FECHA72);
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange(SalesHeader.Urgente, true);
+                            SalesHeader.SetRange("Nº expedición", '');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
+                    }
                 }
-                field("Retrasado 48 horas"; PEDIDORETRA48)
+                cuegroup(RETRASADOS)
                 {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'RETENIDO';
-                    DrillDownPageID = "Pantalla Almacen";
-                    ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
+                    Caption = 'RETRASADOS';
+                    field("Retrasado 72 horas"; PEDIDORETRA72)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'Retrasado 72 horas';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."Fecha para preparar", FECHA48, FECHA48);
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange(SalesHeader."Fecha para preparar", 20000101D, FECHA72);
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field("Retrasado 24 horas"; PEDIDORETRA24)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'Retrasado 24 horas';
+                    }
+                    field("Retrasado 48 horas"; PEDIDORETRA48)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'RETENIDO';
+                        DrillDownPageID = "Pantalla Almacen";
+                        ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."Fecha para preparar", FECHA24, FECHA24);
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange(SalesHeader."Fecha para preparar", FECHA48, FECHA48);
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(PEDIDORETRA72pdteenviar; PEDIDORETRA72pdteenviar)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'Retrasado 72 horas PDTE. ENVIAR';
+                    }
+                    field("Retrasado 24 horas"; PEDIDORETRA24)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'Retrasado 24 horas';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."Fecha para preparar", 20000101D, FECHA72);
-                        SalesHeader.SetRange("Nº expedición", '');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange(SalesHeader."Fecha para preparar", FECHA24, FECHA24);
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(PEDIDORETRA48pdteenviar; PEDIDORETRA48pdteenviar)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'RETENIDO';
-                    DrillDownPageID = "Pantalla Almacen";
-                    ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
+                    }
+                    field(PEDIDORETRA72pdteenviar; PEDIDORETRA72pdteenviar)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'Retrasado 72 horas PDTE. ENVIAR';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."Fecha para preparar", FECHA48, FECHA48);
-                        SalesHeader.SetRange("Nº expedición", '');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange(SalesHeader."Fecha para preparar", 20000101D, FECHA72);
+                            SalesHeader.SetRange("Nº expedición", '');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(PEDIDORETRA24pdteenviar; PEDIDORETRA24pdteenviar)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'Retrasado 24 horas PDTE. ENVIAR';
+                    }
+                    field(PEDIDORETRA48pdteenviar; PEDIDORETRA48pdteenviar)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'RETENIDO';
+                        DrillDownPageID = "Pantalla Almacen";
+                        ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."Fecha para preparar", FECHA24, FECHA24);
-                        SalesHeader.SetRange("Nº expedición", '');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange(SalesHeader."Fecha para preparar", FECHA48, FECHA48);
+                            SalesHeader.SetRange("Nº expedición", '');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-            }
-            cuegroup("PARA PREPARAR")
-            {
-                Caption = 'PARA PREPARAR';
-                field("ESPAÑA"; ESPAÑA)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'ESPAÑA';
-                    DrillDownPageID = "Pantalla Almacen";
-                    ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
+                    }
+                    field(PEDIDORETRA24pdteenviar; PEDIDORETRA24pdteenviar)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'Retrasado 24 horas PDTE. ENVIAR';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."VAT Country/Region Code", 'ES');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange(SalesHeader."Fecha para preparar", FECHA24, FECHA24);
+                            SalesHeader.SetRange("Nº expedición", '');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
+                    }
                 }
-                field(ECI; ECI)
+                cuegroup("PARA PREPARAR")
                 {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Pedidos - Retenidos';
-                    DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el número de pedidos de venta Retenidos.';
+                    Caption = 'PARA PREPARAR';
+                    field("ESPAÑA"; ESPAÑA)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'ESPAÑA';
+                        DrillDownPageID = "Pantalla Almacen";
+                        ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange("Customer Price Group", 'ECI');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange(SalesHeader."VAT Country/Region Code", 'ES');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(AMAZON; AMAZON)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'AMAZON';
+                    }
+                    field(ECI; ECI)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'Pedidos - Retenidos';
+                        DrillDownPageID = "Sales Order List";
+                        ToolTip = 'Especifica el número de pedidos de venta Retenidos.';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange("Grupo clientes", 'G10');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange("Customer Price Group", 'ECI');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(CATIT; CATIT)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'CATIT';
+                    }
+                    field(AMAZON; AMAZON)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'AMAZON';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange("Grupo clientes", 'G52');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange("Grupo clientes", 'G10');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(MANOMANO; MANOMANO)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'MANOMANO';
+                    }
+                    field(CATIT; CATIT)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'CATIT';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange("Sell-to Customer No.", 'NAV0127');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange("Grupo clientes", 'G52');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(TIENDAANIMAL; TIENDAANIMAL)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'TIENDAANIMAL';
+                    }
+                    field(MANOMANO; MANOMANO)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'MANOMANO';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange("Sell-to Customer No.", '12496');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange("Sell-to Customer No.", 'NAV0127');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(PORTUGAL; PORTUGAL)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Pedidos Pendiente Comercial';
-                    DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el número de pedidos de venta Pendiente Comercial.';
+                    }
+                    field(TIENDAANIMAL; TIENDAANIMAL)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'TIENDAANIMAL';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."VAT Country/Region Code", 'PT');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange("Sell-to Customer No.", '12496');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(CANARIAS; CANARIAS)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Pedidos Para Preparar';
-                    DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el número de pedidos de venta Para Preparar';
+                    }
+                    field(PORTUGAL; PORTUGAL)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'Pedidos Pendiente Comercial';
+                        DrillDownPageID = "Sales Order List";
+                        ToolTip = 'Especifica el número de pedidos de venta Pendiente Comercial.';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(Comunidad, '7');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange(SalesHeader."VAT Country/Region Code", 'PT');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(TODOS; TODOS)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'TODOS';
+                    }
+                    field(CANARIAS; CANARIAS)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'Pedidos Para Preparar';
+                        DrillDownPageID = "Sales Order List";
+                        ToolTip = 'Especifica el número de pedidos de venta Para Preparar';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange(Comunidad, '7');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field("ESPAÑAPDTE"; ESPAÑAPDTE)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'ESPAÑA';
-                    DrillDownPageID = "Pantalla Almacen";
-                    ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
+                    }
+                    field(TODOS; TODOS)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'TODOS';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."VAT Country/Region Code", 'ES');
-                        SalesHeader.SetRange("Nº expedición", '');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(ECIPDTE; ECIPDTE)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Pedidos - Retenidos';
-                    DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el número de pedidos de venta Retenidos.';
+                    }
+                    field("ESPAÑAPDTE"; ESPAÑAPDTE)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'ESPAÑA';
+                        DrillDownPageID = "Pantalla Almacen";
+                        ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange("Customer Price Group", 'ECI');
-                        SalesHeader.SetRange("Nº expedición", '');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange(SalesHeader."VAT Country/Region Code", 'ES');
+                            SalesHeader.SetRange("Nº expedición", '');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(PORTUGALPDTE; PORTUGALPDTE)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Pedidos Pendiente Comercial';
-                    DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el número de pedidos de venta Pendiente Comercial.';
+                    }
+                    field(ECIPDTE; ECIPDTE)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'Pedidos - Retenidos';
+                        DrillDownPageID = "Sales Order List";
+                        ToolTip = 'Especifica el número de pedidos de venta Retenidos.';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader."VAT Country/Region Code", 'PT');
-                        SalesHeader.SetRange("Nº expedición", '');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange("Customer Price Group", 'ECI');
+                            SalesHeader.SetRange("Nº expedición", '');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(CANARIASPDTE; CANARIASPDTE)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Pedidos Para Preparar';
-                    DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el número de pedidos de venta Para Preparar';
+                    }
+                    field(PORTUGALPDTE; PORTUGALPDTE)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'Pedidos Pendiente Comercial';
+                        DrillDownPageID = "Sales Order List";
+                        ToolTip = 'Especifica el número de pedidos de venta Pendiente Comercial.';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(Comunidad, '7');
-                        SalesHeader.SetRange("Nº expedición", '');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange(SalesHeader."VAT Country/Region Code", 'PT');
+                            SalesHeader.SetRange("Nº expedición", '');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(TODOSPDTE; TODOSPDTE)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'TODOS PDTE. ENVIAR';
+                    }
+                    field(CANARIASPDTE; CANARIASPDTE)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'Pedidos Para Preparar';
+                        DrillDownPageID = "Sales Order List";
+                        ToolTip = 'Especifica el número de pedidos de venta Para Preparar';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange("Nº expedición", '');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange(Comunidad, '7');
+                            SalesHeader.SetRange("Nº expedición", '');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(DROPSHIPMENT; DROPSHIPMENT)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'DROPSHIPMENT';
-                    DrillDownPageID = "Pantalla Almacen";
+                    }
+                    field(TODOSPDTE; TODOSPDTE)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'TODOS PDTE. ENVIAR';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange(SalesHeader.Dropshipping, true);
-                        SalesHeader.SetFilter("Grupo clientes", '<>G52');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange("Nº expedición", '');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field("G12 KIWOKO"; G12KIWOKO)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'G12  KIWOKO';
-                    DrillDownPageID = "Pantalla Almacen";
+                    }
+                    field(DROPSHIPMENT; DROPSHIPMENT)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'DROPSHIPMENT';
+                        DrillDownPageID = "Pantalla Almacen";
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
-                        SalesHeader.SetRange("Grupo clientes", 'G12');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange(SalesHeader.Dropshipping, true);
+                            SalesHeader.SetFilter("Grupo clientes", '<>G52');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-            }
-            cuegroup("PROXIMOS PEDIDOS")
-            {
-                Caption = 'PROXIMOS PEDIDOS';
-                field(RETENIDO; RETENIDO)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Retenido';
-                    DrillDownPageID = "Pantalla Almacen";
-                    ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
+                    }
+                    field("G12 KIWOKO"; G12KIWOKO)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'G12  KIWOKO';
+                        DrillDownPageID = "Pantalla Almacen";
 
-                    trigger OnDrillDown()
-                    begin
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::Retenido);
-                        SalesHeader.SetFilter(SalesHeader."Payment Method Code", '<>P.ANTICIPA&<>TRANSFWEB');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                        trigger OnDrillDown()
+                        begin
+
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                            SalesHeader.SetRange("Grupo clientes", 'G12');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
+                    }
                 }
-                field(PDTETRANF; PDTETRANF)
+                cuegroup("PROXIMOS PEDIDOS")
                 {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Pendiente Transferencia';
-                    DrillDownPageID = "Pantalla Almacen";
-                    ToolTip = 'Especifica el número de Pedidos pendiente transferencia.';
+                    Caption = 'PROXIMOS PEDIDOS';
+                    field(RETENIDO; RETENIDO)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'Retenido';
+                        DrillDownPageID = "Pantalla Almacen";
+                        ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
 
-                    trigger OnDrillDown()
-                    begin
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::Retenido);
-
-                        SalesHeader.SetFilter(SalesHeader."Payment Method Code", 'P.ANTICIPA|TRANSFWEB');
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                        trigger OnDrillDown()
+                        begin
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::Retenido);
+                            SalesHeader.SetFilter(SalesHeader."Payment Method Code", '<>P.ANTICIPA&<>TRANSFWEB');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(PDTECOMERCIAL; PDTECOMERCIAL)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'Pdte. Comercial';
+                    }
+                    field(PDTETRANF; PDTETRANF)
+                    {
+                        ApplicationArea = Basic, Suite;
+                        Caption = 'Pendiente Transferencia';
+                        DrillDownPageID = "Pantalla Almacen";
+                        ToolTip = 'Especifica el número de Pedidos pendiente transferencia.';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::Retenido);
 
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
-                        SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Pdte. comercial");
-
-                        if SalesHeader.FindFirst then begin
-                            Clear(PantallaAlmacen);
-                            PantallaAlmacen.SetTableview(SalesHeader);
-                            PantallaAlmacen.RunModal;
+                            SalesHeader.SetFilter(SalesHeader."Payment Method Code", 'P.ANTICIPA|TRANSFWEB');
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
-                }
-            }
-            cuegroup(Control1000000015)
-            {
-                Caption = 'PROXIMOS PEDIDOS';
-                field(PEDIDOCONTENEDORact; PEDIDOCONTENEDORact)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'Pedido Contenedor Semana Actual';
-                    DrillDownPageID = "Pantalla Almacen";
-                    ToolTip = 'Especifica el número de Pedidos Contenedor Semana Actual';
+                    }
+                    field(PDTECOMERCIAL; PDTECOMERCIAL)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'Pdte. Comercial';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-                        PurchaseHeader.Reset;
-                        PurchaseHeader.SetRange("Document Type", PurchaseHeader."document type"::Order);
-                        PurchaseHeader.SetRange(Status, PurchaseHeader.Status::Open);
-                        PurchaseHeader.SetRange(Receive, false);
-                        PurchaseHeader.SetRange(PurchaseHeader."Expected Receipt Date", lunes, viernes);
-                        if PurchaseHeader.FindFirst then begin
-                            Clear(PurchaseOrderList);
-                            PurchaseOrderList.SetTableview(PurchaseHeader);
-                            PurchaseOrderList.RunModal;
+                            SalesHeader.Reset;
+                            SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                            SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Pdte. comercial");
+
+                            if SalesHeader.FindFirst then begin
+                                Clear(PantallaAlmacen);
+                                PantallaAlmacen.SetTableview(SalesHeader);
+                                PantallaAlmacen.RunModal;
+                            end;
                         end;
-                    end;
+                    }
                 }
-                field(PEDIDOCONTENEDOR; PEDIDOCONTENEDOR)
+                cuegroup(Control1000000015)
                 {
-                    ApplicationArea = Basic;
-                    Caption = 'Pedido Contenedor Total';
-                    DrillDownPageID = "Pantalla Almacen";
-                    ToolTip = 'Especifica el número de Pedidos Contenedor Total';
+                    Caption = 'PROXIMOS PEDIDOS';
+                    field(PEDIDOCONTENEDORact; PEDIDOCONTENEDORact)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'Pedido Contenedor Semana Actual';
+                        DrillDownPageID = "Pantalla Almacen";
+                        ToolTip = 'Especifica el número de Pedidos Contenedor Semana Actual';
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-
-
-                        PurchaseHeader.Reset;
-                        PurchaseHeader.SetRange("Document Type", PurchaseHeader."document type"::Order);
-                        PurchaseHeader.SetRange(Status, PurchaseHeader.Status::Open);
-                        PurchaseHeader.SetRange(Receive, false);
-                        if PurchaseHeader.FindFirst then begin
-                            Clear(PurchaseOrderList);
-                            PurchaseOrderList.SetTableview(PurchaseHeader);
-                            PurchaseOrderList.RunModal;
+                            PurchaseHeader.Reset;
+                            PurchaseHeader.SetRange("Document Type", PurchaseHeader."document type"::Order);
+                            PurchaseHeader.SetRange(Status, PurchaseHeader.Status::Open);
+                            PurchaseHeader.SetRange(Receive, false);
+                            PurchaseHeader.SetRange(PurchaseHeader."Expected Receipt Date", lunes, viernes);
+                            if PurchaseHeader.FindFirst then begin
+                                Clear(PurchaseOrderList);
+                                PurchaseOrderList.SetTableview(PurchaseHeader);
+                                PurchaseOrderList.RunModal;
+                            end;
                         end;
-                    end;
+                    }
+                    field(PEDIDOCONTENEDOR; PEDIDOCONTENEDOR)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'Pedido Contenedor Total';
+                        DrillDownPageID = "Pantalla Almacen";
+                        ToolTip = 'Especifica el número de Pedidos Contenedor Total';
+
+                        trigger OnDrillDown()
+                        begin
+
+
+
+                            PurchaseHeader.Reset;
+                            PurchaseHeader.SetRange("Document Type", PurchaseHeader."document type"::Order);
+                            PurchaseHeader.SetRange(Status, PurchaseHeader.Status::Open);
+                            PurchaseHeader.SetRange(Receive, false);
+                            if PurchaseHeader.FindFirst then begin
+                                Clear(PurchaseOrderList);
+                                PurchaseOrderList.SetTableview(PurchaseHeader);
+                                PurchaseOrderList.RunModal;
+                            end;
+                        end;
+                    }
                 }
-            }
-            cuegroup("Historico Albaranes")
-            {
-                Caption = 'Historico Albaranes';
-                field(HistoricoAlbaranes; HiatoricoAlbaranes)
+                cuegroup("Historico Albaranes")
                 {
-                    ApplicationArea = Basic;
                     Caption = 'Historico Albaranes';
-                    DrillDownPageID = "Posted Sales Shipments";
-                    TableRelation = "Sales Shipment Header";
+                    field(HistoricoAlbaranes; HiatoricoAlbaranes)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'Historico Albaranes';
+                        DrillDownPageID = "Posted Sales Shipments";
+                        TableRelation = "Sales Shipment Header";
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-                        SalesShipmentHeader.Reset;
-                        SalesShipmentHeader.SetRange(SalesShipmentHeader."Posting Date", Today);
-                        if SalesShipmentHeader.FindFirst then begin
-                            Clear(PostedSalesShipments);
-                            PostedSalesShipments.SetTableview(SalesShipmentHeader);
-                            PostedSalesShipments.RunModal;
+                            SalesShipmentHeader.Reset;
+                            SalesShipmentHeader.SetRange(SalesShipmentHeader."Posting Date", Today);
+                            if SalesShipmentHeader.FindFirst then begin
+                                Clear(PostedSalesShipments);
+                                PostedSalesShipments.SetTableview(SalesShipmentHeader);
+                                PostedSalesShipments.RunModal;
+                            end;
                         end;
-                    end;
-                }
-                field(HiatoricoAlbaranesTodos; HiatoricoAlbaranesTodos)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'Historico Albaranes';
-                    DrillDownPageID = "Posted Sales Shipments";
-                    TableRelation = "Sales Shipment Header";
+                    }
+                    field(HiatoricoAlbaranesTodos; HiatoricoAlbaranesTodos)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'Historico Albaranes';
+                        DrillDownPageID = "Posted Sales Shipments";
+                        TableRelation = "Sales Shipment Header";
 
-                    trigger OnDrillDown()
-                    begin
+                        trigger OnDrillDown()
+                        begin
 
-                        DESDEFECHA := CalcDate('-1M', Today);
+                            DESDEFECHA := CalcDate('-1M', Today);
 
-                        SalesShipmentHeader.Reset;
-                        SalesShipmentHeader.SetRange(SalesShipmentHeader."Posting Date", DESDEFECHA, Today);
-                        if SalesShipmentHeader.FindFirst then begin
-                            Clear(PostedSalesShipments);
-                            PostedSalesShipments.SetTableview(SalesShipmentHeader);
-                            PostedSalesShipments.RunModal;
+                            SalesShipmentHeader.Reset;
+                            SalesShipmentHeader.SetRange(SalesShipmentHeader."Posting Date", DESDEFECHA, Today);
+                            if SalesShipmentHeader.FindFirst then begin
+                                Clear(PostedSalesShipments);
+                                PostedSalesShipments.SetTableview(SalesShipmentHeader);
+                                PostedSalesShipments.RunModal;
+                            end;
                         end;
-                    end;
+                    }
                 }
-            }
-            cuegroup("Diarios de inventario")
-            {
-                Caption = 'Diarios de inventario';
-                field(DiarioInv; DiarioInv)
+                cuegroup("Diarios de inventario")
                 {
-                    ApplicationArea = Basic;
-                    Caption = 'Diario inventario';
+                    Caption = 'Diarios de inventario';
+                    field(DiarioInv; DiarioInv)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'Diario inventario';
 
-                    trigger OnDrillDown()
-                    begin
-                        Clear(PhysInventoryJournal);
+                        trigger OnDrillDown()
+                        begin
+                            Clear(PhysInventoryJournal);
 
-                        PhysInventoryJournal.RunModal;
-                    end;
+                            PhysInventoryJournal.RunModal;
+                        end;
+                    }
+                    field(Cola; Cola)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'Diario inventario';
+
+                        trigger OnDrillDown()
+                        begin
+                            Clear(JobQueueEntries);
+
+                            JobQueueEntries.RunModal;
+                        end;
+                    }
+                    field(DiarioProd; DiarioProd)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'Diario producto';
+
+                        trigger OnDrillDown()
+                        begin
+                            /////-Clear(ItemJournal);
+
+                            /////- ItemJournal.RunModal;
+                        end;
+                    }
+                    field(Preparadores; Preparadores)
+                    {
+                        ApplicationArea = Basic;
+                        Caption = 'Preparadores';
+
+                        trigger OnDrillDown()
+                        begin
+                            Page.Run(50093);
+                        end;
+                    }
                 }
-                field(Cola; Cola)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'Diario inventario';
 
-                    trigger OnDrillDown()
-                    begin
-                        Clear(JobQueueEntries);
-
-                        JobQueueEntries.RunModal;
-                    end;
-                }
-                field(DiarioProd; DiarioProd)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'Diario producto';
-
-                    trigger OnDrillDown()
-                    begin
-                        /////-Clear(ItemJournal);
-
-                        /////- ItemJournal.RunModal;
-                    end;
-                }
-                field(Preparadores; Preparadores)
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'Preparadores';
-
-                    trigger OnDrillDown()
-                    begin
-                        Page.Run(50093);
-                    end;
-                }
             }
         }
-    }
+
+        */
+
+
 
     actions
     {
         area(processing)
         {
+            action(SUPERURGENTES)
+            {
+                ApplicationArea = Basic, Suite;
+                Caption = 'SUPER URGENTES';
+                Image = NewSalesQuote;
+                ToolTip = 'SUPER URGENTES';
+
+                ///trigger OnDrillDown()
+                trigger OnAction()
+                var
+                    SalesHeader: Record "Sales Header";
+                    PantallaAlmacen: Page "Pantalla almacen Pascual5";
+                begin
+
+                    SalesHeader.Reset;
+                    SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                    SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                    SalesHeader.SetRange(SalesHeader."Super urgente", true);
+                    if SalesHeader.FindFirst then begin
+                        Clear(PantallaAlmacen);
+                        PantallaAlmacen.SetTableview(SalesHeader);
+                        PantallaAlmacen.RunModal;
+                    end;
+                end;
+
+            }
+            action(URGENTES)
+            {
+                ApplicationArea = Basic, Suite;
+                Caption = 'URGENTES';
+                Image = NewSalesQuote;
+                ToolTip = 'URGENTES';
+                trigger OnAction()
+                var
+                    SalesHeader: Record "Sales Header";
+                    PantallaAlmacen: Page "Pantalla almacen Pascual5";
+
+                ///trigger OnDrillDown()
+                begin
+
+                    SalesHeader.Reset;
+                    SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
+                    SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::"Para preparar");
+                    SalesHeader.SetRange(SalesHeader.Urgente, true);
+                    if SalesHeader.FindFirst then begin
+                        Clear(PantallaAlmacen);
+                        PantallaAlmacen.SetTableview(SalesHeader);
+                        PantallaAlmacen.RunModal;
+                    end;
+                end;
+
+            }
+
+
         }
     }
 
@@ -891,7 +955,7 @@ Page 50031 "Almacen Datos"
 
     trigger OnOpenPage()
     var
-        RoleCenterNotificationMgt: Codeunit "Role Center Notification Mgt.";
+
     begin
 
         HiatoricoAlbaranesTodos := 9999;
@@ -911,11 +975,11 @@ Page 50031 "Almacen Datos"
         /////-SetRange("Date Filter",0D,WorkDate - 1);
         /////-SetFilter("Date Filter2",'>=%1',WorkDate);
 
-        RoleCenterNotificationMgt.ShowNotifications;
+        /////- RoleCenterNotificationMgt.ShowNotifications;
     end;
 
     var
-        CueSetup: Codeunit "Cues And KPIs";
+
         ShowDocumentsPendingDodExchService: Boolean;
         ESTADO0: Integer;
         ESTADO1: Integer;
