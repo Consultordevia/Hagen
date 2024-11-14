@@ -914,29 +914,29 @@ tableextension 50113 Item extends Item
             OptionCaption = 'Activo,Inactivo';
             OptionMembers = Activo,Inactivo;
         }
-        field(50165; "Atributo 1"; Code[10])
+        field(50165; "Atributo 1"; Text[20])
         {
             TableRelation = "Mul.atributos".Codigo1 where(Tabla = const(Atributos));
         }
-        field(50166; "Atributo 2"; Code[10])
+        field(50166; "Atributo 2"; Text[20])
         {
             TableRelation = "Mul.atributos".Codigo1 where(Tabla = const(Atributos));
         }
-        field(50167; "Atributo 3"; Code[10])
+        field(50167; "Atributo 3"; Text[20])
         {
             TableRelation = "Mul.atributos".Codigo1 where(Tabla = const(Atributos));
         }
-        field(50168; "Valor Atributo 1"; Code[10])
+        field(50168; "Valor Atributo 1"; Text[20])
         {
             TableRelation = "Mul.atributos".Codigo2 where(Tabla = const("Valor Atributo"),
                                                            Codigo1 = field("Atributo 1"));
         }
-        field(50169; "Valor Atributo 2"; Code[10])
+        field(50169; "Valor Atributo 2"; Text[20])
         {
             TableRelation = "Mul.atributos".Codigo2 where(Tabla = const("Valor Atributo"),
                                                            Codigo1 = field("Atributo 2"));
         }
-        field(50170; "Valor Atributo 3"; Code[10])
+        field(50170; "Valor Atributo 3"; Text[20])
         {
             TableRelation = "Mul.atributos".Codigo2 where(Tabla = const("Valor Atributo"),
                                                            Codigo1 = field("Atributo 3"));
@@ -1260,21 +1260,21 @@ tableextension 50113 Item extends Item
         field(50339; "Variante2"; Decimal)
         {
         }
-        field(50340; "Dato Variante1"; Code[20])
+        field(50340; "Dato Variante1"; Text[20])
         {
-            TableRelation = "Multitabla 2"."Codigo 2" where(Tabla = const(Variante), "Codigo 1" = field(CodVariante1));
+            TableRelation = "Mul.atributos".Codigo2 where(Tabla = const("Valor Atributo"), Codigo1 = field(CodVariante1));
         }
-        field(50341; "Dato Variante2"; Code[20])
+        field(50341; "Dato Variante2"; Text[20])
         {
-            TableRelation = "Multitabla 2"."Codigo 2" where(Tabla = const(Variante), "Codigo 1" = field(CodVariante2));
+            TableRelation = "Mul.atributos".Codigo2 where(Tabla = const("Valor Atributo"), Codigo1 = field(CodVariante2));
         }
-        field(50342; "CodVariante1"; Code[20])
+        field(50342; "CodVariante1"; Text[20])
         {
-            TableRelation = Multitabla.Codigo where(Tabla = const(Variante));
+            TableRelation = "Mul.atributos".Codigo1 where(Tabla = const(Atributos));
         }
-        field(50343; "CodVariante2"; Code[20])
+        field(50343; "CodVariante2"; Text[20])
         {
-            TableRelation = Multitabla.Codigo where(Tabla = const(Variante));
+            TableRelation = "Mul.atributos".Codigo1 where(Tabla = const(Atributos));
         }
 
         field(60000; "Actualizar WEB"; Boolean)

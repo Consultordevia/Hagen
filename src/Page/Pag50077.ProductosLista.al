@@ -976,6 +976,7 @@ Page 50077 "Productos Lista"
                 field("Criterio rotacion"; Rec."Criterio rotacion") { ApplicationArea = All; }
                 field("Fecha en picking"; Rec."Fecha en picking") { ApplicationArea = All; }
                 field("Producto FRAGIL"; Rec."Producto FRAGIL") { ApplicationArea = All; }
+                field(Level1;Rec.Level1) { ApplicationArea = All; }
 
 
 

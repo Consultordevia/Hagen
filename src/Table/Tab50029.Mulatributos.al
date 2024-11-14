@@ -9,10 +9,10 @@ Table 50029 "Mul.atributos"
             OptionCaption = 'Atributos,Valor Atributo';
             OptionMembers = Atributos,"Valor Atributo";
         }
-        field(2; Codigo1; Code[20])
+        field(2; Codigo1; Text[20])
         {
         }
-        field(3; Codigo2; Code[20])
+        field(3; Codigo2; Text[20])
         {
         }
         field(4; "Descripción"; Text[50])
