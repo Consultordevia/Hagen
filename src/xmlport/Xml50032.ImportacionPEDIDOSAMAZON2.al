@@ -88,8 +88,6 @@ XmlPort 50032 "Importacion PEDIDOS AMAZON2"
 
     trigger OnPreXmlPort()
     begin
-
-        RecUser.Get(UserId);
         SalesReceivablesSetup.Get;
     end;
 
@@ -181,13 +179,9 @@ XmlPort 50032 "Importacion PEDIDOS AMAZON2"
         NoSeriesMgt: Codeunit NoSeriesManagement;
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
-        RecUser: Record "User Setup";
         RecClie: Record Customer;
         RecCV2: Record "Sales Header";
         SalesSetup: Record "Sales & Receivables Setup";
-        Rec91: Record "User Setup";
-
-
         RecLCV: Record "Sales Comment Line";
         SUPRA: Code[20];
         RecProd: Record Item;
@@ -280,11 +274,7 @@ XmlPort 50032 "Importacion PEDIDOS AMAZON2"
                 end;
                 if NPEDIDO <> D1 then begin
                     NPEDIDO := D1;
-                    codacti := IncStr(RecUser."Serie pedidos");
                     codacti := NoSeriesManagement.GetNextNo('PEPVAMAZON', Today, true);
-                    RecUser."Serie pedidos" := codacti;
-                    RecUser."Nº cliente" := clie;
-                    RecUser.Modify;
                     RecCV.Init;
                     RecCV."Document Type" := 0;
                     RecCV."No." := codacti;
@@ -294,7 +284,7 @@ XmlPort 50032 "Importacion PEDIDOS AMAZON2"
                     RecCV."Posting Description" := 'Pedido nº ' + codacti;
                     RecCV.Validate(RecCV."Sell-to Customer No.", clie);
                     RecCV."Estado pedido" := 2;
-                    RecCV."Usuario alta" := UserId;
+                    /////RecCV."Usuario alta" := UserId;
                     RecCV."Fecha alta" := Today;
                     RecCV."Hora alta" := Time;
                     SalesSetup.Get;

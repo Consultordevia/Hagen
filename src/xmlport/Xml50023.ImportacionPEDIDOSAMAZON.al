@@ -80,7 +80,7 @@ XmlPort 50023 "Importacion PEDIDOS AMAZON"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        ///RecUser.Get(UserId);
     end;
 
     var
@@ -190,6 +190,7 @@ XmlPort 50023 "Importacion PEDIDOS AMAZON"
         MMA: Code[10];
         AAA: Code[10];
         RecEAD: Record "Ship-to Address";
+        NoSeriesManagement: Codeunit "NoSeriesManagement";
 
     local procedure InitializeGlobals()
     var
@@ -259,12 +260,14 @@ XmlPort 50023 "Importacion PEDIDOS AMAZON"
                 clie := '9291';
                 if NPEDIDO <> D1 then begin
                     NPEDIDO := D1;
-                    codacti := IncStr(RecUser."Serie pedidos");
-                    RecUser."Serie pedidos" := codacti;
-                    RecUser."Nº cliente" := clie;
-                    RecUser.Modify;
+                    ///codacti := IncStr(RecUser."Serie pedidos");
+                    ///RecUser."Serie pedidos" := codacti;
+                    ///RecUser."Nº cliente" := clie;
+                    ///RecUser.Modify;
                     RecCV.Init;
                     RecCV."Document Type" := 0;
+                    SalesSetup.Get;
+                    codacti := NoSeriesManagement.GetNextNo(SalesSetup."Order Nos.", Today, true);
                     RecCV."No." := codacti;
                     RecCV.Validate(RecCV."Order Date", Today);
                     RecCV.Validate(RecCV."Posting Date", Today);

@@ -86,7 +86,6 @@ Codeunit 50041 "Importacion Amazon2"
         RecClie: Record Customer;
         RecItem: Record Item;
         RecCE: Record "Inventory Setup";
-        RecUser: Record "User Setup";
         codacti: Code[20];
         RecCV: Record "Sales Header";
         SalesSetup: Record "Sales & Receivables Setup";
