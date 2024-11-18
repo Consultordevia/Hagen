@@ -430,6 +430,18 @@ Page 50099 "Pantalla almacen Pascual5"
                         iMPORTANAV20185.Run();
                     end;
                 }
+                action(Importa_enviar_a_web)
+                {
+                    ApplicationArea = Basic;
+                    Visible = true;
+
+                    trigger OnAction()
+                    begin
+
+                        iMPORTANAV20187.Run();
+                    end;
+                }
+
                 action(Importa_nuevos_atributos)
                 {
                     ApplicationArea = Basic;
@@ -441,6 +453,33 @@ Page 50099 "Pantalla almacen Pascual5"
                         iMPORTANAV20186.Run();
                     end;
                 }
+
+                action(Poner_EnviaraWeb_false)
+                {
+                    ApplicationArea = Basic;
+                    Visible = true;
+
+                    trigger OnAction()
+                    var
+                        vv: Dialog;
+
+                    begin
+
+
+                        if RecCust.FindFirst() then
+                            repeat
+                                vv.Open('#1#############################');
+                                RecCust."Enviar a web" := false;
+                                RecCust.Modify;
+                                vv.Update(1, RecCust."No.");
+                                vv.Close();
+                            until RecCust.next = 0;
+
+
+
+                    end;
+                }
+
 
 
 
@@ -17179,6 +17218,7 @@ Page 50099 "Pantalla almacen Pascual5"
         iMPORTANAV20184: XmlPort "Importa datos nav2018-4";
         iMPORTANAV20185: XmlPort "Importa datos nav2018-5";
         iMPORTANAV20186: XmlPort "Importa datos nav2018-6";
+        iMPORTANAV20187: XmlPort "Importa datos nav2018-7";
         iMPORTANAV2018CLIE: XmlPort "Importa datos nav2018-CLIE";
         RecItem: Record item;
         codprod: code[20];
@@ -17192,6 +17232,9 @@ Page 50099 "Pantalla almacen Pascual5"
         orden: Decimal;
         RecICP: Record "Item Category";
         cate: Code[20];
+
+        Direnvi: Record "Ship-to Address";
+        RecCust: Record Customer;
 
 
     local procedure EnviaraADAIA()
