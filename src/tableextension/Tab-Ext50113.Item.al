@@ -1384,13 +1384,13 @@ tableextension 50113 Item extends Item
         field(50555; "Level1"; Text[100]) { }
         field(50556; "Level2"; Text[100]) { }
         field(50557; "Level3"; Text[100]) { }
-        field(50558; "Level4"; Text[100]) { }
-        field(50559; "Level5"; Text[100]) { }
-        field(50560; "Level6"; Text[100]) { }
-        field(50561; "Level7"; Text[100]) { }
-        field(50562; "Level8"; Text[100]) { }
-        field(50563; "Level9"; Text[100]) { }
-        field(50564; "Level10"; Text[100]) { }
+        field(50558; "Etiquetas1"; Text[100]) { }
+        field(50559; "Etiquetas2"; Text[100]) { }
+        field(50560; "Etiquetas3"; Text[100]) { }
+        field(50561; "Etiquetas4"; Text[100]) { }
+        field(50562; "Etiquetas5"; Text[100]) { }
+        field(50563; "Etiquetas6"; Text[100]) { }
+        field(50564; "Gama"; Text[100]) { }
 
     }
 

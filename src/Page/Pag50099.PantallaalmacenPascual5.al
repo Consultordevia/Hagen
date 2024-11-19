@@ -16783,13 +16783,6 @@ Page 50099 "Pantalla almacen Pascual5"
                                 RecItem.Level1 := '';
                                 RecItem.Level2 := '';
                                 RecItem.Level3 := '';
-                                RecItem.Level4 := '';
-                                RecItem.Level5 := '';
-                                RecItem.Level6 := '';
-                                RecItem.Level7 := '';
-                                RecItem.Level8 := '';
-                                RecItem.Level9 := '';
-                                RecItem.Level10 := '';
                                 RecItem.Modify;
                                 conta := 0;
                                 RecPMTemp.Reset();
@@ -16799,14 +16792,6 @@ Page 50099 "Pantalla almacen Pascual5"
                                         if conta = 1 then begin RecItem.Level1 := RecPMTemp.Description; RecItem.Modify; end;
                                         if conta = 2 then begin RecItem.Level2 := RecPMTemp.Description; RecItem.Modify; end;
                                         if conta = 3 then begin RecItem.Level3 := RecPMTemp.Description; RecItem.Modify; end;
-                                        if conta = 4 then begin RecItem.Level4 := RecPMTemp.Description; RecItem.Modify; end;
-                                        if conta = 5 then begin RecItem.Level5 := RecPMTemp.Description; RecItem.Modify; end;
-                                        if conta = 6 then begin RecItem.Level6 := RecPMTemp.Description; RecItem.Modify; end;
-                                        if conta = 7 then begin RecItem.Level7 := RecPMTemp.Description; RecItem.Modify; end;
-                                        if conta = 8 then begin RecItem.Level8 := RecPMTemp.Description; RecItem.Modify; end;
-                                        if conta = 9 then begin RecItem.Level9 := RecPMTemp.Description; RecItem.Modify; end;
-                                        if conta = 10 then begin RecItem.Level10 := RecPMTemp.Description; RecItem.Modify; end;
-
 
 
                                     until RecPMTemp.next = 0;
