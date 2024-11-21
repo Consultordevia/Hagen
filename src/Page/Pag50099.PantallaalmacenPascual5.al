@@ -430,6 +430,18 @@ Page 50099 "Pantalla almacen Pascual5"
                         iMPORTANAV20185.Run();
                     end;
                 }
+                action(Importa_enviar_a_web)
+                {
+                    ApplicationArea = Basic;
+                    Visible = true;
+
+                    trigger OnAction()
+                    begin
+
+                        iMPORTANAV20187.Run();
+                    end;
+                }
+
                 action(Importa_nuevos_atributos)
                 {
                     ApplicationArea = Basic;
@@ -441,6 +453,33 @@ Page 50099 "Pantalla almacen Pascual5"
                         iMPORTANAV20186.Run();
                     end;
                 }
+
+                action(Poner_EnviaraWeb_false)
+                {
+                    ApplicationArea = Basic;
+                    Visible = true;
+
+                    trigger OnAction()
+                    var
+                        vv: Dialog;
+
+                    begin
+
+
+                        if RecCust.FindFirst() then
+                            repeat
+                                vv.Open('#1#############################');
+                                RecCust."Enviar a web" := false;
+                                RecCust.Modify;
+                                vv.Update(1, RecCust."No.");
+                                vv.Close();
+                            until RecCust.next = 0;
+
+
+
+                    end;
+                }
+
 
 
 
@@ -16744,13 +16783,6 @@ Page 50099 "Pantalla almacen Pascual5"
                                 RecItem.Level1 := '';
                                 RecItem.Level2 := '';
                                 RecItem.Level3 := '';
-                                RecItem.Level4 := '';
-                                RecItem.Level5 := '';
-                                RecItem.Level6 := '';
-                                RecItem.Level7 := '';
-                                RecItem.Level8 := '';
-                                RecItem.Level9 := '';
-                                RecItem.Level10 := '';
                                 RecItem.Modify;
                                 conta := 0;
                                 RecPMTemp.Reset();
@@ -16760,14 +16792,6 @@ Page 50099 "Pantalla almacen Pascual5"
                                         if conta = 1 then begin RecItem.Level1 := RecPMTemp.Description; RecItem.Modify; end;
                                         if conta = 2 then begin RecItem.Level2 := RecPMTemp.Description; RecItem.Modify; end;
                                         if conta = 3 then begin RecItem.Level3 := RecPMTemp.Description; RecItem.Modify; end;
-                                        if conta = 4 then begin RecItem.Level4 := RecPMTemp.Description; RecItem.Modify; end;
-                                        if conta = 5 then begin RecItem.Level5 := RecPMTemp.Description; RecItem.Modify; end;
-                                        if conta = 6 then begin RecItem.Level6 := RecPMTemp.Description; RecItem.Modify; end;
-                                        if conta = 7 then begin RecItem.Level7 := RecPMTemp.Description; RecItem.Modify; end;
-                                        if conta = 8 then begin RecItem.Level8 := RecPMTemp.Description; RecItem.Modify; end;
-                                        if conta = 9 then begin RecItem.Level9 := RecPMTemp.Description; RecItem.Modify; end;
-                                        if conta = 10 then begin RecItem.Level10 := RecPMTemp.Description; RecItem.Modify; end;
-
 
 
                                     until RecPMTemp.next = 0;
@@ -17179,6 +17203,7 @@ Page 50099 "Pantalla almacen Pascual5"
         iMPORTANAV20184: XmlPort "Importa datos nav2018-4";
         iMPORTANAV20185: XmlPort "Importa datos nav2018-5";
         iMPORTANAV20186: XmlPort "Importa datos nav2018-6";
+        iMPORTANAV20187: XmlPort "Importa datos nav2018-7";
         iMPORTANAV2018CLIE: XmlPort "Importa datos nav2018-CLIE";
         RecItem: Record item;
         codprod: code[20];
@@ -17192,6 +17217,9 @@ Page 50099 "Pantalla almacen Pascual5"
         orden: Decimal;
         RecICP: Record "Item Category";
         cate: Code[20];
+
+        Direnvi: Record "Ship-to Address";
+        RecCust: Record Customer;
 
 
     local procedure EnviaraADAIA()

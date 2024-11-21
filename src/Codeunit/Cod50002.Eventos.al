@@ -98,14 +98,14 @@ codeunit 50002 Eventos
         RecItem.Reset();
         Recitem.SetRange("No.", Rec."No.");
         if RecItem.FindSet() then begin
-            Message('%1 %2', Rec."No.", Rec."Item Category Code");
+            ///Message('%1 %2', Rec."No.", Rec."Item Category Code");
             ///     v.Update(1, RecItem."No.");
             RecPMTemp.Reset();
             if RecPMTemp.FindFirst() then
                 repeat
                     RecPMTemp.Delete;
                 until RecPMTemp.next = 0;
-            Message('item categori %1', Recitem."Item Category Code");
+            ///Message('item categori %1', Recitem."Item Category Code");
             if Recitem."Item Category Code" <> '' then begin
                 IF ItemCategory.get(Recitem."Item Category Code") THEN begin
                     ///Recitem.Level1 := ItemCategory.Description;
@@ -179,15 +179,7 @@ codeunit 50002 Eventos
             RecItem.Level1 := '';
             RecItem.Level2 := '';
             RecItem.Level3 := '';
-            RecItem.Level4 := '';
-            RecItem.Level5 := '';
-            RecItem.Level6 := '';
-            RecItem.Level7 := '';
-            RecItem.Level8 := '';
-            RecItem.Level9 := '';
-            RecItem.Level10 := '';
-            RecItem.Modify;
-            Message('entra level');
+            RecItem.Modify;            
             conta := 0;
             RecPMTemp.Reset();
             if RecPMTemp.FindFirst() then
@@ -196,13 +188,6 @@ codeunit 50002 Eventos
                     if conta = 1 then begin RecItem.Level1 := RecPMTemp.Description; RecItem.Modify; end;
                     if conta = 2 then begin RecItem.Level2 := RecPMTemp.Description; RecItem.Modify; end;
                     if conta = 3 then begin RecItem.Level3 := RecPMTemp.Description; RecItem.Modify; end;
-                    if conta = 4 then begin RecItem.Level4 := RecPMTemp.Description; RecItem.Modify; end;
-                    if conta = 5 then begin RecItem.Level5 := RecPMTemp.Description; RecItem.Modify; end;
-                    if conta = 6 then begin RecItem.Level6 := RecPMTemp.Description; RecItem.Modify; end;
-                    if conta = 7 then begin RecItem.Level7 := RecPMTemp.Description; RecItem.Modify; end;
-                    if conta = 8 then begin RecItem.Level8 := RecPMTemp.Description; RecItem.Modify; end;
-                    if conta = 9 then begin RecItem.Level9 := RecPMTemp.Description; RecItem.Modify; end;
-                    if conta = 10 then begin RecItem.Level10 := RecPMTemp.Description; RecItem.Modify; end;
                 until RecPMTemp.next = 0;
         end;
         Commit();

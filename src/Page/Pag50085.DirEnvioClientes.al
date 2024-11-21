@@ -204,6 +204,10 @@ page 50085 DirEnvioClientes
                 {
                     ToolTip = 'Enviar a Web Distribuidor';
                 }
+                field(Dir_Shopyfi; Rec.Dir_Shopyfi)
+                {
+                    ToolTip = 'Dir_Shopyfi';
+                }
             }
         }
     }

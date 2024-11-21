@@ -16,13 +16,13 @@ pageextension 50000 "Item Card" extends "Item Card"
                 field(Level1; Rec.Level1) { ApplicationArea = ALL; }
                 field(Level2; Rec.Level2) { ApplicationArea = ALL; }
                 field(Level3; Rec.Level3) { ApplicationArea = ALL; }
-                field(Level4; Rec.Level4) { ApplicationArea = ALL; }
-                field(Level5; Rec.Level5) { ApplicationArea = ALL; }
-                field(Level6; Rec.Level6) { ApplicationArea = ALL; }
-                field(Level7; Rec.Level7) { ApplicationArea = ALL; }
-                field(Level8; Rec.Level8) { ApplicationArea = ALL; }
-                field(Level9; Rec.Level9) { ApplicationArea = ALL; }
-                field(Level10; Rec.Level10)
+                field(Etiquetas1; Rec.Etiquetas1) { ApplicationArea = ALL; }
+                field(Etiquetas2; Rec.Etiquetas2) { ApplicationArea = ALL; }
+                field(Etiquetas3; Rec.Etiquetas3) { ApplicationArea = ALL; }
+                field(Etiquetas4; Rec.Etiquetas4) { ApplicationArea = ALL; }
+                field(Etiquetas5; Rec.Etiquetas5) { ApplicationArea = ALL; }
+                field(Etiquetas6; Rec.Etiquetas6) { ApplicationArea = ALL; }
+                field(Gama; Rec.Gama)
                 {
                     ApplicationArea = ALL;
                 }

@@ -69,5 +69,9 @@ tableextension 50027 ShiptoAddress extends "Ship-to Address"
         field(60001; Dni; Text[30])
         {
         }
+        field(60003; Dir_Shopyfi; Boolean)
+        {
+        }
+
     }
 }

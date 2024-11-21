@@ -158,34 +158,34 @@ page 50041 ItemListWeb
                 {
                     ApplicationArea = All;
                 }
-                field(Level4; Rec.Level4)
+                field(Etiquetas1; Rec.Etiquetas1)
                 {
                     ApplicationArea = All;
                 }
-                field(Level5; Rec.Level5)
+                field(Etiquetas2; Rec.Etiquetas2)
                 {
                     ApplicationArea = All;
                 }
-                field(Level6; Rec.Level6)
+                field(Etiquetas3; Rec.Etiquetas3)
                 {
                     ApplicationArea = All;
                 }
-                field(Level7; Rec.Level7)
+                field(Etiquetas4; Rec.Etiquetas4)
                 {
                     ApplicationArea = All;
                 }
-                field(Level8; Rec.Level8)
+                field(Etiquetas5; Rec.Etiquetas5)
                 {
                     ApplicationArea = All;
                 }
-                field(Level9; Rec.Level9)
+                field(Etiquetas6; Rec.Etiquetas6)
                 {
                     ApplicationArea = All;
                 }
-                ///field(Level10; Rec.Level10)
-                ///{
-                ///ApplicationArea = All;
-                ///}
+                field(Gama; Rec.Gama)
+                {
+                    ApplicationArea = All;
+                }
                 field("Imagen Articulo WEB 2"; Rec."Imagen Articulo WEB 2")
                 {
                     ApplicationArea = All;
@@ -200,10 +200,7 @@ page 50041 ItemListWeb
                 {
                     ApplicationArea = All;
                 }
-                field(Level10; Rec.Level10)
-                {
-                    ApplicationArea = All;
-                }
+
 
 
             }
