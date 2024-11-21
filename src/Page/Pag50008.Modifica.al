@@ -25,6 +25,7 @@ Page 50008 Modifica
     SourceTable = "Integer";
     UsageCategory = Lists;
     ApplicationArea = All;
+    Permissions = tabledata 110 = rmid;
 
     layout
     {
