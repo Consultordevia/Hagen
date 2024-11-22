@@ -363,6 +363,19 @@ Page 50099 "Pantalla almacen Pascual5"
                         /////-Automaticosvarios.Imprimeetiqueta;
                     end;
                 }
+
+                action(Exporta_BC)
+                {
+                    ApplicationArea = Basic;
+                    Visible = true;
+
+                    trigger OnAction()
+                    begin
+                        CLEAR(AutomaticosBC);
+                        AutomaticosBC.Run();
+                    end;
+                }
+
                 action(Importa_nav_2018_CLIENTES)
                 {
                     ApplicationArea = Basic;
@@ -17220,6 +17233,7 @@ Page 50099 "Pantalla almacen Pascual5"
 
         Direnvi: Record "Ship-to Address";
         RecCust: Record Customer;
+        AutomaticosBC: Codeunit "AutomaticosBC";
 
 
     local procedure EnviaraADAIA()
