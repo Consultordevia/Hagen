@@ -2,6 +2,34 @@ pageextension 50005 "Customer Card" extends "Customer Card"
 {
     layout
     {
+        modify("Post Code")
+        {
+            trigger OnLookup(var Text: Text): Boolean
+            var
+                RecPc: Record "Post Code";
+                RecArea: Record "Area";
+            begin
+                RecPc.Reset;
+                RecPc.SetRange(RecPc.Code, Rec."Post Code");
+                RecPc.SetRange(RecPc.City, Rec.City);
+                if RecPc.FindFirst then begin
+                    if RecArea.Get(RecPc."County Code") then begin
+                        Rec.Comunidad := RecArea.Comunidad;
+                    end;
+                    rec."Zona de ventas" := RecPc."Zona Venta";
+                    rec."Country/Region Code" := RecPc.Pais;
+                end;
+                if not RecPc.FindFirst then begin
+                    RecPc.Reset;
+                    RecPc.SetRange(RecPc.Code, Rec."Post Code");
+                    if RecPc.FindFirst then begin
+                        if RecArea.Get(RecPc."County Code") then begin
+                            Rec.Comunidad := RecArea.Comunidad;
+                        end;
+                    end;
+                end;
+            end;
+        }
         addlast(content)
         {
             group(Hagen)
