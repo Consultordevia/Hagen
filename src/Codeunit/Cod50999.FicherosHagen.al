@@ -102,7 +102,7 @@ codeunit 50999 FicherosHagen
 
         NameValueBuffer.RESET;
         ///NameValueBuffer.SetFilter(Value, '<>%1', '');
-        NameValueBuffer.SetRange(id, 2, 9999999);
+        //NameValueBuffer.SetRange(id, 2, 9999999);
         IF NameValueBuffer.FINDSET THEN
             REPEAT
                 ///Message('upload %1', NameValueBuffer.Name);
@@ -361,7 +361,8 @@ codeunit 50999 FicherosHagen
             end;
             //exit(true);
         end else begin
-            Error(ResponseMessage.ReasonPhrase);
+            //Error(ResponseMessage.ReasonPhrase);
+            exit;
             //exit(false);
         end;
     end;
