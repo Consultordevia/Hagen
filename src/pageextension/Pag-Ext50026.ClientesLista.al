@@ -5,9 +5,6 @@ pageextension 50026 ClientesLista extends "Customer List"
     {
         addafter("Salesperson Code")
         {
-
-
-
             field("Payment Method Code"; Rec."Payment Method Code") { ApplicationArea = All; }
             field("VAT Registration No."; Rec."VAT Registration No.") { ApplicationArea = All; }
             field(NombreVendedor; NombreVendedor) { ApplicationArea = All; }
@@ -32,23 +29,27 @@ pageextension 50026 ClientesLista extends "Customer List"
             field("Enviar a Web"; Rec."Enviar a Web") { ApplicationArea = All; }
             field("Enviar a Web Distribuidor"; Rec."Enviar a Web Distribuidor") { ApplicationArea = All; }
             field("Estatus del cliente"; Rec."Estatus del cliente") { ApplicationArea = All; }
-
-
-
-
-
-
-
-
-
         }
     }
     trigger OnAfterGetRecord()
+    var
+        UserSetup: Record "User Setup";
     begiN
         NombreVendedor := '';
         IF RecVendedores.get(Rec."Salesperson Code") then begin
             NombreVendedor := RecVendedores.Name;
         end;
+
+        UserSetup.GET(USERID);
+        IF UserSetup."Salespers./Purch. Code" <> '' THEN BEGIN
+            rec.SETRANGE("Salesperson Code", UserSetup."Salespers./Purch. Code");
+        END;
+        ///IF UserSetup.Comercial<>'' THEN BEGIN
+        ///SETRANGE("Salesperson Code",UserSetup.Comercial);
+        ///END;
+
+
+        rec.SETFILTER("Estatus del cliente", 'Activo|Posible cliente|Posible cliente WEB');
 
     end;
 

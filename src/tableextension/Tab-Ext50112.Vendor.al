@@ -1,4 +1,4 @@
-tableextension 50112 Vendor extends Vendor
+tableextension 50112 Vendor extends "Vendor"
 {
     fields
     {
@@ -208,5 +208,12 @@ tableextension 50112 Vendor extends Vendor
         {
             TableRelation = "G/L Account"."No." where("Account Type" = const(Posting));
         }
+    }
+    fieldgroups
+    {
+        addlast(DropDown; "Search Name")
+        { }
+        addlast(Brick; "Search Name")
+        { }
     }
 }

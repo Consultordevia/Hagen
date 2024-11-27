@@ -55,7 +55,7 @@ codeunit 50002 Eventos
     var
         EnvioFicheros: Codeunit "Automaticos Cartas";
     begin
-
+        Item."Fecha modif" := CreateDatetime(Today, Time);
         //EnvioFicheros.ALTAPROD(item);
 
 
@@ -65,9 +65,25 @@ codeunit 50002 Eventos
     local procedure OnAfterModifyEventProd(RunTrigger: Boolean; var Rec: Record Item);
     var
         EnvioFicheros: Codeunit "Automaticos Cartas";
-
-
+        recA: Record item;
     begin
+        Rec."Fecha modif" := CreateDatetime(Today, Time);
+        if GuiAllowed then begin
+            if CopyStr(COMPANYNAME, 1, 4) = 'ROLF' then begin
+                RecA.Reset;
+                RecA.ChangeCompany('HAGEN CANARIAS S.C.');
+                if RecA.Get(Rec."No.") then begin
+                    RecA := Rec;
+                    RecA."VAT Prod. Posting Group" := Rec."IVA IGIC";
+                    RecA.Modify;
+                end;
+                if not RecA.Get(Rec."No.") then begin
+                    RecA := Rec;
+                    RecA."VAT Prod. Posting Group" := Rec."IVA IGIC";
+                    RecA.Insert;
+                end;
+            end;
+        end;
         /////        EnvioFicheros.MODIFPROD(Rec);
     end;
 
@@ -179,7 +195,7 @@ codeunit 50002 Eventos
             RecItem.Level1 := '';
             RecItem.Level2 := '';
             RecItem.Level3 := '';
-            RecItem.Modify;            
+            RecItem.Modify;
             conta := 0;
             RecPMTemp.Reset();
             if RecPMTemp.FindFirst() then
@@ -191,6 +207,121 @@ codeunit 50002 Eventos
                 until RecPMTemp.next = 0;
         end;
         Commit();
+    end;
+
+    [EventSubscriber(ObjectType::Table, 36, 'OnAfterSetFieldsBilltoCustomer', '', false, false)]
+    local procedure OnAfterSetFieldsBilltoCustomer(var SalesHeader: Record "Sales Header"; Customer: Record Customer; xSalesHeader: Record "Sales Header"; SkipBillToContact: Boolean; CUrrentFieldNo: Integer)
+    var
+        Customer2: Record Customer;
+    begin
+        Customer2.get(SalesHeader."Sell-to Customer No.");
+
+        ///// customer
+        SalesHeader."Observación para transporte" := Customer2."Observación para transporte";
+        SalesHeader."No agrupar en ADAIA" := Customer2."No agrupar en ADAIA";
+
+        SalesHeader."Shipment Method Code" := Customer2."Shipment Method Code";
+        SalesHeader."Transaction Type" := Customer2."Transaction Type";
+        SalesHeader."Transport Method" := Customer2."Transport Method";
+        SalesHeader."Exit Point" := Customer2."Exit Point";
+        SalesHeader.Area := Customer2.Area;
+        SalesHeader."Transaction Specification" := Customer2."Transaction Specification";
+
+        SalesHeader."Tipo facturación" := Customer2."Tipo facturación";
+        SalesHeader."No Enviar factura en exp." := Customer2."No Enviar factura en exp.";
+        SalesHeader."No Enviar albaran en exp." := Customer2."No Enviar albaran en exp.";
+        SalesHeader."No imprimir albaran valorado" := Customer2."No imprimir albaran valorado";
+        SalesHeader."Albaran sin detalle" := Customer2."Albaran sin detalle";
+        SalesHeader."No incluir portes" := Customer2."No incluir portes";
+        SalesHeader."Respeta Tipo facturacion" := Customer2."Respeta Tipo facturacion";
+        SalesHeader."No imprimir facturas" := Customer2."No imprimir facturas";
+        SalesHeader."Respeta agencia transporte" := Customer2."Respeta agencia transporte";
+        SalesHeader."Tipo de documento EDICOM" := Customer2."Tipo de documento EDICOM";
+        SalesHeader."Funcion del mensaje EDICOM" := Customer2."Funcion del mensaje EDICOM";
+        SalesHeader."Tipo transporte EDICOM" := Customer2."Tipo transporte EDICOM";
+        SalesHeader."IDENTIF EDICOM" := Customer2."IDENTIF EDICOM";
+
+
+        SalesHeader."Observación para ALMACEN" := Customer2."Observación para ALMACEN";
+        SalesHeader."Observación PDA" := Customer2."Observación PDA";
+
+        SalesHeader."Customer Disc. Group" := Customer2."Customer Disc. Group";
+
+
+
+        if (SalesHeader."Document Type" = 1) then begin
+            SalesHeader.ChequeoFechaVtos;
+        end;
+    end;
+
+    [EventSubscriber(ObjectType::Table, 36, 'OnBeforeUpdateShipToCodeFromCust', '', false, false)]
+    local procedure OnBeforeUpdateShipToCodeFromCust(var SalesHeader: Record "Sales Header"; var Customer: Record Customer; var IsHandled: Boolean)
+    var
+        RecEAD: record "Ship-to Address";
+        RecDP: Record "Customer Pmt. Address";
+    begin
+        RecEAD.Reset;
+        RecEAD.SetRange(RecEAD."Customer No.", SalesHeader."Sell-to Customer No.");
+        RecEAD.SetRange(RecEAD."Direccion habitual", true);
+        if RecEAD.FindFirst then begin
+            SalesHeader."Ship-to Code" := RecEAD.Code;
+            SalesHeader.Validate(SalesHeader."Ship-to Code");
+            IsHandled := true;
+        end;
+
+        if SalesHeader."Bill-to Customer No." <> '6445' then begin
+            RecDP.Reset;
+            RecDP.SetRange(RecDP."Customer No.", SalesHeader."Sell-to Customer No.");
+            if RecDP.FindFirst then begin
+                SalesHeader."Pay-at Code" := RecDP.Code;
+                SalesHeader.Validate("Pay-at Code");
+                IsHandled := true;
+            end;
+        end;
+
+
+
+        if SalesHeader."Bill-to Customer No." = '6445' then begin
+            SalesHeader."Shipping No. Series" := 'V-ALB-CANA';
+            SalesHeader."Pay-at Code" := '';
+            IsHandled := true;
+        end;
+    end;
+
+    [EventSubscriber(ObjectType::Table, 36, 'OnValidateSellToCustomerNoOnBeforeRecallModifyAddressNotification', '', false, false)]
+    local procedure OnValidateSellToCustomerNoOnBeforeRecallModifyAddressNotification(var SalesHeader: Record "Sales Header"; xSalesHeader: Record "Sales Header")
+    var
+        RecMulti: Record Multitabla;
+        Cust: Record Customer;
+        SalesSetup: Record "Sales & Receivables Setup";
+    begin
+        Cust.get(SalesHeader."Sell-to Customer No.");
+        if RecMulti.Get(5, Cust."Grupo clientes") then begin
+            if RecMulti."Factura EDI" then begin
+                SalesHeader."EDI factueas enviar" := true;
+                SalesHeader."Factura EDI" := RecMulti."Factura EDI";
+                SalesHeader."Albarán EDI" := RecMulti."Albarán EDI";
+            end;
+        end;
+
+        SalesSetup.Get;
+        if COMPANYNAME = 'HAGEN CANARIAS S.C.' then begin
+            SalesHeader."Posting No. Series" := SalesSetup."Posted Invoice Nos.";
+        end;
+    end;
+
+    [EventSubscriber(ObjectType::Table, 36, 'OnSetShipToCustomerAddressFieldsFromShipToAddrOnBeforeValidateShippingAgentFields', '', false, false)]
+    local procedure OnSetShipToCustomerAddressFieldsFromShipToAddrOnBeforeValidateShippingAgentFields(var SalesHeader: Record "Sales Header"; xSalesHeader: Record "Sales Header"; ShipToAddr: Record "Ship-to Address"; var IsHandled: Boolean)
+    begin
+        SalesHeader."Filtro ECI" := ShipToAddr."Filtro ECI";
+    end;
+
+    [EventSubscriber(ObjectType::Table, 36, 'OnBeforeMessageIfSalesLinesExist', '', false, false)]
+    local procedure OnBeforeMessageIfSalesLinesExist(var SalesHeader: Record "Sales Header"; ChangedFieldCaption: Text; var IsHandled: Boolean)
+    begin
+        if SalesHeader.FIELDCAPTION("Customer Disc. Group") = ChangedFieldCaption then begin
+            IsHandled := true;
+        end;
     end;
 
 

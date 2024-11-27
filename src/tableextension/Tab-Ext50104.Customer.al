@@ -1,8 +1,43 @@
-tableextension 50104 Customer extends Customer
+tableextension 50104 Customer extends "Customer"
 {
 
     fields
     {
+        modify("Search Name")
+        {
+            trigger OnAfterValidate()
+            begin
+                Nombre_Cliente := "Search Name" + '-' + "No.";
+            end;
+        }
+        modify("Post Code")
+        {
+            trigger OnAfterValidate()
+            var
+                RecPc: Record "Post Code";
+                RecArea: Record "Area";
+            begin
+                RecPc.Reset;
+                RecPc.SetRange(RecPc.Code, Rec."Post Code");
+                RecPc.SetRange(RecPc.City, Rec.City);
+                if RecPc.FindFirst then begin
+                    if RecArea.Get(RecPc."County Code") then begin
+                        Rec.Comunidad := RecArea.Comunidad;
+                    end;
+                    "Zona de ventas" := RecPc."Zona Venta";
+                    "Country/Region Code" := RecPc.Pais;
+                end;
+                if not RecPc.FindFirst then begin
+                    RecPc.Reset;
+                    RecPc.SetRange(RecPc.Code, Rec."Post Code");
+                    if RecPc.FindFirst then begin
+                        if RecArea.Get(RecPc."County Code") then begin
+                            Rec.Comunidad := RecArea.Comunidad;
+                        end;
+                    end;
+                end;
+            end;
+        }
         field(50000; "Permite seguir adelante"; Boolean)
         {
         }
@@ -67,12 +102,12 @@ tableextension 50104 Customer extends Customer
 
             trigger OnValidate()
             begin
-
-                /*if "Enviar pdfs a WEB" = true then begin
-                    FileManagement.CreateClientDirectory('F:\documentosweb\abonosweb\' + Format("No."));
-                    FileManagement.CreateClientDirectory('F:\documentosweb\albaranes\' + Format("No."));
-                    FileManagement.CreateClientDirectory('F:\documentosweb\facturasweb\' + Format("No."));
-                end;*/
+                //ZZXAVI
+                // if "Enviar pdfs a WEB" = true then begin
+                //     FileManagement.CreateClientDirectory('F:\documentosweb\abonosweb\' + Format("No."));
+                //     FileManagement.CreateClientDirectory('F:\documentosweb\albaranes\' + Format("No."));
+                //     FileManagement.CreateClientDirectory('F:\documentosweb\facturasweb\' + Format("No."));
+                // end;
             end;
         }
         field(50020; "Codigo Analisis"; Code[20])
@@ -682,6 +717,10 @@ tableextension 50104 Customer extends Customer
         field(66001; "Cliente Inversion Sujeto Pasiv"; Boolean)
         {
         }
-
+    }
+    fieldgroups
+    {
+        addlast(DropDown; "Search Name") { }
+        addlast(Brick; "Search Name") { }
     }
 }

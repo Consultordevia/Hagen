@@ -426,8 +426,8 @@ tableextension 50113 Item extends Item
             CalcFormula = - sum("Sales Cr.Memo Line".Quantity where("No." = field("No."),
                                                                     "Posting Date" = field("Date Filter"),
                                                                     "Sell-to Country/Region Code" = field("Filtro Pais"),
-                                                                    "Sell-to Customer No." = field("Filtro Cliente")/*,
-                                                                    "Grupo clientes" = field("Filtro Grupo clientes")*/));
+                                                                    "Sell-to Customer No." = field("Filtro Cliente"),
+                                                                    "Grupo clientes" = field("Filtro Grupo clientes")));
             Editable = false;
             FieldClass = FlowField;
         }
@@ -446,8 +446,8 @@ tableextension 50113 Item extends Item
             CalcFormula = - sum("Sales Cr.Memo Line".Amount where("No." = field("No."),
                                                                   "Posting Date" = field("Date Filter"),
                                                                   "Sell-to Country/Region Code" = field("Filtro Pais"),
-                                                                  "Sell-to Customer No." = field("Filtro Cliente")/*,
-                                                                  "Grupo clientes" = field("Filtro Grupo clientes")*/));
+                                                                  "Sell-to Customer No." = field("Filtro Cliente"),
+                                                                  "Grupo clientes" = field("Filtro Grupo clientes")));
             Editable = false;
             FieldClass = FlowField;
         }
@@ -1393,6 +1393,78 @@ tableextension 50113 Item extends Item
         field(50564; "Gama"; Text[100]) { }
 
     }
+
+    keys
+    {
+        key(Key17; "Pdte. Enviar a WEB", "Enviar a web")
+        {
+        }
+    }
+
+    local procedure EnviaraWEB()
+    var
+        cambioweb: Boolean;
+    begin
+
+
+        cambioweb := false;
+
+
+        if Rec.Description <> xRec.Description then begin cambioweb := true; end;
+        if Rec."+ Familia" <> xRec."+ Familia" then begin cambioweb := true; end;
+        if Rec."+ Familia 1" <> xRec."+ Familia 1" then begin cambioweb := true; end;
+        if Rec."+ Familia 2" <> xRec."+ Familia 2" then begin cambioweb := true; end;
+        if Rec."+ Familia 3" <> xRec."+ Familia 3" then begin cambioweb := true; end;
+        if Rec."+ Familia 4" <> xRec."+ Familia 4" then begin cambioweb := true; end;
+        if Rec."+ Linea" <> xRec."+ Linea" then begin cambioweb := true; end;
+        if Rec."+ Linea 1" <> xRec."+ Linea 1" then begin cambioweb := true; end;
+        if Rec."+ Linea 2" <> xRec."+ Linea 2" then begin cambioweb := true; end;
+        if Rec."+ Linea 3" <> xRec."+ Linea 3" then begin cambioweb := true; end;
+        if Rec."+ Linea 4" <> xRec."+ Linea 4" then begin cambioweb := true; end;
+        if Rec."+ Subfamilia" <> xRec."+ Subfamilia" then begin cambioweb := true; end;
+        if Rec."+ Subfamilia 1" <> xRec."+ Subfamilia 1" then begin cambioweb := true; end;
+        if Rec."+ Subfamilia 2" <> xRec."+ Subfamilia 2" then begin cambioweb := true; end;
+        if Rec."+ Subfamilia 3" <> xRec."+ Subfamilia 3" then begin cambioweb := true; end;
+        if Rec."+ Subfamilia 4" <> xRec."+ Subfamilia 4" then begin cambioweb := true; end;
+        if Rec."Actualizar WEB" <> xRec."Actualizar WEB" then begin cambioweb := true; end;
+        if Rec.Alto <> xRec.Alto then begin cambioweb := true; end;
+        if Rec."Alto CAJA" <> xRec."Alto CAJA" then begin cambioweb := true; end;
+        if Rec."Alto producto" <> xRec."Alto producto" then begin cambioweb := true; end;
+        if Rec.Ancho <> xRec.Ancho then begin cambioweb := true; end;
+        if Rec."Ancho CAJA" <> xRec."Ancho CAJA" then begin cambioweb := true; end;
+        if Rec."Ancho producto" <> xRec."Ancho producto" then begin cambioweb := true; end;
+        if Rec."Atributo 1" <> xRec."Atributo 1" then begin cambioweb := true; end;
+        if Rec."Atributo 2" <> xRec."Atributo 2" then begin cambioweb := true; end;
+        if Rec."Atributo 3" <> xRec."Atributo 3" then begin cambioweb := true; end;
+        if Rec.Blocked <> xRec.Blocked then begin cambioweb := true; end;
+        if Rec."Clase logistica" <> xRec."Clase logistica" then begin cambioweb := true; end;
+        if Rec."Expiration Calculation" <> xRec."Expiration Calculation" then begin cambioweb := true; end;
+        if Rec."Enviar a web" <> xRec."Enviar a web" then begin cambioweb := true; end;
+        if Rec."Estado Producto" <> xRec."Estado Producto" then begin cambioweb := true; end;
+        if Rec."Estado WEB Inactivo" <> xRec."Estado WEB Inactivo" then begin cambioweb := true; end;
+        if Rec."Fecha disponible Web" <> xRec."Fecha disponible Web" then begin cambioweb := true; end;
+        if Rec."Fecha en picking" <> xRec."Fecha en picking" then begin cambioweb := true; end;
+        if Rec."Fecha fin promocion WEB" <> xRec."Fecha fin promocion WEB" then begin cambioweb := true; end;
+        if Rec."Fecha inicio promocion WEB" <> xRec."Fecha inicio promocion WEB" then begin cambioweb := true; end;
+        if Rec."Fecha Lanzamiento" <> xRec."Fecha Lanzamiento" then begin cambioweb := true; end;
+        if Rec."Fecha proxima recepción conten" <> xRec."Fecha proxima recepción conten" then begin cambioweb := true; end;
+        if Rec."VAT Bus. Posting Gr. (Price)" <> xRec."VAT Bus. Posting Gr. (Price)" then begin cambioweb := true; end;
+        if Rec."VAT Prod. Posting Group" <> xRec."VAT Prod. Posting Group" then begin cambioweb := true; end;
+        if Rec."IVA IGIC" <> xRec."IVA IGIC" then begin cambioweb := true; end;
+        if Rec."Lot Nos." <> xRec."Lot Nos." then begin cambioweb := true; end;
+        if Rec."Permite fraccionar venta" <> xRec."Permite fraccionar venta" then begin cambioweb := true; end;
+        if Rec."Gross Weight" <> xRec."Gross Weight" then begin cambioweb := true; end;
+        if Rec."Producto PADRE" <> xRec."Producto PADRE" then begin cambioweb := true; end;
+        if Rec."PVP Recomendado 2022-2" <> xRec."PVP Recomendado 2022-2" then begin cambioweb := true; end;
+        if Rec."Stock para la web" <> xRec."Stock para la web" then begin cambioweb := true; end;
+        if Rec."Sales Unit of Measure" <> xRec."Sales Unit of Measure" then begin cambioweb := true; end;
+        if Rec."Unidades venta" <> xRec."Unidades venta" then begin cambioweb := true; end;
+
+
+        if cambioweb then begin
+            //ZZConectorAPIautoPOST.POST_Item(Rec."No.");
+        end;
+    end;
 
     var
         RecUMP: Record "Item Unit of Measure";
