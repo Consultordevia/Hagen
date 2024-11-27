@@ -193,7 +193,7 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                         END;
                     END;
 
-                    UserSetup.GET(USERID);
+                    /////UserSetup.GET(USERID);
                     CODACTI := NoSeriesManagement.GetNextNo(SalesReceivablesSetup."Order Nos.", TODAY, TRUE);
 
 
