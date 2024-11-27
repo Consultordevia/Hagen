@@ -934,6 +934,7 @@ Page 50011 "Comercial Datos"
 
 
 
+
         if UserSetup.Get(UpperCase(UserId)) then begin
 
         end;
