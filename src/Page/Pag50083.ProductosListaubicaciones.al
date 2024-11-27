@@ -3,6 +3,12 @@ Page 50083 "Productos Lista ubicaciones"
 {
     PageType = List;
     SourceTable = Item;
+
+
+
+
+
+
     SourceTableView = sorting("Search Description")
                       where("Estado Producto" = filter(Activo | Descatalogado | "Sin actualizar"));
     /////- where("Estado Producto"=filter(Activo|Descatalogado|"Sin actualizar"|4|5));

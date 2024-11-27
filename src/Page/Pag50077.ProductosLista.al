@@ -3,6 +3,10 @@ Page 50077 "Productos Lista"
 {
     PageType = List;
     SourceTable = Item;
+    ApplicationArea = All;
+    Caption = 'Productos Lista';     
+    UsageCategory = Lists;
+
 
     layout
     {
@@ -1506,6 +1510,73 @@ Page 50077 "Productos Lista"
                     ApplicationArea = Basic;
                 }
                 */
+                  field(CodVariante1; Rec.CodVariante1)
+                {
+                    ToolTip = 'Specifies the value of the CodVariante1 field.', Comment = '%';
+                }
+                field("Dato Variante1"; Rec."Dato Variante1")
+                {
+                    ToolTip = 'Specifies the value of the Dato Variante1 field.', Comment = '%';
+                }
+                field(CodVariante2; Rec.CodVariante2)
+                {
+                    ToolTip = 'Specifies the value of the CodVariante2 field.', Comment = '%';
+                }
+                field("Dato Variante2"; Rec."Dato Variante2")
+                {
+                    ToolTip = 'Specifies the value of the Dato Variante2 field.', Comment = '%';
+                }
+                
+                field("Descripcion web"; Rec."Descripcion web")
+                {
+                    ApplicationArea = All;
+                }
+                field(Level2; Rec.Level2)
+                {
+                    ApplicationArea = All;
+                }
+                field(Level3; Rec.Level3)
+                {
+                    ApplicationArea = All;
+                }
+                field(Etiquetas1; Rec.Etiquetas1)
+                {
+                    ApplicationArea = All;
+                }
+                field(Etiquetas2; Rec.Etiquetas2)
+                {
+                    ApplicationArea = All;
+                }
+                field(Etiquetas3; Rec.Etiquetas3)
+                {
+                    ApplicationArea = All;
+                }
+                field(Etiquetas4; Rec.Etiquetas4)
+                {
+                    ApplicationArea = All;
+                }
+                field(Etiquetas5; Rec.Etiquetas5)
+                {
+                    ApplicationArea = All;
+                }
+                field(Etiquetas6; Rec.Etiquetas6)
+                {
+                    ApplicationArea = All;
+                }
+                field(Gama; Rec.Gama)
+                {
+                    ApplicationArea = All;
+                }
+                
+                field("Producto web";Rec."Producto web")
+                {
+                    ApplicationArea = All;
+                }
+                field("Umbral stock";Rec."Umbral stock")
+                {
+                    ApplicationArea = All;
+                }
+
             }
         }
     }

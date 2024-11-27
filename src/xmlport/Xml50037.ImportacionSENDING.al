@@ -6,6 +6,7 @@ XmlPort 50037 "Importacion SENDING"
     FieldSeparator = ';';
     Format = VariableText;
     TextEncoding = WINDOWS;
+    Permissions = TableData "Sales Shipment Header" = rim;
 
     schema
     {

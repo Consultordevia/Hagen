@@ -2,6 +2,8 @@
 Codeunit 50075 "Automaticos Catit estados NEW"
 {
 
+    Permissions = TableData "Sales Shipment Header" = rim;
+    
     trigger OnRun()
     begin
 

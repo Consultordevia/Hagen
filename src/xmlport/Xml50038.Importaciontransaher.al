@@ -6,6 +6,7 @@ XmlPort 50038 "Importacion transaher"
     FieldSeparator = '|';
     Format = VariableText;
     TextEncoding = WINDOWS;
+    Permissions = TableData "Sales Shipment Header" = rim;
 
     schema
     {
