@@ -109,7 +109,7 @@ codeunit 50002 Eventos
 
     begin
 
-
+/*
         commit;
         RecItem.Reset();
         Recitem.SetRange("No.", Rec."No.");
@@ -207,6 +207,7 @@ codeunit 50002 Eventos
                 until RecPMTemp.next = 0;
         end;
         Commit();
+        */
     end;
 
     [EventSubscriber(ObjectType::Table, 36, 'OnAfterSetFieldsBilltoCustomer', '', false, false)]
