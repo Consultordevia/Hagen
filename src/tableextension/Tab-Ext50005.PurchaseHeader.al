@@ -107,6 +107,16 @@ tableextension 50005 PurchaseHeader extends "Purchase Header"
         }
         field(50035; "Permite multiplos distintos"; Boolean)
         {
+            trigger OnValidate()
+            var
+                usersetup: Record "User Setup";
+            begin
+
+                UserSetup.Get(UserId);
+                if not UserSetup."Permite fraccionar uni. venta" then begin
+                    Error('No se puede modificar este campo.');
+                end;
+            end;
         }
         field(50050; "Enviado adaia"; Boolean)
         {
@@ -152,13 +162,134 @@ tableextension 50005 PurchaseHeader extends "Purchase Header"
         }
         field(59008; "Base imponible"; Decimal)
         {
+            trigger OnValidate()
+            var
+                PurchaseLine: Record "Purchase Line";
+            begin
 
+
+
+                // -AQ16.ORA.00020.01-08-16.ORA: T38 Cab. Compra-Campo 59008 - Base imponible - Creamos la linea 10000 en la T39 Lin. Compra, con la cuanta que tiene asociado dicho proveedor
+
+
+
+                if "Document Type" = "document type"::Invoice then begin
+
+                    if "Vendor Invoice No." = '' then begin
+
+                        Error('No tiene nº de documento');
+
+                    end;
+
+                end;
+
+                "No cuenta gasto" := TestCuentaproveedor("No cuenta gasto");
+
+                if "No cuenta gasto" = '' then
+                    exit;
+
+
+
+                if PurchaseLine.Get("Document Type", "No.", 10000) then begin
+
+                    if PurchaseLine."Outstanding Quantity" = PurchaseLine.Quantity then begin
+
+                        PurchaseLine.Delete;
+
+                    end;
+
+                end;
+
+
+
+                PurchaseLine.Init;
+
+                PurchaseLine."Document Type" := "Document Type";
+
+                PurchaseLine."Document No." := "No.";
+
+                PurchaseLine."Line No." := 10000;
+
+                PurchaseLine."Buy-from Vendor No." := "Buy-from Vendor No.";
+
+                PurchaseLine.Validate(Type, 1);//Rec39.Type::"G/L Account"
+
+                PurchaseLine.Validate(PurchaseLine."No.", "No cuenta gasto");
+
+                PurchaseLine.Validate(PurchaseLine.Quantity, 1);
+
+                PurchaseLine.Validate(PurchaseLine."Direct Unit Cost", "Base imponible");
+
+                PurchaseLine.Insert;
+
+
+
+                // +AQ16.ORA.00020.01-08-1
+            end;
 
         }
         field(59009; "No cuenta gasto"; Code[20])
         {
+            trigger OnValidate()
+            var
+                LINEANUEVA: Integer;
+                PurchaseLine: Record "Purchase Line";
+            begin
 
+
+                if "Document Type" = "document type"::Invoice then begin
+                    if "Vendor Invoice No." = '' then begin
+                        Error('No tiene nº de documento');
+                    end;
+                end;
+
+                TestCuentaproveedor("No cuenta gasto");
+
+                LINEANUEVA := 0;
+                PurchaseLine.Reset;
+                PurchaseLine.SetRange("Document Type", "Document Type");
+                PurchaseLine.SetRange("Document No.", "No.");
+                if PurchaseLine.FindLast then begin
+                    LINEANUEVA := PurchaseLine."Line No." + 10000;
+
+                end;
+
+
+                PurchaseLine.Init;
+                PurchaseLine."Document Type" := "Document Type";
+                PurchaseLine."Document No." := "No.";
+                PurchaseLine."Line No." := LINEANUEVA;
+                PurchaseLine."Buy-from Vendor No." := "Buy-from Vendor No.";
+                PurchaseLine.Validate(Type, 1);//Rec39.Type::"G/L Account"
+                PurchaseLine.Validate(PurchaseLine."No.", Rec."No cuenta gasto");
+                PurchaseLine.Validate(PurchaseLine.Quantity, 1);
+                PurchaseLine.Validate(PurchaseLine."Direct Unit Cost", "Base imponible");
+                PurchaseLine.Insert;
+            end;
 
         }
     }
+
+    local procedure TestCuentaproveedor(NoCuenta: Code[20]): Code[20]
+    var
+        Cuentasdeproveedores: Record "Cuentas de proveedores";
+        Vendor: Record Vendor;
+    begin
+
+        if NoCuenta <> '' then
+            exit(NoCuenta);
+        Vendor.Get("Buy-from Vendor No.");
+        Cuentasdeproveedores.SetRange(Proveedor, "Buy-from Vendor No.");
+
+        if (Vendor."Cuenta de gasto" = '') and not Cuentasdeproveedores.FindLast then begin
+            Message('Este proveedor no tiene cuenta de gasto asociada.');
+
+        end else if
+
+          Vendor."Cuenta de gasto" <> '' then
+                exit(Vendor."Cuenta de gasto")
+
+        else
+            exit(Cuentasdeproveedores.Cuenta);
+    end;
 }

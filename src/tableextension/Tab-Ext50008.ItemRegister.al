@@ -6,4 +6,10 @@ tableextension 50008 ItemRegister extends "Item Register"
         {
         }
     }
+    keys
+    {
+        key(Key5; "Enviar a web")
+        {
+        }
+    }
 }

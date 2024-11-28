@@ -324,6 +324,106 @@ codeunit 50002 Eventos
         end;
     end;
 
+    [EventSubscriber(ObjectType::Table, 37, 'OnCopyFromItemOnAfterCheck', '', false, false)]
+    local procedure OnCopyFromItemOnAfterCheck(var SalesLine: Record "Sales Line"; Item: Record Item)
+    var
+        CestaCompra: Record "Cesta compra";
+    begin
+        SalesLine."Producto Padre" := Item."Producto PADRE";
+        SalesLine."Exit Point" := Item."Exit Point";
+        if (SalesLine."Document Type" = 1) or (SalesLine."Document Type" = 0) then begin
+            if not Cestacompra.Get(0, SalesLine."Sell-to Customer No.", SalesLine."No.") then begin
+                Cestacompra.Código := SalesLine."Sell-to Customer No.";
+                Cestacompra.Tipo := 0;
+                Cestacompra.Referencia := SalesLine."No.";
+                Cestacompra.Insert(true);
+            end;
+        end;
+
+
+        if SalesLine."Document Type" = SalesLine."document type"::Order then begin
+            if Item."Prohibido Amazon" then begin
+                SalesLine.CalcFields("Grupo clientes");
+                if SalesLine."Grupo clientes" = 'G10' then begin
+                    Error('Este producto no se permite la venta de este producto para este grupo.');
+                end;
+            end;
+            if Item."No permite pedido" then begin
+                ///        ERROR('Este producto no se permite en pedido.');
+            end;
+
+        end;
+    end;
+
+    [EventSubscriber(ObjectType::Table, 37, 'OnUpdateUnitPriceByFieldOnBeforeValidateUnitPrice', '', false, false)]
+    local procedure OnUpdateUnitPriceByFieldOnBeforeValidateUnitPrice(var SalesLine: Record "Sales Line"; xSalesLine: Record "Sales Line"; CalledByFieldNo: Integer; CurrFieldNo: Integer; var Handled: Boolean)
+    var
+        SalesLineDiscount2: Record "Sales Line Discount";
+        SalesLineDiscount: Record "Sales Line Discount";
+        SalesHeader: Record "Sales Header";
+        SalesLine3: Record "Sales Line";
+    begin
+        SalesLine.CalcFields("Cantidad padre");
+        SalesHeader.get(SalesLine."Document Type", SalesLine."Document No.");
+
+        SalesLineDiscount2.Reset;
+        SalesLineDiscount2.SetRange(Code, SalesLine."No.");
+        SalesLineDiscount2.SetRange(SalesLineDiscount2."Sales Code", SalesLine."Sell-to Customer No.");
+        SalesLineDiscount2.SetRange(SalesLineDiscount2."Sales Type", SalesLineDiscount2."sales type"::Customer);
+        if not SalesLineDiscount2.FindFirst then begin
+            SalesLineDiscount.Reset;
+            SalesLineDiscount.SetRange(Code, SalesLine."Producto Padre");
+            SalesLineDiscount.SetRange("Sales Code", SalesLine."Customer Disc. Group");
+            SalesLineDiscount.SetFilter("Ending Date", '%1|>=%2', 0D, SalesHeader."Order Date");
+            SalesLineDiscount.SetRange("Starting Date", 0D, SalesHeader."Order Date");
+            if SalesLineDiscount.FindFirst then
+                repeat
+                    if (SalesLine."Cantidad padre" + SalesLine.Quantity - xSalesLine.Quantity) >= SalesLineDiscount."Minimum Quantity" then begin
+                        SalesLine.Validate("Line Discount %", SalesLineDiscount."Line Discount %");
+                        SalesLine.Validate("Allow Invoice Disc.", false);
+                        SalesLine3.Reset;
+                        SalesLine3.SetRange("Document Type", SalesLine."Document Type");
+                        SalesLine3.SetRange("Document No.", SalesLine."Document No.");
+                        SalesLine3.SetRange("Producto Padre", SalesLine."Producto Padre");
+                        if SalesLine3.FindFirst then
+                            repeat
+                                if SalesLine3."Line No." <> SalesLine."Line No." then begin
+                                    if SalesLine3."Producto asociado" = 0 then begin
+                                        SalesLine3.Validate("Line Discount %", SalesLineDiscount."Line Discount %");
+                                        SalesLine3.Validate(SalesLine3."Allow Invoice Disc.", false);
+                                        SalesLine3."Descuento sin vendedor" := 0;
+                                        SalesLine3."Importe sin dto vendedor" := 0;
+                                        SalesLine3."% Dto. vendedor" := 0;
+                                        SalesLine3.Modify;
+                                    end;
+                                end;
+                            until SalesLine3.Next = 0;
+                    end;
+                until SalesLineDiscount.Next = 0;
+        end;
+
+    end;
+
+    [EventSubscriber(ObjectType::Table, 37, 'OnUpdateUnitPriceOnBeforeFindPrice', '', false, false)]
+    local procedure OnUpdateUnitPriceOnBeforeFindPrice(SalesHeader: Record "Sales Header"; var SalesLine: Record "Sales Line"; CalledByFieldNo: Integer; CallingFieldNo: Integer; var IsHandled: Boolean; xSalesLine: Record "Sales Line")
+    begin
+        if xSalesLine.Quantity <> SalesLine.Quantity then begin
+            SalesLine.Validate("Line Discount %", 0);
+        end;
+    end;
+
+    [EventSubscriber(ObjectType::table, 38, 'OnAfterCheckBuyFromVendor', '', false, false)]
+    local procedure OnAfterCheckBuyFromVendor(var PurchaseHeader: Record "Purchase Header"; xPurchaseHeader: Record "Purchase Header"; Vendor: Record Vendor)
+    begin
+        PurchaseHeader."No cuenta gasto" := Vendor."Cuenta de gasto";
+        PurchaseHeader."Shipment Method Code" := Vendor."Shipment Method Code";
+        PurchaseHeader."Transaction Type" := Vendor."Transaction Type";
+        PurchaseHeader."Transport Method" := Vendor."Transport Method";
+        ///// "Exit Point":=PurchSetup."Exit Point";
+        PurchaseHeader.Area := Vendor.Area;
+        PurchaseHeader."Transaction Specification" := Vendor."Transaction Specification";
+    end;
+
 
     procedure OnModify(var Cust: Record Customer)
     var
