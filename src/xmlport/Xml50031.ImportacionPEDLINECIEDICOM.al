@@ -352,7 +352,7 @@ XmlPort 50031 "Importacion PEDLIN ECI EDICOM"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
     end;
 
     var

@@ -132,7 +132,7 @@ XmlPort 50065 "Importacion PEDIDOS Verdecora"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
     end;
 
     var

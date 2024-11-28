@@ -459,7 +459,7 @@ XmlPort 50030 "Importacion PEDIDOS ECI EDICOM"
 
 
         SalesReceivablesSetup.Get;
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
     end;
 
     var

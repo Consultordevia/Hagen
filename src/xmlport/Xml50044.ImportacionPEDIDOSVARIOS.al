@@ -52,7 +52,7 @@ XmlPort 50044 "Importacion PEDIDOS VARIOS"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        ///RecUser.Get(UserId);
     end;
 
     var

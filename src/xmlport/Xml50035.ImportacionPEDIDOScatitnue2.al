@@ -120,7 +120,7 @@ XmlPort 50035 "Importacion PEDIDOS catit nue2"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
     end;
 
     var

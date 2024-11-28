@@ -86,7 +86,7 @@ XmlPort 50072 "Importacion PEDIDOS MASKO-come"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
         SalesReceivablesSetup.Get;
     end;
 

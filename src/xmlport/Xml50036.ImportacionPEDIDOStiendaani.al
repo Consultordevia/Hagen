@@ -324,7 +324,7 @@ XmlPort 50036 "Importacion PEDIDOS tienda ani"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
 
         SalesSetup.Get;
         PurchasesPayablesSetup.Get;

@@ -275,7 +275,7 @@ XmlPort 50062 "Importacion PED miriva NAV0322"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
 
         SalesSetup.Get;
         PurchasesPayablesSetup.Get;

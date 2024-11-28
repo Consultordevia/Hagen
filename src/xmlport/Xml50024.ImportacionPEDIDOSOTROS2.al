@@ -47,7 +47,7 @@ XmlPort 50024 "Importacion PEDIDOS OTROS2"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
     end;
 
     var

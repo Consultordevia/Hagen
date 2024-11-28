@@ -87,7 +87,7 @@ XmlPort 50066 "Importacion PEDIDOS 14308"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
         SalesReceivablesSetup.Get;
     end;
 

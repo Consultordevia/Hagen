@@ -225,7 +225,7 @@ XmlPort 50069 "Importacion PEDIDOS mano mano"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
     end;
 
     var

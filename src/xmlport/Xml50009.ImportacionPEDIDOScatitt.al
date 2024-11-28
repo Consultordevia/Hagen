@@ -144,7 +144,7 @@ XmlPort 50009 "Importacion PEDIDOS catitt"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
     end;
 
     var

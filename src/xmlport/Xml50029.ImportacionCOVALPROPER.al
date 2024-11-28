@@ -64,7 +64,7 @@ XmlPort 50029 "Importacion COVALPROPER"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
     end;
 
     var

@@ -275,7 +275,7 @@ XmlPort 50060 "Importacion PED miriva NAV0319"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
 
         SalesSetup.Get;
         PurchasesPayablesSetup.Get;

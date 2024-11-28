@@ -63,7 +63,7 @@ XmlPort 50049 "Importacion PEDIDOS MASKOKOTAS"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
         SalesReceivablesSetup.Get;
     end;
 

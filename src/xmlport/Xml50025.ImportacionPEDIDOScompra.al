@@ -50,7 +50,7 @@ XmlPort 50025 "Importacion PEDIDOS compra"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
     end;
 
     var

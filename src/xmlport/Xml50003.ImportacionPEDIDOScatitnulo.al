@@ -134,7 +134,7 @@ XmlPort 50003 "Importacion PEDIDOS catit nulo"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
     end;
 
     var

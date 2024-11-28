@@ -324,7 +324,7 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
 
         SalesSetup.Get;
         PurchasesPayablesSetup.Get;

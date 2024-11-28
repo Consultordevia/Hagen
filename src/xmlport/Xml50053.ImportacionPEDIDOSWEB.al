@@ -128,7 +128,7 @@ XmlPort 50053 "Importacion PEDIDOS WEB"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
         CompanyInformation.Get;
     end;
 

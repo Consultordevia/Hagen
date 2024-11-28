@@ -80,7 +80,7 @@ XmlPort 50047 "Importacion PEDIDOS V-12827"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
     end;
 
     var

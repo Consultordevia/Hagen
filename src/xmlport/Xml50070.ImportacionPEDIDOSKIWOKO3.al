@@ -91,7 +91,7 @@ XmlPort 50070 "Importacion PEDIDOS KIWOKO3"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
     end;
 
     var

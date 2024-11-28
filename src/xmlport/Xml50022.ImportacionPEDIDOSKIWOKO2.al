@@ -111,7 +111,7 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
     end;
 
     var

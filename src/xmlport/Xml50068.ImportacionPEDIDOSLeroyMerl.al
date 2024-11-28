@@ -467,7 +467,7 @@ XmlPort 50068 "Importacion PEDIDOS Leroy Merl"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////-RecUser.Get(UserId);
 
         SalesSetup.Get;
         PurchasesPayablesSetup.Get;
