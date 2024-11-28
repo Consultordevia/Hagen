@@ -331,7 +331,7 @@ codeunit 50999 FicherosHagen
                         Xmlport.Import(Xmlport::"Importacion TXT", InStream);
                     end;
                     if Tipo = Tipo::CATITNUEVO then begin
-                        ///Xmlport.Import(Xmlport::"mportacion PEDIDOS catitt new", InStream);
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS catitt new", InStream);
                     end;
                     if Tipo = Tipo::LEROYMERLIN then begin
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS Leroy Merl", InStream);

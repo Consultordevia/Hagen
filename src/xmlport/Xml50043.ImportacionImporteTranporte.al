@@ -6,6 +6,7 @@ XmlPort 50043 "Importacion Importe Tranporte"
     FieldSeparator = ';';
     Format = VariableText;
     TextEncoding = WINDOWS;
+    Permissions = TableData "Sales Shipment Header" = rim;
 
     schema
     {

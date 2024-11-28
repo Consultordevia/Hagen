@@ -10,6 +10,7 @@ XmlPort 50075 "Importacion TXT"
     FieldSeparator = ';';
     Format = VariableText;
     TextEncoding = WINDOWS;
+    Permissions = TableData "Sales Shipment Header" = rim;
 
     schema
     {

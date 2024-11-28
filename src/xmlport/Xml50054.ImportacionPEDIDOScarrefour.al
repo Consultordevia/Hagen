@@ -318,7 +318,7 @@ XmlPort 50054 "Importacion PEDIDOS carrefour"
     trigger OnPreXmlPort()
     begin
 
-        RecUser.Get(UserId);
+        /////RecUser.Get(UserId);
 
         SalesSetup.Get;
         PurchasesPayablesSetup.Get;
