@@ -75,5 +75,6 @@ enum 50000 Ficherets
     value(21; TRREC) { Caption = 'TRREC'; }
 
     value(22; TREXP) { Caption = 'TREXP'; }
+    value(23; CORREOS) { Caption = 'CORREOS'; }     
 
 }
