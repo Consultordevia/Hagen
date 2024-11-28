@@ -40,10 +40,10 @@ pageextension 50026 ClientesLista extends "Customer List"
             NombreVendedor := RecVendedores.Name;
         end;
 
-        UserSetup.GET(USERID);
-        IF UserSetup."Salespers./Purch. Code" <> '' THEN BEGIN
-            rec.SETRANGE("Salesperson Code", UserSetup."Salespers./Purch. Code");
-        END;
+        if UserSetup.GET(USERID) then
+            IF UserSetup."Salespers./Purch. Code" <> '' THEN BEGIN
+                rec.SETRANGE("Salesperson Code", UserSetup."Salespers./Purch. Code");
+            END;
         ///IF UserSetup.Comercial<>'' THEN BEGIN
         ///SETRANGE("Salesperson Code",UserSetup.Comercial);
         ///END;
