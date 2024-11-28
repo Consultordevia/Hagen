@@ -61,26 +61,28 @@ codeunit 50002 Eventos
 
     end;
 
-    [EventSubscriber(ObjectType::Table, 27, OnAfterModifyEvent, '', true, true)]
+    [EventSubscriber(ObjectType::Table, 27, OnBeforeModifyEvent, '', true, true)]
     local procedure OnAfterModifyEventProd(RunTrigger: Boolean; var Rec: Record Item);
     var
         EnvioFicheros: Codeunit "Automaticos Cartas";
         recA: Record item;
     begin
-        Rec."Fecha modif" := CreateDatetime(Today, Time);
-        if GuiAllowed then begin
-            if CopyStr(COMPANYNAME, 1, 4) = 'ROLF' then begin
-                RecA.Reset;
-                RecA.ChangeCompany('HAGEN CANARIAS S.C.');
-                if RecA.Get(Rec."No.") then begin
-                    RecA := Rec;
-                    RecA."VAT Prod. Posting Group" := Rec."IVA IGIC";
-                    RecA.Modify;
-                end;
-                if not RecA.Get(Rec."No.") then begin
-                    RecA := Rec;
-                    RecA."VAT Prod. Posting Group" := Rec."IVA IGIC";
-                    RecA.Insert;
+        if RunTrigger then begin
+            Rec."Fecha modif" := CreateDatetime(Today, Time);
+            if GuiAllowed then begin
+                if CopyStr(COMPANYNAME, 1, 4) = 'ROLF' then begin
+                    RecA.Reset;
+                    RecA.ChangeCompany('HAGEN CANARIAS S.C.');
+                    if RecA.Get(Rec."No.") then begin
+                        RecA := Rec;
+                        RecA."VAT Prod. Posting Group" := Rec."IVA IGIC";
+                        RecA.Modify(false);
+                    end;
+                    if not RecA.Get(Rec."No.") then begin
+                        RecA := Rec;
+                        RecA."VAT Prod. Posting Group" := Rec."IVA IGIC";
+                        RecA.Insert(false);
+                    end;
                 end;
             end;
         end;
@@ -109,72 +111,76 @@ codeunit 50002 Eventos
 
     begin
 
-/*
-        commit;
-        RecItem.Reset();
-        Recitem.SetRange("No.", Rec."No.");
-        if RecItem.FindSet() then begin
-            ///Message('%1 %2', Rec."No.", Rec."Item Category Code");
-            ///     v.Update(1, RecItem."No.");
-            RecPMTemp.Reset();
-            if RecPMTemp.FindFirst() then
-                repeat
-                    RecPMTemp.Delete;
-                until RecPMTemp.next = 0;
-            ///Message('item categori %1', Recitem."Item Category Code");
-            if Recitem."Item Category Code" <> '' then begin
-                IF ItemCategory.get(Recitem."Item Category Code") THEN begin
-                    ///Recitem.Level1 := ItemCategory.Description;
-                    RecPMTemp.Code := '10';
-                    RecPMTemp.Description := ItemCategory.Description;
-                    RecPMTemp.Insert;
-                    IF ItemCategory1.get(ItemCategory."Parent Category") THEN begin
-                        ///Recitem.Level2 := ItemCategory1.Description;
-                        RecPMTemp.Code := '09';
-                        RecPMTemp.Description := ItemCategory1.Description;
-                        RecPMTemp.Insert;
-                        IF ItemCategory2.get(ItemCategory1."Parent Category") THEN begin
-                            ///Recitem.Level3 := ItemCategory2.Description;
-                            RecPMTemp.Code := '08';
-                            RecPMTemp.Description := ItemCategory2.Description;
+        /*
+                commit;
+                RecItem.Reset();
+                Recitem.SetRange("No.", Rec."No.");
+                if RecItem.FindSet() then begin
+                    ///Message('%1 %2', Rec."No.", Rec."Item Category Code");
+                    ///     v.Update(1, RecItem."No.");
+                    RecPMTemp.Reset();
+                    if RecPMTemp.FindFirst() then
+                        repeat
+                            RecPMTemp.Delete;
+                        until RecPMTemp.next = 0;
+                    ///Message('item categori %1', Recitem."Item Category Code");
+                    if Recitem."Item Category Code" <> '' then begin
+                        IF ItemCategory.get(Recitem."Item Category Code") THEN begin
+                            ///Recitem.Level1 := ItemCategory.Description;
+                            RecPMTemp.Code := '10';
+                            RecPMTemp.Description := ItemCategory.Description;
                             RecPMTemp.Insert;
-                            IF ItemCategory3.get(ItemCategory2."Parent Category") THEN begin
-                                ///Recitem.Level4 := ItemCategory3.Description;
-                                RecPMTemp.Code := '07';
-                                RecPMTemp.Description := ItemCategory3.Description;
+                            IF ItemCategory1.get(ItemCategory."Parent Category") THEN begin
+                                ///Recitem.Level2 := ItemCategory1.Description;
+                                RecPMTemp.Code := '09';
+                                RecPMTemp.Description := ItemCategory1.Description;
                                 RecPMTemp.Insert;
-                                IF ItemCategory4.get(ItemCategory3."Parent Category") THEN begin
-                                    ///Recitem.Level5 := ItemCategory4.Description;
-                                    RecPMTemp.Code := '06';
-                                    RecPMTemp.Description := ItemCategory4.Description;
+                                IF ItemCategory2.get(ItemCategory1."Parent Category") THEN begin
+                                    ///Recitem.Level3 := ItemCategory2.Description;
+                                    RecPMTemp.Code := '08';
+                                    RecPMTemp.Description := ItemCategory2.Description;
                                     RecPMTemp.Insert;
-                                    IF ItemCategory5.get(ItemCategory4."Parent Category") THEN begin
-                                        ///Recitem.Level6 := ItemCategory5.Description;
-                                        RecPMTemp.Code := '05';
-                                        RecPMTemp.Description := ItemCategory5.Description;
+                                    IF ItemCategory3.get(ItemCategory2."Parent Category") THEN begin
+                                        ///Recitem.Level4 := ItemCategory3.Description;
+                                        RecPMTemp.Code := '07';
+                                        RecPMTemp.Description := ItemCategory3.Description;
                                         RecPMTemp.Insert;
-                                        IF ItemCategory6.get(ItemCategory5."Parent Category") THEN begin
-                                            ///Recitem.Level7 := ItemCategory6.Description;
-                                            RecPMTemp.Code := '04';
-                                            RecPMTemp.Description := ItemCategory7.Description;
+                                        IF ItemCategory4.get(ItemCategory3."Parent Category") THEN begin
+                                            ///Recitem.Level5 := ItemCategory4.Description;
+                                            RecPMTemp.Code := '06';
+                                            RecPMTemp.Description := ItemCategory4.Description;
                                             RecPMTemp.Insert;
-                                            IF ItemCategory7.get(ItemCategory6."Parent Category") THEN begin
-                                                ///Recitem.Level8 := ItemCategory7.Description;
-                                                RecPMTemp.Code := '03';
-                                                RecPMTemp.Description := ItemCategory7.Description;
+                                            IF ItemCategory5.get(ItemCategory4."Parent Category") THEN begin
+                                                ///Recitem.Level6 := ItemCategory5.Description;
+                                                RecPMTemp.Code := '05';
+                                                RecPMTemp.Description := ItemCategory5.Description;
                                                 RecPMTemp.Insert;
-                                                IF ItemCategory8.get(ItemCategory7."Parent Category") THEN begin
-                                                    ///Recitem.Level9 := ItemCategory8.Description;
-                                                    RecPMTemp.Code := '02';
-                                                    RecPMTemp.Description := ItemCategory8.Description;
+                                                IF ItemCategory6.get(ItemCategory5."Parent Category") THEN begin
+                                                    ///Recitem.Level7 := ItemCategory6.Description;
+                                                    RecPMTemp.Code := '04';
+                                                    RecPMTemp.Description := ItemCategory7.Description;
                                                     RecPMTemp.Insert;
-                                                    IF ItemCategory9.get(ItemCategory8."Parent Category") THEN begin
-                                                        ///Recitem.Level10 := ItemCategory9.Description;
-                                                        RecPMTemp.Code := '01';
-                                                        RecPMTemp.Description := ItemCategory9.Description;
+                                                    IF ItemCategory7.get(ItemCategory6."Parent Category") THEN begin
+                                                        ///Recitem.Level8 := ItemCategory7.Description;
+                                                        RecPMTemp.Code := '03';
+                                                        RecPMTemp.Description := ItemCategory7.Description;
                                                         RecPMTemp.Insert;
+                                                        IF ItemCategory8.get(ItemCategory7."Parent Category") THEN begin
+                                                            ///Recitem.Level9 := ItemCategory8.Description;
+                                                            RecPMTemp.Code := '02';
+                                                            RecPMTemp.Description := ItemCategory8.Description;
+                                                            RecPMTemp.Insert;
+                                                            IF ItemCategory9.get(ItemCategory8."Parent Category") THEN begin
+                                                                ///Recitem.Level10 := ItemCategory9.Description;
+                                                                RecPMTemp.Code := '01';
+                                                                RecPMTemp.Description := ItemCategory9.Description;
+                                                                RecPMTemp.Insert;
+
+                                                            end;
+                                                        end;
 
                                                     end;
+
                                                 end;
 
                                             end;
@@ -186,28 +192,24 @@ codeunit 50002 Eventos
                                 end;
 
                             end;
-
                         end;
-
                     end;
+                    RecItem.Level1 := '';
+                    RecItem.Level2 := '';
+                    RecItem.Level3 := '';
+                    RecItem.Modify;
+                    conta := 0;
+                    RecPMTemp.Reset();
+                    if RecPMTemp.FindFirst() then
+                        repeat
+                            conta := conta + 1;
+                            if conta = 1 then begin RecItem.Level1 := RecPMTemp.Description; RecItem.Modify; end;
+                            if conta = 2 then begin RecItem.Level2 := RecPMTemp.Description; RecItem.Modify; end;
+                            if conta = 3 then begin RecItem.Level3 := RecPMTemp.Description; RecItem.Modify; end;
+                        until RecPMTemp.next = 0;
                 end;
-            end;
-            RecItem.Level1 := '';
-            RecItem.Level2 := '';
-            RecItem.Level3 := '';
-            RecItem.Modify;
-            conta := 0;
-            RecPMTemp.Reset();
-            if RecPMTemp.FindFirst() then
-                repeat
-                    conta := conta + 1;
-                    if conta = 1 then begin RecItem.Level1 := RecPMTemp.Description; RecItem.Modify; end;
-                    if conta = 2 then begin RecItem.Level2 := RecPMTemp.Description; RecItem.Modify; end;
-                    if conta = 3 then begin RecItem.Level3 := RecPMTemp.Description; RecItem.Modify; end;
-                until RecPMTemp.next = 0;
-        end;
-        Commit();
-        */
+                Commit();
+                */
     end;
 
     [EventSubscriber(ObjectType::Table, 36, 'OnAfterSetFieldsBilltoCustomer', '', false, false)]
