@@ -1,7 +1,7 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
 XmlPort 50043 "Importacion Importe Tranporte"
 {
-    Caption = 'Importacion PEDIDOS tienda ani';
+    Caption = 'Importacion Importe Tranporte';
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
@@ -13,7 +13,7 @@ XmlPort 50043 "Importacion Importe Tranporte"
         textelement(root)
         {
             MinOccurs = Zero;
-            tableelement("Payment Terms";"Payment Terms")
+            tableelement("Payment Terms"; "Payment Terms")
             {
                 AutoSave = false;
                 XmlName = 'DataExchDocument';
@@ -81,12 +81,12 @@ XmlPort 50043 "Importacion Importe Tranporte"
         codconta: Code[10];
         XX: Integer;
         POSI: Integer;
-        DDD: array [42] of Decimal;
+        DDD: array[42] of Decimal;
         YY: Integer;
         LATARIFA: Code[10];
         LALAMA: Code[10];
         CUANTA1: Integer;
-        ELANCHO: array [70] of Decimal;
+        ELANCHO: array[70] of Decimal;
         ELALTO: Decimal;
         LINEAS: Integer;
         UNO: Code[255];
@@ -168,8 +168,8 @@ XmlPort 50043 "Importacion Importe Tranporte"
         SkipLine := CurrentLineType <> Linetype::Data;
 
         if not SkipLine then begin
-          HeaderLineCount := 0;
-          ImportedLineNo += 1;
+            HeaderLineCount := 0;
+            ImportedLineNo += 1;
         end;
     end;
 
@@ -197,14 +197,14 @@ XmlPort 50043 "Importacion Importe Tranporte"
     begin
     end;
 
-    local procedure GetFieldLength(TableNo: Integer;FieldNo: Integer): Integer
+    local procedure GetFieldLength(TableNo: Integer; FieldNo: Integer): Integer
     var
         RecRef: RecordRef;
         FieldRef: FieldRef;
     begin
     end;
 
-    local procedure InsertColumn(columnNumber: Integer;var columnValue: Text)
+    local procedure InsertColumn(columnNumber: Integer; var columnValue: Text)
     var
         savedColumnValue: Text;
     begin
@@ -213,17 +213,17 @@ XmlPort 50043 "Importacion Importe Tranporte"
     local procedure ValidateHeaderTag()
     begin
 
-        linea:=linea+1;
+        linea := linea + 1;
 
-        if D1<>'' then begin
-            if linea>1 then begin
-                IMP:=0;
-                ventana.Update(1,D1);
-                Evaluate(IMP,D2);
+        if D1 <> '' then begin
+            if linea > 1 then begin
+                IMP := 0;
+                ventana.Update(1, D1);
+                Evaluate(IMP, D2);
                 SalesShipmentHeader.Reset;
-                SalesShipmentHeader.SetRange("Numero segumiento",D1);
+                SalesShipmentHeader.SetRange("Numero segumiento", D1);
                 if SalesShipmentHeader.FindFirst then begin
-                    SalesShipmentHeader."Importe transporte":=IMP;
+                    SalesShipmentHeader."Importe transporte" := IMP;
                     SalesShipmentHeader.Modify;
                 end;
             end;

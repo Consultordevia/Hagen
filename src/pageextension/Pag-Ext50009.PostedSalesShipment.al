@@ -25,6 +25,153 @@ pageextension 50009 "Posted Sales Shipment" extends "Posted Sales Shipments"
 
         }
     }
+
+    actions
+    {
+        addlast("&Shipment")
+        {
+            action(Modificadatos)
+            {
+                ApplicationArea = All;
+                Caption = 'Modifica datos';
+                Image = Order;
+                trigger OnAction()
+                var
+                begin
+
+                    SalesShipmentHeader3.RESET;
+                    SalesShipmentHeader3.SETRANGE(SalesShipmentHeader3."No.", Rec."No.");
+                    IF SalesShipmentHeader3.FINDFIRST THEN BEGIN
+                        CLEAR(Modificaalbaran);
+                        Modificaalbaran.SETTABLEVIEW(SalesShipmentHeader3);
+                        Modificaalbaran.RUNMODAL;
+                    END;
+                end;
+            }
+            action(ImportarCosteTransporte)
+            {
+                ApplicationArea = All;
+                Caption = '(Importar Coste Transporte';
+                Image = Order;
+                trigger OnAction()
+                var
+                begin
+
+                    CLEAR(ImportacionImporteTranporte);
+                    ImportacionImporteTranporte.Run();
+                end;
+            }
+
+            action(Vertransporte)
+            {
+                ApplicationArea = All;
+                Caption = 'Ver transporte';
+                Image = Order;
+
+
+                trigger OnAction()
+                var
+                begin
+                    codexpe := Rec."Nº expedición";
+                    IF Rec."Nº expedición dropshp" <> '' THEN BEGIN
+                        codexpe := Rec."Nº expedición dropshp";
+                    END;
+                    IF Rec.ASN <> '' THEN BEGIN
+                        codexpe := Rec.ASN;
+                    END;
+                    codigopostal := FORMAT(Rec."Ship-to Post Code");
+                    IF Rec."Bill-to Country/Region Code" = 'PT' THEN BEGIN
+                        codigopostal := COPYSTR(codigopostal, 1, 4) + '-' + COPYSTR(codigopostal, 6);
+                    END;
+
+                    IF Rec."Shipping Agent Code" = 'GLSP' THEN BEGIN
+                        codigopostal := COPYSTR(codigopostal, 1, 4) + '-' + COPYSTR(codigopostal, 6);
+                    END;
+
+                    IF RecTra.GET(Rec."Shipping Agent Code") THEN BEGIN
+                        IF RecTra."Link transporte" = '' THEN BEGIN
+                            IF Rec."Shipping Agent Code" = 'DHL' THEN BEGIN
+                                paginaweb := 'http://www.dhl.es/services_es/seg_3dd/integra/SeguimientoDocumentos.aspx?codigo=' +
+                                FORMAT(codexpe) + '&anno=2012&lang=sp&refCli=1';
+                                HYPERLINK(paginaweb);
+                            END;
+                            IF Rec."Shipping Agent Code" = 'TNT' THEN BEGIN
+                                paginaweb := 'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=' +
+                                'REF&respLang=ES&respCountry=ES&sourceID=1&sourceCountry=' +
+                                'ES&sourceID=1&sourceCountry=ww&cons=' +
+                                FORMAT(codexpe);
+                                HYPERLINK(paginaweb);
+                            END;
+                            IF Rec."Shipping Agent Code" = 'CRON' THEN BEGIN
+                                paginaweb := 'http://www.chronoexpres.com/chronoExtraNET/env/verEnvio.seam?usuario=f4429f061740b2' +
+                                'a5528f4aa361d36dac&tipo=&valor=' + FORMAT(codexpe) + '&cp=' + FORMAT(codigopostal);
+                                paginaweb := 'https://www.correosexpress.com/url/v?s=' + FORMAT(codexpe) + '&cp=' + FORMAT(Rec."Ship-to Post Code");
+                                HYPERLINK(paginaweb);
+                            END;
+                            IF Rec."Shipping Agent Code" = 'CORR' THEN BEGIN
+                                paginaweb := 'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
+                                FORMAT(codexpe);
+                                HYPERLINK(paginaweb);
+                            END;
+                            IF COMPANYNAME <> 'PEPE' THEN BEGIN
+                                IF Rec."Shipping Agent Code" = 'TIPSA' THEN BEGIN
+                                    paginaweb := 'http://www.tip-sa.com/cliente/datos.php?id=04600400393' + FORMAT(codexpe) +
+                                    FORMAT(Rec."Your Reference") + FORMAT(codigopostal);
+                                    HYPERLINK(paginaweb);
+                                END;
+                            END;
+                            IF COMPANYNAME = 'PEPE' THEN BEGIN
+                                IF Rec."Shipping Agent Code" = 'TIPSA' THEN BEGIN
+                                    paginaweb := 'http://www.tip-sa.com/cliente/datos.php?id=04600400393' + FORMAT(codexpe) + ' - ' +
+                                    FORMAT(Rec."Your Reference") + ' - ' +
+                                    FORMAT(Rec."Order No.") +
+                                    FORMAT(codigopostal);
+                                    paginaweb := 'http://www.tip-sa.com/cliente/datos.php?id=04600400393' + FORMAT(codexpe) +
+                                    FORMAT(Rec."Your Reference") + FORMAT(codigopostal);
+                                    HYPERLINK(paginaweb);
+                                END;
+                            END;
+                            IF COMPANYNAME = 'PEPE' THEN BEGIN
+                                IF Rec."Shipping Agent Code" = 'TNT' THEN BEGIN
+                                    paginaweb :=
+                                        'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=REF&respLang=' +
+                                        'ES&respCountry=ES&sourceID=1&sourceCountry=' +
+                                        'ES&sourceID=1&sourceCountry=ww&cons=' + FORMAT(codexpe);
+                                    HYPERLINK(paginaweb);
+                                END;
+                            END;
+                        END;
+                        IF RecTra."Link transporte" <> '' THEN BEGIN
+                            IF RecTra.Code <> 'TXT' THEN BEGIN
+                                paginaweb := RecTra."Link transporte";
+                                IF RecTra.Añadir = 0 THEN paginaweb := paginaweb + FORMAT(codexpe);
+                                IF RecTra.Añadir = 1 THEN
+                                    paginaweb := paginaweb + FORMAT(codexpe) +
+            FORMAT(Rec."Ship-to Post Code");
+                                IF RecTra.Añadir = 2 THEN
+                                    paginaweb := paginaweb + FORMAT(codexpe) + '/' +
+            FORMAT(codigopostal);
+
+                                HYPERLINK(paginaweb);
+                            END;
+
+                            IF RecTra.Code = 'TXT' THEN BEGIN
+                                ANYO := DATE2DMY(Rec."Posting Date", 3);
+                                paginaweb := 'http://tracking.txt.es/?EXPED=@68381@fcyd0y4ui2n6emo@R@' + FORMAT(codexpe) + '@' + FORMAT(ANYO) + '@';
+                                HYPERLINK(paginaweb);
+                            END;
+
+
+                        END;
+                    END;
+
+                end;
+
+
+            }
+        }
+    }
+
     trigger OnAfterGetRecord()
 
 
@@ -143,9 +290,15 @@ pageextension 50009 "Posted Sales Shipment" extends "Posted Sales Shipments"
         ANYO: Integer;
         codigopostal: Code[20];
         RecTransp: Record "Shipping Agent";
+        ImportacionImporteTranporte: XmlPort "Importacion Importe Tranporte";
+
+
+
+
 
 
 }
+
 
 
 /*
