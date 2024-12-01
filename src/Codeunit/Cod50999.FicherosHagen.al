@@ -356,6 +356,16 @@ codeunit 50999 FicherosHagen
 
 
                     end;
+                    if Tipo = Tipo::FTP12827 then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS V-12827", InStream);
+                    end;
+                    if Tipo = Tipo::FTP12832 then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS V-12832", InStream);
+                    end;
+                    if Tipo = Tipo::FTP12833 then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS V-12833", InStream);
+                    end;
+
 
 
 

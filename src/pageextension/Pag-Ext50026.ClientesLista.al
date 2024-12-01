@@ -3,6 +3,7 @@ pageextension 50026 ClientesLista extends "Customer List"
 
     layout
     {
+
         addafter("Salesperson Code")
         {
             field("Payment Method Code"; Rec."Payment Method Code") { ApplicationArea = All; }
@@ -31,6 +32,68 @@ pageextension 50026 ClientesLista extends "Customer List"
             field("Estatus del cliente"; Rec."Estatus del cliente") { ApplicationArea = All; }
         }
     }
+    actions
+    {
+        addlast(processing)
+        {
+            action(CopiarCliente)
+            {
+                ApplicationArea = All;
+                Caption = 'Copiar Clientes';
+                Image = Order;
+
+
+                trigger OnAction()
+                var
+                    RecCusto: Record Customer;
+                    SalesSetup: Record "Sales & Receivables Setup";
+                    codclie: code[20];
+                    NoSeriesManagement: Codeunit NoSeriesManagement;
+                    ShiptoAddress: Record "Ship-to Address";
+                    ShiptoAddress2: Record "Ship-to Address";
+                begin
+
+
+                    RecCusto.INIT;
+                    RecCusto := Rec;
+                    SalesSetup.GET;
+                    SalesSetup.TESTFIELD("Customer Nos.");
+                    codclie := NoSeriesManagement.GetNextNo('C-NAV', TODAY, TRUE);
+
+                    RecCusto."No." := codclie;
+                    RecCusto."Fecha alta" := TODAY;
+                    RecCusto."Usuario alta" := USERID;
+                    RecCusto.Name := 'COPIA ' + COPYSTR(Rec.Name, 1, 53);
+                    RecCusto."Usuario Web" := '';
+                    RecCusto."Contraseña WEB" := '';
+                    RecCusto.INSERT;
+
+
+                    ShiptoAddress.RESET;
+                    ShiptoAddress.SETRANGE(ShiptoAddress."Customer No.", Rec."No.");
+                    IF ShiptoAddress.FINDFIRST THEN
+                        REPEAT
+                            ShiptoAddress2 := ShiptoAddress;
+                            ShiptoAddress2."Customer No." := codclie;
+                            ShiptoAddress2.INSERT;
+                        UNTIL ShiptoAddress.NEXT = 0;
+
+
+                    MESSAGE('El nuevo clientes es %1', codclie);
+
+
+                END;
+
+            }
+        }
+    }
+
+
+
+
+
+
+
     trigger OnAfterGetRecord()
     var
         UserSetup: Record "User Setup";
@@ -57,4 +120,6 @@ pageextension 50026 ClientesLista extends "Customer List"
 
         RecVendedores: Record "Salesperson/Purchaser";
         NombreVendedor: text;
+
+
 }

@@ -452,7 +452,47 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                 END;
 
             }
+            action(Importardropshiping)
+            {
+                ApplicationArea = All;
+                Caption = 'Importar dropshiping';
+                Image = Order;
+
+
+                trigger OnAction()
+                var
+                    Importardropshiping: XmlPort "Importacion PEDIDOS MASKO-come";
+
+
+                begin
+                    clear(Importardropshiping);
+                    Importardropshiping.run;
+
+                end;
+            }
+            action(Importalineas)
+            {
+                ApplicationArea = All;
+                Caption = 'Importar lineas';
+                Image = Order;
+
+
+                trigger OnAction()
+                var
+                    ImportacionPEDIDOSOTROS2: XmlPort "Importacion PEDIDOS OTROS2";
+
+
+                begin
+                    clear(ImportacionPEDIDOSOTROS2);
+                    ImportacionPEDIDOSOTROS2.run;
+
+                end;
+            }
         }
+
+
+
+
     }
 
 }

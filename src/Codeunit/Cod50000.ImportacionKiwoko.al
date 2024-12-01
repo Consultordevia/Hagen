@@ -1,17 +1,18 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
-Codeunit 50086 "Importacion Kiwoko-NULO"
+Codeunit 50000 "Importacion Kiwoko"
 {
 
     trigger OnRun()
     var
         FicherosHagen: Codeunit FicherosHagen;
         Tipo: enum Ficherets;
+        Customer: Record Customer;
+        ADAIA: Record adaia;
 
     begin
 
-
         ADAIA.Reset();
-        ADAIA.SetRange(texto, 'IMPORTACION KIWOKO-CU-50003');
+        ADAIA.SetRange(texto, 'IMPORTACION KIWOKO-CU-50000');
         IF ADAIA.FindSet() THEN begin
             nomdir := ADAIA.Ruta;
             RUTACOPIA := ADAIA.Ruta + 'copia/';
@@ -24,8 +25,6 @@ Codeunit 50086 "Importacion Kiwoko-NULO"
 
 
 
-
-        ///                                        Xmlport.Import(Xmlport::"Importacion PEDIDOS KIWOKO3", varInputStream);
     end;
 
     var
@@ -100,8 +99,11 @@ Codeunit 50086 "Importacion Kiwoko-NULO"
         ReleaseSalesDoc: Codeunit "Release Sales Document";
         CodeCV: Codeunit "Automaticos Cartas";
         TIENE: Boolean;
+        ImportaADAIA: Codeunit "Conecta ADAIA";
         CURegMov: Codeunit "Item Jnl.-Post Batch";
-        ADAIA: RECORD adaia;
+        SalesReceivablesSetup: Record "Sales & Receivables Setup";
+        JobQueueLogEntry: Record "Job Queue Log Entry";
+
 
 
 

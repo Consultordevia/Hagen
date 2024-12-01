@@ -1,31 +1,68 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
-Codeunit 50086 "Importacion Kiwoko-NULO"
+Codeunit 50056 "Importacion Pedidos FTP"
 {
 
     trigger OnRun()
     var
         FicherosHagen: Codeunit FicherosHagen;
         Tipo: enum Ficherets;
+        Customer: Record Customer;
+        ADAIA: Record adaia;
 
     begin
 
 
-        ADAIA.Reset();
-        ADAIA.SetRange(texto, 'IMPORTACION KIWOKO-CU-50003');
-        IF ADAIA.FindSet() THEN begin
-            nomdir := ADAIA.Ruta;
-            RUTACOPIA := ADAIA.Ruta + 'copia/';
-        end;
-        Commit;
-        tipo := Tipo::KIWOKO;
+        Customer.Reset;
+        Customer.SetRange("Check Clientes FTP", true);
+        if Customer.FindFirst then
+            repeat
+                if Customer."No." = '12832' then begin
+                    ADAIA.Reset();
+                    ADAIA.SetRange(texto, 'IMPORTACION PEDIDOS V-12832-CU-50056');
+                    IF ADAIA.FindSet() THEN begin
+                        nomdir := ADAIA.Ruta;
+                        RUTACOPIA := ADAIA.Ruta + 'copia/';
+                    end;
+                    Commit;
+                    tipo := Tipo::FTP12832;
+                    FicherosHagen.LeerArchivosCarpeta(nomdir, RUTACOPIA, Tipo)
+                END;
 
 
-        FicherosHagen.LeerArchivosCarpeta(nomdir, RUTACOPIA, Tipo)
+
+                //    Xmlport.Import(Xmlport::"Importacion PEDIDOS V-12832", varInputStream);end;
+                if Customer."No." = '12827' then begin
+                    ADAIA.Reset();
+                    ADAIA.SetRange(texto, 'IMPORTACION PEDIDOS V-12827-CU-50056');
+                    IF ADAIA.FindSet() THEN begin
+                        nomdir := ADAIA.Ruta;
+                        RUTACOPIA := ADAIA.Ruta + 'copia/';
+                    end;
+                    Commit;
+                    tipo := Tipo::FTP12827;
+                    FicherosHagen.LeerArchivosCarpeta(nomdir, RUTACOPIA, Tipo)
+
+                    ///      Xmlport.Import(Xmlport::"Importacion PEDIDOS V-12827", varInputStream);
+
+                end;
+                if Customer."No." = '12833' then begin
+                    ADAIA.Reset();
+                    ADAIA.SetRange(texto, 'IMPORTACION PEDIDOS V-12833-CU-50056');
+                    IF ADAIA.FindSet() THEN begin
+                        nomdir := ADAIA.Ruta;
+                        RUTACOPIA := ADAIA.Ruta + 'copia/';
+                    end;
+                    Commit;
+                    tipo := Tipo::FTP12833;
+                    FicherosHagen.LeerArchivosCarpeta(nomdir, RUTACOPIA, Tipo)
 
 
+                    ///                    Xmlport.Import(Xmlport::"Importacion PEDIDOS V-12833", varInputStream); 
+                end;
 
 
-        ///                                        Xmlport.Import(Xmlport::"Importacion PEDIDOS KIWOKO3", varInputStream);
+            until customer.next = 0;
+
     end;
 
     var
@@ -100,8 +137,15 @@ Codeunit 50086 "Importacion Kiwoko-NULO"
         ReleaseSalesDoc: Codeunit "Release Sales Document";
         CodeCV: Codeunit "Automaticos Cartas";
         TIENE: Boolean;
+        ImportaADAIA: Codeunit "Conecta ADAIA";
         CURegMov: Codeunit "Item Jnl.-Post Batch";
-        ADAIA: RECORD adaia;
+        SalesReceivablesSetup: Record "Sales & Receivables Setup";
+        JobQueueLogEntry: Record "Job Queue Log Entry";
+        Customer: Record Customer;
+
+
+
+
 
 
 

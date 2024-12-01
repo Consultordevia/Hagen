@@ -106,6 +106,30 @@ pageextension 50011 "Purchase Quote" extends "Purchase Quote"
                 END;
 
             }
+            action(ImportarLineas)
+            {
+                ApplicationArea = All;
+                Caption = 'Importar Lineas';
+                Image = Order;
+
+
+                trigger OnAction()
+                var
+                    
+                    ImportacionPEDIDOScompra: XMLport	"Importacion PEDIDOS compra";	
+                    tipop:	Integer;
+
+                begin
+                    tipop:=1;
+
+                    CLEAR(ImportacionPEDIDOScompra);
+                    ImportacionPEDIDOScompra.PasoClie(tipop,Rec."No.");
+                    ImportacionPEDIDOScompra.RUN;
+
+                    
+                END;
+
+            }
         }
     }
 }

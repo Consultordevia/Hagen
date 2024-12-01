@@ -2,12 +2,14 @@
 Page 50025 Demanda
 {
     AutoSplitKey = true;
+    ApplicationArea = All;
     Caption = 'Demanda';
     DataCaptionFields = "Journal Batch Name";
     DelayedInsert = true;
     LinksAllowed = false;
     ModifyAllowed = false;
     PageType = List;
+    UsageCategory = Lists;
     SaveValues = true;
     SourceTable = "Requisition Line";
     SourceTableView = sorting("Worksheet Template Name", "Journal Batch Name", "Line No.")
