@@ -27,4 +27,23 @@ tableextension 50037 "NoSeries" extends "No. Series"
         {
         }
     }
+
+    trigger OnBeforeModify()
+    var
+        NoSeries: Record "No. Series";
+    begin
+        if CopyStr(COMPANYNAME, 1, 4) = 'ROLF' then begin
+            NoSeries.Reset;
+            NoSeries.ChangeCompany('HAGEN CANARIAS S.C.');
+            if NoSeries.Get(Code) then begin
+                NoSeries := Rec;
+                NoSeries.Modify;
+            end;
+            if not NoSeries.Get(Code) then begin
+                NoSeries := Rec;
+                NoSeries.Insert;
+            end;
+        end;
+
+    end;
 }

@@ -122,4 +122,20 @@ tableextension 50020 SalesCrMemoLine extends "Sales Cr.Memo Line"
             FieldClass = FlowField;
         }
     }
+
+    keys
+    {
+        //key(Key7; "No.", "Fecha abono", "Sell-to Country/Region Code")
+        //{
+        //    SumIndexFields = Quantity, "VAT Base Amount";
+        //}
+        //key(Key8; "No.", "Posting Date", "Sell-to Country/Region Code", "Sell-to Customer No.")
+        //{
+        //   SumIndexFields = Quantity, "VAT Base Amount";
+        //}
+    }
+    trigger OnBeforeDelete()
+    begin
+        Error('Error, no se puede borrar');
+    end;
 }

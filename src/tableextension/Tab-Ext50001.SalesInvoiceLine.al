@@ -114,4 +114,29 @@ tableextension 50001 SalesInvoiceLine extends "Sales Invoice Line"
         {
         }
     }
+
+    keys
+    {
+        key(Key50003; "Sell-to Customer No.", "No.")
+        {
+        }
+        key(Key50008; "Nº expedición ECI")
+        {
+        }
+        //key(Key50009; "No.", "Fecha factura", "Sell-to Country/Region Code")
+        //{
+        //    SumIndexFields = Quantity, "VAT Base Amount";
+        //}
+        key(Key50010; "Posting Date")
+        {
+        }
+        //key(Key50011; "No.", "Posting Date", "Sell-to Country/Region Code", "Sell-to Customer No.")
+        //{
+        //    SumIndexFields = Quantity, "VAT Base Amount";
+        //}
+    }
+    trigger OnBeforeDelete()
+    begin
+        Error('Error, no se puede borrar');
+    end;
 }

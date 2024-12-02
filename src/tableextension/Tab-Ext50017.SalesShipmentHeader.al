@@ -315,6 +315,23 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
         }
         field(50295; "Marcar para listado carga"; Boolean)
         {
+            trigger OnValidate()
+            begin
+                if xRec."Marcar para listado carga" = false then begin
+                    rEC1103.Reset;
+                    rEC1103.SetCurrentkey(rEC1103."Posting Date", rEC1103."Shipping Agent Code");
+                    rEC1103.SetRange(rEC1103."Posting Date", "Posting Date");
+                    rEC1103.SetRange(rEC1103."Shipping Agent Code", "Shipping Agent Code");
+                    if rEC1103.FindFirst then
+                        repeat
+                            if rEC1103."No." <> "No." then begin
+                                rEC1103."Marcar para listado carga" := true;
+                                rEC1103.Modify;
+                            end;
+                        until rEC1103.Next = 0;
+
+                end;
+            end;
         }
         field(50301; "Incrementa bultos"; Integer)
         {
@@ -368,4 +385,34 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
         {
         }
     }
+
+    keys
+    {
+        key(Key50005; "Posting Date", "Shipping Agent Code", "No.")
+        {
+        }
+        key(Key50006; "Salesperson Code", "Posting Date")
+        {
+        }
+        //key(Key50007;"Shipping Agent Code","Posting Date","Nº expedición")
+        //{
+        //}
+        key(Key50008; "Aviso falta stock")
+        {
+        }
+    }
+
+    fieldgroups
+    {
+        addlast(DropDown;
+        "Nº expedición")
+        { }
+    }
+    var
+        rEC1103: Record "Sales Shipment Header";
+
+    trigger OnBeforeDelete()
+    begin
+        Error('Error, no se puede borrar');
+    end;
 }

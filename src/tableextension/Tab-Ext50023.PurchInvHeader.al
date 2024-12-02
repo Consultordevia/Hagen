@@ -225,4 +225,9 @@ tableextension 50023 PurchInvHeader extends "Purch. Inv. Header"
             end;
         }
     }
+
+    trigger OnBeforeDelete()
+    begin
+        Error('Error, no se puede borrar');
+    end;
 }

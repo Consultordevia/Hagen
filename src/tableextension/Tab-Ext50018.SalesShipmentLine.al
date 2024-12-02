@@ -153,4 +153,16 @@ tableextension 50018 SalesShipmentLine extends "Sales Shipment Line"
             OptionMembers = " ","1";
         }
     }
+
+    keys
+    {
+        key(Key50005; "Sell-to Customer No.", "No.", "Shipment Date")
+        {
+        }
+    }
+
+    trigger OnBeforeDelete()
+    begin
+        Error('Error, no se puede borrar');
+    end;
 }

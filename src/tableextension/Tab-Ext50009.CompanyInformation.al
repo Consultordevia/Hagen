@@ -146,4 +146,53 @@ tableextension 50009 CompanyInformation extends "Company Information"
             end;
         }
     }
+
+    procedure CalculaDCIBAN(CODIBAN: Code[100]): Code[2]
+    var
+        IBANDC: Code[2];
+        NUM: Integer;
+        RESTO: Integer;
+        Modulus97: Integer;
+    begin
+
+
+        IBANDC := '00';
+
+        if CODIBAN = '' then
+            exit;
+        CODIBAN := DelChr(CODIBAN);
+
+        Modulus97 := 97;
+
+        if (StrLen(CODIBAN) <= 5) or (StrLen(CODIBAN) > 34) then
+            exit(IBANDC);
+
+        ConvertIBAN(CODIBAN);
+
+        while StrLen(CODIBAN) > 3 do begin
+            CODIBAN := CalcModulus(CopyStr(CODIBAN, 1, 6), Modulus97) + CopyStr(CODIBAN, 7);
+        end;
+
+        if CODIBAN <> '' then begin
+            Evaluate(NUM, CODIBAN);
+
+            RESTO := 98 - NUM;
+            if RESTO > 0 then begin
+                IBANDC := Format(RESTO);
+                if RESTO = 1 then IBANDC := '01';
+                if RESTO = 2 then IBANDC := '02';
+                if RESTO = 3 then IBANDC := '03';
+                if RESTO = 4 then IBANDC := '04';
+                if RESTO = 5 then IBANDC := '05';
+                if RESTO = 6 then IBANDC := '06';
+                if RESTO = 7 then IBANDC := '07';
+                if RESTO = 8 then IBANDC := '08';
+                if RESTO = 9 then IBANDC := '09';
+            end;
+
+        end;
+        exit(IBANDC)
+        ///IF (I MOD Modulus97) <> 1 THEN
+        ///  IBANError;
+    end;
 }

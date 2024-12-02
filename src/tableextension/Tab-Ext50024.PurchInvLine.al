@@ -58,4 +58,9 @@ tableextension 50024 PurchInvLine extends "Purch. Inv. Line"
             FieldClass = FlowField;
         }
     }
+
+    trigger OnBeforeDelete()
+    begin
+        Error('Error, no se puede borrar');
+    end;
 }

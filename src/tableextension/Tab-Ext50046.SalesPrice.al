@@ -146,4 +146,20 @@ tableextension 50046 "SalesPrice" extends "Sales Price"
 
 
     }
+
+    trigger OnBeforeInsert()
+    begin
+        "Fecha modif" := Today;
+        "Hora modif" := Time;
+        "Fecha hora modif" := CreateDatetime(Today, Time);
+        "Fecha hora modif web" := CreateDatetime(0D, 0T);
+    end;
+
+    trigger OnBeforeModify()
+    begin
+        "Fecha modif" := Today;
+        "Hora modif" := Time;
+        "Fecha hora modif" := CreateDatetime(Today, Time);
+        "Fecha hora modif web" := CreateDatetime(0D, 0T);
+    end;
 }

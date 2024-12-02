@@ -46,4 +46,9 @@ tableextension 50026 PurchCrMemoLine extends "Purch. Cr. Memo Line"
             FieldClass = FlowField;
         }
     }
+
+    trigger OnBeforeDelete()
+    begin
+        Error('Error, no se puede borrar');
+    end;
 }
