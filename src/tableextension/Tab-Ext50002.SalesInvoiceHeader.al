@@ -323,4 +323,19 @@ tableextension 50002 SalesInvoiceHeader extends "Sales Invoice Header"
         {
         }
     }
+
+    keys
+    {
+        key(Key50011; "Salesperson Code", "Posting Date")
+        {
+        }
+        key(Key50012; "EDI factueas enviar", "EDI factueas enviado")
+        {
+        }
+    }
+
+    trigger OnBeforeDelete()
+    begin
+        Error('Error, no se puede borrar');
+    end;
 }

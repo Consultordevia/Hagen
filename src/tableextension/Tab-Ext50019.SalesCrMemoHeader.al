@@ -173,4 +173,16 @@ tableextension 50019 SalesCrMemoHeader extends "Sales Cr.Memo Header"
         {
         }
     }
+
+    keys
+    {
+        key(Key50008; "Salesperson Code", "Posting Date")
+        {
+        }
+    }
+
+    trigger OnBeforeDelete()
+    begin
+        Error('Error, no se puede borrar');
+    end;
 }

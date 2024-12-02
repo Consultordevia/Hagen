@@ -116,4 +116,15 @@ tableextension 50021 PurchRcptHeader extends "Purch. Rcpt. Header"
             FieldClass = FlowField;
         }
     }
+    keys
+    {
+        key(Key50006; "Enviar email", "Email enviado")
+        {
+        }
+    }
+
+    trigger OnBeforeDelete()
+    begin
+        Error('Error, no se puede borrar');
+    end;
 }

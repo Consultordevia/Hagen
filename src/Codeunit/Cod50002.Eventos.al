@@ -1,5 +1,8 @@
 codeunit 50002 Eventos
 {
+    Permissions = tabledata "Sales Invoice Header" = rmid;
+
+
     [EventSubscriber(ObjectType::Table, 18, 'OnAfterOnInsert', '', true, true)]
     local procedure OnAfterOnInsert(var Customer: Record Customer; xCustomer: Record Customer)
     var
@@ -427,6 +430,106 @@ codeunit 50002 Eventos
         PurchaseHeader."Transaction Specification" := Vendor."Transaction Specification";
     end;
 
+    [EventSubscriber(ObjectType::Table, 91, 'OnBeforeEnsureUniqueSalesPersonPurchCode', '', false, false)]
+    local procedure OnBeforeEnsureUniqueSalesPersonPurchCode(var UserSetup: Record "User Setup"; var IsHandled: Boolean)
+    begin
+        IsHandled := true;
+    end;
+
+    [EventSubscriber(ObjectType::Table, 111, 'OnBeforeInsertInvLineFromShptLineBeforeInsertTextLine', '', false, false)]
+    local procedure OnBeforeInsertInvLineFromShptLineBeforeInsertTextLine(var SalesShptLine: Record "Sales Shipment Line"; var SalesLine: Record "Sales Line"; var NextLineNo: Integer; var Handled: Boolean; TempSalesLine: Record "Sales Line" temporary; SalesInvHeader: Record "Sales Header")
+    var
+        nexpe: code[20];
+        SalesShptHeader: Record "Sales Shipment Header";
+        SalesLine2: Record "Sales Line";
+    begin
+        if nexpe = '' then begin
+            if SalesLine."Nº expedición" <> '' then begin
+                nexpe := SalesLine."Nº expedición";
+            end;
+        end;
+
+
+
+        if SalesLine."Shipment No." <> SalesShptLine."Document No." then begin
+            NextLineNo := NextLineNo + 10000;
+            SalesShptHeader.Get(SalesShptLine."Document No.");
+            SalesInvHeader."Your Reference" := SalesShptHeader."Your Reference";
+            if SalesShptHeader."Nº expedición" <> '' then begin
+                SalesInvHeader."Nº expedición" := SalesShptHeader."Nº expedición";
+            end;
+            SalesInvHeader.Modify;
+            SalesLine2.Init;
+            SalesLine2."Line No." := NextLineNo;
+            SalesLine2."Document Type" := TempSalesLine."Document Type";
+            SalesLine2."Document No." := TempSalesLine."Document No.";
+            SalesLine2.Description := 'de fecha:' + Format(SalesShptHeader."Posting Date") + '  Nº expedición:' + SalesShptHeader."Nº expedición";
+            SalesLine2."Shipment No." := SalesShptLine."Document No.";
+            SalesLine2.Insert;
+            if SalesShptHeader."Your Reference" <> '' then begin
+                SalesLine2.Init;
+                NextLineNo := NextLineNo + 10000;
+                SalesLine2."Line No." := NextLineNo;
+                SalesLine2."Document Type" := TempSalesLine."Document Type";
+                SalesLine2."Document No." := TempSalesLine."Document No.";
+                SalesLine2.Description := 'Su referencia:' + Format(SalesShptHeader."Your Reference");
+                SalesLine2."Shipment No." := SalesShptLine."Document No.";
+                SalesLine2.Insert;
+            end;
+            NextLineNo := NextLineNo + 10000;
+            SalesLine2.Init;
+            SalesLine2."Line No." := NextLineNo;
+            SalesLine2."Document Type" := TempSalesLine."Document Type";
+            SalesLine2."Document No." := TempSalesLine."Document No.";
+            SalesLine2.Description := CopyStr('Envio a:' + SalesShptHeader."Ship-to Name", 1, 50);
+            SalesLine2."Shipment No." := SalesShptLine."Document No.";
+            SalesLine2.Insert;
+            NextLineNo := NextLineNo + 10000;
+        end;
+    end;
+
+    [EventSubscriber(ObjectType::Table, 111, 'OnBeforeInsertInvLineFromShptLine', '', false, false)]
+    local procedure OnBeforeInsertInvLineFromShptLine(var SalesShptLine: Record "Sales Shipment Line"; var SalesLine: Record "Sales Line"; SalesOrderLine: Record "Sales Line"; var IsHandled: Boolean; var TransferOldExtTextLines: Codeunit "Transfer Old Ext. Text Lines")
+    var
+        SalesShptHeader: Record "Sales Shipment Header";
+    begin
+        SalesShptHeader.Get(SalesShptLine."Document No.");
+        SalesLine."Nº expedición" := SalesShptHeader."Nº expedición";
+    end;
+
+    [EventSubscriber(ObjectType::Table, 112, 'OnBeforePrintRecords', '', false, false)]
+    local procedure OnBeforePrintRecords(var ReportSelections: Record "Report Selections"; var SalesInvoiceHeader: Record "Sales Invoice Header"; ShowRequestPage: Boolean; var IsHandled: Boolean)
+    var
+        //SalesInvoiceHeader: Record "Sales Invoice Header";
+        RecClie: Record Customer;
+    begin
+        RecClie.Get(SalesInvoiceHeader."Sell-to Customer No.");
+        if RecClie."No Enviar factura en exp." = true then begin
+            Report.Run(50907, false, false, SalesInvoiceHeader);
+        end;
+        if RecClie."No Enviar factura en exp." = false then begin
+            Report.Run(50063, false, false, SalesInvoiceHeader);
+        end;
+    end;
+
+    [EventSubscriber(ObjectType::Table, 5404, 'OnAfterCalcCubage', '', false, false)]
+    local procedure OnAfterCalcCubage(var ItemUnitOfMeasure: Record "Item Unit of Measure")
+    var
+        Item: Record item;
+        RecCE: Record "Inventory Setup";
+    begin
+        if ItemUnitOfMeasure.Code = 'UDS' then begin
+            if Item.Get(ItemUnitOfMeasure."Item No.") then begin
+                Item."Unit Volume" := ItemUnitOfMeasure.Cubage;
+                Item.Modify;
+                if Item."Voluminoso web" then begin
+                    RecCE.Get;
+                    ItemUnitOfMeasure."Kgs/Volumen WEB" := ItemUnitOfMeasure.Cubage * RecCE."Volumen WEB";
+                    ItemUnitOfMeasure.Modify;
+                end;
+            end;
+        end;
+    end;
 
     procedure OnModify(var Cust: Record Customer)
     var

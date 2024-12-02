@@ -41,4 +41,29 @@ tableextension 50047 SalesLineDiscount extends "Sales Line Discount"
         {
         }
     }
+
+    keys
+    {
+        key(Key50003; "Pdte. Enviar a WEB")
+        {
+        }
+    }
+
+    trigger OnBeforeInsert()
+    begin
+        "Fecha modif" := Today;
+        "Hora modif" := Time;
+        "Fecha hora modif" := CreateDatetime(Today, Time);
+        "Fecha hora modif web" := CreateDatetime(0D, 0T);
+        "Pdte. Enviar a WEB" := true;
+    end;
+
+    trigger OnBeforeModify()
+    begin
+        "Fecha modif" := Today;
+        "Hora modif" := Time;
+        "Fecha hora modif" := CreateDatetime(Today, Time);
+        "Fecha hora modif web" := CreateDatetime(0D, 0T);
+        "Pdte. Enviar a WEB" := true;
+    end;
 }

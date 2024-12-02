@@ -63,4 +63,8 @@ tableextension 50022 PurchRcptLine extends "Purch. Rcpt. Line"
             FieldClass = FlowField;
         }
     }
+    trigger OnBeforeDelete()
+    begin
+        Error('Error, no se puede borrar');
+    end;
 }

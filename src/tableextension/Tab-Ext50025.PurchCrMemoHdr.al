@@ -103,4 +103,9 @@ tableextension 50025 PurchCrMemoHdr extends "Purch. Cr. Memo Hdr."
         {
         }
     }
+
+    trigger OnBeforeDelete()
+    begin
+        Error('Error, no se puede borrar');
+    end;
 }
