@@ -11,321 +11,6 @@
       <rd:DataSourceID>eae4e88c-a78a-4aa5-8d0a-50d0b87ba410</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="STRSUBSTNO_Text000_PeriodText_">
-          <DataField>STRSUBSTNO_Text000_PeriodText_</DataField>
-        </Field>
-        <Field Name="CurrReport_PAGENO">
-          <DataField>CurrReport_PAGENO</DataField>
-        </Field>
-        <Field Name="COMPANYNAME">
-          <DataField>COMPANYNAME</DataField>
-        </Field>
-        <Field Name="Salesperson_Purchaser__TABLECAPTION__________SalespersonFilter">
-          <DataField>Salesperson_Purchaser__TABLECAPTION__________SalespersonFilter</DataField>
-        </Field>
-        <Field Name="SalespersonFilter">
-          <DataField>SalespersonFilter</DataField>
-        </Field>
-        <Field Name="Cust__Ledger_Entry__TABLECAPTION__________CustLedgEntryFilter">
-          <DataField>Cust__Ledger_Entry__TABLECAPTION__________CustLedgEntryFilter</DataField>
-        </Field>
-        <Field Name="CustLedgEntryFilter">
-          <DataField>CustLedgEntryFilter</DataField>
-        </Field>
-        <Field Name="PageGroupNo">
-          <DataField>PageGroupNo</DataField>
-        </Field>
-        <Field Name="Salesperson_Purchaser_Code">
-          <DataField>Salesperson_Purchaser_Code</DataField>
-        </Field>
-        <Field Name="Salesperson_Purchaser_Name">
-          <DataField>Salesperson_Purchaser_Name</DataField>
-        </Field>
-        <Field Name="Salesperson_Purchaser__Commission___">
-          <DataField>Salesperson_Purchaser__Commission___</DataField>
-        </Field>
-        <Field Name="Salesperson_Purchaser__Commission___Format">
-          <DataField>Salesperson_Purchaser__Commission___Format</DataField>
-        </Field>
-        <Field Name="Cust__Ledger_Entry___Sales__LCY__">
-          <DataField>Cust__Ledger_Entry___Sales__LCY__</DataField>
-        </Field>
-        <Field Name="Cust__Ledger_Entry___Sales__LCY__Format">
-          <DataField>Cust__Ledger_Entry___Sales__LCY__Format</DataField>
-        </Field>
-        <Field Name="Cust__Ledger_Entry___Profit__LCY__">
-          <DataField>Cust__Ledger_Entry___Profit__LCY__</DataField>
-        </Field>
-        <Field Name="Cust__Ledger_Entry___Profit__LCY__Format">
-          <DataField>Cust__Ledger_Entry___Profit__LCY__Format</DataField>
-        </Field>
-        <Field Name="SalesCommissionAmt">
-          <DataField>SalesCommissionAmt</DataField>
-        </Field>
-        <Field Name="SalesCommissionAmtFormat">
-          <DataField>SalesCommissionAmtFormat</DataField>
-        </Field>
-        <Field Name="ProfitCommissionAmt">
-          <DataField>ProfitCommissionAmt</DataField>
-        </Field>
-        <Field Name="ProfitCommissionAmtFormat">
-          <DataField>ProfitCommissionAmtFormat</DataField>
-        </Field>
-        <Field Name="AdjProfit">
-          <DataField>AdjProfit</DataField>
-        </Field>
-        <Field Name="AdjProfitFormat">
-          <DataField>AdjProfitFormat</DataField>
-        </Field>
-        <Field Name="AdjProfitCommissionAmt">
-          <DataField>AdjProfitCommissionAmt</DataField>
-        </Field>
-        <Field Name="AdjProfitCommissionAmtFormat">
-          <DataField>AdjProfitCommissionAmtFormat</DataField>
-        </Field>
-        <Field Name="Salesperson___CommissionCaption">
-          <DataField>Salesperson___CommissionCaption</DataField>
-        </Field>
-        <Field Name="CurrReport_PAGENOCaption">
-          <DataField>CurrReport_PAGENOCaption</DataField>
-        </Field>
-        <Field Name="All_amounts_are_in_LCYCaption">
-          <DataField>All_amounts_are_in_LCYCaption</DataField>
-        </Field>
-        <Field Name="Cust__Ledger_Entry__Posting_Date_Caption">
-          <DataField>Cust__Ledger_Entry__Posting_Date_Caption</DataField>
-        </Field>
-        <Field Name="Cust__Ledger_Entry__Document_No__Caption">
-          <DataField>Cust__Ledger_Entry__Document_No__Caption</DataField>
-        </Field>
-        <Field Name="Cust__Ledger_Entry__Customer_No__Caption">
-          <DataField>Cust__Ledger_Entry__Customer_No__Caption</DataField>
-        </Field>
-        <Field Name="Cust__Ledger_Entry__Sales__LCY__Caption">
-          <DataField>Cust__Ledger_Entry__Sales__LCY__Caption</DataField>
-        </Field>
-        <Field Name="Cust__Ledger_Entry__Profit__LCY__Caption">
-          <DataField>Cust__Ledger_Entry__Profit__LCY__Caption</DataField>
-        </Field>
-        <Field Name="SalesCommissionAmt_Control32Caption">
-          <DataField>SalesCommissionAmt_Control32Caption</DataField>
-        </Field>
-        <Field Name="ProfitCommissionAmt_Control33Caption">
-          <DataField>ProfitCommissionAmt_Control33Caption</DataField>
-        </Field>
-        <Field Name="AdjProfit_Control39Caption">
-          <DataField>AdjProfit_Control39Caption</DataField>
-        </Field>
-        <Field Name="AdjProfitCommissionAmt_Control45Caption">
-          <DataField>AdjProfitCommissionAmt_Control45Caption</DataField>
-        </Field>
-        <Field Name="Salesperson_Purchaser__Commission___Caption">
-          <DataField>Salesperson_Purchaser__Commission___Caption</DataField>
-        </Field>
-        <Field Name="TotalCaption">
-          <DataField>TotalCaption</DataField>
-        </Field>
-        <Field Name="Cust__Ledger_Entry__Posting_Date_">
-          <DataField>Cust__Ledger_Entry__Posting_Date_</DataField>
-        </Field>
-        <Field Name="Cust__Ledger_Entry__Document_No__">
-          <DataField>Cust__Ledger_Entry__Document_No__</DataField>
-        </Field>
-        <Field Name="Cust__Ledger_Entry__Customer_No__">
-          <DataField>Cust__Ledger_Entry__Customer_No__</DataField>
-        </Field>
-        <Field Name="Cust__Ledger_Entry__Sales__LCY__">
-          <DataField>Cust__Ledger_Entry__Sales__LCY__</DataField>
-        </Field>
-        <Field Name="Cust__Ledger_Entry__Sales__LCY__Format">
-          <DataField>Cust__Ledger_Entry__Sales__LCY__Format</DataField>
-        </Field>
-        <Field Name="Cust__Ledger_Entry__Profit__LCY__">
-          <DataField>Cust__Ledger_Entry__Profit__LCY__</DataField>
-        </Field>
-        <Field Name="Cust__Ledger_Entry__Profit__LCY__Format">
-          <DataField>Cust__Ledger_Entry__Profit__LCY__Format</DataField>
-        </Field>
-        <Field Name="SalesCommissionAmt_Control32">
-          <DataField>SalesCommissionAmt_Control32</DataField>
-        </Field>
-        <Field Name="SalesCommissionAmt_Control32Format">
-          <DataField>SalesCommissionAmt_Control32Format</DataField>
-        </Field>
-        <Field Name="ProfitCommissionAmt_Control33">
-          <DataField>ProfitCommissionAmt_Control33</DataField>
-        </Field>
-        <Field Name="ProfitCommissionAmt_Control33Format">
-          <DataField>ProfitCommissionAmt_Control33Format</DataField>
-        </Field>
-        <Field Name="AdjProfit_Control39">
-          <DataField>AdjProfit_Control39</DataField>
-        </Field>
-        <Field Name="AdjProfit_Control39Format">
-          <DataField>AdjProfit_Control39Format</DataField>
-        </Field>
-        <Field Name="AdjProfitCommissionAmt_Control45">
-          <DataField>AdjProfitCommissionAmt_Control45</DataField>
-        </Field>
-        <Field Name="AdjProfitCommissionAmt_Control45Format">
-          <DataField>AdjProfitCommissionAmt_Control45Format</DataField>
-        </Field>
-        <Field Name="Salesperson_Purchaser__Name">
-          <DataField>Salesperson_Purchaser__Name</DataField>
-        </Field>
-        <Field Name="SICustomeDiscGroup">
-          <DataField>SICustomeDiscGroup</DataField>
-        </Field>
-        <Field Name="totalVende">
-          <DataField>totalVende</DataField>
-        </Field>
-        <Field Name="totalVendeFormat">
-          <DataField>totalVendeFormat</DataField>
-        </Field>
-        <Field Name="IMPAGADOS">
-          <DataField>IMPAGADOS</DataField>
-        </Field>
-        <Field Name="impagadosmes">
-          <DataField>impagadosmes</DataField>
-        </Field>
-        <Field Name="impagadosmesFormat">
-          <DataField>impagadosmesFormat</DataField>
-        </Field>
-        <Field Name="RECUPERADOS">
-          <DataField>RECUPERADOS</DataField>
-        </Field>
-        <Field Name="recuperadosmes">
-          <DataField>recuperadosmes</DataField>
-        </Field>
-        <Field Name="recuperadosmesFormat">
-          <DataField>recuperadosmesFormat</DataField>
-        </Field>
-        <Field Name="Ventasportes">
-          <DataField>Ventasportes</DataField>
-        </Field>
-        <Field Name="GLOBALVENTAS">
-          <DataField>GLOBALVENTAS</DataField>
-        </Field>
-        <Field Name="GLOBALVENTASFormat">
-          <DataField>GLOBALVENTASFormat</DataField>
-        </Field>
-        <Field Name="Objetivo">
-          <DataField>Objetivo</DataField>
-        </Field>
-        <Field Name="TOTALVENTAV">
-          <DataField>TOTALVENTAV</DataField>
-        </Field>
-        <Field Name="TOTALVENTAVFormat">
-          <DataField>TOTALVENTAVFormat</DataField>
-        </Field>
-        <Field Name="ComisiónTOTAL">
-          <DataField>ComisiónTOTAL</DataField>
-        </Field>
-        <Field Name="comisiontotal">
-          <DataField>comisiontotal</DataField>
-        </Field>
-        <Field Name="comisiontotalFormat">
-          <DataField>comisiontotalFormat</DataField>
-        </Field>
-        <Field Name="textoaumento">
-          <DataField>textoaumento</DataField>
-        </Field>
-        <Field Name="aumneto">
-          <DataField>aumneto</DataField>
-        </Field>
-        <Field Name="aumnetoFormat">
-          <DataField>aumnetoFormat</DataField>
-        </Field>
-        <Field Name="Entregadoacuenta">
-          <DataField>Entregadoacuenta</DataField>
-        </Field>
-        <Field Name="entregadoaceunta">
-          <DataField>entregadoaceunta</DataField>
-        </Field>
-        <Field Name="entregadoaceuntaFormat">
-          <DataField>entregadoaceuntaFormat</DataField>
-        </Field>
-        <Field Name="Totalgeneral">
-          <DataField>Totalgeneral</DataField>
-        </Field>
-        <Field Name="TOTALC">
-          <DataField>TOTALC</DataField>
-        </Field>
-        <Field Name="TOTALCFormat">
-          <DataField>TOTALCFormat</DataField>
-        </Field>
-        <Field Name="TotalComisionLinea">
-          <DataField>TotalComisionLinea</DataField>
-        </Field>
-        <Field Name="TotalComisionLineaFormat">
-          <DataField>TotalComisionLineaFormat</DataField>
-        </Field>
-        <Field Name="TotalVenta">
-          <DataField>TotalVenta</DataField>
-        </Field>
-        <Field Name="TotalVentaFormat">
-          <DataField>TotalVentaFormat</DataField>
-        </Field>
-        <Field Name="TotalComision">
-          <DataField>TotalComision</DataField>
-        </Field>
-        <Field Name="TotalComisionFormat">
-          <DataField>TotalComisionFormat</DataField>
-        </Field>
-        <Field Name="VentaLinea">
-          <DataField>VentaLinea</DataField>
-        </Field>
-        <Field Name="VentaLineaFormat">
-          <DataField>VentaLineaFormat</DataField>
-        </Field>
-        <Field Name="Porcentaje">
-          <DataField>Porcentaje</DataField>
-        </Field>
-        <Field Name="PorcentajeFormat">
-          <DataField>PorcentajeFormat</DataField>
-        </Field>
-        <Field Name="TasaAplica">
-          <DataField>TasaAplica</DataField>
-        </Field>
-        <Field Name="TasaAplicaFormat">
-          <DataField>TasaAplicaFormat</DataField>
-        </Field>
-        <Field Name="SUMAPORTES">
-          <DataField>SUMAPORTES</DataField>
-        </Field>
-        <Field Name="SUMAPORTESFormat">
-          <DataField>SUMAPORTESFormat</DataField>
-        </Field>
-        <Field Name="TOTALPORTES">
-          <DataField>TOTALPORTES</DataField>
-        </Field>
-        <Field Name="TOTALPORTESFormat">
-          <DataField>TOTALPORTESFormat</DataField>
-        </Field>
-        <Field Name="mediacomi">
-          <DataField>mediacomi</DataField>
-        </Field>
-        <Field Name="mediacomiFormat">
-          <DataField>mediacomiFormat</DataField>
-        </Field>
-        <Field Name="NombreCliente">
-          <DataField>NombreCliente</DataField>
-        </Field>
-      </Fields>
-      <rd:DataSetInfo>
-        <rd:DataSetName>DataSet</rd:DataSetName>
-        <rd:SchemaPath>Report.xsd</rd:SchemaPath>
-        <rd:TableName>Result</rd:TableName>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -7532,12 +7217,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -7577,4 +7256,323 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>49ecfdd9-45af-40f8-b3c3-a88578e15f5e</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="ReportForNavId_3065">
+          <DataField>ReportForNavId_3065</DataField>
+        </Field>
+        <Field Name="STRSUBSTNO_Text000_PeriodText_">
+          <DataField>STRSUBSTNO_Text000_PeriodText_</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENO">
+          <DataField>CurrReport_PAGENO</DataField>
+        </Field>
+        <Field Name="COMPANYNAME">
+          <DataField>COMPANYNAME</DataField>
+        </Field>
+        <Field Name="Salesperson_Purchaser__TABLECAPTION__________SalespersonFilter">
+          <DataField>Salesperson_Purchaser__TABLECAPTION__________SalespersonFilter</DataField>
+        </Field>
+        <Field Name="SalespersonFilter">
+          <DataField>SalespersonFilter</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry__TABLECAPTION__________CustLedgEntryFilter">
+          <DataField>Cust__Ledger_Entry__TABLECAPTION__________CustLedgEntryFilter</DataField>
+        </Field>
+        <Field Name="CustLedgEntryFilter">
+          <DataField>CustLedgEntryFilter</DataField>
+        </Field>
+        <Field Name="PageGroupNo">
+          <DataField>PageGroupNo</DataField>
+        </Field>
+        <Field Name="Salesperson_Purchaser_Code">
+          <DataField>Salesperson_Purchaser_Code</DataField>
+        </Field>
+        <Field Name="Salesperson_Purchaser_Name">
+          <DataField>Salesperson_Purchaser_Name</DataField>
+        </Field>
+        <Field Name="Salesperson_Purchaser__Commission___">
+          <DataField>Salesperson_Purchaser__Commission___</DataField>
+        </Field>
+        <Field Name="Salesperson_Purchaser__Commission___Format">
+          <DataField>Salesperson_Purchaser__Commission___Format</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry___Sales__LCY__">
+          <DataField>Cust__Ledger_Entry___Sales__LCY__</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry___Sales__LCY__Format">
+          <DataField>Cust__Ledger_Entry___Sales__LCY__Format</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry___Profit__LCY__">
+          <DataField>Cust__Ledger_Entry___Profit__LCY__</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry___Profit__LCY__Format">
+          <DataField>Cust__Ledger_Entry___Profit__LCY__Format</DataField>
+        </Field>
+        <Field Name="SalesCommissionAmt">
+          <DataField>SalesCommissionAmt</DataField>
+        </Field>
+        <Field Name="SalesCommissionAmtFormat">
+          <DataField>SalesCommissionAmtFormat</DataField>
+        </Field>
+        <Field Name="ProfitCommissionAmt">
+          <DataField>ProfitCommissionAmt</DataField>
+        </Field>
+        <Field Name="ProfitCommissionAmtFormat">
+          <DataField>ProfitCommissionAmtFormat</DataField>
+        </Field>
+        <Field Name="AdjProfit">
+          <DataField>AdjProfit</DataField>
+        </Field>
+        <Field Name="AdjProfitFormat">
+          <DataField>AdjProfitFormat</DataField>
+        </Field>
+        <Field Name="AdjProfitCommissionAmt">
+          <DataField>AdjProfitCommissionAmt</DataField>
+        </Field>
+        <Field Name="AdjProfitCommissionAmtFormat">
+          <DataField>AdjProfitCommissionAmtFormat</DataField>
+        </Field>
+        <Field Name="Salesperson___CommissionCaption">
+          <DataField>Salesperson___CommissionCaption</DataField>
+        </Field>
+        <Field Name="CurrReport_PAGENOCaption">
+          <DataField>CurrReport_PAGENOCaption</DataField>
+        </Field>
+        <Field Name="All_amounts_are_in_LCYCaption">
+          <DataField>All_amounts_are_in_LCYCaption</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry__Posting_Date_Caption">
+          <DataField>Cust__Ledger_Entry__Posting_Date_Caption</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry__Document_No__Caption">
+          <DataField>Cust__Ledger_Entry__Document_No__Caption</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry__Customer_No__Caption">
+          <DataField>Cust__Ledger_Entry__Customer_No__Caption</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry__Sales__LCY__Caption">
+          <DataField>Cust__Ledger_Entry__Sales__LCY__Caption</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry__Profit__LCY__Caption">
+          <DataField>Cust__Ledger_Entry__Profit__LCY__Caption</DataField>
+        </Field>
+        <Field Name="SalesCommissionAmt_Control32Caption">
+          <DataField>SalesCommissionAmt_Control32Caption</DataField>
+        </Field>
+        <Field Name="ProfitCommissionAmt_Control33Caption">
+          <DataField>ProfitCommissionAmt_Control33Caption</DataField>
+        </Field>
+        <Field Name="AdjProfit_Control39Caption">
+          <DataField>AdjProfit_Control39Caption</DataField>
+        </Field>
+        <Field Name="AdjProfitCommissionAmt_Control45Caption">
+          <DataField>AdjProfitCommissionAmt_Control45Caption</DataField>
+        </Field>
+        <Field Name="Salesperson_Purchaser__Commission___Caption">
+          <DataField>Salesperson_Purchaser__Commission___Caption</DataField>
+        </Field>
+        <Field Name="TotalCaption">
+          <DataField>TotalCaption</DataField>
+        </Field>
+        <Field Name="ReportForNavId_8503">
+          <DataField>ReportForNavId_8503</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry__Posting_Date_">
+          <DataField>Cust__Ledger_Entry__Posting_Date_</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry__Document_No__">
+          <DataField>Cust__Ledger_Entry__Document_No__</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry__Customer_No__">
+          <DataField>Cust__Ledger_Entry__Customer_No__</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry__Sales__LCY__">
+          <DataField>Cust__Ledger_Entry__Sales__LCY__</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry__Sales__LCY__Format">
+          <DataField>Cust__Ledger_Entry__Sales__LCY__Format</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry__Profit__LCY__">
+          <DataField>Cust__Ledger_Entry__Profit__LCY__</DataField>
+        </Field>
+        <Field Name="Cust__Ledger_Entry__Profit__LCY__Format">
+          <DataField>Cust__Ledger_Entry__Profit__LCY__Format</DataField>
+        </Field>
+        <Field Name="SalesCommissionAmt_Control32">
+          <DataField>SalesCommissionAmt_Control32</DataField>
+        </Field>
+        <Field Name="SalesCommissionAmt_Control32Format">
+          <DataField>SalesCommissionAmt_Control32Format</DataField>
+        </Field>
+        <Field Name="ProfitCommissionAmt_Control33">
+          <DataField>ProfitCommissionAmt_Control33</DataField>
+        </Field>
+        <Field Name="ProfitCommissionAmt_Control33Format">
+          <DataField>ProfitCommissionAmt_Control33Format</DataField>
+        </Field>
+        <Field Name="AdjProfit_Control39">
+          <DataField>AdjProfit_Control39</DataField>
+        </Field>
+        <Field Name="AdjProfit_Control39Format">
+          <DataField>AdjProfit_Control39Format</DataField>
+        </Field>
+        <Field Name="AdjProfitCommissionAmt_Control45">
+          <DataField>AdjProfitCommissionAmt_Control45</DataField>
+        </Field>
+        <Field Name="AdjProfitCommissionAmt_Control45Format">
+          <DataField>AdjProfitCommissionAmt_Control45Format</DataField>
+        </Field>
+        <Field Name="Salesperson_Purchaser__Name">
+          <DataField>Salesperson_Purchaser__Name</DataField>
+        </Field>
+        <Field Name="SICustomeDiscGroup">
+          <DataField>SICustomeDiscGroup</DataField>
+        </Field>
+        <Field Name="TotalComisionLinea">
+          <DataField>TotalComisionLinea</DataField>
+        </Field>
+        <Field Name="TotalComisionLineaFormat">
+          <DataField>TotalComisionLineaFormat</DataField>
+        </Field>
+        <Field Name="VentaLinea">
+          <DataField>VentaLinea</DataField>
+        </Field>
+        <Field Name="VentaLineaFormat">
+          <DataField>VentaLineaFormat</DataField>
+        </Field>
+        <Field Name="Porcentaje">
+          <DataField>Porcentaje</DataField>
+        </Field>
+        <Field Name="PorcentajeFormat">
+          <DataField>PorcentajeFormat</DataField>
+        </Field>
+        <Field Name="TasaAplica">
+          <DataField>TasaAplica</DataField>
+        </Field>
+        <Field Name="TasaAplicaFormat">
+          <DataField>TasaAplicaFormat</DataField>
+        </Field>
+        <Field Name="NombreCliente">
+          <DataField>NombreCliente</DataField>
+        </Field>
+        <Field Name="ComisiónTOTAL">
+          <DataField>ComisiónTOTAL</DataField>
+        </Field>
+        <Field Name="Totalgeneral">
+          <DataField>Totalgeneral</DataField>
+        </Field>
+        <Field Name="RECUPERADOS">
+          <DataField>RECUPERADOS</DataField>
+        </Field>
+        <Field Name="IMPAGADOS">
+          <DataField>IMPAGADOS</DataField>
+        </Field>
+        <Field Name="Ventasportes">
+          <DataField>Ventasportes</DataField>
+        </Field>
+        <Field Name="Objetivo">
+          <DataField>Objetivo</DataField>
+        </Field>
+        <Field Name="Entregadoacuenta">
+          <DataField>Entregadoacuenta</DataField>
+        </Field>
+        <Field Name="TOTALVENTAV">
+          <DataField>TOTALVENTAV</DataField>
+        </Field>
+        <Field Name="TOTALVENTAVFormat">
+          <DataField>TOTALVENTAVFormat</DataField>
+        </Field>
+        <Field Name="ReportForNavId_1000000027">
+          <DataField>ReportForNavId_1000000027</DataField>
+        </Field>
+        <Field Name="TOTALPORTES">
+          <DataField>TOTALPORTES</DataField>
+        </Field>
+        <Field Name="TOTALPORTESFormat">
+          <DataField>TOTALPORTESFormat</DataField>
+        </Field>
+        <Field Name="SUMAPORTES">
+          <DataField>SUMAPORTES</DataField>
+        </Field>
+        <Field Name="SUMAPORTESFormat">
+          <DataField>SUMAPORTESFormat</DataField>
+        </Field>
+        <Field Name="TotalVenta">
+          <DataField>TotalVenta</DataField>
+        </Field>
+        <Field Name="TotalVentaFormat">
+          <DataField>TotalVentaFormat</DataField>
+        </Field>
+        <Field Name="TotalComision">
+          <DataField>TotalComision</DataField>
+        </Field>
+        <Field Name="TotalComisionFormat">
+          <DataField>TotalComisionFormat</DataField>
+        </Field>
+        <Field Name="TOTALC">
+          <DataField>TOTALC</DataField>
+        </Field>
+        <Field Name="TOTALCFormat">
+          <DataField>TOTALCFormat</DataField>
+        </Field>
+        <Field Name="totalVende">
+          <DataField>totalVende</DataField>
+        </Field>
+        <Field Name="totalVendeFormat">
+          <DataField>totalVendeFormat</DataField>
+        </Field>
+        <Field Name="impagadosmes">
+          <DataField>impagadosmes</DataField>
+        </Field>
+        <Field Name="impagadosmesFormat">
+          <DataField>impagadosmesFormat</DataField>
+        </Field>
+        <Field Name="recuperadosmes">
+          <DataField>recuperadosmes</DataField>
+        </Field>
+        <Field Name="recuperadosmesFormat">
+          <DataField>recuperadosmesFormat</DataField>
+        </Field>
+        <Field Name="GLOBALVENTAS">
+          <DataField>GLOBALVENTAS</DataField>
+        </Field>
+        <Field Name="GLOBALVENTASFormat">
+          <DataField>GLOBALVENTASFormat</DataField>
+        </Field>
+        <Field Name="comisiontotal">
+          <DataField>comisiontotal</DataField>
+        </Field>
+        <Field Name="comisiontotalFormat">
+          <DataField>comisiontotalFormat</DataField>
+        </Field>
+        <Field Name="textoaumento">
+          <DataField>textoaumento</DataField>
+        </Field>
+        <Field Name="aumneto">
+          <DataField>aumneto</DataField>
+        </Field>
+        <Field Name="aumnetoFormat">
+          <DataField>aumnetoFormat</DataField>
+        </Field>
+        <Field Name="entregadoaceunta">
+          <DataField>entregadoaceunta</DataField>
+        </Field>
+        <Field Name="entregadoaceuntaFormat">
+          <DataField>entregadoaceuntaFormat</DataField>
+        </Field>
+        <Field Name="mediacomi">
+          <DataField>mediacomi</DataField>
+        </Field>
+        <Field Name="mediacomiFormat">
+          <DataField>mediacomiFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

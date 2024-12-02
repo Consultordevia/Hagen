@@ -78,13 +78,12 @@ Page 50110 vendor
                 Caption = 'Recp. Comisiones';
                 trigger OnAction()
                 begin
-                    ObjetivoVendrdorComi.Reset();
-                    ObjetivoVendrdorComi.SetRange(Vendedor, Rec."No.");
-                    ObjetivoVendrdorComi.SetRange(Tipo, ObjetivoVendrdorComi.tipo ::"Comi-dto");
-                    if ObjetivoVendrdorComi.FindSet then begin
-                        clear(PageObjetivosvendedorcomision);
-                        PageObjetivosvendedorcomision.SetTableView(ObjetivoVendrdorComi);
-                        PageObjetivosvendedorcomision.Run();
+                    SalespersonPurchaser.Reset();
+                    SalespersonPurchaser.SetRange(Code, Rec."No.");                     
+                    if SalespersonPurchaser.FindSet then begin
+                        clear(RepComisiones);
+                        RepComisiones.SetTableView(ObjetivoVendrdorComi);
+                        RepComisiones.Run();
                     end;
                 end;
 
@@ -117,7 +116,8 @@ Page 50110 vendor
     var
         PageObjetivosvendedorcomision: Page "Objetivos vendedor comision";
         ObjetivoVendrdorComi: Record "Objetivos vendedores";
-        ///RepComisiones: Report "Comisiones";
+        RepComisiones: Report "Comisiones";
         PageDescuentoAzul: Page "Descuento Azul";
+        SalespersonPurchaser: Record "Salesperson/Purchaser";
 }
 
