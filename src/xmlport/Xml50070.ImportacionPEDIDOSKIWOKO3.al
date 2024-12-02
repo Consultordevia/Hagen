@@ -280,10 +280,10 @@ XmlPort 50070 "Importacion PEDIDOS KIWOKO3"
                 if not RecClie.FindFirst then begin
                     Enviaemail;
                 end;
-                codacti := IncStr(RecUser."Serie pedidos");
-                RecUser."Serie pedidos" := codacti;
-                RecUser."Nº cliente" := clie;
-                RecUser.Modify;
+                //codacti := IncStr(RecUser."Serie pedidos");
+                //RecUser."Serie pedidos" := codacti;
+                //RecUser."Nº cliente" := clie;
+                //RecUser.Modify;
                 codacti := NoSeriesManagement.GetNextNo('V-KIWO-1', Today, true);
                 RecCV.Init;
                 RecCV."Document Type" := 0;
@@ -393,10 +393,10 @@ XmlPort 50070 "Importacion PEDIDOS KIWOKO3"
 
         UserSetup.Get(UserId);
 
-        SenderName := 'HAGEN';
-        Subject := 'Este relacion no existe en kiwoko: ' + D1;
-        Recipient := 'martinjesus241@gmail.com';
-        SenderAddress := UserSetup."E-Mail";
+        /////- SenderName := 'HAGEN';
+        /////- Subject := 'Este relacion no existe en kiwoko: ' + D1;
+        /////- Recipient := 'martinjesus241@gmail.com';
+        /////- SenderAddress := UserSetup."E-Mail";
         /////- Clear(smtp);
         /////- smtp.Run;
         /////- smtp.CreateMessage(SenderName,SenderAddress,Recipient,Subject,Body,true);
