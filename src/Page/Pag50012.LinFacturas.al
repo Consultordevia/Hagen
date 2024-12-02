@@ -5,7 +5,7 @@ page 50012 LinFacturas
     PageType = List;
     SourceTable = "Sales Invoice Line";
     UsageCategory = Lists;
-    
+
     layout
     {
         area(Content)
@@ -288,10 +288,10 @@ page 50012 LinFacturas
                 {
                     ToolTip = 'Specifies that this item is a catalog item.';
                 }
-                field("Nº expedición"; Rec."Nº expedición")
-                {
-                    ToolTip = 'Specifies the value of the Nº expedición field.', Comment = '%';
-                }
+                /////-field("Nº expedición"; Rec."Nº expedición")
+                /////-{
+                /////-    ToolTip = 'Specifies the value of the Nº expedición field.', Comment = '%';
+                /////-}
                 field("Nº expedición ECI"; Rec."Nº expedición ECI")
                 {
                     ToolTip = 'Specifies the value of the Nº expedición ECI field.', Comment = '%';

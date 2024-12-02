@@ -1085,7 +1085,7 @@ Page 50044 "Pantalla almacen Pascual4"
                                         X := X + 1;
                                         ExtendedTextHeader.Reset;
                                         ExtendedTextHeader.SetRange(ExtendedTextHeader."Table Name", ExtendedTextHeader."table name"::Item);
-                                        ExtendedTextHeader.SetRange(ExtendedTextHeader.TableName2, ExtendedTextHeader.tablename2::Etiquetas);
+                                        /////-ExtendedTextHeader.SetRange(ExtendedTextHeader.TableName2, ExtendedTextHeader.tablename2::Etiquetas);
                                         ExtendedTextHeader.SetRange(ExtendedTextHeader."No.", SalesLine."No.");
                                         if ExtendedTextHeader.FindFirst then begin
                                             Clear(RepEti);
