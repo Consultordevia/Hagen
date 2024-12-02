@@ -531,6 +531,310 @@ codeunit 50002 Eventos
         end;
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, 80, 'OnBeforePostSalesDoc', '', false, false)]
+    local procedure OnBeforePostSalesDoc(var SalesHeader: Record "Sales Header"; CommitIsSuppressed: Boolean; PreviewMode: Boolean; var HideProgressWindow: Boolean; var IsHandled: Boolean; var CalledBy: Integer)
+    var
+        sumna1: decimal;
+        rec37: Record "Sales Line";
+    begin
+        if SalesHeader.Invoice then begin
+            sumna1 := 0;
+            rec37.Reset;
+            rec37.SetRange(rec37."Document Type", SalesHeader."Document Type");
+            rec37.SetRange(rec37."Document No.", SalesHeader."No.");
+            if rec37.FindSet then
+                repeat
+                    sumna1 := sumna1 + rec37."Line Amount";
+                until rec37.Next = 0;
+
+
+            if sumna1 = 0 then begin
+                SalesHeader."Posting No. Series" := 'V-FAC-DOC';
+                SalesHeader.Modify;
+            end;
+        end;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, 80, 'OnAfterPostSalesDoc', '', false, false)]
+    local procedure OnAfterPostSalesDoc(var SalesHeader: Record "Sales Header"; var GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line"; SalesShptHdrNo: Code[20]; RetRcpHdrNo: Code[20]; SalesInvHdrNo: Code[20]; SalesCrMemoHdrNo: Code[20]; CommitIsSuppressed: Boolean; InvtPickPutaway: Boolean; var CustLedgerEntry: Record "Cust. Ledger Entry"; WhseShip: Boolean; WhseReceiv: Boolean; PreviewMode: Boolean)
+    var
+        GLEntry2: Record "G/L Entry";
+        SalesInvoiceHeader2: Record "Sales Invoice Header";
+        SalesCrMemoHeader2: Record "Sales Cr.Memo Header";
+    begin
+        GLEntry2.Reset;
+        GLEntry2.SetCurrentkey("Document No.");
+        GLEntry2.SetRange("Document No.", SalesHeader."Last Posting No.");
+        if GLEntry2.FindFirst then
+            repeat
+                if GLEntry2."Global Dimension 1 Code" = '' then begin
+                    if SalesInvoiceHeader2.Get(SalesInvHdrNo) then begin
+                        GLEntry2."Global Dimension 1 Code" := SalesInvoiceHeader2."Salesperson Code";
+                        GLEntry2.Modify;
+                    end;
+                    if SalesCrMemoHeader2.Get(SalesCrMemoHdrNo) then begin
+                        GLEntry2."Global Dimension 1 Code" := SalesCrMemoHeader2."Salesperson Code";
+                        GLEntry2.Modify;
+                    end;
+                end;
+            until GLEntry2.Next = 0;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, 80, 'OnBeforeSalesInvLineInsert', '', false, false)]
+    local procedure OnBeforeSalesInvLineInsert(var SalesInvLine: Record "Sales Invoice Line"; SalesInvHeader: Record "Sales Invoice Header"; SalesLine: Record "Sales Line"; CommitIsSuppressed: Boolean; var IsHandled: Boolean; PostingSalesLine: Record "Sales Line"; SalesShipmentHeader: Record "Sales Shipment Header"; SalesHeader: Record "Sales Header"; var ReturnReceiptHeader: Record "Return Receipt Header")
+    begin
+        SalesLine.CalcFields(ean);
+        SalesInvLine.Ean := SalesLine.ean;
+        if SalesLine."ean canarias" <> '' then begin
+            SalesInvLine.Ean := SalesLine."ean canarias";
+        end;
+        SalesInvLine."Precio base" := SalesLine."Precio base";
+        SalesInvLine."Num expedicion grabado" := SalesHeader."Nº expedición";
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, 80, 'OnBeforeSalesShptHeaderInsert', '', false, false)]
+    local procedure OnBeforeSalesShptHeaderInsert(var SalesShptHeader: Record "Sales Shipment Header"; SalesHeader: Record "Sales Header"; CommitIsSuppressed: Boolean; var IsHandled: Boolean; var TempWhseRcptHeader: Record "Warehouse Receipt Header" temporary; WhseReceive: Boolean; var TempWhseShptHeader: Record "Warehouse Shipment Header" temporary; WhseShip: Boolean; InvtPickPutaway: Boolean)
+    var
+        RecClie: Record Customer;
+        RecTransp: Record "Shipping Agent";
+        PAGINAWEB: Text[1000];
+        CODDOC: Code[20];
+        RecItem: Record Item;
+        GLEntry2: Record "G/L Entry";
+        SalesInvoiceHeader2: Record "Sales Invoice Header";
+        SalesCrMemoHeader2: Record "Sales Cr.Memo Header";
+    begin
+        if RecClie.Get(SalesShptHeader."Sell-to Customer No.") then begin
+            if ((RecClie."Tipo facturación" = 2) or (RecClie."Tipo facturación" = 1)) and
+               (RecClie."Email facturacion 1" <> '') and
+               (RecClie."Servicio email" = true) then begin
+                SalesShptHeader."Enviar email" := true;
+                SalesShptHeader."Email enviado" := false;
+            end;
+            if RecClie."Albaran sin detalle" = true then begin
+                if (RecClie."Email albaran sin detalle 1" <> '') then begin
+                    SalesShptHeader."Enviar email sin detalle" := true;
+                    SalesShptHeader."Email enviado sin detalle" := false;
+                end;
+            end;
+            SalesShptHeader."CSV Enviar" := RecClie."Albaran CSV";
+        end;
+        if RecTransp.Get(SalesHeader."Shipping Agent Code") then begin
+            if RecTransp."Sacar etiqueta envio PEQ" then begin
+                SalesShptHeader."Imprime eti. envio" := true;
+            end;
+            if RecTransp."Sacar etiqueta envio GRA" then begin
+                SalesShptHeader."Imprime eti. envio" := true;
+            end;
+
+
+            if RecTransp."Link transporte" = '' then begin
+                if COMPANYNAME = 'PEPE' then begin
+                    if SalesShptHeader."Shipping Agent Code" = 'TIPSA' then begin
+                        PAGINAWEB := 'http://www.tip-sa.com/cliente/datos.php?id=04601100112' + Format(SalesShptHeader."Nº expedición") + ' - ' +
+                                   Format(SalesShptHeader."Your Reference") + ' - ' +
+                                   Format(SalesShptHeader."Order No.") +
+                                   Format(SalesShptHeader."Ship-to Post Code");
+                    end;
+                    if SalesShptHeader."Shipping Agent Code" = 'CORR' then begin
+                        PAGINAWEB := 'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
+                                   Format(SalesShptHeader."Nº expedición");
+                    end;
+                    if SalesShptHeader."Shipping Agent Code" = 'TNT' then begin
+                        PAGINAWEB := 'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=REF&respLang=' +
+                                   'ES&respCountry=ES&sourceID=1&sourceCountry=' +
+                                   'ES&sourceID=1&sourceCountry=ww&cons=' + Format(SalesShptHeader."Nº expedición");
+                    end;
+                    SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
+                    SalesShptHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
+                    SalesShptHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
+                end;
+                if COMPANYNAME <> 'PEPE' then begin
+                    if SalesShptHeader."Shipping Agent Code" = 'DHL' then begin
+                        PAGINAWEB := 'http://www.dhl.es/services_es/seg_3dd/integra/SeguimientoDocumentos.aspx?codigo=' +
+                                   Format(SalesShptHeader."Nº expedición") + '&anno=2013&lang=sp&refCli=1 , a partir de hoy a las 22:00.';
+                    end;
+                    if SalesShptHeader."Shipping Agent Code" = 'CRON' then begin
+                        PAGINAWEB := 'https://www.correosexpress.com/url/v?s=' +
+                                   Format(SalesShptHeader."Nº expedición") + '&cp=' + Format(SalesShptHeader."Ship-to Post Code");
+                    end;
+                    if SalesShptHeader."Shipping Agent Code" = 'CORR' then begin
+                        PAGINAWEB := 'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
+                                   Format(SalesShptHeader."Nº expedición");
+                    end;
+                    if SalesShptHeader."Shipping Agent Code" = 'TNT' then begin
+                        PAGINAWEB := 'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=' +
+                                   'REF&respLang=ES&respCountry=ES&sourceID=1&sourceCountry=' +
+                                   'ES&sourceID=1&sourceCountry=ww&cons=' +
+                                    Format(SalesShptHeader."Nº expedición");
+                    end;
+                    if SalesShptHeader."Shipping Agent Code" = 'TIPSA' then begin
+                        PAGINAWEB := 'http://www.tip-sa.com/cliente/datos.php?id=04600400393' +
+                                    Format(SalesShptHeader."Nº expedición") +
+                                    Format(SalesShptHeader."Ship-to Post Code");
+                    end;
+                    SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
+                    SalesShptHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
+                    SalesShptHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
+                end;
+            end;
+            if RecTransp."Link transporte" <> '' then begin
+                PAGINAWEB := RecTransp."Link transporte";
+                if RecTransp.Añadir = 0 then PAGINAWEB := PAGINAWEB + Format(SalesShptHeader."Nº expedición");
+                if RecTransp.Añadir = 1 then
+                    PAGINAWEB := PAGINAWEB + Format(SalesShptHeader."Nº expedición") +
+                        Format(SalesShptHeader."Ship-to Post Code");
+                SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
+                SalesShptHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
+                SalesShptHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
+
+
+
+            end;
+        end;
+
+        if SalesShptHeader."Bill-to Customer No." = '6445' then begin
+            SalesShptHeader."Pasar a Canarias" := true;
+            SalesShptHeader."Pasada a Canarias" := false;
+        end;
+        if SalesHeader."Nº expedición agrupada" <> '' then begin
+            SalesShptHeader."Nº expedición" := SalesShptHeader."Nº expedición" + '-' + SalesHeader."Nº expedición agrupada";
+            SalesShptHeader."Nº bultos" := 1;
+            SalesShptHeader."Total bultos" := 1;
+            if SalesShptHeader."Incrementa bultos" <> 0 then begin
+                SalesShptHeader."Nº bultos" := SalesShptHeader."Nº bultos" + SalesShptHeader."Incrementa bultos";
+                SalesShptHeader."Total bultos" := SalesShptHeader."Total bultos" + SalesShptHeader."Incrementa bultos";
+            end;
+
+        end;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, 80, 'OnBeforeSalesInvHeaderInsert', '', false, false)]
+    local procedure OnBeforeSalesInvHeaderInsert(var SalesInvHeader: Record "Sales Invoice Header"; var SalesHeader: Record "Sales Header"; CommitIsSuppressed: Boolean; var IsHandled: Boolean; WhseShip: Boolean; WhseShptHeader: Record "Warehouse Shipment Header"; InvtPickPutaway: Boolean)
+    var
+        RecClie: Record Customer;
+        RecTransp: Record "Shipping Agent";
+        PAGINAWEB: Text[1000];
+        CODDOC: Code[20];
+        RecItem: Record Item;
+        GLEntry2: Record "G/L Entry";
+        SalesInvoiceHeader2: Record "Sales Invoice Header";
+        SalesCrMemoHeader2: Record "Sales Cr.Memo Header";
+    begin
+        if RecClie.Get(SalesInvHeader."Sell-to Customer No.") then begin
+            if (RecClie."Email facturacion 1" <> '') and (RecClie."Servicio email" = true) then begin
+                SalesInvHeader."Enviar email" := true;
+                SalesInvHeader."Email enviado" := false;
+            end;
+            SalesInvHeader."CSV Enviar" := RecClie."Factura CSV";
+
+        end;
+        if RecTransp.Get(SalesInvHeader."Shipping Agent Code") then begin
+            if RecTransp."Link transporte" = '' then begin
+                if COMPANYNAME = 'PEPE' then begin
+                    if SalesInvHeader."Shipping Agent Code" = 'TIPSA' then begin
+                        PAGINAWEB := 'http://www.tip-sa.com/cliente/datos.php?id=04601100112' + Format(SalesInvHeader."Nº expedición") + ' - ' +
+                                   Format(SalesInvHeader."Your Reference") + ' - ' +
+                                   Format(SalesInvHeader."Order No.") +
+                                   Format(SalesInvHeader."Ship-to Post Code");
+                    end;
+                    if SalesInvHeader."Shipping Agent Code" = 'CORR' then begin
+                        PAGINAWEB := 'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
+                                   Format(SalesInvHeader."Nº expedición");
+                    end;
+                    if SalesInvHeader."Shipping Agent Code" = 'TNT' then begin
+                        PAGINAWEB := 'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=REF&respLang=' +
+                                   'ES&respCountry=ES&sourceID=1&sourceCountry=' +
+                                   'ES&sourceID=1&sourceCountry=ww&cons=' + Format(SalesInvHeader."Nº expedición");
+                    end;
+                    SalesInvHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
+                    SalesInvHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
+                    SalesInvHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
+                end;
+                if COMPANYNAME <> 'PEPE' then begin
+                    if SalesInvHeader."Shipping Agent Code" = 'DHL' then begin
+                        PAGINAWEB := 'http://www.dhl.es/services_es/seg_3dd/integra/SeguimientoDocumentos.aspx?codigo=' +
+                                   Format(SalesInvHeader."Nº expedición") + '&anno=2013&lang=sp&refCli=1 , a partir de hoy a las 22:00.';
+                    end;
+                    if SalesInvHeader."Shipping Agent Code" = 'CRON' then begin
+                        PAGINAWEB := 'https://www.correosexpress.com/url/v?s=' +
+                                   Format(SalesInvHeader."Nº expedición") + '&cp=' + Format(SalesInvHeader."Ship-to Post Code");
+                    end;
+                    if SalesInvHeader."Shipping Agent Code" = 'CORR' then begin
+                        PAGINAWEB := 'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
+                                   Format(SalesInvHeader."Nº expedición");
+                    end;
+                    if SalesInvHeader."Shipping Agent Code" = 'TNT' then begin
+                        PAGINAWEB := 'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=' +
+                                   'REF&respLang=ES&respCountry=ES&sourceID=1&sourceCountry=' +
+                                   'ES&sourceID=1&sourceCountry=ww&cons=' +
+                                    Format(SalesInvHeader."Nº expedición");
+                    end;
+                    if SalesInvHeader."Shipping Agent Code" = 'TIPSA' then begin
+                        PAGINAWEB := 'http://www.tip-sa.com/cliente/datos.php?id=04600400393' +
+                                    Format(SalesInvHeader."Nº expedición") +
+                                    Format(SalesInvHeader."Ship-to Post Code");
+                    end;
+                    SalesInvHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
+                    SalesInvHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
+                    SalesInvHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
+                end;
+            end;
+            if RecTransp."Link transporte" <> '' then begin
+                PAGINAWEB := RecTransp."Link transporte";
+                if RecTransp.Añadir = 0 then PAGINAWEB := PAGINAWEB + Format(SalesInvHeader."Nº expedición");
+                if RecTransp.Añadir = 1 then
+                    PAGINAWEB := PAGINAWEB + Format(SalesInvHeader."Nº expedición") +
+                    Format(SalesInvHeader."Ship-to Post Code");
+                SalesInvHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
+                SalesInvHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
+                SalesInvHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
+
+
+
+            end;
+
+
+        end;
+
+        if SalesInvHeader."Bill-to Customer No." = '6445' then begin
+            SalesInvHeader."Pasar a Canarias" := true;
+            SalesInvHeader."Pasada a Canarias" := false;
+        end;
+
+        CODDOC := SalesInvHeader."No.";
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, 80, 'OnBeforeSalesShptLineInsert', '', false, false)]
+    local procedure OnBeforeSalesShptLineInsert(var SalesShptLine: Record "Sales Shipment Line"; SalesShptHeader: Record "Sales Shipment Header"; SalesLine: Record "Sales Line"; CommitIsSuppressed: Boolean; PostedWhseShipmentLine: Record "Posted Whse. Shipment Line"; SalesHeader: Record "Sales Header"; WhseShip: Boolean; WhseReceive: Boolean; ItemLedgShptEntryNo: Integer; xSalesLine: record "Sales Line"; var TempSalesLineGlobal: record "Sales Line" temporary; var IsHandled: Boolean)
+    begin
+        SalesShptLine."Your Reference" := SalesShptHeader."Your Reference";
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, 90, 'OnBeforePurchRcptHeaderInsert', '', false, false)]
+    local procedure OnBeforePurchRcptHeaderInsert(var PurchRcptHeader: Record "Purch. Rcpt. Header"; var PurchaseHeader: Record "Purchase Header"; CommitIsSupressed: Boolean; WarehouseReceiptHeader: Record "Warehouse Receipt Header"; WhseReceive: Boolean; WarehouseShipmentHeader: Record "Warehouse Shipment Header"; WhseShip: Boolean)
+    begin
+        PurchRcptHeader."Enviar email" := true;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, 90, 'OnBeforePurchRcptLineInsert', '', false, false)]
+    local procedure OnBeforePurchRcptLineInsert(var PurchRcptLine: Record "Purch. Rcpt. Line"; var PurchRcptHeader: Record "Purch. Rcpt. Header"; var PurchLine: Record "Purchase Line"; CommitIsSupressed: Boolean; PostedWhseRcptLine: Record "Posted Whse. Receipt Line"; var IsHandled: Boolean)
+    var
+        RecItem: Record Item;
+    begin
+        ///// GRABA LA FECHA DE LANZAMIENTO.
+        if PurchRcptLine.Type = 2 then begin
+            if RecItem.Get(PurchRcptLine."No.") then begin
+                if RecItem."Fecha Lanzamiento" = 0D then begin
+                    RecItem."Fecha Lanzamiento" := WorkDate;
+                end;
+                RecItem."Actualizar WEB" := true;
+                RecItem.Modify;
+            end;
+
+        end;
+    end;
+
     procedure OnModify(var Cust: Record Customer)
     var
         ContactBusinessRelation: Record "Contact Business Relation";
