@@ -32,7 +32,7 @@ Page 50110 vendor
 
     actions
     {
-        area(creation)
+        area(Creation)
         {
             action(Objetivocomisiones)
             {
@@ -51,7 +51,7 @@ Page 50110 vendor
                     end;
                 end;
             }
-            
+
             action(GrupoDescuentos)
             {
                 ApplicationArea = Suite;
@@ -61,7 +61,7 @@ Page 50110 vendor
                     ObjetivoVendrdorComi.Reset();
                     ;
                     ObjetivoVendrdorComi.SetRange(Vendedor, Rec."No.");
-                    ObjetivoVendrdorComi.SetRange(Tipo, ObjetivoVendrdorComi.tipo ::"Comi-dto");
+                    ObjetivoVendrdorComi.SetRange(Tipo, ObjetivoVendrdorComi.tipo::"Comi-dto");
                     if ObjetivoVendrdorComi.FindSet then begin
                         clear(PageObjetivosvendedorcomision);
                         PageObjetivosvendedorcomision.SetTableView(ObjetivoVendrdorComi);
@@ -79,7 +79,7 @@ Page 50110 vendor
                 trigger OnAction()
                 begin
                     SalespersonPurchaser.Reset();
-                    SalespersonPurchaser.SetRange(Code, Rec."No.");                     
+                    SalespersonPurchaser.SetRange(Code, Rec."No.");
                     if SalespersonPurchaser.FindSet then begin
                         clear(RepComisiones);
                         RepComisiones.SetTableView(ObjetivoVendrdorComi);
@@ -97,8 +97,8 @@ Page 50110 vendor
                 trigger OnAction()
                 begin
                     ObjetivoVendrdorComi.Reset();
-                    ObjetivoVendrdorComi.SetRange(Vendedor, Rec."No.");                     
-                    ObjetivoVendrdorComi.SetRange(Tipo, ObjetivoVendrdorComi.tipo ::Descuento);
+                    ObjetivoVendrdorComi.SetRange(Vendedor, Rec."No.");
+                    ObjetivoVendrdorComi.SetRange(Tipo, ObjetivoVendrdorComi.tipo::Descuento);
                     if ObjetivoVendrdorComi.FindSet then begin
                         clear(PageDescuentoAzul);
                         PageDescuentoAzul.SetTableView(ObjetivoVendrdorComi);

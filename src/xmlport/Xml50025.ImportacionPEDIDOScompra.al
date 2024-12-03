@@ -223,7 +223,7 @@ XmlPort 50025 "Importacion PEDIDOS compra"
     local procedure ValidateHeaderTag()
     begin
 
-
+        /////PasoClie(TipoP,codpedido);
 
 
         if D1 <> '' then begin
