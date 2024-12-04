@@ -192,8 +192,22 @@ Codeunit 50045 "Automaticos TIENDA ANIMAL"
         FileName: Text;
         InStream: InStream;
         FicherosHagen: Codeunit FicherosHagen;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+        OutTxt: Text;
+
+
+
     begin
-        TempBlob.CreateOutStream(OutStream);
+
+
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
+
 
 
 
@@ -215,13 +229,19 @@ Codeunit 50045 "Automaticos TIENDA ANIMAL"
 
 
 
-        TextoSalida1 := 'category;shopSku;name [es];description [es];summary [es];ean;brand;primary-image;secondary-image_1;secondary-image_2;secondary-image_3;secondary-image_4;sales-height;';
-        TextoSalida2 := 'sales-width;sales-length;variant-group-code;commentary;105;105_MAG;103;103_MAG;100;100_MAG;101;108;106;107;110;113;113_MAG;104;104_MAG;109;102;sku;product-id;product-id-type;';
-        TextoSalida3 := 'description;internal-description;price;price-additional-info;quantity;min-quantity-alert;state;available-start-date;available-end-date;logistic-class;discount-price;discount-start-date;';
-        TextoSalida4 := 'discount-end-date;leadtime-to-ship;update-delete';
+        OutTxt := 'category;shopSku;name [es];description [es];summary [es];ean;brand;primary-image;secondary-image_1;secondary-image_2;secondary-image_3;secondary-image_4;sales-height;';
+///        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'sales-width;sales-length;variant-group-code;commentary;105;105_MAG;103;103_MAG;100;100_MAG;101;108;106;107;110;113;113_MAG;104;104_MAG;109;102;sku;product-id;product-id-type;';
+        ///OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'description;internal-description;price;price-additional-info;quantity;min-quantity-alert;state;available-start-date;available-end-date;logistic-class;discount-price;discount-start-date;';
+        ///OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'discount-end-date;leadtime-to-ship;update-delete';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
 
-
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
 
 
 
@@ -310,7 +330,7 @@ Codeunit 50045 "Automaticos TIENDA ANIMAL"
 
 
 
-                    TextoSalida1 := Format('') + ';' +    ///// 1
+                    OutTxt := Format('') + ';' +    ///// 1
                                   Format(Item."No.") + ';' +     ///// 2
                                   Format('') + ';' + ///// 3
                                   Format('') + ';' + ///// 4
@@ -342,8 +362,13 @@ Codeunit 50045 "Automaticos TIENDA ANIMAL"
                                   Format('') + ';' +///// 30
                                   Format('') + ';' +///// 31
                                   Format('') + ';' +///// 32
-                                  Format('') + ';';///// 33
-                    TextoSalida2 := Format('') + ';' +///// 34
+                                  Format('') + ';' +///// 33
+
+                    ///OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                    ///data.AddText(OutTxt);
+
+                    ///OutTxt := 
+                    Format('') + ';' +///// 34
                                   Format(Item."No.") + ';' +///// 35
                                   Format(Item."No.") + ';' +///// 36
                                   Format('SHOP_SKU') + ';' +///// 37
@@ -371,7 +396,11 @@ Codeunit 50045 "Automaticos TIENDA ANIMAL"
 
 
 
-                    OutStream.Write(TextoSalida1 + TextoSalida2);
+                    /////OutStream.Write(TextoSalida1 + TextoSalida2);
+                    OutTxt += Format(CarriageReturn) + Format(LineFeed);
+
+                    data.AddText(OutTxt);
+
                     /////    END;
 
                 end;
@@ -389,8 +418,12 @@ Codeunit 50045 "Automaticos TIENDA ANIMAL"
             nomdir := ADAIA.Ruta;
         end;
 
-        TempBlob.CreateInStream(InStream);
+        Data.Write(OutStream);
+
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
         FicherosHagen.CrearFichero(nomdir, 'Tanimal-stock.csv', InStream);
+
+
 
     end;
 }

@@ -187,7 +187,7 @@ Codeunit 50083 "AutomaticosBC"
 
         nomdir := '';
         ADAIA.Reset();
-        ADAIA.SetRange(texto, 'AUTOMATICOS TRADEINN-CU-50082');
+        ADAIA.SetRange(texto, 'AUTOMATICOS TRADEINN-CU-50083');
         IF ADAIA.FindSet() THEN begin
             nomdir := ADAIA.Ruta;
         end;
