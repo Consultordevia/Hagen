@@ -17630,7 +17630,7 @@ Page 50099 "Pantalla almacen Pascual5"
                                     repeat
                                         X := X + 1;
                                         ExtendedTextHeader.Reset;
-                                        ExtendedTextHeader.SetRange(ExtendedTextHeader."Table Name", ExtendedTextHeader.tablename2::Etiquetas);
+                                        /////-ExtendedTextHeader.SetRange(ExtendedTextHeader."Table Name", ExtendedTextHeader.tablename2::Etiquetas);
                                         ExtendedTextHeader.SetRange(ExtendedTextHeader."No.", SalesLine."No.");
                                         if ExtendedTextHeader.FindFirst then begin
                                             Clear(RepEti);

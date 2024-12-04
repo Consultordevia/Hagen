@@ -120,7 +120,7 @@ pageextension 50011 "Purchase Quote" extends "Purchase Quote"
                     tipop:	Integer;
 
                 begin
-                    tipop:=1;
+                    tipop:=0;
 
                     CLEAR(ImportacionPEDIDOScompra);
                     ImportacionPEDIDOScompra.PasoClie(tipop,Rec."No.");

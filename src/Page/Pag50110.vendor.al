@@ -10,24 +10,114 @@ Page 50110 vendor
         {
             repeater(Group)
             {
-                field("No.";Rec."No.")
+                field("No."; Rec."No.")
                 {
                     ApplicationArea = Basic;
                 }
-                field(Name;Rec.Name)
+                field(Name; Rec.Name)
                 {
                     ApplicationArea = Basic;
                 }
-                field("Lead Time Calculation";Rec."Lead Time Calculation")
+                field("Lead Time Calculation"; Rec."Lead Time Calculation")
                 {
                     ApplicationArea = Basic;
                 }
             }
         }
+
+
+
+
     }
 
     actions
     {
+        area(Creation)
+        {
+            action(Objetivocomisiones)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Objetivo comisiones';
+                trigger OnAction()
+                begin
+                    ObjetivoVendrdorComi.Reset();
+                    ;
+                    ObjetivoVendrdorComi.SetRange(Vendedor, Rec."No.");
+                    ObjetivoVendrdorComi.SetRange(Tipo, ObjetivoVendrdorComi.tipo::Vendedor);
+                    if ObjetivoVendrdorComi.FindSet then begin
+                        clear(PageObjetivosvendedorcomision);
+                        PageObjetivosvendedorcomision.SetTableView(ObjetivoVendrdorComi);
+                        PageObjetivosvendedorcomision.Run();
+                    end;
+                end;
+            }
+
+            action(GrupoDescuentos)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Grupo Descuentos';
+                trigger OnAction()
+                begin
+                    ObjetivoVendrdorComi.Reset();
+                    ;
+                    ObjetivoVendrdorComi.SetRange(Vendedor, Rec."No.");
+                    ObjetivoVendrdorComi.SetRange(Tipo, ObjetivoVendrdorComi.tipo::"Comi-dto");
+                    if ObjetivoVendrdorComi.FindSet then begin
+                        clear(PageObjetivosvendedorcomision);
+                        PageObjetivosvendedorcomision.SetTableView(ObjetivoVendrdorComi);
+                        PageObjetivosvendedorcomision.Run();
+                    end;
+                end;
+
+
+            }
+
+            action(RepComisiones)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Recp. Comisiones';
+                trigger OnAction()
+                begin
+                    SalespersonPurchaser.Reset();
+                    SalespersonPurchaser.SetRange(Code, Rec."No.");
+                    if SalespersonPurchaser.FindSet then begin
+                        clear(RepComisiones);
+                        RepComisiones.SetTableView(ObjetivoVendrdorComi);
+                        RepComisiones.Run();
+                    end;
+                end;
+
+
+            }
+
+            action(DescuentoAzul)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Descuento Azul';
+                trigger OnAction()
+                begin
+                    ObjetivoVendrdorComi.Reset();
+                    ObjetivoVendrdorComi.SetRange(Vendedor, Rec."No.");
+                    ObjetivoVendrdorComi.SetRange(Tipo, ObjetivoVendrdorComi.tipo::Descuento);
+                    if ObjetivoVendrdorComi.FindSet then begin
+                        clear(PageDescuentoAzul);
+                        PageDescuentoAzul.SetTableView(ObjetivoVendrdorComi);
+                        PageDescuentoAzul.Run();
+                    end;
+                end;
+
+
+            }
+
+
+
+        }
     }
+    var
+        PageObjetivosvendedorcomision: Page "Objetivos vendedor comision";
+        ObjetivoVendrdorComi: Record "Objetivos vendedores";
+        RepComisiones: Report "Comisiones";
+        PageDescuentoAzul: Page "Descuento Azul";
+        SalespersonPurchaser: Record "Salesperson/Purchaser";
 }
 
