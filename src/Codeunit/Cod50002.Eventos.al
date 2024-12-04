@@ -279,9 +279,9 @@ codeunit 50002 Eventos
             RecDP.Reset;
             RecDP.SetRange(RecDP."Customer No.", SalesHeader."Sell-to Customer No.");
             if RecDP.FindFirst then begin
-                SalesHeader."Pay-at Code" := RecDP.Code;
-                SalesHeader.Validate("Pay-at Code");
-                IsHandled := true;
+                //SalesHeader."Pay-at Code" := RecDP.Code;
+                //SalesHeader.Validate("Pay-at Code");
+                //IsHandled := true;
             end;
         end;
 
@@ -289,8 +289,8 @@ codeunit 50002 Eventos
 
         if SalesHeader."Bill-to Customer No." = '6445' then begin
             SalesHeader."Shipping No. Series" := 'V-ALB-CANA';
-            SalesHeader."Pay-at Code" := '';
-            IsHandled := true;
+            //SalesHeader."Pay-at Code" := '';
+            //IsHandled := true;
         end;
     end;
 
