@@ -1,4 +1,4 @@
-pageextension 50027 "G/L Account List" extends "G/L Account List"
+pageextension 50027 "Chart of Accounts" extends "Chart of Accounts"
 {
     layout
     {
