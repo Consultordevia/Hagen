@@ -1,6 +1,6 @@
 pageextension 50027 "G/L Account List" extends "G/L Account List"
 {
-     layout
+    layout
     {
     }
     actions
@@ -10,18 +10,20 @@ pageextension 50027 "G/L Account List" extends "G/L Account List"
             action(SII)
             {
                 ApplicationArea = All;
-                Caption = 'SII';
+                Caption = 'SII', comment = 'NLB="YourLanguageCaption"';
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
                 Image = Order;
-
 
                 trigger OnAction()
                 var
-                cusii2: Codeunit sii2;
+                    cusii2: Codeunit sii2;
                 begin
                     clear(cusii2);
                     cusii2.run;
                 END;
-        }   }
-    
+            }
+        }
     }
 }
