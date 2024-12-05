@@ -145,8 +145,21 @@ Codeunit 50067 "Automaticos Carrefour"
         FileName: Text;
         InStream: InStream;
         FicherosHagen: Codeunit FicherosHagen;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+        OutTxt: Text;
+
     begin
-        TempBlob.CreateOutStream(OutStream);
+        
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
+
+
+///        TempBlob.CreateOutStream(OutStream);
 
 
 
@@ -171,12 +184,14 @@ Codeunit 50067 "Automaticos Carrefour"
 
 
 
-        TextoSalida1 := 'sku;product-id;product-id-type;description;internal-description;price;price-additional-info;quantity;min-quantity-alert;state;available-start-date;';
-        TextoSalida2 := 'available-end-date;logistic-class;favorite-rank;discount-start-date;discount-end-date;discount-price;update-delete';
+        OutTxt := 'sku;product-id;product-id-type;description;internal-description;price;price-additional-info;quantity;min-quantity-alert;state;available-start-date;';
+        data.AddText(OutTxt);
+        OutTxt := 'available-end-date;logistic-class;favorite-rank;discount-start-date;discount-end-date;discount-price;update-delete';
+        data.AddText(OutTxt);
 
 
 
-        OutStream.Write(TextoSalida1 + TextoSalida2);
+        ///OutStream.Write(TextoSalida1 + TextoSalida2);
 
 
 
@@ -351,7 +366,7 @@ Codeunit 50067 "Automaticos Carrefour"
 
 
 
-                    TextoSalida1 := Format(Item."No.") + ';' +     ///// 1
+                    OutTxt := Format(Item."No.") + ';' +     ///// 1
                                   Format('0' + Item.ean) + ';' +///// 2
                                   Format('SKU') + ';' +///// 3
                                   Format('') + ';' +///// 4
@@ -373,7 +388,9 @@ Codeunit 50067 "Automaticos Carrefour"
 
 
 
-                    OutStream.Write(TextoSalida1);
+                    ///OutStream.Write(TextoSalida1);
+                    OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                    data.AddText(OutTxt);
 
 
                 end;
@@ -387,8 +404,13 @@ Codeunit 50067 "Automaticos Carrefour"
         IF ADAIA.FindSet() THEN begin
             nomdir := ADAIA.Ruta;
         end;
-        TempBlob.CreateInStream(InStream);
+        ///TempBlob.CreateInStream(InStream);
+        ///FicherosHagen.CrearFichero(nomdir, 'carrefour.csv', InStream);
+
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
         FicherosHagen.CrearFichero(nomdir, 'carrefour.csv', InStream);
+
 
 
     end;

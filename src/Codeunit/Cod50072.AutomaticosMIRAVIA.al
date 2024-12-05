@@ -169,68 +169,88 @@ Codeunit 50072 "Automaticos MIRAVIA"
         FicherosHagen: Codeunit FicherosHagen;
         ADAIA: Record ADAIA;
         NOMDIR: Text;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+        OutTxt: Text;
+
 
 
     local procedure MIRAVIA_MRAQ()
+
     begin
+
+
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
 
         SalesReceivablesSetup.Get;
 
-        ArchExt4 := 'c:\tmp\Miravia\UpdatePriceAndStock_Basic_MRAQ.csv';
-        TempBlob.CreateOutStream(OutStream);
+        ///OutTxt := 'c:\tmp\Miravia\UpdatePriceAndStock_Basic_MRAQ.csv';
+        ///data.AddText(OutTxt);
 
-        TextoSalida1 := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
+
+        OutTxt := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
                       'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
-        TextoSalida2 := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
-
-        OutStream.Write(TextoSalida1 + TextoSalida2);
-
-
-
-        TextoSalida1 := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
-
-        OutStream.Write(TextoSalida1);
-
-
-        TextoSalida1 := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
-        TextoSalida2 := 'Sales Price for a Product for Promotion.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
-        TextoSalida3 := 'The stock quantity should be equal or greater than order quantity.",' +
+        data.AddText(OutTxt);
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.",' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida4 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida5 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida6 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida7 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida8 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
-
-
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
-
-
-        TextoSalida1 := 'Please input less than 200 characters.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
-        TextoSalida2 := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only delete active inactive and empty value are accepted.Empty value will skip this parameter.,';
-        TextoSalida3 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida4 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida5 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida6 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida7 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida8 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
-
-
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
 
 
 
@@ -317,7 +337,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
 
 
-                    TextoSalida1 := Format(Item."No.") + ',' +     ///// 1
+                    OutTxt := Format(Item."No.") + ',' +     ///// 1
                                   Format(tprecio3) + ',' +///// 2
                                   Format(tprecio2) + ',' +///// 3
                                   Format('') + ',' + ///// 4
@@ -334,7 +354,9 @@ Codeunit 50072 "Automaticos MIRAVIA"
                                   Format('');    ///// 14
 
 
-                    OutStream.Write(TextoSalida1);
+                    ///OutStream.Write(TextoSalida1);
+                    OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                    data.AddText(OutTxt);
 
 
                 end;
@@ -342,8 +364,13 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
 
-        TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRAQ.csv', InStream);
+        ///TempBlob.CreateInStream(InStream);
+        ///FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRAQ.csv', InStream);
+
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRAQ.csv', InStream);
+
 
 
     end;
@@ -353,62 +380,65 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
         SalesReceivablesSetup.Get;
 
-        ArchExt4 := 'c:\tmp\Miravia\UpdatePriceAndStock_Basic_MRCAIT.csv';
-        TempBlob.CreateOutStream(OutStream);
 
-
-
-        TextoSalida1 := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
+        OutTxt := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
                       'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
-        TextoSalida2 := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
-        OutStream.Write(TextoSalida1 + TextoSalida2);
-
-
-
-        TextoSalida1 := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
-        OutStream.Write(TextoSalida1);
-
-
-        TextoSalida1 := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
-        TextoSalida2 := 'Sales Price for a Product for Promotion.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
-        TextoSalida3 := 'The stock quantity should be equal or greater than order quantity.",' +
+        data.AddText(OutTxt);
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.",' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida4 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida5 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida6 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida7 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida8 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
-
-
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
-
-
-        TextoSalida1 := 'Please input less than 200 characters.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
-        TextoSalida2 := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only delete active inactive and empty value are accepted.Empty value will skip this parameter.,';
-        TextoSalida3 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida4 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida5 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida6 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida7 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida8 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
-
-
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
-
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
 
 
 
@@ -521,7 +551,8 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
 
                     ///ArchSalida4.Write(TextoSalida1);
-                    OutStream.Write(TextoSalida1);
+                    OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                    data.AddText(OutTxt);
 
 
                 end;
@@ -529,9 +560,16 @@ Codeunit 50072 "Automaticos MIRAVIA"
             until Item.Next = 0;
 
 
-        TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRCAIT.csv', InStream);
+        ///TempBlob.CreateInStream(InStream);
+        ///FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRCAIT.csv', InStream);
         ///ArchSalida4.Close;
+
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRCAIT.csv', InStream);
+
+
+
     end;
 
     local procedure MIRAVIA_MRDG()
@@ -539,68 +577,65 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
         SalesReceivablesSetup.Get;
 
-        ArchExt4 := 'c:\tmp\Miravia\UpdatePriceAndStock_Basic_MRDG.csv';
-        TempBlob.CreateOutStream(OutStream);
 
-
-
-        TextoSalida1 := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
-                      'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
-        TextoSalida2 := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
-        //ArchSalida4.Write(TextoSalida1+TextoSalida2);
-        OutStream.Write(TextoSalida1 + TextoSalida2);
-
-
-
-        TextoSalida1 := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
-        ///ArchSalida4.Write(TextoSalida1);
-        OutStream.Write(TextoSalida1);
-
-
-        TextoSalida1 := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
+                              'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
+        data.AddText(OutTxt);
+        OutTxt := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
-        TextoSalida2 := 'Sales Price for a Product for Promotion.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
-        TextoSalida3 := 'The stock quantity should be equal or greater than order quantity.",' +
+        data.AddText(OutTxt);
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.",' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida4 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida5 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida6 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida7 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida8 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
-
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
-
-
-        TextoSalida1 := 'Please input less than 200 characters.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
-        TextoSalida2 := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only delete active inactive and empty value are accepted.Empty value will skip this parameter.,';
-        TextoSalida3 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida4 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida5 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida6 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida7 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida8 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
-
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
-
-
-
-
-
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
 
 
         Item.Reset;
@@ -708,15 +743,23 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
 
                     //ArchSalida4.Write(TextoSalida1);
-                    OutStream.Write(TextoSalida1);
+                    OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                    data.AddText(OutTxt);
 
 
                 end;
 
             until Item.Next = 0;
 
-        TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRDG.csv', InStream);
+        ///TempBlob.CreateInStream(InStream);
+        ///FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRDG.csv', InStream);
+
+
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRDG.csv', InStream);
+
+
 
     end;
 
@@ -725,65 +768,64 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
         SalesReceivablesSetup.Get;
 
-        ArchExt4 := 'c:\tmp\Miravia\UpdatePriceAndStock_Basic_MREXO.csv';
-        TempBlob.CreateOutStream(OutStream);
-
-
-
-        TextoSalida1 := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
-                      'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
-        TextoSalida2 := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2);
-        OutStream.Write(TextoSalida1 + TextoSalida2);
-
-
-
-        TextoSalida1 := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
-        ///ArchSalida4.Write(TextoSalida1);
-        OutStream.Write(TextoSalida1);
-
-
-        TextoSalida1 := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
+                              'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
+        data.AddText(OutTxt);
+        OutTxt := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
-        TextoSalida2 := 'Sales Price for a Product for Promotion.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
-        TextoSalida3 := 'The stock quantity should be equal or greater than order quantity.",' +
+        data.AddText(OutTxt);
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.",' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida4 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida5 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida6 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida7 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida8 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
-
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
-
-
-        TextoSalida1 := 'Please input less than 200 characters.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
-        TextoSalida2 := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only delete active inactive and empty value are accepted.Empty value will skip this parameter.,';
-        TextoSalida3 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida4 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida5 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida6 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida7 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida8 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
-
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
-
-
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
 
 
 
@@ -894,15 +936,21 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
 
                     ///ArchSalida4.Write(TextoSalida1);
-                    OutStream.Write(TextoSalida1);
+                    OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                    data.AddText(OutTxt);
 
 
                 end;
 
             until Item.Next = 0;
 
-        TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MREXO.csv', InStream);
+        ///TempBlob.CreateInStream(InStream);
+        ///FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MREXO.csv', InStream);
+
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MREXO.csv', InStream);
+
 
     end;
 
@@ -911,63 +959,66 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
         SalesReceivablesSetup.Get;
 
-        ArchExt4 := 'c:\tmp\Miravia\UpdatePriceAndStock_Basic_MRFLU.csv';
-        TempBlob.CreateOutStream(OutStream);
 
-
-
-        TextoSalida1 := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
-                      'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
-        TextoSalida2 := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
-        //ArchSalida4.Write(TextoSalida1+TextoSalida2);
-        OutStream.Write(TextoSalida1 + TextoSalida2);
-
-
-
-        TextoSalida1 := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
-        ///ArchSalida4.Write(TextoSalida1);
-        OutStream.Write(TextoSalida1);
-
-
-        TextoSalida1 := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
+                              'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
+        data.AddText(OutTxt);
+        OutTxt := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
-        TextoSalida2 := 'Sales Price for a Product for Promotion.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
-        TextoSalida3 := 'The stock quantity should be equal or greater than order quantity.",' +
+        data.AddText(OutTxt);
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.",' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida4 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida5 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida6 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida7 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida8 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
-
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
-
-
-        TextoSalida1 := 'Please input less than 200 characters.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
-        TextoSalida2 := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only delete active inactive and empty value are accepted.Empty value will skip this parameter.,';
-        TextoSalida3 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida4 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida5 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida6 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida7 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida8 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
 
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
 
 
 
@@ -1079,7 +1130,8 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
 
                     ///ArchSalida4.Write(TextoSalida1);
-                    OutStream.Write(TextoSalida1);
+                    OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                    data.AddText(OutTxt);
 
 
 
@@ -1087,8 +1139,15 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
             until Item.Next = 0;
 
-        TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRFLU.csv', InStream);
+        ///TempBlob.CreateInStream(InStream);
+        ///FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRFLU.csv', InStream);
+
+
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRFLU.csv', InStream);
+
+
 
     end;
 
@@ -1097,64 +1156,65 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
         SalesReceivablesSetup.Get;
 
-        ArchExt4 := 'c:\tmp\Miravia\UpdatePriceAndStock_Basic_MRLAG.csv';
-        TempBlob.CreateOutStream(OutStream);
 
-
-
-        TextoSalida1 := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
-                      'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
-        TextoSalida2 := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2);
-        OutStream.Write(TextoSalida1 + TextoSalida2);
-        ;
-
-
-
-        TextoSalida1 := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
-        ///ArchSalida4.Write(TextoSalida1);
-        OutStream.Write(TextoSalida1);
-
-
-        TextoSalida1 := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
+                              'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
+        data.AddText(OutTxt);
+        OutTxt := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
-        TextoSalida2 := 'Sales Price for a Product for Promotion.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
-        TextoSalida3 := 'The stock quantity should be equal or greater than order quantity.",' +
+        data.AddText(OutTxt);
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.",' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida4 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida5 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida6 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida7 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida8 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
-
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
-
-
-        TextoSalida1 := 'Please input less than 200 characters.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
-        TextoSalida2 := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only delete active inactive and empty value are accepted.Empty value will skip this parameter.,';
-        TextoSalida3 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida4 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida5 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida6 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida7 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida8 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
-
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
 
 
 
@@ -1266,15 +1326,23 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
 
                     ///ArchSalida4.Write(TextoSalida1);
-                    OutStream.Write(TextoSalida1);
+                    OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                    data.AddText(OutTxt);
 
 
                 end;
 
             until Item.Next = 0;
 
-        TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRLAG.csv', InStream);
+        ///TempBlob.CreateInStream(InStream);
+        ///FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRLAG.csv', InStream);
+
+
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRLAG.csv', InStream);
+
+
 
     end;
 
@@ -1283,66 +1351,66 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
         SalesReceivablesSetup.Get;
 
-        ArchExt4 := 'c:\tmp\Miravia\UpdatePriceAndStock_Basic_MRMAR.csv';
-        TempBlob.CreateOutStream(OutStream);
 
 
-
-        TextoSalida1 := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
-                      'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
-        TextoSalida2 := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2);
-        OutStream.Write(TextoSalida1 + TextoSalida2);
-        ;
-
-
-
-        TextoSalida1 := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
-        ///ArchSalida4.Write(TextoSalida1);
-        OutStream.Write(TextoSalida1);
-
-
-        TextoSalida1 := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
+                              'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
+        data.AddText(OutTxt);
+        OutTxt := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
-        TextoSalida2 := 'Sales Price for a Product for Promotion.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
-        TextoSalida3 := 'The stock quantity should be equal or greater than order quantity.",' +
+        data.AddText(OutTxt);
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.",' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida4 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida5 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida6 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida7 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida8 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
-
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
-
-
-        TextoSalida1 := 'Please input less than 200 characters.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
-        TextoSalida2 := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only delete active inactive and empty value are accepted.Empty value will skip this parameter.,';
-        TextoSalida3 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida4 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida5 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida6 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida7 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida8 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
-
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
-
-
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
 
 
 
@@ -1454,15 +1522,21 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
 
                     //ArchSalida4.Write(TextoSalida1);
-                    OutStream.Write(TextoSalida1);
+                    OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                    data.AddText(OutTxt);
 
 
                 end;
 
             until Item.Next = 0;
 
-        TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRMAR.csv', InStream);
+        ///TempBlob.CreateInStream(InStream);
+        ///FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRMAR.csv', InStream);
+
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRMAR.csv', InStream);
+
 
 
     end;
@@ -1472,68 +1546,65 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
         SalesReceivablesSetup.Get;
 
-        ArchExt4 := 'c:\tmp\Miravia\UpdatePriceAndStock_Basic_MRTRO.csv';
-        TempBlob.CreateOutStream(OutStream);
 
-
-        TextoSalida1 := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
-                      'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
-        TextoSalida2 := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2);
-        OutStream.Write(TextoSalida1 + TextoSalida2);
-
-
-
-        TextoSalida1 := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
-        ///ArchSalida4.Write(TextoSalida1);
-        OutStream.Write(TextoSalida1);
-
-
-        TextoSalida1 := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
+                              'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
+        data.AddText(OutTxt);
+        OutTxt := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
-        TextoSalida2 := 'Sales Price for a Product for Promotion.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
-        TextoSalida3 := 'The stock quantity should be equal or greater than order quantity.",' +
+        data.AddText(OutTxt);
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.",' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida4 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida5 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida6 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida7 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida8 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
-
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
-
-
-
-        TextoSalida1 := 'Please input less than 200 characters.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
-        TextoSalida2 := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only delete active inactive and empty value are accepted.Empty value will skip this parameter.,';
-        TextoSalida3 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida4 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida5 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida6 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida7 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida8 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
-
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
-
-
-
-
-
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
 
 
         Item.Reset;
@@ -1641,15 +1712,21 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
 
                     ///ArchSalida4.Write(TextoSalida1);
-                    OutStream.Write(TextoSalida1);
+                    OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                    data.AddText(OutTxt);
 
 
                 end;
 
             until Item.Next = 0;
 
-        TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRTRO.csv', InStream);
+        ///TempBlob.CreateInStream(InStream);
+        ///FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRTRO.csv', InStream);
+
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRTRO.csv', InStream);
+
 
     end;
 
@@ -1658,63 +1735,65 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
         SalesReceivablesSetup.Get;
 
-        ArchExt4 := 'c:\tmp\Miravia\UpdatePriceAndStock_Basic_MRHAR.csv';
-        TempBlob.CreateOutStream(OutStream);
 
-
-
-        TextoSalida1 := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
-                      'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
-        TextoSalida2 := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2);
-        OutStream.Write(TextoSalida1 + TextoSalida2);
-
-
-
-        TextoSalida1 := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
-        ///ArchSalida4.Write(TextoSalida1);
-        OutStream.Write(TextoSalida1);
-
-
-        TextoSalida1 := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
+                              'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
+        data.AddText(OutTxt);
+        OutTxt := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
-        TextoSalida2 := 'Sales Price for a Product for Promotion.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
-        TextoSalida3 := 'The stock quantity should be equal or greater than order quantity.",' +
+        data.AddText(OutTxt);
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.",' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida4 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida5 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida6 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida7 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida8 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
-
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
-
-
-        TextoSalida1 := 'Please input less than 200 characters.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
-        TextoSalida2 := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only delete active inactive and empty value are accepted.Empty value will skip this parameter.,';
-        TextoSalida3 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida4 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida5 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida6 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida7 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida8 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
-
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
 
 
 
@@ -1823,15 +1902,19 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
 
                     ///ArchSalida4.Write(TextoSalida1);
-                    OutStream.Write(TextoSalida1);
-
+                    OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                    data.AddText(OutTxt);
 
                 end;
 
             until Item.Next = 0;
 
-        TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRHAR.csv', InStream);
+        ///TempBlob.CreateInStream(InStream);
+        ///FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRHAR.csv', InStream);
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRHAR.csv', InStream);
+
 
     end;
 
@@ -1839,68 +1922,65 @@ Codeunit 50072 "Automaticos MIRAVIA"
     begin
         SalesReceivablesSetup.Get;
 
-        ArchExt4 := 'c:\tmp\Miravia\UpdatePriceAndStock_Basic_MRLIV.csv';
-        TempBlob.CreateOutStream(OutStream);
 
-        //ArchSalida4.TextMode := true;
-        //ArchSalida4.WriteMode := true;
-        //ArchSalida4.Create(ArchExt4);
-
-
-        TextoSalida1 := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
-                      'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
-        TextoSalida2 := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2);
-        OutStream.Write(TextoSalida1 + TextoSalida2);
-
-
-
-        TextoSalida1 := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
-        ///ArchSalida4.Write(TextoSalida1);
-        OutStream.Write(TextoSalida1);
-
-
-        TextoSalida1 := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SellerSku,Price,SpecialPrice,Status,Default Stock Quantity,Multiwarehouse Code 1,' +
+              'Stock Quantity 1,Multiwarehouse Code 2,Stock Quantity 2,Multiwarehouse Code 3,';
+        data.AddText(OutTxt);
+        OutTxt := 'Stock Quantity 3,Multiwarehouse Code 4,Stock Quantity 4,Multiwarehouse Code 5,Stock Quantity 5';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
-        TextoSalida2 := 'Sales Price for a Product for Promotion.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
-        TextoSalida3 := 'The stock quantity should be equal or greater than order quantity.",' +
+        data.AddText(OutTxt);
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.",' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida4 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida5 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida6 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida7 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
         'Input your multiwarehouse code. You can get Multiwarehouse code from "Miravia Seller Center-My Account-Setting-Warehouse",';
-        TextoSalida8 := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
-
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
-
-
-        TextoSalida1 := 'Please input less than 200 characters.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
-        TextoSalida2 := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only delete active inactive and empty value are accepted.Empty value will skip this parameter.,';
-        TextoSalida3 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida4 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida5 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida6 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida7 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
         'Only positive numbers are accepted. Empty value will skip this parameter.,';
-        TextoSalida8 := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
-
-        ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5+TextoSalida6+TextoSalida7+TextoSalida8);
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8);
-
-
+        data.AddText(OutTxt);
+        OutTxt := 'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
 
 
 
@@ -2009,16 +2089,23 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
 
 
-                    OutStream.Write(TextoSalida1);
+                    OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                    data.AddText(OutTxt);
 
 
                 end;
 
             until Item.Next = 0;
 
-        TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRLIV.csv', InStream);
+        ///TempBlob.CreateInStream(InStream);
+        ///FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRLIV.csv', InStream);
+
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRLIV.csv', InStream);
+
 
     end;
+
 }
 

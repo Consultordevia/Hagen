@@ -56,9 +56,21 @@ Codeunit 50071 "Automaticos Leroy Merlin"
         FileName: Text;
         InStream: InStream;
         FicherosHagen: Codeunit FicherosHagen;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+        OutTxt: Text;
+
     begin
 
-        TempBlob.CreateOutStream(OutStream);
+
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
+
+        ///TempBlob.CreateOutStream(OutStream);
         //ArchSalida4.TextMode := true;
         //ArchSalida4.WriteMode := true;
         //ArchSalida4.Create(ArchExt4);
@@ -67,22 +79,31 @@ Codeunit 50071 "Automaticos Leroy Merlin"
 
 
 
-        TextoSalida1 := 'SKU de oferta;ID de producto;Tipo de ID de producto;Descripción de la oferta;Descripción interna de la oferta;Precio de la oferta;Información adicional sobre el precio de la oferta;Cantidad de la oferta;Alerta de cantidad mínima;';
-        TextoSalida2 := 'Estado de la oferta;Fecha de inicio de la disponibilidad;Fecha de finalización de la disponibilidad;Clase logística;Precio de descuento;Fecha de inicio del descuento;Fecha de finalización del descuento;';
-        TextoSalida3 := 'Plazo de envío (en días);Actualizar/Eliminar;Precio de oferta por canal 002;Precio de descuento por canal 002;Fecha de inicio del descuento para el canal 002;Fecha de fin del descuento para el canal 002;';
-        TextoSalida4 := 'Importe DEE;Importe DEE Italia;Importe DEE Bricoman Francia;Importe DEE LMES;Importe DEA;Precio sin IVA Bricoman FR;Precio con descuento sin IVA Bricoman FR;IVA LMFR;IVA BMFR;IVA LMIT;IVA LMES;País de almacenaje;';
-        TextoSalida5 := 'Oferta exclusiva para;Porcentaje de descuento LMFR;Porcentaje de descuento LMIT;Porcentaje de descuento BMFR;Porcentaje de descuento LMES';
+        OutTxt := 'SKU de oferta;ID de producto;Tipo de ID de producto;Descripción de la oferta;Descripción interna de la oferta;Precio de la oferta;Información adicional sobre el precio de la oferta;Cantidad de la oferta;Alerta de cantidad mínima;';
+        data.AddText(OutTxt);
+        OutTxt := 'Estado de la oferta;Fecha de inicio de la disponibilidad;Fecha de finalización de la disponibilidad;Clase logística;Precio de descuento;Fecha de inicio del descuento;Fecha de finalización del descuento;';
+        data.AddText(OutTxt);
+        OutTxt := 'Plazo de envío (en días);Actualizar/Eliminar;Precio de oferta por canal 002;Precio de descuento por canal 002;Fecha de inicio del descuento para el canal 002;Fecha de fin del descuento para el canal 002;';
+        data.AddText(OutTxt);
+        OutTxt := 'Importe DEE;Importe DEE Italia;Importe DEE Bricoman Francia;Importe DEE LMES;Importe DEA;Precio sin IVA Bricoman FR;Precio con descuento sin IVA Bricoman FR;IVA LMFR;IVA BMFR;IVA LMIT;IVA LMES;País de almacenaje;';
+        data.AddText(OutTxt);
+        OutTxt := 'Oferta exclusiva para;Porcentaje de descuento LMFR;Porcentaje de descuento LMIT;Porcentaje de descuento BMFR;Porcentaje de descuento LMES';
+        data.AddText(OutTxt);
 
 
         //////ArchSalida4.WRITE(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4+TextoSalida5);
 
-        TextoSalida1 := 'sku;product-id;product-id-type;description;internal-description;price;price-additional-info;quantity;min-quantity-alert;state;available-start-date;available-end-date;logistic-class;';
-        TextoSalida2 := 'discount-price;discount-start-date;discount-end-date;leadtime-to-ship;update-delete;price[channel=002];discount-price[channel=002];discount-start-date[channel=002];discount-end-date[channel=002];';
-        TextoSalida3 := 'ecopart-amount;ecopart-amount-lmit;ecopart-amount-bmfr;ecopart-amount-lmes;dea-amount;no-tax-price-bmfr;no-tax-discount-price-bmfr;vat-lmfr;vat-bmfr;vat-lmit;vat-lmes;shipment-origin;exclusive-channels;';
-        TextoSalida4 := 'discount-percentage-lmfr;discount-percentage-lmit;discount-percentage-bmfr;discount-percentage-lmes';
+        OutTxt := 'sku;product-id;product-id-type;description;internal-description;price;price-additional-info;quantity;min-quantity-alert;state;available-start-date;available-end-date;logistic-class;';
+        data.AddText(OutTxt);
+        OutTxt := 'discount-price;discount-start-date;discount-end-date;leadtime-to-ship;update-delete;price[channel=002];discount-price[channel=002];discount-start-date[channel=002];discount-end-date[channel=002];';
+        data.AddText(OutTxt);
+        OutTxt := 'ecopart-amount;ecopart-amount-lmit;ecopart-amount-bmfr;ecopart-amount-lmes;dea-amount;no-tax-price-bmfr;no-tax-discount-price-bmfr;vat-lmfr;vat-bmfr;vat-lmit;vat-lmes;shipment-origin;exclusive-channels;';
+        data.AddText(OutTxt);
+        OutTxt := 'discount-percentage-lmfr;discount-percentage-lmit;discount-percentage-bmfr;discount-percentage-lmes';
+        data.AddText(OutTxt);
 
 
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
+        ///OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
 
 
 
@@ -308,7 +329,7 @@ Codeunit 50071 "Automaticos Leroy Merlin"
 
 
 
-                    TextoSalida1 := Format(Item."No.") + ';' +     ///// 1
+                    OutTxt := Format(Item."No.") + ';' +     ///// 1
                                   Format('0' + Item.ean) + ';' +///// 2
                                   Format('EAN') + ';' +///// 3
                                   Format('') + ';' +///// 4
@@ -353,7 +374,9 @@ Codeunit 50071 "Automaticos Leroy Merlin"
 
 
 
-                    OutStream.Write(TextoSalida1);
+                    ///OutStream.Write(TextoSalida1);
+                    OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                    data.AddText(OutTxt);
 
 
 
@@ -370,8 +393,13 @@ Codeunit 50071 "Automaticos Leroy Merlin"
             nomdir := ADAIA.Ruta;
         end;
 
-        TempBlob.CreateInStream(InStream);
+///        TempBlob.CreateInStream(InStream);
+///        FicherosHagen.CrearFichero(nomdir, 'LeroyMerlin.csv', InStream);
+
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
         FicherosHagen.CrearFichero(nomdir, 'LeroyMerlin.csv', InStream);
+
 
 
 

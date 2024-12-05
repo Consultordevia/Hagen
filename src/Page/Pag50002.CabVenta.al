@@ -14,6 +14,9 @@ page 50002 CabVenta
         {
             repeater(General)
             {
+                
+                
+                
                 field(ASN; Rec.ASN)
                 {
                     ToolTip = 'Specifies the value of the ASN field.', Comment = '%';

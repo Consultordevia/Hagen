@@ -17,6 +17,10 @@ Codeunit 50069 sii2
         FileName: Text;
         InStream: InStream;
         FicherosHagen: Codeunit FicherosHagen;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+        OutTxt: Text;
 
     begin
 
@@ -26,9 +30,14 @@ Codeunit 50069 sii2
         DesdehastaSII.RunModal;
         Commit;
 
-        TempBlob.CreateOutStream(OutStream);
+         CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
 
-        OutStream.Write(TextoSalida1);
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
+
+        ///TempBlob.CreateOutStream(OutStream);
+        ///OutStream.Write(TextoSalida1);
 
 
 
@@ -54,7 +63,7 @@ Codeunit 50069 sii2
 
 
 
-        ArchExt := '\\192.168.0.66\documentos_sii\SII_' + Format(textodatat) + '.CSV';
+        ///ArchExt := '\\192.168.0.66\documentos_sii\SII_' + Format(textodatat) + '.CSV';
 
         ///     ArchSalida.TextMode := true;
         ///ArchSalida.WriteMode := true;
@@ -67,7 +76,7 @@ Codeunit 50069 sii2
         VENTANA.Open('#1############');
 
 
-        TextoSalida1 := 'Emi/Rec;' + ///1
+        OutTxt := 'Emi/Rec;' + ///1
                         'Factura;' +  ///2
                         'FechaFactura;' +  ///3
                         'FechaOperacion;' +  ///4
@@ -82,7 +91,8 @@ Codeunit 50069 sii2
                         'Calificacion;' +  ///13
                         'Descripcion;' +  ///14
                         'TotalFactura;';  ///15
-        TextoSalida2 := 'Base1;' + ///16
+                         data.AddText(OutTxt);
+        OutTxt := 'Base1;' + ///16
                         'IVA1;' +  ///17
                         'Cuota1;' +  ///18
                         'Rec1;' +  ///19
@@ -100,7 +110,8 @@ Codeunit 50069 sii2
                         'CausaExencion;' +  ///31
                         'BaseImpExenta;' +  ///32
                         'BaseImpCoste;';  ///33
-        TextoSalida3 := 'SituacionCatastral;' + ///34
+                         data.AddText(OutTxt);
+        OutTxt := 'SituacionCatastral;' + ///34
                         'ReferenciaCatastral;' +  ///35
                         'TipoNoSujetoIVA;' +  ///36
                         'ImpNoSujetoIVA;' + /// 36
@@ -118,7 +129,8 @@ Codeunit 50069 sii2
                         'BienInversion1;' +  ///49
                         'BienInversion2;' +  ///50
                         'BienInversion3;';  ///51
-        TextoSalida4 := 'DeduccionPosterior;' +/// 52
+                         data.AddText(OutTxt);
+        OutTxt := 'DeduccionPosterior;' +/// 52
                         'EjercicioDeduccion;' +  ///53
                         'PeriodoDeduccion;' +  ///54
                         'VariosDestinatarios;' + /// 55
@@ -131,11 +143,13 @@ Codeunit 50069 sii2
                         'FacturaSinDestinatario;' +  ///62
                         'PrevioGGEEREDEME;' +  ///63
                         'FacturaSimplificada_72_73';  ///64
+                        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                        data.AddText(OutTxt);
 
         /////ArchSalida.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4);
 
 
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
+        ///OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
 
         Rec112.Reset;
         Rec112.SetCurrentkey(Rec112."Posting Date");
@@ -320,7 +334,7 @@ Codeunit 50069 sii2
 
 
 
-                        TextoSalida1 := 'E;' +
+                        OutTxt := 'E;' +
                                         Format(Rec112."No.") + ';' +
                                         Format(Rec112."Posting Date") + ';' +
                                         Format(Rec112."Posting Date") + ';' +
@@ -335,7 +349,7 @@ Codeunit 50069 sii2
                                         Calificacion + ';' + ///13
                                 'VENTAS;' + ///14
                                 Format(Rec112."Amount Including VAT") + ';';
-                        TextoSalida2 := Format(BASE1) + ';' + ///16
+                        OutTxt := Format(BASE1) + ';' + ///16
                                         Format(IVA1) + ';' + ///17
                                         Format(CUOTA1) + ';' +/// 18
                                         Format(REC1) + ';' + ///19
@@ -353,7 +367,7 @@ Codeunit 50069 sii2
                                         Format(CausaExencion) + ';' + ///31
                                         Format(BaseImpExenta) + ';' + ///32
                                         Format(BaseImpCoste) + ';';  ///33
-                        TextoSalida3 := Format(SituacionCatastral) + ';' + ///34
+                        OutTxt := Format(SituacionCatastral) + ';' + ///34
                                         Format(ReferenciaCatastral) + ';' + ///35
                                         Format(TipoNoSujetoIVA) + ';' + ///36
                                         Format(ImpNoSujetoIVA) + ';' + ///36
@@ -371,7 +385,7 @@ Codeunit 50069 sii2
                                         Format(BienInversion1) + ';' + ///49
                                         Format(BienInversion2) + ';' + ///50
                                         Format(BienInversion3) + ';';  ///51
-                        TextoSalida4 := Format(DeduccionPosterior) + ';' + ///52
+                        OutTxt := Format(DeduccionPosterior) + ';' + ///52
                                         Format(EjercicioDeduccion) + ';' + ///53
                                         Format(PeriodoDeduccion) + ';' + ///54
                                         Format(VariosDestinatarios) + ';' + ///55
@@ -386,7 +400,9 @@ Codeunit 50069 sii2
                                         Format(FacturaSimplificada_72_73);  ///64
                         if Rec112."Amount Including VAT" <> 0 then begin
                             /////ArchSalida.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4);
-                            OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
+                            ///OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
+                            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                            data.AddText(OutTxt);
                         end;
 
                     end;
@@ -562,7 +578,7 @@ Codeunit 50069 sii2
 
                         CuotaDeducible := CUOTA1 + CUOTA2 + CUOTA3 + CUOTAREC1 + CUOTAREC2 + CUOTAREC3;
 
-                        TextoSalida1 := 'E;' + ///1
+                        OutTxt := 'E;' + ///1
                                        Format(Rec114."No.") + ';' +
                                        Format(Rec114."Posting Date") + ';' +
                                        Format(Rec114."Posting Date") + ';' +
@@ -577,7 +593,7 @@ Codeunit 50069 sii2
                                        Calificacion + ';' + ///13
                                 'VENTAS;' +  ///14
                                 Format(Rec114."Amount Including VAT" * -1) + ';';
-                        TextoSalida2 := Format(BASE1) + ';' + ///16
+                        OutTxt := Format(BASE1) + ';' + ///16
                                        Format(IVA1) + ';' + ///17
                                        Format(CUOTA1) + ';' + ///18
                                        Format(REC1) + ';' + ///19
@@ -595,7 +611,7 @@ Codeunit 50069 sii2
                                        Format(CausaExencion) + ';' + ///31
                                        Format(BaseImpExenta) + ';' + ///32
                                        Format(BaseImpCoste) + ';';  ///33
-                        TextoSalida3 := Format(SituacionCatastral) + ';' + ///34
+                        OutTxt := Format(SituacionCatastral) + ';' + ///34
                                        Format(ReferenciaCatastral) + ';' +/// 35
                                        Format(TipoNoSujetoIVA) + ';' + ///36
                                        Format(ImpNoSujetoIVA) + ';' + ///36
@@ -613,7 +629,7 @@ Codeunit 50069 sii2
                                        Format(BienInversion1) + ';' + ///49
                                        Format(BienInversion2) + ';' + ///50
                                        Format(BienInversion3) + ';';  ///51
-                        TextoSalida4 := Format(DeduccionPosterior) + ';' + ///52
+                        OutTxt := Format(DeduccionPosterior) + ';' + ///52
                                        Format(EjercicioDeduccion) + ';' + ///53
                                        Format(PeriodoDeduccion) + ';' + ///54
                                        Format(VariosDestinatarios) + ';' + ///55
@@ -628,7 +644,10 @@ Codeunit 50069 sii2
                                        Format(FacturaSimplificada_72_73);  ///64
                         if Rec114."Amount Including VAT" <> 0 then begin
                             ///ArchSalida.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4);
-                            OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
+                            ///OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
+                            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                            data.AddText(OutTxt);
+
                         end;
 
                     end;
@@ -771,7 +790,7 @@ Codeunit 50069 sii2
 
                         CuotaDeducible := CUOTA1 + CUOTA2 + CUOTA3 + CUOTAREC1 + CUOTAREC2 + CUOTAREC3;
 
-                        TextoSalida1 := 'R;' + ///1
+                        OutTxt := 'R;' + ///1
                                         Format(Rec122."Vendor Invoice No.") + ';' +
                                         Format(Rec122."Document Date") + ';' +
                                         Format(Rec122."Posting Date") + ';' +
@@ -786,7 +805,7 @@ Codeunit 50069 sii2
                                         Calificacion + ';' + ///13
                                 'COMPRAS;' +  ///14
                                 Format(totalfac) + ';';
-                        TextoSalida2 := Format(BASE1) + ';' + ///16
+                        OutTxt := Format(BASE1) + ';' + ///16
                                         Format(IVA1) + ';' + ///17
                                         Format(CUOTA1) + ';' + ///18
                                         Format(REC1) + ';' +/// 19
@@ -804,7 +823,7 @@ Codeunit 50069 sii2
                                         Format(CausaExencion) + ';' +/// 31
                                         Format(BaseImpExenta) + ';' + ///32
                                         Format(BaseImpCoste) + ';';  ///33
-                        TextoSalida3 := Format(SituacionCatastral) + ';' + ///34
+                        OutTxt := Format(SituacionCatastral) + ';' + ///34
                                         Format(ReferenciaCatastral) + ';' + ///35
                                         Format(TipoNoSujetoIVA) + ';' + ///36
                                         Format(ImpNoSujetoIVA) + ';' + ///36
@@ -822,7 +841,7 @@ Codeunit 50069 sii2
                                         Format(BienInversion1) + ';' + ///49
                                         Format(BienInversion2) + ';' + ///50
                                         Format(BienInversion3) + ';';  ///51
-                        TextoSalida4 := Format(DeduccionPosterior) + ';' + ///52
+                        OutTxt := Format(DeduccionPosterior) + ';' + ///52
                                         Format(EjercicioDeduccion) + ';' + ///53
                                         Format(PeriodoDeduccion) + ';' +/// 54
                                         Format(VariosDestinatarios) + ';' + ///55
@@ -836,7 +855,10 @@ Codeunit 50069 sii2
                                         Format(PrevioGGEEREDEME) + ';' + ///63
                                         Format(FacturaSimplificada_72_73);  ///64
                         /////ArchSalida.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
-                        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
+                        ///OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
+                        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                            data.AddText(OutTxt);
+
 
                         if Rec122.DUA <> '' then begin
 
@@ -872,7 +894,7 @@ Codeunit 50069 sii2
                             totalfac := BASE1 + CUOTA1;
                             CuotaDeducible := CUOTA1 + CUOTA2 + CUOTA3 + CUOTAREC1 + CUOTAREC2 + CUOTAREC3;
 
-                            TextoSalida1 := 'R;' + ///1
+                            OutTxt := 'R;' + ///1
                                             Format(Rec122.DUA) + ';' +
                                             Format(Rec122."Document Date") + ';' +
                                             Format(Rec122."Posting Date") + ';' +
@@ -887,7 +909,7 @@ Codeunit 50069 sii2
                                 'S1' + ';' +  ///13
                                 'COMPRAS;' +  ///14
                                 Format(totalfac) + ';';
-                            TextoSalida2 := Format(BASE1) + ';' + ///16
+                            OutTxt := Format(BASE1) + ';' + ///16
                                             Format(IVA1) + ';' + ///17
                                             Format(CUOTA1) + ';' + ///18
                                             Format(REC1) + ';' + ///19
@@ -905,7 +927,7 @@ Codeunit 50069 sii2
                                             Format(CausaExencion) + ';' +/// 31
                                             Format(BaseImpExenta) + ';' + ///32
                                             Format(BaseImpCoste) + ';';  ///33
-                            TextoSalida3 := Format(SituacionCatastral) + ';' + ///34
+                            OutTxt := Format(SituacionCatastral) + ';' + ///34
                                             Format(ReferenciaCatastral) + ';' + ///35
                                             Format(TipoNoSujetoIVA) + ';' + ///36
                                             Format(ImpNoSujetoIVA) + ';' + ///36
@@ -923,7 +945,7 @@ Codeunit 50069 sii2
                                             Format(BienInversion1) + ';' + ///49
                                             Format(BienInversion2) + ';' + ///50
                                             Format(BienInversion3) + ';';  ///51
-                            TextoSalida4 := Format(DeduccionPosterior) + ';' + ///52
+                            OutTxt := Format(DeduccionPosterior) + ';' + ///52
                                             Format(EjercicioDeduccion) + ';' + ///53
                                             Format(PeriodoDeduccion) + ';' + ///54
                                             Format(VariosDestinatarios) + ';' + ///55
@@ -937,7 +959,10 @@ Codeunit 50069 sii2
                                             Format(PrevioGGEEREDEME) + ';' + ///63
                                             Format(FacturaSimplificada_72_73);  ///64
                             /////ArchSalida.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
-                            OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
+                            ///OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
+                            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                            data.AddText(OutTxt);
+
 
                         end;
 
@@ -1098,7 +1123,7 @@ Codeunit 50069 sii2
 
 
 
-                        TextoSalida1 := 'R;' + ///1
+                        OutTxt := 'R;' + ///1
                                        Format(Rec124."No.") + ';' +
                                        Format(Rec124."Posting Date") + ';' +
                                        Format(Rec124."Posting Date") + ';' +
@@ -1113,7 +1138,7 @@ Codeunit 50069 sii2
                                        Calificacion + ';' + ///13
                                 'COMPRAS;' +  ///14
                                 Format(totalfac) + ';';
-                        TextoSalida2 := Format(BASE1) + ';' + ///16
+                        OutTxt := Format(BASE1) + ';' + ///16
                                        Format(IVA1) + ';' +/// 17
                                        Format(CUOTA1) + ';' +/// 18
                                        Format(REC1) + ';' + ///19
@@ -1131,7 +1156,7 @@ Codeunit 50069 sii2
                                        Format(CausaExencion) + ';' +/// 31
                                        Format(BaseImpExenta) + ';' + ///32
                                        Format(BaseImpCoste) + ';';  ///33
-                        TextoSalida3 := Format(SituacionCatastral) + ';' + ///34
+                        OutTxt := Format(SituacionCatastral) + ';' + ///34
                                        Format(ReferenciaCatastral) + ';' + ///35
                                        Format(TipoNoSujetoIVA) + ';' +/// 36
                                        Format(ImpNoSujetoIVA) + ';' +/// 36
@@ -1149,7 +1174,7 @@ Codeunit 50069 sii2
                                        Format(BienInversion1) + ';' + ///49
                                        Format(BienInversion2) + ';' + ///50
                                        Format(BienInversion3) + ';';  ///51
-                        TextoSalida4 := Format(DeduccionPosterior) + ';' +/// 52
+                        OutTxt := Format(DeduccionPosterior) + ';' +/// 52
                                        Format(EjercicioDeduccion) + ';' + ///53
                                        Format(PeriodoDeduccion) + ';' + ///54
                                        Format(VariosDestinatarios) + ';' +/// 55
@@ -1163,7 +1188,10 @@ Codeunit 50069 sii2
                                        Format(PrevioGGEEREDEME) + ';' + ///63
                                        Format(FacturaSimplificada_72_73);  ///64
                         /////ArchSalida.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
-                        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
+                        ///OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
+                        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                        data.AddText(OutTxt);
+
 
                     end;
                 end;
@@ -1180,8 +1208,16 @@ Codeunit 50069 sii2
         IF ADAIA.FindSet() THEN begin
             nomdir := ADAIA.Ruta;
         end;
-        TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(NOMDIR, 'INN.csv', InStream);
+
+        Data.Write(OutStream);
+
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+        FicherosHagen.CrearFichero(nomdir, 'SII_' + Format(textodatat) + '.CSV', InStream);
+
+
+         
+
+
     end;
 
     var

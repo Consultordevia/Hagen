@@ -148,22 +148,35 @@ Codeunit 50082 "Automaticos TRADE INN"
         FileName: Text;
         InStream: InStream;
         FicherosHagen: Codeunit FicherosHagen;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+        OutTxt: Text;
+
     begin
-        TempBlob.CreateOutStream(OutStream);
+        
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
+
+        ///TempBlob.CreateOutStream(OutStream);
 
 
 
 
-        OutStream.Write(TextoSalida1);
+        ///OutStream.Write(TextoSalida1);
 
 
         SalesReceivablesSetup.Get;
 
 
 
-        TextoSalida4 := 'Nº REFERENCIA;EAN;CANTIDAD STOCK;CANTIDAD STOCK INTERNACIONAL;COSTE TARIFA;DESCUENTO;PVP';
+        OutTxt := 'Nº REFERENCIA;EAN;CANTIDAD STOCK;CANTIDAD STOCK INTERNACIONAL;COSTE TARIFA;DESCUENTO;PVP';
+        data.AddText(OutTxt);
 
-        OutStream.Write(TextoSalida4);
+        ///OutStream.Write(TextoSalida4);
 
 
 
@@ -329,7 +342,7 @@ Codeunit 50082 "Automaticos TRADE INN"
 
 
 
-                                TextoSalida1 := Format(Item."No.") + ';' +
+                                OutTxt := Format(Item."No.") + ';' +
                                               Format(Item.ean) + ';' +
                                               Format(DISPONI) + ';' +
                                               ';' +
@@ -338,7 +351,9 @@ Codeunit 50082 "Automaticos TRADE INN"
                                               Format(DedimalCode(pvpr));
 
 
-                                OutStream.Write(TextoSalida4);
+                                ///OutStream.Write(TextoSalida4);
+                                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                                data.AddText(OutTxt);
 
 
                             end;
@@ -355,8 +370,13 @@ Codeunit 50082 "Automaticos TRADE INN"
         IF ADAIA.FindSet() THEN begin
             nomdir := ADAIA.Ruta;
         end;
-        TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(NOMDIR, 'INN.csv', InStream);
+        ///TempBlob.CreateInStream(InStream);
+        ///FicherosHagen.CrearFichero(NOMDIR, 'INN.csv', InStream);
+
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+        FicherosHagen.CrearFichero(nomdir, 'INN.csv', InStream);
+
 
     end;
 

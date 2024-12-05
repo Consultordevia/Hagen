@@ -139,15 +139,29 @@ Codeunit 50062 "Automaticos MANOMANO"
         FileName: Text;
         InStream: InStream;
         FicherosHagen: Codeunit FicherosHagen;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+        OutTxt: Text;
+
     begin
-        TempBlob.CreateOutStream(OutStream);
+
+        
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
+
+        ///TempBlob.CreateOutStream(OutStream);
 
 
 
-        TextoSalida1 := 'sku;quantity;use_grid;carrier;shipping_time;product_price_vat_inc;shipping_price_vat_inc';
+        OutTxt := 'sku;quantity;use_grid;carrier;shipping_time;product_price_vat_inc;shipping_price_vat_inc';
+        data.AddText(OutTxt);
 
 
-        OutStream.Write(TextoSalida1);
+        ///OutStream.Write(TextoSalida1);
 
 
 
@@ -208,7 +222,7 @@ Codeunit 50062 "Automaticos MANOMANO"
 
 
 
-                    TextoSalida1 := Format(Item."No.") + ';' +     ///// 2
+                    OutTxt := Format(Item."No.") + ';' +     ///// 2
                                   Format(tSTOCKWEB) + ';' +///// 42
                                   '0;' +///// 42
                                   'SENDING;' +///// 42
@@ -216,8 +230,9 @@ Codeunit 50062 "Automaticos MANOMANO"
                                   Format(tprecio2) + ';' +
                                   Format(tprecio4);
 
-
-                    OutStream.Write(TextoSalida1);
+                    OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                    data.AddText(OutTxt);
+              ///      OutStream.Write(TextoSalida1);
 
 
                 end;
@@ -232,7 +247,12 @@ Codeunit 50062 "Automaticos MANOMANO"
             nomdir := ADAIA.Ruta;
         end;
 
-        TempBlob.CreateInStream(InStream);
+        ///TempBlob.CreateInStream(InStream);
+        ///FicherosHagen.CrearFichero(nomdir, 'MANOMANO-stock.csv', InStream);
+        
+        Data.Write(OutStream);
+
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
         FicherosHagen.CrearFichero(nomdir, 'MANOMANO-stock.csv', InStream);
 
     end;
