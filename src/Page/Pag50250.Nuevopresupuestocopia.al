@@ -516,8 +516,8 @@ Page 50250 "Nuevo presupuesto copia"
             }
             /////part(Control1000000004; "Ofertas combinadas")
             /////{
-                /////SubPageLink = "Document Type" = const(DetalleProd),
-                     /////         "No." = field("No.");
+            /////SubPageLink = "Document Type" = const(DetalleProd),
+            /////         "No." = field("No.");
             /////}
             ///part(Control1000000009; SupraOferta)
             ///{
@@ -535,7 +535,7 @@ Page 50250 "Nuevo presupuesto copia"
             }
             ///systempart(Control1000000021; Links)
             ///{
-                ///Visible = false;
+            ///Visible = false;
             ///}
             part(Control1903433807; "Cartera Receiv. Statistics FB")
             {
@@ -602,9 +602,9 @@ Page 50250 "Nuevo presupuesto copia"
                 ShowFilter = false;
                 Visible = ShowWorkflowStatus;
             }
-            systempart(Control1905767507; Notes)
-            {
-            }
+            ///systempart(Control1905767507; Notes)
+            ///{
+            ///}
         }
     }
 

@@ -1,388 +1,6 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
 Page 50011 "Comercial Datos"
 {
-    // Retenido,Para preparar,Pdte. comercial,Servido,Pendiente stock
-    // {
-    // CalculateCueFieldValues;
-    // ShowDocumentsPendingDodExchService := FALSE;
-    // IF DocExchServiceSetup.GET THEN
-    //   ShowDocumentsPendingDodExchService := DocExchServiceSetup.Enabled;
-    // 
-    // 
-    // 
-    // IF UserSetup.GET(UPPERCASE(USERID)) THEN BEGIN
-    // 
-    // END;
-    // 
-    // ///// UserSetup."Salespers./Purch. Code":='15';
-    // 
-    //      mes := DATE2DMY(TODAY,2);
-    //      año := DATE2DMY(TODAY,3);
-    //      desde := DMY2DATE(1, mes, año);
-    //      date.RESET;
-    //      date.SETRANGE("Period Type",2);
-    //      date.SETRANGE("Period Start",desde);
-    //      IF date.FINDLAST THEN BEGIN
-    //           hasta:=date."Period End";
-    //      END;
-    //      desde:=20180101D;
-    //      SalesCue2.GET;
-    //      SalesCue2.SETRANGE("Vendedor Filtro",UserSetup."Salespers./Purch. Code");
-    //      SalesCue2.CALCFIELDS("Pedidos Transferencia");
-    //      PDTETRANF:=SalesCue2."Pedidos Transferencia";
-    //      SalesCue2.SETRANGE("Date Filter",desde,hasta);
-    //      SalesCue2.CALCFIELDS("Pedidos Mes Actual");
-    //      MesActual:=SalesCue2."Pedidos Mes Actual";
-    // 
-    //      mes := DATE2DMY(TODAY,2);
-    //      año := DATE2DMY(TODAY,3);
-    //      desde:=20000101D;
-    //      hasta := DMY2DATE(1, mes, año);
-    //      hasta:=CALCDATE('-1D',hasta);
-    //      desdeact:=DMY2DATE(1, mes, año);
-    //      hastaact:=TODAY;
-    //      desdeant:=CALCDATE('-1M',desdeact);
-    //      date.RESET;
-    //      date.SETRANGE("Period Type",2);
-    //      date.SETRANGE("Period Start",desdeant);
-    //      IF date.FINDLAST THEN BEGIN
-    //           hastaant:=date."Period End";
-    //      END;
-    // 
-    //      SalesCue2.GET;
-    //      SalesCue2.SETRANGE("Date Filter",desde,hasta);
-    //      SalesCue2.SETRANGE("Vendedor Filtro",UserSetup."Salespers./Purch. Code");
-    //      SalesCue2.CALCFIELDS(SalesCue2."Pedidos Mes Actual");
-    //      Resto:=SalesCue2."Pedidos Mes Actual";
-    // 
-    // 
-    // 
-    // 
-    // Num_presupu:=0;
-    // 
-    // RecuperaRotura:=0;
-    // SalesHeader.RESET;
-    // SalesHeader.SETRANGE(SalesHeader."Document Type",0);
-    // SalesHeader.SETRANGE(SalesHeader."Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // SalesHeader.SETRANGE(SalesHeader."Order Date",20180101D,TODAY);
-    // SalesHeader.SETRANGE("Estado presupuesto",SalesHeader."Estado presupuesto"::Activo);
-    // IF SalesHeader.FINDSET THEN REPEAT
-    //      Num_presupu:=Num_presupu+1;
-    //      SalesLine.RESET;
-    //      SalesLine.SETRANGE(SalesLine."Document Type",SalesHeader."Document Type");
-    //      SalesLine.SETRANGE(SalesLine."Document No.",SalesHeader."No.");
-    //      IF SalesLine.FINDSET THEN REPEAT
-    //           IF Item.GET(SalesLine."No.") THEN BEGIN
-    //                IF Item."No permite pedido"=FALSE THEN BEGIN
-    //                  RecuperaRotura:=RecuperaRotura+1;
-    //                  SALE:=TRUE;
-    //                END;
-    // 
-    //           END;
-    //      UNTIL (SalesLine.NEXT=0) OR SALE;
-    // 
-    // UNTIL SalesHeader.NEXT=0;
-    // 
-    // 
-    // PedidosRetenidos:=0;
-    // PedidosPendieteComercial:=0;
-    // PedidosParaPreparar:=0;
-    // 
-    // SalesHeader.RESET;
-    // SalesHeader.SETRANGE(SalesHeader."Document Type",1);
-    // SalesHeader.SETRANGE(SalesHeader."Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // SalesHeader.SETRANGE(SalesHeader."Order Date",20180101D,TODAY);
-    // IF SalesHeader.FINDSET THEN REPEAT
-    //      IF SalesHeader."Estado pedido"=SalesHeader."Estado pedido"::"Para preparar" THEN BEGIN
-    //           PedidosParaPreparar:=PedidosParaPreparar+1;
-    //      END;
-    //      IF SalesHeader."Estado pedido"=SalesHeader."Estado pedido"::"Pdte. comercial" THEN BEGIN
-    //           PedidosPendieteComercial:=PedidosPendieteComercial+1;
-    //      END;
-    //      IF SalesHeader."Estado pedido"=SalesHeader."Estado pedido"::Retenido THEN BEGIN
-    //           PedidosRetenidos:=PedidosRetenidos+1;
-    //      END;
-    // 
-    // UNTIL SalesHeader.NEXT=0;
-    // 
-    // 
-    // CuantosImp:=0;
-    // ImpImpagados:=0;
-    // 
-    // Customer.RESET;
-    // Customer.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // IF Customer.FINDSET THEN REPEAT
-    //      CustLedgerEntry.RESET;
-    //      CustLedgerEntry.SETCURRENTKEY("Customer No.",Open);
-    //      CustLedgerEntry.SETRANGE("Customer No.",Customer."No.");
-    //      CustLedgerEntry.SETRANGE(Open,TRUE);
-    //      CustLedgerEntry.SETRANGE("Category Code",'IMPAGADO');
-    //      IF CustLedgerEntry.FINDSET THEN REPEAT
-    //           CustLedgerEntry.CALCFIELDS("Remaining Amt. (LCY)");
-    //           ImpImpagados:=ImpImpagados+CustLedgerEntry."Remaining Amt. (LCY)";
-    //           CuantosImp:=CuantosImp+1;
-    //      UNTIL CustLedgerEntry.NEXT=0;
-    // UNTIL Customer.NEXT=0;
-    // TEXTO1:=FORMAT(ImpImpagados)+' ('+FORMAT(CuantosImp)+')';
-    // 
-    // 
-    // diamenosuno:=CALCDATE('-1D',TODAY);
-    // Hasta30:=0;
-    // Masde30:=0;
-    // Masde60:=0;
-    // Masde90:=0;
-    // Customer.RESET;
-    // Customer.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // IF Customer.FINDSET THEN REPEAT
-    //      CustLedgerEntry.RESET;
-    //      CustLedgerEntry.SETCURRENTKEY("Customer No.",Open);
-    //      CustLedgerEntry.SETRANGE("Customer No.",Customer."No.");
-    //      CustLedgerEntry.SETRANGE(Open,TRUE);
-    //      ///CustLedgerEntry.SETFILTER("Category Code",'<>IMPAGADO');
-    //      IF CustLedgerEntry.FINDSET THEN REPEAT
-    //           IF  ((diamenosuno-CustLedgerEntry."Due Date")>=0) AND ((diamenosuno-CustLedgerEntry."Due Date")<=30) THEN BEGIN
-    //                CustLedgerEntry.CALCFIELDS("Remaining Amt. (LCY)");
-    //                Hasta30:=Hasta30+CustLedgerEntry."Remaining Amt. (LCY)";
-    //           END;
-    //           IF ((diamenosuno-CustLedgerEntry."Due Date")>30) AND ((diamenosuno-CustLedgerEntry."Due Date")<=60) THEN BEGIN
-    //                CustLedgerEntry.CALCFIELDS("Remaining Amt. (LCY)");
-    //                Masde30:=Masde30+CustLedgerEntry."Remaining Amt. (LCY)";
-    //           END;
-    //           IF ((diamenosuno-CustLedgerEntry."Due Date")>60) AND ((diamenosuno-CustLedgerEntry."Due Date")<=90) THEN BEGIN
-    //                CustLedgerEntry.CALCFIELDS("Remaining Amt. (LCY)");
-    //                Masde60:=Masde60+CustLedgerEntry."Remaining Amt. (LCY)";
-    //           END;
-    //           IF ((diamenosuno-CustLedgerEntry."Due Date")>90) THEN BEGIN
-    //                CustLedgerEntry.CALCFIELDS("Remaining Amt. (LCY)");
-    //                Masde90:=Masde90+CustLedgerEntry."Remaining Amt. (LCY)";
-    //           END;
-    //      UNTIL CustLedgerEntry.NEXT=0;
-    // UNTIL Customer.NEXT=0;
-    // 
-    // 
-    // SALDOVENCIDO:=0;
-    // 
-    // 
-    // {
-    // Customer.RESET;
-    // Customer.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // Customer.SETRANGE("Date Filter",20000101D,diamenosuno);
-    // IF Customer.FINDSET THEN REPEAT
-    //      Customer.CALCFIELDS("Balance Due (LCY)");
-    //      SALDOVENCIDO:=SALDOVENCIDO+Customer."Balance Due (LCY)";
-    // UNTIL Customer.NEXT=0;
-    // }
-    // 
-    // 
-    // CustLedgerEntry.RESET;
-    // CustLedgerEntry.SETCURRENTKEY("Salesperson Code",Open,CustLedgerEntry."Category Code");
-    // CustLedgerEntry.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // CustLedgerEntry.SETRANGE(Open,TRUE);
-    // CustLedgerEntry.SETFILTER("Category Code",'<>IMPAGADO');
-    // CustLedgerEntry.SETRANGE("Due Date",20000101D,diamenosuno);
-    // IF CustLedgerEntry.FINDSET THEN REPEAT
-    //   CustLedgerEntry.CALCFIELDS("Remaining Amt. (LCY)");
-    // SALDOVENCIDO:=SALDOVENCIDO+CustLedgerEntry."Remaining Amt. (LCY)";
-    // UNTIL CustLedgerEntry.NEXT=0;
-    // 
-    // 
-    // 
-    // 
-    // 
-    // {
-    // HASTA90D:=CALCDATE('-90D',TODAY);
-    // HASTA60D:=CALCDATE('-60D',TODAY);
-    // HASTA30D:=CALCDATE('-30D',TODAY);
-    // HASTAHOYD:=TODAY;
-    // 
-    // Masde90:=0;
-    // Customer.RESET;
-    // Customer.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // Customer.SETRANGE("Date Filter",20000101D,HASTA90D);
-    // IF Customer.FINDSET THEN REPEAT
-    //      Customer.CALCFIELDS("Balance Due (LCY)");
-    //      Masde90:=Masde90+Customer."Balance Due (LCY)";
-    // UNTIL Customer.NEXT=0;
-    // 
-    // 
-    // Masde60:=0;
-    // Customer.RESET;
-    // Customer.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // Customer.SETRANGE("Date Filter",20000101D,HASTA60D);
-    // IF Customer.FINDSET THEN REPEAT
-    //      Customer.CALCFIELDS("Balance Due (LCY)");
-    //      Masde60:=Masde60+Customer."Balance Due (LCY)";
-    // UNTIL Customer.NEXT=0;
-    // 
-    // 
-    // Masde30:=0;
-    // Customer.RESET;
-    // Customer.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // Customer.SETRANGE("Date Filter",20000101D,HASTA30D);
-    // IF Customer.FINDSET THEN REPEAT
-    //      Customer.CALCFIELDS("Balance Due (LCY)");
-    //      Masde30:=Masde30+Customer."Balance Due (LCY)";
-    // UNTIL Customer.NEXT=0;
-    // 
-    // Masde0:=0;
-    // Customer.RESET;
-    // Customer.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // Customer.SETRANGE("Date Filter",20000101D,TODAY);
-    // IF Customer.FINDSET THEN REPEAT
-    //      Customer.CALCFIELDS("Balance Due (LCY)");
-    //      Masde0:=Masde0+Customer."Balance Due (LCY)";
-    // UNTIL Customer.NEXT=0;
-    // 
-    // }
-    // 
-    // 
-    // Customer.RESET;
-    // Customer.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // Customer.SETRANGE("Estatus del cliente",Customer."Estatus del cliente"::Activo);
-    // MisClientes:=Customer.COUNT;
-    // 
-    // Customer.RESET;
-    // Customer.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // Customer.SETRANGE("Estatus del cliente",Customer."Estatus del cliente"::"Posible cliente");
-    // MisPosibles:=Customer.COUNT;
-    // 
-    // 
-    // Customer.RESET;
-    // Customer.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // Customer.SETRANGE("Estatus del cliente",Customer."Estatus del cliente"::"Posible cliente WEB");
-    // MisPosiblesWEB:=Customer.COUNT;
-    // 
-    // 
-    // 
-    // 
-    // 
-    // FacturadoMesAnt:=0;
-    // SalesInvoiceHeader.RESET;
-    // SalesInvoiceHeader.SETCURRENTKEY("Salesperson Code","Posting Date");
-    // SalesInvoiceHeader.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // SalesInvoiceHeader.SETRANGE("Posting Date",desdeant,hastaant);
-    // IF SalesInvoiceHeader.FINDSET THEN REPEAT
-    //      SalesInvoiceHeader.CALCFIELDS(Amount);
-    //      FacturadoMesAnt:=FacturadoMesAnt+SalesInvoiceHeader.Amount;
-    // UNTIL SalesInvoiceHeader.NEXT=0;
-    // 
-    // SalesCrMemoHeader.RESET;
-    // SalesCrMemoHeader.SETCURRENTKEY("Salesperson Code","Posting Date");
-    // SalesCrMemoHeader.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // SalesCrMemoHeader.SETRANGE("Posting Date",desdeant,hastaant);
-    // IF SalesCrMemoHeader.FINDSET THEN REPEAT
-    //      SalesCrMemoHeader.CALCFIELDS(Amount);
-    //      FacturadoMesAnt:=FacturadoMesAnt+SalesCrMemoHeader.Amount*-1;
-    // UNTIL SalesCrMemoHeader.NEXT=0;
-    // 
-    // FacturadoMesAct:=0;
-    // SalesInvoiceHeader.RESET;
-    // SalesInvoiceHeader.SETCURRENTKEY("Salesperson Code","Posting Date");
-    // SalesInvoiceHeader.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // SalesInvoiceHeader.SETRANGE("Posting Date",desdeact,hastaact);
-    // IF SalesInvoiceHeader.FINDSET THEN REPEAT
-    //      SalesInvoiceHeader.CALCFIELDS(Amount);
-    //      FacturadoMesAct:=FacturadoMesAct+SalesInvoiceHeader.Amount;
-    // UNTIL SalesInvoiceHeader.NEXT=0;
-    // 
-    // SalesCrMemoHeader.RESET;
-    // SalesCrMemoHeader.SETCURRENTKEY("Salesperson Code","Posting Date");
-    // SalesCrMemoHeader.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // SalesCrMemoHeader.SETRANGE("Posting Date",desdeact,hastaact);
-    // IF SalesCrMemoHeader.FINDSET THEN REPEAT
-    //      SalesCrMemoHeader.CALCFIELDS(Amount);
-    //      FacturadoMesAct:=FacturadoMesAct+SalesCrMemoHeader.Amount*-1;
-    // UNTIL SalesCrMemoHeader.NEXT=0;
-    // 
-    // Albaranado:=0;
-    // desde:=20180111D;
-    // hasta:=TODAY;
-    // Customer.RESET;
-    // Customer.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // IF Customer.FINDSET THEN REPEAT
-    //      Customer.CALCFIELDS("Shipped Not Invoiced (LCY)");
-    //      Albaranado:=Albaranado+Customer."Shipped Not Invoiced (LCY)";
-    // UNTIL Customer.NEXT=0;
-    // 
-    // {
-    // SalesLine.RESET;
-    // 
-    // SalesShipmentHeader.SETCURRENTKEY("Salesperson Code","Posting Date");
-    // SalesShipmentHeader.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // SalesShipmentHeader.SETRANGE("Posting Date",desde,hasta);
-    // IF SalesShipmentHeader.FINDSET THEN REPEAT
-    //      SalesShipmentLine.RESET;
-    //      SalesShipmentLine.SETRANGE(SalesShipmentLine."Document No.",SalesShipmentHeader."No.");
-    //      IF SalesShipmentLine.FINDSET THEN REPEAT
-    //           IF SalesShipmentLine."Qty. Shipped Not Invoiced"<>0 THEN BEGIN
-    //                 Albaranado:=Albaranado+SalesShipmentLine."Qty. Shipped Not Invoiced"*SalesShipmentLine."Unit Price";
-    //           END;
-    //      UNTIL SalesShipmentLine.NEXT=0;
-    // UNTIL SalesShipmentHeader.NEXT=0;
-    // }
-    // 
-    // Albaranado:=ROUND(Albaranado,1);
-    // 
-    // 
-    // 
-    // pedidos:=0;
-    // SalesHeader.RESET;
-    // SalesHeader.SETRANGE("Document Type",1);
-    // SalesHeader.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
-    // IF SalesHeader.FINDSET THEN REPEAT
-    //     SalesLine.RESET;
-    //     SalesLine.SETRANGE("Document Type",1);
-    //     SalesLine.SETRANGE("Document No.",SalesHeader."No.");
-    //     IF SalesLine.FINDSET THEN REPEAT
-    //         IF SalesLine."Outstanding Quantity"<>0 THEN BEGIN
-    //             IF item2.GET(SalesLine."No.") THEN BEGIN
-    //                 IF (item2."No permite pedido"=FALSE) AND (item2."Producto con reserva"=FALSE) THEN BEGIN
-    //                     IF SalesLine."Producto asociado"=0 THEN BEGIN
-    //                         pedidos:=pedidos+SalesLine.Amount;
-    //                     END;
-    //                 END;
-    //             END;
-    //         END;
-    //     UNTIL SalesLine.NEXT=0;
-    // UNTIL SalesHeader.NEXT=0;
-    // 
-    // pedidos:=ROUND(pedidos,1);
-    // 
-    // 
-    // año:=DATE2DMY(TODAY,3);
-    // 
-    // mes:=DATE2DMY(TODAY,2);
-    // 
-    // 
-    // Rec3.RESET;
-    // Rec3.SETRANGE(Rec3.Vendedor,UserSetup."Salespers./Purch. Code");
-    // Rec3.SETRANGE(Rec3.Año,año);
-    // Rec3.SETRANGE(Rec3.Tipo,0);
-    // IF Rec3.FINDFIRST THEN BEGIN
-    //      IF mes=1 THEN tantorecu:=Rec3.Enero;
-    //      IF mes=2 THEN tantorecu:=Rec3.Febrero;
-    //      IF mes=3 THEN tantorecu:=Rec3.Marzo;
-    //      IF mes=4 THEN tantorecu:=Rec3.Abril;
-    //      IF mes=5 THEN tantorecu:=Rec3.Mayo;
-    //      IF mes=6 THEN tantorecu:=Rec3.Junio;
-    //      IF mes=7 THEN tantorecu:=Rec3.Julio;
-    //      IF mes=8 THEN tantorecu:=Rec3.Agosto;
-    //      IF mes=9 THEN tantorecu:=Rec3.Septiembre;
-    //      IF mes=10 THEN tantorecu:=Rec3.Octubre;
-    //      IF mes=11 THEN tantorecu:=Rec3.Noviembre;
-    //      IF mes=12 THEN tantorecu:=Rec3.Diciembre;
-    // END;
-    // 
-    // Total:=FacturadoMesAct+Albaranado+pedidos;
-    // Objetivoeuros:=tantorecu;
-    // IF tantorecu<>0 THEN BEGIN
-    // ComoVoy:=ROUND(Total*100/tantorecu,0.01);
-    // 
-    // END;
-    // ComoVoyt:=FORMAT(ComoVoy)+ '%'
-    // 
-    // }
-
     Caption = 'Comercial Datos';
     PageType = CardPart;
     RefreshOnActivate = true;
@@ -398,9 +16,7 @@ Page 50011 "Comercial Datos"
                 field("Mis Clientes"; MisClientes)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Impagados';
-                    DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el importe Impagados.';
+                    Caption = 'Mis Clientes';
 
                     trigger OnDrillDown()
                     begin
@@ -422,7 +38,7 @@ Page 50011 "Comercial Datos"
                 field("Mis Posibles Clientes WEB"; MisPosiblesWEB)
                 {
                     ApplicationArea = Basic;
-                    Caption = 'Pdte. Alta';
+                    Caption = 'Mis Posibles Clientes WEB';
 
                     trigger OnDrillDown()
                     begin
@@ -457,52 +73,7 @@ Page 50011 "Comercial Datos"
                         end;
                     end;
                 }
-                field("Recuperación Rotura"; RecuperaRotura)
-                {
-                    ApplicationArea = Basic, Suite;
-                    Caption = 'Presupuestos';
-                    DrillDownPageID = "Sales Quotes";
-                    ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
-                    Visible = false;
 
-                    trigger OnDrillDown()
-                    begin
-
-                        filtroroturas := '';
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange(SalesHeader."Document Type", 0);
-                        SalesHeader.SetRange(SalesHeader."Salesperson Code", UserSetup."Salespers./Purch. Code");
-                        SalesHeader.SetRange(SalesHeader."Order Date", 20190301D, Today);
-                        if SalesHeader.FindSet then
-                            repeat
-                                SalesLine.Reset;
-                                SalesLine.SetRange(SalesLine."Document Type", SalesHeader."Document Type");
-                                SalesLine.SetRange(SalesLine."Document No.", SalesHeader."No.");
-                                if SalesLine.FindSet then
-                                    repeat
-                                        if Item.Get(SalesLine."No.") then begin
-                                            if Item."No permite pedido" = false then begin
-                                                filtroroturas := filtroroturas + SalesHeader."No." + '|';
-                                                SALE := true;
-                                            end;
-                                        end;
-                                    until (SalesLine.Next = 0) or SALE;
-                            until SalesHeader.Next = 0;
-
-                        filtroroturas := CopyStr(filtroroturas, 1, StrLen(filtroroturas) - 1);
-
-                        SalesHeader.Reset;
-                        SalesHeader.SetRange("Document Type", SalesHeader."document type"::Quote);
-                        SalesHeader.SetFilter("No.", filtroroturas);
-                        SalesHeader.SetRange(SalesHeader."Salesperson Code", UserSetup."Salespers./Purch. Code");
-                        if SalesHeader.FindFirst then begin
-                            Clear(ComercialPresupuestos);
-                            ///ComercialPresupuestos.Def(0);
-                            ComercialPresupuestos.SetTableview(SalesHeader);
-                            ComercialPresupuestos.RunModal;
-                        end;
-                    end;
-                }
                 field(Nuevop; Nuevop)
                 {
                     ApplicationArea = Basic;
@@ -696,9 +267,6 @@ Page 50011 "Comercial Datos"
                 {
                     ApplicationArea = Basic, Suite;
                     Caption = 'Impagados';
-                    DecimalPlaces = 0 : 0;
-                    DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el importe Impagados.';
 
                     trigger OnDrillDown()
                     begin
@@ -719,10 +287,7 @@ Page 50011 "Comercial Datos"
                 field("Saldo vencido"; SALDOVENCIDO)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Impagados';
-                    DecimalPlaces = 0 : 0;
-                    DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el importe Impagados.';
+                    Caption = 'Saldo vencido';
 
                     trigger OnDrillDown()
                     begin
@@ -746,10 +311,7 @@ Page 50011 "Comercial Datos"
                 field("Vencido -30 dias"; Hasta30)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Impagados';
-                    DecimalPlaces = 0 : 0;
-                    DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el importe Impagados.';
+                    Caption = 'Vencido -30 dias';
 
                     trigger OnDrillDown()
                     begin
@@ -773,10 +335,7 @@ Page 50011 "Comercial Datos"
                 field("Vencido +30 dias"; Masde30)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Impagados';
-                    DecimalPlaces = 0 : 0;
-                    DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el importe Impagados.';
+                    Caption = 'Vencido +30 dias';
 
                     trigger OnDrillDown()
                     begin
@@ -800,10 +359,7 @@ Page 50011 "Comercial Datos"
                 field("Vencido +60 dias"; Masde60)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Impagados';
-                    DecimalPlaces = 0 : 0;
-                    DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el importe Impagados.';
+                    Caption = 'Vencido +60 dias';
 
                     trigger OnDrillDown()
                     begin
@@ -827,10 +383,7 @@ Page 50011 "Comercial Datos"
                 field("Vencido +90 dias"; Masde90)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Impagados';
-                    DecimalPlaces = 0 : 0;
-                    DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el importe Impagados.';
+                    Caption = 'Vencido +90 dias';
 
                     trigger OnDrillDown()
                     begin
@@ -858,10 +411,7 @@ Page 50011 "Comercial Datos"
                 field(Productos; CuantosProductos)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Impagados';
-                    /////-                DecimalPlaces = 0:0;
-                    DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el importe Impagados.';
+                    Caption = 'Productos';
 
                     trigger OnDrillDown()
                     begin
@@ -1362,7 +912,7 @@ Page 50011 "Comercial Datos"
         diamenosuno: Date;
         PDTETRANF: Integer;
         Objetivoeuros: Decimal;
-        NuevoPresu: Page "Nuevo presupuesto copia";
+        NuevoPresu: Page "Sales Quote";
 
     local procedure CalculateCueFieldValues()
 
