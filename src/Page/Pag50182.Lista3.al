@@ -1,3 +1,4 @@
+/*
 namespace Microsoft.Sales.Customer;
 
 using Microsoft.Bank.DirectDebit;
@@ -6,6 +7,7 @@ using Microsoft.CRM.Contact;
 using Microsoft.CRM.Outlook;
 using Microsoft.Finance.Dimension;
 using Microsoft.Finance.GeneralLedger.Journal;
+using System.Security.User;
 using Microsoft.Foundation.Attachment;
 using Microsoft.Foundation.Comment;
 using Microsoft.Integration.D365Sales;
@@ -33,7 +35,7 @@ using System.Integration.PowerBI;
 using System.Integration.Word;
 using System.Text;
 using Microsoft.Finance.ReceivablesPayables;
-
+*/
 page 50182 Lista3
 {
     ApplicationArea = Basic, Suite, Service;
@@ -48,6 +50,10 @@ page 50182 Lista3
 
     AboutTitle = 'About customers';
     AboutText = 'Here you overview all registered customers, their balances, and the sales statistics. With [Customer Templates](?page=1381 "Opens the Customer Templates") you can quickly create new customers having common details defined by the template.';
+
+    SourceTableView = where("Estatus del cliente" = const("Posible cliente WEB"));
+///    SourceTableView = where("Document Type" = const(Order));
+
 
     layout
     {
@@ -1850,6 +1856,13 @@ page 50182 Lista3
 
         SalesReceivablesSetup.GetRecordOnce();
         IsAllowMultiplePostingGroupsVisible := SalesReceivablesSetup."Allow Multiple Posting Groups";
+
+        UserSetup.GET(USERID);
+        IF UserSetup."Salespers./Purch. Code"<>'' THEN BEGIN
+            Rec.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
+        END;
+
+
     end;
 
     var
@@ -1871,6 +1884,7 @@ page 50182 Lista3
         IsOfficeAddin: Boolean;
         EventFilter: Text;
         CaptionTxt: Text;
+        UserSetup: Record "User Setup";
 
     procedure GetSelectionFilter(): Text
     var

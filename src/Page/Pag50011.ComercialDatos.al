@@ -20,8 +20,8 @@ Page 50011 "Comercial Datos"
 
                     trigger OnDrillDown()
                     begin
-                        /////-Clear(PageMisClientes);
-                        /////-PageMisClientes.RunModal;
+                        Clear(PageMisClientes);
+                        PageMisClientes.RunModal;
                     end;
                 }
                 field("Mis Posibles Clientes"; MisPosibles)
@@ -31,8 +31,8 @@ Page 50011 "Comercial Datos"
 
                     trigger OnDrillDown()
                     begin
-                        /////_Clear(PageMisPosiblesClientes);
-                        /////-PageMisPosiblesClientes.RunModal;
+                        Clear(PageMisPosiblesClientes);
+                        PageMisPosiblesClientes.RunModal;
                     end;
                 }
                 field("Mis Posibles Clientes WEB"; MisPosiblesWEB)
@@ -42,8 +42,8 @@ Page 50011 "Comercial Datos"
 
                     trigger OnDrillDown()
                     begin
-                        /////-Clear(PageMisPosiblesClientesWEB);
-                        /////-PageMisPosiblesClientesWEB.RunModal;
+                        Clear(PageMisPosiblesClientesWEB);
+                        PageMisPosiblesClientesWEB.RunModal;
                     end;
                 }
             }
@@ -913,6 +913,9 @@ Page 50011 "Comercial Datos"
         PDTETRANF: Integer;
         Objetivoeuros: Decimal;
         NuevoPresu: Page "Sales Quote";
+        PageMisClientes: Page Lista1;
+        PageMisPosiblesClientes: Page Lista2;
+        PageMisPosiblesClientesWEB: Page Lista3;
 
     local procedure CalculateCueFieldValues()
 
