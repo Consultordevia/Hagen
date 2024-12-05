@@ -415,7 +415,7 @@ Page 50011 "Comercial Datos"
 
                     trigger OnDrillDown()
                     begin
-                        /////-Clear(PageMisPosiblesClientes);
+                        /////_Clear(PageMisPosiblesClientes);
                         /////-PageMisPosiblesClientes.RunModal;
                     end;
                 }
@@ -523,9 +523,9 @@ Page 50011 "Comercial Datos"
                         SalesHeader.SetRange("Document Type", 0);
                         SalesHeader.SetRange("No.", codpedido);
                         if SalesHeader.FindFirst then begin
-                            /////- Clear(NuevoPresu);
-                            /////- NuevoPresu.SetTableview(SalesHeader);
-                            /////- NuevoPresu.RunModal;
+                            Clear(NuevoPresu);
+                            NuevoPresu.SetTableview(SalesHeader);
+                            NuevoPresu.RunModal;
                         end;
                     end;
                 }
@@ -1362,6 +1362,7 @@ Page 50011 "Comercial Datos"
         diamenosuno: Date;
         PDTETRANF: Integer;
         Objetivoeuros: Decimal;
+        NuevoPresu: Page "Nuevo presupuesto copia";
 
     local procedure CalculateCueFieldValues()
 
