@@ -266,9 +266,9 @@ XmlPort 50048 "Importacion PEDIDOS V-12833"
                 end;
                 codacti := IncStr(RecUser."Serie pedidos");
                 codacti := NoSeriesManagement.GetNextNo('V-PRESU-3', Today, true);
-                RecUser."Serie pedidos" := codacti;
-                RecUser."Nº cliente" := clie;
-                RecUser.Modify;
+                ///RecUser."Serie pedidos" := codacti;
+                ///RecUser."Nº cliente" := clie;
+                ///RecUser.Modify;
                 RecCV.Init;
                 RecCV."Document Type" := 0;
                 RecCV."No." := codacti;

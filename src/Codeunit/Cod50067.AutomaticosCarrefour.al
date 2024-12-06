@@ -187,6 +187,7 @@ Codeunit 50067 "Automaticos Carrefour"
         OutTxt := 'sku;product-id;product-id-type;description;internal-description;price;price-additional-info;quantity;min-quantity-alert;state;available-start-date;';
         data.AddText(OutTxt);
         OutTxt := 'available-end-date;logistic-class;favorite-rank;discount-start-date;discount-end-date;discount-price;update-delete';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
 
 

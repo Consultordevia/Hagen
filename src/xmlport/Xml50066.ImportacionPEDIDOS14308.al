@@ -267,9 +267,9 @@ XmlPort 50066 "Importacion PEDIDOS 14308"
 
                     codacti := IncStr(RecUser."Serie pedidos");
                     codacti := NoSeriesManagement.GetNextNo('V-PED-360', Today, true);
-                    RecUser."Serie pedidos" := codacti;
-                    RecUser."Nº cliente" := clie;
-                    RecUser.Modify;
+                    ///RecUser."Serie pedidos" := codacti;
+                    ///RecUser."Nº cliente" := clie;
+                    ///RecUser.Modify;
                     RecCV.Init;
                     RecCV."Document Type" := 1;
                     RecCV."No." := codacti;

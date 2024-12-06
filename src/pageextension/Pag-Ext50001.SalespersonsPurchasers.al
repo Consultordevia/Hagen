@@ -132,6 +132,99 @@ pageextension 50001 "Salespersons/Purchasers" extends "Salespersons/Purchasers"
 
             }
         }
-
     }
+
+
+ actions
+    {
+        addlast(processing)
+        {
+            action(Objetivocomisiones)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Objetivo comisiones';
+                trigger OnAction()
+                begin
+                    ObjetivoVendrdorComi.Reset();
+                    ;
+                    ObjetivoVendrdorComi.SetRange(Vendedor, Rec.Code);
+                    ObjetivoVendrdorComi.SetRange(Tipo, ObjetivoVendrdorComi.tipo::Vendedor);
+                    if ObjetivoVendrdorComi.FindSet then begin
+                        clear(PageObjetivosvendedorcomision);
+                        PageObjetivosvendedorcomision.SetTableView(ObjetivoVendrdorComi);
+                        PageObjetivosvendedorcomision.Run();
+                    end;
+                end;
+            }
+
+            action(GrupoDescuentos)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Grupo Descuentos';
+                trigger OnAction()
+                begin
+                    ObjetivoVendrdorComi.Reset();
+                    ;
+                    ObjetivoVendrdorComi.SetRange(Vendedor, Rec.Code);
+                    ObjetivoVendrdorComi.SetRange(Tipo, ObjetivoVendrdorComi.tipo::"Comi-dto");
+                    if ObjetivoVendrdorComi.FindSet then begin
+                        clear(PageObjetivosvendedorcomision);
+                        PageObjetivosvendedorcomision.SetTableView(ObjetivoVendrdorComi);
+                        PageObjetivosvendedorcomision.Run();
+                    end;
+                end;
+
+
+            }
+
+            action(RepComisiones)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Recp. Comisiones';
+                trigger OnAction()
+                begin
+                    SalespersonPurchaser.Reset();
+                    SalespersonPurchaser.SetRange(Code, Rec.Code);
+                    if SalespersonPurchaser.FindSet then begin
+                        clear(RepComisiones);
+                        RepComisiones.SetTableView(SalespersonPurchaser);
+                        RepComisiones.Run();
+                    end;
+                end;
+
+
+            }
+
+            action(DescuentoAzul)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Descuento Azul';
+                trigger OnAction()
+                begin
+                    ObjetivoVendrdorComi.Reset();
+                    ObjetivoVendrdorComi.SetRange(Vendedor, Rec.Code);
+                    ObjetivoVendrdorComi.SetRange(Tipo, ObjetivoVendrdorComi.tipo::Descuento);
+                    if ObjetivoVendrdorComi.FindSet then begin
+                        clear(PageDescuentoAzul);
+                        PageDescuentoAzul.SetTableView(ObjetivoVendrdorComi);
+                        PageDescuentoAzul.Run();
+                    end;
+                end;
+
+
+            }
+
+
+
+        }
+    }
+
+var
+        PageObjetivosvendedorcomision: Page "Objetivos vendedor comision";
+        ObjetivoVendrdorComi: Record "Objetivos vendedores";
+        RepComisiones: Report "Comisiones";
+        PageDescuentoAzul: Page "Descuento Azul";
+        SalespersonPurchaser: Record "Salesperson/Purchaser";
+
 }
+

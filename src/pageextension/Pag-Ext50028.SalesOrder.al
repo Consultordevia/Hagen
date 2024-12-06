@@ -1,10 +1,12 @@
-pageextension 50007 "Sales Quote" extends "Sales Quote"
+pageextension 50028 SalesOrder extends "Sales Order"
 {
     layout
     {
 
-        addafter("Document Date")
+
+        addafter("Sell-to Customer Name")
         {
+
 
             field("Sell-to Customer Name 2"; Rec."Sell-to Customer Name 2") { ApplicationArea = All; }
             field("Observación para ALMACEN"; Rec."Observación para ALMACEN") { ApplicationArea = All; }
@@ -18,113 +20,21 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
             field("Estado pedido"; Rec."Estado pedido") { ApplicationArea = All; }
             field(Urgente; Rec.Urgente) { ApplicationArea = All; }
             field("Super urgente"; Rec."Super urgente") { ApplicationArea = All; }
-        }
-
-        addlast(content)
-        {
-            group(Hagen)
-            {
 
 
-                field("Usuario alta"; Rec."Usuario alta") { ApplicationArea = All; }
-                field("Fecha alta"; Rec."Fecha alta") { ApplicationArea = All; }
-                field("Hora alta"; Rec."Hora alta") { ApplicationArea = All; }
-                field("Base Pdte."; Rec."Base Pdte.") { ApplicationArea = All; }
-                field("Base"; Rec."Base") { ApplicationArea = All; }
-                field("Preparador"; Rec."Preparador") { ApplicationArea = All; }
-                field("Nº bultos"; Rec."Nº bultos") { ApplicationArea = All; }
-                field("Nº Palets"; Rec."Nº Palets") { ApplicationArea = All; }
-                field("Total bultos"; Rec."Total bultos") { ApplicationArea = All; }
-                field("Anula restos"; Rec."Anula restos") { ApplicationArea = All; }
-                field("Usuario para preparar"; Rec."Usuario para preparar") { ApplicationArea = All; }
-                field("Fecha para preparar"; Rec."Fecha para preparar") { ApplicationArea = All; }
-                field("Hora para preparar"; Rec."Hora para preparar") { ApplicationArea = All; }
-                field("Nombre comercial"; Rec."Nombre comercial") { ApplicationArea = All; }
-                field("Televendedor"; Rec."Televendedor") { ApplicationArea = All; }
-                field("No imprimir albaran valorado"; Rec."No imprimir albaran valorado") { ApplicationArea = All; }
-                field("Total peso"; Rec."Total peso") { ApplicationArea = All; }
-                field("Cdad. Pdte. Servir"; Rec."Cdad. Pdte. Servir") { ApplicationArea = All; }
-                field("Usuario Retenido"; Rec."Usuario Retenido") { ApplicationArea = All; }
-                field("Fecha Retenido"; Rec."Fecha Retenido") { ApplicationArea = All; }
-                field("Hora Retenido"; Rec."Hora Retenido") { ApplicationArea = All; }
-                field("Ampliacion del pedido nº"; Rec."Ampliacion del pedido nº") { ApplicationArea = All; }
-                field("Recibido de adaia"; Rec."Recibido de adaia") { ApplicationArea = All; }
-                field("No Enviar factura en exp."; Rec."No Enviar factura en exp.") { ApplicationArea = All; }
-                field("No Enviar albaran en exp."; Rec."No Enviar albaran en exp.") { ApplicationArea = All; }
-                field("Importe a descontar reembolso"; Rec."Importe a descontar reembolso") { ApplicationArea = All; }
-                field("Albaran sin detalle"; Rec."Albaran sin detalle") { ApplicationArea = All; }
-                field("Pedido WEB"; Rec."Pedido WEB") { ApplicationArea = All; }
-                field("Respeta agencia transporte"; Rec."Respeta agencia transporte") { ApplicationArea = All; }
-                field("Envio a-Nº Telefono"; Rec."Envio a-Nº Telefono") { ApplicationArea = All; }
-                field("Estado presupuesto"; Rec."Estado presupuesto") { ApplicationArea = All; }
-                field("Tipo facturación"; Rec."Tipo facturación") { ApplicationArea = All; }
-                field("Respeta Tipo facturacion"; Rec."Respeta Tipo facturacion") { ApplicationArea = All; }
-                field("Nº exped. pequeña"; Rec."Nº exped. pequeña") { ApplicationArea = All; }
-                field("Docu. requerida prov. sacada"; Rec."Docu. requerida prov. sacada") { ApplicationArea = All; }
-                field("Check contrareemolso verificad"; Rec."Check contrareemolso verificad") { ApplicationArea = All; }
-                field("ASN"; Rec."ASN") { ApplicationArea = All; }
-                field("No imprimir facturas"; Rec."No imprimir facturas") { ApplicationArea = All; }
-                field("Provincia shopyfi"; Rec."Provincia shopyfi") { ApplicationArea = All; }
-                field("SupraOferta"; Rec."SupraOferta") { ApplicationArea = All; }
-                field("Comunidad"; Rec."Comunidad") { ApplicationArea = All; }
-                field("Codigo cliente externo"; Rec."Codigo cliente externo") { ApplicationArea = All; }
-                field("Fecha incial de entrega EDICOM"; Rec."Fecha incial de entrega EDICOM") { ApplicationArea = All; }
-                field("REFTRANS EDICOM"; Rec."REFTRANS EDICOM") { ApplicationArea = All; }
-                field("Tipo de documento EDICOM"; Rec."Tipo de documento EDICOM") { ApplicationArea = All; }
-                field("Funcion del mensaje EDICOM"; Rec."Funcion del mensaje EDICOM") { ApplicationArea = All; }
-                field("Tipo transporte EDICOM"; Rec."Tipo transporte EDICOM") { ApplicationArea = All; }
-                field("IDENTIF EDICOM"; Rec."IDENTIF EDICOM") { ApplicationArea = All; }
-                field("Nº Nota Debito"; Rec."Nº Nota Debito") { ApplicationArea = All; }
-                field("Enviado email preparación"; Rec."Enviado email preparación") { ApplicationArea = All; }
-                field("Importe a cuenta"; Rec."Importe a cuenta") { ApplicationArea = All; }
-                field("Puede retocar"; Rec."Puede retocar") { ApplicationArea = All; }
-                field("Filtro ECI"; Rec."Filtro ECI") { ApplicationArea = All; }
-                field("Marcar para agrupar"; Rec."Marcar para agrupar") { ApplicationArea = All; }
-                field("Fecha envio pendiente stock"; Rec."Fecha envio pendiente stock") { ApplicationArea = All; }
-                field("Reembolso"; Rec."Reembolso") { ApplicationArea = All; }
-                field("Importe optimo transporte"; Rec."Importe optimo transporte") { ApplicationArea = All; }
-                field("Cobra portes entre empresas"; Rec."Cobra portes entre empresas") { ApplicationArea = All; }
-                field("Dropshipping"; Rec."Dropshipping") { ApplicationArea = All; }
-                field("Nº expedición agrupada"; Rec."Nº expedición agrupada") { ApplicationArea = All; }
-                field("Frecuencia visita comercial"; Rec."Frecuencia visita comercial") { ApplicationArea = All; }
-                field("E-MAIL"; Rec."E-MAIL") { ApplicationArea = All; }
-                field("Recibido y facturado"; Rec."Recibido y facturado") { ApplicationArea = All; }
-                field("Transferencia web"; Rec."Transferencia web") { ApplicationArea = All; }
-                field("Pago Aceptado"; Rec."Pago Aceptado") { ApplicationArea = All; }
-                field("Importe total pedido WEB"; Rec."Importe total pedido WEB") { ApplicationArea = All; }
-                field("Nº expedición dropshp"; Rec."Nº expedición dropshp") { ApplicationArea = All; }
-                field("NO MULTIPEDIDO"; Rec."NO MULTIPEDIDO") { ApplicationArea = All; }
-                field("No agrupar en CANARIAS"; Rec."No agrupar en CANARIAS") { ApplicationArea = All; }
-                field("EDI factueas enviar"; Rec."EDI factueas enviar") { ApplicationArea = All; }
-                field("Grupo clientes"; Rec."Grupo clientes") { ApplicationArea = All; }
-                field("Multi-picking"; Rec."Multi-picking") { ApplicationArea = All; }
-                field("Dpto.ECI"; Rec."Dpto.ECI") { ApplicationArea = All; }
-                field("Id Pedido Presta Shop"; Rec."Id Pedido Presta Shop") { ApplicationArea = All; }
-                field("Referencia Pedido Presta Shop"; Rec."Referencia Pedido Presta Shop") { ApplicationArea = All; }
-                field("Importe Descuento Presta Shop"; Rec."Importe Descuento Presta Shop") { ApplicationArea = All; }
-                field("Notificar Pago"; Rec."Notificar Pago") { ApplicationArea = All; }
-                field("Notificar Envio"; Rec."Notificar Envio") { ApplicationArea = All; }
-                field("Nº Factura Notificar Envio"; Rec."Nº Factura Notificar Envio") { ApplicationArea = All; }
-                field("Texto Descuento Presta Shop"; Rec."Texto Descuento Presta Shop") { ApplicationArea = All; }
-                field("Nº Albaran Notificar Envio"; Rec."Nº Albaran Notificar Envio") { ApplicationArea = All; }
-                field("Factura EDI"; Rec."Factura EDI") { ApplicationArea = All; }
-                field("Albarán EDI"; Rec."Albarán EDI") { ApplicationArea = All; }
 
-            }
         }
     }
-
     actions
     {
-        addlast("&Quote")
+        addlast(processing)
         {
-            action(CopiaraPEDIDO)
+
+
+            action(CopiaraPedido)
             {
-                ApplicationArea = All;
-                Caption = 'Copiar a PEDIDO';
-                Image = Order;
-
-
+                ApplicationArea = Suite;
+                Caption = 'Copiar a Pedido';
                 trigger OnAction()
                 var
                     SalesHeader3: Record "Sales Header";
@@ -168,23 +78,24 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                     Customer: Record Customer;
                     dtoconse: Decimal;
                     CustInvoiceDisc: Record "Cust. Invoice Disc.";
-                    pasa: Boolean;
-                    lin: Integer;
-                    SalesLineO: Record "Sales Line";
-                    SalesLineDiscount: Record "Sales Line Discount";
-                    RecLV: Record "Sales Line";
-                    SalesReceivablesSetup: Record "Sales & Receivables Setup";
-                    NoSeriesManagement: Codeunit NoSeriesManagement;
+                    Cestadelacompra: Page "Cesta de la compra";
+                    Cestacompra: Record "Cesta compra";
+                    Rec91: Record "User Setup";
                     ImportacionPEDIDOSMASKOcome: XMLport "Importacion PEDIDOS MASKO-come";
+                    NoSeriesManagement: Codeunit NoSeriesManagement;
+
                 begin
 
+                    ReleaseSalesDoc.PerformManualReopen(Rec);
 
-                    SalesReceivablesSetup.GET;
+
 
                     RecCV.GET(Rec."Document Type", Rec."No.");
 
 
+
                     Customer.GET(Rec."Sell-to Customer No.");
+
                     IF Customer."Permite seguir adelante" = FALSE THEN BEGIN
                         Customer.CALCFIELDS("Importe impagado");
                         IF Customer."Importe impagado" <> 0 THEN BEGIN
@@ -195,22 +106,46 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                             /////     MESSAGE('Este presupuesto supera el maximo permitido.');
                         END;
                         SalesHeader3.GET(Rec."Document Type", Rec."No.");
-                        /////-ChequeoFechaVtosOferta;
+                        RecCVP.GET;
+                        Cust.GET(SalesHeader3."Sell-to Customer No.");
+                        Cust.CALCFIELDS(Cust."Balance (LCY)");
+                        IF Cust."Balance (LCY)" <> 0 THEN BEGIN
+                            Fechavto := 0D;
+                            SEPASA := FALSE;
+                            Rec21.RESET;
+                            Rec21.SETCURRENTKEY("Customer No.", Open, Positive, "Due Date", "Currency Code");
+                            Rec21.SETRANGE(Rec21."Customer No.", SalesHeader3."Sell-to Customer No.");
+                            Rec21.SETRANGE(Rec21.Positive, TRUE);
+                            Rec21.SETRANGE(Rec21.Open, TRUE);
+                            IF Rec21.FINDFIRST THEN BEGIN
+                                Fechavto := Rec21."Due Date";
+                                IF TODAY - Fechavto > (RecCVP."Dias aviso falta pago" + Cust."Dias tolerancias fecha vto.") THEN BEGIN
+                                    SEPASA := TRUE;
+                                END;
+                            END;
+                        END;
+
                         IF SEPASA THEN BEGIN
                             ERROR('El cliente esta bloqueado por exceso falta de pago.');
                         END;
                     END;
 
-                    /////UserSetup.GET(USERID);
-                    CODACTI := NoSeriesManagement.GetNextNo(SalesReceivablesSetup."Order Nos.", TODAY, TRUE);
 
+
+
+                    UserSetup.GET(USERID);
+                    CODACTI := INCSTR(UserSetup."Serie pedidos");
+                    UserSetup."Serie pedidos" := CODACTI;
+                    UserSetup."Nº cliente" := Rec."No.";
+                    UserSetup.MODIFY;
+
+                    CODACTI := NoSeriesManagement.GetNextNo('V-OFPE-1', TODAY, TRUE);
 
                     Rec362.INIT;
                     Rec362 := Rec;
                     Rec362."No." := CODACTI;
                     Rec362."Document Type" := 1;
                     Rec362."Estado pedido" := 2;
-                    Rec362."Nº expedición" := '';
                     Rec362.INSERT(TRUE);
                     ////CODACTI:=Rec362."No.";
                     Rec362."Shipping No. Series" := Rec."Shipping No. Series";
@@ -228,141 +163,27 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                             REPEAT
                                 ///IF Rec372."Estado linea"<>2 THEN BEGIN
                                 IF RecProd.GET(Rec372."No.") THEN BEGIN
-                                    pasa := TRUE;
-                                    IF RecProd."Prohibido Amazon" THEN BEGIN
-                                        Rec372.CALCFIELDS("Grupo clientes");
-                                        IF Rec372."Grupo clientes" = 'G10' THEN BEGIN
-                                            pasa := FALSE;
+                                    IF (NOT RecProd."No permite pedido") AND (NOT RecProd."Producto con reserva") THEN BEGIN
+                                        Rec37.INIT;
+                                        Rec37 := Rec372;
+                                        Rec37."Document Type" := 1;
+                                        Rec37."Document No." := CODACTI;
+                                        IF Rec372."Cantidad a pasar pedido" <> 0 THEN BEGIN
+                                            Rec37.VALIDATE(Rec37.Quantity, Rec372."Cantidad a pasar pedido");
+                                        END;
+                                        Rec37.INSERT;
+                                        IF Rec372."Cantidad a pasar pedido" = 0 THEN BEGIN
+                                            Rec372.DELETE;
+                                        END;
+                                        IF Rec372."Cantidad a pasar pedido" <> 0 THEN BEGIN
+                                            Rec372.VALIDATE(Rec372.Quantity, Rec372.Quantity - Rec372."Cantidad a pasar pedido");
+                                            Rec372."Cantidad a pasar pedido" := 0;
+                                            Rec372.MODIFY;
                                         END;
                                     END;
-                                    IF pasa THEN BEGIN
-
-                                        IF (NOT RecProd."No permite pedido") AND (NOT RecProd."Producto con reserva") THEN BEGIN
-                                            Rec37.INIT;
-                                            Rec37 := Rec372;
-                                            Rec37."Document Type" := 1;
-                                            Rec37."Document No." := CODACTI;
-                                            IF Rec372."Cantidad a pasar pedido" <> 0 THEN BEGIN
-                                                Rec37.VALIDATE(Rec37.Quantity, Rec372."Cantidad a pasar pedido");
-                                            END;
-                                            Rec37."Nº expedición" := '';
-                                            Rec37.INSERT;
-                                            IF Rec372."Cantidad a pasar pedido" = 0 THEN BEGIN
-                                                Rec372.DELETE;
-                                            END;
-                                            IF Rec372."Cantidad a pasar pedido" <> 0 THEN BEGIN
-                                                Rec372.VALIDATE(Rec372.Quantity, Rec372.Quantity - Rec372."Cantidad a pasar pedido");
-                                                Rec372."Cantidad a pasar pedido" := 0;
-                                                Rec372.MODIFY;
-                                            END;
-                                        END;
-                                        IF (NOT RecProd."No permite pedido") AND (RecProd."Producto con reserva") THEN BEGIN
-                                            RecClie.GET(Rec."Sell-to Customer No.");
-                                            IF RecClie."No." <> '4703' THEN BEGIN
-                                                RecMT2.RESET;
-                                                RecMT2.SETRANGE(RecMT2.Tabla, 1);
-                                                RecMT2.SETRANGE(RecMT2."Codigo 1", Rec372."No.");
-                                                RecMT2.SETRANGE(RecMT2."Codigo 2", RecClie."Grupo clientes");
-                                                IF RecMT2.FINDFIRST THEN BEGIN
-                                                    Rec37.INIT;
-                                                    Rec37 := Rec372;
-                                                    Rec37."Document Type" := 1;
-                                                    Rec37."Document No." := CODACTI;
-                                                    IF Rec372."Cantidad a pasar pedido" <> 0 THEN BEGIN
-                                                        Rec37.VALIDATE(Rec37.Quantity, Rec372."Cantidad a pasar pedido");
-                                                    END;
-                                                    Rec37.INSERT;
-                                                    IF Rec372."Cantidad a pasar pedido" = 0 THEN BEGIN
-                                                        Rec372.DELETE;
-                                                    END;
-                                                    IF Rec372."Cantidad a pasar pedido" <> 0 THEN BEGIN
-                                                        Rec372.VALIDATE(Rec372.Quantity, Rec372.Quantity - Rec372."Cantidad a pasar pedido");
-                                                        Rec372."Cantidad a pasar pedido" := 0;
-                                                        Rec372.MODIFY;
-                                                    END;
-                                                END;
-                                            END;
-                                            IF RecClie."No." = '4703' THEN BEGIN
-                                                Rec37.INIT;
-                                                Rec37 := Rec372;
-                                                Rec37."Document Type" := 1;
-                                                Rec37."Document No." := CODACTI;
-                                                IF Rec372."Cantidad a pasar pedido" <> 0 THEN BEGIN
-                                                    Rec37.VALIDATE(Rec37.Quantity, Rec372."Cantidad a pasar pedido");
-                                                END;
-                                                Rec37."Nº expedición" := '';
-                                                Rec37.INSERT;
-                                                IF Rec372."Cantidad a pasar pedido" = 0 THEN BEGIN
-                                                    Rec372.DELETE;
-                                                END;
-                                                IF Rec372."Cantidad a pasar pedido" <> 0 THEN BEGIN
-                                                    Rec372.VALIDATE(Rec372.Quantity, Rec372.Quantity - Rec372."Cantidad a pasar pedido");
-                                                    Rec372."Cantidad a pasar pedido" := 0;
-                                                    Rec372.MODIFY;
-                                                END;
-                                            END;
-
-                                        END;
-                                        IF RecProd."No permite pedido" THEN BEGIN
-                                            falta := TRUE;
-                                        END;
-                                        IF RecProd."Producto con reserva" THEN BEGIN
-                                            falta := TRUE;
-                                        END;
-                                    END;
-                                END;
-                            UNTIL Rec372.NEXT = 0;
-                    END;
-
-                    IF Rec."Fecha envio pendiente stock" <> 0D THEN BEGIN
-                        Rec372.RESET;
-                        Rec372.SETRANGE(Rec372."Document Type", Rec."Document Type");
-                        Rec372.SETRANGE(Rec372."Document No.", Rec."No.");
-                        IF Rec372.FINDFIRST THEN
-                            REPEAT
-                                //IF Rec372."Estado linea"<>2 THEN BEGIN
-                                IF RecProd.GET(Rec372."No.") THEN BEGIN
-                                    pasa := TRUE;
-                                    IF RecProd."Prohibido Amazon" THEN BEGIN
-                                        Rec372.CALCFIELDS("Grupo clientes");
-                                        IF Rec372."Grupo clientes" = 'G10' THEN BEGIN
-                                            pasa := FALSE;
-                                        END;
-                                    END;
-
-                                    IF pasa THEN BEGIN
-                                        fecha2 := 0D;
-                                        RecProd.CALCFIELDS(RecProd."Fecha proxima recepción conten");
-                                        fecha2 := RecProd."Fecha proxima recepción conten";
-                                        IF fecha2 = 0D THEN BEGIN
-                                            fecha2 := 20151231D;
-                                        END;
-                                        IF NOT RecProd."No permite pedido" THEN BEGIN
-                                            fecha2 := 0D;
-                                        END;
-
-
-                                        IF (Rec."Fecha envio pendiente stock" > fecha2) AND (NOT RecProd."Producto con reserva") THEN BEGIN
-                                            Rec37.INIT;
-                                            Rec37 := Rec372;
-                                            Rec37."Document Type" := 1;
-                                            Rec37."Document No." := CODACTI;
-                                            IF Rec372."Cantidad a pasar pedido" <> 0 THEN BEGIN
-                                                Rec37.VALIDATE(Rec37.Quantity, Rec372."Cantidad a pasar pedido");
-                                            END;
-                                            Rec37."Nº expedición" := '';
-                                            Rec37.INSERT;
-                                            IF Rec372."Cantidad a pasar pedido" = 0 THEN BEGIN
-                                                Rec372.DELETE;
-                                            END;
-                                            IF Rec372."Cantidad a pasar pedido" <> 0 THEN BEGIN
-                                                Rec372.VALIDATE(Rec372.Quantity, Rec372.Quantity - Rec372."Cantidad a pasar pedido");
-                                                Rec372."Cantidad a pasar pedido" := 0;
-                                                Rec372.MODIFY;
-                                            END;
-                                        END;
-                                        IF (Rec."Fecha envio pendiente stock" > fecha2) AND (RecProd."Producto con reserva") THEN BEGIN
-                                            RecClie.GET(Rec."Sell-to Customer No.");
+                                    IF (NOT RecProd."No permite pedido") AND (RecProd."Producto con reserva") THEN BEGIN
+                                        RecClie.GET(Rec."Sell-to Customer No.");
+                                        IF RecClie."No." <> '4703' THEN BEGIN
                                             RecMT2.RESET;
                                             RecMT2.SETRANGE(RecMT2.Tabla, 1);
                                             RecMT2.SETRANGE(RecMT2."Codigo 1", Rec372."No.");
@@ -375,7 +196,6 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                                                 IF Rec372."Cantidad a pasar pedido" <> 0 THEN BEGIN
                                                     Rec37.VALIDATE(Rec37.Quantity, Rec372."Cantidad a pasar pedido");
                                                 END;
-                                                Rec37."Nº expedición" := '';
                                                 Rec37.INSERT;
                                                 IF Rec372."Cantidad a pasar pedido" = 0 THEN BEGIN
                                                     Rec372.DELETE;
@@ -387,15 +207,109 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                                                 END;
                                             END;
                                         END;
+                                        IF RecClie."No." = '4703' THEN BEGIN
+                                            Rec37.INIT;
+                                            Rec37 := Rec372;
+                                            Rec37."Document Type" := 1;
+                                            Rec37."Document No." := CODACTI;
+                                            IF Rec372."Cantidad a pasar pedido" <> 0 THEN BEGIN
+                                                Rec37.VALIDATE(Rec37.Quantity, Rec372."Cantidad a pasar pedido");
+                                            END;
+                                            Rec37.INSERT;
+                                            IF Rec372."Cantidad a pasar pedido" = 0 THEN BEGIN
+                                                Rec372.DELETE;
+                                            END;
+                                            IF Rec372."Cantidad a pasar pedido" <> 0 THEN BEGIN
+                                                Rec372.VALIDATE(Rec372.Quantity, Rec372.Quantity - Rec372."Cantidad a pasar pedido");
+                                                Rec372."Cantidad a pasar pedido" := 0;
+                                                Rec372.MODIFY;
+                                            END;
+                                        END;
 
-                                        IF RecProd."No permite pedido" THEN BEGIN
-                                            falta := TRUE;
-                                        END;
-                                        IF RecProd."Producto con reserva" THEN BEGIN
-                                            falta := TRUE;
-                                        END;
+                                    END;
+                                    IF RecProd."No permite pedido" THEN BEGIN
+                                        falta := TRUE;
+                                    END;
+                                    IF RecProd."Producto con reserva" THEN BEGIN
+                                        falta := TRUE;
                                     END;
                                 END;
+                            ///END;
+                            UNTIL Rec372.NEXT = 0;
+                    END;
+
+                    IF Rec."Fecha envio pendiente stock" <> 0D THEN BEGIN
+                        Rec372.RESET;
+                        Rec372.SETRANGE(Rec372."Document Type", Rec."Document Type");
+                        Rec372.SETRANGE(Rec372."Document No.", Rec."No.");
+                        IF Rec372.FINDFIRST THEN
+                            REPEAT
+                                //IF Rec372."Estado linea"<>2 THEN BEGIN
+                                IF RecProd.GET(Rec372."No.") THEN BEGIN
+                                    fecha2 := 0D;
+                                    RecProd.CALCFIELDS(RecProd."Fecha proxima recepción conten");
+                                    fecha2 := RecProd."Fecha proxima recepción conten";
+                                    IF fecha2 = 0D THEN BEGIN
+                                        fecha2 := 20501231D;
+                                    END;
+                                    IF NOT RecProd."No permite pedido" THEN BEGIN
+                                        fecha2 := 0D;
+                                    END;
+
+
+                                    IF (Rec."Fecha envio pendiente stock" > fecha2) AND (NOT RecProd."Producto con reserva") THEN BEGIN
+                                        Rec37.INIT;
+                                        Rec37 := Rec372;
+                                        Rec37."Document Type" := 1;
+                                        Rec37."Document No." := CODACTI;
+                                        IF Rec372."Cantidad a pasar pedido" <> 0 THEN BEGIN
+                                            Rec37.VALIDATE(Rec37.Quantity, Rec372."Cantidad a pasar pedido");
+                                        END;
+                                        Rec37.INSERT;
+                                        IF Rec372."Cantidad a pasar pedido" = 0 THEN BEGIN
+                                            Rec372.DELETE;
+                                        END;
+                                        IF Rec372."Cantidad a pasar pedido" <> 0 THEN BEGIN
+                                            Rec372.VALIDATE(Rec372.Quantity, Rec372.Quantity - Rec372."Cantidad a pasar pedido");
+                                            Rec372."Cantidad a pasar pedido" := 0;
+                                            Rec372.MODIFY;
+                                        END;
+                                    END;
+                                    IF (Rec."Fecha envio pendiente stock" > fecha2) AND (RecProd."Producto con reserva") THEN BEGIN
+                                        MESSAGE('2  %1 ', Rec372);
+                                        RecClie.GET(Rec."Sell-to Customer No.");
+                                        RecMT2.RESET;
+                                        RecMT2.SETRANGE(RecMT2.Tabla, 1);
+                                        RecMT2.SETRANGE(RecMT2."Codigo 1", Rec372."No.");
+                                        RecMT2.SETRANGE(RecMT2."Codigo 2", RecClie."Grupo clientes");
+                                        IF RecMT2.FINDFIRST THEN BEGIN
+                                            Rec37.INIT;
+                                            Rec37 := Rec372;
+                                            Rec37."Document Type" := 1;
+                                            Rec37."Document No." := CODACTI;
+                                            IF Rec372."Cantidad a pasar pedido" <> 0 THEN BEGIN
+                                                Rec37.VALIDATE(Rec37.Quantity, Rec372."Cantidad a pasar pedido");
+                                            END;
+                                            Rec37.INSERT;
+                                            IF Rec372."Cantidad a pasar pedido" = 0 THEN BEGIN
+                                                Rec372.DELETE;
+                                            END;
+                                            IF Rec372."Cantidad a pasar pedido" <> 0 THEN BEGIN
+                                                Rec372.VALIDATE(Rec372.Quantity, Rec372.Quantity - Rec372."Cantidad a pasar pedido");
+                                                Rec372."Cantidad a pasar pedido" := 0;
+                                                Rec372.MODIFY;
+                                            END;
+                                        END;
+                                    END;
+
+                                    IF RecProd."No permite pedido" THEN BEGIN
+                                        falta := TRUE;
+                                    END;
+                                    IF RecProd."Producto con reserva" THEN BEGIN
+                                        falta := TRUE;
+                                    END;
+                                END;
+                            //END;
                             UNTIL Rec372.NEXT = 0;
                     END;
 
@@ -403,15 +317,15 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                     Rec372.SETRANGE(Rec372."Document Type", Rec."Document Type");
                     Rec372.SETRANGE(Rec372."Document No.", Rec."No.");
                     IF Rec372.FINDFIRST THEN BEGIN
-                        Rec."Estado presupuesto" := 1;
-                        Rec.MODIFY;
+                        ///     Rec."Estado presupuesto":=1;
+                        ///     Rec.MODIFY;
                     END;
                     Rec372.RESET;
                     Rec372.SETRANGE(Rec372."Document Type", Rec."Document Type");
                     Rec372.SETRANGE(Rec372."Document No.", Rec."No.");
                     IF NOT Rec372.FINDFIRST THEN BEGIN
-                        Rec."Estado presupuesto" := 2;
-                        Rec.MODIFY;
+                        ///Rec."Estado presupuesto":=2;
+                        ///Rec.MODIFY;
                     END;
                     RecLC1.RESET;
                     RecLC1.SETRANGE(RecLC1."Document Type", Rec."Document Type");
@@ -426,6 +340,10 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                             END;
 
                         UNTIL RecLC1.NEXT = 0;
+
+                    ///MESSAGE('Nuevo pedido el %1',Rec362."No.");
+
+
 
                     RecSDLM.RESET;
                     RecSDLM.SETRANGE(RecSDLM."Journal Template Name", 'PRODUCTO');
@@ -457,42 +375,35 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                         FormPedido.RUNMODAL;
                     END;
 
-                END;
 
-            }
-            action(Importardropshiping)
-            {
-                ApplicationArea = All;
-                Caption = 'Importar dropshiping';
-                Image = Order;
-
-
-                trigger OnAction()
-                var
-                    Importardropshiping: XmlPort "Importacion PEDIDOS MASKO-come";
-
-
-                begin
-                    clear(Importardropshiping);
-                    Importardropshiping.run;
 
                 end;
             }
-            action(Importalineas)
+
+            action(Importardropshiping)
             {
-                ApplicationArea = All;
-                Caption = 'Importar lineas';
-                Image = Order;
-
-
+                ApplicationArea = Suite;
+                Caption = 'Importar dropshiping';
                 trigger OnAction()
                 var
-                    ImportacionPEDIDOSOTROS2: XmlPort "Importacion PEDIDOS OTROS2";
-
-
+                    ImportacionPEDIDOSMASKOcome: XmlPort "Importacion PEDIDOS MASKO-come";
                 begin
-                    clear(ImportacionPEDIDOSOTROS2);
-                    ImportacionPEDIDOSOTROS2.run;
+                    clear(ImportacionPEDIDOSMASKOcome);
+                    ImportacionPEDIDOSMASKOcome.Run();
+                end;
+            }
+            action(ImportarPedido)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Importar Pedido';
+                trigger OnAction()
+                var
+                    ImportacionPEDIDOSOTROS2: XMLport "Importacion PEDIDOS OTROS2";
+                begin
+                    CLEAR(ImportacionPEDIDOSOTROS2);
+                    ImportacionPEDIDOSOTROS2.PasoClie(Rec."No.");
+                    ImportacionPEDIDOSOTROS2.RUN;
+
 
                 end;
             }
@@ -638,32 +549,68 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
 
                 end;
             }
-            action(ImportacionPEDIDOSAMAZON2)
+
+            action(ImportacionPEDIDOSCARREFOUR)
             {
                 ApplicationArea = Suite;
-                Caption = 'Importacion OFERTAS AMAZON2';
+                Caption = 'Importacion PEDIDOS CARREFOUR';
                 trigger OnAction()
                 var
-                    xmlImportacionPEDIDOSAMAZON2: Xmlport "Importacion PEDIDOS AMAZON2";
+                    xmlImportacionPEDIDOSCARREFOUR: Xmlport "Importacion PEDIDOS CARREFOUR";
+
+
                 begin
-                    Clear(xmlImportacionPEDIDOSAMAZON2);
-                    xmlImportacionPEDIDOSAMAZON2.Run();
+
+                    Clear(xmlImportacionPEDIDOSCARREFOUR);
+                    xmlImportacionPEDIDOSCARREFOUR.Run();
+
+                    MESSAGE('Hecho.');
+
+                end;
+            }
+            action(ImportacionPEDIDOSLeroyMerl)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Importacion PEDIDOS Leroy Merl';
+                trigger OnAction()
+                var
+                    xmlImportacionPEDIDOSLeroyMerl: Xmlport "Importacion PEDIDOS Leroy Merl";
+                begin
+                    Clear(xmlImportacionPEDIDOSLeroyMerl);
+
                     MESSAGE('Hecho.');
                 end;
             }
-            action(ImportacionPEDIDOSVerdecora)
+
+            action(ImportacionPEDIDOSmanomano)
             {
                 ApplicationArea = Suite;
-                Caption = 'Importacion PEDIDOS Verdecora';
+                Caption = 'Importacion PEDIDOS mano mano';
                 trigger OnAction()
                 var
-                    xmlImportacionPEDIDOSVerdecora: Xmlport "Importacion PEDIDOS Verdecora";
+                    xmlImportacionPEDIDOSmanomano: Xmlport "Importacion PEDIDOS mano mano";
                 begin
-                    Clear(xmlImportacionPEDIDOSVerdecora);
-                    xmlImportacionPEDIDOSVerdecora.Run();
+                    Clear(xmlImportacionPEDIDOSmanomano);
+                    xmlImportacionPEDIDOSmanomano.Run();
                     MESSAGE('Hecho.');
                 end;
             }
+
+            action(ImportacionPEDIDOStiendaan)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Importacion PEDIDOS tienda animal';
+                trigger OnAction()
+                var
+                    xmlImportacionPEDIDOStiendaan: Xmlport "Importacion PEDIDOS tienda an";
+                begin
+                    Clear(xmlImportacionPEDIDOStiendaan);
+                    xmlImportacionPEDIDOStiendaan.Run();
+                    MESSAGE('Hecho.');
+                end;
+            }
+
+
 
 
 
@@ -671,14 +618,5 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
 
 
         }
-
-
-
-
-
-
     }
-
-
-
 }

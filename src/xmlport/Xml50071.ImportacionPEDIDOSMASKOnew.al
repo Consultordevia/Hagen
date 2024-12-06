@@ -267,9 +267,9 @@ XmlPort 50071 "Importacion PEDIDOS MASKO-new"
                 if NPEDIDO <> D2 then begin
                     NPEDIDO := D2;
                     codacti := NoSeriesManagement.GetNextNo('V-PRESU-4', Today, true);
-                    RecUser."Serie pedidos" := codacti;
-                    RecUser."Nº cliente" := clie;
-                    RecUser.Modify;
+                    ///RecUser."Serie pedidos" := codacti;
+                    ///RecUser."Nº cliente" := clie;
+                    ///RecUser.Modify;
                     RecCV.Init;
                     RecCV."Document Type" := 1;
                     RecCV."No." := codacti;

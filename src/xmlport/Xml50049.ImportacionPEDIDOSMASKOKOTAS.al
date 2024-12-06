@@ -245,9 +245,9 @@ XmlPort 50049 "Importacion PEDIDOS MASKOKOTAS"
 
                     codacti := IncStr(RecUser."Serie pedidos");
                     codacti := NoSeriesManagement.GetNextNo('V-PRESU-2', Today, true);
-                    RecUser."Serie pedidos" := codacti;
-                    RecUser."Nº cliente" := clie;
-                    RecUser.Modify;
+                    ///RecUser."Serie pedidos" := codacti;
+                    ///RecUser."Nº cliente" := clie;
+                    ///RecUser.Modify;
                     RecCV.Init;
                     RecCV."Document Type" := 1;
                     RecCV."No." := codacti;

@@ -20,7 +20,12 @@ Page 50011 "Comercial Datos"
 
                     trigger OnDrillDown()
                     begin
+                        Customer.Reset;
+                        Customer.SetCurrentkey("Salesperson Code");
+                        Customer.SetRange("Salesperson Code", UserSetup."Salespers./Purch. Code");
+                        Customer.SetRange("Estatus del cliente", Customer."estatus del cliente"::Activo);                        
                         Clear(PageMisClientes);
+                        PageMisClientes.SetTableView(Customer);
                         PageMisClientes.RunModal;
                     end;
                 }
@@ -31,7 +36,12 @@ Page 50011 "Comercial Datos"
 
                     trigger OnDrillDown()
                     begin
+                        Customer.Reset;
+                        Customer.SetCurrentkey("Salesperson Code");
+                        Customer.SetRange("Salesperson Code", UserSetup."Salespers./Purch. Code");
+                        Customer.SetRange("Estatus del cliente", Customer."estatus del cliente"::"Posible cliente");      
                         Clear(PageMisPosiblesClientes);
+                        PageMisPosiblesClientes.SetTableView(Customer);
                         PageMisPosiblesClientes.RunModal;
                     end;
                 }
@@ -42,7 +52,12 @@ Page 50011 "Comercial Datos"
 
                     trigger OnDrillDown()
                     begin
+                        Customer.Reset;
+                        Customer.SetCurrentkey("Salesperson Code");
+                        Customer.SetRange("Salesperson Code", UserSetup."Salespers./Purch. Code");
+                        Customer.SetRange("Estatus del cliente", Customer."estatus del cliente"::"Posible cliente WEB");                              
                         Clear(PageMisPosiblesClientesWEB);
+                        PageMisPosiblesClientesWEB.SetTableView(Customer);
                         PageMisPosiblesClientesWEB.RunModal;
                     end;
                 }

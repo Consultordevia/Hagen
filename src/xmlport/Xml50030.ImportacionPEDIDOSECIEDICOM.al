@@ -669,9 +669,9 @@ XmlPort 50030 "Importacion PEDIDOS ECI EDICOM"
             end;
             ///codacti:=INCSTR(RecUser."Serie pedidos");
             codacti := NoSeriesManagement.GetNextNo(SalesReceivablesSetup."Order Nos.", Today, true);
-            RecUser."Serie pedidos" := codacti;
-            RecUser."Nº cliente" := clie;
-            RecUser.Modify;
+            ///RecUser."Serie pedidos" := codacti;
+            ///RecUser."Nº cliente" := clie;
+            ///RecUser.Modify;
             RecCV.Init;
             RecCV."Document Type" := RecCV."document type"::Quote;
             RecCV."No." := codacti;

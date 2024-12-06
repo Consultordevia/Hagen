@@ -158,6 +158,7 @@ Codeunit 50062 "Automaticos MANOMANO"
 
 
         OutTxt := 'sku;quantity;use_grid;carrier;shipping_time;product_price_vat_inc;shipping_price_vat_inc';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
 
 
@@ -246,9 +247,7 @@ Codeunit 50062 "Automaticos MANOMANO"
         IF ADAIA.FindSet() THEN begin
             nomdir := ADAIA.Ruta;
         end;
-
-        ///TempBlob.CreateInStream(InStream);
-        ///FicherosHagen.CrearFichero(nomdir, 'MANOMANO-stock.csv', InStream);
+       
         
         Data.Write(OutStream);
 

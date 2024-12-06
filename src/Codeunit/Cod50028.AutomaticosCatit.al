@@ -124,22 +124,26 @@ Codeunit 50028 "Automaticos Catit"
         FileName: Text;
         InStream: InStream;
         FicherosHagen: Codeunit FicherosHagen;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+        OutTxt: Text;
     begin
-        TempBlob.CreateOutStream(OutStream);
+
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
+
+        
 
 
+        OutTxt := 'sku;price;Stock;status;pvpr;coste';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
 
-
-
-
-        OutStream.Write(TextoSalida1);
-
-
-
-
-        TextoSalida4 := 'sku;price;Stock;status;pvpr;coste';
-
-        OutStream.Write(TextoSalida4);
+         
 
 
 
@@ -338,13 +342,16 @@ Codeunit 50028 "Automaticos Catit"
 
 
                                     if codinner = '' then begin
-                                        TextoSalida1 := Format(refcattit) + ';' +
+                                        OutTxt := Format(refcattit) + ';' +
                                                Format(PRECIO) + ';' +
                                                Format(DISPONI) + ';' +
                                                Format(estatus) + ';' +
                                                Format(pvpr) + ';' +
-                                               Format(pmp);
-                                        OutStream.Write(TextoSalida1);
+                                               Format(pmp);                                         
+                                        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                                        data.AddText(OutTxt);
+
+
                                     end;
 
 
@@ -358,13 +365,15 @@ Codeunit 50028 "Automaticos Catit"
                                         RecUMP.SetRange(RecUMP.Code, SalesPrice."Unit of Measure Code");
                                         if RecUMP.FindFirst then begin
                                         end;
-                                        TextoSalida1 := Format(refcattit) + ';' +
+                                        OutTxt := Format(refcattit) + ';' +
                                         Format(PRECIO) + ';' +
                                         Format(ROUND(DISPONI / RecUMP."Qty. per Unit of Measure", 1)) + ';' +
                                         Format(estatus) + ';' +
                                         Format(pvpr) + ';' +
-                                        Format(pmp);
-                                        OutStream.Write(TextoSalida1);
+                                        Format(pmp);                                 
+                                        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                                        data.AddText(OutTxt);
+
 
                                     end;
                                 until SalesPrice.Next = 0;
@@ -383,9 +392,12 @@ Codeunit 50028 "Automaticos Catit"
         IF ADAIA.FindSet() THEN begin
             nomdir := ADAIA.Ruta;
         end;
+        
+        Data.Write(OutStream);
 
-        TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(NOMDIR, 'catit.csv', InStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+        FicherosHagen.CrearFichero(nomdir, 'catit.csv', InStream);
+
 
     end;
 

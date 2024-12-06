@@ -7,6 +7,12 @@ Codeunit 50055 "Fichero Stock.csv"
     trigger OnRun()
     begin
 
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
+
 
         ItemTemp.Reset;
         if ItemTemp.FindFirst then
@@ -147,6 +153,19 @@ Codeunit 50055 "Fichero Stock.csv"
         SalesLineDiscount: Record "Sales Line Discount";
         contadto: Integer;
         contal: Integer;
+        TempBlob: Codeunit "Temp Blob";
+        OutStream: OutStream;
+        FileName: Text;
+        InStream: InStream;
+        FicherosHagen: Codeunit FicherosHagen;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+        OutTxt: Text;
+        ADAIA: Record adaia;
+        NOMDIR: Text;
+        RepItemTemporal: REPORT ItemTemporal;
+
 
 
     procedure GrabaStock()
@@ -356,8 +375,11 @@ Codeunit 50055 "Fichero Stock.csv"
         /////                'pvr2019;disponibilidad;unidad minima venta;fecha recepcion esperada;'+
         /////                'peso;largo;ancho;alto;volumen;marca;URL imagen 1;IVA';
 
-        TextoSalida1 := 'Ean;Referencia;Descripcion;Estado;Línea;Familia;Tarifa;PVPR;Disponibilidad;Und. Mínimo Compra;Fecha Prox.;Pesos;Largo;Alto;Ancho;Volumen;Marca;URL imagen;Iva;Fecha Lanzamiento;' +
+        OutTxt := 'Ean;Referencia;Descripcion;Estado;Línea;Familia;Tarifa;PVPR;Disponibilidad;Und. Mínimo Compra;Fecha Prox.;Pesos;Largo;Alto;Ancho;Volumen;Marca;URL imagen;Iva;Fecha Lanzamiento;' +
         'Cantidad_1;Descuento_1;Cantidad_2;Descuento_2;Cantidad_3;Descuento_3';
+        ////        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        ////data.AddText(OutTxt);
+
 
 
 
@@ -405,6 +427,9 @@ Codeunit 50055 "Fichero Stock.csv"
                               Format(ItemTemp."Vendor No.") + ';' +
                               Format(ItemTemp."Last Date Modified");
 
+            ///OutTxt:=TextoSalida1+TextoSalida2+TextoSalida3;
+            ///OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            ////data.AddText(OutTxt);
 
             ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4);
 
@@ -1555,16 +1580,26 @@ Codeunit 50055 "Fichero Stock.csv"
         */
 
 
-
-
-        FileDirectoryexcel := 'c:\tmp\TarifaStock2022-2.xls';
-
-
-        ItemtempR.Reset;
-        ItemtempR.SetCurrentkey("No. 2");
-        if ItemtempR.FindFirst then begin
-            /////- Report.SaveAsExcel(50117,FileDirectoryexcel,ItemtempR);
+        nomdir := '';
+        ADAIA.Reset();
+        ADAIA.SetRange(texto, 'IMPORTACION STOCKCSV-CU-50055');
+        IF ADAIA.FindSet() THEN begin
+            nomdir := ADAIA.Ruta;
         end;
+
+        Data.Write(OutStream);
+
+
+
+
+        /////FileDirectoryexcel := 'c:\tmp\TarifaStock2022-2.xls';
+
+
+        Clear(RepItemTemporal);
+        RepItemTemporal.UseRequestPage(false);
+        ///if not RepItemTemporal.SaveAsExcel(nomdir) then
+            Error('ERROR');
+
 
     end;
 }

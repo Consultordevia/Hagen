@@ -88,6 +88,7 @@ Codeunit 50071 "Automaticos Leroy Merlin"
         OutTxt := 'Importe DEE;Importe DEE Italia;Importe DEE Bricoman Francia;Importe DEE LMES;Importe DEA;Precio sin IVA Bricoman FR;Precio con descuento sin IVA Bricoman FR;IVA LMFR;IVA BMFR;IVA LMIT;IVA LMES;País de almacenaje;';
         data.AddText(OutTxt);
         OutTxt := 'Oferta exclusiva para;Porcentaje de descuento LMFR;Porcentaje de descuento LMIT;Porcentaje de descuento BMFR;Porcentaje de descuento LMES';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
 
 
@@ -100,6 +101,7 @@ Codeunit 50071 "Automaticos Leroy Merlin"
         OutTxt := 'ecopart-amount;ecopart-amount-lmit;ecopart-amount-bmfr;ecopart-amount-lmes;dea-amount;no-tax-price-bmfr;no-tax-discount-price-bmfr;vat-lmfr;vat-bmfr;vat-lmit;vat-lmes;shipment-origin;exclusive-channels;';
         data.AddText(OutTxt);
         OutTxt := 'discount-percentage-lmfr;discount-percentage-lmit;discount-percentage-bmfr;discount-percentage-lmes';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
 
 
@@ -129,6 +131,9 @@ Codeunit 50071 "Automaticos Leroy Merlin"
                     ///SalesPrice2.SETFILTER("Ending Date",'%1|<%2',0D,TODAY);
                     if SalesPrice2.FindFirst then begin
                         fechaini := SalesPrice2."Starting Date";
+                        if fechaini=0D THEN begin
+                            fechaini:=20000101D;
+                        end;
                         precio2 := SalesPrice2."Unit Price";
 
                         mm := Date2dmy(fechaini, 2);
@@ -165,6 +170,10 @@ Codeunit 50071 "Automaticos Leroy Merlin"
 
 
                         fechafin := SalesPrice2."Ending Date";
+                        if fechafin=0D THEN begin
+                            fechafin:=20501231D;
+                        end;
+                        
                         mm := Date2dmy(fechafin, 2);
                         dd := Date2dmy(fechafin, 1);
                         mm1 := Format(mm);
@@ -222,9 +231,14 @@ Codeunit 50071 "Automaticos Leroy Merlin"
                             tprecio3 := '';
                         end;
 
+                        fechaini:=SalesLineDiscount."Starting Date";
+                        if fechaini=0D THEN begin
+                            fechaini:=20000101D;
+                        end;
+                        
 
-                        mm := Date2dmy(SalesLineDiscount."Starting Date", 2);
-                        dd := Date2dmy(SalesLineDiscount."Starting Date", 1);
+                        mm := Date2dmy(fechaini, 2);
+                        dd := Date2dmy(fechaini, 1);
                         mm1 := Format(mm);
                         dd1 := Format(dd);
 
@@ -254,12 +268,18 @@ Codeunit 50071 "Automaticos Leroy Merlin"
                         if mm1 = '12' then mm1 := '12';
 
 
-                        fechainiDTO := Format(Date2dmy(SalesLineDiscount."Starting Date", 3)) + '-' + mm1 + '-' + dd1;
+                        fechainiDTO := Format(Date2dmy(fechaini, 3)) + '-' + mm1 + '-' + dd1;
 
 
 
-                        mm := Date2dmy(SalesLineDiscount."Ending Date", 2);
-                        dd := Date2dmy(SalesLineDiscount."Ending Date", 1);
+                        fechafin:=SalesLineDiscount."Starting Date";
+                        if fechafin=0D THEN begin
+                            fechafin:=20501231D;
+                        end;
+                        
+
+                        mm := Date2dmy(fechafin, 2);
+                        dd := Date2dmy(fechafin, 1);
                         mm1 := Format(mm);
                         dd1 := Format(dd);
 
@@ -288,7 +308,7 @@ Codeunit 50071 "Automaticos Leroy Merlin"
                         if mm1 = '11' then mm1 := '11';
                         if mm1 = '12' then mm1 := '12';
 
-                        fechafinDTO := Format(Date2dmy(SalesLineDiscount."Ending Date", 3)) + '-' + mm1 + '-' + dd1;
+                        fechafinDTO := Format(Date2dmy(fechafin, 3)) + '-' + mm1 + '-' + dd1;
 
 
 
