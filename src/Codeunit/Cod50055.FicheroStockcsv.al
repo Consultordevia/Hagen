@@ -1586,7 +1586,7 @@ Codeunit 50055 "Fichero Stock.csv"
 
         nomdir := '';
         ADAIA.Reset();
-        ADAIA.SetRange(texto, 'IMPORTACION STOCKCSV-CU-50055');
+        ADAIA.SetRange(texto, 'AUTOMATICO STOCKCSV-CU-50055');
         IF ADAIA.FindSet() THEN begin
             nomdir := ADAIA.Ruta;
         end;
@@ -1606,7 +1606,7 @@ Codeunit 50055 "Fichero Stock.csv"
             Error('ERROR');
 
         tempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(nomdir, NombreFichero, InStream);
+        FicherosHagen.CrearFichero(nomdir, 'TarifaStock2022-2.xls', InStream);
 
 
 

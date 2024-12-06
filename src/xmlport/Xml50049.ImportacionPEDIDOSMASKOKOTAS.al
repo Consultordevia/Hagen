@@ -267,7 +267,7 @@ XmlPort 50049 "Importacion PEDIDOS MASKOKOTAS"
                     RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                     RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
                     RecCV."Permite fraccionar uni. venta" := true;
-                    RecCV."Your Reference" := D1;
+                    RecCV.Validate("Your Reference" , D1);
                     X := 0;
                     SALE := false;
                     FECHAENVIO := Today;

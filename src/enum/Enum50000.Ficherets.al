@@ -79,5 +79,9 @@ enum 50000 Ficherets
     value(24; FTP12832) { Caption = 'FTP12832'; }
     value(25; FTP12827) { Caption = 'FTP12827'; }
     value(26; FTP12833) { Caption = 'FTP12833'; }
+    value(27; VERDECORA2)
+    {
+        Caption = 'VERDECORA2';
+    }
     
 }

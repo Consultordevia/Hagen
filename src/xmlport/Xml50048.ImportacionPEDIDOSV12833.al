@@ -292,7 +292,7 @@ XmlPort 50048 "Importacion PEDIDOS V-12833"
                 RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                 RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
 
-                RecCV."Your Reference" := D3;
+                RecCV.Validate("Your Reference" , D3);
 
                 RecCV.Insert(true);
 

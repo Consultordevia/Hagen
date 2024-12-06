@@ -549,7 +549,7 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                     RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                     RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
                     RecCV."Permite fraccionar uni. venta" := true;
-                    RecCV."Your Reference" := D1;
+                    RecCV.Validate("Your Reference" , D1);
                     RecCV."Shipment Date" := Today;
                     RecCV."Requested Delivery Date" := Today;
                     RecCV.Validate(RecCV."Ship-to Code", CODDIRENVIO);
@@ -559,7 +559,7 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                     RecCV."Super urgente" := true;
                     ///TempBlob.WriteAsText(D2,TEXTENCODING::Windows);
                     ///RecCV."Work Description":=TempBlob.Blob;
-                    RecCV."Your Reference" := D2;
+                    RecCV.Validate("Your Reference" , D2);
                     RecCV."Ship-to Name" := CopyStr(D35 + D36, 1, 50);
                     RecCV."Ship-to Name 2" := CopyStr(D35 + D36, 51, 50);
                     RecCV."Ship-to Address" := CopyStr(D38 + D39, 1, 50);

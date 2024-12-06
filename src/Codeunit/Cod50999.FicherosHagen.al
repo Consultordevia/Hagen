@@ -318,6 +318,10 @@ codeunit 50999 FicherosHagen
                     if Tipo = Tipo::VERDECORA then begin
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS Verdecora", InStream);
                     end;
+                    if Tipo = Tipo::VERDECORA2 then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS Verdecora2", InStream);
+                    end;
+                    
                     if Tipo = Tipo::CARREFOUR then begin
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS CARREFOUR", InStream);
                     end;

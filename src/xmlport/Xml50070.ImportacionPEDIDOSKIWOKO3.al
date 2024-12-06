@@ -303,7 +303,7 @@ XmlPort 50070 "Importacion PEDIDOS KIWOKO3"
                 RecCV."Shipping No. Series" := SalesSetup."Posted Shipment Nos.";
                 RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                 RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
-                RecCV."Your Reference" := D5;
+                RecCV.Validate("Your Reference" , D5);
                 RecCV.Insert(true);
                 if obser <> '' then begin
                     if not RecLCV.Get(1, RecCV."No.", 100) then begin

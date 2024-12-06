@@ -289,7 +289,7 @@ XmlPort 50071 "Importacion PEDIDOS MASKO-new"
                     RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                     RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
                     RecCV."Permite fraccionar uni. venta" := true;
-                    RecCV."Your Reference" := D2;
+                    RecCV.Validate("Your Reference" , D2);
                     X := 0;
                     SALE := false;
                     FECHAENVIO := Today;

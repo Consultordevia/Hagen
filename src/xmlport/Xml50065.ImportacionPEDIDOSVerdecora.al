@@ -347,7 +347,7 @@ XmlPort 50065 "Importacion PEDIDOS Verdecora"
                 RecCV."Shipping No. Series" := SalesSetup."Posted Shipment Nos.";
                 RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                 RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
-                RecCV."Your Reference" := D1;
+                RecCV.Validate("Your Reference" , D1);
 
                 RecCV.Insert(true);
 

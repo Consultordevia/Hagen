@@ -285,7 +285,7 @@ XmlPort 50023 "Importacion PEDIDOS AMAZON"
                     RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                     RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
                     RecCV."Permite fraccionar uni. venta" := true;
-                    RecCV."Your Reference" := D1;
+                    RecCV.Validate("Your Reference" , D1);
                     RecCV."Observación para ALMACEN" := 'Entregar:' + Format(CopyStr(D9, 1, 6) + CopyStr(D9, 9, 2)) + ' - ' + Format(CopyStr(D10, 1, 6) + CopyStr(D10, 9, 2));
                     RecCV."Observación para transporte" := 'Entregar:' + Format(CopyStr(D9, 1, 6) + CopyStr(D9, 9, 2)) + ' - ' + Format(CopyStr(D10, 1, 6) + CopyStr(D10, 9, 2));
                     X := 0;

@@ -381,7 +381,7 @@ XmlPort 50055 "Importacion PEDIDOS catitt new"
                 RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                 RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
                 RecCV."Permite fraccionar uni. venta" := true;
-                RecCV."Your Reference" := D1;
+                RecCV.Validate("Your Reference" , D1);
                 RecCV.Validate(RecCV."Ship-to Code", CODDIRENVIO);
                 RecCV."Shipment Date" := CalcDate('+2D', Today);
                 RecCV."Requested Delivery Date" := CalcDate('+2D', Today);

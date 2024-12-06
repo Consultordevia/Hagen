@@ -1,7 +1,7 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
-XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
+XmlPort 50079 "Importacion PEDIDOS Verdecora2"
 {
-    Caption = 'Importacion PEDIDOS KIWOKO2';
+    Caption = 'Importacion PEDIDOS Verdecora2';
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
@@ -55,35 +55,8 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
                 textelement(D13)
                 {
                 }
+                
                 textelement(D14)
-                {
-                }
-                textelement(D15)
-                {
-                }
-                textelement(D16)
-                {
-                }
-                textelement(D17)
-                {
-                }
-                textelement(D18)
-                {
-                }
-                textelement("<d19>")
-                {
-                    XmlName = 'D19';
-                }
-                textelement(D20)
-                {
-                }
-                textelement(D21)
-                {
-                }
-                textelement(D22)
-                {
-                }
-                textelement(D23)
                 {
 
                     trigger OnAfterAssignVariable()
@@ -140,7 +113,6 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
         CODENVIO: Code[20];
         Item: Record Item;
         valorpbp: Decimal;
-        stock: Record "Cesta compra";
         CANTIDE: Decimal;
         conta: Integer;
         ventana: Dialog;
@@ -194,8 +166,6 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
         RecCV: Record "Sales Header";
         RecLV: Record "Sales Line";
         linea: Integer;
-        RecAct: Record "Comisiones por grupo";
-        RecAct2: Record "Comisiones por grupo";
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
@@ -207,7 +177,6 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
         RecCV2: Record "Sales Header";
         SalesSetup: Record "Sales & Receivables Setup";
         Rec91: Record "User Setup";
-
         RecLCV: Record "Sales Comment Line";
         SUPRA: Code[20];
         RecProd: Record Item;
@@ -227,6 +196,7 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
         UserSetup: Record "User Setup";
         /////- smtp: Codeunit UnknownCodeunit400;
         RelacionproductogrupoMetros: Record "Relacion producto-grupo Metros";
+        NoSeriesManagement: Codeunit NoSeriesManagement;
 
     local procedure InitializeGlobals()
     var
@@ -301,10 +271,12 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
                 if not RecClie.FindFirst then begin
                     Enviaemail;
                 end;
-                codacti := IncStr(RecUser."Serie pedidos");
-                RecUser."Serie pedidos" := codacti;
-                RecUser."Nº cliente" := clie;
-                RecUser.Modify;
+                ///codacti:=INCSTR(RecUser."Serie pedidos");
+                codacti := NoSeriesManagement.GetNextNo('V-PED-KI', Today, true);
+
+                ///RecUser."Serie pedidos":=codacti;
+                ///RecUser."Nº cliente":=clie;
+                ///RecUser.MODIFY;
                 RecCV.Init;
                 RecCV."Document Type" := 0;
                 RecCV."No." := codacti;
@@ -327,7 +299,7 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
                 RecCV."Shipping No. Series" := SalesSetup."Posted Shipment Nos.";
                 RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                 RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
-                RecCV.Validate("Your Reference",D5);
+                RecCV.Validate("Your Reference" , D2);
 
                 RecCV.Insert(true);
 
@@ -348,9 +320,9 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
             SALE := false;
 
             ///// D[10]:=COPYSTR(D[10],2);
-            D10 := CopyStr(D10, 2);
-            if D10 <> '' then begin
-                if RecProd.Get(D10) then begin
+            ///D10:=COPYSTR(D10,2);
+            if D4 <> '' then begin
+                if RecProd.Get(D4) then begin
                     RecProd.SetRange(RecProd."Location Filter", 'SILLA', 'SILLA');
                     RecProd.CalcFields(RecProd.Inventory);
                     if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
@@ -362,10 +334,10 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
                         RecLV."Document No." := RecCV."No.";
                         RecLV."Line No." := LINEAS;
                         RecLV.Type := 2;
-                        RecLV.Validate(RecLV."No.", D10);
-                        Evaluate(CANTIDE, D14);
+                        RecLV.Validate(RecLV."No.", D4);
+                        Evaluate(CANTIDE, D7);
                         RelacionproductogrupoMetros.Reset;
-                        RelacionproductogrupoMetros.SetRange(RelacionproductogrupoMetros.Producto, D10);
+                        RelacionproductogrupoMetros.SetRange(RelacionproductogrupoMetros.Producto, D4);
                         /////RelacionproductogrupoMetros.SETRANGE(RelacionproductogrupoMetros."Grupo Cliente",RecCV."Grupo clientes");
                         if RelacionproductogrupoMetros.FindSet then begin
                             CANTIDE := ROUND(CANTIDE / RelacionproductogrupoMetros.Metros, 0.01);
@@ -380,7 +352,7 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
                 end else begin
                     RecRefCruz.Reset;
                     RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
-                    RecRefCruz.SetRange(RecRefCruz."Reference No.", D10);
+                    RecRefCruz.SetRange(RecRefCruz."Reference No.", D4);
                     if RecRefCruz.FindFirst then begin
                         ref := RecRefCruz."Item No.";
                         if RecProd.Get(ref) then begin
@@ -395,7 +367,7 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
                                 RecLV."Line No." := LINEAS;
                                 RecLV.Type := 2;
                                 RecLV.Validate(RecLV."No.", ref);
-                                Evaluate(CANTIDE, D14);
+                                Evaluate(CANTIDE, D7);
                                 RelacionproductogrupoMetros.Reset;
                                 RelacionproductogrupoMetros.SetRange(RelacionproductogrupoMetros.Producto, ref);
                                 ////RelacionproductogrupoMetros.SETRANGE(RelacionproductogrupoMetros."Grupo Cliente",RecCV."Grupo clientes");
@@ -419,22 +391,23 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
 
     local procedure Enviaemail()
     begin
-
+/*
         UserSetup.Get(UserId);
 
         SenderName := 'HAGEN';
-        Subject := 'Este relacion no existe en kiwoko: ' + D1;
+        Subject := 'Este relacion no existe en kiwoko: ' + D22;
         Recipient := 'oscarraea@hotmail.com;martinjesus241@gmail.com';
         /////- Clear(smtp);
         /////- smtp.Run;
         /////- smtp.CreateMessage(SenderName,SenderAddress,Recipient,Subject,Body,true);
 
-        /////- smtp.AppendBody('Este relacion no existe en kiwoko: '+D1+' <BR>');
+        /////- /////- smtp.AppendBody('Este relacion no existe en kiwoko: '+D22+' <BR>');
         /////- smtp.AppendBody('<HR>');
 
 
         /////- smtp.Send;
         /////- Clear(smtp);
+        */
     end;
 }
 
