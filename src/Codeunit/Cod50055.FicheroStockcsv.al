@@ -1021,6 +1021,10 @@ Codeunit 50055 "Fichero Stock.csv"
 
 
     procedure GrabaStock4()
+    var
+        OutStream: OutStream;
+        InStream: InStream;
+        TempBlob: Codeunit "Temp Blob";
     begin
 
         Item.Reset;
@@ -1597,8 +1601,13 @@ Codeunit 50055 "Fichero Stock.csv"
 
         Clear(RepItemTemporal);
         RepItemTemporal.UseRequestPage(false);
-        ///if not RepItemTemporal.SaveAsExcel(nomdir) then
+        TempBlob.CreateOutStream(OutStream);
+        if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
             Error('ERROR');
+
+        tempBlob.CreateInStream(InStream);
+        FicherosHagen.CrearFichero(nomdir, NombreFichero, InStream);
+
 
 
     end;
