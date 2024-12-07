@@ -108,7 +108,7 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                 field("Texto Descuento Presta Shop"; Rec."Texto Descuento Presta Shop") { ApplicationArea = All; }
                 field("Nº Albaran Notificar Envio"; Rec."Nº Albaran Notificar Envio") { ApplicationArea = All; }
                 field("Factura EDI"; Rec."Factura EDI") { ApplicationArea = All; }
-                field("Albarán EDI"; Rec."Albarán EDI") { ApplicationArea = All; }
+                field("Albarán EDI"; Rec."Albarán EDI") { ApplicationArea = All; }                 
 
             }
         }
@@ -491,8 +491,12 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
 
 
                 begin
-                    clear(ImportacionPEDIDOSOTROS2);
-                    ImportacionPEDIDOSOTROS2.run;
+
+                    CLEAR(ImportacionPEDIDOSOTROS2);
+                    ImportacionPEDIDOSOTROS2.PasoClie(Rec."No.");
+                    ImportacionPEDIDOSOTROS2.RUN;
+
+
 
                 end;
             }
@@ -665,6 +669,21 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                 end;
             }
 
+
+            action(ImportacionPEDIDOSVerdecora2)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Importacion PEDIDOS Verdecora-2';
+                trigger OnAction()
+                var
+                    xmlImportacionPEDIDOSVerdecora2: Xmlport "Importacion PEDIDOS Verdecora2";
+                begin
+                    Clear(xmlImportacionPEDIDOSVerdecora2);
+                    xmlImportacionPEDIDOSVerdecora2.PasoClie(Rec."No.");
+                    xmlImportacionPEDIDOSVerdecora2.Run();
+                    MESSAGE('Hecho.');
+                end;
+            }
 
 
 

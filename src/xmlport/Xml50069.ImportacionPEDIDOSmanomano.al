@@ -549,8 +549,8 @@ XmlPort 50069 "Importacion PEDIDOS mano mano"
 
 
 
-                D40 := ConvertStr(D40, '.', ',');
-                Evaluate(CANTitrans, D40);
+                D39 := ConvertStr(D39, '.', ',');
+                Evaluate(CANTitrans, D39);
                 if CANTitrans <> 0 then begin
                     RecLV."Document Type" := 1;
                     RecLV."Document No." := codacti;

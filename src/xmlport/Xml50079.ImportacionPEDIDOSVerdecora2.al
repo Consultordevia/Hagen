@@ -197,6 +197,7 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
         /////- smtp: Codeunit UnknownCodeunit400;
         RelacionproductogrupoMetros: Record "Relacion producto-grupo Metros";
         NoSeriesManagement: Codeunit NoSeriesManagement;
+        codpedido: code[20];
 
     local procedure InitializeGlobals()
     var
@@ -261,51 +262,7 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
 
 
         if linea > 1 then begin
-            if linea = 2 then begin
-                clie := '';
-                RecClie.Reset;
-                RecClie.SetRange("Codigo cliente externo", D1);
-                if RecClie.FindFirst then begin
-                    clie := RecClie."No.";
-                end;
-                if not RecClie.FindFirst then begin
-                    Enviaemail;
-                end;
-                ///codacti:=INCSTR(RecUser."Serie pedidos");
-                codacti := NoSeriesManagement.GetNextNo('V-PED-KI', Today, true);
-
-                ///RecUser."Serie pedidos":=codacti;
-                ///RecUser."Nº cliente":=clie;
-                ///RecUser.MODIFY;
-                RecCV.Init;
-                RecCV."Document Type" := 0;
-                RecCV."No." := codacti;
-
-
-
-                /////RecCV."Super oferta":=SUPRA;
-                RecCV.Validate(RecCV."Order Date", Today);
-                RecCV.Validate(RecCV."Posting Date", Today);
-                RecCV.Validate(RecCV."Shipment Date", Today);
-                RecCV."Posting Description" := 'Pedido nº ' + codacti;
-                RecCV.Validate(RecCV."Sell-to Customer No.", clie);
-                RecCV."Estado pedido" := 2;
-                RecCV."Usuario alta" := UserId;
-                RecCV."Fecha alta" := Today;
-                RecCV."Hora alta" := Time;
-                SalesSetup.Get;
-                RecCV."No. Series" := SalesSetup."Order Nos.";
-                RecCV."Posting No. Series" := SalesSetup."Posted Invoice Nos.";
-                RecCV."Shipping No. Series" := SalesSetup."Posted Shipment Nos.";
-                RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
-                RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
-                RecCV.Validate("Your Reference" , D2);
-
-                RecCV.Insert(true);
-
-
-
-
+            if linea = 2 then begin                
                 if obser <> '' then begin
                     if not RecLCV.Get(1, RecCV."No.", 100) then begin
                         RecLCV."Document Type" := 0;
@@ -319,6 +276,9 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
             end;
             SALE := false;
 
+            RecCV.get(0,codpedido);
+            RecCV."Your Reference":=D3;
+            RecCV.Modify;
             ///// D[10]:=COPYSTR(D[10],2);
             ///D10:=COPYSTR(D10,2);
             if D4 <> '' then begin
@@ -331,7 +291,7 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
                     if not SALE then begin
                         LINEAS := LINEAS + 10000;
                         RecLV."Document Type" := 0;
-                        RecLV."Document No." := RecCV."No.";
+                        RecLV."Document No." := codpedido;
                         RecLV."Line No." := LINEAS;
                         RecLV.Type := 2;
                         RecLV.Validate(RecLV."No.", D4);
@@ -363,7 +323,7 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
                             if not SALE then begin
                                 LINEAS := LINEAS + 10000;
                                 RecLV."Document Type" := 0;
-                                RecLV."Document No." := RecCV."No.";
+                                RecLV."Document No." := codpedido;
                                 RecLV."Line No." := LINEAS;
                                 RecLV.Type := 2;
                                 RecLV.Validate(RecLV."No.", ref);
@@ -408,6 +368,20 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
         /////- smtp.Send;
         /////- Clear(smtp);
         */
+    end;
+    procedure PasoClie(var npedido: Code[20])
+    begin
+
+
+        codpedido := npedido;
+
+        LINEAS := 10000;
+        RecLV.Reset;
+        RecLV.SetRange("Document No.", codpedido);
+        RecLV.SetRange("Document Type", 0);
+        if RecLV.FindLast then begin
+            LINEAS := RecLV."Line No.";
+        end;
     end;
 }
 

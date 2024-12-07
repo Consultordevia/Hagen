@@ -2,8 +2,16 @@ pageextension 50008 "Sales Quote Subform" extends "Sales Quote Subform"
 {
 
 
+
+
     layout
     {
+
+
+        addafter(Quantity)
+        {
+            field(ColorLinea; Rec.ColorLinea) { ApplicationArea = All; }
+        }
         addlast(content)
         {
             group(Hagen)
@@ -64,8 +72,30 @@ pageextension 50008 "Sales Quote Subform" extends "Sales Quote Subform"
                 field("Estado presupuesto"; Rec."Estado presupuesto") { ApplicationArea = All; }
                 field("existe"; Rec."existe") { ApplicationArea = All; }
 
+
             }
         }
     }
+    trigger OnAfterGetRecord()
+    var
+        RecItem: Record Item;
+
+    begin
+        Rec.ColorLinea := '';
+        IF RecItem.GET(Rec."No.") THEN BEGIN
+            IF (RecItem."No permite pedido") THEN BEGIN
+                Rec.ColorLinea := 'Rojo';
+            END;
+            IF (RecItem."Producto con reserva") THEN BEGIN
+                Rec.ColorLinea := 'Attention';
+            END;
+            IF RecItem."Estado Producto" <> RecItem."Estado Producto"::Activo THEN BEGIN
+                Rec.ColorLinea := 'Ambiguous';
+            END;
+
+        END;
+
+    end;
+
 }
 

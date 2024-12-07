@@ -202,32 +202,32 @@ Codeunit 50072 "Automaticos MIRAVIA"
         OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
         data.AddText(OutTxt);
         OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
         data.AddText(OutTxt);
-        OutTxt := 'The stock quantity should be equal or greater than order quantity."",' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.,' +
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
-        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity."';
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"Please input less than 200 characters.,' +
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
         data.AddText(OutTxt);
         OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
@@ -390,32 +390,32 @@ Codeunit 50072 "Automaticos MIRAVIA"
         OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
         data.AddText(OutTxt);
         OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
         data.AddText(OutTxt);
-        OutTxt := 'The stock quantity should be equal or greater than order quantity."",' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.,' +
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
-        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity."';
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"Please input less than 200 characters.,' +
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
         data.AddText(OutTxt);
         OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
@@ -587,32 +587,32 @@ Codeunit 50072 "Automaticos MIRAVIA"
         OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
         data.AddText(OutTxt);
         OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
         data.AddText(OutTxt);
-        OutTxt := 'The stock quantity should be equal or greater than order quantity."",' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.,' +
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
-        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity."';
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"Please input less than 200 characters.,' +
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
         data.AddText(OutTxt);
         OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
@@ -777,32 +777,32 @@ Codeunit 50072 "Automaticos MIRAVIA"
         OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
         data.AddText(OutTxt);
         OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
         data.AddText(OutTxt);
-        OutTxt := 'The stock quantity should be equal or greater than order quantity."",' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.,' +
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
-        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity."';
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"Please input less than 200 characters.,' +
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
         data.AddText(OutTxt);
         OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
@@ -969,32 +969,32 @@ Codeunit 50072 "Automaticos MIRAVIA"
         OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
         data.AddText(OutTxt);
         OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
         data.AddText(OutTxt);
-        OutTxt := 'The stock quantity should be equal or greater than order quantity."",' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.,' +
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
-        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity."';
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"Please input less than 200 characters.,' +
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
         data.AddText(OutTxt);
         OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
@@ -1166,32 +1166,32 @@ Codeunit 50072 "Automaticos MIRAVIA"
         OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
         data.AddText(OutTxt);
         OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
         data.AddText(OutTxt);
-        OutTxt := 'The stock quantity should be equal or greater than order quantity."",' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.,' +
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
-        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity."';
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"Please input less than 200 characters.,' +
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
         data.AddText(OutTxt);
         OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
@@ -1362,32 +1362,32 @@ Codeunit 50072 "Automaticos MIRAVIA"
         OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
         data.AddText(OutTxt);
         OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
         data.AddText(OutTxt);
-        OutTxt := 'The stock quantity should be equal or greater than order quantity."",' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.,' +
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
-        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity."';
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"Please input less than 200 characters.,' +
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
         data.AddText(OutTxt);
         OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
@@ -1556,32 +1556,32 @@ Codeunit 50072 "Automaticos MIRAVIA"
         OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
         data.AddText(OutTxt);
         OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
         data.AddText(OutTxt);
-        OutTxt := 'The stock quantity should be equal or greater than order quantity."",' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.,' +
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
-        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity."';
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"Please input less than 200 characters.,' +
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
         data.AddText(OutTxt);
         OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
@@ -1745,32 +1745,32 @@ Codeunit 50072 "Automaticos MIRAVIA"
         OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
         data.AddText(OutTxt);
         OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
         data.AddText(OutTxt);
-        OutTxt := 'The stock quantity should be equal or greater than order quantity."",' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.,' +
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
-        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity."';
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"Please input less than 200 characters.,' +
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
         data.AddText(OutTxt);
         OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
@@ -1932,32 +1932,32 @@ Codeunit 50072 "Automaticos MIRAVIA"
         OutTxt := 'Mandatory,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional,optional';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
+        OutTxt := 'SKU is a unique identifier for each product variation. SKU value cannot be duplicated in a store.,' +
         'This is the price that the customer has to pay for the product. This price includes the taxes.,';
         data.AddText(OutTxt);
         OutTxt := 'Sales Price for a Product for Promotion.,' +
         'Input Status value to change Sku status ' +
         'Input your product stock quantity.,';
         data.AddText(OutTxt);
-        OutTxt := 'The stock quantity should be equal or greater than order quantity."",' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        OutTxt := 'The stock quantity should be equal or greater than order quantity.,' +
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
         OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.,' +
-        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse"",';
+        'Input your multiwarehouse code. You can get Multiwarehouse code from ""Miravia Seller Center-My Account-Setting-Warehouse",';
         data.AddText(OutTxt);
-        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity."';
+        OutTxt := 'Input your product stock quantity related to specific multiwarehouse. The stock quantity should be equal or greater than order quantity.';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        OutTxt := '"Please input less than 200 characters.,' +
+        OutTxt := 'Please input less than 200 characters.,' +
         'Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,';
         data.AddText(OutTxt);
         OutTxt := 'Special Price has to be lower than "Price" or else its not a sale offer. Only numbers(>0) and empty value are accepted. Empty value will skip this parameter.,' +
