@@ -250,6 +250,7 @@ codeunit 50999 FicherosHagen
         TotalstreamText: Text;
         Rec83: Record "Item Journal Line";
         CURegMov: Codeunit "Item Jnl.-Post Batch";
+        ImportaADAIA: Codeunit "Conecta ADAIA";
 
     begin
         //COMMIT;
@@ -321,7 +322,7 @@ codeunit 50999 FicherosHagen
                     if Tipo = Tipo::VERDECORA2 then begin
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS Verdecora2", InStream);
                     end;
-                    
+
                     if Tipo = Tipo::CARREFOUR then begin
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS CARREFOUR", InStream);
                     end;
@@ -356,6 +357,9 @@ codeunit 50999 FicherosHagen
                         end;
                         if CopyStr(FileText, 1, 4) = 'STSI' then begin
                             Xmlport.Import(Xmlport::"ADAIA_Alta del TRSTO", InStream);
+                        end;
+                        if CopyStr(FileText, 1, 4) = 'CRCA' then begin
+                            Xmlport.Import(Xmlport::"ADAIATRREC", InStream);
                         end;
 
 

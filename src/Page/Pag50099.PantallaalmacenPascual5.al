@@ -20,6 +20,7 @@ Page 50099 "Pantalla almacen Pascual5"
     PageType = List;
     SourceTable = "Sales Header";
     SourceTableView = sorting("Document Type", "Estado pedido", "Super urgente", Urgente, "Fecha para preparar", "Hora para preparar");
+    Permissions = tabledata 110 = rmid, tabledata "Cajas por pedido" = rmid;  
 
     layout
     {
@@ -16855,6 +16856,7 @@ Page 50099 "Pantalla almacen Pascual5"
                             Clear(RepETAD);
                             RepETAD.SetTableview(SalesHeader32);
                             RepETAD.RunModal;
+                            ///Report 50009 "ETI. envio"
                         end;
                         if Rec."Marcar para agrupar" then begin
                             SalesHeader3.Reset;
@@ -17181,7 +17183,7 @@ Page 50099 "Pantalla almacen Pascual5"
         npedidos: Integer;
         SalesHeader33: Record "Sales Header";
         SalesHeader35: Record "Sales Header";
-        RepETAD: Report "Etiqueta Envio";
+        RepETAD: Report "ETI. envio";
         RepDropShi: Report "Etiqueta DROPSHIPPING";
         EtiAgrppeque: Report "ETI. envio agrupado";
         Multitabla: Record Multitabla;

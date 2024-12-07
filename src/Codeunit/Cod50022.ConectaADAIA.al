@@ -579,8 +579,8 @@ Codeunit 50022 "Conecta ADAIA"
             end;
 
         end;
-    */
-    /*
+    
+    
         procedure ImportaTRREC(NombreFichero: Text[250])
         var
             D: Date;

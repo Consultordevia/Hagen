@@ -3827,6 +3827,7 @@ OutStream.Write('Tercera línea después del salto');
 
 
         Rec110.Get(Rec."No.");
+        TempBlob.CreateOutStream(OutStream);
 
 
 
@@ -3974,6 +3975,8 @@ OutStream.Write('Tercera línea después del salto');
     procedure ETISTD(var Rec: Record "Sales Shipment Header")
     begin
 
+
+        TempBlob.CreateOutStream(OutStream);
 
         /// STD
 
@@ -4330,7 +4333,7 @@ OutStream.Write('Tercera línea después del salto');
 
 
         Rec110.Get(Rec."No.");
-
+        TempBlob.CreateOutStream(OutStream);
 
 
         RecCusto.Get(Rec110."Sell-to Customer No.");
@@ -4496,7 +4499,7 @@ OutStream.Write('Tercera línea después del salto');
 
 
         Rec110.Get(Rec."No.");
-
+        TempBlob.CreateOutStream(OutStream);
 
 
         RecCusto.Get(Rec110."Sell-to Customer No.");
@@ -4676,7 +4679,7 @@ OutStream.Write('Tercera línea después del salto');
         /// dhl2
 
         Rec110.Get(Rec."No.");
-
+        TempBlob.CreateOutStream(OutStream);
 
 
 
@@ -4857,7 +4860,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
         Rec110.Get(Rec."No.");
-
+        TempBlob.CreateOutStream(OutStream);
 
 
 
@@ -5031,7 +5034,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         /// oscar
 
         Rec110.Get(Rec."No.");
-
+        TempBlob.CreateOutStream(OutStream);
 
 
 
@@ -5216,7 +5219,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
         Rec110.Get(Rec."No.");
-
+        TempBlob.CreateOutStream(OutStream);
 
         RecCusto.Get(Rec110."Sell-to Customer No.");
 
@@ -5378,7 +5381,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     begin
 
         Rec110.Get(Rec."No.");
-
+        TempBlob.CreateOutStream(OutStream);
 
 
 
@@ -5537,7 +5540,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
         Rec110.Get(Rec."No.");
-
+        TempBlob.CreateOutStream(OutStream);
 
 
 
@@ -5744,7 +5747,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         Rec112.Get(Rec."No.");
 
-
+        TempBlob.CreateOutStream(OutStream);
 
 
         RecCusto.Get(Rec112."Sell-to Customer No.");
@@ -5941,7 +5944,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     begin
 
         Rec112.Get(Rec."No.");
-
+        TempBlob.CreateOutStream(OutStream);
 
 
 
@@ -6160,7 +6163,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     begin
 
         Rec112.Get(Rec."No.");
-
+        TempBlob.CreateOutStream(OutStream);
 
 
 
@@ -6376,7 +6379,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
         Rec112.Get(Rec."No.");
-
+        TempBlob.CreateOutStream(OutStream);
 
 
 
@@ -6640,7 +6643,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
         Rec110.Get(Rec."No.");
-
+        TempBlob.CreateOutStream(OutStream);
 
         RecCusto.Get(Rec110."Sell-to Customer No.");
 
@@ -6852,6 +6855,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
         Rec110.Get(Rec."No.");
+        TempBlob.CreateOutStream(OutStream);
 
         RecCusto.Get(Rec110."Sell-to Customer No.");
 
@@ -7064,6 +7068,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     begin
 
         Rec110.Get(Rec."No.");
+        TempBlob.CreateOutStream(OutStream);
 
 
 
@@ -7276,6 +7281,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     begin
 
         Rec110.Get(Rec."No.");
+        TempBlob.CreateOutStream(OutStream);
 
 
         RecCusto.Get(Rec110."Sell-to Customer No.");
@@ -7494,6 +7500,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
         Rec110.Get(Rec."No.");
+        TempBlob.CreateOutStream(OutStream);
 
 
 
@@ -7723,7 +7730,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
 
-
+        TempBlob.CreateOutStream(OutStream);
 
 
 
@@ -7892,6 +7899,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     procedure EtiDHLCLIENTE(var RecCUSTO: Record Customer)
     begin
 
+        TempBlob.CreateOutStream(OutStream);
         RecDEC.Init;
         RecDEC.Reset;
         RecDEC.SetRange(RecDEC."Customer No.", RecCUSTO."No.");
@@ -8040,7 +8048,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     procedure EtitipsaCLIENTE(var RecCUSTO: Record Customer)
     begin
 
-
+        TempBlob.CreateOutStream(OutStream);
         RecDEC.Init;
         RecDEC.Reset;
         RecDEC.SetRange(RecDEC."Customer No.", RecCUSTO."No.");
@@ -8196,7 +8204,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     procedure EtitCORRCLIENTE(var RecCUSTO: Record Customer)
     begin
 
-
+        TempBlob.CreateOutStream(OutStream);
         RecDEC.Init;
         RecDEC.Reset;
 
@@ -10964,7 +10972,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     procedure EtiTNT2(var Rec: Record "Sales Shipment Header")
     begin
 
-
+        TempBlob.CreateOutStream(OutStream);
         Rec110.Get(Rec."No.");
 
 
