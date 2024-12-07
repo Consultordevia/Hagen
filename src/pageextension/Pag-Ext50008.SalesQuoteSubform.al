@@ -10,7 +10,7 @@ pageextension 50008 "Sales Quote Subform" extends "Sales Quote Subform"
 
         addafter(Quantity)
         {
-            field(ColorLinea; Rec.ColorLinea) { ApplicationArea = All; }
+            field(Estado; Rec.Estado) { ApplicationArea = All; }
         }
         addlast(content)
         {
@@ -81,16 +81,16 @@ pageextension 50008 "Sales Quote Subform" extends "Sales Quote Subform"
         RecItem: Record Item;
 
     begin
-        Rec.ColorLinea := '';
+        Rec.Estado := '';
         IF RecItem.GET(Rec."No.") THEN BEGIN
             IF (RecItem."No permite pedido") THEN BEGIN
-                Rec.ColorLinea := 'Rojo';
+                Rec.Estado := 'No Stock';
             END;
             IF (RecItem."Producto con reserva") THEN BEGIN
-                Rec.ColorLinea := 'Attention';
+                Rec.Estado := 'Reservado';
             END;
-            IF RecItem."Estado Producto" <> RecItem."Estado Producto"::Activo THEN BEGIN
-                Rec.ColorLinea := 'Ambiguous';
+            IF RecItem."Prohibido Amazon" THEN BEGIN
+                Rec.Estado := 'Amazon';
             END;
 
         END;

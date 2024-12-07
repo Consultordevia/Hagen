@@ -13,6 +13,7 @@ pageextension 50000 "Item Card" extends "Item Card"
             group(Hagen_)
             {
 
+                field("No permite pedido"; Rec."No permite pedido") { ApplicationArea = ALL; }
                 field(Level1; Rec.Level1) { ApplicationArea = ALL; }
                 field(Level2; Rec.Level2) { ApplicationArea = ALL; }
                 field(Level3; Rec.Level3) { ApplicationArea = ALL; }

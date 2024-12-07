@@ -102,10 +102,21 @@ Page 50083 "Productos Lista ubicaciones"
                     ApplicationArea = Basic;
                 }
             }
-            /////- part(Control1000000021;"Unidades medida producto')
-            /////-{
-            /////- SubPageLink = "Item No."=field("No.");
-            /////-}
+
+
+            group(Control1900724808)
+            {
+                part(Control1901851508; "Unidades medida producto")
+                {
+                    SubPageLink = "Item No." = field("No.");
+                    ApplicationArea = Basic, Suite;
+                }
+            }
+
+
+
+
+
         }
     }
 
@@ -122,7 +133,15 @@ Page 50083 "Productos Lista ubicaciones"
                 Promoted = true;
                 PromotedIsBig = true;
                 PromotedOnly = true;
-                /////- RunObject = Page "Amazon master_inner";
+
+                trigger OnAction()
+                var
+                    PageAmazonmasterinner: Page "Amazon master_inner";
+
+                begin
+                    CLEAR(PageAmazonmasterinner);
+                    PageAmazonmasterinner.RUN;
+                end;
             }
         }
     }
@@ -140,10 +159,6 @@ Page 50083 "Productos Lista ubicaciones"
 
     local procedure EnviaAadaia()
     begin
-
-
-
-
         if CopyStr(COMPANYNAME, 1, 4) = 'ROLF' then begin
             CUADAIA.MODIFPROD(Rec);
         end;

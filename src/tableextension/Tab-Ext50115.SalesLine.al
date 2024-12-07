@@ -793,7 +793,7 @@ tableextension 50115 SalesLine extends "Sales Line"
             FieldClass = FlowField;
         }
 
-        field(50603; ColorLinea; Text[50])
+        field(50603; "Estado"; Text[10])
         {
         }
             

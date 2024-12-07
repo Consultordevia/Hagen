@@ -1,11 +1,20 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
 Page 50092 "Demanda almacenes"
 {
-    Editable = false;
+
+    
+    ApplicationArea = All;
+    Caption = 'Demanda Almacenes';     
+    DelayedInsert = true;
+    LinksAllowed = false;
+    ModifyAllowed = false;
     PageType = List;
+    UsageCategory = Lists;
+    SaveValues = true;     
+    Editable = false;     
     SourceTable = Item;
-    SourceTableView = where("Location Filter"=filter(<>'SILLA'&<>'FOB'),
-                            Inventory=filter(<>0));
+    SourceTableView = where("Location Filter" = filter(<> 'SILLA' & <> 'FOB'),
+                            Inventory = filter(<> 0));
 
     layout
     {
@@ -13,56 +22,56 @@ Page 50092 "Demanda almacenes"
         {
             repeater(Group)
             {
-                field("No.";Rec."No.")
+                field("No."; Rec."No.")
                 {
                     ApplicationArea = Basic;
                     StyleExpr = color;
                 }
-                field(Description;Rec.Description)
+                field(Description; Rec.Description)
                 {
                     ApplicationArea = Basic;
                     StyleExpr = color;
                 }
-                field("Existencia SILLA";Rec."Existencia SILLA")
+                field("Existencia SILLA"; Rec."Existencia SILLA")
                 {
                     ApplicationArea = Basic;
                     StyleExpr = color;
                 }
-                field(Laventasp;Laventasp)
+                field(Laventasp; Laventasp)
                 {
                     ApplicationArea = Basic;
                     Caption = 'En pedido';
-                    DecimalPlaces = 0:0;
+                    DecimalPlaces = 0 : 0;
                     StyleExpr = COLOR;
                 }
-                field(Venta;Laventas)
+                field(Venta; Laventas)
                 {
                     ApplicationArea = Basic;
-                    DecimalPlaces = 0:0;
+                    DecimalPlaces = 0 : 0;
                     StyleExpr = color;
                 }
-                field(Media;LAMedia)
+                field(Media; LAMedia)
                 {
                     ApplicationArea = Basic;
                     StyleExpr = color;
                 }
-                field(Paradias;Paradias)
+                field(Paradias; Paradias)
                 {
                     ApplicationArea = Basic;
-                    DecimalPlaces = 0:0;
+                    DecimalPlaces = 0 : 0;
                     StyleExpr = color;
                 }
-                field("Existencias almacenes";Rec.Inventory)
+                field("Existencias almacenes"; Rec.Inventory)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Existencias almacenes';
                     StyleExpr = color;
                 }
-                field("Cantidad palet transporte alma";Rec."Cantidad palet transporte alma")
+                field("Cantidad palet transporte alma"; Rec."Cantidad palet transporte alma")
                 {
                     ApplicationArea = Basic;
                 }
-                field("Cantidad palet americano";Rec."Cantidad palet americano")
+                field("Cantidad palet americano"; Rec."Cantidad palet americano")
                 {
                     ApplicationArea = Basic;
                 }
@@ -78,40 +87,42 @@ Page 50092 "Demanda almacenes"
     begin
 
 
-        desde:=CalcDate('-31D',Today);
-        hasta:=Today;
-        Laventas:=0;
+        desde := CalcDate('-31D', Today);
+        hasta := Today;
+        Laventas := 0;
         SalesShipmentLine.Reset;
         SalesShipmentLine.SetCurrentkey("No.");
-        SalesShipmentLine.SetRange("No.",Rec."No.");
-        SalesShipmentLine.SetRange("Posting Date",desde,hasta);
-        if SalesShipmentLine.FindSet then repeat
-            Laventas:=Laventas+SalesShipmentLine."Quantity (Base)";
-        until SalesShipmentLine.Next=0;
+        SalesShipmentLine.SetRange("No.", Rec."No.");
+        SalesShipmentLine.SetRange("Posting Date", desde, hasta);
+        if SalesShipmentLine.FindSet then
+            repeat
+                Laventas := Laventas + SalesShipmentLine."Quantity (Base)";
+            until SalesShipmentLine.Next = 0;
 
-        Laventasp:=0;
+        Laventasp := 0;
         SalesLine.Reset;
         SalesLine.SetCurrentkey("No.");
-        SalesLine.SetRange("Document Type",SalesLine."document type"::Order);
-        SalesLine.SetRange("No.",Rec."No.");
-        SalesLine.SetRange(SalesLine."Shipment Date",desde,CalcDate('+1S',Today));
-        if SalesLine.FindSet then repeat
-            Laventas:=Laventas+SalesLine."Outstanding Qty. (Base)";
-            Laventasp:=Laventasp+SalesLine."Outstanding Qty. (Base)";
-        until SalesLine.Next=0;
+        SalesLine.SetRange("Document Type", SalesLine."document type"::Order);
+        SalesLine.SetRange("No.", Rec."No.");
+        SalesLine.SetRange(SalesLine."Shipment Date", desde, CalcDate('+1S', Today));
+        if SalesLine.FindSet then
+            repeat
+                Laventas := Laventas + SalesLine."Outstanding Qty. (Base)";
+                Laventasp := Laventasp + SalesLine."Outstanding Qty. (Base)";
+            until SalesLine.Next = 0;
 
 
-        Paradias:=0;
-        LAMedia:=0;
-        if Laventas<>0 then begin
-            LAMedia:=Laventas/31;
-            Paradias:=ROUND(Rec."Existencia SILLA"/LAMedia,1);
+        Paradias := 0;
+        LAMedia := 0;
+        if Laventas <> 0 then begin
+            LAMedia := Laventas / 31;
+            Paradias := ROUND(Rec."Existencia SILLA" / LAMedia, 1);
         end;
 
-        color:='';
-        if Paradias<>0 then begin
-            if Paradias<=5 then begin
-                color:='Unfavorable';
+        color := '';
+        if Paradias <> 0 then begin
+            if Paradias <= 5 then begin
+                color := 'Unfavorable';
             end;
         end;
     end;
