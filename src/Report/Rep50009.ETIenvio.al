@@ -34,6 +34,7 @@ Report 50009 "ETI. envio"
             }
             trigger OnAfterGetRecord();
             begin
+                
                 obs2 := '';
                 if RecFP.Get("Sales Header"."Payment Method Code") then begin
                     if RecFP.Reembolso then begin
@@ -91,7 +92,9 @@ Report 50009 "ETI. envio"
                 if ("Sales Header"."NO MULTIPEDIDO") or (NOMULTIPEDIDO) then begin
                     obs := 'NO MULTIPEDIDO' + ' ' + "Sales Header"."Observación PDA";
                 end;
+                message('%1 %2 %3', "Sales Header"."Nº expedición" + '   -   ' + Rectra.Name,RecCust."Search Name",obs)
             end;
+            
 
         }
     }
