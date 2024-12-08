@@ -21,7 +21,7 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
             field("Super urgente"; Rec."Super urgente") { ApplicationArea = All; }
         }
 
-        addlast(content)
+        /*addlast(content)
         {
             group(Hagen)
             {
@@ -113,6 +113,7 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
 
             }
         }
+        */
     }
 
     actions
