@@ -947,8 +947,8 @@ tableextension 50115 SalesLine extends "Sales Line"
                 RecLCV."Document Type" := "Document Type";
                 RecLCV."No." := "Document No.";
                 RecLCV."Line No." := RecLCV."Line No." + 10000;
-                RecLCV.Comment := 'Ref. eliminada: ' + Format("No.") + ' ' + Format(Description) + ' Cantidad:' + Format(Quantity) +
-                ' Por: ' + Format(UserId) + ' ' + Format(Today) + ' ' + Format(Time);
+                RecLCV.Comment := copystr('Ref. eliminada: ' + Format("No.") + ' ' + Format(Description) + ' Cantidad:' + Format(Quantity) +
+                ' Por: ' + Format(UserId) + ' ' + Format(Today) + ' ' + Format(Time),1,80);
                 RecLCV."No se puede eliminar" := true;
                 RecLCV."Usuario alta" := UserId;
                 RecLCV."Fecha alta" := Today;
@@ -960,8 +960,8 @@ tableextension 50115 SalesLine extends "Sales Line"
                 RecLCV."Document Type" := "Document Type";
                 RecLCV."No." := "Document No.";
                 RecLCV."Line No." := 10000;
-                RecLCV.Comment := 'Ref. eliminada: ' + Format("No.") + ' ' + Format(Description) + ' Cantidad:' + Format(Quantity) +
-                ' Por: ' + Format(UserId) + ' ' + Format(Today) + ' ' + Format(Time);
+                RecLCV.Comment := copystr('Ref. eliminada: ' + Format("No.") + ' ' + Format(Description) + ' Cantidad:' + Format(Quantity) +
+                ' Por: ' + Format(UserId) + ' ' + Format(Today) + ' ' + Format(Time),1,80);
                 RecLCV."No se puede eliminar" := true;
                 RecLCV."Usuario alta" := UserId;
                 RecLCV."Fecha alta" := Today;
