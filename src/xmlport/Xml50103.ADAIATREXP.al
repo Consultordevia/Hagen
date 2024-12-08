@@ -105,162 +105,163 @@ XmlPort 50103 "ADAIATREXP"
 
     trigger OnPostXmlPort()
     begin
-        IF (TIPOPEDI<>'DVPR') AND (TIPOPEDI<>'NORM') THEN BEGIN
-     IF ESPEDIDO THEN BEGIN
-          ///RecCV.GET(1,PEDIDONAV);
-          ///ReleaseSalesDoc.RUN(RecCV);
-          ///CodeCV.REGISTRAEXPE(RecCV);
-
-          RecCV.RESET;
-          RecCV.SETCURRENTKEY(RecCV."Document Type",RecCV."Nº expedición");
-          RecCV.SETRANGE(RecCV."Document Type",1);
-          RecCV.SETRANGE(RecCV."Nº expedición",NPEDIDO);
-          IF RecCV.FINDFIRST THEN REPEAT
-               CLEAR(ReleaseSalesDoc);
-               CLEAR(CodeCV);
-               ReleaseSalesDoc.RUN(RecCV);
-               CodeCV.REGISTRAEXPE(RecCV);
-          UNTIL RecCV.NEXT=0;
-          ///
-          
-          enviar:=TRUE;
-          EXPEDI:=NPEDIDO;
-          REC110.SETCURRENTKEY(REC110."Nº expedición");          
-          REC110.SETFILTER(REC110."Nº expedición",NPEDIDO+'*');
-          IF REC110.FINDSET THEN REPEAT
-            IF REC110.Dropshipping=FALSE THEN BEGIN
-                IF REC110."Albaran sin detalle"=TRUE THEN BEGIN
-                    IF REC110."No. Printed"=0 THEN BEGIN
-                        enviar:=FALSE;
-                    END;
-                END;
-            END;
-        UNTIL REC110.NEXT=0;
-
-
-
-
-IF enviar THEN BEGIN
+        IF (TIPOPEDI <> 'DVPR') AND (TIPOPEDI <> 'NORM') THEN BEGIN
+            IF ESPEDIDO THEN BEGIN
+                ///RecCV.GET(1,PEDIDONAV);
+                ///ReleaseSalesDoc.RUN(RecCV);
+                ///CodeCV.REGISTRAEXPE(RecCV);
+                RecCV.RESET;
+                RecCV.SETCURRENTKEY(RecCV."Document Type", RecCV."Nº expedición");
+                RecCV.SETRANGE(RecCV."Document Type", 1);
+                RecCV.SETRANGE(RecCV."Nº expedición", NPEDIDO);
+                IF RecCV.FINDFIRST THEN
+                    REPEAT
+                        CLEAR(ReleaseSalesDoc);
+                        CLEAR(CodeCV);
+                        ReleaseSalesDoc.RUN(RecCV);
+                        CodeCV.REGISTRAEXPE(RecCV);
+                    UNTIL RecCV.NEXT = 0;
+                ///          
+                enviar := TRUE;
+                EXPEDI := NPEDIDO;
+                REC110.SETCURRENTKEY(REC110."Nº expedición");
+                REC110.SETFILTER(REC110."Nº expedición", NPEDIDO + '*');
+                IF REC110.FINDSET THEN
+                    REPEAT
+                        IF REC110.Dropshipping = FALSE THEN BEGIN
+                            IF REC110."Albaran sin detalle" = TRUE THEN BEGIN
+                                IF REC110."No. Printed" = 0 THEN BEGIN
+                                    enviar := FALSE;
+                                END;
+                            END;
+                        END;
+                    UNTIL REC110.NEXT = 0;
 
 
 
-               EXPEDI:=NPEDIDO;
-               REC110.RESET;
-               REC110.SETCURRENTKEY(REC110."Nº expedición");
-               REC110.SETFILTER(REC110."Nº expedición",NPEDIDO+'*');
-               IF REC110.FINDFIRST THEN REPEAT
-                    NALBARAN:=REC110."No.";
-                    Rec1102.RESET;
-                    Rec1102.SETRANGE(Rec1102."No.",REC110."No.");
-                    IF Rec1102.FINDFIRST THEN REPEAT
-                         IF Rec1102."Nº Palets"=0 THEN BEGIN
-                              IF RecTra.GET(Rec1102."Shipping Agent Code") THEN BEGIN
-                                   IF RecTra."Fichero estandar"=TRUE THEN BEGIN
-                                        CUEXP.ETISTD(Rec1102);
-                                   END;
-                                   IF RecTra."Fichero estandar"=FALSE THEN BEGIN
-                                        ///IF Rec1102."Shipping Agent Code"='DHL' THEN BEGIN
-                                             ///CUEXP.EtiDHL2NUEVA(Rec1102);
-                                        //END;
-                                        IF Rec1102."Shipping Agent Code"='TIPSA' THEN BEGIN
-                                             CUEXP.Etitipsa2NUEVA(Rec1102);
+
+                IF enviar THEN BEGIN
+                    EXPEDI := NPEDIDO;
+                    REC110.RESET;
+                    REC110.SETCURRENTKEY(REC110."Nº expedición");
+                    REC110.SETFILTER(REC110."Nº expedición", NPEDIDO + '*');
+                    IF REC110.FINDFIRST THEN
+                        REPEAT
+                            NALBARAN := REC110."No.";
+                            Rec1102.RESET;
+                            Rec1102.SETRANGE(Rec1102."No.", REC110."No.");
+                            IF Rec1102.FINDFIRST THEN
+                                REPEAT
+                                    IF Rec1102."Nº Palets" = 0 THEN BEGIN
+                                        IF RecTra.GET(Rec1102."Shipping Agent Code") THEN BEGIN
+                                            IF RecTra."Fichero estandar" = TRUE THEN BEGIN
+                                                CUEXP.ETISTD(Rec1102);
+                                            END;
+                                            IF RecTra."Fichero estandar" = FALSE THEN BEGIN
+                                                ///IF Rec1102."Shipping Agent Code"='DHL' THEN BEGIN
+                                                ///CUEXP.EtiDHL2NUEVA(Rec1102);
+                                                //END;
+                                                IF Rec1102."Shipping Agent Code" = 'TIPSA' THEN BEGIN
+                                                    CUEXP.Etitipsa2NUEVA(Rec1102);
+                                                END;
+                                                IF Rec1102."Shipping Agent Code" = 'CORR' THEN BEGIN
+                                                    CUEXP.EtiCORRa2NUEVA(Rec1102);
+                                                END;
+                                                IF Rec1102."Shipping Agent Code" = 'CRON' THEN BEGIN
+                                                    CUEXP.EtiCRON2NUEVA(Rec1102);
+                                                END;
+                                                IF Rec1102."Shipping Agent Code" = 'SEUR' THEN BEGIN
+                                                    CUEXP.EtiSEURNUEVA(Rec1102);
+                                                END;
+                                                IF Rec1102."Shipping Agent Code" = 'TNT' THEN BEGIN
+                                                    ///CUEXP.EtiTNT2NUEVA(Rec1102);
+                                                    CUEXP.EtiTNT2(Rec1102);
+                                                END;
+                                            END;
+                                            IF Rec1102."Shipping Agent Code" = 'ECI' THEN BEGIN
+                                                ///     CUEXP.ETIECI(Rec1102);
+                                            END;
                                         END;
-                                        IF Rec1102."Shipping Agent Code"='CORR' THEN BEGIN
-                                             CUEXP.EtiCORRa2NUEVA(Rec1102);
-                                        END;
-                                        IF Rec1102."Shipping Agent Code"='CRON' THEN BEGIN
-                                             CUEXP.EtiCRON2NUEVA(Rec1102);
-                                        END;
-                                        IF Rec1102."Shipping Agent Code"='SEUR' THEN BEGIN
-                                             CUEXP.EtiSEURNUEVA(Rec1102);
-                                        END;
-                                        IF Rec1102."Shipping Agent Code"='TNT' THEN BEGIN
-                                             ///CUEXP.EtiTNT2NUEVA(Rec1102);
-                                             CUEXP.EtiTNT2(Rec1102);
-                                        END;
-                                   END;
-                                   IF Rec1102."Shipping Agent Code"='ECI' THEN BEGIN
-                                  ///     CUEXP.ETIECI(Rec1102);
-                                   END;
-                              END;
-                         END;
-                         IF Rec1102."Bill-to Customer No."='6445' THEN BEGIN
-                              ///REPORT.RUNMODAL(50035,FALSE,FALSE,Rec1102);
-                              ///REPORT.RUNMODAL(50039,FALSE,FALSE,Rec1102);
-                         END;
-                    UNTIL Rec1102.NEXT=0;
-                    IF Rec1102."Bill-to Customer No."='10925' THEN BEGIN
-/////-                         ficehrocovaldroper;
-                    END;
-                    IF Customer.GET(REC110."Sell-to Customer No.") THEN BEGIN 
-                        IF Customer."Enviar etiqueta grande" THEN BEGIN
-                            REPORT.RUNMODAL(50039,FALSE,FALSE,REC110);                            
+                                    END;
+                                    IF Rec1102."Bill-to Customer No." = '6445' THEN BEGIN
+                                        ///REPORT.RUNMODAL(50035,FALSE,FALSE,Rec1102);
+                                        ///REPORT.RUNMODAL(50039,FALSE,FALSE,Rec1102);
+                                    END;
+                                UNTIL Rec1102.NEXT = 0;
+                            IF Rec1102."Bill-to Customer No." = '10925' THEN BEGIN
+                                /////-                         ficehrocovaldroper;
+                            END;
+                            IF Customer.GET(REC110."Sell-to Customer No.") THEN BEGIN
+                                IF Customer."Enviar etiqueta grande" THEN BEGIN
+                                    REPORT.RUNMODAL(50039, FALSE, FALSE, REC110);
+                                END;
+                            END;
+                        UNTIL REC110.NEXT = 0;
+
+
+
+
+
+
+                    ///// etiqueta edi
+
+                    Rec112.RESET;
+                    Rec112.SETCURRENTKEY(Rec112."Nº expedición");
+                    Rec112.SETFILTER(Rec112."Nº expedición", NPEDIDO + '*');
+                    IF Rec112.FINDFIRST THEN BEGIN
+                        IF Rec112."Nº bultos" = 1 THEN BEGIN
+                            Rec113.RESET;
+                            Rec113.SETRANGE("Document No.", Rec112."No.");
+                            Rec113.SETRANGE(Type, Rec113.Type::Item);
+                            IF Rec113.FINDFIRST THEN
+                                REPEAT
+                                    CabCompra.INIT;
+                                    Cajasporenvio.Nfac := Rec113."Document No.";
+                                    Cajasporenvio.nlin := Rec113."Line No.";
+                                    Cajasporenvio.Producto := Rec113."No.";
+                                    Cajasporenvio."Caja num" := 1;
+                                    Cajasporenvio.Cantidad := Rec113.Quantity;
+                                    Cajasporenvio."nº expedicion" := NPEDIDO;
+                                    IF Cajasporenvio.INSERT THEN;
+                                    Rec113."Cantidad caja" := 1;
+                                    Rec113.MODIFY;
+                                UNTIL Rec113.NEXT = 0;
+                            Cajasporenvio.RESET;
+                            Cajasporenvio.SETRANGE(Nfac, Rec112."No.");
+                            IF Cajasporenvio.FINDFIRST THEN
+                                REPEAT
+                                    Cajasporenvio.CreaSSCC;
+                                    Cajasporenvio.MODIFY;
+                                UNTIL Cajasporenvio.NEXT = 0;
+                            SalesShipmentHeader.RESET;
+                            SalesShipmentHeader.SETRANGE("Nº expedición", Rec112."Nº expedición");
+                            IF SalesShipmentHeader.FINDFIRST THEN BEGIN
+                                SalesShipmentHeader2.RESET;
+                                SalesShipmentHeader2.SETRANGE("No.", SalesShipmentHeader."No.");
+                                IF SalesShipmentHeader2.FINDFIRST THEN BEGIN
+                                    ///CLEAR(EtiquetaECINUEVAALB);            
+                                    ///EtiquetaECINUEVAALB.Pasadatos(Cajasporenvio."Caja num",Rec113."Cantidad caja",Cajasporenvio.SSCC);   
+                                    ///EtiquetaECINUEVAALB.SETTABLEVIEW(SalesShipmentHeader2);
+                                    ///EtiquetaECINUEVAALB.RUNMODAL;
+                                    //// REPORT.RUN(50105,FALSE,FALSE,SalesShipmentHeader2);                                   
+                                END;
+                            END;
+
+
+
+
                         END;
                     END;
-               UNTIL REC110.NEXT=0;
 
 
 
 
 
+                    ///
+                END;
+            END;
 
-               ///// etiqueta edi
-                    
-               Rec112.RESET;
-               Rec112.SETCURRENTKEY(Rec112."Nº expedición");
-               Rec112.SETFILTER(Rec112."Nº expedición",NPEDIDO+'*');
-               IF Rec112.FINDFIRST THEN BEGIN
-                    IF Rec112."Nº bultos"=1 THEN BEGIN
-                         Rec113.RESET;
-                         Rec113.SETRANGE("Document No.",Rec112."No.");
-                         Rec113.SETRANGE(Type,Rec113.Type::Item);
-                         IF Rec113.FINDFIRST THEN REPEAT
-                              CabCompra.INIT;
-                              Cajasporenvio.Nfac:=Rec113."Document No.";
-                              Cajasporenvio.nlin:=Rec113."Line No.";
-                              Cajasporenvio.Producto:=Rec113."No.";
-                              Cajasporenvio."Caja num":=1;
-                              Cajasporenvio.Cantidad:=Rec113.Quantity;
-                              Cajasporenvio."nº expedicion":=NPEDIDO;
-                              IF Cajasporenvio.INSERT THEN;                              
-                              Rec113."Cantidad caja":=1;
-                              Rec113.MODIFY;
-                         UNTIL Rec113.NEXT=0;
-                         Cajasporenvio.RESET;
-                         Cajasporenvio.SETRANGE(Nfac,Rec112."No.");
-                         IF Cajasporenvio.FINDFIRST THEN REPEAT
-                              Cajasporenvio.CreaSSCC;
-                              Cajasporenvio.MODIFY;                                     
-                         UNTIL Cajasporenvio.NEXT=0;                  
-                         SalesShipmentHeader.RESET;
-                         SalesShipmentHeader.SETRANGE("Nº expedición",Rec112."Nº expedición");
-                         IF SalesShipmentHeader.FINDFIRST THEN BEGIN
-                              SalesShipmentHeader2.RESET;
-                              SalesShipmentHeader2.SETRANGE("No.",SalesShipmentHeader."No.");
-                              IF SalesShipmentHeader2.FINDFIRST THEN BEGIN
-                                   ///CLEAR(EtiquetaECINUEVAALB);            
-                                   ///EtiquetaECINUEVAALB.Pasadatos(Cajasporenvio."Caja num",Rec113."Cantidad caja",Cajasporenvio.SSCC);   
-                                   ///EtiquetaECINUEVAALB.SETTABLEVIEW(SalesShipmentHeader2);
-                                   ///EtiquetaECINUEVAALB.RUNMODAL;
-                                   //// REPORT.RUN(50105,FALSE,FALSE,SalesShipmentHeader2);                                   
-                               END;
-                          END; 
-
-
-
-
-                    END;
-               END;
-                    
-          
-
-
-
-          ///
-     END;
-END;
-
-END;
+        END;
 
     end;
 
@@ -400,10 +401,10 @@ END;
         ESPEPE: Boolean;
         LIN2: Integer;
         RecCV: Record "Sales Header";
-        ReleaseSalesDoc: 	Codeunit	"Release Sales Document";	
+        ReleaseSalesDoc: Codeunit "Release Sales Document";
         PEDIDONAV: CODE[20];
         RecCusto: Record Customer;
-        LC: Record   "Sales Line";
+        LC: Record "Sales Line";
         RecComp: Record "Purchase Header";
         cc: Record "Sales Header";
         CLIN: CODE[20];
@@ -478,233 +479,239 @@ END;
     begin
 
 
-    ///   1   2  3         4       5               6           7     8       9       10      11  12       
-    /// CECA|MO|CAT25986|01       |CT02300976   |         |PED      |  |         |20241203 |0824|   |||
-    /// CELI|MO|CAT25282|000000001|10           |000000001|000000005|UD|000000000|000000000|    |   |
-    /// CELI|MO|CAT25282|000000002|11           |000000001|000000001|UD|000000000|000000000|    |   |
-    /// CELI|MO|CAT25282|000020000|44839        |000000002|000000002|UD|000190000|000000000|    |   |
-    /// CELI|MO|CAT25282|000000003|15           |000000001|000000001|UD|000000000|000000000|    |   |
-    
+        ///   1   2  3         4       5               6           7     8       9       10      11  12       
+        /// CECA|MO|CAT25986|01       |CT02300976   |         |PED      |  |         |20241203 |0824|   |||
+        /// CELI|MO|CAT25282|000000001|10           |000000001|000000005|UD|000000000|000000000|    |   |
+        /// CELI|MO|CAT25282|000000002|11           |000000001|000000001|UD|000000000|000000000|    |   |
+        /// CELI|MO|CAT25282|000020000|44839        |000000002|000000002|UD|000190000|000000000|    |   |
+        /// CELI|MO|CAT25282|000000003|15           |000000001|000000001|UD|000000000|000000000|    |   |
 
 
-    if CopyStr(D1, 1, 4) = 'CECA' then begin
-        NPEDIDO := D3;
-        CLIENTE := D6;
-        TIPOPEDI := D7;
-        IF (TIPOPEDI<>'DVPR') AND (TIPOPEDI<>'NORM') THEN BEGIN
-            IF CC.GET(1,NPEDIDO) THEN BEGIN
-                ESPEDIDO:=TRUE;
-                ESTRANSF:=FALSE;
-                ReleaseSalesDoc.Reopen(CC);
-            END;          
-            ESPEDIDO:=TRUE;
-            RecCV.SETCURRENTKEY(RecCV."Document Type",RecCV."Nº expedición");
-            RecCV.SETRANGE(RecCV."Document Type",1);
-            RecCV.SETRANGE(RecCV."Nº expedición",NPEDIDO);
-            IF RecCV.FINDSET THEN REPEAT
-                RecCV."Recibido de adaia":=TRUE;
-                PEDIDONAV:=RecCV."No.";
-                RecCV."Posting Date":=TODAY;
-                RecCV."Document Date":=TODAY;
-                RecCV.VALIDATE(RecCV."Posting Date");
-                RecCV.VALIDATE(RecCV."Document Date");
-                IF RecCusto.GET(RecCV."Sell-to Customer No.") THEN BEGIN
-                    IF RecCusto."Estatus del cliente"=1 THEN BEGIN
-                        RecCusto."Estatus del cliente":=0;
-                        RecCusto.MODIFY;
-                    END;
+
+        if CopyStr(D1, 1, 4) = 'CECA' then begin
+            NPEDIDO := D3;
+            CLIENTE := D6;
+            TIPOPEDI := D7;
+            IF (TIPOPEDI <> 'DVPR') AND (TIPOPEDI <> 'NORM') THEN BEGIN
+                IF CC.GET(1, NPEDIDO) THEN BEGIN
+                    ESPEDIDO := TRUE;
+                    ESTRANSF := FALSE;
+                    ReleaseSalesDoc.Reopen(CC);
                 END;
-                IF RecCV."Incrementa bultos"<>0 THEN BEGIN
-                    RecCV."Nº bultos":=RecCV."Nº bultos"+RecCV."Incrementa bultos";                  
-                END;
-                RecCV.MODIFY;
-            UNTIL RecCV.NEXT=0;
-            IF ESPEDIDO THEN BEGIN
-                    ///CC.VALIDATE(CC."Posting Date",D);
-                ///CC.VALIDATE(CC."Document Date",D);
-                ///CC.MODIFY;
-                /////-LC.SETCURRENTKEY(LC."Document Type",LC."Nº expedición",LC."Linea Nº expedición");
-                LC.SETRANGE(LC."Document Type",1);
-                /////-LC.SETRANGE(LC."Nº expedición",NPEDIDO);
-                IF LC.FINDSET THEN REPEAT
-                    /////-LC.VALIDATE(LC."Qty. to Ship",0);
-                    IF RecItem2.GET(LC."No.") THEN BEGIN
-                        IF RecItem2."Enviar siempre"=TRUE THEN BEGIN
-                            /////-LC.VALIDATE(LC."Qty. to Ship",LC.Quantity);
+                ESPEDIDO := TRUE;
+                RecCV.SETCURRENTKEY(RecCV."Document Type", RecCV."Nº expedición");
+                RecCV.SETRANGE(RecCV."Document Type", 1);
+                RecCV.SETRANGE(RecCV."Nº expedición", NPEDIDO);
+                IF RecCV.FINDSET THEN
+                    REPEAT
+                        RecCV."Recibido de adaia" := TRUE;
+                        PEDIDONAV := RecCV."No.";
+                        RecCV."Posting Date" := TODAY;
+                        RecCV."Document Date" := TODAY;
+                        RecCV.VALIDATE(RecCV."Posting Date");
+                        RecCV.VALIDATE(RecCV."Document Date");
+                        IF RecCusto.GET(RecCV."Sell-to Customer No.") THEN BEGIN
+                            IF RecCusto."Estatus del cliente" = 1 THEN BEGIN
+                                RecCusto."Estatus del cliente" := 0;
+                                RecCusto.MODIFY;
+                            END;
                         END;
-                    END;
-                    LC.MODIFY;
-                UNTIL LC.NEXT = 0;
-            END;
-        END;
-        IF TIPOPEDI='DVPR' THEN BEGIN
-            CODALMA:='SILLA';
-            RecComp.INIT;
-            RecComp."Document Type":=3;
-            RecComp."Order Date":=TODAY;
-            RecComp."Posting Date":=TODAY;
-            RecComp."Document Date":=TODAY;
-            RecComp.VALIDATE(RecComp."Buy-from Vendor No.",CLIENTE);
-            RecComp.INSERT(TRUE);
-            RecComp."Location Code":=CODALMA;
-            RecComp.MODIFY(TRUE);
-            ndocdv:=RecComp."No.";
-            lin:=10000;
-        END;
-        IF TIPOPEDI='NORM' THEN BEGIN
-            CODALMA:='SILLA';
-        END;
-     
-    end;
-    if CopyStr(D1, 1, 4) = 'CELI' then begin
-        SALE:=FALSE;
-        REF:=D5;
-        CANTI:=D4;                          
-        CLIN:=D9;
-        IF TIPOPEDI<>'DVPR' THEN BEGIN
-            IF ESPEDIDO THEN BEGIN
-                LC.SETRANGE(LC."Document Type",1);
-                LC.SETRANGE(LC."Nº expedición",NPEDIDO);
-                LC.SETRANGE(LC."Linea Nº expedición",LLINEA);
-                LC.SETRANGE(LC."No.",REF);
-                IF LC.FIND('-') THEN BEGIN
-                    LC.CALCFIELDS(LC."Suma cdad. por envio");
-
-                    IF LC."Suma cdad. por envio"=LC."Outstanding Quantity" THEN BEGIN
-                            EVALUATE(DECI,CANTI);
-                            IF KILOS=0 THEN BEGIN
-                                DECI:=DECI/LC."Qty. per Unit of Measure";
-                                LC.VALIDATE(LC."Qty. to Ship",DECI);
+                        IF RecCV."Incrementa bultos" <> 0 THEN BEGIN
+                            RecCV."Nº bultos" := RecCV."Nº bultos" + RecCV."Incrementa bultos";
+                        END;
+                        RecCV.MODIFY;
+                    UNTIL RecCV.NEXT = 0;
+                IF ESPEDIDO THEN BEGIN
+                    ///CC.VALIDATE(CC."Posting Date",D);
+                    ///CC.VALIDATE(CC."Document Date",D);
+                    ///CC.MODIFY;
+                    LC.SETCURRENTKEY(LC."Document Type", LC."Nº expedición", LC."Linea Nº expedición");
+                    LC.SETRANGE(LC."Document Type", 1);
+                    LC.SETRANGE(LC."Nº expedición", NPEDIDO);
+                    IF LC.FINDSET THEN
+                        REPEAT
+                            LC.VALIDATE(LC."Qty. to Ship", 0);
+                            IF RecItem2.GET(LC."No.") THEN BEGIN
+                                IF RecItem2."Enviar siempre" = TRUE THEN BEGIN
+                                    LC.VALIDATE(LC."Qty. to Ship", LC.Quantity);
+                                END;
                             END;
                             LC.MODIFY;
-                    END;
-                    IF LC."Suma cdad. por envio">LC."Outstanding Quantity" THEN BEGIN
+                        UNTIL LC.NEXT = 0;
+                END;
+            END;
+            IF TIPOPEDI = 'DVPR' THEN BEGIN
+                CODALMA := 'SILLA';
+                RecComp.INIT;
+                RecComp."Document Type" := 3;
+                RecComp."Order Date" := TODAY;
+                RecComp."Posting Date" := TODAY;
+                RecComp."Document Date" := TODAY;
+                RecComp.VALIDATE(RecComp."Buy-from Vendor No.", CLIENTE);
+                RecComp.INSERT(TRUE);
+                RecComp."Location Code" := CODALMA;
+                RecComp.MODIFY(TRUE);
+                ndocdv := RecComp."No.";
+                lin := 10000;
+            END;
+            IF TIPOPEDI = 'NORM' THEN BEGIN
+                CODALMA := 'SILLA';
+            END;
 
-                            EVALUATE(DECI,CANTI);
-                            DECI:=DECI/LC."Qty. per Unit of Measure";
+        end;
+        if CopyStr(D1, 1, 4) = 'CELI' then begin
+            SALE := FALSE;
+            REF := D5;
+            CANTI := D6;
+            CLIN := D4;
+            Evaluate(LLINEA, clin);
+            ///Message('%1 %2 %3',NPEDIDO,clin,REF);
+            IF TIPOPEDI <> 'DVPR' THEN BEGIN
+                IF ESPEDIDO THEN BEGIN
+                    LC.SETRANGE(LC."Document Type", 1);
+                    LC.SETRANGE(LC."Nº expedición", NPEDIDO);
+                    LC.SETRANGE(LC."Linea Nº expedición", LLINEA);
+                    LC.SETRANGE(LC."No.", REF);
+                    IF LC.FIND('-') THEN BEGIN
+                        LC.CALCFIELDS(LC."Suma cdad. por envio");
+                        IF LC."Suma cdad. por envio" = LC."Outstanding Quantity" THEN BEGIN
+                            EVALUATE(DECI, CANTI);
+                            IF KILOS = 0 THEN BEGIN
+                                DECI := DECI / LC."Qty. per Unit of Measure";
+                                LC.VALIDATE(LC."Qty. to Ship", DECI);
+                            END;
+                            LC.MODIFY;
+                            ///Message('1-modif %1 ',lc);2
+                        END;
+                        IF LC."Suma cdad. por envio" > LC."Outstanding Quantity" THEN BEGIN
+
+                            EVALUATE(DECI, CANTI);
+                            DECI := DECI / LC."Qty. per Unit of Measure";
                             RecLVSuma.RESET;
-                            RecLVSuma.SETCURRENTKEY(RecLVSuma."Nº expedición",RecLVSuma."No.");
-                            RecLVSuma.SETRANGE(RecLVSuma."Nº expedición",NPEDIDO);
-                            RecLVSuma.SETRANGE(RecLVSuma."No.",REF);
-                            RecLVSuma.SETRANGE(RecLVSuma."Linea Nº expedición",LLINEA);
-                            IF RecLVSuma.FINDFIRST THEN REPEAT
-                                IF RecLVSuma."Outstanding Quantity"<=DECI THEN BEGIN
-                                    IF RecLVSuma."Document No."<>LC."Document No." THEN BEGIN
-                                        IF CC.GET(1,RecLVSuma."Document No.") THEN BEGIN
+                            RecLVSuma.SETCURRENTKEY(RecLVSuma."Nº expedición", RecLVSuma."No.");
+                            RecLVSuma.SETRANGE(RecLVSuma."Nº expedición", NPEDIDO);
+                            RecLVSuma.SETRANGE(RecLVSuma."No.", REF);
+                            RecLVSuma.SETRANGE(RecLVSuma."Linea Nº expedición", LLINEA);
+                            IF RecLVSuma.FINDFIRST THEN
+                                REPEAT
+                                    IF RecLVSuma."Outstanding Quantity" <= DECI THEN BEGIN
+                                        IF RecLVSuma."Document No." <> LC."Document No." THEN BEGIN
+                                            IF CC.GET(1, RecLVSuma."Document No.") THEN BEGIN
                                                 ReleaseSalesDoc.Reopen(CC);
+                                            END;
                                         END;
-                                    END;
-                                    RecLVSuma.VALIDATE(RecLVSuma."Qty. to Ship",RecLVSuma."Outstanding Quantity");
-                                    RecLVSuma.MODIFY;
-                                    DECI:=DECI-RecLVSuma."Outstanding Quantity";
-                                END ELSE BEGIN
-                                    IF DECI>0 THEN BEGIN
-                                        IF RecLVSuma."Document No."<>LC."Document No." THEN BEGIN
-                                                IF CC.GET(1,RecLVSuma."Document No.") THEN BEGIN
+                                        RecLVSuma.VALIDATE(RecLVSuma."Qty. to Ship", RecLVSuma."Outstanding Quantity");
+                                        RecLVSuma.MODIFY;
+                                        DECI := DECI - RecLVSuma."Outstanding Quantity";
+                                    END ELSE BEGIN
+                                        IF DECI > 0 THEN BEGIN
+                                            IF RecLVSuma."Document No." <> LC."Document No." THEN BEGIN
+                                                IF CC.GET(1, RecLVSuma."Document No.") THEN BEGIN
                                                     ReleaseSalesDoc.Reopen(CC);
                                                 END;
+                                            END;
+                                            RecLVSuma.VALIDATE(RecLVSuma."Qty. to Ship", DECI);
+                                            RecLVSuma.MODIFY;
+                                            Message('2-modif %1 ', lc);
+                                            DECI := 0;
                                         END;
-                                        RecLVSuma.VALIDATE(RecLVSuma."Qty. to Ship",DECI);
-                                        RecLVSuma.MODIFY;
-                                        DECI:=0;
+
                                     END;
-
-                                END;
-                            UNTIL RecLVSuma.NEXT=0;
+                                UNTIL RecLVSuma.NEXT = 0;
+                        END;
                     END;
-                END;
                 end;
-                IF REF='10' THEN BEGIN
-                    EVALUATE(DECI,CANTI);
+                IF REF = '10' THEN BEGIN
+                    EVALUATE(DECI, CANTI);
                     RecCV2.RESET;
-                    RecCV2.SETCURRENTKEY(RecCV2."Document Type",RecCV2."Nº expedición");
-                    RecCV2.SETRANGE(RecCV2."Document Type",1);
-                    RecCV2.SETRANGE(RecCV2."Nº expedición",NPEDIDO);
+                    RecCV2.SETCURRENTKEY(RecCV2."Document Type", RecCV2."Nº expedición");
+                    RecCV2.SETRANGE(RecCV2."Document Type", 1);
+                    RecCV2.SETRANGE(RecCV2."Nº expedición", NPEDIDO);
                     IF RecCV2.FINDSET THEN BEGIN
-                            RecCV2.VALIDATE(RecCV2."Nº bultos",DECI);
-                            IF RecCV2."Incrementa bultos"<>0 THEN BEGIN                         
-                                RecCV2.VALIDATE(RecCV2."Nº bultos",RecCV2."Nº bultos"+RecCV."Incrementa bultos");                  
-                            END;               
-                            RecCV2.MODIFY;
+                        RecCV2.VALIDATE(RecCV2."Nº bultos", DECI);
+                        IF RecCV2."Incrementa bultos" <> 0 THEN BEGIN
+                            RecCV2.VALIDATE(RecCV2."Nº bultos", RecCV2."Nº bultos" + RecCV."Incrementa bultos");
+                        END;
+                        RecCV2.MODIFY;
                     END;
 
 
                 END;
-                IF REF='11' THEN BEGIN
-                    EVALUATE(DECI,CANTI);
+                IF REF = '11' THEN BEGIN
+                    EVALUATE(DECI, CANTI);
                     RecCV2.RESET;
-                    RecCV2.SETCURRENTKEY(RecCV2."Document Type",RecCV2."Nº expedición");
-                    RecCV2.SETRANGE(RecCV2."Document Type",1);
-                    RecCV2.SETRANGE(RecCV2."Nº expedición",NPEDIDO);
+                    RecCV2.SETCURRENTKEY(RecCV2."Document Type", RecCV2."Nº expedición");
+                    RecCV2.SETRANGE(RecCV2."Document Type", 1);
+                    RecCV2.SETRANGE(RecCV2."Nº expedición", NPEDIDO);
                     IF RecCV2.FINDSET THEN BEGIN
-                            RecCV2.VALIDATE(RecCV2."Nº Palets",DECI);
-                            RecCV2.MODIFY;
+                        RecCV2.VALIDATE(RecCV2."Nº Palets", DECI);
+                        RecCV2.MODIFY;
                     END;
                 END;
-                IF REF='15' THEN BEGIN
-                    POS:=1;
+                IF REF = '15' THEN BEGIN
+                    POS := 1;
                     REPEAT
-                            POS:=POS+1;
-                            IF (COPYSTR(CANTI,POS,1)='0') OR
-                            (COPYSTR(CANTI,POS,1)='1') OR
-                            (COPYSTR(CANTI,POS,1)='2') OR
-                            (COPYSTR(CANTI,POS,1)='3') OR
-                            (COPYSTR(CANTI,POS,1)='4') OR
-                            (COPYSTR(CANTI,POS,1)='5') OR
-                            (COPYSTR(CANTI,POS,1)='6') OR
-                            (COPYSTR(CANTI,POS,1)='7') OR
-                            (COPYSTR(CANTI,POS,1)='8') OR
-                            (COPYSTR(CANTI,POS,1)='9') THEN BEGIN
-                                SALE:=TRUE;
-                            END;
+                        POS := POS + 1;
+                        IF (COPYSTR(CANTI, POS, 1) = '0') OR
+                        (COPYSTR(CANTI, POS, 1) = '1') OR
+                        (COPYSTR(CANTI, POS, 1) = '2') OR
+                        (COPYSTR(CANTI, POS, 1) = '3') OR
+                        (COPYSTR(CANTI, POS, 1) = '4') OR
+                        (COPYSTR(CANTI, POS, 1) = '5') OR
+                        (COPYSTR(CANTI, POS, 1) = '6') OR
+                        (COPYSTR(CANTI, POS, 1) = '7') OR
+                        (COPYSTR(CANTI, POS, 1) = '8') OR
+                        (COPYSTR(CANTI, POS, 1) = '9') THEN BEGIN
+                            SALE := TRUE;
+                        END;
                     UNTIL SALE;
-                    CANTI:=COPYSTR(CANTI,POS);
+                    CANTI := COPYSTR(CANTI, POS);
 
                     RecCV2.RESET;
-                    RecCV2.SETCURRENTKEY(RecCV2."Document Type",RecCV2."Nº expedición");
-                    RecCV2.SETRANGE(RecCV2."Document Type",1);
-                    RecCV2.SETRANGE(RecCV2."Nº expedición",NPEDIDO);
+                    RecCV2.SETCURRENTKEY(RecCV2."Document Type", RecCV2."Nº expedición");
+                    RecCV2.SETRANGE(RecCV2."Document Type", 1);
+                    RecCV2.SETRANGE(RecCV2."Nº expedición", NPEDIDO);
                     IF RecCV2.FINDSET THEN BEGIN
-                            RecCV2.Preparador:=CANTI;
-                            RecCV2.MODIFY;
+                        RecCV2.Preparador := CANTI;
+                        RecCV2.MODIFY;
                     END;
                 END;
 
 
-                IF REF='12' THEN BEGIN
-                    EVALUATE(DECI,CANTI);
+                IF REF = '12' THEN BEGIN
+                    EVALUATE(DECI, CANTI);
                     RecCV2.RESET;
-                    RecCV2.SETCURRENTKEY(RecCV2."Document Type",RecCV2."Nº expedición");
-                    RecCV2.SETRANGE(RecCV2."Document Type",1);
-                    RecCV2.SETRANGE(RecCV2."Nº expedición",NPEDIDO);
+                    RecCV2.SETCURRENTKEY(RecCV2."Document Type", RecCV2."Nº expedición");
+                    RecCV2.SETRANGE(RecCV2."Document Type", 1);
+                    RecCV2.SETRANGE(RecCV2."Nº expedición", NPEDIDO);
                     IF RecCV2.FINDSET THEN BEGIN
-                            decre:=1;
-                            IF RecTra.GET(RecCV2."Shipping Agent Code") THEN BEGIN
-                                IF RecTra."Decremento kilo"<>0 THEN BEGIN
-                                    decre:=(100-RecTra."Decremento kilo")/100;
-                                END;
+                        decre := 1;
+                        IF RecTra.GET(RecCV2."Shipping Agent Code") THEN BEGIN
+                            IF RecTra."Decremento kilo" <> 0 THEN BEGIN
+                                decre := (100 - RecTra."Decremento kilo") / 100;
                             END;
-                            RecCV2."Total peso":=ROUND(DECI*decre,1);
-                            RecCV2.MODIFY;
+                        END;
+                        RecCV2."Total peso" := ROUND(DECI * decre, 1);
+                        RecCV2.MODIFY;
                     END;
                 END;
-                IF REF='13' THEN BEGIN
-                    EVALUATE(DECI,CANTI);
+                IF REF = '13' THEN BEGIN
+                    EVALUATE(DECI, CANTI);
                     RecCV2.RESET;
-                    RecCV2.SETCURRENTKEY(RecCV2."Document Type",RecCV2."Nº expedición");
-                    RecCV2.SETRANGE(RecCV2."Document Type",1);
-                    RecCV2.SETRANGE(RecCV2."Nº expedición",NPEDIDO);
+                    RecCV2.SETCURRENTKEY(RecCV2."Document Type", RecCV2."Nº expedición");
+                    RecCV2.SETRANGE(RecCV2."Document Type", 1);
+                    RecCV2.SETRANGE(RecCV2."Nº expedición", NPEDIDO);
                     IF RecCV2.FINDSET THEN BEGIN
-                        IF DECI=1 THEN BEGIN
-                            RecCV2."Shipping Agent Code":='DHL';
+                        IF DECI = 1 THEN BEGIN
+                            RecCV2."Shipping Agent Code" := 'DHL';
                             RecCV2.MODIFY;
                         END;
-                        IF DECI=3 THEN BEGIN
-                            RecCV2."Shipping Agent Code":='TIPSA';
+                        IF DECI = 3 THEN BEGIN
+                            RecCV2."Shipping Agent Code" := 'TIPSA';
                             RecCV2.MODIFY;
                         END;
-                        IF DECI=2 THEN BEGIN
-                            RecCV2."Shipping Agent Code":='SEUR';
+                        IF DECI = 2 THEN BEGIN
+                            RecCV2."Shipping Agent Code" := 'SEUR';
                             RecCV2.MODIFY;
                         END;
                     END;
@@ -712,7 +719,7 @@ END;
             END;
         END;
     END;
-        
+
 
 
 }
