@@ -3,7 +3,8 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
     layout
     {
 
-        addafter("Document Date")
+        
+        addafter("Sell-to Customer Name")
         {
 
             field("Sell-to Customer Name 2"; Rec."Sell-to Customer Name 2") { ApplicationArea = All; }
