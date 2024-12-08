@@ -1378,7 +1378,7 @@ Report 50063 "OK Nueva Factura Venta"
 
     procedure InitLogInteraction()
     begin
-        LogInteraction := SegManagement.FindInteractTmplCode(4) <> '';
+        //LogInteraction := SegManagement.FindInteractTmplCode(4) <> '';
     end;
 
     local procedure FindPostedShipmentDate(): Date

@@ -844,7 +844,7 @@ Report 50902 "OK Albaran NO valorado"
 
     procedure InitLogInteraction()
     begin
-        LogInteraction := SegManagement.FindInteractTmplCode(5) <> '';
+        //LogInteraction := SegManagement.FindInteractTmplCode(5) <> '';
     end;
 
 

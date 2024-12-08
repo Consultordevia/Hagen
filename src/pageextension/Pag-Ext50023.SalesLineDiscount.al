@@ -12,8 +12,8 @@ pageextension 50023 SalesLineDiscount extends "Sales Line Discounts"
             {
 
 
-                field("Sales Code"; Rec."Sales Code") { ApplicationArea = All; }
-                field("Sales Type"; Rec."Sales Type") { ApplicationArea = All; }
+                //field("Sales Code"; Rec."Sales Code") { ApplicationArea = All; }
+                //field("Sales Type"; Rec."Sales Type") { ApplicationArea = All; }
                 field("Descripción"; Rec."Descripción") { ApplicationArea = All; }
                 field("Oferta de descuento"; Rec."Oferta de descuento") { ApplicationArea = All; }
                 field("Vigente"; Rec.Vigente) { ApplicationArea = All; }

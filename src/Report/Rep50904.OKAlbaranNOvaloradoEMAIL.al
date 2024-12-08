@@ -843,7 +843,7 @@ Report 50904 "OK Albaran NO valorado EMAIL"
 
     procedure InitLogInteraction()
     begin
-        LogInteraction := SegManagement.FindInteractTmplCode(5) <> '';
+        //LogInteraction := SegManagement.FindInteractTmplCode(5) <> '';
     end;
 
 

@@ -5,7 +5,7 @@ page 50006 CabAbonos
     PageType = List;
     SourceTable = "Sales Cr.Memo Header";
     UsageCategory = Lists;
-    
+
     layout
     {
         area(Content)
@@ -404,10 +404,10 @@ page 50006 CabAbonos
                 {
                     ToolTip = 'Specifies if the posted sales invoice that relates to this sales credit memo is paid.';
                 }
-                field("Pay-at Code"; Rec."Pay-at Code")
+                /*field("Pay-at Code"; Rec."Pay-at Code")
                 {
                     ToolTip = 'Specifies the customer''s payment address code that was on the sales header, Payments tab, when this credit memo was issued.';
-                }
+                }*/
                 field("Payment Discount %"; Rec."Payment Discount %")
                 {
                     ToolTip = 'Specifies the payment discount percentage that is granted if the customer pays on or before the date entered in the Pmt. Discount Date field. The discount percentage is specified in the Payment Terms Code field.';

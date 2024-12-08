@@ -514,8 +514,8 @@ page 50180 Lista1
                     ApplicationArea = Basic, Suite;
                     Caption = 'Payment A&ddresses';
                     Image = Addresses;
-                    RunObject = Page "Customer Pmt. Address List";
-                    RunPageLink = "Customer No." = field("No.");
+                    //RunObject = Page "Customer Pmt. Address List";
+                    //RunPageLink = "Customer No." = field("No.");
                     ToolTip = 'View or edit customers'' payment address. If necessary, you can assign more than one payment address to a customer record. The payment addresses are listed by customer number.';
                     Visible = false;
                     ObsoleteReason = 'Address is taken from the fields Bill-to Address, Bill-to City, etc.';

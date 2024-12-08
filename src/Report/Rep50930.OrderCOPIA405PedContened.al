@@ -1306,7 +1306,7 @@ Report 50930 "Order COPIA 405 - Ped Contened"
 
     local procedure InitLogInteraction()
     begin
-        LogInteraction := SegManagement.FindInteractTmplCode(13) <> '';
+        //LogInteraction := SegManagement.FindInteractTmplCode(13) <> '';
     end;
 
     local procedure FormatAddressFields(var PurchaseHeader: Record "Purchase Header")

@@ -5,7 +5,7 @@ page 50009 CabFacturas
     PageType = List;
     SourceTable = "Sales Invoice Header";
     UsageCategory = Lists;
-    
+
     layout
     {
         area(Content)
@@ -564,10 +564,10 @@ page 50009 CabFacturas
                 {
                     ToolTip = 'Specifies the value of the Pasar a Canarias field.', Comment = '%';
                 }
-                field("Pay-at Code"; Rec."Pay-at Code")
+                /*field("Pay-at Code"; Rec."Pay-at Code")
                 {
                     ToolTip = 'Specifies the customer''s payment address code that was on the sales header, Payments tab, when the invoice was created.';
-                }
+                }*/
                 field("Payment Discount %"; Rec."Payment Discount %")
                 {
                     ToolTip = 'Specifies the payment discount percent granted if payment is made on or before the date in the Pmt. Discount Date field.';
