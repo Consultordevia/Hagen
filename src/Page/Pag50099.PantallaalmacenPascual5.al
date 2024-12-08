@@ -350,7 +350,7 @@ Page 50099 "Pantalla almacen Pascual5"
                         Rec."Estado pedido" := Rec."estado pedido"::Servido;
                         Rec.Modify;
                     end;
-                }                
+                }
                 action("Eti. ADAIA")
                 {
                     ApplicationArea = Basic;
@@ -372,6 +372,7 @@ Page 50099 "Pantalla almacen Pascual5"
                         if SalesHeader32.FindSet then begin
                             Clear(RepETAD);
                             RepETAD.SetTableview(SalesHeader32);
+
                             RepETAD.RunModal;
                             ///Report 50009 "ETI. envio"
                         end;
