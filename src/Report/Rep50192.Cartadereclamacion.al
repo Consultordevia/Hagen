@@ -198,7 +198,7 @@ Report 50192 "Carta de reclamacion"
         Prove: Record Vendor;
         i: Integer;
         TxtDesc: Text[50];
-        DirecPago: Record "Customer Pmt. Address";
+        //DirecPago: Record "Customer Pmt. Address";
         Rec3: Record "Cust. Ledger Entry";
         FECHAREG: Date;
         Graba: Boolean;

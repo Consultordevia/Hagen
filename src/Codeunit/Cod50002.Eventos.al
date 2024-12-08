@@ -264,7 +264,7 @@ codeunit 50002 Eventos
     local procedure OnBeforeUpdateShipToCodeFromCust(var SalesHeader: Record "Sales Header"; var Customer: Record Customer; var IsHandled: Boolean)
     var
         RecEAD: record "Ship-to Address";
-        RecDP: Record "Customer Pmt. Address";
+    //RecDP: Record "Customer Pmt. Address";
     begin
         RecEAD.Reset;
         RecEAD.SetRange(RecEAD."Customer No.", SalesHeader."Sell-to Customer No.");
@@ -276,13 +276,7 @@ codeunit 50002 Eventos
         end;
 
         if SalesHeader."Bill-to Customer No." <> '6445' then begin
-            RecDP.Reset;
-            RecDP.SetRange(RecDP."Customer No.", SalesHeader."Sell-to Customer No.");
-            if RecDP.FindFirst then begin
-                //SalesHeader."Pay-at Code" := RecDP.Code;
-                //SalesHeader.Validate("Pay-at Code");
-                //IsHandled := true;
-            end;
+
         end;
 
 

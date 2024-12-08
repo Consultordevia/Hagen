@@ -14,9 +14,9 @@ page 50002 CabVenta
         {
             repeater(General)
             {
-                
-                
-                
+
+
+
                 field(ASN; Rec.ASN)
                 {
                     ToolTip = 'Specifies the value of the ASN field.', Comment = '%';
@@ -669,10 +669,10 @@ page 50002 CabVenta
                 {
                     ToolTip = 'Specifies the value of the Pago Aceptado field.', Comment = '%';
                 }
-                field("Pay-at Code"; Rec."Pay-at Code")
+                /*field("Pay-at Code"; Rec."Pay-at Code")
                 {
                     ToolTip = 'Specifies a code associated with a payment address other than the customer''s standard payment address.';
-                }
+                }*/
                 field("Payment Discount %"; Rec."Payment Discount %")
                 {
                     ToolTip = 'Specifies the payment discount percentage that is granted if the customer pays on or before the date entered in the Pmt. Discount Date field. The discount percentage is specified in the Payment Terms Code field.';

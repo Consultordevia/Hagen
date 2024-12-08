@@ -103,8 +103,8 @@ Report 50150 "Aviso dto. abono en fac COPIA"
                 Clie.Init;
                 if "Gen. Journal Line"."Account Type" = "Gen. Journal Line"."account type"::Customer then begin
                     if Clie.Get("Gen. Journal Line"."Account No.") then;
-                    DirecPago.Reset;
-                    DirecPago.SetRange("Customer No.", "Gen. Journal Line"."Account No.");
+                    //DirecPago.Reset;
+                    //DirecPago.SetRange("Customer No.", "Gen. Journal Line"."Account No.");
                     /*
                     IF DirecPago.FIND('-') THEN
                   ///	FormatDire.SalesHeaderBillTo(DirClie,DirecPago)
@@ -178,7 +178,7 @@ Report 50150 "Aviso dto. abono en fac COPIA"
         Prove: Record Vendor;
         i: Integer;
         TxtDesc: Text[50];
-        DirecPago: Record "Customer Pmt. Address";
+    //DirecPago: Record "Customer Pmt. Address";
 
     local procedure OnPreSectionTable81_Header1(var "Gen. Journal Line": Record "Gen. Journal Line");
     begin

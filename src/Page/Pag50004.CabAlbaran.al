@@ -5,7 +5,7 @@ page 50004 CabAlbaran
     PageType = List;
     SourceTable = "Sales Shipment Header";
     UsageCategory = Lists;
-    
+
     layout
     {
         area(Content)
@@ -536,10 +536,10 @@ page 50004 CabAlbaran
                 {
                     ToolTip = 'Specifies the value of the Pasar a Canarias field.', Comment = '%';
                 }
-                field("Pay-at Code"; Rec."Pay-at Code")
+                /*field("Pay-at Code"; Rec."Pay-at Code")
                 {
                     ToolTip = 'Specifies the client''s payment address code that was on the order header, Payments tab, from which this sales receipt was created.';
-                }
+                }*/
                 field("Payment Discount %"; Rec."Payment Discount %")
                 {
                     ToolTip = 'Specifies the value of the Payment Discount % field.', Comment = '%';

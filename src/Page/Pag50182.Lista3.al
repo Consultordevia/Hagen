@@ -52,7 +52,7 @@ page 50182 Lista3
     AboutText = 'Here you overview all registered customers, their balances, and the sales statistics. With [Customer Templates](?page=1381 "Opens the Customer Templates") you can quickly create new customers having common details defined by the template.';
 
     SourceTableView = where("Estatus del cliente" = const("Posible cliente WEB"));
-///    SourceTableView = where("Document Type" = const(Order));
+    ///    SourceTableView = where("Document Type" = const(Order));
 
 
     layout
@@ -516,8 +516,8 @@ page 50182 Lista3
                     ApplicationArea = Basic, Suite;
                     Caption = 'Payment A&ddresses';
                     Image = Addresses;
-                    RunObject = Page "Customer Pmt. Address List";
-                    RunPageLink = "Customer No." = field("No.");
+                    //RunObject = Page "Customer Pmt. Address List";
+                    //RunPageLink = "Customer No." = field("No.");
                     ToolTip = 'View or edit customers'' payment address. If necessary, you can assign more than one payment address to a customer record. The payment addresses are listed by customer number.';
                     Visible = false;
                     ObsoleteReason = 'Address is taken from the fields Bill-to Address, Bill-to City, etc.';
@@ -1858,8 +1858,8 @@ page 50182 Lista3
         IsAllowMultiplePostingGroupsVisible := SalesReceivablesSetup."Allow Multiple Posting Groups";
 
         UserSetup.GET(USERID);
-        IF UserSetup."Salespers./Purch. Code"<>'' THEN BEGIN
-            Rec.SETRANGE("Salesperson Code",UserSetup."Salespers./Purch. Code");
+        IF UserSetup."Salespers./Purch. Code" <> '' THEN BEGIN
+            Rec.SETRANGE("Salesperson Code", UserSetup."Salespers./Purch. Code");
         END;
 
 
