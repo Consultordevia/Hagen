@@ -97,6 +97,7 @@ pageextension 50026 ClientesLista extends "Customer List"
         IF UserSetup."Salespers./Purch. Code" <> '' THEN BEGIN
             rec.SETRANGE("Salesperson Code", UserSetup."Salespers./Purch. Code");
         END;
+        rec.SETFILTER("Estatus del cliente", 'Activo|Posible cliente|Posible cliente WEB');
     end;
 
 
