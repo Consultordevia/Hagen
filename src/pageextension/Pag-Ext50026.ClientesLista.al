@@ -89,6 +89,15 @@ pageextension 50026 ClientesLista extends "Customer List"
     }
 
 
+    trigger OnOpenPage()
+    var
+        UserSetup: Record "User Setup";
+    begin
+        UserSetup.GET(USERID);
+        IF UserSetup."Salespers./Purch. Code" <> '' THEN BEGIN
+            rec.SETRANGE("Salesperson Code", UserSetup."Salespers./Purch. Code");
+        END;
+    end;
 
 
 
