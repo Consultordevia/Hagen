@@ -8,11 +8,14 @@ XmlPort 50055 "Importacion PEDIDOS catitt new"
     // [14:52, 5/8/2023] Hagen Oscar: S=Importe en euros iva inc transporte
     // [14:53, 5/8/2023] Hagen Oscar: T=Agencia transporte
 
+
+    
+
     Caption = 'Importacion PEDIDOS catitt new';
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -381,7 +384,7 @@ XmlPort 50055 "Importacion PEDIDOS catitt new"
                 RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                 RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
                 RecCV."Permite fraccionar uni. venta" := true;
-                RecCV.Validate("Your Reference" , D1);
+                RecCV.Validate("Your Reference", D1);
                 RecCV.Validate(RecCV."Ship-to Code", CODDIRENVIO);
                 RecCV."Shipment Date" := CalcDate('+2D', Today);
                 RecCV."Requested Delivery Date" := CalcDate('+2D', Today);

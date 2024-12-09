@@ -2,7 +2,10 @@ Codeunit 50010 "Automaticos Cartas"
 {
     // Potyugal
 
-    Permissions = TableData "Purch. Rcpt. Header" = rim;
+    Permissions = TableData "Purch. Rcpt. Header" = rim, TableData "Sales Invoice Line" = rim,
+    TableData "Sales Shipment Header" = rim,
+    TableData "Sales Shipment Line" = rim,
+    TableData "Sales Invoice Header" = rim;
 
     trigger OnRun()
     begin

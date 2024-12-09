@@ -612,7 +612,7 @@ XmlPort 50103 "ADAIATREXP"
                                             END;
                                             RecLVSuma.VALIDATE(RecLVSuma."Qty. to Ship", DECI);
                                             RecLVSuma.MODIFY;
-                                            Message('2-modif %1 ', lc);
+                                            ///Message('2-modif %1 ', lc);
                                             DECI := 0;
                                         END;
 

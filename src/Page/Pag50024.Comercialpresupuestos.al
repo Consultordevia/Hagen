@@ -37,6 +37,11 @@ Page 50024 "Comercial presupuestos"
                         end;
                     end;
                 }
+
+                field("Estado pedido";Rec."Estado pedido")
+                {ApplicationArea = All;}
+                field("Sell-to Customer Name 2";Rec."Sell-to Customer Name 2")
+                {ApplicationArea = All;}
                 field("Sell-to Customer No."; Rec."Sell-to Customer No.")
                 {
                     ApplicationArea = All;
