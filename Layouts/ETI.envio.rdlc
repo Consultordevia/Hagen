@@ -38,7 +38,7 @@ fpHYR96U2/8B
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.99306in</Width>
+                  <Width>2.61112in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -212,7 +212,7 @@ fpHYR96U2/8B
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Height>1in</Height>
-            <Width>2.99306in</Width>
+            <Width>2.61112in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -223,11 +223,11 @@ fpHYR96U2/8B
         <Height>2.54cm</Height>
         <Style />
       </Body>
-      <Width>7.60237cm</Width>
+      <Width>6.63223cm</Width>
       <Page>
         <PageHeight>2.08cm</PageHeight>
         <PageWidth>7cm</PageWidth>
-        <LeftMargin>1.5cm</LeftMargin>
+        <LeftMargin>0.5cm</LeftMargin>
         <RightMargin>0cm</RightMargin>
         <TopMargin>0.5cm</TopMargin>
         <BottomMargin>0cm</BottomMargin>

@@ -519,8 +519,8 @@ XmlPort 50058 "Importacion PED miriva NAV0317"
                     RecCV."Ship-to Address" := CopyStr(D17 + D18, 1, 50);
                     RecCV."Ship-to Address 2" := CopyStr(D17 + D18, 51, 50);
                     RecCV."Ship-to Contact" := '';
-                    RecCV.Validate(RecCV."Ship-to Post Code", D21);
-                    RecCV.Validate(RecCV."Ship-to City", D19);
+                    RecCV.Validate(RecCV."Ship-to Post Code", CopyStr(D21,1,20));
+                    RecCV.Validate(RecCV."Ship-to City", CopyStr(D19,1,30));
                     RecCV."Envio a-Nº Telefono" := D27;
                     RecCV."Observación para transporte" := '';
                     RecCV."Prices Including VAT" := true;

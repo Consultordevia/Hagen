@@ -89,10 +89,12 @@ Report 50009 "ETI. envio"
                 Rectra.Init;
                 if Rectra.Get("Sales Header"."Shipping Agent Code") then begin
                 end;
-                obs := "Sales Header"."Observación PDA";
+                obs := "Sales Header"."Your Reference";
+                obs := obs + ' ' + "Sales Header"."Observación PDA";
                 if ("Sales Header"."NO MULTIPEDIDO") or (NOMULTIPEDIDO) then begin
                     obs := 'NO MULTIPEDIDO' + ' ' + "Sales Header"."Observación PDA";
                 end;
+                obs := obs + ' ' + obs2;
                 ///message('%1 %2 %3', "Sales Header"."Nº expedición" + '   -   ' + Rectra.Name, RecCust."Search Name", obs)
             end;
 

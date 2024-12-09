@@ -4,6 +4,7 @@ pageextension 50026 ClientesLista extends "Customer List"
     layout
     {
 
+
         addafter("Salesperson Code")
         {
             field("Payment Method Code"; Rec."Payment Method Code") { ApplicationArea = All; }
