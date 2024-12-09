@@ -1,6 +1,6 @@
 codeunit 50002 Eventos
 {
-    Permissions = tabledata "Sales Invoice Header" = rmid;
+    Permissions = tabledata "Sales Invoice Header" = rmid, tabledata "G/L Entry" = RMID;
 
 
     [EventSubscriber(ObjectType::Table, 18, 'OnAfterOnInsert', '', true, true)]
@@ -594,7 +594,7 @@ codeunit 50002 Eventos
         PAGINAWEB: Text[1000];
         CODDOC: Code[20];
         RecItem: Record Item;
-        GLEntry2: Record "G/L Entry";
+        //GLEntry2: Record "G/L Entry";
         SalesInvoiceHeader2: Record "Sales Invoice Header";
         SalesCrMemoHeader2: Record "Sales Cr.Memo Header";
     begin
@@ -711,7 +711,7 @@ codeunit 50002 Eventos
         PAGINAWEB: Text[1000];
         CODDOC: Code[20];
         RecItem: Record Item;
-        GLEntry2: Record "G/L Entry";
+        //GLEntry2: Record "G/L Entry";
         SalesInvoiceHeader2: Record "Sales Invoice Header";
         SalesCrMemoHeader2: Record "Sales Cr.Memo Header";
     begin
