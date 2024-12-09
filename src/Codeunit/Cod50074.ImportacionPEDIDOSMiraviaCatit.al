@@ -1,5 +1,5 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
-Codeunit 50074 "Importacion PEDIDOS Miravia"
+Codeunit 50074 "Importacion PEDI MiraviaCatit"
 {
     // NAV0315 C:\tmp\Miravia\Pedidos\Fluval\
     // NAV0316 C:\tmp\Miravia\Pedidos\Aquaclear\
@@ -21,13 +21,13 @@ Codeunit 50074 "Importacion PEDIDOS Miravia"
     begin
 
         ADAIA.Reset();
-        ADAIA.SetRange(texto, 'IMPORTACION TRANSAHER-CU-50053');
+        ADAIA.SetRange(texto, 'IMPORTACION MIRAVIA-CATIT-CU-50074');
         IF ADAIA.FindSet() THEN begin
             nomdir := ADAIA.Ruta;
             RUTACOPIA := ADAIA.Ruta + 'copia/';
         end;
         Commit;
-        tipo := Tipo::MIRAVIA;
+        tipo := Tipo::MIRAVIACATIT;
 
 
         FicherosHagen.LeerArchivosCarpeta(nomdir, RUTACOPIA, Tipo)

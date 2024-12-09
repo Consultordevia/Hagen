@@ -313,6 +313,9 @@ codeunit 50999 FicherosHagen
                     if Tipo = Tipo::TRANSAHER then begin
                         Xmlport.Import(Xmlport::"Importacion transaher", InStream);
                     end;
+                    if Tipo = Tipo::MIRAVIA then begin
+                        Xmlport.Import(Xmlport::"Importacion transaher", InStream);
+                    end;
                     if Tipo = Tipo::MASKOKOTAS then begin
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS MASKO-new", InStream);
                     end;
@@ -375,6 +378,12 @@ codeunit 50999 FicherosHagen
                     end;
                     if Tipo = Tipo::FTP12833 then begin
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS V-12833", InStream);
+                    end;
+                    if Tipo = Tipo::MIRAVIACATIT then begin
+                        Xmlport.Import(Xmlport::"Importacion PED miriva NAV0317", InStream);
+                    end;
+                    if Tipo = Tipo::MIRAVIAAQUA then begin
+                        Xmlport.Import(Xmlport::"Importacion PED miriva NAV0316", InStream);
                     end;
 
 

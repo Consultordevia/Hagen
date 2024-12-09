@@ -83,5 +83,13 @@ enum 50000 Ficherets
     {
         Caption = 'VERDECORA2';
     }
+    value(28; MIRAVIACATIT)
+    {
+        Caption = 'MIRAVIACATIT';
+    } 
+    value(29; MIRAVIAAQUA)
+    {
+        Caption = 'MIRAVIAAQUA';
+    }
     
 }

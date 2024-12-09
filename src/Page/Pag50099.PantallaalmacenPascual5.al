@@ -340,6 +340,47 @@ Page 50099 "Pantalla almacen Pascual5"
                         ImprimeEtiPortugal;
                     end;
                 }
+                /*
+                action(USUARIOS)
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'USUARIOS';
+                    Ellipsis = true;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+                    trigger OnAction()
+                    var
+                        RecCV: Record "Sales Header";
+                        RecLV: Record "Sales Line";
+                        V: Dialog;
+
+
+                    begin
+                        V.Open('#1##########################################');
+                        RecCV.reset;
+                        RecCV.SetRange("Posting Date", 20241231D, 20240101D);
+                        IF RecCV.FindFirst() THEN
+                            REPEAT
+                                V.Update(1, 'L' + FORMAT(RECCV."Posting Date"));
+                                RECCV."Usuario alta" := 'NAVISION';
+                                RecCV."Usuario para preparar" := 'NAVISION';
+                                RECCV."Usuario Retenido" := 'NAVISION';
+                                RecCV.Modify;
+                            UNTIL RECCV.NEXT = 0;
+                        RecLV.reset;
+                        RecLV.SetRange("Posting Date", 20241231D, 20240101D);
+                        IF RecLV.FindFirst() THEN
+                            REPEAT
+                                V.Update(1, 'L' + FORMAT(RECLV."Posting Date"));
+                                RECLV."Usuario alta" := 'NAVISION';
+                                RecLV.Modify;
+                            UNTIL RECLV.NEXT = 0;
+                        Message('HECHO');
+
+                    end;
+                }
+                */
                 action("Marcar como SERVIDO")
                 {
                     ApplicationArea = Basic;

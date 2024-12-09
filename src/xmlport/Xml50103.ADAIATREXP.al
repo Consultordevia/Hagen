@@ -7,6 +7,7 @@ XmlPort 50103 "ADAIATREXP"
     Format = VariableText;
     TextEncoding = WINDOWS;
     UseRequestPage = false;
+     Permissions = tabledata 110 = rmid, tabledata 113 = rmid, tabledata 17 = rmid;
 
     ///   1   2  3         4       5               6           7     8       9       10      11  12       
     /// CECA|MO|CAT25986|01       |CT02300976   |         |PED      |  |         |20241203 |0824|   |||

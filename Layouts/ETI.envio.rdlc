@@ -38,7 +38,7 @@ fpHYR96U2/8B
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>5.375in</Width>
+                  <Width>2.99306in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -55,7 +55,9 @@ fpHYR96U2/8B
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!SearchName_RecCust.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -90,7 +92,9 @@ fpHYR96U2/8B
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!SalesHeaderNoexpedicion___RectraName.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -125,7 +129,9 @@ fpHYR96U2/8B
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Text.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -160,7 +166,9 @@ fpHYR96U2/8B
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!obs.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -178,7 +186,6 @@ fpHYR96U2/8B
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -205,7 +212,7 @@ fpHYR96U2/8B
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Height>1in</Height>
-            <Width>5.375in</Width>
+            <Width>2.99306in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -213,16 +220,23 @@ fpHYR96U2/8B
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>1in</Height>
+        <Height>2.54cm</Height>
         <Style />
       </Body>
-      <Width>5.375in</Width>
+      <Width>7.60237cm</Width>
       <Page>
+        <PageHeight>2.08cm</PageHeight>
+        <PageWidth>7cm</PageWidth>
+        <LeftMargin>1.5cm</LeftMargin>
+        <RightMargin>0cm</RightMargin>
+        <TopMargin>0.5cm</TopMargin>
+        <BottomMargin>0cm</BottomMargin>
+        <ColumnSpacing>1.27cm</ColumnSpacing>
         <Style />
       </Page>
     </ReportSection>
   </ReportSections>
-  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>7cc7507f-9a93-4b34-8923-135ebfe55238</rd:ReportID>
   <DataSets>
     <DataSet Name="DataSet_Result">

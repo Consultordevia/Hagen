@@ -429,7 +429,7 @@ XmlPort 50069 "Importacion PEDIDOS mano mano"
 
                 SalesSetup.Get;
                 codacti := NoSeriesManagement.GetNextNo('V-PED-MM', Today, true);
-                Message('%1', codacti);
+                /////Message('%1', codacti);                
                 RecCV.Init;
                 RecCV."Document Type" := 1;
                 RecCV."No." := codacti;
