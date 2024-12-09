@@ -23,7 +23,7 @@ Page 50011 "Comercial Datos"
                         Customer.Reset;
                         Customer.SetCurrentkey("Salesperson Code");
                         Customer.SetRange("Salesperson Code", UserSetup."Salespers./Purch. Code");
-                        Customer.SetRange("Estatus del cliente", Customer."estatus del cliente"::Activo);                        
+                        Customer.SetRange("Estatus del cliente", Customer."estatus del cliente"::Activo);
                         Clear(PageMisClientes);
                         PageMisClientes.SetTableView(Customer);
                         PageMisClientes.RunModal;
@@ -39,7 +39,7 @@ Page 50011 "Comercial Datos"
                         Customer.Reset;
                         Customer.SetCurrentkey("Salesperson Code");
                         Customer.SetRange("Salesperson Code", UserSetup."Salespers./Purch. Code");
-                        Customer.SetRange("Estatus del cliente", Customer."estatus del cliente"::"Posible cliente");      
+                        Customer.SetRange("Estatus del cliente", Customer."estatus del cliente"::"Posible cliente");
                         Clear(PageMisPosiblesClientes);
                         PageMisPosiblesClientes.SetTableView(Customer);
                         PageMisPosiblesClientes.RunModal;
@@ -55,7 +55,7 @@ Page 50011 "Comercial Datos"
                         Customer.Reset;
                         Customer.SetCurrentkey("Salesperson Code");
                         Customer.SetRange("Salesperson Code", UserSetup."Salespers./Purch. Code");
-                        Customer.SetRange("Estatus del cliente", Customer."estatus del cliente"::"Posible cliente WEB");                              
+                        Customer.SetRange("Estatus del cliente", Customer."estatus del cliente"::"Posible cliente WEB");
                         Clear(PageMisPosiblesClientesWEB);
                         PageMisPosiblesClientesWEB.SetTableView(Customer);
                         PageMisPosiblesClientesWEB.RunModal;
@@ -103,6 +103,9 @@ Page 50011 "Comercial Datos"
                         SalesHeader."Document Type" := 0;
                         SalesHeader."No." := NoSeriesManagement.GetNextNo(SalesReceivablesSetup."Quote Nos.", Today, true);
                         codpedido := SalesHeader."No.";
+                        SalesHeader."Order Date" := Today;
+                        SalesHeader."Posting Date" := Today;
+                        SalesHeader."Document Date" := Today;
                         SalesHeader.Insert;
                         Commit;
                         SalesHeader.Reset;

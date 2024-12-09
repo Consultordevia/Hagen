@@ -38,7 +38,7 @@ fpHYR96U2/8B
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>5.375in</Width>
+                  <Width>2.99306in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -47,21 +47,23 @@ fpHYR96U2/8B
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="SalesHeaderNoexpedicion___RectraName">
+                        <Textbox Name="SearchName_RecCust">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!SalesHeaderNoexpedicion___RectraName.Value</Value>
-                                  <Style />
+                                  <Value>=Fields!SearchName_RecCust.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>SalesHeaderNoexpedicion___RectraName</rd:DefaultName>
+                          <rd:DefaultName>SearchName_RecCust</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -90,13 +92,52 @@ fpHYR96U2/8B
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!SalesHeaderNoexpedicion___RectraName.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>SalesHeaderNoexpedicion___RectraName1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Text2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Text.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Text</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -125,48 +166,15 @@ fpHYR96U2/8B
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!obs.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>obs</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.25in</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Text">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!Text.Value</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Text</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -204,7 +212,7 @@ fpHYR96U2/8B
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Height>1in</Height>
-            <Width>5.375in</Width>
+            <Width>2.99306in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -212,16 +220,23 @@ fpHYR96U2/8B
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>1in</Height>
+        <Height>2.54cm</Height>
         <Style />
       </Body>
-      <Width>5.375in</Width>
+      <Width>7.60237cm</Width>
       <Page>
+        <PageHeight>2.08cm</PageHeight>
+        <PageWidth>7cm</PageWidth>
+        <LeftMargin>1.5cm</LeftMargin>
+        <RightMargin>0cm</RightMargin>
+        <TopMargin>0.5cm</TopMargin>
+        <BottomMargin>0cm</BottomMargin>
+        <ColumnSpacing>1.27cm</ColumnSpacing>
         <Style />
       </Page>
     </ReportSection>
   </ReportSections>
-  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>7cc7507f-9a93-4b34-8923-135ebfe55238</rd:ReportID>
   <DataSets>
     <DataSet Name="DataSet_Result">
