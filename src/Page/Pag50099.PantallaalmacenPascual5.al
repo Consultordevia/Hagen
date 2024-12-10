@@ -413,7 +413,6 @@ Page 50099 "Pantalla almacen Pascual5"
                         if SalesHeader32.FindSet then begin
                             Clear(RepETAD);
                             RepETAD.SetTableview(SalesHeader32);
-
                             RepETAD.RunModal;
                             ///Report 50009 "ETI. envio"
                         end;
@@ -455,6 +454,7 @@ Page 50099 "Pantalla almacen Pascual5"
                     end;
                 }
                 */
+                /*
                 action("Eti. drop.agrupada")
                 {
                     ApplicationArea = Basic;
@@ -477,6 +477,7 @@ Page 50099 "Pantalla almacen Pascual5"
                         end;
                     end;
                 }
+                */
                 action("Eti. drop.agrupada detalle")
                 {
                     ApplicationArea = Basic;

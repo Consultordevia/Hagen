@@ -2,7 +2,10 @@ Report 50013 "Etiqueta DROPSHIPPING"
 {
     Caption = 'Etiqueta DROPSHIPPING';
     RDLCLayout = './Layouts/EtiquetaDROPSHIPPING.rdlc';
+    Permissions = TableData "Multitabla 2" = rim;
     DefaultLayout = RDLC;
+    
+    
 
     dataset
     {

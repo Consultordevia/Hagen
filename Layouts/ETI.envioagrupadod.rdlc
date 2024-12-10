@@ -51,7 +51,6 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="dropship___RectraName">
-                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -85,8 +84,7 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="SalesHeaderNoexpedicion___SalesHeaderNoexpedicionagrupada2">
-                          <CanGrow>true</CanGrow>
+                        <Textbox Name="SalesHeaderNoexpedicion___SalesHeaderNoexpedicionagrupada3">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -120,50 +118,16 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="textocaja3">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!textocaja.Value</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>textocaja</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.16667in</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="textocaja12">
-                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!textocaja1.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -191,14 +155,15 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="textocaja4">
-                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!textocaja2.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -226,14 +191,15 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="textocaja23">
-                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!textocaja2.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -251,6 +217,7 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -272,13 +239,12 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
                     <TablixMember />
                     <TablixMember />
                     <TablixMember />
-                    <TablixMember />
                   </TablixMembers>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Height>1.00002in</Height>
+            <Height>0.83335in</Height>
             <Width>2.50695in</Width>
             <Style>
               <Border>
@@ -287,7 +253,7 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2.54005cm</Height>
+        <Height>2.11671cm</Height>
         <Style />
       </Body>
       <Width>6.36766cm</Width>

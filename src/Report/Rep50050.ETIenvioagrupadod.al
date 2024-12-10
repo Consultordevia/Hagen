@@ -4,6 +4,7 @@ Report 50050 "ETI. envio agrupado d"
     UseRequestPage = false;
     RDLCLayout = './Layouts/ETI.envioagrupadod.rdlc';
     DefaultLayout = RDLC;
+    Permissions = TableData "Multitabla 2" = rim;
 
     dataset
     {
@@ -15,7 +16,7 @@ Report 50050 "ETI. envio agrupado d"
             column(obs2; obs2)
             {
             }
-            column(dropship___RectraName; dropship + '   -   ' + Rectra.Name)
+            column(dropship___RectraName; RecCust."Search Name" + '   -   ' + Rectra.Name)
             {
             }
             column(obs1; obs1)
@@ -114,7 +115,7 @@ Report 50050 "ETI. envio agrupado d"
                             textocaja := '';
                             if cajas0 <> 0 then begin
                                 numcajas := numcajas + cajas0;
-                                textocaja := textocaja + ' CJ00: ' + Format(cajas0);
+                                /////textocaja := textocaja + ' CJ00: ' + Format(cajas0);
                                 TipocajaG.Get('CJ00');
                                 TipocajaG.cabtidad := TipocajaG.cabtidad + cajas0;
                                 TipocajaG.Modify;
@@ -124,31 +125,31 @@ Report 50050 "ETI. envio agrupado d"
                                 NCAJAS := cajas6 / 6;
                                 NCAJAS := ROUND(NCAJAS, 1);
                                 if NCAJAS = 0 then NCAJAS := 1;
-                                textocaja := textocaja + ' CJT: ' + Format(NCAJAS);
+                                /////textocaja := textocaja + ' CJT: ' + Format(NCAJAS);
                                 TipocajaG.Get('CJT');
                                 TipocajaG.cabtidad := TipocajaG.cabtidad + NCAJAS;
                                 TipocajaG.Modify;
                             end;
                             if cajas7 <> 0 then begin
-                                textocaja := textocaja + ' CJ09: ' + Format(cajas0);
+                                /////textocaja := textocaja + ' CJ09: ' + Format(cajas0);
                                 TipocajaG.Get('C09');
                                 TipocajaG.cabtidad := TipocajaG.cabtidad + NCAJAS;
                                 TipocajaG.Modify;
                             end;
                             if cajas8 <> 0 then begin
-                                textocaja := textocaja + ' CJ23: ' + Format(cajas0);
+                                /////textocaja := textocaja + ' CJ23: ' + Format(cajas0);
                                 TipocajaG.Get('CJ23');
                                 TipocajaG.cabtidad := TipocajaG.cabtidad + NCAJAS;
                                 TipocajaG.Modify;
                             end;
                             if cajas9 <> 0 then begin
-                                textocaja := textocaja + ' CJ22: ' + Format(cajas0);
+                                /////textocaja := textocaja + ' CJ22: ' + Format(cajas0);
                                 TipocajaG.Get('CJ22');
                                 TipocajaG.cabtidad := TipocajaG.cabtidad + NCAJAS;
                                 TipocajaG.Modify;
                             end;
                             if cajas10 <> 0 then begin
-                                textocaja := textocaja + ' CJ12: ' + Format(cajas0);
+                                //////textocaja := textocaja + ' CJ12: ' + Format(cajas0);
                                 TipocajaG.Get('CJ12');
                                 TipocajaG.cabtidad := TipocajaG.cabtidad + NCAJAS;
                                 TipocajaG.Modify;
@@ -162,7 +163,7 @@ Report 50050 "ETI. envio agrupado d"
                                     NCAJAS := ROUND(pesopedido / Tipocaja."Maximo kilos", 1);
                                     if NCAJAS = 0 then NCAJAS := 1;
                                     numcajas := numcajas + NCAJAS;
-                                    textocaja := textocaja + ' ' + Tipocaja."Tipo caja" + ': ' + Format(NCAJAS);
+                                    /////textocaja := textocaja + ' ' + Tipocaja."Tipo caja" + ': ' + Format(NCAJAS);
                                     TipocajaG.Get(Tipocaja."Tipo caja");
                                     TipocajaG.cabtidad := TipocajaG.cabtidad + NCAJAS;
                                     TipocajaG.Modify;
@@ -174,7 +175,7 @@ Report 50050 "ETI. envio agrupado d"
                                         NCAJAS := ROUND(pesopedido / 10, 1);
                                         if NCAJAS = 0 then NCAJAS := 1;
                                         numcajas := numcajas + NCAJAS;
-                                        textocaja := textocaja + ' ' + Tipocaja."Tipo caja" + ': ' + Format(NCAJAS);
+                                        ////textocaja := textocaja + ' ' + Tipocaja."Tipo caja" + ': ' + Format(NCAJAS);
                                         TipocajaG.Get(Tipocaja."Tipo caja");
                                         TipocajaG.cabtidad := TipocajaG.cabtidad + NCAJAS;
                                         TipocajaG.Modify;
@@ -199,7 +200,7 @@ Report 50050 "ETI. envio agrupado d"
                 if TipocajaG.FindFirst then
                     repeat
                         if TipocajaG.cabtidad <> 0 then begin
-                            textocaja := textocaja + ' ' + TipocajaG."Tipo caja" + ': ' + Format(TipocajaG.cabtidad);
+                            ///textocaja := textocaja + ' ' + TipocajaG."Tipo caja" + ': ' + Format(TipocajaG.cabtidad);
                         end;
                     until TipocajaG.Next = 0;
 
