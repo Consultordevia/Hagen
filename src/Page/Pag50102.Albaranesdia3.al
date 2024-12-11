@@ -306,13 +306,13 @@ Page 50102 "Albaranes dia-3"
 
 
 
-                    /////-Clear(OKAlbaranNOvalorado);
+                    Clear(OKAlbaranNOvalorado);
 
                     Rec110.Reset;
                     Rec110.SetRange(Rec110."No.", Rec."No.");
                     if Rec110.FindFirst then begin
-                        /////-OKAlbaranNOvalorado.SetTableview(Rec110);
-                        /////-OKAlbaranNOvalorado.Run;
+                        OKAlbaranNOvalorado.SetTableview(Rec110);
+                        OKAlbaranNOvalorado.Run;
                     end;
 
                     if RecTra.Get(Rec."Shipping Agent Code") then begin
@@ -338,12 +338,12 @@ Page 50102 "Albaranes dia-3"
                 begin
 
 
-                    /////-Clear(OKAlbaranValorado);
+                    Clear(OKAlbaranValorado);
                     Rec110.Reset;
                     Rec110.SetRange(Rec110."No.", Rec."No.");
                     if Rec110.FindFirst then begin
-                        /////-OKAlbaranValorado.SetTableview(Rec110);
-                        /////-OKAlbaranValorado.Run;
+                       OKAlbaranValorado.SetTableview(Rec110);
+                        OKAlbaranValorado.Run;
                     end;
 
                     if RecTra.Get(Rec."Shipping Agent Code") then begin
@@ -351,7 +351,7 @@ Page 50102 "Albaranes dia-3"
                             Rec110.Reset;
                             Rec110.SetRange(Rec110."No.", Rec."No.");
                             if Rec110.FindFirst then begin
-                                /////- AutomaticosAdaia.ETISTD(Rec110);
+                                AutomaticosAdaia.ETISTD(Rec110);
                             end;
                         end;
                     end;
@@ -741,8 +741,8 @@ Page 50102 "Albaranes dia-3"
         AutomaticosAdaia: Codeunit "Automaticos Cartas";
         /////- REP50030: Report UnknownReport50030;
         /////- OKAlbaranValoradoECI: Report UnknownReport50905;
-        /////- OKAlbaranValorado: Report UnknownReport50901;
-        /////- OKAlbaranNOvalorado: Report UnknownReport50902;
+        OKAlbaranValorado: Report 50901;
+        OKAlbaranNOvalorado: Report 50902;
         paginaweb: Text[500];
         /////- OKAlbaranValoradoCANARIAS: Report UnknownReport50908;
         RecCA: Record "Cajas AMAZON";
