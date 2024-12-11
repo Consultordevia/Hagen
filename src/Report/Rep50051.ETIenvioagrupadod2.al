@@ -1,8 +1,8 @@
 
-Report 50050 "ETI. envio agrupado d"
+Report 50051 "ETI. envio agrupado d2"
 {
     UseRequestPage = false;
-    RDLCLayout = './Layouts/ETI.envioagrupadod.rdlc';
+    RDLCLayout = './Layouts/ETI.envioagrupadod2.rdlc';
     DefaultLayout = RDLC;
     Permissions = TableData "Multitabla 2" = rim;
 
@@ -44,6 +44,9 @@ Report 50050 "ETI. envio agrupado d"
             {
             }
             column(npedido; "Sales Header"."No.")
+            {
+            }
+            column(Your_Reference; "Sales Header"."Your Reference")
             {
             }
             trigger OnAfterGetRecord();
