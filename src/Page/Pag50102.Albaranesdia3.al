@@ -264,7 +264,7 @@ Page 50102 "Albaranes dia-3"
                             Rec110.Reset;
                             Rec110.SetRange(Rec110."No.", Rec."No.");
                             if Rec110.FindFirst then begin
-                                /////- AutomaticosAdaia.ETISTD(Rec110);
+                                AutomaticosAdaia.ETISTD(Rec110);
                             end;
                         end;
                     end;
@@ -284,12 +284,12 @@ Page 50102 "Albaranes dia-3"
 
 
 
-                    /////- Clear(OKAlbaranValoradoECI);
+                    /////-Clear(OKAlbaranValoradoECI);
                     Rec110.Reset;
                     Rec110.SetRange(Rec110."No.", Rec."No.");
                     if Rec110.FindFirst then begin
-                        /////- OKAlbaranValoradoECI.SetTableview(Rec110);
-                        /////- OKAlbaranValoradoECI.Run;
+                        /////-OKAlbaranValoradoECI.SetTableview(Rec110);
+                        /////-OKAlbaranValoradoECI.Run;
                     end;
                 end;
             }
@@ -306,13 +306,13 @@ Page 50102 "Albaranes dia-3"
 
 
 
-                    /////- Clear(OKAlbaranNOvalorado);
+                    /////-Clear(OKAlbaranNOvalorado);
 
                     Rec110.Reset;
                     Rec110.SetRange(Rec110."No.", Rec."No.");
                     if Rec110.FindFirst then begin
-                        /////- OKAlbaranNOvalorado.SetTableview(Rec110);
-                        /////- OKAlbaranNOvalorado.Run;
+                        /////-OKAlbaranNOvalorado.SetTableview(Rec110);
+                        /////-OKAlbaranNOvalorado.Run;
                     end;
 
                     if RecTra.Get(Rec."Shipping Agent Code") then begin
@@ -320,7 +320,7 @@ Page 50102 "Albaranes dia-3"
                             Rec110.Reset;
                             Rec110.SetRange(Rec110."No.", Rec."No.");
                             if Rec110.FindFirst then begin
-                                /////- AutomaticosAdaia.ETISTD(Rec110);
+                                AutomaticosAdaia.ETISTD(Rec110);
                             end;
                         end;
                     end;
@@ -338,15 +338,12 @@ Page 50102 "Albaranes dia-3"
                 begin
 
 
-                    /////- Clear(OKAlbaranValorado);
-
-
-
+                    /////-Clear(OKAlbaranValorado);
                     Rec110.Reset;
                     Rec110.SetRange(Rec110."No.", Rec."No.");
                     if Rec110.FindFirst then begin
-                        /////- OKAlbaranValorado.SetTableview(Rec110);
-                        /////- OKAlbaranValorado.Run;
+                        /////-OKAlbaranValorado.SetTableview(Rec110);
+                        /////-OKAlbaranValorado.Run;
                     end;
 
                     if RecTra.Get(Rec."Shipping Agent Code") then begin
@@ -590,12 +587,12 @@ Page 50102 "Albaranes dia-3"
                 begin
 
 
-                    /////- Clear(OKAlbaranValoradoCANARIAS);
+                    /////-Clear(OKAlbaranValoradoCANARIAS);
                     Rec110.Reset;
                     Rec110.SetRange(Rec110."No.", Rec."No.");
                     if Rec110.FindFirst then begin
-                        /////- OKAlbaranValoradoCANARIAS.SetTableview(Rec110);
-                        /////- OKAlbaranValoradoCANARIAS.Run;
+                        /////-OKAlbaranValoradoCANARIAS.SetTableview(Rec110);
+                        /////-OKAlbaranValoradoCANARIAS.Run;
                     end;
                 end;
             }
@@ -629,7 +626,7 @@ Page 50102 "Albaranes dia-3"
                 Promoted = true;
                 PromotedIsBig = true;
                 PromotedOnly = true;
-                /////- RunObject = Report UnknownReport50109;
+                RunObject = Report 50109;
             }
             action("FALTAS Informe AMAZON")
             {
@@ -640,7 +637,7 @@ Page 50102 "Albaranes dia-3"
                 Promoted = true;
                 PromotedIsBig = true;
                 PromotedOnly = true;
-                /////- RunObject = Report UnknownReport50119;
+                RunObject = Report 50119;
             }
             action("Excel AMAZON")
             {
@@ -654,10 +651,8 @@ Page 50102 "Albaranes dia-3"
 
                 trigger OnAction()
                 begin
-
-
-                    /////- Clear(CrearCajasAMAZON);
-                    /////- CrearCajasAMAZON.envio(Rec."Nº expedición");
+                    /////-Clear(CrearCajasAMAZON);
+                    /////-CrearCajasAMAZON.envio(Rec."Nº expedición");
                 end;
             }
             action(ASN)
@@ -752,15 +747,16 @@ Page 50102 "Albaranes dia-3"
         /////- OKAlbaranValoradoCANARIAS: Report UnknownReport50908;
         RecCA: Record "Cajas AMAZON";
         PCajasAMAZON: Page "Cajas AMAZON";
-        /////- CrearCajasAMAZON: Codeunit UnknownCodeunit50057;
+        ///CrearCajasAMAZON: Codeunit "Crear Cajas AMAZON";
         ClienteItemUnitofMeasure: Record "Clientes Item Unit of Measure";
         SalesShipmentHeader3: Record "Sales Shipment Header";
         Modificaalbaran: Page "Modifica albaran";
         RecTransp: Record "Shipping Agent";
-        /////- OKAlbaranElmosca: Report UnknownReport50917;
+        /////-OKAlbaranElmosca: Report 50917;
         codigopostal: Code[20];
         codexpe: Code[20];
         ANYO: Integer;
+        Report50109: Report "Lineas Albaran AMAZON";
     /////- Lineasalbaranexpedicion: Report UnknownReport50230;
 }
 

@@ -166,21 +166,21 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="V46260SILLA_VALENCIA1">
+                        <Textbox Name="ESPANA_Tel_961200945">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!V46260SILLA_VALENCIA.Value</Value>
+                                  <Value>=Fields!ESPANA_Tel_961200945.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>V46260SILLA_VALENCIA1</rd:DefaultName>
+                          <rd:DefaultName>ESPANA_Tel_961200945</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -201,21 +201,21 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox38">
+                        <Textbox Name="SalesHeaderNoexpedicion">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!SalesHeaderNoexpedicion.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox38</rd:DefaultName>
+                          <rd:DefaultName>SalesHeaderNoexpedicion</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -227,6 +227,7 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -484,12 +485,12 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
       </Body>
       <Width>12.82439cm</Width>
       <Page>
-        <PageHeight>10cm</PageHeight>
-        <PageWidth>15cm</PageWidth>
+        <PageHeight>7.04cm</PageHeight>
+        <PageWidth>9.9cm</PageWidth>
         <LeftMargin>0.5cm</LeftMargin>
-        <RightMargin>0cm</RightMargin>
+        <RightMargin>0.5cm</RightMargin>
         <TopMargin>0.5cm</TopMargin>
-        <BottomMargin>0cm</BottomMargin>
+        <BottomMargin>0.5cm</BottomMargin>
         <ColumnSpacing>1.27cm</ColumnSpacing>
         <Style />
       </Page>

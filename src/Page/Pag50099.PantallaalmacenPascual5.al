@@ -478,10 +478,10 @@ Page 50099 "Pantalla almacen Pascual5"
                     end;
                 }
                 */
-                action("Eti. drop.agrupada detalle")
+                action("Eti. agrupada Catit")
                 {
                     ApplicationArea = Basic;
-                    Caption = 'Eti. drop.agrupada detalle';
+                    Caption = 'Eti. agrupada Catit';
                     Ellipsis = true;
                     Promoted = true;
                     PromotedIsBig = true;
@@ -491,14 +491,49 @@ Page 50099 "Pantalla almacen Pascual5"
                     begin
 
 
-                        SalesHeader3.Reset;
-                        SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
-                        SalesHeader3.SetRange(SalesHeader3."Nº expedición", Rec."Nº expedición");
-                        if SalesHeader3.FindSet then begin
-                            Clear(ETIenvioagrupadod);
-                            ETIenvioagrupadod.SetTableview(SalesHeader3);
-                            ETIenvioagrupadod.RunModal;
-                        end;
+                        SalesHeader4.Reset;
+                        SalesHeader4.SetRange("Document Type", 1);
+                        SalesHeader4.SetRange("Nº expedición", Rec."Nº expedición");
+                        if SalesHeader4.FindSet then repeat                            
+                            SalesHeader3.Reset;
+                            SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
+                            SalesHeader3.SetRange(SalesHeader3."No.", SalesHeader4."No."); 
+                            SalesHeader3.SetRange(SalesHeader3."Nº expedición", SalesHeader4."Nº expedición"); 
+                            if SalesHeader3.FindSet then repeat
+                                Clear(ETIenvioagrupadod);
+                                ETIenvioagrupadod.SetTableview(SalesHeader3);
+                                ETIenvioagrupadod.RunModal;                            
+                            until SalesHeader3.next=0;
+                        until SalesHeader4.next=0;
+                    end;
+                }
+                action("Eti. agrupada")
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'Eti. agrupada';
+                    Ellipsis = true;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+
+                    trigger OnAction()
+                    begin
+
+
+                        SalesHeader4.Reset;
+                        SalesHeader4.SetRange("Document Type", 1);
+                        SalesHeader4.SetRange("Nº expedición", Rec."Nº expedición");
+                        if SalesHeader4.FindSet then repeat                            
+                            SalesHeader3.Reset;
+                            SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
+                            SalesHeader3.SetRange(SalesHeader3."No.", SalesHeader4."No."); 
+                            SalesHeader3.SetRange(SalesHeader3."Nº expedición", SalesHeader4."Nº expedición"); 
+                            if SalesHeader3.FindSet then repeat
+                                Clear(ETIenvioagrupadod2);
+                                ETIenvioagrupadod2.SetTableview(SalesHeader3);
+                                ETIenvioagrupadod2.RunModal;                            
+                            until SalesHeader3.next=0;
+                        until SalesHeader4.next=0;
                     end;
                 }
                 action("Listado AMAZON")
@@ -514,8 +549,8 @@ Page 50099 "Pantalla almacen Pascual5"
                     trigger OnAction()
                     begin
 
-                        SalesLine.Reset;
-                        SalesLine.SetRange("Document Type", 1);
+                        SalesLine.Reset;             
+                        SalesLine.SetRange("Document Type",1);
                         SalesLine.SetRange("Nº expedición", Rec."Nº expedición");
                         if SalesLine.FindSet then begin
                             Clear(LineaspedidoAMAZON);
@@ -775,11 +810,12 @@ Page 50099 "Pantalla almacen Pascual5"
         NoSeriesManagement: Codeunit NoSeriesManagement;
         ETIenvioagrupadoresumen: Report "ETI. envio agrupado resumen";
         ETIenvioagrupadod: Report "ETI. envio agrupado d";
+        ETIenvioagrupadod2: Report "ETI. envio agrupado d2";
         cajas7: Integer;
         cajas8: Integer;
         cajas9: Integer;
         cajas10: Integer;
-        LineaspedidoAMAZON: Report "Lineas Albaran AMAZON";
+        LineaspedidoAMAZON: Report "Lineas pedido AMAZON";
         SalesLine33: Record "Sales Line";
         npedi: Code[20];
         LineasPedidosexpedicion: Report "Lineas albaran expedicion";
@@ -810,6 +846,8 @@ Page 50099 "Pantalla almacen Pascual5"
         Direnvi: Record "Ship-to Address";
         RecCust: Record Customer;
         AutomaticosBC: Codeunit "AutomaticosBC";
+        Rec111: Record "Sales Shipment Line";
+
 
 
     local procedure EnviaraADAIA()
