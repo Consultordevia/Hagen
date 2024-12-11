@@ -1,5 +1,6 @@
 pageextension 50007 "Sales Quote" extends "Sales Quote"
 {
+    /*
     layout
     {
 
@@ -114,7 +115,7 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
 
             }
         }
-        */
+        
     }
 
     actions
@@ -702,5 +703,5 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
     }
 
 
-
+*/
 }
