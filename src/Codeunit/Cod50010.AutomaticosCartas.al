@@ -1938,10 +1938,7 @@ Codeunit 50010 "Automaticos Cartas"
     procedure ALTAPROVEE(var Rec1: Record Vendor)
     begin
 
-
-
-
-
+        TempBlob.CreateOutStream(OutStream);
 
         DESNOM := ConvertStr(CopyStr(Rec1.Name, 1, 30), 'ª', '.');
         DESNOM := ConvertStr(DESNOM, 'º', '.');

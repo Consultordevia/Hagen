@@ -9,11 +9,11 @@ tableextension 50053 NoSeriesLine extends "No. Series Line"
             NoSeriesLine.ChangeCompany('HAGEN CANARIAS S.C.');
             if NoSeriesLine.Get("Series Code", "Line No.") then begin
                 NoSeriesLine := Rec;
-                NoSeriesLine.Modify;
+                if NoSeriesLine.Modify then;
             end;
             if not NoSeriesLine.Get("Series Code", "Line No.") then begin
                 NoSeriesLine := Rec;
-                NoSeriesLine.Insert;
+                if NoSeriesLine.Insert() then;
             end;
         end;
     end;
