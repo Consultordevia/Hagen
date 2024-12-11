@@ -52,7 +52,7 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>12.3425cm</Width>
+                  <Width>9.67903cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -62,7 +62,6 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="HAGENCANARIASSC">
-                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -96,91 +95,21 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="AvdaBeniparell_11y13">
+                        <Textbox Name="Textbox3">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!AvdaBeniparell_11y13.Value</Value>
+                                  <Value />
                                   <Style />
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>AvdaBeniparell_11y13</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.6cm</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="V46260SILLA_VALENCIA">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!V46260SILLA_VALENCIA.Value</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>V46260SILLA_VALENCIA</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>Solid</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.6cm</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="ESPANA_Tel_961200945">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!ESPANA_Tel_961200945.Value</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>ESPANA_Tel_961200945</rd:DefaultName>
+                          <rd:DefaultName>Textbox3</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -202,7 +131,6 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="SalesHeaderNoexpedicion">
-                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -227,7 +155,6 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -238,7 +165,6 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="SalesHeaderYourReference">
-                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -273,7 +199,6 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="SalesHeaderShip_toName">
-                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -308,7 +233,6 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="SalesHeaderShip_toAddress">
-                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -343,7 +267,6 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="SalesHeaderShip_toPostCode__SalesHeaderShip_toCity">
-                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -378,7 +301,6 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="SalesHeaderShip_toCounty">
-                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -413,7 +335,6 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="SalesHeaderTotalbultos">
-                          <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
@@ -438,6 +359,7 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -463,16 +385,14 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                     <TablixMember />
                     <TablixMember />
                     <TablixMember />
-                    <TablixMember />
-                    <TablixMember />
                   </TablixMembers>
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Left>0.48189cm</Left>
-            <Height>6.6cm</Height>
-            <Width>12.3425cm</Width>
+            <Height>5.4cm</Height>
+            <Width>9.67903cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -480,16 +400,16 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>6.6cm</Height>
+        <Height>5.4cm</Height>
         <Style />
       </Body>
-      <Width>12.82439cm</Width>
+      <Width>10.16092cm</Width>
       <Page>
         <PageHeight>7.04cm</PageHeight>
         <PageWidth>9.9cm</PageWidth>
         <LeftMargin>0.5cm</LeftMargin>
         <RightMargin>0.5cm</RightMargin>
-        <TopMargin>0.5cm</TopMargin>
+        <TopMargin>0.2cm</TopMargin>
         <BottomMargin>0.5cm</BottomMargin>
         <ColumnSpacing>1.27cm</ColumnSpacing>
         <Style />

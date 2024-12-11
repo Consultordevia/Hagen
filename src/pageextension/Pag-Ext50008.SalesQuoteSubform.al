@@ -3,7 +3,7 @@ pageextension 50008 "Sales Quote Subform" extends "Sales Quote Subform"
 
 
 
-    /*
+    
         layout
         {
 
@@ -12,6 +12,7 @@ pageextension 50008 "Sales Quote Subform" extends "Sales Quote Subform"
             {
                 field(Estado; Rec.Estado) { ApplicationArea = All; }
             }
+            /*
             addlast(content)
             {
                 group(Hagen)
@@ -75,6 +76,7 @@ pageextension 50008 "Sales Quote Subform" extends "Sales Quote Subform"
 
                 }
             }
+            */
         }
         trigger OnAfterGetRecord()
         var
@@ -96,6 +98,6 @@ pageextension 50008 "Sales Quote Subform" extends "Sales Quote Subform"
             END;
 
         end;
-    */
+    
 }
 
