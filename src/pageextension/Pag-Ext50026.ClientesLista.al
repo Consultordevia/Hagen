@@ -7,6 +7,11 @@ pageextension 50026 ClientesLista extends "Customer List"
 
         addafter("Salesperson Code")
         {
+            field("Document Sending Profile"; Rec."Document Sending Profile")
+            {
+                ApplicationArea = All;
+            }
+
             field("Payment Method Code"; Rec."Payment Method Code") { ApplicationArea = All; }
             field("VAT Registration No."; Rec."VAT Registration No.") { ApplicationArea = All; }
             field(NombreVendedor; NombreVendedor) { ApplicationArea = All; }
