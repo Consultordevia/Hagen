@@ -342,7 +342,7 @@ Page 50102 "Albaranes dia-3"
                     Rec110.Reset;
                     Rec110.SetRange(Rec110."No.", Rec."No.");
                     if Rec110.FindFirst then begin
-                       OKAlbaranValorado.SetTableview(Rec110);
+                        OKAlbaranValorado.SetTableview(Rec110);
                         OKAlbaranValorado.Run;
                     end;
 
@@ -651,8 +651,8 @@ Page 50102 "Albaranes dia-3"
 
                 trigger OnAction()
                 begin
-                    /////-Clear(CrearCajasAMAZON);
-                    /////-CrearCajasAMAZON.envio(Rec."Nº expedición");
+                    Clear(CrearCajasAMAZON);
+                    CrearCajasAMAZON.envio(Rec."Nº expedición");
                 end;
             }
             action(ASN)
@@ -747,7 +747,7 @@ Page 50102 "Albaranes dia-3"
         /////- OKAlbaranValoradoCANARIAS: Report UnknownReport50908;
         RecCA: Record "Cajas AMAZON";
         PCajasAMAZON: Page "Cajas AMAZON";
-        ///CrearCajasAMAZON: Codeunit "Crear Cajas AMAZON";
+        CrearCajasAMAZON: Codeunit "Crear Cajas AMAZON";
         ClienteItemUnitofMeasure: Record "Clientes Item Unit of Measure";
         SalesShipmentHeader3: Record "Sales Shipment Header";
         Modificaalbaran: Page "Modifica albaran";

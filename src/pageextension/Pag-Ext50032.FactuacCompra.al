@@ -1,9 +1,12 @@
 pageextension 50032 FactuacCompra extends "Purchase Invoice"
 {
-     layout
+    layout
     {
         addafter("Posting Date")
         {
-            field("Posting No.";Rec."Posting No." ) { ApplicationArea = All; }
-        }}
+            field("Posting No."; Rec."Posting No.") { ApplicationArea = All; }
+            field("Posting No. Series"; Rec."Posting No. Series") { ApplicationArea = All; }
+
+        }
+    }
 }
