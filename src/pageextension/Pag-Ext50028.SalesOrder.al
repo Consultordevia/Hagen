@@ -3,11 +3,19 @@ pageextension 50028 SalesOrder extends "Sales Order"
     layout
     {
 
+        addafter("Ship-to Address 2")
+        {
+
+            field("Envio a-Nº Telefono"; Rec."Envio a-Nº Telefono") { ApplicationArea = All; }             
+            field("E-MAIL";Rec."E-MAIL") { ApplicationArea = All; }
+            field(Dropshipping; Rec.Dropshipping) { ApplicationArea = All; }
+        }
+
 
         addafter("Sell-to Customer Name")
         {
-           
-            field(Dropshipping;Rec.Dropshipping) { ApplicationArea = All; }
+
+
             field("Sell-to Customer Name 2"; Rec."Sell-to Customer Name 2") { ApplicationArea = All; }
             field("Observación para ALMACEN"; Rec."Observación para ALMACEN") { ApplicationArea = All; }
             field("Observación PDA"; Rec."Observación PDA") { ApplicationArea = All; }
@@ -606,6 +614,19 @@ pageextension 50028 SalesOrder extends "Sales Order"
                 begin
                     Clear(xmlImportacionPEDIDOStiendaan);
                     xmlImportacionPEDIDOStiendaan.Run();
+                    MESSAGE('Hecho.');
+                end;
+            }
+            action(ImportacionPEDIDOSWEB)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Importacion PEDIDOS WEB';
+                trigger OnAction()
+                var
+                    xmlImportacionPEDIDOSWEB18: Xmlport "Importacion PEDIDOS WEB18";
+                begin
+                    Clear(xmlImportacionPEDIDOSWEB18);
+                    xmlImportacionPEDIDOSWEB18.Run();
                     MESSAGE('Hecho.');
                 end;
             }

@@ -27,7 +27,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                     IF RecCV.FindSet() THEN
                         repeat
                             IF RECCV."No." <> "No." THEN begin
-                                ERROR('Esta referencia de pedido ya existe en el pedido %1', RecCV."No.");
+                                ERROR('Esta referencia de pedido %2 ya existe en el pedido %1', RecCV."No.", "Your Reference");
                             end;
                         UNTIL RecCV.NEXT = 0;
                     Rec110.reset;
@@ -36,7 +36,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                     IF Rec110.FindSet() THEN
                         repeat
                             IF Rec110."No." <> "No." THEN begin
-                                ERROR('Esta referencia de pedido ya existe en el albaran %1', Rec110."No.");
+                                ERROR('Esta referencia de pedido %2 ya existe en el albaran %1', Rec110."No.", "Your Reference");
                             end;
                         UNTIL Rec110.NEXT = 0;
                 end;
