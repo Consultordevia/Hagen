@@ -26,6 +26,10 @@ Page 50086 "Modifica albaran"
                     ApplicationArea = Basic;
                     Editable = false;
                 }
+                field("Nº expedición";Rec."Nº expedición")
+                {
+                    ApplicationArea = Basic;
+                }
                 field("Shipping Agent Code";Rec."Shipping Agent Code")
                 {
                     ApplicationArea = Basic;

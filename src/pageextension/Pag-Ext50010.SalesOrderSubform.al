@@ -4,6 +4,7 @@ pageextension 50010 "Sales Order Subform" extends "Sales Order Subform"
     {
         addlast(content)
         {
+            /*
             group(Hagen)
             {
 
@@ -63,6 +64,7 @@ pageextension 50010 "Sales Order Subform" extends "Sales Order Subform"
                 field("existe"; Rec."existe") { ApplicationArea = All; }
 
             }
+            */
         }
     }
 }
