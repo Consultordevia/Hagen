@@ -630,6 +630,66 @@ pageextension 50028 SalesOrder extends "Sales Order"
                     MESSAGE('Hecho.');
                 end;
             }
+            action(Importacionmirivaaqua)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Importacion PED miriva aqua';
+                trigger OnAction()
+                var
+                    xmlImportacionPEDIDOSWEB18: Xmlport "Importacion PED miriva NAV0316";
+                begin
+                    Clear(xmlImportacionPEDIDOSWEB18);
+                    xmlImportacionPEDIDOSWEB18.Run();
+                    MESSAGE('Hecho.');
+                end;
+            }
+
+            action(Importacionpedicattit)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Importacion PEDIDOS catitt new';
+                trigger OnAction()
+                var
+                    xmlImportacionPEDIDOSWEB18: Xmlport "Importacion PEDIDOS catitt new";
+                begin
+                    Clear(xmlImportacionPEDIDOSWEB18);
+                    xmlImportacionPEDIDOSWEB18.Run();
+                    MESSAGE('Hecho.');
+                end;
+            }
+
+
+
+
+ /*
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS KIWOKO3", InStream);
+                        Xmlport.Import(Xmlport::"Importacion COVALPROPER", InStream);
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS AMAZON2", InStream);
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS tienda an", InStream);
+                        Xmlport.Import(Xmlport::"Importacion SENDING", InStream);
+                        Xmlport.Import(Xmlport::"Importacion transaher", InStream);
+                        Xmlport.Import(Xmlport::"Importacion transaher", InStream);
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS MASKO-new", InStream);
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS Verdecora", InStream);
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS Verdecora2", InStream);
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS CARREFOUR", InStream);
+                        Xmlport.Import(Xmlport::"Importacion GLS", InStream);
+                        Xmlport.Import(Xmlport::"Importacion CORREOS", InStream);
+                        Xmlport.Import(Xmlport::"Importacion TXT", InStream);
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS catitt new", InStream);
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS Leroy Merl", InStream);
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS V-12827", InStream);
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS V-12832", InStream);
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS V-12833", InStream);
+                        Xmlport.Import(Xmlport::"Importacion PED miriva NAV0317", InStream);
+                        Xmlport.Import(Xmlport::"Importacion PED miriva NAV0316", InStream);
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS ECI EDICOM", InStream);
+                        Xmlport.Import(Xmlport::"Importacion PEDLIN ECI EDICOM", InStream);
+                        */
+ 
+
+
 
 
 

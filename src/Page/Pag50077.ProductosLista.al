@@ -75,7 +75,7 @@ Page 50077 "Productos Lista"
                 {
                     ApplicationArea = Basic;
                 }
-                field("PVP Recomendado 2022-2"; Rec."PVP Recomendado 2022-2")
+                field("PVP-Web"; Rec."PVP-Web")
                 {
                     ApplicationArea = Basic;
                 }

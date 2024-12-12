@@ -1209,11 +1209,11 @@ tableextension 50113 Item extends Item
             Caption = 'Tarifa 2022-2';
             FieldClass = FlowField;
         }
-        field(50327; "PVP Recomendado 2022-2"; Decimal)
+        field(50327; "PVP-Web"; Decimal)
         {
             CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
                                                                            "Sales Code" = const('2022-2')));
-            Caption = 'PVP Recomendado 2022-2';
+            Caption = 'PVP-Web';
             FieldClass = FlowField;
         }
         field(50328; "Tarifa AMZ2023"; Decimal)
@@ -1455,7 +1455,7 @@ tableextension 50113 Item extends Item
         if Rec."Permite fraccionar venta" <> xRec."Permite fraccionar venta" then begin cambioweb := true; end;
         if Rec."Gross Weight" <> xRec."Gross Weight" then begin cambioweb := true; end;
         if Rec."Producto PADRE" <> xRec."Producto PADRE" then begin cambioweb := true; end;
-        if Rec."PVP Recomendado 2022-2" <> xRec."PVP Recomendado 2022-2" then begin cambioweb := true; end;
+        if Rec."PVP-Web" <> xRec."PVP-Web" then begin cambioweb := true; end;
         if Rec."Stock para la web" <> xRec."Stock para la web" then begin cambioweb := true; end;
         if Rec."Sales Unit of Measure" <> xRec."Sales Unit of Measure" then begin cambioweb := true; end;
         if Rec."Unidades venta" <> xRec."Unidades venta" then begin cambioweb := true; end;
