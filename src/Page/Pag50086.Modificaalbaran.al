@@ -30,6 +30,10 @@ Page 50086 "Modifica albaran"
                 {
                     ApplicationArea = Basic;
                 }
+                field("Your Reference";Rec."Your Reference")
+                {
+                    ApplicationArea = Basic;
+                }
                 field("Shipping Agent Code";Rec."Shipping Agent Code")
                 {
                     ApplicationArea = Basic;

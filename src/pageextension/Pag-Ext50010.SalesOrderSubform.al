@@ -2,9 +2,15 @@ pageextension 50010 "Sales Order Subform" extends "Sales Order Subform"
 {
     layout
     {
+        /*
+        addafter("Qty. to Ship")
+            {
+                field("Suma cdad. por envio";Rec."Suma cdad. por envio") { ApplicationArea = All; }
+            }
+     
         addlast(content)
-        {
-            /*
+       {
+            
             group(Hagen)
             {
 
@@ -64,7 +70,9 @@ pageextension 50010 "Sales Order Subform" extends "Sales Order Subform"
                 field("existe"; Rec."existe") { ApplicationArea = All; }
 
             }
-            */
+            
         }
+        */
     }
+    
 }

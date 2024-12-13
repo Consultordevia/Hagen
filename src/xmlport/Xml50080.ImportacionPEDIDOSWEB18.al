@@ -562,7 +562,7 @@ XmlPort 50080 "Importacion PEDIDOS WEB18"
             RecCV."Customer Price Group" := CompanyInformation."Tarifa WEB";
             RecCV."Your Reference" := D4;
 
-            RecCV."Ship-to Code" := D5;
+            ///RecCV."Ship-to Code" := D5;
             RecCV."Ship-to Name" := CopyStr(D6,1,100);
             RecCV."Ship-to Name 2" := CopyStr(D7,1,100);
             RecCV."Ship-to Address" := CopyStr(D8,1,100);

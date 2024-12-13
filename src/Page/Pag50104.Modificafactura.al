@@ -30,6 +30,10 @@ Page 50104 "Modifica factura"
                 {
                     ApplicationArea = Basic;
                 }
+                field("Nº expedición";Rec."Nº expedición")
+                {
+                    ApplicationArea = Basic;
+                }
             }
         }
     }
