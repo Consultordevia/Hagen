@@ -43,6 +43,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
             end;
         }
 
+
         modify("Customer Disc. Group")
         {
             trigger OnAfterValidate()
