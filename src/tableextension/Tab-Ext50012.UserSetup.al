@@ -158,5 +158,8 @@ tableextension 50012 UserSetup extends "User Setup"
         field(50047; "hasta fecha"; Date)
         {
         }
+        field(50048; "No Permite pasar pedido a preparar"; Boolean)
+        {
+        }
     }
 }

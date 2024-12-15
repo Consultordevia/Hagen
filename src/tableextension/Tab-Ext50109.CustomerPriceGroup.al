@@ -9,5 +9,10 @@ tableextension 50109 CustomerPriceGroup extends "Customer Price Group"
         field(50001; "Id tienda"; Integer)
         {
         }
+        field(50002; "Web-B2B"; Integer)
+        {
+        }
+        
+         
     }
 }

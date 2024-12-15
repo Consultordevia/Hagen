@@ -5,11 +5,12 @@ pageextension 50016 "User Setup" extends "User Setup"
     {
         addafter(PhoneNo)
         {
+
+            field("No Permite pasar pedido a preparar";Rec."No Permite pasar pedido a preparar") { ApplicationArea = All; }
             field("Serie actividades"; Rec."Serie actividades") { ApplicationArea = All; }
             field("Serie incidencias"; Rec."Serie incidencias") { ApplicationArea = All; }
             field("Serie pedidos"; Rec."Serie pedidos") { ApplicationArea = All; }
-            field("Permiso pedidos urgentes"; Rec."Permiso pedidos urgentes") { ApplicationArea = All; }
-            field("Cambia estado pedido"; Rec."Cambia estado pedido") { ApplicationArea = All; }
+            field("Permiso pedidos urgentes"; Rec."Permiso pedidos urgentes") { ApplicationArea = All; }            
             field("Editar tabla Clientes/Comercia"; Rec."Editar tabla Clientes/Comercia") { ApplicationArea = All; }
             field("Comercial"; Rec."Comercial") { ApplicationArea = All; }
             field("Permite modificar estado lin.p"; Rec."Permite modificar estado lin.p") { ApplicationArea = All; }
