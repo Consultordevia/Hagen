@@ -22,6 +22,13 @@ XmlPort 50028 "Alta precios"
                 textelement(tarifa)
                 {
                 }
+                textelement(UNIDADM)
+                {
+                }
+                textelement(codconca)
+                {
+                }
+                
                 textelement(precio)
                 {
                 }
@@ -234,7 +241,8 @@ XmlPort 50028 "Alta precios"
 
             SalesPrice.Reset;
             SalesPrice.SetRange(SalesPrice."Item No.", codigo);
-            SalesPrice.SetRange(SalesPrice."Sales Code", tarifa);
+            salesPrice.SetRange(SalesPrice."Sales Code", tarifa);
+            SalesPrice.SetRange("Unit of Measure Code", UNIDADM);
             if UpperCase(opcion) = 'C' then begin
                 SalesPrice.SetRange(SalesPrice."Sales Type", SalesPrice."sales type"::Customer);
             end;
@@ -250,6 +258,8 @@ XmlPort 50028 "Alta precios"
                 SalesPrice."Unit Price" := preu;
                 SalesPrice."Precio recomendado" := preureco;
                 SalesPrice."Ending Date" := fechafin;
+                SalesPrice."Codigo INNER o MASTET":=codconca;
+                SalesPrice."Codigo concatenado":=SalesPrice."Item No."+SalesPrice."Codigo INNER o MASTET";
                 SalesPrice.Modify;
             end;
             if not SalesPrice.FindFirst then begin
@@ -267,12 +277,14 @@ XmlPort 50028 "Alta precios"
                 end;
                 SalesPrice."Sales Code" := tarifa;
                 SalesPrice."Starting Date" := Today;
-                SalesPrice."Unit of Measure Code" := RecItem."Base Unit of Measure";
+                SalesPrice."Unit of Measure Code" := UNIDADM;
                 SalesPrice."Unit Price" := preu;
                 SalesPrice."Precio recomendado" := preureco;
                 SalesPrice."Minimum Quantity" := cantiminima;
                 SalesPrice."Starting Date" := fechaini;
                 SalesPrice."Ending Date" := fechafin;
+                SalesPrice."Codigo INNER o MASTET":=codconca;
+                SalesPrice."Codigo concatenado":=SalesPrice."Item No."+SalesPrice."Codigo INNER o MASTET";
                 SalesPrice.Insert;
 
 

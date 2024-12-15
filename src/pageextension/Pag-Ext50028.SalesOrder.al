@@ -6,8 +6,8 @@ pageextension 50028 SalesOrder extends "Sales Order"
         addafter("Ship-to Address 2")
         {
 
-            field("Envio a-Nº Telefono"; Rec."Envio a-Nº Telefono") { ApplicationArea = All; }             
-            field("E-MAIL";Rec."E-MAIL") { ApplicationArea = All; }
+            field("Envio a-Nº Telefono"; Rec."Envio a-Nº Telefono") { ApplicationArea = All; }
+            field("E-MAIL"; Rec."E-MAIL") { ApplicationArea = All; }
             field(Dropshipping; Rec.Dropshipping) { ApplicationArea = All; }
         }
 
@@ -91,6 +91,7 @@ pageextension 50028 SalesOrder extends "Sales Order"
                     Rec91: Record "User Setup";
                     ImportacionPEDIDOSMASKOcome: XMLport "Importacion PEDIDOS MASKO-come";
                     NoSeriesManagement: Codeunit NoSeriesManagement;
+
 
                 begin
 
@@ -658,36 +659,52 @@ pageextension 50028 SalesOrder extends "Sales Order"
                 end;
             }
 
+            action(ImportacionPEDIDOSKIWOKO3)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Importacion PEDIDOS KIWOKO3';
+                trigger OnAction()
+                var
+                    ImportacionPEDIDOSKIWOKO3: XmlPort "Importacion PEDIDOS KIWOKO3";
+                begin
+                    Clear(ImportacionPEDIDOSKIWOKO3);
+                    ImportacionPEDIDOSKIWOKO3.Run();
+                    MESSAGE('Hecho.');
+                end;
+            }
 
 
 
- /*
-                        Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
-                        Xmlport.Import(Xmlport::"Importacion PEDIDOS KIWOKO3", InStream);
-                        Xmlport.Import(Xmlport::"Importacion COVALPROPER", InStream);
-                        Xmlport.Import(Xmlport::"Importacion PEDIDOS AMAZON2", InStream);
-                        Xmlport.Import(Xmlport::"Importacion PEDIDOS tienda an", InStream);
-                        Xmlport.Import(Xmlport::"Importacion SENDING", InStream);
-                        Xmlport.Import(Xmlport::"Importacion transaher", InStream);
-                        Xmlport.Import(Xmlport::"Importacion transaher", InStream);
-                        Xmlport.Import(Xmlport::"Importacion PEDIDOS MASKO-new", InStream);
-                        Xmlport.Import(Xmlport::"Importacion PEDIDOS Verdecora", InStream);
-                        Xmlport.Import(Xmlport::"Importacion PEDIDOS Verdecora2", InStream);
-                        Xmlport.Import(Xmlport::"Importacion PEDIDOS CARREFOUR", InStream);
-                        Xmlport.Import(Xmlport::"Importacion GLS", InStream);
-                        Xmlport.Import(Xmlport::"Importacion CORREOS", InStream);
-                        Xmlport.Import(Xmlport::"Importacion TXT", InStream);
-                        Xmlport.Import(Xmlport::"Importacion PEDIDOS catitt new", InStream);
-                        Xmlport.Import(Xmlport::"Importacion PEDIDOS Leroy Merl", InStream);
-                        Xmlport.Import(Xmlport::"Importacion PEDIDOS V-12827", InStream);
-                        Xmlport.Import(Xmlport::"Importacion PEDIDOS V-12832", InStream);
-                        Xmlport.Import(Xmlport::"Importacion PEDIDOS V-12833", InStream);
-                        Xmlport.Import(Xmlport::"Importacion PED miriva NAV0317", InStream);
-                        Xmlport.Import(Xmlport::"Importacion PED miriva NAV0316", InStream);
-                        Xmlport.Import(Xmlport::"Importacion PEDIDOS ECI EDICOM", InStream);
-                        Xmlport.Import(Xmlport::"Importacion PEDLIN ECI EDICOM", InStream);
-                        */
- 
+
+
+
+            /*
+                                   Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion PEDIDOS KIWOKO3", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion COVALPROPER", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion PEDIDOS AMAZON2", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion PEDIDOS tienda an", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion SENDING", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion transaher", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion transaher", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion PEDIDOS MASKO-new", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion PEDIDOS Verdecora", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion PEDIDOS Verdecora2", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion PEDIDOS CARREFOUR", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion GLS", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion CORREOS", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion TXT", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion PEDIDOS catitt new", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion PEDIDOS Leroy Merl", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion PEDIDOS V-12827", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion PEDIDOS V-12832", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion PEDIDOS V-12833", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion PED miriva NAV0317", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion PED miriva NAV0316", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion PEDIDOS ECI EDICOM", InStream);
+                                   Xmlport.Import(Xmlport::"Importacion PEDLIN ECI EDICOM", InStream);
+                                   */
+
 
 
 

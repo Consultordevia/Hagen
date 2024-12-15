@@ -158,7 +158,11 @@ table 50051 TablaCajas
         field(38; "CodTarifa"; Code[20])
         {
         }
-
+        field(39; "Web-B2B"; Boolean)
+        {
+            CalcFormula = lookup("Customer Price Group"."Web-B2B" where(Code = field(CodTarifa)));
+            FieldClass = FlowField;
+        }
 
 
     }
