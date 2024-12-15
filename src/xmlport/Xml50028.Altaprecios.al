@@ -28,7 +28,7 @@ XmlPort 50028 "Alta precios"
                 textelement(codconca)
                 {
                 }
-                
+
                 textelement(precio)
                 {
                 }
@@ -258,8 +258,12 @@ XmlPort 50028 "Alta precios"
                 SalesPrice."Unit Price" := preu;
                 SalesPrice."Precio recomendado" := preureco;
                 SalesPrice."Ending Date" := fechafin;
-                SalesPrice."Codigo INNER o MASTET":=codconca;
-                SalesPrice."Codigo concatenado":=SalesPrice."Item No."+SalesPrice."Codigo INNER o MASTET";
+                SalesPrice."Codigo INNER o MASTET" := codconca;
+                SalesPrice."Codigo concatenado" := '';
+                if SalesPrice."Codigo INNER o MASTET" <> '' then begin
+                    SalesPrice."Codigo concatenado" := SalesPrice."Item No." + SalesPrice."Codigo INNER o MASTET";
+                end;
+
                 SalesPrice.Modify;
             end;
             if not SalesPrice.FindFirst then begin
@@ -283,8 +287,11 @@ XmlPort 50028 "Alta precios"
                 SalesPrice."Minimum Quantity" := cantiminima;
                 SalesPrice."Starting Date" := fechaini;
                 SalesPrice."Ending Date" := fechafin;
-                SalesPrice."Codigo INNER o MASTET":=codconca;
-                SalesPrice."Codigo concatenado":=SalesPrice."Item No."+SalesPrice."Codigo INNER o MASTET";
+                SalesPrice."Codigo INNER o MASTET" := codconca;
+                SalesPrice."Codigo concatenado" := '';
+                if SalesPrice."Codigo INNER o MASTET" <> '' then begin
+                    SalesPrice."Codigo concatenado" := SalesPrice."Item No." + SalesPrice."Codigo INNER o MASTET";
+                end;
                 SalesPrice.Insert;
 
 
