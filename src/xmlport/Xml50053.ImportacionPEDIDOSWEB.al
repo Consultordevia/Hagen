@@ -5,7 +5,7 @@ XmlPort 50053 "Importacion PEDIDOS WEB"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

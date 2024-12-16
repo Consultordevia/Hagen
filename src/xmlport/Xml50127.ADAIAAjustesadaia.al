@@ -5,7 +5,7 @@ XmlPort 50127 "ADAIA_Ajustes adaia"
     Direction = Import;
     FieldSeparator = '|';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
     UseRequestPage = false;
 
     schema

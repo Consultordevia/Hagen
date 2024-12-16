@@ -7,7 +7,7 @@ XmlPort 50009 "Importacion PEDIDOS catitt"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

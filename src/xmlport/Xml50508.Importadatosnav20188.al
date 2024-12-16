@@ -5,7 +5,7 @@ XmlPort 50508 "Importa datos nav2018-8"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

@@ -42,7 +42,7 @@ ywNw76m046+09ufv3+k7av5arbR/9+yoFddq5f0tuaPmrdWC/XXeUXONWmFVjPdVKhz4f1D7Hw==
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.14583in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -80,7 +80,7 @@ ywNw76m046+09ufv3+k7av5arbR/9+yoFddq5f0tuaPmrdWC/XXeUXONWmFVjPdVKhz4f1D7Hw==
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.16667in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -118,7 +118,7 @@ ywNw76m046+09ufv3+k7av5arbR/9+yoFddq5f0tuaPmrdWC/XXeUXONWmFVjPdVKhz4f1D7Hw==
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.15278in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -156,7 +156,7 @@ ywNw76m046+09ufv3+k7av5arbR/9+yoFddq5f0tuaPmrdWC/XXeUXONWmFVjPdVKhz4f1D7Hw==
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.14583in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -194,7 +194,7 @@ ywNw76m046+09ufv3+k7av5arbR/9+yoFddq5f0tuaPmrdWC/XXeUXONWmFVjPdVKhz4f1D7Hw==
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.16667in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -232,7 +232,7 @@ ywNw76m046+09ufv3+k7av5arbR/9+yoFddq5f0tuaPmrdWC/XXeUXONWmFVjPdVKhz4f1D7Hw==
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.15278in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -270,7 +270,7 @@ ywNw76m046+09ufv3+k7av5arbR/9+yoFddq5f0tuaPmrdWC/XXeUXONWmFVjPdVKhz4f1D7Hw==
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.14583in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -331,7 +331,7 @@ ywNw76m046+09ufv3+k7av5arbR/9+yoFddq5f0tuaPmrdWC/XXeUXONWmFVjPdVKhz4f1D7Hw==
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Height>1.75in</Height>
+            <Height>1.07639in</Height>
             <Width>2.89583in</Width>
             <Style>
               <Border>
@@ -340,16 +340,23 @@ ywNw76m046+09ufv3+k7av5arbR/9+yoFddq5f0tuaPmrdWC/XXeUXONWmFVjPdVKhz4f1D7Hw==
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>1.75in</Height>
+        <Height>2.73403cm</Height>
         <Style />
       </Body>
-      <Width>2.89583in</Width>
+      <Width>7.35541cm</Width>
       <Page>
+        <PageHeight>2.08cm</PageHeight>
+        <PageWidth>7cm</PageWidth>
+        <LeftMargin>0.5cm</LeftMargin>
+        <RightMargin>0cm</RightMargin>
+        <TopMargin>0.2cm</TopMargin>
+        <BottomMargin>0cm</BottomMargin>
+        <ColumnSpacing>1.27cm</ColumnSpacing>
         <Style />
       </Page>
     </ReportSection>
   </ReportSections>
-  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>b07f8b71-567f-4958-8b31-0c9a773111ef</rd:ReportID>
   <DataSets>
     <DataSet Name="DataSet_Result">

@@ -4,7 +4,7 @@ XmlPort 50007 "ADAIA_Alta del TRSTOART233"
     Caption = 'ADAIA_Alta del TRSTOART';
     Direction = Import;
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
     UseRequestPage = false;
 
     schema

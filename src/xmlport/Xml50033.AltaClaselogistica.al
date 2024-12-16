@@ -5,7 +5,7 @@ XmlPort 50033 "Alta Clase logistica"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

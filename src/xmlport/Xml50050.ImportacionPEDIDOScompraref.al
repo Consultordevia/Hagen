@@ -5,7 +5,7 @@ XmlPort 50050 "Importacion PEDIDOS compra ref"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

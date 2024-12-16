@@ -5,7 +5,7 @@ XmlPort 50068 "Importacion PEDIDOS Leroy Merl"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

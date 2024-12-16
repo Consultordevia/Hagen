@@ -5,7 +5,7 @@ XmlPort 50002 "Importa Descuentos"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding = UTF16;
 
     schema
     {

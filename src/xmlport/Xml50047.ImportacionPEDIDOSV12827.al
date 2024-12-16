@@ -5,7 +5,7 @@ XmlPort 50047 "Importacion PEDIDOS V-12827"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

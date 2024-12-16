@@ -5,7 +5,7 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
     Direction = Import;
     FieldSeparator = '|';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
     UseRequestPage = false;
 
     ///    1   2    3        4        5     6      7    8        9   10     11 12 13      14   15 16 17   18   19   20

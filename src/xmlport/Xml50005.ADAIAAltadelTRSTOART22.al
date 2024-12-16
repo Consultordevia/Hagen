@@ -5,7 +5,7 @@ XmlPort 50005 "ADAIA_Alta del TRSTOART22"
     Direction = Import;
     FieldSeparator = '|';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
     UseRequestPage = false;
 
     schema

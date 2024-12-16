@@ -9,7 +9,7 @@ XmlPort 50074 "Importacion GLS"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding = UTF16;
     Permissions = TableData "Sales Shipment Header" = rim;
 
     schema

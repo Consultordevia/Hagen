@@ -5,7 +5,7 @@ XmlPort 50008 "ADAIA_Conf. Expediciones"
     Direction = Import;
     FieldSeparator = '|';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
     UseRequestPage = false;
 
     schema

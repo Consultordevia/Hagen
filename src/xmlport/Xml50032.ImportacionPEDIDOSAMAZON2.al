@@ -6,7 +6,7 @@ XmlPort 50032 "Importacion PEDIDOS AMAZON2"
     FieldDelimiter = '<>';
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

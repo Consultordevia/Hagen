@@ -11,7 +11,7 @@ XmlPort 50069 "Importacion PEDIDOS mano mano"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

@@ -34,7 +34,7 @@ XmlPort 50080 "Importacion PEDIDOS WEB18"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {
