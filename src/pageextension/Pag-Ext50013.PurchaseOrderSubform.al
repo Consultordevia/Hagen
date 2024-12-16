@@ -1,6 +1,18 @@
 pageextension 50013 "Purchase Order Subform" extends "Purchase Order Subform"
 {
 
+layout
+    {
+        addbefore("Qty. Assigned")
+        {
+
+
+            field("Cantidad a pasar"; Rec."Cantidad a pasar") { ApplicationArea = All; }
+            field("Pedido compra"; Rec."Pedido compra") { ApplicationArea = All; }
+            field("Tariff No.";Rec."Tariff No.") { ApplicationArea = All; }
+
+        }
+    }
     /*
     layout
     {

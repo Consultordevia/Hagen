@@ -10,16 +10,31 @@ Codeunit 50040 "Importacion EDICOM ECI"
     begin
 
         ADAIA.Reset();
-        ADAIA.SetRange(texto, 'IMPORTACION TRANSAHER-CU-50053');
+        ADAIA.SetRange(texto, 'IMPORTACION EDICOMCAB-CU-50040');
         IF ADAIA.FindSet() THEN begin
             nomdir := ADAIA.Ruta;
             RUTACOPIA := ADAIA.Ruta + 'copia/';
         end;
         Commit;
-        tipo := Tipo::EDICOM;
+        tipo := Tipo::EDICOMCAB;
 
 
-        FicherosHagen.LeerArchivosCarpeta(nomdir, RUTACOPIA, Tipo)
+        FicherosHagen.LeerArchivosCarpeta(nomdir, RUTACOPIA, Tipo);
+
+
+
+        ADAIA.Reset();
+        ADAIA.SetRange(texto, 'IMPORTACION EDICOMLIN-CU-50040');
+        IF ADAIA.FindSet() THEN begin
+            nomdir := ADAIA.Ruta;
+            RUTACOPIA := ADAIA.Ruta + 'copia/';
+        end;
+        Commit;
+        tipo := Tipo::EDICOMLIN;
+
+
+        FicherosHagen.LeerArchivosCarpeta(nomdir, RUTACOPIA, Tipo);
+
 
         /*
 

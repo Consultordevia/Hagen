@@ -423,6 +423,7 @@ tableextension 50115 SalesLine extends "Sales Line"
             end;
         }
 
+
         field(50003; "Precio base"; Decimal)
         {
             Editable = false;
@@ -745,7 +746,8 @@ tableextension 50115 SalesLine extends "Sales Line"
         }
         field(50593; "Suma cdad. por envio"; Decimal)
         {
-            CalcFormula = sum("Sales Line"."Outstanding Quantity" where("Nº expedición" = field("Nº expedición"),
+
+            CalcFormula = sum("Sales Line"."Outstanding Qty. (Base)" where("Nº expedición" = field("Nº expedición"),
                                                                          "No." = field("No.")));
             FieldClass = FlowField;
         }
@@ -796,7 +798,7 @@ tableextension 50115 SalesLine extends "Sales Line"
         field(50503; "Estado"; Text[10])
         {
         }
-            
+
 
 
     }
@@ -948,7 +950,7 @@ tableextension 50115 SalesLine extends "Sales Line"
                 RecLCV."No." := "Document No.";
                 RecLCV."Line No." := RecLCV."Line No." + 10000;
                 RecLCV.Comment := copystr('Ref. eliminada: ' + Format("No.") + ' ' + Format(Description) + ' Cantidad:' + Format(Quantity) +
-                ' Por: ' + Format(UserId) + ' ' + Format(Today) + ' ' + Format(Time),1,80);
+                ' Por: ' + Format(UserId) + ' ' + Format(Today) + ' ' + Format(Time), 1, 80);
                 RecLCV."No se puede eliminar" := true;
                 RecLCV."Usuario alta" := UserId;
                 RecLCV."Fecha alta" := Today;
@@ -961,7 +963,7 @@ tableextension 50115 SalesLine extends "Sales Line"
                 RecLCV."No." := "Document No.";
                 RecLCV."Line No." := 10000;
                 RecLCV.Comment := copystr('Ref. eliminada: ' + Format("No.") + ' ' + Format(Description) + ' Cantidad:' + Format(Quantity) +
-                ' Por: ' + Format(UserId) + ' ' + Format(Today) + ' ' + Format(Time),1,80);
+                ' Por: ' + Format(UserId) + ' ' + Format(Today) + ' ' + Format(Time), 1, 80);
                 RecLCV."No se puede eliminar" := true;
                 RecLCV."Usuario alta" := UserId;
                 RecLCV."Fecha alta" := Today;

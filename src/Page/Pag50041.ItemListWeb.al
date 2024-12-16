@@ -20,6 +20,10 @@ page 50041 ItemListWeb
                 {
                     ToolTip = 'Specifies a description of the item.';
                 }
+                field("PVP-Web"; Rec."PVP-Web")
+                {
+                    ToolTip = 'Specifies a description of the item.';
+                }
                 field("Permite fraccionar venta"; Rec."Permite fraccionar venta")
                 {
                     ToolTip = 'Specifies the value of the Permite fraccionar venta field.', Comment = '%';

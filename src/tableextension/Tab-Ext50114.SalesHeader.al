@@ -27,7 +27,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                     IF RecCV.FindSet() THEN
                         repeat
                             IF RECCV."No." <> "No." THEN begin
-                                ERROR('Esta referencia de pedido ya existe en el pedido %1', RecCV."No.");
+                                ERROR('Esta referencia de pedido %2 ya existe en el pedido %1', RecCV."No.", "Your Reference");
                             end;
                         UNTIL RecCV.NEXT = 0;
                     Rec110.reset;
@@ -36,12 +36,13 @@ tableextension 50114 SalesHeader extends "Sales Header"
                     IF Rec110.FindSet() THEN
                         repeat
                             IF Rec110."No." <> "No." THEN begin
-                                ERROR('Esta referencia de pedido ya existe en el albaran %1', Rec110."No.");
+                                ERROR('Esta referencia de pedido %2 ya existe en el albaran %1', Rec110."No.", "Your Reference");
                             end;
                         UNTIL Rec110.NEXT = 0;
                 end;
             end;
         }
+
 
         modify("Customer Disc. Group")
         {
@@ -338,24 +339,30 @@ tableextension 50114 SalesHeader extends "Sales Header"
 
 
 
-                if ("Estado pedido" = 3) or ("Estado pedido" = 4) then begin
-                    Error('No puede poner este estado.');
+                if (Rec."Estado pedido" = 3) or (Rec."Estado pedido" = 4) then begin
+                    Error('No puede poner este estado.1');
                 end;
 
+                /////Retenido,Para preparar,Pdte. comercial,Servido,Pendiente stock
+                /////   0,         1       ,      2        ,    3  , 4 
+                ///// en BC ya se puede
                 if (Rec."Estado pedido" <> 0) and (xRec."Estado pedido" = 0) then begin
                     UserSetup.Get(UserId);
                     if UserSetup.Comercial <> '' then begin
-                        Error('No puede modificar el estado del pedido.');
+                        /////Error('No puede modificar el estado del pedido.2');
+                    end;
+                    if UserSetup."No Permite pasar pedido a preparar" then begin
+                        Error('No puede modificar el estado del pedido.0');                    
                     end;
                 end;
 
                 if xRec."Estado pedido" = 1 then begin
                     UserSetup.Get(UserId);
                     if not UserSetup."Cambio de Activo a Retenido" then begin
-                        Error('No puede modificar el estado del pedido.');
+                        Error('No puede modificar el estado del pedido.3');
                     end;
-                    if "Nº expedición" <> '' then begin
-                        Error('No puede modificar, se envio a adaia.');
+                    if Rec."Nº expedición" <> '' then begin
+                        Error('No puede modificar, se envio a adaia.4');
                     end;
                 end;
                 if "Estado pedido" = 1 then begin
@@ -407,7 +414,8 @@ tableextension 50114 SalesHeader extends "Sales Header"
                     /////"Pedido pendiente":=TRUE;
                     UserSetup.Get(UserId);
                     if UserSetup.Comercial <> '' then begin
-                        Error('No puede ponerlo en para preparar.');
+                        ///// en bc si puede
+                        /////Error('No puede ponerlo en para preparar.');
                     end;
 
                 end;

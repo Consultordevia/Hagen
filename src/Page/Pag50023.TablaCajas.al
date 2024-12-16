@@ -5,6 +5,7 @@ page 50023 TablaCajas
     PageType = List;
     SourceTable = TablaCajas;
     UsageCategory = Lists;
+    SourceTableView = where("Web-B2B" = filter(true));
 
     layout
 

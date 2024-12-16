@@ -55,6 +55,12 @@ XmlPort 50037 "Importacion SENDING"
                 }
                 textelement(D13)
                 {
+                }
+                textelement(D14)
+                {
+                }                
+                textelement(D15)
+                {
 
                     trigger OnAfterAssignVariable()
                     begin

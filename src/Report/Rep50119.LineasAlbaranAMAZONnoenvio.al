@@ -559,7 +559,7 @@ Report 50119 "Lineas Albaran AMAZON no envio"
                     until LineasAMAZON.Next = 0;
 
 
-                /////textocajas:=COPYSTR(textocajas,1,STRLEN(textocajas)-1);
+                //textocajas:=COPYSTR(textocajas,1,STRLEN(textocajas)-1);
             end;
         }
     }

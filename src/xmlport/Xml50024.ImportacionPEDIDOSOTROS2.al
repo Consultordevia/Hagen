@@ -232,7 +232,7 @@ XmlPort 50024 "Importacion PEDIDOS OTROS2"
                 if not SALE then begin
                     LINEAS := LINEAS + 10000;
                     RecLV.Init;
-                    RecLV."Document Type" := 0;
+                    RecLV."Document Type" := 1;
                     RecLV."Document No." := codpedido;
                     RecLV."Line No." := LINEAS;
                     RecLV.Type := 2;
@@ -257,7 +257,7 @@ XmlPort 50024 "Importacion PEDIDOS OTROS2"
                         end;
                         if not SALE then begin
                             LINEAS := LINEAS + 10000;
-                            RecLV."Document Type" := 0;
+                            RecLV."Document Type" := 1;
                             RecLV."Document No." := codpedido;
                             RecLV."Line No." := LINEAS;
                             RecLV.Type := 2;
@@ -285,7 +285,7 @@ XmlPort 50024 "Importacion PEDIDOS OTROS2"
         LINEAS := 10000;
         RecLV.Reset;
         RecLV.SetRange("Document No.", codpedido);
-        RecLV.SetRange("Document Type", 0);
+        RecLV.SetRange("Document Type", 1);
         if RecLV.FindLast then begin
             LINEAS := RecLV."Line No.";
         end;

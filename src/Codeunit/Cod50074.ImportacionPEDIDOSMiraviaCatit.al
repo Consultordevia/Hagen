@@ -31,6 +31,8 @@ Codeunit 50074 "Importacion PEDI MiraviaCatit"
 
 
         FicherosHagen.LeerArchivosCarpeta(nomdir, RUTACOPIA, Tipo)
+
+        
         ////////////
 
         /*

@@ -2,6 +2,13 @@ pageextension 50011 "Purchase Quote" extends "Purchase Quote"
 {
     layout
     {
+
+        addafter("Order Date")
+        {
+            field("Your Reference"; Rec."Your Reference") { ApplicationArea = All; }
+
+        }
+
         addlast(content)
         {
             group(Hagen)
@@ -115,18 +122,18 @@ pageextension 50011 "Purchase Quote" extends "Purchase Quote"
 
                 trigger OnAction()
                 var
-                    
-                    ImportacionPEDIDOScompra: XMLport	"Importacion PEDIDOS compra";	
-                    tipop:	Integer;
+
+                    ImportacionPEDIDOScompra: XMLport "Importacion PEDIDOS compra";
+                    tipop: Integer;
 
                 begin
-                    tipop:=0;
+                    tipop := 0;
 
                     CLEAR(ImportacionPEDIDOScompra);
-                    ImportacionPEDIDOScompra.PasoClie(tipop,Rec."No.");
+                    ImportacionPEDIDOScompra.PasoClie(tipop, Rec."No.");
                     ImportacionPEDIDOScompra.RUN;
 
-                    
+
                 END;
 
             }

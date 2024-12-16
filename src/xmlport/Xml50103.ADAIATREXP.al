@@ -7,7 +7,7 @@ XmlPort 50103 "ADAIATREXP"
     Format = VariableText;
     TextEncoding = WINDOWS;
     UseRequestPage = false;
-     Permissions = tabledata 110 = rmid, tabledata 113 = rmid, tabledata 17 = rmid;
+    Permissions = tabledata 110 = rmid, tabledata 113 = rmid, tabledata 17 = rmid;
 
     ///   1   2  3         4       5               6           7     8       9       10      11  12       
     /// CECA|MO|CAT25986|01       |CT02300976   |         |PED      |  |         |20241203 |0824|   |||
@@ -563,7 +563,7 @@ XmlPort 50103 "ADAIATREXP"
         if CopyStr(D1, 1, 4) = 'CELI' then begin
             SALE := FALSE;
             REF := D5;
-            CANTI := D6;
+            CANTI := D7;
             CLIN := D4;
             Evaluate(LLINEA, clin);
             ///Message('%1 %2 %3',NPEDIDO,clin,REF);
@@ -649,31 +649,13 @@ XmlPort 50103 "ADAIATREXP"
                         RecCV2.MODIFY;
                     END;
                 END;
-                IF REF = '15' THEN BEGIN
-                    POS := 1;
-                    REPEAT
-                        POS := POS + 1;
-                        IF (COPYSTR(CANTI, POS, 1) = '0') OR
-                        (COPYSTR(CANTI, POS, 1) = '1') OR
-                        (COPYSTR(CANTI, POS, 1) = '2') OR
-                        (COPYSTR(CANTI, POS, 1) = '3') OR
-                        (COPYSTR(CANTI, POS, 1) = '4') OR
-                        (COPYSTR(CANTI, POS, 1) = '5') OR
-                        (COPYSTR(CANTI, POS, 1) = '6') OR
-                        (COPYSTR(CANTI, POS, 1) = '7') OR
-                        (COPYSTR(CANTI, POS, 1) = '8') OR
-                        (COPYSTR(CANTI, POS, 1) = '9') THEN BEGIN
-                            SALE := TRUE;
-                        END;
-                    UNTIL SALE;
-                    CANTI := COPYSTR(CANTI, POS);
-
+                IF REF = '15' THEN BEGIN                     
                     RecCV2.RESET;
                     RecCV2.SETCURRENTKEY(RecCV2."Document Type", RecCV2."Nº expedición");
                     RecCV2.SETRANGE(RecCV2."Document Type", 1);
                     RecCV2.SETRANGE(RecCV2."Nº expedición", NPEDIDO);
                     IF RecCV2.FINDSET THEN BEGIN
-                        RecCV2.Preparador := CANTI;
+                        RecCV2.Preparador := D7;
                         RecCV2.MODIFY;
                     END;
                 END;

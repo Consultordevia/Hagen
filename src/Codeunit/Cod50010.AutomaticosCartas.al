@@ -3283,6 +3283,9 @@ OutStream.Write('Tercera línea después del salto');
                 OBS := 'NO MULTIPEDIDO' + ' ' + RecCVE."Observación PDA";
             end;
 
+            if CopyStr(Reccve."Nº expedición", 1, 3) = 'CAT' then begin
+                RecCVE."Sell-to Customer No." := '11010';
+            end;
 
 
 

@@ -286,8 +286,7 @@ codeunit 50999 FicherosHagen
 
                     FileText := Base64Convert.FromBase64(FileText);
                     OutStream.WriteText(FileText);
-                    TempBlob.CreateInStream(InStream);
-                    ///// PedidosManoMano,KIWOKO,COVALDROPER,EDICOM,AMAZON,TAMK,SENDING,TRANSAHER,MASKOKOTAS,CARREFOUR,MIRAVIA,GLS,TXT,CATITNUEVO,LEROYMERLIN);                    
+                    TempBlob.CreateInStream(InStream);              
 
                     if Tipo = Tipo::PedidosManoMano then begin
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
@@ -298,9 +297,6 @@ codeunit 50999 FicherosHagen
                     if Tipo = Tipo::COVALDROPER then begin
                         Xmlport.Import(Xmlport::"Importacion COVALPROPER", InStream);
                     end;
-                    ///if Tipo = Tipo::EDICOM then begin
-                    ///Xmlport.Import(Xmlport::"", InStream);
-                    ///end;
                     if Tipo = Tipo::AMAZON then begin
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS AMAZON2", InStream);
                     end;
@@ -325,13 +321,9 @@ codeunit 50999 FicherosHagen
                     if Tipo = Tipo::VERDECORA2 then begin
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS Verdecora2", InStream);
                     end;
-
                     if Tipo = Tipo::CARREFOUR then begin
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS CARREFOUR", InStream);
                     end;
-                    ///if Tipo = Tipo::MIRAVIA then begin
-                    ///Xmlport.Import(Xmlport::"", InStream);
-                    ///end;
                     if Tipo = Tipo::GLS then begin
                         Xmlport.Import(Xmlport::"Importacion GLS", InStream);
                     end;
@@ -385,6 +377,14 @@ codeunit 50999 FicherosHagen
                     if Tipo = Tipo::MIRAVIAAQUA then begin
                         Xmlport.Import(Xmlport::"Importacion PED miriva NAV0316", InStream);
                     end;
+                    if Tipo = Tipo::EDICOMCAB then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDIDOS ECI EDICOM", InStream);
+                    end;
+                    if Tipo = Tipo::EDICOMLIN then begin
+                        Xmlport.Import(Xmlport::"Importacion PEDLIN ECI EDICOM", InStream);
+                    end;
+
+
 
 
 

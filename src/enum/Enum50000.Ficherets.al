@@ -14,9 +14,9 @@ enum 50000 Ficherets
     {
         Caption = 'COVALDROPER';
     }
-    value(3; EDICOM)
+    value(3; EDICOMCAB)
     {
-        Caption = 'EDICOM';
+        Caption = 'EDICOMCAB';
     }
     value(4; AMAZON)
     {
@@ -91,5 +91,10 @@ enum 50000 Ficherets
     {
         Caption = 'MIRAVIAAQUA';
     }
+    value(30; EDICOMLIN)
+    {
+        Caption = 'EDICOMLIN';
+    }
+    
     
 }

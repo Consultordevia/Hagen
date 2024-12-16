@@ -11,6 +11,7 @@ Codeunit 50001 Automaticos
     // IF PurchaseLine.FINDFIRST THEN BEGIN
     //      FechaDispoWeb:=PurchaseLine."Expected Receipt Date";
     // END;
+    Permissions = tabledata "Sales Shipment Line" = rmi;
 
 
     trigger OnRun()
@@ -1563,6 +1564,33 @@ Codeunit 50001 Automaticos
         Commit;
     end;
 
+    procedure MarcarcomonoexcelAMAZON(var Rec111: Record "Sales Shipment Line");
+
+    var
+        SalesShipmentLine: Record "Sales Shipment Line";
+
+    begin
+
+        SalesShipmentLine.get(rec111."Document No.", rec111."Line No.");
+        SalesShipmentLine."Excluir del exel amazon" := TRUE;
+        SalesShipmentLine.MODIFY;
+        Message('Hecho.');
+
+    end;
+
+    procedure DesmarcarcomonoexcelAMAZON(var Rec111: Record "Sales Shipment Line");
+
+    var
+        SalesShipmentLine: Record "Sales Shipment Line";
+
+    begin
+
+        SalesShipmentLine.get(rec111."Document No.", rec111."Line No.");
+        SalesShipmentLine."Excluir del exel amazon" := false;
+        SalesShipmentLine.MODIFY;
+        Message('Hecho.');
+
+    end;
 
 }
 
