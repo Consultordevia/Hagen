@@ -30,7 +30,7 @@ pageextension 50019 "Sales Prices" extends "Sales Prices"
             field(ean; Rec.ean) { ApplicationArea = All; }
             field("Cantidad unidades medida"; Rec."Cantidad unidades medida") { ApplicationArea = All; }
             field("Producto_web"; Rec."Producto_web") { ApplicationArea = All; }
-            field(we)
+            field(WebB2BMWe; WebB2B)
             {
                 ApplicationArea = All;
             }
