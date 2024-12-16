@@ -286,8 +286,7 @@ codeunit 50999 FicherosHagen
 
                     FileText := Base64Convert.FromBase64(FileText);
                     OutStream.WriteText(FileText);
-                    TempBlob.CreateInStream(InStream);
-                    ///// PedidosManoMano,KIWOKO,COVALDROPER,EDICOM,AMAZON,TAMK,SENDING,TRANSAHER,MASKOKOTAS,CARREFOUR,MIRAVIA,GLS,TXT,CATITNUEVO,LEROYMERLIN);                    
+                    TempBlob.CreateInStream(InStream);              
 
                     if Tipo = Tipo::PedidosManoMano then begin
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
