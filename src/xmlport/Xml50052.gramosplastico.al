@@ -5,7 +5,7 @@ XmlPort 50052 "gramos plastico"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

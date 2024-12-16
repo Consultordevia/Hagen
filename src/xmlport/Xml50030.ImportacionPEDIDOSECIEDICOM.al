@@ -5,7 +5,7 @@ XmlPort 50030 "Importacion PEDIDOS ECI EDICOM"
     Direction = Import;
     FieldSeparator = '|';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

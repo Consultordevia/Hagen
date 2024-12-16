@@ -87,7 +87,7 @@ XmlPort 50054 "Importacion PEDIDOS carrefour"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

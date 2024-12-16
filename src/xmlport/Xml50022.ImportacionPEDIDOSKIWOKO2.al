@@ -5,7 +5,7 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

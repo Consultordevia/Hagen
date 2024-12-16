@@ -5,7 +5,7 @@ XmlPort 50073 "Importacion SENDING2"
     Direction = Import;
     FieldSeparator = '|';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
     Permissions = TableData "Sales Shipment Header" = rim;
 
     schema

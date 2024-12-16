@@ -5,7 +5,7 @@ XmlPort 50029 "Importacion COVALPROPER"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

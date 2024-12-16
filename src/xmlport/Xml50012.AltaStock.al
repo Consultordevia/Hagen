@@ -5,7 +5,7 @@ XmlPort 50012 "Alta Stock"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

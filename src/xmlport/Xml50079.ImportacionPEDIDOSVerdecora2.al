@@ -5,7 +5,7 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

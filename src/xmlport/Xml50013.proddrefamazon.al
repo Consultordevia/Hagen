@@ -5,7 +5,7 @@ XmlPort 50013 "prodd ref amazon"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

@@ -15,7 +15,7 @@ XmlPort 50066 "Importacion PEDIDOS 14308"
     FieldDelimiter = '<>';
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding = UTF16;
 
     schema
     {

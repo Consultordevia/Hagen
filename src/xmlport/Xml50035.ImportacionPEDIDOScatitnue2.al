@@ -6,7 +6,7 @@ XmlPort 50035 "Importacion PEDIDOS catit nue2"
     FieldDelimiter = '<*>';
     FieldSeparator = '&';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

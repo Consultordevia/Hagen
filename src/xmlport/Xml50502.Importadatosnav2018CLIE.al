@@ -5,7 +5,7 @@ XmlPort 50502 "Importa datos nav2018-CLIE"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

@@ -5,7 +5,7 @@ XmlPort 50507 "Importa datos nav2018-7"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

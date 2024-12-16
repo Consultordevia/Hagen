@@ -5,7 +5,7 @@ XmlPort 50103 "ADAIATREXP"
     Direction = Import;
     FieldSeparator = '|';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
     UseRequestPage = false;
     Permissions = tabledata 110 = rmid, tabledata 113 = rmid, tabledata 17 = rmid;
 

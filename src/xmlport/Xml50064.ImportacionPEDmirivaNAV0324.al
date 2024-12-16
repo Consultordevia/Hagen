@@ -87,7 +87,7 @@ XmlPort 50064 "Importacion PED miriva NAV0324"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

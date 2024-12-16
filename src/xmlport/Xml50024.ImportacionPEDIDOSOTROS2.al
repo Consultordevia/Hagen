@@ -5,7 +5,7 @@ XmlPort 50024 "Importacion PEDIDOS OTROS2"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

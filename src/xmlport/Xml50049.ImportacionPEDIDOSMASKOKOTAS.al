@@ -15,7 +15,7 @@ XmlPort 50049 "Importacion PEDIDOS MASKOKOTAS"
     FieldDelimiter = '<>';
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

@@ -87,7 +87,7 @@ XmlPort 50051 "Importacion PEDIDOS tienda an2"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

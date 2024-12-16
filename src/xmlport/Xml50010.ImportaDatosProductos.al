@@ -5,7 +5,7 @@ XmlPort 50010 "Importa Datos Productos"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

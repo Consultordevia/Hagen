@@ -87,7 +87,7 @@ XmlPort 50036 "Importacion PEDIDOS tienda ani"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {

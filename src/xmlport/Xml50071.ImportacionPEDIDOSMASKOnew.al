@@ -15,7 +15,7 @@ XmlPort 50071 "Importacion PEDIDOS MASKO-new"
     FieldDelimiter = '<>';
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding = WINDOWS;
+    TextEncoding =  UTF16;
 
     schema
     {
