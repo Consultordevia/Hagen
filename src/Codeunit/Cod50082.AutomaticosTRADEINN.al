@@ -174,6 +174,7 @@ Codeunit 50082 "Automaticos TRADE INN"
 
 
         OutTxt := 'Nº REFERENCIA;EAN;CANTIDAD STOCK;CANTIDAD STOCK INTERNACIONAL;COSTE TARIFA;DESCUENTO;PVP';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
 
         ///OutStream.Write(TextoSalida4);
