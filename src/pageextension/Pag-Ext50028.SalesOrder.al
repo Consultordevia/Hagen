@@ -644,6 +644,20 @@ pageextension 50028 SalesOrder extends "Sales Order"
                     MESSAGE('Hecho.');
                 end;
             }
+            action(xmlImportacionPEDmirivaNAV0317)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Importacion PED miriva catit';                 
+                trigger OnAction()
+                var
+                    xmlImportacionPEDmirivaNAV0317: Xmlport "Importacion PED miriva NAV0317";
+                begin
+                    Clear(xmlImportacionPEDmirivaNAV0317);
+                    xmlImportacionPEDmirivaNAV0317.Run();
+                    MESSAGE('Hecho.');
+                end;
+            }
+
 
             action(Importacionpedicattit)
             {

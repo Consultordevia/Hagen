@@ -111,34 +111,23 @@ Report 50100 "Descuento abonos venta"
                                     LD."Posting Date" := WorkDate;
                                     LD."Document Type" := LD."document type"::" ";
                                     LD."Transaction No." := NASI;
-                                    LD."Document No." := ndoc;
-                                    //microval 21 040302
-                                    //LD.Descripción := 'Descuento abono Nº '+MovCli."Nº documento";
+                                    LD."Document No." := ndoc;                                                                          
                                     LD.Description := 'Descuento abonos. ' + Format(MCtemp."Document Type") + ' Nº ' + MCtemp."Document No.";
                                     if MCtemp."Document Type" = MCtemp."document type"::Bill then begin
                                         LD.Description := LD.Description + ' / ' + MCtemp."Bill No.";
                                         if MCtemp."Due Date" > FVenci then
                                             FVenci := MCtemp."Due Date";
                                         FVenci := MCtemp."Due Date";
-                                    end;
-
-                                    //fin
+                                    end;                                      
                                     LD."Applies-to Doc. Type" := MCtemp."Document Type";
                                     LD.Validate("Applies-to Doc. No.", MCtemp."Document No.");
                                     LD.Validate("Applies-to Bill No.", MCtemp."Bill No.");
                                     MCtemp.CalcFields(MCtemp."Remaining Amt. (LCY)");
                                     LD.Validate(Amount, -MCtemp."Remaining Amt. (LCY)");
-                                    //RecDirPago.Reset;
-                                    //RecDirPago.SetRange(RecDirPago."Customer No.", Customer."No.");
-                                    //if RecDirPago.Find('-') then begin
-                                    //    LD."Pmt. Address Code" := RecDirPago.Code;
-                                    //end;
                                     LD.Insert(true);
                                     totalfras := totalfras - LD.Amount;
-                                until MCtemp.Next = 0;
-                                //microval 21 07/02/2002
-                                if totalfras > 0 then begin
-                                    //fin
+                                until MCtemp.Next = 0;                                 
+                                if totalfras > 0 then begin                                 
                                     LD.Init;
                                     LD."Journal Template Name" := 'CARTERA';
                                     LD."Journal Batch Name" := confcar."Serie agrupacion";
@@ -154,16 +143,10 @@ Report 50100 "Descuento abonos venta"
                                     LD.Description := 'Descuento abonos. Nuevo efecto Nº ' + Doc;
                                     LD.Validate(Amount, totalfras);
 
-                                    //microval 21 030302
-                                    //LD.VALIDATE("Fecha vencimiento",MovCli."Fecha vencimiento");
-                                    LD.Validate("Due Date", FVenci);
-                                    //fin
+                                    LD.Validate("Due Date", FVenci);                                   
 
-                                    LD.Insert(true);
-                                    //microval 21 07/02/2002
+                                    LD.Insert(true);                                     
                                 end else
-                                    //microval 21 040302
-                                    //Suman mas los abonos que las facturas, hay que dejar pendientes abonos
                                     if totalfras < 0 then begin
                                         LD.Reset;
                                         LD.SetRange("Journal Template Name", 'CARTERA');
@@ -183,10 +166,9 @@ Report 50100 "Descuento abonos venta"
                                                     end;
                                                 end;
                                             until (totalfras = 0) or (LD.Next(-1) = 0);
-                                        end;
-                                        //fin;
+                                        end;                                    
                                     end;
-                                //fin
+                                 
                                 Doc := IncStr(Doc);
                                 YaDescontado := true;
                             end;
