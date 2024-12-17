@@ -30,8 +30,9 @@ pageextension 50019 "Sales Prices" extends "Sales Prices"
             field(ean; Rec.ean) { ApplicationArea = All; }
             field("Cantidad unidades medida"; Rec."Cantidad unidades medida") { ApplicationArea = All; }
             field("Producto_web"; Rec."Producto_web") { ApplicationArea = All; }
-            field(WebB2BMWe; WebB2B)
+            field(WebB2BMWe; Rec.WebB2B)
             {
+
                 ApplicationArea = All;
             }
 
@@ -49,10 +50,10 @@ pageextension 50019 "Sales Prices" extends "Sales Prices"
     var
         CustomerPriceGroup: Record "Customer Price Group";
     begin
-        WebB2B := false;
-        if (rec."Sales Type" = rec."Sales Type"::"Customer Price Group") and (CustomerPriceGroup.get(rec."Sales Code")) then begin
-            WebB2B := CustomerPriceGroup."Web-B2B";
-        end;
+        /////        WebB2B := false;
+        /////        if (rec."Sales Type" = rec."Sales Type"::"Customer Price Group") and (CustomerPriceGroup.get(rec."Sales Code")) then begin
+        /////            WebB2B := CustomerPriceGroup."Web-B2B";
+        /////        end;
 
     end;
 

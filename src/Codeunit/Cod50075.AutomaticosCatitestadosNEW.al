@@ -117,6 +117,11 @@ Codeunit 50075 "Automaticos Catit estados NEW"
         in_transit: Code[20];
         ADAIA: RECORD ADAIA;
         NOMDIR: TEXT;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+        OutTxt: Text;
+
 
 
     local procedure EstadoPreparadoNuevo()
@@ -140,7 +145,7 @@ Codeunit 50075 "Automaticos Catit estados NEW"
         ArchExt4 := 'C:\tmp\json\catit\transporte\Orderscsv.csv';
 
 
-        TextoSalida1 :=
+        OutTxt :=
       'Name,' +
       'Command,' +
       'Send Receipt,' +
@@ -157,7 +162,8 @@ Codeunit 50075 "Automaticos Catit estados NEW"
       'Cancel: Refund,' +
       'Processed At,' +
       'Closed At,';
-        TextoSalida2 := 'Currency,' +
+       data.AddText(OutTxt);
+        OutTxt := 'Currency,' +
         'Source,' +
         'Source Identifier,' +
         'Source URL,' +
@@ -168,7 +174,8 @@ Codeunit 50075 "Automaticos Catit estados NEW"
         'Tax 2: Title,' +
         'Tax 2: Rate,' +
         'Tax 2: Price,';
-        TextoSalida3 := 'Tax 3: Title,' +
+         data.AddText(OutTxt);
+        OutTxt := 'Tax 3: Title,' +
         'Tax 3: Rate,' +
         'Tax 3: Price,' +
         'Tax: Included,' +
@@ -183,7 +190,8 @@ Codeunit 50075 "Automaticos Catit estados NEW"
         'Customer: Note,' +
         'Customer: State,' +
         'Customer: Tags,';
-        TextoSalida4 := 'Customer: Accepts Marketing,' +
+         data.AddText(OutTxt);
+        OutTxt := 'Customer: Accepts Marketing,' +
         'Billing: First Name,' +
         'Billing: Last Name,' +
         'Billing: Name,' +
@@ -196,14 +204,16 @@ Codeunit 50075 "Automaticos Catit estados NEW"
         'Billing: Province,' +
         'Billing: Province Code,' +
         'Billing: Country,';
-        TextoSalida5 := 'Billing: Country Code,' +
+         data.AddText(OutTxt);
+        OutTxt := 'Billing: Country Code,' +
         'Shipping: First Name,' +
         'Shipping: Last Name,' +
         'Shipping: Name,' +
         'Shipping: Company,' +
         'Shipping: Phone,' +
         'Shipping: Address 1,';
-        TextoSalida6 := 'Shipping: Address 2,' +
+         data.AddText(OutTxt);
+        OutTxt := 'Shipping: Address 2,' +
         'Shipping: Zip,' +
         'Shipping: City,' +
         'Shipping: Province,' +
@@ -215,7 +225,8 @@ Codeunit 50075 "Automaticos Catit estados NEW"
         'Line: Product ID,' +
         'Line: Product Handle,' +
         'Line: Title,';
-        TextoSalida7 := 'Line: Name,' +
+         data.AddText(OutTxt);
+        OutTxt := 'Line: Name,' +
        'Line: Variant ID,' +
        'Line: Variant Title,' +
        'Line: SKU,' +
@@ -224,7 +235,8 @@ Codeunit 50075 "Automaticos Catit estados NEW"
        'Line: Discount,' +
        'Line: Grams,' +
        'Line: Requires Shipping,';
-        TextoSalida8 := 'Line: Vendor,' +
+        data.AddText(OutTxt);
+        OutTxt := 'Line: Vendor,' +
         'Line: Properties,' +
         'Line: Gift Card,' +
         'Line: Force Gift Card,' +
@@ -237,7 +249,8 @@ Codeunit 50075 "Automaticos Catit estados NEW"
         'Line: Tax 2 Price,' +
         'Line: Tax 3 Title,' +
         'Line: Tax 3 Rate,';
-        TextoSalida9 := 'Line: Tax 3 Price,' +
+         data.AddText(OutTxt);
+        OutTxt := 'Line: Tax 3 Price,' +
         'Line: Fulfillment Service,' +
         'Line: Variant Barcode,' +
         'Refund: ID,' +
@@ -248,7 +261,8 @@ Codeunit 50075 "Automaticos Catit estados NEW"
         'Refund: Restock Location,' +
         'Refund: Send Receipt,' +
         'Refund: Generate Transaction,';
-        TextoSalida10 := 'Transaction: Kind,' +
+         data.AddText(OutTxt);
+        OutTxt := 'Transaction: Kind,' +
         'Transaction: Processed At,' +
         'Transaction: Amount,' +
         'Transaction: Currency,' +
@@ -258,7 +272,8 @@ Codeunit 50075 "Automaticos Catit estados NEW"
         'Transaction: Test,' +
         'Transaction: Authorization,' +
         'Transaction: Parent ID,';
-        TextoSalida11 := 'Fulfillment: ID,' +
+         data.AddText(OutTxt);
+        OutTxt := 'Fulfillment: ID,' +
         'Fulfillment: Status,' +
         'Fulfillment: Processed At,' +
         'Fulfillment: Tracking Company,' +
@@ -266,20 +281,10 @@ Codeunit 50075 "Automaticos Catit estados NEW"
         'Fulfillment: Shipment Status,' +
         'Fulfillment: Tracking Number,' +
         'Fulfillment: Tracking URL,' +
-        'Fulfillment: Send Receipt';
+        'Fulfillment: Send Receipt';        
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
 
-
-
-
-
-
-
-
-
-
-
-        OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 +
-        TextoSalida6 + TextoSalida7 + TextoSalida8 + TextoSalida9 + TextoSalida10 + TextoSalida11);
 
         DESDE1 := CalcDate('-1S', Today);
 
@@ -372,7 +377,7 @@ Codeunit 50075 "Automaticos Catit estados NEW"
 
 
 
-                        TextoSalida1 :=
+                        OutTxt :=
                                     Format(SalesShipmentHeader."Your Reference") + ',' +
                       'UPDATE,' +
                       ',' +
@@ -416,10 +421,11 @@ Codeunit 50075 "Automaticos Catit estados NEW"
                       ',' +
                       ',' +
                       ',';
+                      data.AddText(OutTxt);
 
 
 
-                        TextoSalida2 :=
+                        OutTxt :=
                         ',' +
                         ',' +
                         ',' +
@@ -462,7 +468,8 @@ Codeunit 50075 "Automaticos Catit estados NEW"
                         ',' +
                         ',' +
                         ',';
-                        TextoSalida3 :=
+                        data.AddText(OutTxt);
+                        OutTxt :=
                         ',' +
                         ',' +
                         ',' +
@@ -487,6 +494,7 @@ Codeunit 50075 "Automaticos Catit estados NEW"
                         ',' +
                         ',' +
                         ',';
+                        data.AddText(OutTxt);
                         nexpe := SalesShipmentHeader."Shipping Agent Code";
                         nexpe := SalesShipmentHeader."Nº expedición";
                         if SalesShipmentHeader."Nº expedición dropshp" <> '' then begin
@@ -527,7 +535,7 @@ Codeunit 50075 "Automaticos Catit estados NEW"
                         end;
 
 
-                        TextoSalida4 :=
+                        OutTxt :=
                         ',' +
                         ',' +
                         ',' +
@@ -546,20 +554,9 @@ Codeunit 50075 "Automaticos Catit estados NEW"
                         in_transit + ',' +
                         nexpe + ',' +
                         urltex + ',' +
-                        '';
-
-
-
-
-
-
-
-
-
-
-
-
-
+                        ''; 
+                        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                        data.AddText(OutTxt);
 
 
 
