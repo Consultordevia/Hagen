@@ -143,11 +143,20 @@ tableextension 50046 "SalesPrice" extends "Sales Price"
         field(50109; "Producto_web"; Boolean)
         {
         }
+<<<<<<< HEAD
         field(50110; WebB2B; Boolean)
         {
             CalcFormula = lookup("Customer Price Group"."Web-B2B" where(code = field("Sales Code")));
             FieldClass = FlowField;
              
+=======
+        field(50110; WebB2BMWe; Boolean)
+        {
+            Caption = 'WebB2BMWe', comment = 'NLB="YourLanguageText"';
+            //DataClassification = SystemMetadata;
+            FieldClass = FlowField;
+            CalcFormula = lookup("Customer Price Group"."Web-B2B" where(Code = field("Sales Code")));
+>>>>>>> 19e9d2160ab376f94f41cf8cf374e517fc3d7fc4
         }
 
 
