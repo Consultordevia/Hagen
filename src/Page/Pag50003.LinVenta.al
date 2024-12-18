@@ -13,6 +13,35 @@ page 50003 LinVenta
         {
             repeater(General)
             {
+                field("Document Type"; Rec."Document Type")
+                {
+                    ToolTip = 'Specifies the type of document that you are about to create.';
+                }
+                field("Document No."; Rec."Document No.")
+                {
+                    ToolTip = 'Specifies the document number.';
+                }
+                field("Line No."; Rec."Line No.")
+                {
+                    ToolTip = 'Specifies the line number.';
+                }
+                field("Type"; Rec."Type")
+                {
+                    ToolTip = 'Specifies the type of entity that will be posted for this sales line, such as Item, Resource, or G/L Account.';
+                }
+                field("No."; Rec."No.")
+                {
+                    ToolTip = 'Specifies the number of a general ledger account, item, resource, additional cost, or fixed asset, depending on the contents of the Type field.';
+                }
+                field(Quantity; Rec.Quantity)
+                {
+                    ToolTip = 'Specifies how many units are being sold.';
+                }
+                field("Unit Price"; Rec."Unit Price")
+                {
+                    ToolTip = 'Specifies the price for one unit on the sales line.';
+                }
+
                 field("% Dto. vendedor"; Rec."% Dto. vendedor")
                 {
                     ToolTip = 'Specifies the value of the % Dto. vendedor field.', Comment = '%';
@@ -177,14 +206,8 @@ page 50003 LinVenta
                 {
                     ToolTip = 'Specifies the value of the Dimension Set ID field.', Comment = '%';
                 }
-                field("Document No."; Rec."Document No.")
-                {
-                    ToolTip = 'Specifies the document number.';
-                }
-                field("Document Type"; Rec."Document Type")
-                {
-                    ToolTip = 'Specifies the type of document that you are about to create.';
-                }
+
+
                 field("Drop Shipment"; Rec."Drop Shipment")
                 {
                     ToolTip = 'Specifies if your vendor ships the items directly to your customer.';
@@ -365,10 +388,7 @@ page 50003 LinVenta
                 {
                     ToolTip = 'Specifies the value of the Line Discount Calculation field.', Comment = '%';
                 }
-                field("Line No."; Rec."Line No.")
-                {
-                    ToolTip = 'Specifies the line number.';
-                }
+
                 field("Linea Nº expedición"; Rec."Linea Nº expedición")
                 {
                     ToolTip = 'Specifies the value of the Linea Nº expedición field.', Comment = '%';
@@ -389,10 +409,7 @@ page 50003 LinVenta
                 {
                     ToolTip = 'Specifies the net weight of one unit of the item. In the sales statistics window, the net weight on the line is included in the total net weight of all the lines for the particular sales document.';
                 }
-                field("No."; Rec."No.")
-                {
-                    ToolTip = 'Specifies the number of a general ledger account, item, resource, additional cost, or fixed asset, depending on the contents of the Type field.';
-                }
+
                 field(Nonstock; Rec.Nonstock)
                 {
                     ToolTip = 'Specifies that this item is a catalog item.';
@@ -673,10 +690,7 @@ page 50003 LinVenta
                 {
                     ToolTip = 'Specifies the value of the Qty. to Ship (Base) field.', Comment = '%';
                 }
-                field(Quantity; Rec.Quantity)
-                {
-                    ToolTip = 'Specifies how many units are being sold.';
-                }
+
                 field("Quantity (Base)"; Rec."Quantity (Base)")
                 {
                     ToolTip = 'Specifies the value of the Quantity (Base) field.', Comment = '%';
@@ -905,10 +919,7 @@ page 50003 LinVenta
                 {
                     ToolTip = 'Specifies the value of the Transport Method field.', Comment = '%';
                 }
-                field("Type"; Rec."Type")
-                {
-                    ToolTip = 'Specifies the type of entity that will be posted for this sales line, such as Item, Resource, or G/L Account.';
-                }
+
                 field("Unidades venta"; Rec."Unidades venta")
                 {
                     ToolTip = 'Specifies the value of the Unidades venta field.', Comment = '%';
@@ -921,10 +932,7 @@ page 50003 LinVenta
                 {
                     ToolTip = 'Specifies the unit cost of the item on the line.';
                 }
-                field("Unit Price"; Rec."Unit Price")
-                {
-                    ToolTip = 'Specifies the price for one unit on the sales line.';
-                }
+
                 field("Unit Volume"; Rec."Unit Volume")
                 {
                     ToolTip = 'Specifies the volume of one unit of the item. In the sales statistics window, the volume of one unit of the item on the line is included in the total volume of all the lines for the particular sales document.';
