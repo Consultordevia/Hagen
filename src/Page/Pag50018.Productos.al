@@ -30,6 +30,11 @@ Page 50018 Productos
                     ApplicationArea = All;
                     ToolTip = 'Specifies a description of the item.';
                 }
+                field("Ref. AMAZON";Rec."Ref. AMAZON")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies a description of the item.';
+                }
                 field("Stock disponible"; Existencia)
                 {
                     ApplicationArea = Basic, Suite;

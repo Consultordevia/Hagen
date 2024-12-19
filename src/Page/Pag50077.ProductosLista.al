@@ -22,6 +22,10 @@ Page 50077 "Productos Lista"
                 {
                     ApplicationArea = Basic;
                 }
+                field("Ref. AMAZON";Rec."Ref. AMAZON")
+                {
+                    ApplicationArea = Basic;
+                }
                 field("Kgs. de plástico"; Rec."Kgs. de plástico")
                 {
                     ApplicationArea = Basic;

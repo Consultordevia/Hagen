@@ -24,6 +24,10 @@ page 50041 ItemListWeb
                 {
                     ToolTip = 'Specifies a description of the item.';
                 }
+                field("Ref. AMAZON";Rec."Ref. AMAZON")
+                {
+                    ToolTip = 'Specifies a description of the item.';
+                }
                 field("Permite fraccionar venta"; Rec."Permite fraccionar venta")
                 {
                     ToolTip = 'Specifies the value of the Permite fraccionar venta field.', Comment = '%';

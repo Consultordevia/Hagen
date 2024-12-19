@@ -341,6 +341,36 @@ Page 50099 "Pantalla almacen Pascual5"
                     end;
                 }
                 /*
+                action(DESMARCAR)
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'DESMARCAR';
+                    Ellipsis = true;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+
+                    trigger OnAction()
+                    var
+                        RecClie: Record CUSTOMER;
+                    begin
+                        RecClie.RESET;
+                        if RecClie.FindFirst() then
+                            repeat
+                                if (RecClie."Phone No." = '') and
+                                    (RecClie."Mobile Phone No." = '')
+                                    then begin
+                                    RecClie."Enviar a Web" := false;
+                                    RecClie.Modify;
+                                end;
+                            until RecClie.next = 0;
+                        Message('hecho');
+
+                    end;
+                }
+                */
+
+                /*
                 action(USUARIOS)
                 {
                     ApplicationArea = Basic;
@@ -494,17 +524,19 @@ Page 50099 "Pantalla almacen Pascual5"
                         SalesHeader4.Reset;
                         SalesHeader4.SetRange("Document Type", 1);
                         SalesHeader4.SetRange("Nº expedición", Rec."Nº expedición");
-                        if SalesHeader4.FindSet then repeat                            
-                            SalesHeader3.Reset;
-                            SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
-                            SalesHeader3.SetRange(SalesHeader3."No.", SalesHeader4."No."); 
-                            SalesHeader3.SetRange(SalesHeader3."Nº expedición", SalesHeader4."Nº expedición"); 
-                            if SalesHeader3.FindSet then repeat
-                                Clear(ETIenvioagrupadod);
-                                ETIenvioagrupadod.SetTableview(SalesHeader3);
-                                ETIenvioagrupadod.RunModal;                            
-                            until SalesHeader3.next=0;
-                        until SalesHeader4.next=0;
+                        if SalesHeader4.FindSet then
+                            repeat
+                                SalesHeader3.Reset;
+                                SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
+                                SalesHeader3.SetRange(SalesHeader3."No.", SalesHeader4."No.");
+                                SalesHeader3.SetRange(SalesHeader3."Nº expedición", SalesHeader4."Nº expedición");
+                                if SalesHeader3.FindSet then
+                                    repeat
+                                        Clear(ETIenvioagrupadod);
+                                        ETIenvioagrupadod.SetTableview(SalesHeader3);
+                                        ETIenvioagrupadod.RunModal;
+                                    until SalesHeader3.next = 0;
+                            until SalesHeader4.next = 0;
                     end;
                 }
                 action("Eti. agrupada")
@@ -523,17 +555,19 @@ Page 50099 "Pantalla almacen Pascual5"
                         SalesHeader4.Reset;
                         SalesHeader4.SetRange("Document Type", 1);
                         SalesHeader4.SetRange("Nº expedición", Rec."Nº expedición");
-                        if SalesHeader4.FindSet then repeat                            
-                            SalesHeader3.Reset;
-                            SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
-                            SalesHeader3.SetRange(SalesHeader3."No.", SalesHeader4."No."); 
-                            SalesHeader3.SetRange(SalesHeader3."Nº expedición", SalesHeader4."Nº expedición"); 
-                            if SalesHeader3.FindSet then repeat
-                                Clear(ETIenvioagrupadod2);
-                                ETIenvioagrupadod2.SetTableview(SalesHeader3);
-                                ETIenvioagrupadod2.RunModal;                            
-                            until SalesHeader3.next=0;
-                        until SalesHeader4.next=0;
+                        if SalesHeader4.FindSet then
+                            repeat
+                                SalesHeader3.Reset;
+                                SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
+                                SalesHeader3.SetRange(SalesHeader3."No.", SalesHeader4."No.");
+                                SalesHeader3.SetRange(SalesHeader3."Nº expedición", SalesHeader4."Nº expedición");
+                                if SalesHeader3.FindSet then
+                                    repeat
+                                        Clear(ETIenvioagrupadod2);
+                                        ETIenvioagrupadod2.SetTableview(SalesHeader3);
+                                        ETIenvioagrupadod2.RunModal;
+                                    until SalesHeader3.next = 0;
+                            until SalesHeader4.next = 0;
                     end;
                 }
                 action("Listado AMAZON")
@@ -549,8 +583,8 @@ Page 50099 "Pantalla almacen Pascual5"
                     trigger OnAction()
                     begin
 
-                        SalesLine.Reset;             
-                        SalesLine.SetRange("Document Type",1);
+                        SalesLine.Reset;
+                        SalesLine.SetRange("Document Type", 1);
                         SalesLine.SetRange("Nº expedición", Rec."Nº expedición");
                         if SalesLine.FindSet then begin
                             Clear(LineaspedidoAMAZON);
@@ -1216,24 +1250,24 @@ Page 50099 "Pantalla almacen Pascual5"
         Multitabla.Ascending(false);
         Multitabla.SetFilter(Multitabla.Ubicacion, '010*01|010*02');
         if Multitabla.FindFirst then
-            repeat            
+            repeat
                 SalesLine.Reset;
                 SalesLine.SetRange(SalesLine."Document Type", Rec."Document Type");
                 SalesLine.SetRange(SalesLine."Document No.", Rec."No.");
                 SalesLine.SetRange(SalesLine."No.", Multitabla.Producto);
                 if SalesLine.FindFirst then
-                    repeat                    
-                        if SalesLine.Type = 2 then begin                            
-                            if Item.Get(SalesLine."No.") then begin                                
-                                if Item."Etiqueta portugues" = true then begin                                    
+                    repeat
+                        if SalesLine.Type = 2 then begin
+                            if Item.Get(SalesLine."No.") then begin
+                                if Item."Etiqueta portugues" = true then begin
                                     X := 0;
-                                    repeat                                    
+                                    repeat
                                         X := X + 1;
                                         ExtendedTextHeader.Reset;
                                         /////-ExtendedTextHeader.SetRange(ExtendedTextHeader."Table Name", ExtendedTextHeader.tablename2::Etiquetas);
                                         ExtendedTextHeader.SetRange(ExtendedTextHeader."No.", SalesLine."No.");
                                         if ExtendedTextHeader.FindFirst then begin
-                                        
+
                                             Clear(RepEti);
                                             RepEti.NEXPE(NPEDIDO);
                                             RepEti.SetTableview(ExtendedTextHeader);

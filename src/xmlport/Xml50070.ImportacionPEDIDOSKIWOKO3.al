@@ -320,6 +320,7 @@ XmlPort 50070 "Importacion PEDIDOS KIWOKO3"
 
             ///// D[10]:=COPYSTR(D[10],2);
             /////D10:=COPYSTR(D10,2);
+            Message('%1 %2',clie,d10);
             if D10 <> '' then begin
                 if RecProd.Get(D10) then begin
                     RecProd.SetRange(RecProd."Location Filter", 'SILLA', 'SILLA');
@@ -391,7 +392,7 @@ XmlPort 50070 "Importacion PEDIDOS KIWOKO3"
     local procedure Enviaemail()
     begin
 
-        UserSetup.Get(UserId);
+        /////-UserSetup.Get(UserId);
 
         /////- SenderName := 'HAGEN';
         /////- Subject := 'Este relacion no existe en kiwoko: ' + D1;

@@ -134,8 +134,9 @@ pageextension 50020 "Item List" extends "Item List"
             field("Familia"; Rec."Familia") { ApplicationArea = All; }
             field("Subfamilia"; Rec."Subfamilia") { ApplicationArea = All; }
             field("Gross Weight"; Rec."Gross Weight") { ApplicationArea = All; }
-            field("Unit Volume"; Rec."Unit Volume") { ApplicationArea = All; }
+            field("Unit Volume"; Rec."Unit Volume") { ApplicationArea = All; }            
             */
+            field("Ref. AMAZON"; Rec."Ref. AMAZON") { ApplicationArea = All; }
             field(DescripMarca; DescripMarca) { ApplicationArea = All; }
 
             field(Disponible; dispo) { ApplicationArea = ALL; }
@@ -176,8 +177,11 @@ pageextension 50020 "Item List" extends "Item List"
         IF RecMulti.GET(RecMulti.Tabla::Marcas, Rec.Marca) then begin
             DescripMarca := RecMulti."Descripcion";
         end;
-        rec.CalcFields("Existencia SILLA", "Qty. on Sales Order");
-        ///dispo := rec."Existencia SILLA" - rec."Qty. on Sales Order" - rec."Stock para Catit";
+        rec.CalcFields(Inventory,"Existencia SILLA", "Qty. on Sales Order");
+        dispo := rec."Existencia SILLA" - rec."Qty. on Sales Order" - rec."Stock para Catit";
+        IF CompanyName='HAGEN CANARIAS S.C.' THEN begin
+            dispo := rec.Inventory - rec."Qty. on Sales Order";
+        end;
         NombreItemCategoria := '';
         if itemcat.get(Rec."Item Category Code") then begin
             NombreItemCategoria := itemcat.Description;

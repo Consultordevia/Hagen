@@ -596,7 +596,7 @@ Page 50024 "Comercial presupuestos"
         CanCancelApprovalForFlow: Boolean;
         UserSetup: Record "User Setup";
         SalesHeader: Record "Sales Header";
-        NuevoPresu: Page "Nuevo presupuesto";
+        NuevoPresu: Page "Sales Quote";
 
     local procedure SetControlAppearance()
     var

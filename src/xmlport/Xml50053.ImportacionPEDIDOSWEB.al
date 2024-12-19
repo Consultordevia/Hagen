@@ -1,7 +1,7 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
 XmlPort 50053 "Importacion PEDIDOS WEB"
 {
-    Caption = 'Importacion PEDIDOS KIWOKO2';
+    Caption = 'Importacion PEDIDOS WEB';
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
@@ -582,8 +582,11 @@ XmlPort 50053 "Importacion PEDIDOS WEB"
             RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
             RecCV."Customer Price Group" := CompanyInformation."Tarifa WEB";
             RecCV."Your Reference" := D1;
+            RecCV."Estado pedido":=RecCV."Estado pedido"::Retenido;
             RecCV.Insert(true);
-            Message('%1', RecCV."No.");
+            RecCV."Estado pedido":=RecCV."Estado pedido"::Retenido;
+            RecCV.Modify;
+            ///Message('%1', RecCV."No.");
         end;
 
         SALE := false;
