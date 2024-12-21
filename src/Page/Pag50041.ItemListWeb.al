@@ -20,11 +20,28 @@ page 50041 ItemListWeb
                 {
                     ToolTip = 'Specifies a description of the item.';
                 }
+                field("Unit Price";Rec."Unit Price")
+                {
+                    ToolTip = 'Specifies a description of the item.';
+                }
                 field("PVP-Web"; Rec."PVP-Web")
                 {
                     ToolTip = 'Specifies a description of the item.';
                 }
-                field("Ref. AMAZON";Rec."Ref. AMAZON")
+                field("Tarifa 2022-2";Rec."Tarifa 2022-2")
+                {
+                    ToolTip = 'Specifies a description of the item.';
+                }
+                field("PVP Recomendado 2022-2";Rec."PVP Recomendado 2022-2")
+                {
+                    ToolTip = 'Specifies a description of the item.';
+                }
+                
+                field("Ref. AMAZON"; Rec."Ref. AMAZON")
+                {
+                    ToolTip = 'Specifies a description of the item.';
+                }
+                field("Existencia TENERIFE"; Rec."Existencia TENERIFE")
                 {
                     ToolTip = 'Specifies a description of the item.';
                 }

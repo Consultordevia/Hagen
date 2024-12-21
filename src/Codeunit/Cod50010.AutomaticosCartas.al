@@ -10473,7 +10473,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         RecVende: Record "Salesperson/Purchaser";
         SalesInvHeader2: Record "Sales Header";
         RecCust: Record Customer;
-    /////- SMTP: Codeunit UnknownCodeunit400;
+    ///// SMTP: Codeunit smtp UnknownCodeunit400;
     begin
 
 
@@ -14431,5 +14431,57 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
     end;
+    /*
+        procedure BCEnviarEmail(parDestinatarios: List of [Text]; parSubject: Text; parBody: Text; parHtmlFormatted: Boolean; parPath: Text; parAttachmentName: Text[250]; parContentType: Text[250]; parEmailScenario: Enum "Email Scenario"; parCC: Text; parBCC: Text)
+        var
+            EmailMessage: Codeunit "Email Message";
+            Email: Codeunit Email;
+            cduFileManagement: Codeunit "File Management";
+            AttachmentTempBlob: Codeunit "Temp Blob";
+            AttachmentInStream: InStream;
+        begin
+            EmailMessage.Create(parDestinatarios, parSubject, parBody, parHtmlFormatted, parCC.Split(';'), parBCC.Split(';'));
+
+            if parPath <> '' then begin
+                /////-cduFileManagement.BLOBImportFromServerFile(AttachmentTempBlob, parPath);
+                AttachmentTempBlob.CreateInStream(AttachmentInStream);
+                EmailMessage.AddAttachment(parAttachmentName, parContentType, AttachmentInStream);
+            end;
+
+            Email.Send(EmailMessage, parEmailScenario);
+        end;
+
+        Evaluate(intIDreport, DelStr(CurrReport.ObjectId(false), 1, 7));
+                recCorreosInformes.Get(intIDreport);
+
+                txtOrigen := 'ax.erum@erumgroup.com';
+                txtDestinatario.Add(recCorreosInformes.Correos);
+                txtCC := recCorreosInformes."Correos CC";
+                if recCorreosInformes."Otros correos" <> '' then begin
+                    txtCC := txtCC + ';' + recCorreosInformes."Otros correos";
+                end;
+                txtSubject := 'R34.Desvi_canti_ventas - ' + Format(COMPANYNAME) + '- (R34)';
+                txtFecha := Format(Today, 0, '<Day>-<Month>-<YEAR>');
+                PdfDocPath := StrSubstNo('R34_Desvi_canti_ventas_%1.xlsx', txtFecha);
+                Path := 'C:\Temp\NAV\Informe Zara\' + PdfDocPath;
+
+                Clear(repInforme);
+                repInforme.UseRequestPage(false);
+                if not repInforme.SaveAsExcel(Path) then
+                    Error('ERROR');
+
+                recCompanyInformation.Get;
+
+                Body := '*** Este email se envía de forma automática por nuestro sistema. ***' +
+                '<br><br>' +
+                'Adjunto le remitimos el informe ' + txtSubject +
+                '<br><br>' +
+                'Cualquier consulta no dude en ponerse en contacto con nosotros.' +
+                '<br><br>' +
+                'Un saludo.' +
+                '<br>';
+
+                cduE01Funciones.BCEnviarEmail(txtDestinatario, txtSubject, Body, true, Path, PdfDocPath, 'PDF', Enum::"Email Scenario"::"AX Erum", txtCC, '');
+        */
 }
 

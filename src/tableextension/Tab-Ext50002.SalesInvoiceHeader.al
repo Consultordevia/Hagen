@@ -322,6 +322,12 @@ tableextension 50002 SalesInvoiceHeader extends "Sales Invoice Header"
         field(60001; "Referencia Pedido Presta Shop"; Code[50])
         {
         }
+
+        field(50668; GLN; Code[13])
+        {
+            CalcFormula = lookup(Customer.GLN where("No." = field("Sell-to Customer No.")));
+            FieldClass = FlowField;
+        }
     }
 
     keys

@@ -934,6 +934,11 @@ tableextension 50114 SalesHeader extends "Sales Header"
         field(60009; "Albarán EDI"; Boolean)
         {
         }
+        field(50668; GLN; Code[13])
+        {
+            CalcFormula = lookup(Customer.GLN where("No." = field("Sell-to Customer No.")));
+            FieldClass = FlowField;
+        }
 
     }
 

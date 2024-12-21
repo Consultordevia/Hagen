@@ -340,6 +340,83 @@ Page 50099 "Pantalla almacen Pascual5"
                         ImprimeEtiPortugal;
                     end;
                 }
+
+/*
+                action(variant11)
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'variante1';
+                    Ellipsis = true;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+
+                    trigger OnAction()
+                    var
+                        RecItem: Record Item;
+                        RecMA: Record "Mul.atributos";
+                    begin
+                        RecItem.RESET;
+                        if RecItem.FindFirst() then
+                            repeat
+                                if (RecItem.CodVariante1 <> '') then begin
+                                    RecMA.Codigo1 := RecItem.CodVariante1;
+                                    RecMA."Descripción" := RecItem.CodVariante1;
+                                    recma.Tabla := recma.Tabla::Atributos;
+                                    if RecMA.insert then;
+                                end;
+                                if (RecItem.CodVariante2 <> '') then begin
+                                    RecMA.Codigo1 := RecItem.CodVariante2;
+                                    RecMA."Descripción" := RecItem.CodVariante2;
+                                    recma.Tabla := recma.Tabla::Atributos;
+                                    if RecMA.insert then;
+                                end;
+                            until RecItem.next = 0;
+                        Message('hecho');
+
+                    end;
+                }
+
+                    action(variant112)
+                    {
+                    ApplicationArea = Basic;
+                    Caption = 'variante2';
+                    Ellipsis = true;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+
+                    trigger OnAction()
+                    var
+                        RecItem: Record Item;
+                        RecMA: Record "Mul.atributos";
+                    begin
+                        RecItem.RESET;
+                        if RecItem.FindFirst() then
+                            repeat
+                                if (RecItem."Dato Variante1" <> '') then begin
+                                    RecMA.Codigo1 := RecItem.CodVariante1;
+                                    RecMA.Codigo2 :=  RecItem."Dato Variante1";
+                                    RecMA."Descripción" := RecItem."Dato Variante1";
+                                    recma.Tabla := recma.Tabla::"Valor Atributo";
+                                    if RecMA.insert then;
+                                end;
+
+                                if (RecItem."Dato Variante2" <> '') then begin
+                                    RecMA.Codigo1 := RecItem.CodVariante2;
+                                    RecMA.Codigo2 :=  RecItem."Dato Variante2";
+                                    RecMA."Descripción" := RecItem."Dato Variante2";
+                                    recma.Tabla := recma.Tabla::"Valor Atributo";
+                                    if RecMA.insert then;
+                                end;
+                                                                
+
+                            until RecItem.next = 0;
+                        Message('hecho');
+
+                    end;
+                }
+*/
                 /*
                 action(DESMARCAR)
                 {

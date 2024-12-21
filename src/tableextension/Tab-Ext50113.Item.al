@@ -955,6 +955,7 @@ tableextension 50113 Item extends Item
         field(50174; "Fecha sub web"; DateTime)
         {
         }
+        
         field(50200; Temporalidad; Option)
         {
             OptionCaption = '1-Todo el año,2-Invierno,3- Verano';
@@ -1276,6 +1277,14 @@ tableextension 50113 Item extends Item
         {
             TableRelation = "Mul.atributos".Codigo1 where(Tabla = const(Atributos));
         }
+        field(50344; "PVP Recomendado 2022-2"; Decimal)
+        {
+            CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
+                                                                           "Sales Code" = const('2022-2')));
+            Caption = 'PVP Recomendado 2022-2';
+            FieldClass = FlowField;
+        }
+        
 
         field(60000; "Actualizar WEB"; Boolean)
         {

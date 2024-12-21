@@ -34,7 +34,7 @@ codeunit 50002 Eventos
     var
         EnvioFicheros: Codeunit "Automaticos Cartas";
     begin
-        EnvioFicheros.MODIFCLIENTES(Rec);
+        /////-EnvioFicheros.MODIFCLIENTES(Rec);
     end;
 
     [EventSubscriber(ObjectType::Table, 23, 'OnAfterOnInsert', '', true, true)]
@@ -50,7 +50,7 @@ codeunit 50002 Eventos
     var
         EnvioFicheros: Codeunit "Automaticos Cartas";
     begin
-        EnvioFicheros.MODIFPROVEE(Rec);
+        /////-EnvioFicheros.MODIFPROVEE(Rec);
     end;
 
     [EventSubscriber(ObjectType::Table, 27, 'OnAfterOnInsert', '', true, true)]

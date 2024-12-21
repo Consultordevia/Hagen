@@ -6,6 +6,12 @@ Report 50902 "OK Albaran NO valorado"
     Caption = 'OK Albaran NO valorado';
     Permissions = TableData "Sales Shipment Line" = rimd;
     PreviewMode = PrintLayout;
+ 
+     
+    ApplicationArea = all;
+    UsageCategory = ReportsAndAnalysis;
+    AdditionalSearchTerms = 'OK Albaran NO valorado';
+
 
     dataset
     {

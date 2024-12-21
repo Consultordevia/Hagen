@@ -4,10 +4,12 @@ pageextension 50036 SalesOrderList extends "Sales Order List"
     {
         
 
-     addafter("Posting Date")  
-     {            
-     field("E-MAIL";Rec."E-MAIL") { ApplicationArea = All; }
-     }
+    addafter("Posting Date")  
+    {            
+    field("E-MAIL";Rec."E-MAIL") { ApplicationArea = All; }
+    field("Observación para transporte";Rec."Observación para transporte") { ApplicationArea = All; }    
+    field("Sell-to Customer Name 2";Rec."Sell-to Customer Name 2") { ApplicationArea = All; }
+    }
 
     }
 

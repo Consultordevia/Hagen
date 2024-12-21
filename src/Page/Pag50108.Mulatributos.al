@@ -4,6 +4,8 @@ page 50108 Mulatributos
     Caption = 'Mulatributos';
     PageType = List;
     SourceTable = "Mul.atributos";
+    UsageCategory = Lists;
+
 
     layout
     {

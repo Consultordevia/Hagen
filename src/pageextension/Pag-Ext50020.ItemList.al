@@ -134,8 +134,12 @@ pageextension 50020 "Item List" extends "Item List"
             field("Familia"; Rec."Familia") { ApplicationArea = All; }
             field("Subfamilia"; Rec."Subfamilia") { ApplicationArea = All; }
             field("Gross Weight"; Rec."Gross Weight") { ApplicationArea = All; }
-            field("Unit Volume"; Rec."Unit Volume") { ApplicationArea = All; }            
+            field("Unit Volume"; Rec."Unit Volume") { ApplicationArea = All; }                        
             */
+            
+            field( "Tarifa 2022-2";Rec."Tarifa 2022-2") { ApplicationArea = All; }
+            field("PVP Recomendado 2022-2";Rec."PVP Recomendado 2022-2") { ApplicationArea = All; }
+            field("Producto PADRE";Rec."Producto PADRE") { ApplicationArea = All; }
             field("Ref. AMAZON"; Rec."Ref. AMAZON") { ApplicationArea = All; }
             field(DescripMarca; DescripMarca) { ApplicationArea = All; }
 
