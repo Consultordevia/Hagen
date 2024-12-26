@@ -559,6 +559,7 @@ XmlPort 50031 "Importacion PEDLIN ECI EDICOM"
                             RecLV."Document No." := RecCV."No.";
                             RecLV."Line No." := LINEAS;
                             RecLV.Type := 2;
+                            RecLV."Shipment Date":=today;
                             RecLV.Validate(RecLV."No.", ref);
                             Evaluate(CANTIDE, D12);
                             CANTIDE := CANTIDE / 1000;

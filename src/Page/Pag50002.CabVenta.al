@@ -229,10 +229,10 @@ page 50002 CabVenta
                 {
                     ToolTip = 'Specifies the customer bank code to assign to the sales header in this field.';
                 }
-                field("Customer Disc. Group"; Rec."Customer Disc. Group")
-                {
-                    ToolTip = 'Specifies the value of the Customer Disc. Group field.', Comment = '%';
-                }
+                ///field("Customer Disc. Group"; Rec."Customer Disc. Group")
+                ///{
+                    ///ToolTip = 'Specifies the value of the Customer Disc. Group field.', Comment = '%';
+                ///}
                 field("Customer Posting Group"; Rec."Customer Posting Group")
                 {
                     ToolTip = 'Specifies the customer s market type to link business transactions to.';

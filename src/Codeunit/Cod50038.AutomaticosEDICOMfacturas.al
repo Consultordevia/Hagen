@@ -4,7 +4,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
 
 {
-     Permissions = tabledata "Sales Invoice Header" = rmi, tabledata "Sales Cr.Memo Header" = rmi;
+     Permissions = tabledata "Sales Invoice Header" = rmi, tabledata "Sales Cr.Memo Header" = rmi, tabledata  "VAT Entry" = rmi;
     // 
     // 
     // 1- ECAPSOCIAL: Este me lo puedes indicar, lo ponemos en la libreta y lo recuperamos en el mapa a partir de ahí.

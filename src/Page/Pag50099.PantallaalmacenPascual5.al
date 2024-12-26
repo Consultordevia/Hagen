@@ -354,6 +354,27 @@ Page 50099 "Pantalla almacen Pascual5"
                     end;
                 }
 
+                action(CODIGOSPOSTALES)
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'CODIGOSPOSTALES';
+                    Ellipsis = true;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+
+                    trigger OnAction()
+                    var
+                    XmlPort50509:  XmlPort "Importa datos nav2018-8cp";
+                    begin
+
+                        CLEAR(XmlPort50509);
+                        XmlPort50509.Run();
+                    end;
+                }
+
+
+
 
                 action(variant11)
                 {

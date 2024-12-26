@@ -16,6 +16,9 @@ pageextension 50028 SalesOrder extends "Sales Order"
         {
 
 
+
+
+            field("Customer Disc. Group"; Rec."Customer Disc. Group") { ApplicationArea = All; }            
             field("Sell-to Customer Name 2"; Rec."Sell-to Customer Name 2") { ApplicationArea = All; }
             field("Observación para ALMACEN"; Rec."Observación para ALMACEN") { ApplicationArea = All; }
             field("Observación PDA"; Rec."Observación PDA") { ApplicationArea = All; }
@@ -647,7 +650,7 @@ pageextension 50028 SalesOrder extends "Sales Order"
             action(xmlImportacionPEDmirivaNAV0317)
             {
                 ApplicationArea = Suite;
-                Caption = 'Importacion PED miriva catit';                 
+                Caption = 'Importacion PED miriva catit';
                 trigger OnAction()
                 var
                     xmlImportacionPEDmirivaNAV0317: Xmlport "Importacion PED miriva NAV0317";
