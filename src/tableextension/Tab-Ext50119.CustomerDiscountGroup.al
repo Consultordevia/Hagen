@@ -12,7 +12,7 @@ tableextension 50119 CustomerDiscountGroup extends "Customer Discount Group"
         field(50002; "ID web"; Integer)
         {
         }
-        field(50003; "Codigo Shopify"; Text[250])
+        field(50003; "Catalogo Shopify"; Text[250])
         {
         }
     }

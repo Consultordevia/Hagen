@@ -20,8 +20,13 @@ Page 50141 "CUSTOMEWER 2"
                 }
                 field("Location Code"; Rec."Location Code")
                 {
+                    ApplicationArea = Basic;                    
+                }
+                field("Catalogo Shopify";Rec."Catalogo Shopify")
+                {
                     ApplicationArea = Basic;
                 }
+
                 field(Name; Rec.Name)
                 {
                     ApplicationArea = Basic;

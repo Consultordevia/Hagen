@@ -2,7 +2,10 @@
 Page 50078 "Clientes Lista"
 {
     PageType = List;
-    SourceTable = Customer;
+    SourceTable = Customer;     
+    ApplicationArea = All;
+    Caption = 'Clientes Lista';     
+    UsageCategory = Lists;
 
     layout
     {
@@ -602,6 +605,11 @@ Page 50078 "Clientes Lista"
                 {
                     ApplicationArea = Basic;
                 }
+                field("Catalogo Shopify"; Rec."Catalogo Shopify")
+                {
+                    ApplicationArea = Basic;
+                }
+
                 field("Primary Contact No."; Rec."Primary Contact No.")
                 {
                     ApplicationArea = Basic;

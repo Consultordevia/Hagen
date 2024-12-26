@@ -18,6 +18,10 @@ Page 50106 "Clientes Lista2"
                 {
                     ApplicationArea = Basic;
                 }
+                field("Catalogo Shopify";Rec."Catalogo Shopify")
+                {
+                    ApplicationArea = Basic;
+                }
                 field("Email facturacion 1"; Rec."Email facturacion 1")
                 {
                     ApplicationArea = Basic;

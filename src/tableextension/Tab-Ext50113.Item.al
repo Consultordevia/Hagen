@@ -955,7 +955,7 @@ tableextension 50113 Item extends Item
         field(50174; "Fecha sub web"; DateTime)
         {
         }
-        
+
         field(50200; Temporalidad; Option)
         {
             OptionCaption = '1-Todo el año,2-Invierno,3- Verano';
@@ -1284,7 +1284,13 @@ tableextension 50113 Item extends Item
             Caption = 'PVP Recomendado 2022-2';
             FieldClass = FlowField;
         }
-        
+        field(50345; "PVP 2025DC00"; Decimal)
+        {
+            CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
+                                                                           "Sales Code" = const('2025DC00')));
+            Caption = 'PVP 2025DC00';
+            FieldClass = FlowField;
+        }
 
         field(60000; "Actualizar WEB"; Boolean)
         {

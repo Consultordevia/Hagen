@@ -633,6 +633,14 @@ tableextension 50104 Customer extends "Customer"
             OptionCaption = '1-Vista,2-Telefono,3-Telefono/Visita';
             OptionMembers = "1-Vista","2-Telefono","3-Telefono/Visita";
         }
+        field(50768; "Catalogo Shopify"; Text[250])
+
+        {
+            CalcFormula = lookup("Customer Discount Group"."Catalogo Shopify" where(code = field("Customer Disc. Group")));
+            FieldClass = FlowField;
+
+        }
+
         field(50999; "ContactoAInsertar"; code[100])
         {
             Caption = 'ContactoAInsertar', comment = 'NLB="YourLanguageText"';
@@ -717,6 +725,8 @@ tableextension 50104 Customer extends "Customer"
         field(66001; "Cliente Inversion Sujeto Pasiv"; Boolean)
         {
         }
+
+
     }
     fieldgroups
     {

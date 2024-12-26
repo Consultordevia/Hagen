@@ -109,7 +109,7 @@ tableextension 50050 "Sales Cue" extends "Sales Cue"
             CalcFormula = count("Sales Header" where("Document Type" = filter(Order),
                                                       "Estado pedido" = const(Retenido),
                                                       "Payment Method Code" = filter(<> 'P.ANTICIPA')));
-                                                      ///// en bc ya no  <> 'TRANSFWEB')));
+                                                      ///// en bc ya no  <> 'TRANSFWEB')));                                                           
                                                       /////-"Payment Method Code" = filter(<> 'P.ANTICIPA' & <> 'TRANSFWEB')));
             FieldClass = FlowField;
         }

@@ -28,7 +28,7 @@ page 50112 CustomerDiscountGroup
                 {
                     ToolTip = 'Specifies the value of the Descuento % especial field.', Comment = '%';
                 }
-                field("Codigo Shopify"; Rec."Codigo Shopify")
+                field("Catalogo Shopify"; Rec."Catalogo Shopify")
                 {
                     ToolTip = 'Specifies the value of the Codigo Shopify field.', Comment = '%';
                 }

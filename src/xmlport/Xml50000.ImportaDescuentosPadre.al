@@ -253,7 +253,7 @@ XmlPort 50000 "Importa Descuentos Padre"
         igicc: Code[20];
         CUADAIA: Codeunit "Automaticos Cartas";
         RecItem22: Record Item;
-        SalesLineDiscountPadre: Record "Sales Line Discount Padre";
+        SalesLineDiscountPadre: Record "Sales Line Discount";
         MINIMO: Decimal;
         DESCUENTO: Decimal;
         TIPO: Integer;
@@ -385,9 +385,12 @@ XmlPort 50000 "Importa Descuentos Padre"
         end;
 
         SalesLineDiscountPadre.Init;
+        
         SalesLineDiscountPadre.Type := TIPO;
+        
+
         SalesLineDiscountPadre.Code := D1;
-        SalesLineDiscountPadre."Sales Type" := TIPOVENTA;
+        SalesLineDiscountPadre."Sales Type" := TIPOVENTA;         
         SalesLineDiscountPadre."Sales Code" := D3;
         SalesLineDiscountPadre."Starting Date" := fechaini;
         SalesLineDiscountPadre."Currency Code" := D4;

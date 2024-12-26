@@ -136,10 +136,11 @@ pageextension 50020 "Item List" extends "Item List"
             field("Gross Weight"; Rec."Gross Weight") { ApplicationArea = All; }
             field("Unit Volume"; Rec."Unit Volume") { ApplicationArea = All; }                        
             */
-            
-            field( "Tarifa 2022-2";Rec."Tarifa 2022-2") { ApplicationArea = All; }
-            field("PVP Recomendado 2022-2";Rec."PVP Recomendado 2022-2") { ApplicationArea = All; }
-            field("Producto PADRE";Rec."Producto PADRE") { ApplicationArea = All; }
+
+            field("PVP 2025DC00"; Rec."PVP 2025DC00") { ApplicationArea = All; }
+            field("Tarifa 2022-2"; Rec."Tarifa 2022-2") { ApplicationArea = All; }
+            field("PVP Recomendado 2022-2"; Rec."PVP Recomendado 2022-2") { ApplicationArea = All; }
+            field("Producto PADRE"; Rec."Producto PADRE") { ApplicationArea = All; }
             field("Ref. AMAZON"; Rec."Ref. AMAZON") { ApplicationArea = All; }
             field(DescripMarca; DescripMarca) { ApplicationArea = All; }
 
@@ -181,9 +182,9 @@ pageextension 50020 "Item List" extends "Item List"
         IF RecMulti.GET(RecMulti.Tabla::Marcas, Rec.Marca) then begin
             DescripMarca := RecMulti."Descripcion";
         end;
-        rec.CalcFields(Inventory,"Existencia SILLA", "Qty. on Sales Order");
+        rec.CalcFields(Inventory, "Existencia SILLA", "Qty. on Sales Order");
         dispo := rec."Existencia SILLA" - rec."Qty. on Sales Order" - rec."Stock para Catit";
-        IF CompanyName='HAGEN CANARIAS S.C.' THEN begin
+        IF CompanyName = 'HAGEN CANARIAS S.C.' THEN begin
             dispo := rec.Inventory - rec."Qty. on Sales Order";
         end;
         NombreItemCategoria := '';

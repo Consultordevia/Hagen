@@ -3,6 +3,7 @@ pageextension 50040 CustomerList extends "Customer List"
     layout
     {
 
+    
     }
 
     actions

@@ -702,6 +702,9 @@ XmlPort 50030 "Importacion PEDIDOS ECI EDICOM"
                 Evaluate(dd2, cd2);
                 Evaluate(dd3, cd3);
                 RecCV."Requested Delivery Date" := Dmy2date(dd1, dd2, dd3);
+                if today>Dmy2date(dd1, dd2, dd3) then begin
+                        RecCV."Requested Delivery Date" :=today;
+                end;
             end;
             RecCV.Insert(true);
 

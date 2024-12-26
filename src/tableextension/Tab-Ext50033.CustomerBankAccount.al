@@ -26,15 +26,34 @@ tableextension 50033 CustomerBankAccount extends "Customer Bank Account"
         modify("CCC Bank Account No.")
         {
             trigger OnAfterValidate()
+            var
+                DCIBAN: code[20];
+                RecIE: Record "Company Information";
+
             begin
                 CalculaDC;
+
+                IF IBAN = '' THEN BEGIN
+                    DCIBAN := RecIE.CalculaDCIBAN("Country/Region Code" + '00' + "CCC No.");
+                    VALIDATE(IBAN, "Country/Region Code" + DCIBAN + "CCC No.");
+                END;
             end;
         }
         modify("CCC No.")
         {
             trigger OnAfterValidate()
+            var
+                DCIBAN: code[20];
+                RecIE: Record "Company Information";
             begin
+
+                "CCC Bank No." := COPYSTR("CCC No.", 1, 4);
+                "CCC Bank Branch No." := COPYSTR("CCC No.", 5, 4);
+                "CCC Control Digits" := COPYSTR("CCC No.", 9, 2);
+                "CCC Bank Account No." := COPYSTR("CCC No.", 11, 23);
                 CalculaDC;
+                DCIBAN := RecIE.CalculaDCIBAN("Country/Region Code" + '00' + "CCC No.");
+                VALIDATE(IBAN, "Country/Region Code" + DCIBAN + "CCC No.");
             end;
         }
         field(50000; BIC; Code[12])
@@ -68,6 +87,7 @@ tableextension 50033 CustomerBankAccount extends "Customer Bank Account"
 
     procedure CalculaDC()
     var
+
         RecPais: Record "Country/Region";
         DIGITOS1: array[10] of Code[1];
         SUMA1: Decimal;
