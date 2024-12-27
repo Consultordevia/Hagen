@@ -23,8 +23,23 @@ Page 50000 Item
                 ApplicationArea = Basic;
 
                 trigger OnAction()
+                var 
+                    Rec1: record Item;
+                    codprod: code[20];
+                    url: Text[1000];
+                    Item: Record Item;
+                    Client: HttpClient;
+                    Content: HttpContent;
+                    Response: HttpResponseMessage;
+                    InStr: InStream;
+                    PictureURL: Text;
                 begin
 
+                    PictureURL:=url;
+                Client.Get(PictureURL, Response);                         
+                Response.Content.ReadAs(InStr);
+        Clear(Rec1.Picture);                        
+        Rec1.Picture.ImportStream(InStr, Format(Rec1."No."));     
                     v.Open('#1####################################');
                     Item.Reset;
                     if Item.FindFirst then repeat

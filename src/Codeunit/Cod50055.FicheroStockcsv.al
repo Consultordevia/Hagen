@@ -1594,6 +1594,8 @@ Codeunit 50055 "Fichero Stock.csv"
         Data.Write(OutStream);
 
 
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+        FicherosHagen.CrearFichero(nomdir, 'stock.csv', InStream);
 
 
         /////FileDirectoryexcel := 'c:\tmp\TarifaStock2022-2.xls';
