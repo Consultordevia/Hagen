@@ -384,6 +384,9 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
         field(60001; "Referencia Pedido Presta Shop"; Code[50])
         {
         }
+        field(50669; "Etq.Adaia"; Code[30])
+        {            
+        }
     }
 
     keys
@@ -400,6 +403,7 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
         key(Key50008; "Aviso falta stock")
         {
         }
+        
     }
 
     fieldgroups

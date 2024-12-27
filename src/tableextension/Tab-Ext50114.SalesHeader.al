@@ -939,6 +939,9 @@ tableextension 50114 SalesHeader extends "Sales Header"
             CalcFormula = lookup(Customer.GLN where("No." = field("Sell-to Customer No.")));
             FieldClass = FlowField;
         }
+        field(50669; "Etq.Adaia"; Code[30])
+        {            
+        }
 
     }
 

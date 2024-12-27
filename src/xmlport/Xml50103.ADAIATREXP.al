@@ -488,7 +488,15 @@ XmlPort 50103 "ADAIATREXP"
         /// CELI|MO|CAT25282|000000003|15           |000000001|000000001|UD|000000000|000000000|    |   |
 
 
+        if CopyStr(D1, 1, 4) = 'CECN' then begin
+            NPEDIDO := D3;                                       
+                IF CC.GET(1, NPEDIDO) THEN BEGIN
+                    CC."Etq.Adaia":=D5;
+                    CC.Modify;                     
+                END;
+        end;
 
+        
         if CopyStr(D1, 1, 4) = 'CECA' then begin
             NPEDIDO := D3;
             CLIENTE := D6;

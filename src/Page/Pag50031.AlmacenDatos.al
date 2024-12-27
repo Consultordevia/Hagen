@@ -247,9 +247,9 @@ Page 50031 "Almacen Datos"
                 field(ECI; ECI)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Pedidos - Retenidos';
+                    Caption = 'ECI';
                     DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el número de pedidos de venta Retenidos.';
+                    ToolTip = 'ECI';
 
                     trigger OnDrillDown()
                     begin
@@ -346,9 +346,9 @@ Page 50031 "Almacen Datos"
                 field(PORTUGAL; PORTUGAL)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Pedidos Pendiente Comercial';
+                    Caption = 'PORTUGAL';
                     DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el número de pedidos de venta Pendiente Comercial.';
+                    ToolTip = 'PORTUGAL';
 
                     trigger OnDrillDown()
                     begin
@@ -368,9 +368,9 @@ Page 50031 "Almacen Datos"
                 field(CANARIAS; CANARIAS)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Pedidos Para Preparar';
+                    Caption = 'CANARIAS';
                     DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el número de pedidos de venta Para Preparar';
+                    ToolTip = 'CANARIAS';
 
                     trigger OnDrillDown()
                     begin
@@ -408,9 +408,9 @@ Page 50031 "Almacen Datos"
                 field("ESPAÑAPDTE"; ESPAÑAPDTE)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'ESPAÑA';
+                    Caption = 'ESPAÑA Pdte.';
                     DrillDownPageID = "Pantalla Almacen";
-                    ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
+                    ToolTip = 'ESPAÑA Pdte.';
 
                     trigger OnDrillDown()
                     begin
@@ -431,9 +431,9 @@ Page 50031 "Almacen Datos"
                 field(ECIPDTE; ECIPDTE)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Pedidos - Retenidos';
+                    Caption = 'Eci Pdte.';
                     DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el número de pedidos de venta Retenidos.';
+                    ToolTip = 'Eci Pdte.';
 
                     trigger OnDrillDown()
                     begin
@@ -454,9 +454,9 @@ Page 50031 "Almacen Datos"
                 field(PORTUGALPDTE; PORTUGALPDTE)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Pedidos Pendiente Comercial';
+                    Caption = 'Portugal Pdte.';
                     DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el número de pedidos de venta Pendiente Comercial.';
+                    ToolTip = 'Portugal Pdte.';
 
                     trigger OnDrillDown()
                     begin
@@ -477,9 +477,9 @@ Page 50031 "Almacen Datos"
                 field(CANARIASPDTE; CANARIASPDTE)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Pedidos Para Preparar';
+                    Caption = 'Canarias Pdte.';
                     DrillDownPageID = "Sales Order List";
-                    ToolTip = 'Especifica el número de pedidos de venta Para Preparar';
+                    ToolTip = 'Canarias Pdte.';
 
                     trigger OnDrillDown()
                     begin
@@ -565,9 +565,9 @@ Page 50031 "Almacen Datos"
                 field(RETENIDO; RETENIDO)
                 {
                     ApplicationArea = Basic, Suite;
-                    Caption = 'Retenido';
+                    Caption = 'Retenidos';
                     DrillDownPageID = "Pantalla Almacen";
-                    ToolTip = 'Especifica el número de Presupuestos de venta que aún no se han convertido en pedidos.';
+                    ToolTip = 'Retenidos';
 
                     trigger OnDrillDown()
                     begin
@@ -588,7 +588,7 @@ Page 50031 "Almacen Datos"
                     ApplicationArea = Basic, Suite;
                     Caption = 'Pendiente Transferencia';
                     DrillDownPageID = "Pantalla Almacen";
-                    ToolTip = 'Especifica el número de Pedidos pendiente transferencia.';
+                    ToolTip = 'Pendiente Transferencia';
 
                     trigger OnDrillDown()
                     begin
@@ -632,7 +632,7 @@ Page 50031 "Almacen Datos"
                     ApplicationArea = Basic;
                     Caption = 'Pedido Contenedor Semana Actual';
                     DrillDownPageID = "Pantalla Almacen";
-                    ToolTip = 'Especifica el número de Pedidos Contenedor Semana Actual';
+                    ToolTip = 'Pedido Contenedor Semana Actual';
 
                     trigger OnDrillDown()
                     begin
@@ -654,7 +654,7 @@ Page 50031 "Almacen Datos"
                     ApplicationArea = Basic;
                     Caption = 'Pedido Contenedor Total';
                     DrillDownPageID = "Pantalla Almacen";
-                    ToolTip = 'Especifica el número de Pedidos Contenedor Total';
+                    ToolTip = 'Pedido Contenedor Total';
 
                     trigger OnDrillDown()
                     begin
