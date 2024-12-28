@@ -335,6 +335,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
         CAPITALSOCIAL: Code[10];
         ADAIA: Record ADAIA;
         NOMDIR: TEXT;
+        
 
 
     procedure GrabaEDICOM(codefac: Code[20])
@@ -344,28 +345,23 @@ Codeunit 50038 "Automaticos EDICOM facturas"
         FileName: Text;
         InStream: InStream;
         FicherosHagen: Codeunit FicherosHagen;
+        OutTxt: Text;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
     begin
-        TempBlob.CreateOutStream(OutStream);
+        
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
 
-
-
-
-
-
-
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
 
 
         CompanyInformation.Get;
         HACERLINEAS := false;
 
         SalesReceivablesSetup.Get;
-
-
-
-
-
-
-
 
         SalesInvoiceHeader.Reset;
         SalesInvoiceHeader.SetRange("No.", codefac);
@@ -396,7 +392,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     RECEPTOR := Customer."Sucrusal entrega";
                     PAGADOR := Customer."Quien paga";
                     PEDIDO := CopyStr(SalesInvoiceHeader."Your Reference", 1, 17);
-                    TextoSalida1 := Format(CopyStr(NUMFAC, 1, 15)) + '|' + ///// ECI 16 ///-1
+                    OutTxt := Format(CopyStr(NUMFAC, 1, 15)) + '|' + ///// ECI 16 ///-1
                              Format(CopyStr(VENDEDOR, 1, 17)) + '|' + ///Código EDI del vendedor o proveedor. ///-2
                            Format(CopyStr(EMISOR, 1, 17)) + '|' +  //-3
                            Format(CopyStr(COBRADOR, 1, 17)) + '|' +// -4
@@ -406,6 +402,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                            Format(CopyStr(CLIENTE, 1, 17)) + '|' + ///X 17 Código EDI del destinatario de la Factura(A ///-8
                            Format(CopyStr(PAGADOR, 1, 17)) + '|' +///X 17 Código EDI de quien paga. ///-9
                            Format(CopyStr(PEDIDO, 1, 17)) + '|';
+                           data.AddText(OutTxt);
                     ///X 17 Número de pedido del destinatario de la factura. ///-10
 
                     FFECHA := SalesInvoiceHeader."Posting Date";
@@ -454,7 +451,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     //end;
                     CONTRATO := '';
                     NFACSUS := '';
-                    TextoSalida2 := Format(CopyStr(FECHA, 1, 12)) + '|' + // X 12 Fecha de emisión de la factura. ///-11
+                     OutTxt := Format(CopyStr(FECHA, 1, 12)) + '|' + // X 12 Fecha de emisión de la factura. ///-11
                              Format(CopyStr(NODO, 1, 3)) + '|' + ///// 32 ///-12
                              '|' + //-13
                               Format(CopyStr(RSOCIAL, 1, 70)) + '|' + ///// 70 ///-14
@@ -466,6 +463,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                            Format(CopyStr(ALBARAN, 1, 17)) + '|' + ///// X 17 Número de albarán previo a la factura del 10 ///-20
                            Format(CopyStr(CONTRATO, 1, 17)) + '|' + ///// X 17 Número de contrato en facturas de servicios. 11  ///-21
                            Format(CopyStr(NFACSUS, 1, 17)) + '|'; ///// X 17 Número de factura sustitutiva 12  ///-22
+                           data.AddText(OutTxt);
 
 
                     SalesInvoiceHeader.CalcFields(Amount, "Amount Including VAT");
@@ -656,7 +654,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                         until CustLedgerEntry.Next = 0;
 
 
-                    TextoSalida3 := '|' + ///-23
+                     OutTxt := '|' + ///-23
                               Format(CopyStr(DIVISA, 1, 3)) + '|' + ///// X 3 Tipo de divisa utilizada en la factura: EUR = Euros. 14  ///-24
                            Format(CopyStr(SUMBRUTO, 1, 15)) + '|' + ///// N 15.3 Sumatorio brutos 15  ///-25
                            Format(CopyStr(SUMNETOS, 1, 15)) + '|' + ///// N 15.3 Sumatorio de netos 16  ///-26
@@ -668,7 +666,8 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                            Format(CopyStr(IMPIMP1, 1, 15)) + '|' + ///// N 15.3 Importe del impuesto 1 22  ///-32
                            Format(CopyStr(BASEIMP2, 1, 15)) + '|' + ///// N 15.3 Base imponible del impuesto 2 23 ///-33
                            Format(CopyStr(TIPOIMP2, 1, 3)) + '|'; ///// X 3 Tipo de impuesto 2 24 ///-34
-                    TextoSalida4 := Format(CopyStr(TASAIMP2, 1, 8)) + '|' + ///// N 8.3 25 ///-35
+                           data.AddText(OutTxt);
+                     OutTxt := Format(CopyStr(TASAIMP2, 1, 8)) + '|' + ///// N 8.3 25 ///-35
                                   Format(CopyStr(IMPIMP2, 1, 15)) + '|' + ///// N 15.3 Importe del impuesto 2 26 ///-36
                                   Format(CopyStr(BASEIMP3, 1, 15)) + '|' + ///// N 15.3 Base imponible del impuesto 3 27 ///-37
                                   Format(CopyStr(TIPOIMP3, 1, 3)) + '|' + ///// X 3 Tipo de impuesto 3 28 ///-38
@@ -679,6 +678,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   Format(CopyStr(TASAIMP4, 1, 8)) + '|' + ///// N 8.3 Porcentaje del impuesto 4 33 ///-43
                                   Format(CopyStr(IMPIMP4, 1, 15)) + '|' + ///// N 15.3 Importe del impuesto 4 34 ///-44
                                   Format(CopyStr(BASEIMP5, 1, 15)) + '|'; ///// N 15.3 Base imponible del impuesto 5 3///-45
+                                  data.AddText(OutTxt);
 
                     BASIMPFA := ConvertStr(Format(SalesInvoiceHeader.Amount * 100, 15, Text1100009), ' ', '0');
                     BASIMPFA := CopyStr(BASIMPFA, 3, 11) + ',' + CopyStr(BASIMPFA, 14, 2) + '0';
@@ -691,7 +691,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     TOTAL := CopyStr(TOTAL, 3, 11) + ',' + CopyStr(TOTAL, 14, 2) + '0';
 
 
-                    TextoSalida5 := Format(CopyStr(TIPOIMP5, 1, 3)) + '|' + ///// X 3 Tipo de impuesto 5 [G47TAX.5153] ([G47TAX.5283] = 7) ///-46
+                     OutTxt := Format(CopyStr(TIPOIMP5, 1, 3)) + '|' + ///// X 3 Tipo de impuesto 5 [G47TAX.5153] ([G47TAX.5283] = 7) ///-46
                                   Format(CopyStr(TASAIMP5, 1, 8)) + '|' + ///// N 8.3 Porcentaje del impuesto 5 ///-47
                                   Format(CopyStr(IMPIMP5, 1, 15)) + '|' + ///// N 15.3 Importe del impuesto 5 38 ///-48
                                   Format(CopyStr(BASEIMP6, 1, 15)) + '|' + ///// N 15.3 Base imponible del impuesto 6 39  ///-49
@@ -702,7 +702,8 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   Format(CopyStr(TOTIMP, 1, 15)) + '|' + ///// N 15.3 Importe total de impuestos 44 ///-54
                                   Format(CopyStr(TOTAL, 1, 15)) + '|' + ///// N 15.3 45  ///-55
                                   Format(CopyStr(VTO1, 1, 8)) + '|'; ///// X 8 Fecha primer vencimiento 46 ///-56
-                    TextoSalida6 := Format(CopyStr(IMPVTO1, 1, 15)) + '|' + ///// N 15.3 Importe primer vencimiento 47 ///-57
+                                  data.AddText(OutTxt);
+                     OutTxt := Format(CopyStr(IMPVTO1, 1, 15)) + '|' + ///// N 15.3 Importe primer vencimiento 47 ///-57
                                   '|' + ///-58
                            '|' +  ///-59
                            '|' +  ///-60
@@ -722,7 +723,8 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                            Format(CopyStr(SECUEN3, 1, 2)) + '|' + ///// N 2 Secuencia calculo descuento/cargo 3 64 ///-74
                            Format(CopyStr(TIPO3, 1, 3)) + '|' + ///// X 3 Tipo de descuento/cargo 3 65 ///-75
                            Format(CopyStr(PORCEN3, 1, 8)) + '|'; ///// N 8.3 Porcentaje del descuento o cargo 3. 66 ///-76
-                    TextoSalida7 := Format(CopyStr(IMPDES3, 1, 15)) + '|' + ///// N 15.3 Importe del descuento o cargo 3. 67 ///-77
+                           data.AddText(OutTxt);
+                     OutTxt := Format(CopyStr(IMPDES3, 1, 15)) + '|' + ///// N 15.3 Importe del descuento o cargo 3. 67 ///-77
                                   Format(CopyStr(CALIF4, 1, 3)) + '|' + ///// X 3 Calificador de cargo o descuento 4. 68 ///-78
                                   Format(CopyStr(SECUEN4, 1, 2)) + '|' + ///// N 2 Secuencia calculo descuento/cargo 4 69 ///-79
                                   Format(CopyStr(TIPO4, 1, 3)) + '|' + ///// X 3 Tipo de descuento/cargo 4 70 ///-80
@@ -733,22 +735,24 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   Format(CopyStr(TIPO5, 1, 3)) + '|' + ///// X 3 Tipo de descuento/cargo 5 75 ///-85
                                   Format(CopyStr(PORCEN5, 1, 8)) + '|' + ///// N 8.3 76 ///-86
                                   Format(CopyStr(IMPDES5, 1, 15)) + '|'; ///// N 15.3 Importe  del descuento o cargo 5. 77 ///-87
+                                  data.AddText(OutTxt);
                     ERSOCIAL := CompanyInformation.Name;
                     ECALLE := CompanyInformation.Address;
                     EPOBLAC := CompanyInformation.County;
                     ECP := CompanyInformation."Post Code";
                     ENIF := CompanyInformation."VAT Registration No.";
 
-                    TextoSalida8 := Format(CopyStr(ERSOCIAL, 1, 70)) + '|' + ///// X 70 Razón social del emisor de la factura. 78 ///-88
+                     OutTxt := Format(CopyStr(ERSOCIAL, 1, 70)) + '|' + ///// X 70 Razón social del emisor de la factura. 78 ///-88
                                   Format(CopyStr(ECALLE, 1, 35)) + '|' + ///// X 35 Domicilio del emisor de la factura. 79 ///-89
                                   Format(CopyStr(EPOBLAC, 1, 35)) + '|' + ///// X 35 Población del emisor de la factura 80  ///-90
                                   Format(CopyStr(ECP, 1, 5)) + '|' + ///// X 5 Código postal del emisor de la factura. 81 ///-91
                                   Format(CopyStr(ENIF, 1, 17)) + '|'; ///// X 17 NIF del emisor de la factura 82 ///-92
+                                  data.AddText(OutTxt);
                     FFECHA := SalesInvoiceHeader."Posting Date";
                     CALCULOFECHA;
                     FECHADOC := LAFECHA;
                     ERMERCA := 'Tomo:7.753, Folio:!, Nº hoja registral: v95742.';
-                    TextoSalida9 := Format(CopyStr(ERMERCA, 1, 70)) + '|' + ///// X 70 Registro mercantil del emisor de la factura. 83 ///-93
+                     OutTxt := Format(CopyStr(ERMERCA, 1, 70)) + '|' + ///// X 70 Registro mercantil del emisor de la factura. 83 ///-93
                                   Format(CopyStr(NOTAC, 1, 17)) + '|' + ///// X 17 Nota de cargo que se abona. 84 ///-94
                                   '|' + ///-95
                            '|' + ///-96
@@ -770,6 +774,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                            Format(CopyStr(FECHADOC, 1, 8)) + '|' + ///// X 8 Fecha del documento 102   ///-111
                            Format(CopyStr(REFPAGO, 1, 35)) + '|' + ///// X 35 Texto de referencia de pago 103  ///-112
                            '|'; ///-113
+                           data.AddText(OutTxt);
                     NIFII := CompanyInformation."VAT Registration No.";
                     NIFPE := SalesInvoiceHeader."VAT Registration No.";
                     NIFIV := SalesInvoiceHeader."VAT Registration No.";
@@ -792,7 +797,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     end;
 
 
-                    TextoSalida10 := Format(CopyStr(NIFII, 1, 17)) + '|' + ///// X 17 NIF de la empresa emisora de la factura  ///-114
+                     OutTxt := Format(CopyStr(NIFII, 1, 17)) + '|' + ///// X 17 NIF de la empresa emisora de la factura  ///-114
                                    Format(CopyStr(NIFPE, 1, 17)) + '|' + ///// X 17 NIF de la empresa a quien se paga ///-115
                                    Format(CopyStr(NIFIV, 1, 17)) + '|' + ///// X 17 NIF de la empresa destinataria de la factura 107 ///-116
                                    Format(CopyStr(NIFPR, 1, 17)) + '|' + ///// X 17 NIF de la empresa que paga la factura 108 ///-117
@@ -827,7 +832,8 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                            '|' + FENTRGA + ///-147
                            '|' + ///-148
                            '|'; ///-149
-                    TextoSalida11 := Format(CopyStr(ECPEXT, 1, 17)) + '|' + ///// X 17 Código postal del emisor de la factura extendido 140  ///-150
+                           data.AddText(OutTxt);
+                     OutTxt := Format(CopyStr(ECPEXT, 1, 17)) + '|' + ///// X 17 Código postal del emisor de la factura extendido 140  ///-150
                                    Format(CopyStr(FECFACSUS, 1, 12)) + '|' + ///// X 12 Fecha de la factura a la que se sustituye o la que 141  ///-150
                                    Format(CopyStr(EPAIS, 1, 3)) + '|' + ///// X 3 País del emisor de la factura. 142 ///-151
                                    Format(CopyStr(RELVTO, 1, 3)) + '|' + ///// X 3 Relación de tiempo codificado [G08PAT.2009] ([G08PAT.4279] = 1) Y 143 ///-152
@@ -847,9 +853,13 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                    Format(CopyStr(AUTORIZDEV, 1, 35)) + '|' + ///// X 35 Número autorización devolución (10 posiciones)
                                    '|' +
                                    Format(CopyStr(FECTAX, 1, 12)); ///// X 12 Fecha del cálculo de los impuestos de la factura.
+                                   data.AddText(OutTxt);
 
 
-                    OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8 + TextoSalida9 + TextoSalida10 + TextoSalida11);
+
+                    OutTxt += Format(CarriageReturn) + Format(LineFeed);                     
+
+                    data.AddText(OutTxt);                    
                     HACERLINEAS := true;
 
                 end;
@@ -859,8 +869,15 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
 
         SalesReceivablesSetup.get;
-        TempBlob.CreateInStream(InStream);
+        
+        
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
         FicherosHagen.CrearFichero(NOMDIR, 'CABFAC' + Format(codefac) + '.TXT', InStream);
+
+
+
+
 
         if HACERLINEAS then begin
             Lineas;
@@ -874,8 +891,19 @@ Codeunit 50038 "Automaticos EDICOM facturas"
         FileName: Text;
         InStream: InStream;
         FicherosHagen: Codeunit FicherosHagen;
+        OutTxt: Text;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
     begin
-        TempBlob.CreateOutStream(OutStream);
+        
+
+
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
 
 
 
@@ -977,7 +1005,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     DESC := String2; /////SalesInvoiceLine.Description;
 
 
-                    TextoSalida1 := Format(CopyStr(NUMFAC, 1, 15)) + '|' + /////  X 15 Número de factura
+                    OutTxt := Format(CopyStr(NUMFAC, 1, 15)) + '|' + /////  X 15 Número de factura
                                   Format(CopyStr(NUMLIN, 1, 5)) + '|' + ///// N 5 Número de linea
                                   Format(CopyStr(REFEAN, 1, 17)) + '|' + ///// X 17 Referencia EAN del artículo
                                   Format(CopyStr(REFCLI, 1, 35)) + '|' + ///// X 35 Referencia del cliente. Código interno del artículo
@@ -988,6 +1016,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   Format(CopyStr(CFACT, 1, 15)) + '|' + ///// N 15.3 Cantidad facturada
                                   Format(CopyStr(CENT, 1, 10)) + '|' + ///// N 10 Cantidad entregada
                                   Format(CopyStr(UMEDIDA, 1, 3)) + '|'; ///// X 3 Unidad de medida para peso variable
+                                  data.AddText(OutTxt);
 
                     TIPOIMP1 := 'VAT';
                     TASAIMP1 := ConvertStr(Format(SalesInvoiceLine."VAT %" * 100, 8, Text1100009), ' ', '0');
@@ -995,7 +1024,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     IMPIMP1 := ConvertStr(Format((SalesInvoiceLine."Amount Including VAT" - SalesInvoiceLine.Amount) * 100, 15, Text1100009), ' ', '0');
                     IMPIMP1 := CopyStr(IMPIMP1, 3, 11) + ',' + CopyStr(IMPIMP1, 14, 2) + '0';
 
-                    TextoSalida2 := Format(CopyStr(PRECIOB, 1, 15)) + '|' + ///// N 15.3
+                    OutTxt :=  Format(CopyStr(PRECIOB, 1, 15)) + '|' + ///// N 15.3
                                   Format(CopyStr(PRECION, 1, 15)) + '|' + ///// N 15.3 Precio neto Unitario de artículo.
                                   Format(CopyStr(TIPOIMP1, 1, 3)) + '|' + ///// X 3 Tipo de impuesto 1
                                   Format(CopyStr(TASAIMP1, 1, 8)) + '|' + ///// N 8.3 Porcentaje de impuesto 1
@@ -1005,8 +1034,9 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   Format(CopyStr(IMPTASA2, 1, 15)) + '|' + ///// N 15.3 Importe del impuesto 2
                                   Format(CopyStr(TIPOIMP3, 1, 3)) + '|' + ///// X 3 Tipo de impuesto 3
                                   Format(CopyStr(TASAIMP3, 1, 8)) + '|'; ///// N 8.3 Porcentaje del impuesto 3
+                                  data.AddText(OutTxt);
 
-                    TextoSalida3 := Format(CopyStr(IMPTASA3, 1, 15)) + '|' + ///// N 15.3 Importe del impuesto 3
+                    OutTxt := Format(CopyStr(IMPTASA3, 1, 15)) + '|' + ///// N 15.3 Importe del impuesto 3
                                   Format(CopyStr(CALIF1, 1, 3)) + '|' + ///// X 3 Calificador del dto/cargo 1
                                   Format(CopyStr(SECUEN1, 1, 2)) + '|' + ///// N 2 Secuencia del descuento/cargo 1
                                   Format(CopyStr(TIPO1, 1, 3)) + '|' + ///// X 3 Tipo de descuento/cargo 1
@@ -1016,8 +1046,9 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   Format(CopyStr(SECUEN2, 1, 2)) + '|' + ///// N 2 Secuencia del descuento/cargo 2
                                   Format(CopyStr(TIPO2, 1, 3)) + '|' + ///// X 3 Tipo de descuento/cargo 2
                                   Format(CopyStr(PORCEN2, 1, 8)) + '|'; ///// N 8.3 Porcentaje del descuento/cargo 2
+                                  data.AddText(OutTxt);
 
-                    TextoSalida4 := Format(CopyStr(IMPDTO2, 1, 15)) + '|' + ///// N 15.3 Importe del descuento/cargo 2
+                    OutTxt := Format(CopyStr(IMPDTO2, 1, 15)) + '|' + ///// N 15.3 Importe del descuento/cargo 2
                                   Format(CopyStr(CALIF3, 1, 3)) + '|' + ///// X 3 Calificador del descuento/cargo 3
                                   Format(CopyStr(SECUEN3, 1, 2)) + '|' + ///// N 2 Secuencia del descuento/cargo 3
                                   Format(CopyStr(TIPO3, 1, 3)) + '|' + ///// X 3 Tipo de descuento/cargo 3
@@ -1027,9 +1058,10 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   Format(CopyStr(SECUEN4, 1, 2)) + '|' + ///// N 2 Secuencia del descuento/cargo 4
                                   Format(CopyStr(TIPO4, 1, 1)) + '|' + ///// X 3 Tipo de descuento/cargo 4
                                   Format(CopyStr(PORCEN4, 1, 8)) + '|'; ///// N 8.3 Porcentaje del descuento/cargo 4
+                                  data.AddText(OutTxt);
 
                     ///ALBARAN:=SalesInvoiceLine."Shipment No.";
-                    TextoSalida5 := Format(CopyStr(IMDTO4, 1, 15)) + '|' + ///// N 15.3 Importe del descuento/cargo 4
+                    OutTxt := Format(CopyStr(IMDTO4, 1, 15)) + '|' + ///// N 15.3 Importe del descuento/cargo 4
                                   Format(CopyStr(CBONI, 1, 15)) + '|' + ///// N 15 Cantidad bonificada o regalada
                                   Format(CopyStr(NETO, 1, 15)) + '|' + ///// N 15.3 Importe neto de la línea.
                                   Format(CopyStr(PVERDE, 1, 15)) + '|' + ///// N 15.3 Importe del punto verde por línea. [G38MOA.5004] ([G38MOA.5025] = 23)
@@ -1059,8 +1091,9 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   '|' +
                                   '|' +
                                   '|';
+                                  data.AddText(OutTxt);
 
-                    TextoSalida6 := Format(CopyStr(FPEDIDO, 1, 12)) + '|' + ///// X 12 Fecha del pedido
+                    OutTxt := Format(CopyStr(FPEDIDO, 1, 12)) + '|' + ///// X 12 Fecha del pedido
                                   '|' +
                                   '|' +
                                   '|' +
@@ -1072,19 +1105,27 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   '|' +
                                   '|' +
                                   Format(CopyStr(NUMLINSUBLIN, 1, 5)); ///// N 5 Número de línea de dependencia de la sublínea
+                                  data.AddText(OutTxt);
 
 
 
 
-                    OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6);
+                    OutTxt += Format(CarriageReturn) + Format(LineFeed);                     
+                    data.AddText(OutTxt);                    
+                    
 
                 end;
             until SalesInvoiceLine.Next = 0;
 
         SalesReceivablesSetup.get;
 
-        TempBlob.CreateInStream(InStream);
+       
+
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
         FicherosHagen.CrearFichero(NOMDIR, 'LINFAC' + Format(SalesInvoiceHeader."No.") + '.TXT', InStream);
+
+
 
     end;
 
@@ -1130,8 +1171,19 @@ Codeunit 50038 "Automaticos EDICOM facturas"
         FileName: Text;
         InStream: InStream;
         FicherosHagen: Codeunit FicherosHagen;
+        OutTxt: Text;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+
     begin
-        TempBlob.CreateOutStream(OutStream);
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
+
+
 
 
 
@@ -1169,7 +1221,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     RECEPTOR := Customer."Sucrusal entrega";
                     PAGADOR := Customer."Quien paga";
                     PEDIDO := CopyStr(SalesCrMemoHeader."Your Reference", 1, 17);
-                    TextoSalida1 := Format(CopyStr(NUMFAC, 1, 15)) + '|' + ///// ECI 16
+                    OutTxt := Format(CopyStr(NUMFAC, 1, 15)) + '|' + ///// ECI 16
                              Format(CopyStr(VENDEDOR, 1, 17)) + '|' + ///Código EDI del vendedor o proveedor.
                                   Format(CopyStr(EMISOR, 1, 17)) + '|' +
                            Format(CopyStr(COBRADOR, 1, 17)) + '|' +
@@ -1222,7 +1274,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     //end;
                     CONTRATO := '';
                     NFACSUS := SalesCrMemoHeader."Corrected Invoice No.";
-                    TextoSalida2 := Format(CopyStr(FECHA, 1, 12)) + '|' + // X 12 Fecha de emisión de la factura.
+                    OutTxt := Format(CopyStr(FECHA, 1, 12)) + '|' + // X 12 Fecha de emisión de la factura.
                              Format(CopyStr(NODO, 1, 3)) + '|' + ///// 3
                              '|' +
                              Format(CopyStr(RSOCIAL, 1, 70)) + '|' + ///// 70
@@ -1234,6 +1286,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                              Format(CopyStr(ALBARAN, 1, 17)) + '|' + ///// X 17 Número de albarán previo a la factura del
                              Format(CopyStr(CONTRATO, 1, 17)) + '|' + ///// X 17 Número de contrato en facturas de servicios.
                              Format(CopyStr(NFACSUS, 1, 17)) + '|'; ///// X 17 Número de factura sustitutiva
+                             data.AddText(OutTxt);
 
 
                     SalesCrMemoHeader.CalcFields(Amount, "Amount Including VAT");
@@ -1424,7 +1477,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                         until CustLedgerEntry.Next = 0;
 
 
-                    TextoSalida3 := '|' +
+                    OutTxt := '|' +
                                   Format(CopyStr(DIVISA, 1, 3)) + '|' + ///// X 3 Tipo de divisa utilizada en la factura: EUR = Euros.
                                   Format(CopyStr(SUMBRUTO, 1, 15)) + '|' + ///// N 15.3 Sumatorio brutos
                                   Format(CopyStr(SUMNETOS, 1, 15)) + '|' + ///// N 15.3 Sumatorio de netos
@@ -1436,7 +1489,8 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   Format(CopyStr(IMPIMP1, 1, 15)) + '|' + ///// N 15.3 Importe del impuesto 1
                                   Format(CopyStr(BASEIMP2, 1, 15)) + '|' + ///// N 15.3 Base imponible del impuesto 2
                                   Format(CopyStr(TIPOIMP2, 1, 3)) + '|'; ///// X 3 Tipo de impuesto 2
-                    TextoSalida4 := Format(CopyStr(TASAIMP2, 1, 8)) + '|' + ///// N 8.3
+                                  data.AddText(OutTxt);
+                    OutTxt := Format(CopyStr(TASAIMP2, 1, 8)) + '|' + ///// N 8.3
                                   Format(CopyStr(IMPIMP2, 1, 15)) + '|' + ///// N 15.3 Importe del impuesto 2
                                   Format(CopyStr(BASEIMP3, 1, 15)) + '|' + ///// N 15.3 Base imponible del impuesto 3
                                   Format(CopyStr(TIPOIMP3, 1, 3)) + '|' + ///// X 3 Tipo de impuesto 3
@@ -1447,6 +1501,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   Format(CopyStr(TASAIMP4, 1, 8)) + '|' + ///// N 8.3 Porcentaje del impuesto 4
                                   Format(CopyStr(IMPIMP4, 1, 15)) + '|' + ///// N 15.3 Importe del impuesto 4
                                   Format(CopyStr(BASEIMP5, 1, 15)) + '|'; ///// N 15.3 Base imponible del impuesto 5
+                                  data.AddText(OutTxt);
 
                     BASIMPFA := ConvertStr(Format(SalesCrMemoHeader.Amount * 100, 15, Text1100009), ' ', '0');
                     BASIMPFA := CopyStr(BASIMPFA, 3, 11) + ',' + CopyStr(BASIMPFA, 14, 2) + '0';
@@ -1459,7 +1514,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     TOTAL := CopyStr(TOTAL, 3, 11) + ',' + CopyStr(TOTAL, 14, 2) + '0';
 
 
-                    TextoSalida5 := Format(CopyStr(TIPOIMP5, 1, 3)) + '|' + ///// X 3 Tipo de impuesto 5 [G47TAX.5153] ([G47TAX.5283] = 7)
+                    OutTxt := Format(CopyStr(TIPOIMP5, 1, 3)) + '|' + ///// X 3 Tipo de impuesto 5 [G47TAX.5153] ([G47TAX.5283] = 7)
                                   Format(CopyStr(TASAIMP5, 1, 8)) + '|' + ///// N 8.3 Porcentaje del impuesto 5
                                   Format(CopyStr(IMPIMP5, 1, 15)) + '|' + ///// N 15.3 Importe del impuesto 5
                                   Format(CopyStr(BASEIMP6, 1, 15)) + '|' + ///// N 15.3 Base imponible del impuesto 6
@@ -1470,7 +1525,8 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   Format(CopyStr(TOTIMP, 1, 15)) + '|' + ///// N 15.3 Importe total de impuestos
                                   Format(CopyStr(TOTAL, 1, 15)) + '|' + ///// N 15.3
                                   Format(CopyStr(VTO1, 1, 8)) + '|'; ///// X 8 Fecha primer vencimiento
-                    TextoSalida6 := Format(CopyStr(IMPVTO1, 1, 15)) + '|' + ///// N 15.3 Importe primer vencimiento
+                                  data.AddText(OutTxt);
+                    OutTxt := Format(CopyStr(IMPVTO1, 1, 15)) + '|' + ///// N 15.3 Importe primer vencimiento
                                   '|' +
                                   '|' +
                                   '|' +
@@ -1490,7 +1546,8 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   Format(CopyStr(SECUEN3, 1, 2)) + '|' + ///// N 2 Secuencia calculo descuento/cargo 3
                                   Format(CopyStr(TIPO3, 1, 3)) + '|' + ///// X 3 Tipo de descuento/cargo 3
                                   Format(CopyStr(PORCEN3, 1, 8)) + '|'; ///// N 8.3 Porcentaje del descuento o cargo 3.
-                    TextoSalida7 := Format(CopyStr(IMPDES3, 1, 15)) + '|' + ///// N 15.3 Importe del descuento o cargo 3.
+                                  data.AddText(OutTxt);
+                    OutTxt := Format(CopyStr(IMPDES3, 1, 15)) + '|' + ///// N 15.3 Importe del descuento o cargo 3.
                                   Format(CopyStr(CALIF4, 1, 3)) + '|' + ///// X 3 Calificador de cargo o descuento 4.
                                   Format(CopyStr(SECUEN4, 1, 2)) + '|' + ///// N 2 Secuencia calculo descuento/cargo 4
                                   Format(CopyStr(TIPO4, 1, 3)) + '|' + ///// X 3 Tipo de descuento/cargo 4
@@ -1501,22 +1558,24 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   Format(CopyStr(TIPO5, 1, 3)) + '|' + ///// X 3 Tipo de descuento/cargo 5
                                   Format(CopyStr(PORCEN5, 1, 8)) + '|' + ///// N 8.3
                                   Format(CopyStr(IMPDES5, 1, 15)) + '|'; ///// N 15.3 Importe del descuento o cargo 5.
+                                  data.AddText(OutTxt);
                     ERSOCIAL := CompanyInformation.Name;
                     ECALLE := CompanyInformation.Address;
                     EPOBLAC := CompanyInformation.County;
                     ECP := CompanyInformation."Post Code";
                     ENIF := CompanyInformation."VAT Registration No.";
 
-                    TextoSalida8 := Format(CopyStr(ERSOCIAL, 1, 70)) + '|' + ///// X 70 Razón social del emisor de la factura.
+                    OutTxt := Format(CopyStr(ERSOCIAL, 1, 70)) + '|' + ///// X 70 Razón social del emisor de la factura.
                                   Format(CopyStr(ECALLE, 1, 35)) + '|' + ///// X 35 Domicilio del emisor de la factura.
                                   Format(CopyStr(EPOBLAC, 1, 35)) + '|' + ///// X 35 Población del emisor de la factura
                                   Format(CopyStr(ECP, 1, 5)) + '|' + ///// X 5 Código postal del emisor de la factura.
                                   Format(CopyStr(ENIF, 1, 17)) + '|'; ///// X 17 NIF del emisor de la factura
+                                  data.AddText(OutTxt);
                     FFECHA := SalesCrMemoHeader."Posting Date";
                     CALCULOFECHA;
                     FECHADOC := LAFECHA;
                     ERMERCA := 'Tomo:7.753, Folio:!, Nº hoja registral: v95742.';
-                    TextoSalida9 := Format(CopyStr(ERMERCA, 1, 70)) + '|' + ///// X 70 Registro mercantil del emisor de la factura.
+                    OutTxt := Format(CopyStr(ERMERCA, 1, 70)) + '|' + ///// X 70 Registro mercantil del emisor de la factura.
                                   Format(CopyStr(NOTAC, 1, 17)) + '|' + ///// X 17 Nota de cargo que se abona.
                                   '|' +
                                   '|' +
@@ -1538,6 +1597,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   Format(CopyStr(FECHADOC, 1, 8)) + '|' + ///// X 8 Fecha del documento
                                   Format(CopyStr(REFPAGO, 1, 35)) + '|' + ///// X 35 Texto de referencia de pago
                                   '|';
+                                  data.AddText(OutTxt);
                     NIFII := CompanyInformation."VAT Registration No.";
                     NIFPE := SalesCrMemoHeader."VAT Registration No.";
                     NIFIV := SalesCrMemoHeader."VAT Registration No.";
@@ -1548,7 +1608,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     CALCULOFECHA;
                     FPEDIDO := FECHA;
 
-                    TextoSalida10 := Format(CopyStr(NIFII, 1, 17)) + '|' + ///// X 17 NIF de la empresa emisora de la factura
+                    OutTxt := Format(CopyStr(NIFII, 1, 17)) + '|' + ///// X 17 NIF de la empresa emisora de la factura
                                    Format(CopyStr(NIFPE, 1, 17)) + '|' + ///// X 17 NIF de la empresa a quien se paga
                                    Format(CopyStr(NIFIV, 1, 17)) + '|' + ///// X 17 NIF de la empresa destinataria de la factura
                                    Format(CopyStr(NIFPR, 1, 17)) + '|' + ///// X 17 NIF de la empresa que paga la factura
@@ -1583,7 +1643,8 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                    '|' +
                                    '|' +
                                    '|';
-                    TextoSalida11 := Format(CopyStr(ECPEXT, 1, 17)) + '|' + ///// X 17 Código postal del emisor de la factura extendido
+                                   data.AddText(OutTxt);
+                    OutTxt := Format(CopyStr(ECPEXT, 1, 17)) + '|' + ///// X 17 Código postal del emisor de la factura extendido
                                    Format(CopyStr(FECFACSUS, 1, 12)) + '|' + ///// X 12 Fecha de la factura a la que se sustituye o la que
                                    Format(CopyStr(EPAIS, 1, 3)) + '|' + ///// X 3 País del emisor de la factura.
                                    Format(CopyStr(RELVTO, 1, 3)) + '|' + ///// X 3 Relación de tiempo codificado [G08PAT.2009] ([G08PAT.4279] = 1) Y
@@ -1603,6 +1664,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                    Format(CopyStr(AUTORIZDEV, 1, 35)) + '|' + ///// X 35 Número autorización devolución (10 posiciones)
                                    '|' +
                                    Format(CopyStr(FECTAX, 1, 12)); ///// X 12 Fecha del cálculo de los impuestos de la factura.
+                                   data.AddText(OutTxt);
 
 
                     OutStream.Write(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7 + TextoSalida8 + TextoSalida9 + TextoSalida10 + TextoSalida11);
@@ -1614,7 +1676,9 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
 
         SalesReceivablesSetup.get;
-        TempBlob.CreateInStream(InStream);
+        
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
         FicherosHagen.CrearFichero(NOMDIR, 'CABFAC' + Format(codefac) + '.TXT', InStream);
 
 
@@ -1631,8 +1695,19 @@ Codeunit 50038 "Automaticos EDICOM facturas"
         FileName: Text;
         InStream: InStream;
         FicherosHagen: Codeunit FicherosHagen;
+        OutTxt: Text;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+
     begin
-        TempBlob.CreateOutStream(OutStream);
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
+
+
 
         NUMLINint := 0;
 
@@ -1727,7 +1802,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     DESC := String2; /////SalesInvoiceLine.Description;
 
 
-                    TextoSalida1 := Format(CopyStr(NUMFAC, 1, 15)) + '|' + /////  X 15 Número de factura
+                    OutTxt := Format(CopyStr(NUMFAC, 1, 15)) + '|' + /////  X 15 Número de factura
                                   Format(CopyStr(NUMLIN, 1, 5)) + '|' + ///// N 5 Número de linea
                                   Format(CopyStr(REFEAN, 1, 17)) + '|' + ///// X 17 Referencia EAN del artículo
                                   Format(CopyStr(REFCLI, 1, 35)) + '|' + ///// X 35 Referencia del cliente. Código interno del artículo
@@ -1738,6 +1813,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   Format(CopyStr(CFACT, 1, 15)) + '|' + ///// N 15.3 Cantidad facturada
                                   Format(CopyStr(CENT, 1, 10)) + '|' + ///// N 10 Cantidad entregada
                                   Format(CopyStr(UMEDIDA, 1, 3)) + '|'; ///// X 3 Unidad de medida para peso variable
+                                  data.AddText(OutTxt);
 
                     TIPOIMP1 := 'VAT';
                     TASAIMP1 := ConvertStr(Format(SalesCrMemoLine."VAT %" * 100, 8, Text1100009), ' ', '0');
@@ -1745,7 +1821,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     IMPIMP1 := ConvertStr(Format((SalesCrMemoLine."Amount Including VAT" - SalesCrMemoLine.Amount) * 100, 15, Text1100009), ' ', '0');
                     IMPIMP1 := CopyStr(IMPIMP1, 3, 11) + ',' + CopyStr(IMPIMP1, 14, 2) + '0';
 
-                    TextoSalida2 := Format(CopyStr(PRECIOB, 1, 15)) + '|' + ///// N 15.3
+                    OutTxt := Format(CopyStr(PRECIOB, 1, 15)) + '|' + ///// N 15.3
                                   Format(CopyStr(PRECION, 1, 15)) + '|' + ///// N 15.3 Precio neto Unitario de artículo.
                                   Format(CopyStr(TIPOIMP1, 1, 3)) + '|' + ///// X 3 Tipo de impuesto 1
                                   Format(CopyStr(TASAIMP1, 1, 8)) + '|' + ///// N 8.3 Porcentaje de impuesto 1
@@ -1755,8 +1831,9 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   Format(CopyStr(IMPTASA2, 1, 15)) + '|' + ///// N 15.3 Importe del impuesto 2
                                   Format(CopyStr(TIPOIMP3, 1, 3)) + '|' + ///// X 3 Tipo de impuesto 3
                                   Format(CopyStr(TASAIMP3, 1, 8)) + '|'; ///// N 8.3 Porcentaje del impuesto 3
+                                  data.AddText(OutTxt);
 
-                    TextoSalida3 := Format(CopyStr(IMPTASA3, 1, 15)) + '|' + ///// N 15.3 Importe del impuesto 3
+                    OutTxt := Format(CopyStr(IMPTASA3, 1, 15)) + '|' + ///// N 15.3 Importe del impuesto 3
                                   Format(CopyStr(CALIF1, 1, 3)) + '|' + ///// X 3 Calificador del dto/cargo 1
                                   Format(CopyStr(SECUEN1, 1, 2)) + '|' + ///// N 2 Secuencia del descuento/cargo 1
                                   Format(CopyStr(TIPO1, 1, 3)) + '|' + ///// X 3 Tipo de descuento/cargo 1
@@ -1766,8 +1843,9 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   Format(CopyStr(SECUEN2, 1, 2)) + '|' + ///// N 2 Secuencia del descuento/cargo 2
                                   Format(CopyStr(TIPO2, 1, 3)) + '|' + ///// X 3 Tipo de descuento/cargo 2
                                   Format(CopyStr(PORCEN2, 1, 8)) + '|'; ///// N 8.3 Porcentaje del descuento/cargo 2
+                                  data.AddText(OutTxt);
 
-                    TextoSalida4 := Format(CopyStr(IMPDTO2, 1, 15)) + '|' + ///// N 15.3 Importe del descuento/cargo 2
+                    OutTxt := Format(CopyStr(IMPDTO2, 1, 15)) + '|' + ///// N 15.3 Importe del descuento/cargo 2
                                   Format(CopyStr(CALIF3, 1, 3)) + '|' + ///// X 3 Calificador del descuento/cargo 3
                                   Format(CopyStr(SECUEN3, 1, 2)) + '|' + ///// N 2 Secuencia del descuento/cargo 3
                                   Format(CopyStr(TIPO3, 1, 3)) + '|' + ///// X 3 Tipo de descuento/cargo 3
@@ -1777,9 +1855,10 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   Format(CopyStr(SECUEN4, 1, 2)) + '|' + ///// N 2 Secuencia del descuento/cargo 4
                                   Format(CopyStr(TIPO4, 1, 1)) + '|' + ///// X 3 Tipo de descuento/cargo 4
                                   Format(CopyStr(PORCEN4, 1, 8)) + '|'; ///// N 8.3 Porcentaje del descuento/cargo 4
+                                  data.AddText(OutTxt);
 
                     ///ALBARAN:=SalesInvoiceLine."Shipment No.";
-                    TextoSalida5 := Format(CopyStr(IMDTO4, 1, 15)) + '|' + ///// N 15.3 Importe del descuento/cargo 4
+                    OutTxt := Format(CopyStr(IMDTO4, 1, 15)) + '|' + ///// N 15.3 Importe del descuento/cargo 4
                                   Format(CopyStr(CBONI, 1, 15)) + '|' + ///// N 15 Cantidad bonificada o regalada
                                   Format(CopyStr(NETO, 1, 15)) + '|' + ///// N 15.3 Importe neto de la línea.
                                   Format(CopyStr(PVERDE, 1, 15)) + '|' + ///// N 15.3 Importe del punto verde por línea. [G38MOA.5004] ([G38MOA.5025] = 23)
@@ -1809,8 +1888,9 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   '|' +
                                   '|' +
                                   '|';
+                                  data.AddText(OutTxt);
 
-                    TextoSalida6 := Format(CopyStr(FPEDIDO, 1, 12)) + '|' + ///// X 12 Fecha del pedido
+                    OutTxt := Format(CopyStr(FPEDIDO, 1, 12)) + '|' + ///// X 12 Fecha del pedido
                                   '|' +
                                   '|' +
                                   '|' +
@@ -1822,6 +1902,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                                   '|' +
                                   '|' +
                                   Format(CopyStr(NUMLINSUBLIN, 1, 5)); ///// N 5 Número de línea de dependencia de la sublínea
+                                  data.AddText(OutTxt);
 
 
 
@@ -1833,8 +1914,13 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
 
         SalesReceivablesSetup.get;
-        TempBlob.CreateInStream(InStream);
+         
+        
+
+        Data.Write(OutStream);
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
         FicherosHagen.CrearFichero(NOMDIR, 'LINFAC' + Format(SalesCrMemoHeader."No.") + '.TXT', InStream);
+
 
     end;
 }

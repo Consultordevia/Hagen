@@ -5,7 +5,7 @@ XmlPort 50030 "Importacion PEDIDOS ECI EDICOM"
     Direction = Import;
     FieldSeparator = '|';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -690,7 +690,7 @@ XmlPort 50030 "Importacion PEDIDOS ECI EDICOM"
             RecCV."Shipping No. Series" := SalesSetup."Posted Shipment Nos.";
             RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
             RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
-            RecCV.validate("Your Reference" ,D4);
+            RecCV.validate("Your Reference", D4);
             RecCV."Dpto.ECI" := D18;
             RecCV."External Document No." := D1;
             RecCV."No agrupar en ADAIA" := true;
