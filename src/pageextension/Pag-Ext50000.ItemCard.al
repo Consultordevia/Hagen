@@ -52,6 +52,7 @@ pageextension 50000 "Item Card" extends "Item Card"
             {
 
 
+            
                 field("Usuario última modificación"; Rec."Usuario última modificación") { ApplicationArea = All; }
                 field("Fecha Alta"; Rec."Fecha Alta") { ApplicationArea = All; }
                 field("Fecha Lanzamiento"; Rec."Fecha Lanzamiento") { ApplicationArea = All; }

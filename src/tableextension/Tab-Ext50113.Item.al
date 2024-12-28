@@ -1292,6 +1292,11 @@ tableextension 50113 Item extends Item
             FieldClass = FlowField;
         }
 
+        field(50346; subido; Boolean)
+        {            
+        }
+
+
         field(60000; "Actualizar WEB"; Boolean)
         {
         }
