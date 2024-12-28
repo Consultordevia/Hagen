@@ -694,6 +694,7 @@ XmlPort 50030 "Importacion PEDIDOS ECI EDICOM"
             RecCV."Dpto.ECI" := D18;
             RecCV."External Document No." := D1;
             RecCV."No agrupar en ADAIA" := true;
+            /*
             if (D7 <> '') then begin
                 cd1 := CopyStr(D7, 7, 2);
                 cd2 := CopyStr(D7, 5, 2);
@@ -702,10 +703,12 @@ XmlPort 50030 "Importacion PEDIDOS ECI EDICOM"
                 Evaluate(dd2, cd2);
                 Evaluate(dd3, cd3);
                 RecCV."Requested Delivery Date" := Dmy2date(dd1, dd2, dd3);
-                if today>Dmy2date(dd1, dd2, dd3) then begin
+                ///if today>Dmy2date(dd1, dd2, dd3) then begin
                         RecCV."Requested Delivery Date" :=today;
-                end;
+                ///end;
+
             end;
+            */
             RecCV.Insert(true);
 
 

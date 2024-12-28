@@ -3,7 +3,7 @@ XmlPort 50037 "Importacion SENDING"
 {
     Caption = 'Importacion PEDIDOS tienda ani';
     Direction = Import;
-    FieldSeparator = ';';
+    FieldSeparator = '|';
     Format = VariableText;
     TextEncoding =  UTF16;
     Permissions = TableData "Sales Shipment Header" = rim;

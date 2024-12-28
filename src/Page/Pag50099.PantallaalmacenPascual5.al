@@ -398,22 +398,25 @@ Page 50099 "Pantalla almacen Pascual5"
                         v: Dialog;
                     begin
                         v.Open('#1##############');
-
-                        if Rec1.FindFirst() then repeat                                                 
-                            if Rec1."URL IMAGEN 1"<>'' then begin
-                                v.Update(1,Rec1."No.");
-                                PictureURL := Rec1."URL IMAGEN 1";                                                  
-                                Client.Get(PictureURL, Response);
-                                Response.Content.ReadAs(InStr);
-                                Clear(Rec1.Picture);
-                                Rec1.Picture.ImportStream(InStr, Format(Rec1."No."));
-                                Rec1.subido:=true;
-                                rec1.Modify;
-                                Commit();
-                            end;
-                        until rec1.next=0;
+                        rec1.reset;
+                        Rec1.SetRange(subido, false);
+                        rec1.SetRange("No.", '60888', 'ZZZZZZZZZZ');
+                        if Rec1.FindFirst() then
+                            repeat
+                                if Rec1."URL IMAGEN 1" <> '' then begin
+                                    v.Update(1, Rec1."No.");
+                                    PictureURL := Rec1."URL IMAGEN 1";
+                                    Client.Get(PictureURL, Response);
+                                    Response.Content.ReadAs(InStr);
+                                    Clear(Rec1.Picture);
+                                    Rec1.Picture.ImportStream(InStr, Format(Rec1."No."));
+                                    Rec1.subido := true;
+                                    rec1.Modify;
+                                    Commit();
+                                end;
+                            until rec1.next = 0;
                         v.close;
-                        
+
 
                         Message('hecho');
                     end;
