@@ -264,7 +264,26 @@ pageextension 50000 "Item Card" extends "Item Card"
 
                 end;
             }
+
+
+            action("Importa Datos Productos")
+            {
+                ApplicationArea = Basic;
+
+                trigger OnAction()
+                var
+                    xmlImportaDatosProductos: XmlPort "Importa Datos Productos";
+                begin
+                    clear(xmlImportaDatosProductos);
+                    xmlImportaDatosProductos.run;
+                    Message('hecho');
+
+                end;
+
+
+            }
         }
+
 
     }
 

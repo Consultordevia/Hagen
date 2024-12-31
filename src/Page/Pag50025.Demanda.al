@@ -795,9 +795,9 @@ Page 50025 Demanda
 
         Item.Reset;
         Item.SetRange("Estado Producto", Item."estado producto"::Activo);
-        ///// Item.SETRANGE("No.",'70594');
+        ///Item.SetFilter("No.",'1*');
         Item.SetRange("Producto almacenable", true);
-        if Item.FindFirst then
+        if Item.FindSet then
             repeat
                 Cdadpedcompra := 0;
                 TTOTAL := 0;
@@ -813,7 +813,7 @@ Page 50025 Demanda
                     RECITEM.Get(Item."No.");
                     RECITEM.SetRange(RECITEM."Date Filter", INTERVALOD[I], INTERVALOH[I]);
                     RECITEM.CalcFields(RECITEM."Cantidad facturada", RECITEM."Cantidad abonada", RECITEM."Cantidad fabricada");
-                    /////-CantIntervalo[I]:=RECITEM."Cantidad facturada"+RECITEM."Cantidad abonada"; +RECITEM."Cantidad fabricada"*-1;
+                    CantIntervalo[I] := RECITEM."Cantidad facturada" + RECITEM."Cantidad abonada"; /////+RECITEM."Cantidad fabricada"*-1;
                     TTOTAL := TTOTAL + CantIntervalo[I];
                     sumaofertas := 0;
                     SalesLine22.Reset;
@@ -821,7 +821,7 @@ Page 50025 Demanda
                     SalesLine22.SetRange("Document Type", SalesLine22."document type"::Quote);
                     SalesLine22.SetRange("No.", Item."No.");
                     SalesLine22.SetRange("Fecha alta", INTERVALOD[I], INTERVALOH[I]);
-                    if SalesLine22.FindFirst then
+                    if SalesLine22.FindSet then
                         repeat
                             SalesLine22.CalcFields("Estado presupuesto");
                             if (SalesLine22."Estado presupuesto" = SalesLine22."estado presupuesto"::"Parcialmente procesado") or
@@ -846,7 +846,7 @@ Page 50025 Demanda
                 SalesLine22.SetCurrentkey("Document Type", "No.");
                 SalesLine22.SetRange("Document Type", SalesLine22."document type"::Order);
                 SalesLine22.SetRange("No.", Item."No.");
-                if SalesLine22.FindFirst then
+                if SalesLine22.FindSet then
                     repeat
                         if SalesHeader22.Get(SalesLine22."Document Type", SalesLine22."Document No.") then begin
                             if (SalesHeader22."Estado pedido" = SalesHeader22."estado pedido"::"Para preparar") or
@@ -873,7 +873,7 @@ Page 50025 Demanda
                 RecLC.SetCurrentkey(RecLC."Document Type", RecLC.Type, RecLC."No.");
                 RecLC.SetRange(RecLC."Document Type", 1);
                 RecLC.SetRange(RecLC."No.", Item."No.");
-                if RecLC.FindFirst then
+                if RecLC.FindSet then
                     repeat
                         if RecLC."Outstanding Quantity" <> 0 then begin
                             nofer := nofer + 1;
@@ -900,7 +900,7 @@ Page 50025 Demanda
                 RecLC.SetCurrentkey(RecLC."Document Type", RecLC.Type, RecLC."No.");
                 RecLC.SetRange(RecLC."Document Type", 0);
                 RecLC.SetRange(RecLC."No.", Item."No.");
-                if RecLC.FindFirst then
+                if RecLC.FindSet then
                     repeat
                         if RecLC."Outstanding Quantity" <> 0 then begin
                             nofer := nofer + 1;
@@ -940,8 +940,8 @@ Page 50025 Demanda
                 end;
                 pPropuesta := 0;
                 /////IF Totdispmes<0 THEN BEGIN
-                /////          Propuesta:=mMedia*Item."Unidad compra";
-                /////     END;
+                /////Propuesta:=mMedia*Item."Unidad compra";
+                /////END;
                 /////IF TTOTAL<>0 THEN BEGIN
 
 
@@ -1085,6 +1085,7 @@ Page 50025 Demanda
                 RequisitionLine."Dias rearov." := Item."Lead Time Calculation";
                 RequisitionLine.Insert;
                 VENTANA.Update(1, Item."No.");
+                Commit();
 
 
             until Item.Next = 0;

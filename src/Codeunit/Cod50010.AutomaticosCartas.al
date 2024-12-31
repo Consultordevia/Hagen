@@ -14522,6 +14522,20 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         Email.Send(EmailMessage, parEmailScenario);
     end;
 
+    procedure ModifCanarias(var Rec: Record "Sales Invoice Header");
+    var
+        RecHFV: Record "Sales Invoice Header";
+    
+    begin
+
+        RecHFV.get(Rec."No.");
+        RecHFV."Pasada a Canarias" := true;
+        RecHFV.Modify;
+
+
+
+    end;
+
 
 }
 

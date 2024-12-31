@@ -1,6 +1,9 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
 Codeunit 50019 Canarias
+
+
 {
+    Permissions = TableData "Sales Shipment Header" = rimd;
 
     trigger OnRun()
     begin
@@ -70,11 +73,11 @@ Codeunit 50019 Canarias
                     Rec362.SetRange(Rec362."Document Type", Rec36."Document Type");
                     Rec362.SetRange(Rec362."No.", Rec36."No.");
                     if Rec362.FindFirst then begin
-                        Codeunit.Run(Codeunit::"Sales-Post", Rec362);
+                        /////-Codeunit.Run(Codeunit::"Sales-Post", Rec362);
                         SalesInvoiceHeader.Reset;
                         SalesInvoiceHeader.SetRange("No.", Rec362."Last Posting No.");
                         if SalesInvoiceHeader.FindFirst then begin
-                            Report.Run(50914, false, false, SalesInvoiceHeader);
+                            /////-Report.Run(50914, false, false, SalesInvoiceHeader);
                         end;
                     end;
                 end;
@@ -144,7 +147,7 @@ Codeunit 50019 Canarias
                 Rec382.SetRange(Rec382."Document Type", Rec38."Document Type");
                 Rec382.SetRange(Rec382."No.", Rec38."No.");
                 if Rec382.FindFirst then begin
-                    Codeunit.Run(Codeunit::"Purch.-Post", Rec382);
+                    /////-Codeunit.Run(Codeunit::"Purch.-Post", Rec382);
                 end;
 
 

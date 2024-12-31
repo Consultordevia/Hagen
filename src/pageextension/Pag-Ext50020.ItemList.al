@@ -172,6 +172,8 @@ pageextension 50020 "Item List" extends "Item List"
 
 
 
+    
+     
     }
     ///
     trigger OnAfterGetRecord()

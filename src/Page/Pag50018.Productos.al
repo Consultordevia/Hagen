@@ -30,7 +30,7 @@ Page 50018 Productos
                     ApplicationArea = All;
                     ToolTip = 'Specifies a description of the item.';
                 }
-                field("Ref. AMAZON";Rec."Ref. AMAZON")
+                field("Ref. AMAZON"; Rec."Ref. AMAZON")
                 {
                     ApplicationArea = All;
                     ToolTip = 'Specifies a description of the item.';
@@ -113,10 +113,33 @@ Page 50018 Productos
 
             }
         }
+
+
     }
 
     actions
     {
+        area(Processing)
+        {
+            action("Importa Datos Productos")
+            {
+                ApplicationArea = Basic;
+
+                trigger OnAction()
+                var
+                    xmlImportaDatosProductos: XmlPort "Importa Datos Productos";
+                begin
+                    clear(xmlImportaDatosProductos);
+                    xmlImportaDatosProductos.run;
+                    Message('hecho');
+
+                end;
+
+
+            }
+        }
+
+
     }
 
     trigger OnAfterGetCurrRecord()
@@ -225,5 +248,7 @@ Page 50018 Productos
 
         EnabledApprovalWorkflowsExist := WorkflowManagement.EnabledWorkflowExist(Database::Item, EventFilter);
     end;
+
+
 }
 

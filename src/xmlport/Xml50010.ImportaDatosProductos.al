@@ -1,11 +1,16 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
 XmlPort 50010 "Importa Datos Productos"
+
 {
+    
     Caption = 'Importa Datos Productos';
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
+
+    
+
 
     schema
     {
@@ -424,6 +429,7 @@ XmlPort 50010 "Importa Datos Productos"
         Mulatributos: Record "Mul.atributos";
         coded: DateFormula;
         PlazoDateFormula: DateFormula;
+        conta: Integer;
 
     local procedure InitializeGlobals()
     var
@@ -484,7 +490,9 @@ XmlPort 50010 "Importa Datos Productos"
     begin
 
 
+        conta:=conta+1;
 
+        if conta>1 then begin
 
 
 
@@ -526,28 +534,44 @@ XmlPort 50010 "Importa Datos Productos"
             if D3DESWEB <> '' then begin
                 if RecItem.Get(D1) then begin
                     RecItem."Descripcion web" := D3DESWEB;
-                    RecItem."Imagen Articulo WEB" := 'c:\imagenes\' + D1 + '.jpg';
-                    RecItem."Imagen Articulo WEB 2" := 'c:\imagenes\' + D1 + '-2.jpg';
-                    RecItem."Imagen Articulo WEB 3" := 'c:\imagenes\' + D1 + '-3.jpg';
-                    RecItem."Imagen Articulo WEB 4" := 'c:\imagenes\' + D1 + '-4.jpg';
+                    /////RecItem."Imagen Articulo WEB" := 'c:\imagenes\' + D1 + '.jpg';
+                    /////RecItem."Imagen Articulo WEB 2" := 'c:\imagenes\' + D1 + '-2.jpg';
+                    /////RecItem."Imagen Articulo WEB 3" := 'c:\imagenes\' + D1 + '-3.jpg';
+                    /////RecItem."Imagen Articulo WEB 4" := 'c:\imagenes\' + D1 + '-4.jpg';
                     RecItem.Modify;
                 end;
             end;
 
         end;
         if (D4 <> '') then begin
+            if RecItem.Get(D1) then begin
+                RecItem.CodVariante1 := D4;
+                RecItem.Modify;
+            END;
         end;
         if (D5 <> '') then begin
-            D56DESHIJO := D5;
-            if D56DESHIJO <> '' then begin
-                if RecItem.Get(D1) then begin
-                    RecItem."nulo  Descripcion Hijo" := D56DESHIJO;
-                    RecItem.Modify;
-                end;
-            end;
+            if RecItem.Get(D1) then begin
+                RecItem."Dato Variante1" := D5;
+                RecItem.Modify;
+            END;
         end;
         if (D6 <> '') then begin
-            ref := D6;
+            if RecItem.Get(D1) then begin
+                RecItem.CodVariante2 := D6;
+                RecItem.Modify;
+            END;
+        end;
+        if (D7 <> '') then begin
+            if RecItem.Get(D1) then begin
+                RecItem."Dato Variante2" := D7;
+                RecItem.Modify;
+            END;
+        end;
+
+
+
+        if (D8 <> '') then begin
+            ref := D8;
             codprod2 := ref;
             x := 0;
             codprod := '';
@@ -567,29 +591,38 @@ XmlPort 50010 "Importa Datos Productos"
             end;
         end;
 
-        if (D7 <> '') then begin
-            D7ENVIARAWEB := D7;
+
+
+        if (D9 <> '') then begin
+            D7ENVIARAWEB := D9;
             if D7ENVIARAWEB = 'S' then begin
                 if RecItem.Get(D1) then begin
                     RecItem."Enviar a web" := true;
-                    RecItem.Modify;
-                end;
-            end;
-        end;
-
-
-        if (D8 <> '') then begin
-            D8ACTUALIZAWE := D8;
-            if D8ACTUALIZAWE = 'S' then begin
-                if RecItem.Get(D1) then begin
                     RecItem."Actualizar WEB" := true;
                     RecItem.Modify;
                 end;
             end;
+            if D7ENVIARAWEB = 'N' then begin
+                if RecItem.Get(D1) then begin
+                    RecItem."Enviar a web" := false;
+                    RecItem."Actualizar WEB" := false;
+                    RecItem.Modify;
+                end;
+            end;
+
         end;
 
-        if (D9 <> '') then begin
-            D9PESOUNI := D9;
+
+        if (D10 <> '') then begin
+            if RecItem.Get(D1) then begin
+                RecItem.Gama := D10;
+                RecItem.Modify;
+            end;
+        end;
+
+
+        if (D11 <> '') then begin
+            D9PESOUNI := D11;
             if D9PESOUNI <> '' then begin
                 if RecItem.Get(D1) then begin
                     Evaluate(peso1, D9PESOUNI);
@@ -622,8 +655,8 @@ XmlPort 50010 "Importa Datos Productos"
             end;
         end;
 
-        if (D10 <> '') then begin
-            D10LARGOUNI := D10;
+        if (D20 <> '') then begin
+            D10LARGOUNI := D12;
             if D10LARGOUNI <> '' then begin
                 if RecItem.Get(D1) then begin
                     Evaluate(RecItem.Largo, D10LARGOUNI);
@@ -653,8 +686,8 @@ XmlPort 50010 "Importa Datos Productos"
             end;
         end;
 
-        if (D11 <> '') then begin
-            D11ANCHOUNI := D11;
+        if (D13 <> '') then begin
+            D11ANCHOUNI := D13;
             if D11ANCHOUNI <> '' then begin
                 if RecItem.Get(D1) then begin
                     Evaluate(RecItem.Ancho, D11ANCHOUNI);
@@ -684,8 +717,8 @@ XmlPort 50010 "Importa Datos Productos"
             end;
         end;
 
-        if (D12 <> '') then begin
-            D12ALTOUNI := D12;
+        if (D14 <> '') then begin
+            D12ALTOUNI := D14;
             if D12ALTOUNI <> '' then begin
                 if RecItem.Get(D1) then begin
                     Evaluate(RecItem.Alto, D12ALTOUNI);
@@ -714,8 +747,8 @@ XmlPort 50010 "Importa Datos Productos"
 
             end;
         end;
-        if (D13 <> '') then begin
-            D13MARCA := D13;
+        if (D15 <> '') then begin
+            D13MARCA := D15;
             if D13MARCA <> '' then begin
                 if RecItem.Get(D1) then begin
                     RecItem.Marca := D13MARCA;
@@ -723,8 +756,8 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
         end;
-        if (D14 <> '') then begin
-            D14CODPROPROVEE := D14;
+        if (D16 <> '') then begin
+            D14CODPROPROVEE := D16;
             if D14CODPROPROVEE <> '' then begin
                 if RecItem.Get(D1) then begin
                     codprod2 := D14CODPROPROVEE;
@@ -744,8 +777,8 @@ XmlPort 50010 "Importa Datos Productos"
             end;
         end;
 
-        if (D15 <> '') then begin
-            ref := D15;
+        if (D17 <> '') then begin
+            ref := D17;
             codprod2 := ref;
             x := 0;
             codprod := '';
@@ -765,8 +798,8 @@ XmlPort 50010 "Importa Datos Productos"
         end;
 
 
-        if (D16 <> '') then begin
-            D16TIPOVENTA := D16;
+        if (D18 <> '') then begin
+            D16TIPOVENTA := D18;
             if D16TIPOVENTA <> '' then begin
                 if RecItem.Get(D1) then begin
                     ///  :=D16TIPOVENTA
@@ -775,8 +808,8 @@ XmlPort 50010 "Importa Datos Productos"
             end;
         end;
 
-        if (D17 <> '') then begin
-            ref := D17;
+        if (D19 <> '') then begin
+            ref := D19;
             codprod2 := ref;
             x := 0;
             codprod := '';
@@ -793,8 +826,8 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
         end;
-        if (D18 <> '') then begin
-            D18PRECIOTAR := D18;
+        if (D20 <> '') then begin
+            D18PRECIOTAR := D20;
             if D18PRECIOTAR <> '' then begin
                 RecSP.Reset;
                 RecSP.SetRange(RecSP."Sales Type", 1);
@@ -815,8 +848,8 @@ XmlPort 50010 "Importa Datos Productos"
             end;
         end;
 
-        if (D19 <> '') then begin
-            D19PVPR := D19;
+        if (D21 <> '') then begin
+            D19PVPR := D21;
             if D19PVPR <> '' then begin
                 RecSP.Reset;
                 RecSP.SetRange(RecSP."Sales Type", 1);
@@ -837,18 +870,18 @@ XmlPort 50010 "Importa Datos Productos"
             end;
         end;
 
-        if (D20 <> '') then begin
-            D20COLCHONWEB := D20;
+        if (D22 <> '') then begin
+            D20COLCHONWEB := D22;
             if D20COLCHONWEB <> '' then begin
                 if RecItem.Get(D1) then begin
-                    Evaluate(RecItem."Cantidad colchon web", D20COLCHONWEB);
+                    Evaluate(RecItem."Umbral stock", D22);
                     RecItem.Modify;
                 end;
             end;
         end;
 
-        if (D21 <> '') then begin
-            D21ESTADO := UpperCase(D21);
+        if (D23 <> '') then begin
+            D21ESTADO := UpperCase(D23);
 
             if D21ESTADO <> '' then begin
                 if RecItem.Get(D1) then begin
@@ -860,24 +893,41 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
         end;
-        if (D22 <> '') then begin
-            D22COSTEUNIDIC := D22;
-            if D22COSTEUNIDIC <> '' then begin
-                if RecItem.Get(D1) then begin
-                    RecItem.Modify;
+
+
+
+        /*
+                if (D20 <> '') then begin
+                    D20COLCHONWEB := D20;
+                    if D20COLCHONWEB <> '' then begin
+                        if RecItem.Get(D1) then begin
+                            Evaluate(RecItem."Cantidad colchon web", D20COLCHONWEB);
+                            RecItem.Modify;
+                        end;
+                    end;
                 end;
-            end;
-        end;
-        if (D23 <> '') then begin
-            D23DTOPROVEE := D23;
-            if D23DTOPROVEE <> '' then begin
-                if RecItem.Get(D1) then begin
-                    RecItem.Modify;
+
+                if (D22 <> '') then begin
+                    D22COSTEUNIDIC := D22;
+                    if D22COSTEUNIDIC <> '' then begin
+                        if RecItem.Get(D1) then begin
+                            RecItem.Modify;
+                        end;
+                    end;
                 end;
-            end;
-        end;
-        if (D24 <> '') then begin
-            D24GRIVAPROD := D24;
+
+
+                if (D23 <> '') then begin
+                    D23DTOPROVEE := D23;
+                    if D23DTOPROVEE <> '' then begin
+                        if RecItem.Get(D1) then begin
+                            RecItem.Modify;
+                        end;
+                    end;
+                end;*/
+
+        if (D26 <> '') then begin
+            D24GRIVAPROD := D26;
             if D24GRIVAPROD <> '' then begin
                 if RecItem.Get(D1) then begin
                     RecItem."VAT Prod. Posting Group" := D24GRIVAPROD;
@@ -885,6 +935,40 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
         end;
+
+        if (D27 <> '') then begin
+            D24GRIVAPROD := D27;
+            if D24GRIVAPROD <> '' then begin
+                if RecItem.Get(D1) then begin
+                    RecItem.Level1 := D24GRIVAPROD;
+                    RecItem.Modify;
+                end;
+            end;
+        end;
+        if (D28 <> '') then begin
+            D24GRIVAPROD := D28;
+            if D24GRIVAPROD <> '' then begin
+                if RecItem.Get(D1) then begin
+                    RecItem.Level2 := D24GRIVAPROD;
+                    RecItem.Modify;
+                end;
+            end;
+        end;
+        if (D29 <> '') then begin
+            D24GRIVAPROD := D29;
+            if D24GRIVAPROD <> '' then begin
+                if RecItem.Get(D1) then begin
+                    RecItem.Level3 := D24GRIVAPROD;
+                    RecItem.Modify;
+                end;
+            end;
+        end;
+
+
+
+
+
+        /*
         if (D25 <> '') then begin
             D25LINEA := D25;
             if D25LINEA <> '' then begin
@@ -911,10 +995,11 @@ XmlPort 50010 "Importa Datos Productos"
                     RecItem.Modify;
                 end;
             end;
-        end;
+        end;*/
 
-        if (D28 <> '') then begin
-            D28ROTA := D28;
+
+        if (D30 <> '') then begin
+            D28ROTA := D30;
             if D28ROTA <> '' then begin
                 if RecItem.Get(D1) then begin
                     if D28ROTA = 'FC' then RecItem."Criterio rotacion" := 0;
@@ -926,8 +1011,8 @@ XmlPort 50010 "Importa Datos Productos"
             end;
         end;
 
-        if (D29 <> '') then begin
-            D29TIPOPROD := D29;
+        if (D31 <> '') then begin
+            D29TIPOPROD := D31;
             if D29TIPOPROD <> '' then begin
                 if RecItem.Get(D1) then begin
 
@@ -935,8 +1020,8 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
         end;
-        if (D30 <> '') then begin
-            D30TIPOPALETS := D30;
+        if (D32 <> '') then begin
+            D30TIPOPALETS := D32;
             if D30TIPOPALETS <> '' then begin
                 if RecItem.Get(D1) then begin
                     /////RecItem."Tipo palet":=D30TIPOPALETS;
@@ -944,8 +1029,9 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
         end;
-        if (D31 <> '') then begin
-            D31UMB := D31;
+
+        if (D33 <> '') then begin
+            D31UMB := D33;
             if D31UMB <> '' then begin
                 if RecItem.Get(D1) then begin
                     RecItem."Base Unit of Measure" := D31UMB;
@@ -953,8 +1039,8 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
         end;
-        if (D32 <> '') then begin
-            D32CDADINNER := D32;
+        if (D34 <> '') then begin
+            D32CDADINNER := D34;
             if D32CDADINNER <> '' then begin
                 if RecItem.Get(D1) then begin
                     Evaluate(RecItem."Cantidad inner", D32CDADINNER);
@@ -962,8 +1048,8 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
         end;
-        if (D33 <> '') then begin
-            D33PESOIN := D33;
+        if (D35 <> '') then begin
+            D33PESOIN := D35;
             if D33PESOIN <> '' then begin
                 RecUMP.Reset;
                 RecUMP.SetRange(RecUMP."Item No.", D1);
@@ -994,8 +1080,8 @@ XmlPort 50010 "Importa Datos Productos"
 
             end;
         end;
-        if (D34 <> '') then begin
-            D34LARGOIN := D34;
+        if (D36 <> '') then begin
+            D34LARGOIN := D36;
             if D34LARGOIN <> '' then begin
                 if RecItem.Get(D1) then begin
                     Evaluate(RecItem."Largo INNER", D34LARGOIN);
@@ -1031,8 +1117,8 @@ XmlPort 50010 "Importa Datos Productos"
             end;
         end;
 
-        if (D35 <> '') then begin
-            D35ANCHOIN := D35;
+        if (D37 <> '') then begin
+            D35ANCHOIN := D37;
             if D35ANCHOIN <> '' then begin
                 if RecItem.Get(D1) then begin
                     Evaluate(RecItem."Ancho INNER", D35ANCHOIN);
@@ -1068,8 +1154,8 @@ XmlPort 50010 "Importa Datos Productos"
             end;
         end;
 
-        if (D36 <> '') then begin
-            D36ALTOIN := D36;
+        if (D38 <> '') then begin
+            D36ALTOIN := D38;
             if D36ALTOIN <> '' then begin
                 if RecItem.Get(D1) then begin
                     Evaluate(RecItem."Alto INNER", D36ALTOIN);
@@ -1104,8 +1190,8 @@ XmlPort 50010 "Importa Datos Productos"
 
             end;
         end;
-        if (D37 <> '') then begin
-            D37CDADAMSTER := D37;
+        if (D39 <> '') then begin
+            D37CDADAMSTER := D39;
             if D37CDADAMSTER <> '' then begin
                 if RecItem.Get(D1) then begin
                     Evaluate(RecItem."Cantidad master", D37CDADAMSTER);
@@ -1113,8 +1199,9 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
         end;
-        if (D38 <> '') then begin
-            D38PESOMAS := D38;
+
+        if (D40 <> '') then begin
+            D38PESOMAS := D40;
             if D38PESOMAS <> '' then begin
                 RecUMP.Reset;
                 RecUMP.SetRange(RecUMP."Item No.", D1);
@@ -1145,8 +1232,8 @@ XmlPort 50010 "Importa Datos Productos"
 
             end;
         end;
-        if (D39 <> '') then begin
-            D39LARGOMAS := D39;
+        if (D41 <> '') then begin
+            D39LARGOMAS := D41;
             if D39LARGOMAS <> '' then begin
                 if RecItem.Get(D1) then begin
                     Evaluate(RecItem."Largo master", D39LARGOMAS);
@@ -1182,8 +1269,8 @@ XmlPort 50010 "Importa Datos Productos"
 
             end;
         end;
-        if (D40 <> '') then begin
-            D40ANCHOMAS := D40;
+        if (D42 <> '') then begin
+            D40ANCHOMAS := D42;
             if D40ANCHOMAS <> '' then begin
                 if RecItem.Get(D1) then begin
                     Evaluate(RecItem."Ancho master", D40ANCHOMAS);
@@ -1218,8 +1305,8 @@ XmlPort 50010 "Importa Datos Productos"
 
             end;
         end;
-        if (D41 <> '') then begin
-            D41ALTOMAS := D41;
+        if (D43 <> '') then begin
+            D41ALTOMAS := D43;
             if D41ALTOMAS <> '' then begin
                 if RecItem.Get(D1) then begin
                     Evaluate(RecItem."Alto master", D41ALTOMAS);
@@ -1256,8 +1343,8 @@ XmlPort 50010 "Importa Datos Productos"
             end;
         end;
 
-        if (D42 <> '') then begin
-            D42UNIMEDCOMP := D42;
+        if (D44 <> '') then begin
+            D42UNIMEDCOMP := D44;
             if D42UNIMEDCOMP <> '' then begin
                 if RecItem.Get(D1) then begin
                     Evaluate(RecItem."Unidad compra", D42UNIMEDCOMP);
@@ -1266,8 +1353,8 @@ XmlPort 50010 "Importa Datos Productos"
             end;
         end;
 
-        if (D43 <> '') then begin
-            D43DIMHUEOC := D43;
+        if (D45 <> '') then begin
+            D43DIMHUEOC := D45;
             if D43DIMHUEOC <> '' then begin
                 if RecItem.Get(D1) then begin
                     ///RecItem."Dimensión hueco":=COPYSTR(D43DIMHUEOC,1,10);
@@ -1275,8 +1362,8 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
         end;
-        if (D44 <> '') then begin
-            D44GRUPOCONTABLE := D44;
+        if (D46 <> '') then begin
+            D44GRUPOCONTABLE := D46;
             if D44GRUPOCONTABLE <> '' then begin
                 if RecItem.Get(D1) then begin
                     RecItem."Inventory Posting Group" := D44GRUPOCONTABLE;
@@ -1294,8 +1381,8 @@ XmlPort 50010 "Importa Datos Productos"
              END;
         END;
         */
-        if (D45 <> '') then begin
-            D45UNIMEDVENTA := D45;
+        if (D47 <> '') then begin
+            D45UNIMEDVENTA := D47;
             if D45UNIMEDVENTA <> '' then begin
                 if RecItem.Get(D1) then begin
                     RecItem."Sales Unit of Measure" := D45UNIMEDVENTA;
@@ -1303,8 +1390,8 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
         end;
-        if (D46 <> '') then begin
-            D46UNIDADESNTA := D46;
+        if (D48 <> '') then begin
+            D46UNIDADESNTA := D48;
             if D46UNIDADESNTA <> '' then begin
                 if RecItem.Get(D1) then begin
                     Evaluate(RecItem."Unidades venta", D46UNIDADESNTA);
@@ -1312,8 +1399,8 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
         end;
-        if (D47 <> '') then begin
-            D47PERMITFRAC := D47;
+        if (D49 <> '') then begin
+            D47PERMITFRAC := D49;
             if D47PERMITFRAC <> '' then begin
                 if RecItem.Get(D1) then begin
                     if UpperCase(D47PERMITFRAC) = 'N' then begin
@@ -1328,8 +1415,8 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
         end;
-        if (D48 <> '') then begin
-            D48ZONAALMA := D48;
+        if (D50 <> '') then begin
+            D48ZONAALMA := D50;
             if D48ZONAALMA <> '' then begin
                 if RecItem.Get(D1) then begin
                     ///IF D48ZONAALMA='GRAL' THEN RecItem."Zona almacenaje":=0;
@@ -1340,8 +1427,8 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
         end;
-        if (D49 <> '') then begin
-            D49ZONAPICK := D49;
+        if (D51 <> '') then begin
+            D49ZONAPICK := D51;
             if D49ZONAPICK <> '' then begin
                 if RecItem.Get(D1) then begin
                     ///RecItem."Zona picking":=D49ZONAPICK;
@@ -1354,8 +1441,8 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
         end;
-        if (D50 <> '') then begin
-            D50PRODALMA := D50;
+        if (D52 <> '') then begin
+            D50PRODALMA := D52;
             if D50PRODALMA <> '' then begin
                 if RecItem.Get(D1) then begin
                     if UpperCase(D50PRODALMA) = 'N' then begin
@@ -1370,8 +1457,8 @@ XmlPort 50010 "Importa Datos Productos"
             end;
         end;
 
-        if (D51 <> '') then begin
-            D51ODPROVEE := D51;
+        if (D53 <> '') then begin
+            D51ODPROVEE := D53;
             if D51ODPROVEE <> '' then begin
                 if RecItem.Get(D1) then begin
                     RecItem."Vendor No." := D51ODPROVEE;
@@ -1411,8 +1498,8 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
         end;
-        if (D52 <> '') then begin
-            ref := D52;
+        if (D54 <> '') then begin
+            ref := D54;
             codprod2 := ref;
             x := 0;
             codprod := '';
@@ -1448,8 +1535,8 @@ XmlPort 50010 "Importa Datos Productos"
 
             end;
         end;
-        if (D53 <> '') then begin
-            ref := D53;
+        if (D55 <> '') then begin
+            ref := D55;
             codprod2 := ref;
             x := 0;
             codprod := '';
@@ -1487,8 +1574,8 @@ XmlPort 50010 "Importa Datos Productos"
             end;
         end;
 
-        if (D54 <> '') then begin
-            tariff := D54;
+        if (D56 <> '') then begin
+            tariff := D56;
             if tariff <> '' then begin
                 if RecItem.Get(D1) then begin
                     RecItem."Tariff No." := tariff;
@@ -1497,8 +1584,8 @@ XmlPort 50010 "Importa Datos Productos"
             end;
         end;
 
-        if (D55 <> '') then begin
-            igicc := D55;
+        if (D57 <> '') then begin
+            igicc := D57;
             if igicc <> '' then begin
                 if RecItem.Get(D1) then begin
                     RecItem."IVA IGIC" := igicc;
@@ -1508,151 +1595,197 @@ XmlPort 50010 "Importa Datos Productos"
         end;
 
 
-        if (D56 <> '') then begin
-            if RecItem.Get(D1) then begin
-                RecItem."Purch. Unit of Measure" := D56;
-                RecItem.Modify;
-            end;
-        end;
-
-        if (D57 <> '') then begin
-            if RecItem.Get(D1) then begin
-                RecItem."Country/Region Purchased Code" := D57;
-                RecItem.Modify;
-            end;
-        end;
-
-
         if (D58 <> '') then begin
             if RecItem.Get(D1) then begin
-                if Evaluate(PlazoDateFormula, D58) then begin
+                RecItem."Purch. Unit of Measure" := D58;
+                RecItem.Modify;
+            end;
+        end;
+
+        if (D59 <> '') then begin
+            if RecItem.Get(D1) then begin
+                RecItem."Country/Region Purchased Code" := D59;
+                RecItem.Modify;
+            end;
+        end;
+
+
+        if (D60 <> '') then begin
+            if RecItem.Get(D1) then begin
+                if Evaluate(PlazoDateFormula, D60) then begin
                     RecItem.Validate("Lead Time Calculation", PlazoDateFormula);
                     RecItem.Modify;
                 end;
             end;
         end;
 
-        if (D59 <> '') then begin
-            if RecItem.Get(D1) then begin
-                Evaluate(RecItem."Largo producto", D59);
-                RecItem.Modify;
-            end;
-        end;
-        if (D60 <> '') then begin
-            if RecItem.Get(D1) then begin
-                Evaluate(RecItem."Ancho producto", D60);
-                RecItem.Modify;
-            end;
-        end;
         if (D61 <> '') then begin
             if RecItem.Get(D1) then begin
-                Evaluate(RecItem."Alto producto", D61);
+                RecItem."Item Category Code" := D61;
+                RecItem.Modify;
+            end;
+        end;
+        if (D62 <> '') then begin
+            if RecItem.Get(D1) then begin
+                RecItem.Etiquetas1 := D62;
+                RecItem.Modify;
+            end;
+        end;
+        if (D63 <> '') then begin
+            if RecItem.Get(D1) then begin
+                RecItem.Etiquetas2 := D63;
+                RecItem.Modify;
+            end;
+        end;
+        if (D64 <> '') then begin
+            if RecItem.Get(D1) then begin
+                RecItem.Etiquetas3 := D64;
+                RecItem.Modify;
+            end;
+        end;
+        if (D65 <> '') then begin
+            if RecItem.Get(D1) then begin
+                RecItem.Etiquetas4 := D65;
+                RecItem.Modify;
+            end;
+        end;
+        if (D66 <> '') then begin
+            if RecItem.Get(D1) then begin
+                RecItem.Etiquetas5 := D66;
+                RecItem.Modify;
+            end;
+        end;
+        if (D67 <> '') then begin
+            if RecItem.Get(D1) then begin
+                RecItem.Etiquetas6 := D67;
                 RecItem.Modify;
             end;
         end;
 
-        ///// "Mul.atributos".Codigo1 WHERE (Tabla=CONST(Atributos))
 
-        if (D62 <> '0') then begin
-            Mulatributos.Reset;
-            Mulatributos.SetRange(Mulatributos.Tabla, Mulatributos.Tabla::Atributos);
-            Mulatributos.SetRange(Mulatributos.Codigo1, D62);
-            if not Mulatributos.FindFirst then begin
-                Mulatributos.Init;
-                Mulatributos.Tabla := Mulatributos.Tabla::Atributos;
-                Mulatributos.Codigo1 := D62;
-                Mulatributos.Insert;
-            end;
-            if RecItem.Get(D1) then begin
-                RecItem."Atributo 1" := D62;
-                RecItem.Modify;
-            end;
-        end;
-        if (D64 <> '0') then begin
-            Mulatributos.Reset;
-            Mulatributos.SetRange(Mulatributos.Tabla, Mulatributos.Tabla::Atributos);
-            Mulatributos.SetRange(Mulatributos.Codigo1, D64);
-            if not Mulatributos.FindFirst then begin
-                Mulatributos.Init;
-                Mulatributos.Tabla := Mulatributos.Tabla::Atributos;
-                Mulatributos.Codigo1 := D64;
-                Mulatributos.Insert;
-            end;
-            if RecItem.Get(D1) then begin
-                RecItem."Atributo 1" := D64;
-                RecItem.Modify;
-            end;
-        end;
-        if (D66 <> '0') then begin
-            Mulatributos.Reset;
-            Mulatributos.SetRange(Mulatributos.Tabla, Mulatributos.Tabla::Atributos);
-            Mulatributos.SetRange(Mulatributos.Codigo1, D66);
-            if not Mulatributos.FindFirst then begin
-                Mulatributos.Init;
-                Mulatributos.Tabla := Mulatributos.Tabla::Atributos;
-                Mulatributos.Codigo1 := D66;
-                Mulatributos.Insert;
-            end;
-            if RecItem.Get(D1) then begin
-                RecItem."Atributo 1" := D66;
-                RecItem.Modify;
-            end;
-        end;
+        /*
+                if (D59 <> '') then begin
+                    if RecItem.Get(D1) then begin
+                        Evaluate(RecItem."Largo producto", D59);
+                        RecItem.Modify;
+                    end;
+                end;
+                if (D60 <> '') then begin
+                    if RecItem.Get(D1) then begin
+                        Evaluate(RecItem."Ancho producto", D60);
+                        RecItem.Modify;
+                    end;
+                end;
+                if (D61 <> '') then begin
+                    if RecItem.Get(D1) then begin
+                        Evaluate(RecItem."Alto producto", D61);
+                        RecItem.Modify;
+                    end;
+                end;
 
-        ///// "Mul.atributos".Codigo2 WHERE (Tabla=CONST(Valor Atributo),Codigo1=FIELD(Atributo 1))
+                ///// "Mul.atributos".Codigo1 WHERE (Tabla=CONST(Atributos))
 
-        if (D63 <> '0') then begin
-            Mulatributos.Reset;
-            Mulatributos.SetRange(Mulatributos.Tabla, Mulatributos.Tabla::"Valor Atributo");
-            Mulatributos.SetRange(Mulatributos.Codigo1, D62);
-            Mulatributos.SetRange(Mulatributos.Codigo2, D63);
-            if not Mulatributos.FindFirst then begin
-                Mulatributos.Init;
-                Mulatributos.Tabla := Mulatributos.Tabla::"Valor Atributo";
-                Mulatributos.Codigo1 := D62;
-                Mulatributos.Codigo2 := D63;
-                Mulatributos.Insert;
-            end;
-            if RecItem.Get(D1) then begin
-                RecItem."Valor Atributo 1" := D63;
-                RecItem.Modify;
-            end;
-        end;
-        if (D65 <> '0') then begin
-            Mulatributos.Reset;
-            Mulatributos.SetRange(Mulatributos.Tabla, Mulatributos.Tabla::"Valor Atributo");
-            Mulatributos.SetRange(Mulatributos.Codigo1, D64);
-            Mulatributos.SetRange(Mulatributos.Codigo2, D65);
-            if not Mulatributos.FindFirst then begin
-                Mulatributos.Init;
-                Mulatributos.Tabla := Mulatributos.Tabla::"Valor Atributo";
-                Mulatributos.Codigo1 := D64;
-                Mulatributos.Codigo2 := D65;
-                Mulatributos.Insert;
-            end;
-            if RecItem.Get(D1) then begin
-                RecItem."Valor Atributo 2" := D65;
-                RecItem.Modify;
-            end;
-        end;
-        if (D67 <> '0') then begin
-            Mulatributos.Reset;
-            Mulatributos.SetRange(Mulatributos.Tabla, Mulatributos.Tabla::"Valor Atributo");
-            Mulatributos.SetRange(Mulatributos.Codigo1, D66);
-            Mulatributos.SetRange(Mulatributos.Codigo2, D67);
-            if not Mulatributos.FindFirst then begin
-                Mulatributos.Init;
-                Mulatributos.Tabla := Mulatributos.Tabla::"Valor Atributo";
-                Mulatributos.Codigo1 := D66;
-                Mulatributos.Codigo2 := D67;
-                Mulatributos.Insert;
-            end;
-            if RecItem.Get(D1) then begin
-                RecItem."Valor Atributo 3" := D67;
-                RecItem.Modify;
-            end;
-        end;
+                if (D62 <> '0') then begin
+                    Mulatributos.Reset;
+                    Mulatributos.SetRange(Mulatributos.Tabla, Mulatributos.Tabla::Atributos);
+                    Mulatributos.SetRange(Mulatributos.Codigo1, D62);
+                    if not Mulatributos.FindFirst then begin
+                        Mulatributos.Init;
+                        Mulatributos.Tabla := Mulatributos.Tabla::Atributos;
+                        Mulatributos.Codigo1 := D62;
+                        Mulatributos.Insert;
+                    end;
+                    if RecItem.Get(D1) then begin
+                        RecItem."Atributo 1" := D62;
+                        RecItem.Modify;
+                    end;
+                end;
+                if (D64 <> '0') then begin
+                    Mulatributos.Reset;
+                    Mulatributos.SetRange(Mulatributos.Tabla, Mulatributos.Tabla::Atributos);
+                    Mulatributos.SetRange(Mulatributos.Codigo1, D64);
+                    if not Mulatributos.FindFirst then begin
+                        Mulatributos.Init;
+                        Mulatributos.Tabla := Mulatributos.Tabla::Atributos;
+                        Mulatributos.Codigo1 := D64;
+                        Mulatributos.Insert;
+                    end;
+                    if RecItem.Get(D1) then begin
+                        RecItem."Atributo 1" := D64;
+                        RecItem.Modify;
+                    end;
+                end;
+                if (D66 <> '0') then begin
+                    Mulatributos.Reset;
+                    Mulatributos.SetRange(Mulatributos.Tabla, Mulatributos.Tabla::Atributos);
+                    Mulatributos.SetRange(Mulatributos.Codigo1, D66);
+                    if not Mulatributos.FindFirst then begin
+                        Mulatributos.Init;
+                        Mulatributos.Tabla := Mulatributos.Tabla::Atributos;
+                        Mulatributos.Codigo1 := D66;
+                        Mulatributos.Insert;
+                    end;
+                    if RecItem.Get(D1) then begin
+                        RecItem."Atributo 1" := D66;
+                        RecItem.Modify;
+                    end;
+                end;
 
+                ///// "Mul.atributos".Codigo2 WHERE (Tabla=CONST(Valor Atributo),Codigo1=FIELD(Atributo 1))
+
+                if (D63 <> '0') then begin
+                    Mulatributos.Reset;
+                    Mulatributos.SetRange(Mulatributos.Tabla, Mulatributos.Tabla::"Valor Atributo");
+                    Mulatributos.SetRange(Mulatributos.Codigo1, D62);
+                    Mulatributos.SetRange(Mulatributos.Codigo2, D63);
+                    if not Mulatributos.FindFirst then begin
+                        Mulatributos.Init;
+                        Mulatributos.Tabla := Mulatributos.Tabla::"Valor Atributo";
+                        Mulatributos.Codigo1 := D62;
+                        Mulatributos.Codigo2 := D63;
+                        Mulatributos.Insert;
+                    end;
+                    if RecItem.Get(D1) then begin
+                        RecItem."Valor Atributo 1" := D63;
+                        RecItem.Modify;
+                    end;
+                end;
+                if (D65 <> '0') then begin
+                    Mulatributos.Reset;
+                    Mulatributos.SetRange(Mulatributos.Tabla, Mulatributos.Tabla::"Valor Atributo");
+                    Mulatributos.SetRange(Mulatributos.Codigo1, D64);
+                    Mulatributos.SetRange(Mulatributos.Codigo2, D65);
+                    if not Mulatributos.FindFirst then begin
+                        Mulatributos.Init;
+                        Mulatributos.Tabla := Mulatributos.Tabla::"Valor Atributo";
+                        Mulatributos.Codigo1 := D64;
+                        Mulatributos.Codigo2 := D65;
+                        Mulatributos.Insert;
+                    end;
+                    if RecItem.Get(D1) then begin
+                        RecItem."Valor Atributo 2" := D65;
+                        RecItem.Modify;
+                    end;
+                end;
+                if (D67 <> '0') then begin
+                    Mulatributos.Reset;
+                    Mulatributos.SetRange(Mulatributos.Tabla, Mulatributos.Tabla::"Valor Atributo");
+                    Mulatributos.SetRange(Mulatributos.Codigo1, D66);
+                    Mulatributos.SetRange(Mulatributos.Codigo2, D67);
+                    if not Mulatributos.FindFirst then begin
+                        Mulatributos.Init;
+                        Mulatributos.Tabla := Mulatributos.Tabla::"Valor Atributo";
+                        Mulatributos.Codigo1 := D66;
+                        Mulatributos.Codigo2 := D67;
+                        Mulatributos.Insert;
+                    end;
+                    if RecItem.Get(D1) then begin
+                        RecItem."Valor Atributo 3" := D67;
+                        RecItem.Modify;
+                    end;
+                end;*/
+
+        end;
     end;
 }
 
