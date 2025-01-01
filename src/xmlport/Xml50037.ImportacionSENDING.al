@@ -254,6 +254,7 @@ XmlPort 50037 "Importacion SENDING"
         linea := linea + 1;
 
         if linea > 1 then begin
+            /*
             x := 0;
             SALE := false;
             DDA := '';
@@ -281,8 +282,18 @@ XmlPort 50037 "Importacion SENDING"
             Evaluate(DD, DDA);
             Evaluate(MM, MMA);
             Evaluate(AA, AAA);
-            fecha1 := Dmy2date(DD, MM, AA);
+            fecha1 := Dmy2date(DD, MM, AA);            
+            */
+            DDA:=CopyStr(D2,1,2);
+            MMA:=CopyStr(D2,4,2);
+            AAA:=CopyStr(D2,7,4);
+            Evaluate(DD, DDA);
+            Evaluate(MM, MMA);
+            Evaluate(AA, AAA);
+            fecha1 := Dmy2date(DD, MM, AA);            
+            
 
+/*
             x := 0;
             SALE := false;
             DDA := '';
@@ -311,6 +322,17 @@ XmlPort 50037 "Importacion SENDING"
             Evaluate(MM, MMA);
             Evaluate(AA, AAA);
             fecha2 := Dmy2date(DD, MM, AA);
+            */
+            IF D14<>'' THEN begin
+                DDA:=CopyStr(D14,1,2);
+                MMA:=CopyStr(D14,4,2);
+                AAA:=CopyStr(D14,7,4);
+                Evaluate(DD, DDA);
+                Evaluate(MM, MMA);
+                Evaluate(AA, AAA);
+                fecha2 := Dmy2date(DD, MM, AA);            
+            END;
+            
 
 
             CUANTOSDIAS := 0;
@@ -324,9 +346,9 @@ XmlPort 50037 "Importacion SENDING"
                 until Date.Next = 0;
             CUANTOSDIAS := CUANTOSDIAS - 1;
 
-            horas := CopyStr(D10, 1, 2);
+            horas := CopyStr(D15, 1, 2);
             Evaluate(dhoras, horas);
-            minu := CopyStr(D10, 4, 2);
+            minu := CopyStr(D15, 4, 2);
             Evaluate(dminu, minu);
 
             totalhoras := (12 + dhoras) + (CUANTOSDIAS - 1) * 24;
@@ -343,7 +365,7 @@ XmlPort 50037 "Importacion SENDING"
                         SalesShipmentHeader."Estado Expedicion" := D12;
                         SalesShipmentHeader."Fecha envio" := fecha1;
                         SalesShipmentHeader."Fecha entrega" := fecha2;
-                        SalesShipmentHeader."Hora entrega" := D10;
+                        SalesShipmentHeader."Hora entrega" := D15;
                         SalesShipmentHeader."Numero segumiento" := D1;
                         SalesShipmentHeader."Total horas" := totalhoras;
                         SalesShipmentHeader.Modify;
@@ -355,7 +377,7 @@ XmlPort 50037 "Importacion SENDING"
                         SalesShipmentHeader."Estado Expedicion" := D12;
                         SalesShipmentHeader."Fecha envio" := fecha1;
                         SalesShipmentHeader."Fecha entrega" := fecha2;
-                        SalesShipmentHeader."Hora entrega" := D10;
+                        SalesShipmentHeader."Hora entrega" := D15;
                         SalesShipmentHeader."Numero segumiento" := D1;
                         SalesShipmentHeader."Total horas" := totalhoras;
                         SalesShipmentHeader.Modify;

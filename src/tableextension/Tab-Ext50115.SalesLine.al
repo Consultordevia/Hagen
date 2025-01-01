@@ -89,13 +89,15 @@ tableextension 50115 SalesLine extends "Sales Line"
                 if SalesHeader."Usuario alta" <> 'USERNWS' then begin
                     if ("Document Type" = 1) or ("Document Type" = 0) then begin
                         /// VER MULTIPO
-                        if (Item."Unidades venta" > 1) and (Item."Permite fraccionar venta" = false) and
-                             (SalesHeader."Permite fraccionar uni. venta" = false) then begin
-                            DIVI := ROUND(Quantity / Item."Unidades venta", 1, '>');
-                            if DIVI * Item."Unidades venta" <> Quantity then begin
-                                cantidadok := DIVI * Item."Unidades venta";
-                                Message('%4 ,cantidad %1 no es multipo %2, la cantidad correcta es %3.', Quantity, Item."Unidades venta", cantidadok, Item.Description);
-                                Rec.Validate(Rec.Quantity, cantidadok);
+                        IF Item.get(Rec."No.") then begin
+                            if (Item."Unidades venta" > 1) and (Item."Permite fraccionar venta" = false) and
+                                 (SalesHeader."Permite fraccionar uni. venta" = false) then begin
+                                DIVI := ROUND(Quantity / Item."Unidades venta", 1, '>');
+                                if DIVI * Item."Unidades venta" <> Quantity then begin
+                                        cantidadok := DIVI * Item."Unidades venta";
+                                    Message('%4 ,cantidad %1 no es multipo %2, la cantidad correcta es %3.', Quantity, Item."Unidades venta", cantidadok, Item.Description);
+                                    Rec.Validate(Rec.Quantity, cantidadok);
+                                end;
                             end;
                         end;
                     end;
