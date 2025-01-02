@@ -948,7 +948,7 @@ XmlPort 50010 "Importa Datos Productos"
                 D24GRIVAPROD := D27;
                 if D24GRIVAPROD <> '' then begin
                     if RecItem.Get(D1) then begin
-                        RecItem.Level1 := D24GRIVAPROD;
+                        /////RecItem.Level1 := D24GRIVAPROD;
                         RecItem."Gen. Prod. Posting Group" := D24GRIVAPROD;
                         RecItem.Modify;
                     end;
@@ -958,8 +958,8 @@ XmlPort 50010 "Importa Datos Productos"
                 D24GRIVAPROD := D28;
                 if D24GRIVAPROD <> '' then begin
                     if RecItem.Get(D1) then begin
-                        RecItem.Level2 := D24GRIVAPROD;
-                        RecItem.Modify;
+                        /////RecItem.Level2 := D24GRIVAPROD;
+                        /////RecItem.Modify;
                     end;
                 end;
             end;
@@ -967,8 +967,8 @@ XmlPort 50010 "Importa Datos Productos"
                 D24GRIVAPROD := D29;
                 if D24GRIVAPROD <> '' then begin
                     if RecItem.Get(D1) then begin
-                        RecItem.Level3 := D24GRIVAPROD;
-                        RecItem.Modify;
+                        /////RecItem.Level3 := D24GRIVAPROD;
+                        /////RecItem.Modify;
                     end;
                 end;
             end;
@@ -1612,8 +1612,8 @@ XmlPort 50010 "Importa Datos Productos"
             end;
 
             if (D59 <> '') then begin
-                if RecItem.Get(D1) then begin
-                    RecItem."Country/Region Purchased Code" := D59;
+                if RecItem.Get(D1) then begin                     
+                    RecItem."Country/Region of Origin Code" := D59;
                     RecItem.Modify;
                 end;
             end;
