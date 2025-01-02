@@ -33,8 +33,15 @@ codeunit 50002 Eventos
     local procedure OnAfterModifyEvent(RunTrigger: Boolean; var Rec: Record Customer);
     var
         EnvioFicheros: Codeunit "Automaticos Cartas";
+        RecUS: Record "User Setup"; 
     begin
+        RecUS.get(UserId);
+        IF RecUS."Editar tabla Clientes/Comercia"=FALSE THEN begin
+            Error('No tiene permiso para modificar clientes.');
+        end;
+        
         /////-EnvioFicheros.MODIFCLIENTES(Rec);
+
     end;
 
     [EventSubscriber(ObjectType::Table, 23, 'OnAfterOnInsert', '', true, true)]
