@@ -5,8 +5,11 @@ Page 50101 "Inventario PMP"
     Editable = false;
     InsertAllowed = false;
     ModifyAllowed = false;
-    PageType = List;
+    PageType = List;    
     SourceTable = "Inventario PMP";
+    ApplicationArea = All;
+    UsageCategory = Lists;
+
 
     layout
     {

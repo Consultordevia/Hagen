@@ -121,9 +121,26 @@ Page 50018 Productos
     {
         area(Processing)
         {
-            action("Importa Datos Productos")
+            
+            action("ImportaDatosPVPWEB")
             {
                 ApplicationArea = Basic;
+                Caption = 'Importa Datos PVP-WEB';
+
+                trigger OnAction()
+                var
+                    xmldatosPVPWEB: XmlPort "Importa datos PVP WEB";
+                begin
+                    clear(xmldatosPVPWEB);
+                    xmldatosPVPWEB.run;
+                    Message('hecho');
+
+                end;
+            }
+            action("ImportaDatosProductos")
+            {
+                ApplicationArea = Basic;
+                Caption = 'Importa Datos Productos';
 
                 trigger OnAction()
                 var
@@ -135,8 +152,8 @@ Page 50018 Productos
 
                 end;
 
-
             }
+     
         }
 
 
