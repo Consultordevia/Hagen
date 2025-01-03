@@ -7,7 +7,7 @@
             "type": "al",
             "environmentType": "Sandbox",
             "tenant": "266e7657-7e87-4100-9f10-9293df757a06",
-            "environmentName": "SandboxOscar",
+            "environmentName": "Sandbox",
             "startupObjectId": 1,
             "startupObjectType": "Page",
             "breakOnError": "All",
