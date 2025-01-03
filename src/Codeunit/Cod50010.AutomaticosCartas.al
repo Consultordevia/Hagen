@@ -8520,7 +8520,6 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         AttachmentTempBlob: Codeunit "Temp Blob";
         BOMComponent: Record "BOM Component";
         OutStream: OutStream;
-        IStream: InStream;
         repInforme: Report "OK Nueva Factura Venta";
         FicheroHagen: Codeunit FicherosHagen;
 
@@ -8817,7 +8816,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                 repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                 fileName := SalesInvHeader2."No." + '.PDF';
                 FicheroHagen.CrearFicheroFTP('', fileName, InStream);
-                BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', IStream);
+                BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
 
 
                 /*
@@ -14512,7 +14511,6 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         cduFileManagement: Codeunit "File Management";
         AttachmentTempBlob: Codeunit "Temp Blob";
         OutStream: OutStream;
-        IStream: InStream;
     begin
         EmailMessage.Create(parDestinatarios, parSubject, parBody, parHtmlFormatted, parCC.Split(';'), parBCC.Split(';'));
 
@@ -14525,7 +14523,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     procedure ModifCanarias(var Rec: Record "Sales Invoice Header");
     var
         RecHFV: Record "Sales Invoice Header";
-    
+
     begin
 
         RecHFV.get(Rec."No.");
