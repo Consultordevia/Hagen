@@ -685,6 +685,7 @@ Page 50099 "Pantalla almacen Pascual5"
                         end;
                     end;
                 }
+                "ETI. envio agrupado ka"
                 */
                 action("Eti. agrupada Catit")
                 {
@@ -717,6 +718,43 @@ Page 50099 "Pantalla almacen Pascual5"
                             until SalesHeader4.next = 0;
                     end;
                 }
+
+                action("Eti. Catit_eti")
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'Eti. Catit_eti';
+                    Ellipsis = true;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+
+                    trigger OnAction()
+                    var
+                        ETIenvioagrupadoka: report "ETI. envio agrupado ka";
+
+                    begin
+
+
+                        SalesHeader4.Reset;
+                        SalesHeader4.SetRange("Document Type", 1);
+                        SalesHeader4.SetRange("Nº expedición", Rec."Nº expedición");
+                        if SalesHeader4.FindSet then
+                            repeat
+                                SalesHeader3.Reset;
+                                SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
+                                SalesHeader3.SetRange(SalesHeader3."No.", SalesHeader4."No.");
+                                SalesHeader3.SetRange(SalesHeader3."Nº expedición", SalesHeader4."Nº expedición");
+                                if SalesHeader3.FindSet then
+                                    repeat
+                                        Clear(ETIenvioagrupadoka);
+                                        ETIenvioagrupadoka.SetTableview(SalesHeader3);
+                                        ETIenvioagrupadoka.RunModal;
+                                    until SalesHeader3.next = 0;
+                            until SalesHeader4.next = 0;
+                    end;
+                }
+
+
                 action("Eti. agrupada")
                 {
                     ApplicationArea = Basic;
