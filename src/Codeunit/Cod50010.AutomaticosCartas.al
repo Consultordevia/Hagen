@@ -4069,11 +4069,11 @@ OutStream.Write('Tercera línea después del salto');
 
         TIPOSER := ' ';
         OBSERV1 := '';
-        if Rec110."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec110."Nº expedición agrupada"+' ';
+        if Rec110."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec110."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec110."Nº Palets" <> 0 then begin
@@ -4766,11 +4766,11 @@ OutStream.Write('Tercera línea después del salto');
 
         /////OBSERV1 := CopyStr(Rec110."Observación para transporte", 1, 40);
         OBSERV1 := '';
-        if Rec110."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec110."Nº expedición agrupada"+' ';
+        if Rec110."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec110."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec."Nº Palets" <> 0 then begin
@@ -4944,11 +4944,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         /////OBSERV1 := CopyStr(Rec110."Observación para transporte", 1, 40);
         OBSERV1 := '';
-        if Rec110."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec110."Nº expedición agrupada"+' ';
+        if Rec110."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec110."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec."Nº Palets" <> 0 then begin
@@ -5125,11 +5125,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         /////OBSERV1 := CopyStr(Rec110."Observación para transporte", 1, 40);
         OBSERV1 := '';
-        if Rec110."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec110."Nº expedición agrupada"+' ';
+        if Rec110."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec110."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec."Nº Palets" <> 0 then begin
@@ -5316,11 +5316,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         /////OBSERV1 := CopyStr(Rec110."Observación para transporte", 1, 40);
         OBSERV1 := '';
-        if Rec110."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec110."Nº expedición agrupada"+' ';
+        if Rec110."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec110."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec."Nº Palets" <> 0 then begin
@@ -5488,11 +5488,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         /////OBSERV1 := CopyStr(Rec110."Observación para transporte", 1, 40);
         OBSERV1 := '';
-        if Rec110."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec110."Nº expedición agrupada"+' ';
+        if Rec110."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec110."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec."Nº Palets" <> 0 then begin
@@ -5667,11 +5667,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         /////OBSERV1 := CopyStr(Rec110."Observación para transporte", 1, 40);
         OBSERV1 := '';
-        if Rec110."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec110."Nº expedición agrupada"+' ';
+        if Rec110."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec110."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec."Nº Palets" <> 0 then begin
@@ -5866,11 +5866,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         /////OBSERV1 := CopyStr(Rec112."Observación para transporte", 1, 40);
         OBSERV1 := '';
-        if Rec112."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec112."Nº expedición agrupada"+' ';
+        if Rec112."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec112."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec112."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec."Nº Palets" <> 0 then begin
@@ -6072,11 +6072,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         /////OBSERV1 := CopyStr(Rec112."Observación para transporte", 1, 40);
         OBSERV1 := '';
-        if Rec112."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec112."Nº expedición agrupada"+' ';
+        if Rec112."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec112."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec112."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec."Nº Palets" <> 0 then begin
@@ -6298,11 +6298,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         /////OBSERV1 := CopyStr(Rec112."Observación para transporte", 1, 40);
         OBSERV1 := '';
-        if Rec112."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec112."Nº expedición agrupada"+' ';
+        if Rec112."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec112."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec112."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec."Nº Palets" <> 0 then begin
@@ -6520,11 +6520,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         /////OBSERV1 := CopyStr(Rec112."Observación para transporte", 1, 40);
         OBSERV1 := '';
-        if Rec112."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec112."Nº expedición agrupada"+' ';
+        if Rec112."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec112."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec112."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec."Nº Palets" <> 0 then begin
@@ -6803,11 +6803,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         /////OBSERV1 := CopyStr(Rec110."Observación para transporte", 1, 40);
         OBSERV1 := '';
-        if Rec110."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec110."Nº expedición agrupada"+' ';
+        if Rec110."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec110."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec."Nº Palets" <> 0 then begin
@@ -7008,11 +7008,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         /////OBSERV1 := CopyStr(Rec110."Observación para transporte", 1, 40);
         OBSERV1 := '';
-        if Rec110."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec110."Nº expedición agrupada"+' ';
+        if Rec110."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec110."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec."Nº Palets" <> 0 then begin
@@ -7231,11 +7231,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         /////OBSERV1 := CopyStr(Rec110."Observación para transporte", 1, 40);
         OBSERV1 := '';
-        if Rec110."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec110."Nº expedición agrupada"+' ';
+        if Rec110."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec110."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec."Nº Palets" <> 0 then begin
@@ -7449,11 +7449,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         /////OBSERV1 := CopyStr(Rec110."Observación para transporte", 1, 40);
         OBSERV1 := '';
-        if Rec110."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec110."Nº expedición agrupada"+' ';
+        if Rec110."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec110."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec."Nº Palets" <> 0 then begin
@@ -7678,11 +7678,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         /////OBSERV1 := CopyStr(Rec110."Observación para transporte", 1, 40);
         OBSERV1 := '';
-        if Rec110."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec110."Nº expedición agrupada"+' ';
+        if Rec110."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec110."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec."Nº Palets" <> 0 then begin
@@ -8925,8 +8925,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                 repInforme.SetTableView(SalesInvHeader2);
                 repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                 fileName := SalesInvHeader2."No." + '.PDF';
-                FicheroHagen.CrearFicheroFTP('', fileName, InStream);
                 BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                FicheroHagen.CrearFicheroFTP('', fileName, InStream);
 
 
                 /*
@@ -11225,11 +11225,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         /////OBSERV1 := CopyStr(Rec110."Observación para transporte", 1, 40);
         OBSERV1 := '';
-        if Rec110."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec110."Nº expedición agrupada"+' ';
+        if Rec110."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec110."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec."Nº Palets" <> 0 then begin
@@ -12539,11 +12539,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         /////OBSERV1 := CopyStr(Rec110."Observación para transporte", 1, 40);
         OBSERV1 := '';
-        if Rec110."Nº expedición agrupada"<>'' then begin
-                OBSERV1 := Rec110."Nº expedición agrupada"+' ';
+        if Rec110."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
         OBSERV1 := OBSERV1 + Rec110."Observación para transporte";
-        OBSERV1 := OBSERV1 + CopyStr(OBSERV1,1,40);
+        OBSERV1 := OBSERV1 + CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
         if Rec."Nº Palets" <> 0 then begin
@@ -14635,11 +14635,13 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         cduFileManagement: Codeunit "File Management";
         AttachmentTempBlob: Codeunit "Temp Blob";
         OutStream: OutStream;
+        Base64Text: Text;
+        Base64Convert: Codeunit "Base64 Convert";
     begin
         EmailMessage.Create(parDestinatarios, parSubject, parBody, parHtmlFormatted, parCC.Split(';'), parBCC.Split(';'));
 
-
-        EmailMessage.AddAttachment(parAttachmentName, parContentType, AttachmentInStream);
+        Base64Text := Base64Convert.ToBase64(AttachmentInStream);
+        EmailMessage.AddAttachment(parAttachmentName, parContentType, Base64Text);
 
         Email.Send(EmailMessage, parEmailScenario);
     end;
