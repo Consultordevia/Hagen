@@ -46,6 +46,12 @@ tableextension 50046 "SalesPrice" extends "Sales Price"
         field(50003; INCREMENTO; Decimal)
         {
         }
+        field(50124; "Unidades Venta"; Decimal)
+        {
+            CalcFormula = lookup(Item."Unidades venta" where("No." = field("Item No.")));
+            FieldClass = FlowField;
+        }
+
         field(50004; "EXISTE COD PADRE"; Code[20])
         {
             CalcFormula = lookup(Item."Producto PADRE" where("No." = field("Item No.")));

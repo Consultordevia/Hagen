@@ -7,7 +7,7 @@ page 50114 CamposLevel
     UsageCategory = Lists;
 
 
-    
+
     layout
     {
         area(Content)
@@ -16,24 +16,54 @@ page 50114 CamposLevel
             {
                 field("No."; Rec."No.")
                 {
-                    ToolTip = 'Specifies the number of the item.';
                 }
                 field(Level1; Rec.Level1)
                 {
-                    ToolTip = 'Specifies the value of the Level1 field.', Comment = '%';
                 }
                 field(Level2; Rec.Level2)
                 {
-                    ToolTip = 'Specifies the value of the Level2 field.', Comment = '%';
                 }
                 field(Level3; Rec.Level3)
                 {
-                    ToolTip = 'Specifies the value of the Level3 field.', Comment = '%';
                 }
-                field(Description;Rec.Description)
+                field(Description; Rec.Description)
                 {
-                    ToolTip = 'Specifies the number of the item.';
                 }
+                field("Producto PADRE"; Rec."Producto PADRE")
+                {
+                }
+                field("Descripcion web"; Rec."Descripcion web")
+                {
+                }
+                field(Etiquetas1;Rec.Etiquetas1)
+                {
+                }
+                field(Etiquetas2;Rec.Etiquetas2)
+                {                                   
+                }
+                field(Etiquetas3;Rec.Etiquetas3)
+                {                       
+                }
+                field(Etiquetas4;Rec.Etiquetas4)
+                {                                  
+                }
+                field(Etiquetas5;Rec.Etiquetas5)
+                {                                   
+                }
+                field(Etiquetas6;Rec.Etiquetas6)
+                {                                   
+                }
+                field(Gama;Rec.Gama)
+                {                                   
+                }
+                field("Producto web"; Rec."Producto web")
+                {                                   
+                }
+
+
+
+
+
             }
         }
     }

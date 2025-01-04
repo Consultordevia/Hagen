@@ -518,26 +518,26 @@ XmlPort 50010 "Importa Datos Productos"
 
 
             end;
-            if (D2 <> '') then begin
-                D2DESCRIP := D2;
-                if D2DESCRIP <> '' then begin
-                    if RecItem.Get(D1) then begin
-                        D2DESCRIP := CASCII.Ascii2Ansi(D2DESCRIP);
-                        RecItem.Description := CopyStr(D2DESCRIP, 1, 50);
-                        RecItem."Description 2" := CopyStr(D2DESCRIP, 51, 50);
-                        RecItem."Estado WEB Inactivo" := TRUE;
-                        RecItem.Modify;
-                    end;
-                end;
-
+            ///if (D2 <> '') then begin
+            /// D2DESCRIP := D2;
+            ///if D2DESCRIP <> '' then begin
+            if RecItem.Get(D1) then begin
+                ///D2DESCRIP := CASCII.Ascii2Ansi(D2DESCRIP);
+                ///RecItem.Description := CopyStr(D2DESCRIP, 1, 50);
+                ///RecItem."Description 2" := CopyStr(D2DESCRIP, 51, 50);
+                RecItem."Estado WEB Inactivo" := TRUE;
+                RecItem.Modify;
             end;
+            ///end;
+
+            ////end;
 
             if (D3 <> '') then begin
                 D3DESWEB := D3;
                 if D3DESWEB <> '' then begin
                     if RecItem.Get(D1) then begin
                         D3DESWEB := CASCII.Ascii2Ansi(D3DESWEB);
-                        RecItem."Descripcion web" := D3DESWEB;
+                        ///RecItem."Descripcion web" := D3DESWEB;
                         /////RecItem."Imagen Articulo WEB" := 'c:\imagenes\' + D1 + '.jpg';
                         /////RecItem."Imagen Articulo WEB 2" := 'c:\imagenes\' + D1 + '-2.jpg';
                         /////RecItem."Imagen Articulo WEB 3" := 'c:\imagenes\' + D1 + '-3.jpg';
@@ -1612,7 +1612,7 @@ XmlPort 50010 "Importa Datos Productos"
             end;
 
             if (D59 <> '') then begin
-                if RecItem.Get(D1) then begin                     
+                if RecItem.Get(D1) then begin
                     RecItem."Country/Region of Origin Code" := D59;
                     RecItem.Modify;
                 end;

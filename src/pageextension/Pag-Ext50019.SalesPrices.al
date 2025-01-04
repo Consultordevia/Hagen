@@ -7,11 +7,12 @@ pageextension 50019 "Sales Prices" extends "Sales Prices"
     {
         addafter("Unit Price")
         {
+            field(INCREMENTO;Rec.INCREMENTO) { ApplicationArea = All; }
+            field("Unidades Venta";Rec."Unidades Venta") { ApplicationArea = All; }
             field("Codigo INNER o MASTET"; Rec."Codigo INNER o MASTET") { ApplicationArea = All; }
             field("Precio recomendado"; Rec."Precio recomendado") { ApplicationArea = All; }
             field("Descripción"; Rec."Descripción") { ApplicationArea = All; }
-            field("EXISTE"; Rec.EXISTE) { ApplicationArea = All; }
-            field("INCREMENTO"; Rec.INCREMENTO) { ApplicationArea = All; }
+            field("EXISTE"; Rec.EXISTE) { ApplicationArea = All; }             
             field("EXISTE COD PADRE"; Rec."EXISTE COD PADRE") { ApplicationArea = All; }
             field("NETO"; Rec.NETO) { ApplicationArea = All; }
             field("EXISTE 2012"; Rec."EXISTE 2012") { ApplicationArea = All; }
