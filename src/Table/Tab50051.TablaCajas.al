@@ -163,6 +163,10 @@ table 50051 TablaCajas
             CalcFormula = lookup("Customer Price Group"."Web-B2B" where(Code = field(CodTarifa)));
             FieldClass = FlowField;
         }
+        field(40; INCREMENTO; Decimal)
+        {
+        }
+       
 
 
     }

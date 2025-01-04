@@ -187,6 +187,11 @@ page 50023 TablaCajas
                 {
                     ToolTip = 'Specifies the value of the Umbral de Stock field.', Comment = '%';
                 }
+                field(INCREMENTO;Rec.INCREMENTO)
+                {
+                    ToolTip = 'Specifies the value of the Umbral de Stock field.', Comment = '%';
+                }
+
                 
 
 
@@ -293,6 +298,7 @@ page 50023 TablaCajas
             RecTC.Volumen:=RecItem."Unit Volume";
             RecTC."Voluminoso  web":=RecItem."Voluminoso web";
             RecTC.CodTarifa:=RecSP."Sales Code";
+            RecTC.INCREMENTO:=RecSP.INCREMENTO;
             RecTC.INSERT;                          
         end;    
     until RecSP.next=0;            
