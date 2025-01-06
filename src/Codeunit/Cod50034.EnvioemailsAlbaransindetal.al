@@ -4,11 +4,8 @@ Codeunit 50034 "Envio emails Albaran sin detal"
 
     trigger OnRun()
     begin
-
-
-
-                 Clear(Codeunit50010);
-                 Codeunit50010.ENVIAREMIALALBARSINDETALLE;
+        Clear(Codeunit50010);
+        Codeunit50010.ENVIAREMIALALBARSINDETALLE;
     end;
 
     var
