@@ -3464,7 +3464,7 @@ Cstr(Fields!PageCaption.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">Expedición</Value>
+                      <Value EvaluationMode="Auto">Expedici┬ón</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <FontSize>8pt</FontSize>
@@ -3605,7 +3605,7 @@ Cstr(Fields!PageCaption.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Auto">Dirección de envio</Value>
+                      <Value EvaluationMode="Auto">Direcci┬ón de envio</Value>
                       <Style>
                         <FontSize>8pt</FontSize>
                         <FontWeight>Bold</FontWeight>
