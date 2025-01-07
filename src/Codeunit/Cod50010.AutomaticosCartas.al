@@ -10090,7 +10090,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     end;
 
 
-    procedure ENVIAREMIALALBARANESME()              
+    procedure ENVIAREMIALALBARANESME()
     ///// 2
     var
         SenderName: Text[250];
@@ -14833,13 +14833,13 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         cduFileManagement: Codeunit "File Management";
         AttachmentTempBlob: Codeunit "Temp Blob";
         OutStream: OutStream;
-        Base64Text: Text;
-        Base64Convert: Codeunit "Base64 Convert";
+    //Base64Text: Text;
+    //Base64Convert: Codeunit "Base64 Convert";
     begin
         EmailMessage.Create(parDestinatarios, parSubject, parBody, parHtmlFormatted, parCC.Split(';'), parBCC.Split(';'));
 
-        Base64Text := Base64Convert.ToBase64(AttachmentInStream);
-        EmailMessage.AddAttachment(parAttachmentName, parContentType, Base64Text);
+        //Base64Text := Base64Convert.ToBase64(AttachmentInStream);
+        EmailMessage.AddAttachment(parAttachmentName, parContentType, AttachmentInStream);
 
         Email.Send(EmailMessage, parEmailScenario);
     end;
