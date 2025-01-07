@@ -21,10 +21,7 @@ page 50002 CabVenta
                 {
                     ToolTip = 'Specifies the value of the ASN field.', Comment = '%';
                 }
-                field("Customer Disc. Group";Rec."Customer Disc. Group")
-                {
-                    ToolTip = 'Specifies the value of the ASN field.', Comment = '%';
-                }
+
                 field("Albaran sin detalle"; Rec."Albaran sin detalle")
                 {
                     ToolTip = 'Specifies the value of the Albaran sin detalle field.', Comment = '%';
@@ -235,7 +232,7 @@ page 50002 CabVenta
                 }
                 ///field("Customer Disc. Group"; Rec."Customer Disc. Group")
                 ///{
-                    ///ToolTip = 'Specifies the value of the Customer Disc. Group field.', Comment = '%';
+                ///ToolTip = 'Specifies the value of the Customer Disc. Group field.', Comment = '%';
                 ///}
                 field("Customer Posting Group"; Rec."Customer Posting Group")
                 {
@@ -1188,6 +1185,10 @@ page 50002 CabVenta
                 field("Your Reference"; Rec."Your Reference")
                 {
                     ToolTip = 'Specifies the customer''s reference. The content will be printed on sales documents.';
+                }
+                field("Customer Disc. Group"; Rec."Customer Disc. Group")
+                {
+                    ToolTip = 'Specifies the value of the ASN field.', Comment = '%';
                 }
             }
         }
