@@ -8638,7 +8638,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         SalesInvHeader.Reset;
         SalesInvHeader.SetCurrentkey(SalesInvHeader."Enviar email", SalesInvHeader."Email enviado");
         SalesInvHeader.SetRange(SalesInvHeader."Enviar email", true);
-        /////SalesInvHeader.SETRANGE("Posting Date",TODAY,TODAY);
+        SalesInvHeader.SETRANGE("Posting Date",20250101D,TODAY);
         SalesInvHeader.SetRange(SalesInvHeader."Email enviado", false);
         /////SalesInvHeader.SetRange("No.", '24FV122053');
         if SalesInvHeader.FindSet then
