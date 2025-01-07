@@ -281,55 +281,57 @@ XmlPort 50029 "Importacion COVALPROPER"
 
         if D5 <> '' then begin
             RecProd.Reset;
-            RecProd.SetRange(ean, D5);
+            RecProd.SetRange(ean, D5);             
             if RecProd.FindFirst then begin
-                RecProd.SetRange(RecProd."Location Filter", 'SILLA', 'SILLA');
-                RecProd.CalcFields(RecProd.Inventory);
-                if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
-                    SALE := true;
-                end;
-                if not SALE then begin
-                    LINEAS := LINEAS + 10000;
-                    RecLV."Document Type" := 1;
-                    RecLV."Document No." := RecCV."No.";
-                    RecLV."Line No." := LINEAS;
-                    RecLV.Type := 2;
-                    RecLV.Validate(RecLV."No.", RecProd."No.");
-                    RecLV."Linea pedido externo" := D2;
-                    RecLV."Your Reference 2" := D7;
-                    Evaluate(CANTIDE, D6);
-                    RecLV.Validate(RecLV.Quantity, CANTIDE);
-                    RecLV.Insert(true);
-                    RecLV.Validate(RecLV.Quantity, CANTIDE);
-                    RecLV.Modify(true);
-
-                end;
-            end else begin
-                RecRefCruz.Reset;
-                RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
-                RecRefCruz.SetRange(RecRefCruz."Reference No.", D5);
-                if RecRefCruz.FindFirst then begin
-                    ref := RecRefCruz."Item No.";
-                    if RecProd.Get(ref) then begin
-                        RecProd.CalcFields(RecProd.Inventory);
-                        if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
-                            SALE := true;
-                        end;
-                        if not SALE then begin
-                            LINEAS := LINEAS + 10000;
-                            RecLV."Document Type" := 1;
-                            RecLV."Document No." := RecCV."No.";
-                            RecLV."Line No." := LINEAS;
-                            RecLV."Linea pedido externo" := D2;
-                            RecLV.Type := 2;
-                            RecLV.Validate(RecLV."No.", ref);
-                            RecLV."Your Reference 2" := D7;
-                            Evaluate(CANTIDE, D6);
-                            RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            RecLV.Insert(true);
-                            RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            RecLV.Modify(true);
-
+                if RecProd."No permite pedido"=false then begin                
+                    RecProd.SetRange(RecProd."Location Filter", 'SILLA', 'SILLA');
+                    RecProd.CalcFields(RecProd.Inventory);
+                    if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
+                        SALE := true;
+                    end;
+                    if not SALE then begin
+                        LINEAS := LINEAS + 10000;
+                        RecLV."Document Type" := 1;
+                        RecLV."Document No." := RecCV."No.";
+                        RecLV."Line No." := LINEAS;
+                        RecLV.Type := 2;
+                        RecLV.Validate(RecLV."No.", RecProd."No.");
+                        RecLV."Linea pedido externo" := D2;
+                        RecLV."Your Reference 2" := D7;
+                        Evaluate(CANTIDE, D6);
+                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        RecLV.Insert(true);
+                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        RecLV.Modify(true);
+                    end;
+                end else begin
+                    RecRefCruz.Reset;
+                    RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
+                    RecRefCruz.SetRange(RecRefCruz."Reference No.", D5);
+                    if RecRefCruz.FindFirst then begin
+                        ref := RecRefCruz."Item No.";
+                        if RecProd.Get(ref) then begin
+                            if RecProd."No permite pedido"=false then begin
+                                RecProd.CalcFields(RecProd.Inventory);
+                                if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
+                                    SALE := true;
+                                end;
+                                if not SALE then begin
+                                    LINEAS := LINEAS + 10000;
+                                    RecLV."Document Type" := 1;
+                                    RecLV."Document No." := RecCV."No.";
+                                    RecLV."Line No." := LINEAS;
+                                    RecLV."Linea pedido externo" := D2;
+                                    RecLV.Type := 2;
+                                    RecLV.Validate(RecLV."No.", ref);
+                                    RecLV."Your Reference 2" := D7;
+                                    Evaluate(CANTIDE, D6);
+                                    RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                    RecLV.Insert(true);
+                                    RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                    RecLV.Modify(true);
+                                end;
+                            end;
                         end;
                     end;
                 end;

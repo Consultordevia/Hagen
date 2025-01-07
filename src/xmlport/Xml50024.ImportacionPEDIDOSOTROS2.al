@@ -223,51 +223,53 @@ XmlPort 50024 "Importacion PEDIDOS OTROS2"
 
         if D1 <> '' then begin
             if RecProd.Get(D1) then begin
-                RecProd.SetRange(RecProd."Location Filter", 'SILLA', 'SILLA');
-                RecProd.CalcFields(RecProd.Inventory);
-                if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
-                    SALE := true;
-                end;
-                SALE := false;
-                if not SALE then begin
-                    LINEAS := LINEAS + 10000;
-                    RecLV.Init;
-                    RecLV."Document Type" := 1;
-                    RecLV."Document No." := codpedido;
-                    RecLV."Line No." := LINEAS;
-                    RecLV.Type := 2;
-                    RecLV.Validate(RecLV."No.", D1);
-                    Evaluate(CANTIDE, D2);
-                    ///RecLV.VALIDATE(RecLV.Quantity,CANTIDE);
-                    RecLV.Insert(true);
-                    RecLV.Validate(RecLV.Quantity, CANTIDE);
-                    RecLV.Modify(true);
-
-                end;
-            end else begin
-                RecRefCruz.Reset;
-                RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
-                RecRefCruz.SetRange(RecRefCruz."Reference No.", D1);
-                if RecRefCruz.FindFirst then begin
-                    ref := RecRefCruz."Item No.";
-                    if RecProd.Get(ref) then begin
-                        RecProd.CalcFields(RecProd.Inventory);
-                        if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
-                            SALE := true;
-                        end;
-                        if not SALE then begin
-                            LINEAS := LINEAS + 10000;
-                            RecLV."Document Type" := 1;
-                            RecLV."Document No." := codpedido;
-                            RecLV."Line No." := LINEAS;
-                            RecLV.Type := 2;
-                            RecLV.Validate(RecLV."No.", ref);
-                            Evaluate(CANTIDE, D2);
-                            ///RecLV.VALIDATE(RecLV.Quantity,CANTIDE);
-                            RecLV.Insert(true);
-                            RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            RecLV.Modify(true);
-
+                if RecProd."No permite pedido"=false then begin
+                    RecProd.SetRange(RecProd."Location Filter", 'SILLA', 'SILLA');
+                    RecProd.CalcFields(RecProd.Inventory);
+                    if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
+                        SALE := true;
+                    end;
+                    SALE := false;
+                    if not SALE then begin
+                        LINEAS := LINEAS + 10000;
+                        RecLV.Init;
+                        RecLV."Document Type" := 1;
+                        RecLV."Document No." := codpedido;
+                        RecLV."Line No." := LINEAS;
+                        RecLV.Type := 2;
+                        RecLV.Validate(RecLV."No.", D1);
+                        Evaluate(CANTIDE, D2);
+                        ///RecLV.VALIDATE(RecLV.Quantity,CANTIDE);
+                        RecLV.Insert(true);
+                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        RecLV.Modify(true);
+                    end;
+                end else begin
+                    RecRefCruz.Reset;
+                    RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
+                    RecRefCruz.SetRange(RecRefCruz."Reference No.", D1);
+                    if RecRefCruz.FindFirst then begin
+                        ref := RecRefCruz."Item No.";
+                        if RecProd.Get(ref) then begin
+                            if RecProd."No permite pedido"=false then begin
+                                RecProd.CalcFields(RecProd.Inventory);
+                                if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
+                                    SALE := true;
+                                end;
+                                if not SALE then begin
+                                    LINEAS := LINEAS + 10000;
+                                    RecLV."Document Type" := 1;
+                                    RecLV."Document No." := codpedido;
+                                    RecLV."Line No." := LINEAS;
+                                    RecLV.Type := 2;
+                                    RecLV.Validate(RecLV."No.", ref);
+                                    Evaluate(CANTIDE, D2);
+                                    ///RecLV.VALIDATE(RecLV.Quantity,CANTIDE);
+                                    RecLV.Insert(true);
+                                    RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                    RecLV.Modify(true);
+                                end;                                    
+                            end;
                         end;
                     end;
                 end;

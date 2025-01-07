@@ -87,7 +87,7 @@ XmlPort 50062 "Importacion PED miriva NAV0322"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -501,7 +501,7 @@ XmlPort 50062 "Importacion PED miriva NAV0322"
                     RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                     RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
                     RecCV."Permite fraccionar uni. venta" := true;
-                    RecCV.Validate("Your Reference" , D1);
+                    RecCV.Validate("Your Reference", D1);
                     RecCV."Shipment Date" := Today;
                     RecCV."Requested Delivery Date" := Today;
                     RecCV.Validate(RecCV."Ship-to Code", CODDIRENVIO);
@@ -511,7 +511,7 @@ XmlPort 50062 "Importacion PED miriva NAV0322"
                     RecCV."Super urgente" := true;
                     ///TempBlob.WriteAsText(D2,TEXTENCODING::Windows);
                     ///RecCV."Work Description":=TempBlob.Blob;
-                    RecCV.Validate("Your Reference" , D1);
+                    RecCV.Validate("Your Reference", D1);
                     RecCV."Ship-to Name" := CopyStr(D16, 1, 50);
                     RecCV."Ship-to Name 2" := CopyStr(D16, 51, 50);
                     RecCV."Ship-to Address" := CopyStr(D17 + D18, 1, 50);
@@ -558,6 +558,7 @@ XmlPort 50062 "Importacion PED miriva NAV0322"
                 RecLCV.INSERT(TRUE);
             END;
         END;*/
+
             SALE := false;
             if (D6 <> '') then begin
                 if RecProd.Get(D6) then begin
@@ -567,56 +568,56 @@ XmlPort 50062 "Importacion PED miriva NAV0322"
                         SALE := true;
                     end;
                     if not SALE then begin
-                        LINEAS := LINEAS + 10000;
-                        RecLV."Document Type" := 1;
-                        RecLV."Document No." := RecCV."No.";
-                        RecLV."Line No." := LINEAS;
-                        RecLV.Type := 2;
-                        RecLV.Validate(RecLV."No.", D6);
-                        ///EVALUATE(CANTIDE,D3);
-                        CANTIDE := 1;
-                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                        RecLV.Insert(true);
-                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                        RecLV.Modify(true);
-                        Evaluate(PRECIOLIN, D32);
-                        PRECIOLIN := PRECIOLIN / 100;
-                        PRECIOLIN := PRECIOLIN / (1 + (RecLV."VAT %") / 100);
-                        RecLV.Validate("Unit Price", PRECIOLIN);
-                        RecLV.Modify(true);
-
-                    end;
-                end else begin
-                    RecRefCruz.Reset;
-                    RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
-                    RecRefCruz.SetRange(RecRefCruz."Reference No.", D6);
-                    if RecRefCruz.FindFirst then begin
-                        ref := RecRefCruz."Item No.";
-                        if RecProd.Get(ref) then begin
-                            RecProd.CalcFields(RecProd.Inventory);
-                            if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
-                                SALE := true;
-                            end;
-                            if not SALE then begin
-                                LINEAS := LINEAS + 10000;
-                                RecLV."Document Type" := 1;
-                                RecLV."Document No." := RecCV."No.";
-                                RecLV."Line No." := LINEAS;
-                                RecLV.Type := 2;
-                                RecLV.Validate(RecLV."No.", ref);
-                                CANTIDE := 1;
-                                RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                RecLV.Insert(true);
-                                RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                RecLV.Modify(true);
-                                CANTIDE := 1;
-                                Evaluate(PRECIOLIN, D32);
-                                PRECIOLIN := PRECIOLIN / 100;
-                                PRECIOLIN := PRECIOLIN / (1 + (RecLV."VAT %") / 100);
-                                RecLV.Validate("Unit Price", PRECIOLIN);
-                                RecLV.Modify(true);
-
-
+                        if RecProd."No permite pedido" = false then begin
+                            LINEAS := LINEAS + 10000;
+                            RecLV."Document Type" := 1;
+                            RecLV."Document No." := RecCV."No.";
+                            RecLV."Line No." := LINEAS;
+                            RecLV.Type := 2;
+                            RecLV.Validate(RecLV."No.", D6);
+                            ///EVALUATE(CANTIDE,D3);
+                            CANTIDE := 1;
+                            RecLV.Validate(RecLV.Quantity, CANTIDE);
+                            RecLV.Insert(true);
+                            RecLV.Validate(RecLV.Quantity, CANTIDE);
+                            RecLV.Modify(true);
+                            Evaluate(PRECIOLIN, D32);
+                            PRECIOLIN := PRECIOLIN / 100;
+                            PRECIOLIN := PRECIOLIN / (1 + (RecLV."VAT %") / 100);
+                            RecLV.Validate("Unit Price", PRECIOLIN);
+                            RecLV.Modify(true);
+                        end;
+                    end else begin
+                        RecRefCruz.Reset;
+                        RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
+                        RecRefCruz.SetRange(RecRefCruz."Reference No.", D6);
+                        if RecRefCruz.FindFirst then begin
+                            ref := RecRefCruz."Item No.";
+                            if RecProd.Get(ref) then begin
+                                RecProd.CalcFields(RecProd.Inventory);
+                                if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
+                                    SALE := true;
+                                end;
+                                if not SALE then begin
+                                    if RecProd."No permite pedido" = false then begin
+                                        LINEAS := LINEAS + 10000;
+                                        RecLV."Document Type" := 1;
+                                        RecLV."Document No." := RecCV."No.";
+                                        RecLV."Line No." := LINEAS;
+                                        RecLV.Type := 2;
+                                        RecLV.Validate(RecLV."No.", ref);
+                                        CANTIDE := 1;
+                                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                        RecLV.Insert(true);
+                                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                        RecLV.Modify(true);
+                                        Evaluate(PRECIOLIN, D32);
+                                        PRECIOLIN := PRECIOLIN / 100;
+                                        PRECIOLIN := PRECIOLIN / (1 + (RecLV."VAT %") / 100);
+                                        RecLV.Validate("Unit Price", PRECIOLIN);
+                                        RecLV.Modify(true);
+                                    end;
+                                end;
                             end;
                         end;
                     end;

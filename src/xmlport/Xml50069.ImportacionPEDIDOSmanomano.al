@@ -588,32 +588,34 @@ XmlPort 50069 "Importacion PEDIDOS mano mano"
 
 
             if RecProd.Get(CODPROD) then begin
-                LINEAS := LINEAS + 10000;
-                RecLV."Document Type" := 1;
-                RecLV."Document No." := codacti;
-                RecLV."Line No." := LINEAS;
-                RecLV.Type := 2;
-                RecLV.Validate(RecLV."No.", CODPROD);
-                ///// RecLV.INSERT(TRUE);
-                /////RecLV."Usuario alta" := UserId;
-                RecLV."Fecha alta" := Today;
-                RecLV."Hora alta" := Time;
-                RecLV."Shortcut Dimension 1 Code" := RecCV."Salesperson Code";
-                RecLV.Vendedor := RecCV."Salesperson Code";
-                RecLV.Insert;
-                D37 := ConvertStr(D37, '.', ',');
-                Evaluate(CANTIDE, D37);
-                RecLV.Validate(RecLV.Quantity, CANTIDE);
-                RecLV."Customer Price Group" := '';
-                D40 := ConvertStr(D40, '.', ',');
-                Evaluate(CANTIDE, D40);
-                CANTIDE := CANTIDE / (1 + (RecLV."VAT %") / 100);
-                RecLV.Validate(RecLV."Unit Price", CANTIDE);
-                ///D6:=CONVERTSTR(D6,'.',',');
-                //////EVALUATE(CANTIDE,D6);
-                /////7CANTIDE:=CANTIDE/(1+(RecLV."VAT %")/100);
-                ///RecLV.VALIDATE(RecLV."Line Discount Amount",CANTIDE);
-                RecLV.Modify(true);
+                if RecProd."No permite pedido"=false then begin
+                    LINEAS := LINEAS + 10000;
+                    RecLV."Document Type" := 1;
+                    RecLV."Document No." := codacti;
+                    RecLV."Line No." := LINEAS;
+                    RecLV.Type := 2;
+                    RecLV.Validate(RecLV."No.", CODPROD);
+                    ///// RecLV.INSERT(TRUE);
+                    /////RecLV."Usuario alta" := UserId;
+                    RecLV."Fecha alta" := Today;
+                    RecLV."Hora alta" := Time;
+                    RecLV."Shortcut Dimension 1 Code" := RecCV."Salesperson Code";
+                    RecLV.Vendedor := RecCV."Salesperson Code";
+                    RecLV.Insert;
+                    D37 := ConvertStr(D37, '.', ',');
+                    Evaluate(CANTIDE, D37);
+                    RecLV.Validate(RecLV.Quantity, CANTIDE);
+                    RecLV."Customer Price Group" := '';
+                    D40 := ConvertStr(D40, '.', ',');
+                    Evaluate(CANTIDE, D40);
+                    CANTIDE := CANTIDE / (1 + (RecLV."VAT %") / 100);
+                    RecLV.Validate(RecLV."Unit Price", CANTIDE);
+                    ///D6:=CONVERTSTR(D6,'.',',');
+                    //////EVALUATE(CANTIDE,D6);
+                    /////7CANTIDE:=CANTIDE/(1+(RecLV."VAT %")/100);
+                    ///RecLV.VALIDATE(RecLV."Line Discount Amount",CANTIDE);
+                    RecLV.Modify(true);
+                end;
             end;
 
 

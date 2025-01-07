@@ -356,7 +356,7 @@ codeunit 50002 Eventos
                 end;
             end;
             if Item."No permite pedido" then begin
-                ///        ERROR('Este producto no se permite en pedido.');
+                ERROR('Este producto no se permite en pedido.');
             end;
 
         end;

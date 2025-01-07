@@ -161,5 +161,8 @@ tableextension 50012 UserSetup extends "User Setup"
         field(50048; "No Permite pasar pedido a preparar"; Boolean)
         {
         }
+        field(50049; "No Permite convertir oferta a pedido"; Boolean)
+        {
+        }
     }
 }

@@ -444,20 +444,22 @@ XmlPort 50003 "Importacion PEDIDOS catit nulo"
                     end;
                 end;
                 if RecProd.Get(CODPROD) then begin
-                    LINEAS := LINEAS + 10000;
-                    RecLV."Document Type" := 1;
-                    RecLV."Document No." := RecCV."No.";
-                    RecLV."Line No." := LINEAS;
-                    RecLV.Type := 2;
-                    RecLV.Validate(RecLV."No.", CODPROD);
-                    Evaluate(CANTIDE, D26);
-                    RecLV.Validate(RecLV.Quantity, CANTIDE);
-                    RecLV.Insert(true);
-                    RecLV.Validate(RecLV.Quantity, CANTIDE);
-                    RecLV.Validate(RecLV."Customer Price Group", '');
-                    Evaluate(PPRECIO, D27);
-                    RecLV.Validate(RecLV."Unit Price", PPRECIO);
-                    RecLV.Modify(true);
+                    if RecProd."No permite pedido"=false then begin
+                        LINEAS := LINEAS + 10000;
+                        RecLV."Document Type" := 1;
+                        RecLV."Document No." := RecCV."No.";
+                        RecLV."Line No." := LINEAS;
+                        RecLV.Type := 2;
+                        RecLV.Validate(RecLV."No.", CODPROD);
+                        Evaluate(CANTIDE, D26);
+                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        RecLV.Insert(true);
+                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        RecLV.Validate(RecLV."Customer Price Group", '');
+                        Evaluate(PPRECIO, D27);
+                        RecLV.Validate(RecLV."Unit Price", PPRECIO);
+                        RecLV.Modify(true);
+                    end;
                 end;
             end;
         end;

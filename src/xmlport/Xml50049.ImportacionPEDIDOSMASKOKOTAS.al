@@ -299,19 +299,21 @@ XmlPort 50049 "Importacion PEDIDOS MASKOKOTAS"
                 RecProd.Reset;
                 RecProd.SetFilter(ean, '*' + CopyStr(D3, 2) + '*');
                 if RecProd.FindFirst then begin
-                    DD7 := RecProd."No.";
-                    if SALTA = false then begin
-                        LINEAS := LINEAS + 10000;
-                        RecLV."Document Type" := 1;
-                        RecLV."Document No." := RecCV."No.";
-                        RecLV."Line No." := LINEAS;
-                        RecLV.Type := 2;
-                        RecLV.Validate(RecLV."No.", DD7);
-                        Evaluate(CANTIDE, D4);
-                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                        RecLV.Insert(true);
-                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                        RecLV.Modify(true);
+                    if RecProd."No permite pedido"=false then begin
+                        DD7 := RecProd."No.";
+                        if SALTA = false then begin
+                            LINEAS := LINEAS + 10000;
+                            RecLV."Document Type" := 1;
+                            RecLV."Document No." := RecCV."No.";
+                            RecLV."Line No." := LINEAS;
+                            RecLV.Type := 2;
+                            RecLV.Validate(RecLV."No.", DD7);
+                            Evaluate(CANTIDE, D4);
+                            RecLV.Validate(RecLV.Quantity, CANTIDE);
+                            RecLV.Insert(true);
+                            RecLV.Validate(RecLV.Quantity, CANTIDE);
+                            RecLV.Modify(true);
+                        end;
                     end;
                 end;
             end;

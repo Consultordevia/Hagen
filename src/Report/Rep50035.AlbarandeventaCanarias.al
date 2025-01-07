@@ -120,9 +120,6 @@ Report 50035 "Albaran de venta Canarias"
                     column(ShipToAddr2; ShipToAddr[2])
                     {
                     }
-                    column(STRSUBSTNO_Text005_FORMAT_ReportForNavPageNo_; StrSubstNo(Text005, Format(ReportForNav.PageNo)))
-                    {
-                    }
                     dataitem(DimensionLoop1; Integer)
                     {
                         DataItemLinkReference = "Sales Shipment Header";
@@ -565,7 +562,7 @@ Report 50035 "Albaran de venta Canarias"
                             AutoFormatExpression = "Sales Shipment Header"."Currency Code";
                             AutoFormatType = 1;
                         }
-                        column(VATAmountLineInvoiceDiscountAmount_VATAmountLinePmtDiscGiven; VATAmountLine."Invoice Discount Amount" + VATAmountLine."Pmt. Disc. Given Amount")
+                        column(VATAmountLineInvoiceDiscountAmount_VATAmountLinePmtDiscGiven; VATAmountLine."Invoice Discount Amount") /// + VATAmountLine."Pmt. Disc. Given Amount")
                         {
                             AutoFormatExpression = "Sales Shipment Header"."Currency Code";
                             AutoFormatType = 1;

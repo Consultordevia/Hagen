@@ -10090,7 +10090,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     end;
 
 
-    procedure ENVIAREMIALALBARANESME()
+    procedure ENVIAREMIALALBARANESME()              
     ///// 2
     var
         SenderName: Text[250];
@@ -10125,8 +10125,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         AttachmentTempBlob: Codeunit "Temp Blob";
         OutStream: OutStream;
         FicheroHagen: Codeunit FicherosHagen;
-        repInforme1: report "OK Nueva Factura Venta"; ///Report 50903;
-        repInforme2: report "OK Nueva Factura Venta"; ///Report 50035;
+        repInforme1: report 50903;
+        repInforme2: report 50035;
         txtOrigen: Text;
         txtDestinatario: List of [Text]; //BC20        
         recCompanyInformation: Record "Company Information";
@@ -10339,8 +10339,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         REC91.Get(UserId);
                         RecCust.Get(Rec110."Sell-to Customer No.");
 
-                        SenderName := 'HAGEN';
-                        Subject := RecCust."Search Name" + ' - ALBARAN Nº ' + Format(Rec110."No.");
+                        txtSubject := SenderName + ' ' + RecCust."Search Name" + ' - ALBARAN Nº ' + Format(Rec110."No.");
                         SenderAddress := REC91."E-Mail";
                         if RecCust."Email facturacion 1" <> '' then begin
                             Recipient := RecCust."Email facturacion 1";
@@ -10363,7 +10362,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                     TempBlob.CreateOutStream(OutStream);
                                     TempBlob.CreateInStream(InStream);
                                     clear(repInforme1);
-                                    repInforme1.SetTableView(SalesInvHeader2);
+                                    repInforme1.SetTableView(Rec1102);
                                     repInforme1.SaveAs('', ReportFormat::Pdf, OutStream);
                                     fileName := Rec1102."No." + '.PDF';
 
@@ -10373,7 +10372,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                     TempBlob.CreateOutStream(OutStream);
                                     TempBlob.CreateInStream(InStream);
                                     clear(repInforme2);
-                                    repInforme2.SetTableView(SalesInvHeader2);
+                                    repInforme2.SetTableView(Rec1102);
                                     repInforme2.SaveAs('', ReportFormat::Pdf, OutStream);
                                     fileName := Rec1102."No." + '.PDF';
 
@@ -10503,7 +10502,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                     TempBlob.CreateOutStream(OutStream);
                                     TempBlob.CreateInStream(InStream);
                                     clear(repInforme1);
-                                    repInforme1.SetTableView(SalesInvHeader2);
+                                    repInforme1.SetTableView(Rec1102);
                                     repInforme1.SaveAs('', ReportFormat::Pdf, OutStream);
                                     fileName := Rec1102."No." + '.PDF';
 
@@ -10513,7 +10512,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                     TempBlob.CreateOutStream(OutStream);
                                     TempBlob.CreateInStream(InStream);
                                     clear(repInforme2);
-                                    repInforme2.SetTableView(SalesInvHeader2);
+                                    repInforme2.SetTableView(Rec1102);
                                     repInforme2.SaveAs('', ReportFormat::Pdf, OutStream);
                                     fileName := Rec1102."No." + '.PDF';
 
@@ -10642,7 +10641,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                     TempBlob.CreateOutStream(OutStream);
                                     TempBlob.CreateInStream(InStream);
                                     clear(repInforme1);
-                                    repInforme1.SetTableView(SalesInvHeader2);
+                                    repInforme1.SetTableView(Rec1102);
                                     repInforme1.SaveAs('', ReportFormat::Pdf, OutStream);
                                     fileName := Rec1102."No." + '.PDF';
 
@@ -10652,7 +10651,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                     TempBlob.CreateOutStream(OutStream);
                                     TempBlob.CreateInStream(InStream);
                                     clear(repInforme2);
-                                    repInforme2.SetTableView(SalesInvHeader2);
+                                    repInforme2.SetTableView(Rec1102);
                                     repInforme2.SaveAs('', ReportFormat::Pdf, OutStream);
                                     fileName := Rec1102."No." + '.PDF';
 
@@ -10781,7 +10780,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                         TempBlob.CreateOutStream(OutStream);
                                         TempBlob.CreateInStream(InStream);
                                         clear(repInforme1);
-                                        repInforme1.SetTableView(SalesInvHeader2);
+                                        repInforme1.SetTableView(Rec1102);
                                         repInforme1.SaveAs('', ReportFormat::Pdf, OutStream);
                                         fileName := Rec1102."No." + '.PDF';
 
@@ -10791,7 +10790,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                         TempBlob.CreateOutStream(OutStream);
                                         TempBlob.CreateInStream(InStream);
                                         clear(repInforme2);
-                                        repInforme2.SetTableView(SalesInvHeader2);
+                                        repInforme2.SetTableView(Rec1102);
                                         repInforme2.SaveAs('', ReportFormat::Pdf, OutStream);
                                         fileName := Rec1102."No." + '.PDF';
 
@@ -11044,7 +11043,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         RecCust.Get(Rec110."Sell-to Customer No.");
 
                         SenderName := 'HAGEN';
-                        Subject := RecCust."Search Name" + ' - ALBARAN Nº ' + Format(Rec110."No.");
+                        Subject := SenderName + ' ' + RecCust."Search Name" + ' - ALBARAN Nº ' + Format(Rec110."No.");
                         SenderAddress := REC91."E-Mail";
                         if RecCust."Email albaran sin detalle 1" <> '' then begin
                             Recipient := RecCust."Email albaran sin detalle 1";
@@ -12159,7 +12158,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
                 SenderName := 'HAGEN';
 
-                Subject := RecCust."Search Name" + ' - FACTURA Nº ' + Format(SalesInvHeader."No.");
+                Subject := SenderName + ' ' + RecCust."Search Name" + ' - FACTURA Nº ' + Format(SalesInvHeader."No.");
                 SenderAddress := REC91."E-Mail";
                 if RecCust."Email facturacion 1" <> '' then begin
                     Recipient := RecCust."Email facturacion 1";

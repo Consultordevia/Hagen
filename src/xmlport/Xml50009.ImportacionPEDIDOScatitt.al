@@ -504,29 +504,31 @@ XmlPort 50009 "Importacion PEDIDOS catitt"
                     end;
                 end;
                 if RecProd.Get(CODPROD) then begin
-                    LINEAS := LINEAS + 10000;
-                    RecLV."Document Type" := 1;
-                    RecLV."Document No." := codacti;
-                    RecLV."Line No." := LINEAS;
-                    RecLV.Type := 2;
-                    RecLV.Validate(RecLV."No.", CODPROD);
-                    ///// RecLV.INSERT(TRUE);
-                    RecLV."Usuario alta" := UserId;
-                    RecLV."Fecha alta" := Today;
-                    RecLV."Hora alta" := Time;
-                    RecLV."Shortcut Dimension 1 Code" := RecCV."Salesperson Code";
-                    RecLV.Vendedor := RecCV."Salesperson Code";
-                    RecLV.Insert;
-                    Evaluate(CANTIDE, D11);
-                    RecLV.Validate(RecLV.Quantity, CANTIDE);
-                    if UpperCase(CopyStr(D16, 1, 1)) = 'Y' then begin
-                        RecLV.Validate(RecLV."Line Discount %", 100);
+                    if RecProd."No permite pedido"=false then begin
+                        LINEAS := LINEAS + 10000;
+                        RecLV."Document Type" := 1;
+                        RecLV."Document No." := codacti;
+                        RecLV."Line No." := LINEAS;
+                        RecLV.Type := 2;
+                        RecLV.Validate(RecLV."No.", CODPROD);
+                        ///// RecLV.INSERT(TRUE);
+                        RecLV."Usuario alta" := UserId;
+                        RecLV."Fecha alta" := Today;
+                        RecLV."Hora alta" := Time;
+                        RecLV."Shortcut Dimension 1 Code" := RecCV."Salesperson Code";
+                        RecLV.Vendedor := RecCV."Salesperson Code";
+                        RecLV.Insert;
+                        Evaluate(CANTIDE, D11);
+                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        if UpperCase(CopyStr(D16, 1, 1)) = 'Y' then begin
+                            RecLV.Validate(RecLV."Line Discount %", 100);
+                        end;    
+                        RecLV."Customer Price Group" := '';
+                        D17 := ConvertStr(D17, '.', ',');
+                        Evaluate(CANTIDE, D17);
+                        RecLV.Validate(RecLV."Unit Price", CANTIDE);
+                        RecLV.Modify(true);
                     end;
-                    RecLV."Customer Price Group" := '';
-                    D17 := ConvertStr(D17, '.', ',');
-                    Evaluate(CANTIDE, D17);
-                    RecLV.Validate(RecLV."Unit Price", CANTIDE);
-                    RecLV.Modify(true);
 
 
                 end;

@@ -619,25 +619,26 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                             SALE := true;
                         end;
                         if not SALE then begin
-                            LINEAS := LINEAS + 10000;
-                            RecLV."Document Type" := 1;
-                            RecLV."Document No." := RecCV."No.";
-                            RecLV."Line No." := LINEAS;
-                            RecLV.Type := 2;
-                            RecLV.Validate(RecLV."No.", D11);
-                            RecLV."id linea externo" := D16;
-                            Evaluate(CANTIDE, D3);
-                            RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            RecLV.Insert(true);
-                            RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            RecLV.Modify(true);
-                            Evaluate(CANTIDE, D17);
-                            CANTIDE := CANTIDE / (1 + (RecLV."VAT %") / 100);
-                            CANTIDE := ROUND(CANTIDE, 0.01);
-                            RecLV.Validate("Unit Price", CANTIDE);
-                            RecLV.Modify(true);
-
-                            Evaluate(CANTitrans, D18);
+                            if RecProd."No permite pedido"=false then begin
+                                LINEAS := LINEAS + 10000;
+                                RecLV."Document Type" := 1;
+                                RecLV."Document No." := RecCV."No.";
+                                RecLV."Line No." := LINEAS;
+                                RecLV.Type := 2;
+                                RecLV.Validate(RecLV."No.", D11);
+                                RecLV."id linea externo" := D16;
+                                Evaluate(CANTIDE, D3);
+                                RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                RecLV.Insert(true);
+                                RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                RecLV.Modify(true);
+                                Evaluate(CANTIDE, D17);
+                                CANTIDE := CANTIDE / (1 + (RecLV."VAT %") / 100);
+                                CANTIDE := ROUND(CANTIDE, 0.01);
+                                RecLV.Validate("Unit Price", CANTIDE);
+                                RecLV.Modify(true);
+                                Evaluate(CANTitrans, D18);
+                            end;
                             if CANTitrans <> 0 then begin
                                 RecLV."Document Type" := 1;
                                 RecLV."Document No." := codacti;
@@ -682,23 +683,25 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                                     SALE := true;
                                 end;
                                 if not SALE then begin
-                                    LINEAS := LINEAS + 10000;
-                                    RecLV."Document Type" := 1;
-                                    RecLV."Document No." := RecCV."No.";
-                                    RecLV."Line No." := LINEAS;
-                                    RecLV.Type := 2;
-                                    RecLV.Validate(RecLV."No.", ref);
-                                    RecLV."id linea externo" := D16;
-                                    Evaluate(CANTIDE, D3);
-                                    RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                    RecLV.Insert(true);
-                                    RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                    RecLV.Modify(true);
-                                    Evaluate(CANTIDE, D17);
-                                    CANTIDE := CANTIDE / (1 + (RecLV."VAT %") / 100);
-                                    CANTIDE := ROUND(CANTIDE, 0.01);
-                                    RecLV.Validate("Unit Price", RecLV.Quantity * CANTIDE);
-                                    RecLV.Modify(true);
+                                    if RecProd."No permite pedido"=false then begin
+                                        LINEAS := LINEAS + 10000;
+                                        RecLV."Document Type" := 1;
+                                        RecLV."Document No." := RecCV."No.";
+                                        RecLV."Line No." := LINEAS;
+                                        RecLV.Type := 2;
+                                        RecLV.Validate(RecLV."No.", ref);
+                                        RecLV."id linea externo" := D16;
+                                        Evaluate(CANTIDE, D3);
+                                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                        RecLV.Insert(true);
+                                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                        RecLV.Modify(true);
+                                        Evaluate(CANTIDE, D17);
+                                        CANTIDE := CANTIDE / (1 + (RecLV."VAT %") / 100);
+                                        CANTIDE := ROUND(CANTIDE, 0.01);
+                                        RecLV.Validate("Unit Price", RecLV.Quantity * CANTIDE);
+                                        RecLV.Modify(true);
+                                    end;
                                     Evaluate(CANTitrans, D18);
                                     if CANTitrans <> 0 then begin
                                         RecLV."Document Type" := 1;

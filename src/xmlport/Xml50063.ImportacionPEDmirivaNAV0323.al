@@ -566,23 +566,25 @@ XmlPort 50063 "Importacion PED miriva NAV0323"
                         SALE := true;
                     end;
                     if not SALE then begin
-                        LINEAS := LINEAS + 10000;
-                        RecLV."Document Type" := 1;
-                        RecLV."Document No." := RecCV."No.";
-                        RecLV."Line No." := LINEAS;
-                        RecLV.Type := 2;
-                        RecLV.Validate(RecLV."No.", D6);
-                        ///EVALUATE(CANTIDE,D3);
-                        CANTIDE := 1;
-                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                        RecLV.Insert(true);
-                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                        RecLV.Modify(true);
-                        Evaluate(PRECIOLIN, D32);
-                        PRECIOLIN := PRECIOLIN / 100;
-                        PRECIOLIN := PRECIOLIN / (1 + (RecLV."VAT %") / 100);
-                        RecLV.Validate("Unit Price", PRECIOLIN);
-                        RecLV.Modify(true);
+                        if RecProd."No permite pedido"=false then begin
+                            LINEAS := LINEAS + 10000;
+                            RecLV."Document Type" := 1;
+                            RecLV."Document No." := RecCV."No.";
+                            RecLV."Line No." := LINEAS;
+                            RecLV.Type := 2;
+                            RecLV.Validate(RecLV."No.", D6);
+                            ///EVALUATE(CANTIDE,D3);
+                            CANTIDE := 1;
+                            RecLV.Validate(RecLV.Quantity, CANTIDE);
+                            RecLV.Insert(true);
+                            RecLV.Validate(RecLV.Quantity, CANTIDE);
+                            RecLV.Modify(true);
+                            Evaluate(PRECIOLIN, D32);
+                            PRECIOLIN := PRECIOLIN / 100;
+                            PRECIOLIN := PRECIOLIN / (1 + (RecLV."VAT %") / 100);
+                            RecLV.Validate("Unit Price", PRECIOLIN);
+                            RecLV.Modify(true);
+                        end;
                     end;
                 end else begin
                     RecRefCruz.Reset;
@@ -596,24 +598,24 @@ XmlPort 50063 "Importacion PED miriva NAV0323"
                                 SALE := true;
                             end;
                             if not SALE then begin
-                                LINEAS := LINEAS + 10000;
-                                RecLV."Document Type" := 1;
-                                RecLV."Document No." := RecCV."No.";
-                                RecLV."Line No." := LINEAS;
-                                RecLV.Type := 2;
-                                RecLV.Validate(RecLV."No.", ref);
-                                CANTIDE := 1;
-                                RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                RecLV.Insert(true);
-                                RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                RecLV.Modify(true);
-                                Evaluate(PRECIOLIN, D32);
-                                PRECIOLIN := PRECIOLIN / 100;
-                                PRECIOLIN := PRECIOLIN / (1 + (RecLV."VAT %") / 100);
-                                RecLV.Validate("Unit Price", PRECIOLIN);
-                                RecLV.Modify(true);
-
-
+                                if RecProd."No permite pedido"=false then begin
+                                    LINEAS := LINEAS + 10000;
+                                    RecLV."Document Type" := 1;
+                                    RecLV."Document No." := RecCV."No.";
+                                    RecLV."Line No." := LINEAS;
+                                    RecLV.Type := 2;
+                                    RecLV.Validate(RecLV."No.", ref);
+                                    CANTIDE := 1;
+                                    RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                    RecLV.Insert(true);
+                                    RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                    RecLV.Modify(true);
+                                    Evaluate(PRECIOLIN, D32);
+                                    PRECIOLIN := PRECIOLIN / 100;
+                                    PRECIOLIN := PRECIOLIN / (1 + (RecLV."VAT %") / 100);
+                                    RecLV.Validate("Unit Price", PRECIOLIN);
+                                    RecLV.Modify(true);
+                                end;
                             end;
                         end;
                     end;

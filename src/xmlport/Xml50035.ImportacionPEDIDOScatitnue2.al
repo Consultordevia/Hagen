@@ -417,19 +417,20 @@ XmlPort 50035 "Importacion PEDIDOS catit nue2"
                     end;
                 end;
                 if RecProd.Get(CODPROD) then begin
-                    LINEAS := LINEAS + 10000;
-                    RecLV."Document Type" := 1;
-                    RecLV."Document No." := codacti;
-                    RecLV."Line No." := LINEAS;
-                    RecLV.Type := 2;
-                    RecLV.Validate(RecLV."No.", CODPROD);
-                    Evaluate(CANTIDE, D11);
-                    RecLV.Validate(RecLV.Quantity, CANTIDE);
-                    if UpperCase(CopyStr(D16, 1, 1)) = 'Y' then begin
-                        RecLV.Validate(RecLV."Line Discount %", 100);
+                    if RecProd."No permite pedido"=false then begin
+                        LINEAS := LINEAS + 10000;
+                        RecLV."Document Type" := 1;
+                        RecLV."Document No." := codacti;
+                        RecLV."Line No." := LINEAS;
+                        RecLV.Type := 2;
+                        RecLV.Validate(RecLV."No.", CODPROD);
+                        Evaluate(CANTIDE, D11);
+                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        if UpperCase(CopyStr(D16, 1, 1)) = 'Y' then begin
+                            RecLV.Validate(RecLV."Line Discount %", 100);
+                        end;
+                        RecLV.Insert(true);
                     end;
-
-                    RecLV.Insert(true);
                 end;
                 Evaluate(CANTitrans, D12);
                 impdto := 0;

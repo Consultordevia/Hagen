@@ -313,17 +313,19 @@ XmlPort 50066 "Importacion PEDIDOS 14308"
                 RecProd.SetFilter("No.", D2);
                 if RecProd.FindFirst then begin
                     if SALTA = false then begin
-                        LINEAS := LINEAS + 10000;
-                        RecLV."Document Type" := 1;
-                        RecLV."Document No." := RecCV."No.";
-                        RecLV."Line No." := LINEAS;
-                        RecLV.Type := 2;
-                        RecLV.Validate(RecLV."No.", D2);
-                        Evaluate(CANTIDE, D4);
-                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                        RecLV.Insert(true);
-                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                        RecLV.Modify(true);
+                        if RecProd."No permite pedido"=false then begin
+                            LINEAS := LINEAS + 10000;
+                            RecLV."Document Type" := 1;
+                            RecLV."Document No." := RecCV."No.";
+                            RecLV."Line No." := LINEAS;
+                            RecLV.Type := 2;
+                            RecLV.Validate(RecLV."No.", D2);
+                            Evaluate(CANTIDE, D4);
+                            RecLV.Validate(RecLV.Quantity, CANTIDE);
+                            RecLV.Insert(true);
+                            RecLV.Validate(RecLV.Quantity, CANTIDE);
+                            RecLV.Modify(true);
+                        end;
                     end;
                 end;
             end;

@@ -377,24 +377,25 @@ XmlPort 50065 "Importacion PEDIDOS Verdecora"
                         SALE := true;
                     end;
                     if not SALE then begin
-                        LINEAS := LINEAS + 10000;
-                        RecLV."Document Type" := 0;
-                        RecLV."Document No." := RecCV."No.";
-                        RecLV."Line No." := LINEAS;
-                        RecLV.Type := 2;
-                        RecLV.Validate(RecLV."No.", D9);
-                        Evaluate(CANTIDE, D14);
-                        RelacionproductogrupoMetros.Reset;
-                        RelacionproductogrupoMetros.SetRange(RelacionproductogrupoMetros.Producto, D9);
-                        /////RelacionproductogrupoMetros.SETRANGE(RelacionproductogrupoMetros."Grupo Cliente",RecCV."Grupo clientes");
-                        if RelacionproductogrupoMetros.FindSet then begin
-                            CANTIDE := ROUND(CANTIDE / RelacionproductogrupoMetros.Metros, 0.01);
+                        if RecProd."No permite pedido"=false then begin
+                            LINEAS := LINEAS + 10000;
+                            RecLV."Document Type" := 0;
+                            RecLV."Document No." := RecCV."No.";
+                            RecLV."Line No." := LINEAS;
+                            RecLV.Type := 2;
+                            RecLV.Validate(RecLV."No.", D9);
+                            Evaluate(CANTIDE, D14);
+                            RelacionproductogrupoMetros.Reset;
+                            RelacionproductogrupoMetros.SetRange(RelacionproductogrupoMetros.Producto, D9);
+                            /////RelacionproductogrupoMetros.SETRANGE(RelacionproductogrupoMetros."Grupo Cliente",RecCV."Grupo clientes");
+                            if RelacionproductogrupoMetros.FindSet then begin
+                                CANTIDE := ROUND(CANTIDE / RelacionproductogrupoMetros.Metros, 0.01);
+                            end;
+                            RecLV.Validate(RecLV.Quantity, CANTIDE);
+                            RecLV.Insert(true);
+                            RecLV.Validate(RecLV.Quantity, CANTIDE);
+                            RecLV.Modify(true);
                         end;
-
-                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                        RecLV.Insert(true);
-                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                        RecLV.Modify(true);
 
                     end;
                 end else begin
@@ -409,24 +410,25 @@ XmlPort 50065 "Importacion PEDIDOS Verdecora"
                                 SALE := true;
                             end;
                             if not SALE then begin
-                                LINEAS := LINEAS + 10000;
-                                RecLV."Document Type" := 0;
-                                RecLV."Document No." := RecCV."No.";
-                                RecLV."Line No." := LINEAS;
-                                RecLV.Type := 2;
-                                RecLV.Validate(RecLV."No.", ref);
-                                Evaluate(CANTIDE, D14);
-                                RelacionproductogrupoMetros.Reset;
-                                RelacionproductogrupoMetros.SetRange(RelacionproductogrupoMetros.Producto, ref);
-                                ////RelacionproductogrupoMetros.SETRANGE(RelacionproductogrupoMetros."Grupo Cliente",RecCV."Grupo clientes");
-                                if RelacionproductogrupoMetros.FindSet then begin
-                                    CANTIDE := ROUND(CANTIDE / RelacionproductogrupoMetros.Metros, 0.01);
+                                if RecProd."No permite pedido"=false then begin
+                                    LINEAS := LINEAS + 10000;
+                                    RecLV."Document Type" := 0;
+                                    RecLV."Document No." := RecCV."No.";
+                                    RecLV."Line No." := LINEAS;
+                                    RecLV.Type := 2;
+                                    RecLV.Validate(RecLV."No.", ref);
+                                    Evaluate(CANTIDE, D14);
+                                    RelacionproductogrupoMetros.Reset;
+                                    RelacionproductogrupoMetros.SetRange(RelacionproductogrupoMetros.Producto, ref);
+                                    ////RelacionproductogrupoMetros.SETRANGE(RelacionproductogrupoMetros."Grupo Cliente",RecCV."Grupo clientes");
+                                    if RelacionproductogrupoMetros.FindSet then begin
+                                        CANTIDE := ROUND(CANTIDE / RelacionproductogrupoMetros.Metros, 0.01);
+                                    end;
+                                    RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                    RecLV.Insert(true);
+                                    RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                    RecLV.Modify(true);
                                 end;
-
-                                RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                RecLV.Insert(true);
-                                RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                RecLV.Modify(true);
 
                             end;
                         end;
