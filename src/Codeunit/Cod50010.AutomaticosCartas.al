@@ -8569,7 +8569,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     end;
 
 
-    procedure ENVIAREMIALFACTURAS()
+    procedure ENVIAREMIALFACTURAS(var Rec: Record "Sales Invoice Header")
     ///// 1
     var
         SenderName: Text[250];
@@ -8635,12 +8635,15 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
     begin
 
-        SalesInvHeader.Reset;
+        /*SalesInvHeader.Reset;
         SalesInvHeader.SetCurrentkey(SalesInvHeader."Enviar email", SalesInvHeader."Email enviado");
         SalesInvHeader.SetRange(SalesInvHeader."Enviar email", true);
         SalesInvHeader.SETRANGE("Posting Date",20250101D,TODAY);
         SalesInvHeader.SetRange(SalesInvHeader."Email enviado", false);
         /////SalesInvHeader.SetRange("No.", '24FV122053');
+        */
+        SalesInvHeader.Reset;         
+        SalesInvHeader.SetRange("No.",Rec."No.");                          
         if SalesInvHeader.FindSet then
             repeat
                 ///message('%1', SalesInvHeader."No.");
