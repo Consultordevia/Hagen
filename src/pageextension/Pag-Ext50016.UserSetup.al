@@ -6,6 +6,7 @@ pageextension 50016 "User Setup" extends "User Setup"
         addafter(PhoneNo)
         {
 
+            field("No Permite NO PERMITE PEDIDO";Rec."No Permite NO PERMITE PEDIDO") { ApplicationArea = All; }
             field("No Permite convertir oferta a pedido";Rec."No Permite convertir oferta a pedido") { ApplicationArea = All; }
             field("No Permite pasar pedido a preparar";Rec."No Permite pasar pedido a preparar") { ApplicationArea = All; }
             field("Serie actividades"; Rec."Serie actividades") { ApplicationArea = All; }

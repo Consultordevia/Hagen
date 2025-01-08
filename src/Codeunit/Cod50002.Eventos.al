@@ -33,13 +33,13 @@ codeunit 50002 Eventos
     local procedure OnAfterModifyEvent(RunTrigger: Boolean; var Rec: Record Customer);
     var
         EnvioFicheros: Codeunit "Automaticos Cartas";
-        RecUS: Record "User Setup"; 
+        RecUS: Record "User Setup";
     begin
         RecUS.get(UserId);
-        IF RecUS."Editar tabla Clientes/Comercia"=FALSE THEN begin
+        IF RecUS."Editar tabla Clientes/Comercia" = FALSE THEN begin
             Error('No tiene permiso para modificar clientes.');
         end;
-        
+
         /////-EnvioFicheros.MODIFCLIENTES(Rec);
 
     end;
@@ -335,6 +335,7 @@ codeunit 50002 Eventos
     local procedure OnCopyFromItemOnAfterCheck(var SalesLine: Record "Sales Line"; Item: Record Item)
     var
         CestaCompra: Record "Cesta compra";
+        UserSetup: Record "User Setup";
     begin
         SalesLine."Producto Padre" := Item."Producto PADRE";
         SalesLine."Exit Point" := Item."Exit Point";
@@ -356,7 +357,11 @@ codeunit 50002 Eventos
                 end;
             end;
             if Item."No permite pedido" then begin
-                ERROR('Este producto no se permite en pedido.');
+                if UserSetup.get(UserId) then begin
+                    if UserSetup."No Permite NO PERMITE PEDIDO" = true then begin
+                        ERROR('Este producto no se permite en pedido.');
+                    end;
+                end;
             end;
 
         end;

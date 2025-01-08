@@ -453,7 +453,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
         }
         field(50004; "Fecha alta"; Date)
         {
-            Editable = false;
+            Editable = true;
         }
         field(50005; "Hora alta"; Time)
         {
