@@ -8947,11 +8947,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                     SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
                     if SalesInvHeader2.FindFirst then begin
                         txtOrigen := 'facturacion@hagen.es';
-                        txtDestinatario.Add(Recipient);
-                        recCompanyInformation.Get;
+                        ///txtDestinatario.Add(Recipient);
+                        txtDestinatario.Add('oscarraea@hotmail.com');
+                        recCompanyInformation.Get;                         
                         TempBlob.CreateOutStream(OutStream);
                         TempBlob.CreateInStream(InStream);
-                        clear(repInforme);
+                        clear(repInforme);                        
                         repInforme.SetTableView(SalesInvHeader2);
                         repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                         fileName := SalesInvHeader2."No." + '.PDF';
@@ -9086,7 +9087,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                     if SalesInvHeader2.FindFirst then begin
                         txtOrigen := 'facturacion@hagen.es';
                         clear(txtDestinatario);
-                        txtDestinatario.Add(Recipient);
+                        /////txtDestinatario.Add(Recipient);
+                        txtDestinatario.Add('oscarraea@hotmail.com');
                         recCompanyInformation.Get;
                         TempBlob.CreateOutStream(OutStream);
                         TempBlob.CreateInStream(InStream);
@@ -9201,8 +9203,9 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                     SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
                     if SalesInvHeader2.FindFirst then begin
                         txtOrigen := 'facturacion@hagen.es';
-                        clear(txtDestinatario);
-                        txtDestinatario.Add(Recipient);
+                        clear(txtDestinatario);                         
+                        /////txtDestinatario.Add(Recipient);
+                        txtDestinatario.Add('oscarraea@hotmail.com');
                         recCompanyInformation.Get;
                         TempBlob.CreateOutStream(OutStream);
                         TempBlob.CreateInStream(InStream);
@@ -9331,7 +9334,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         if SalesInvHeader2.FindFirst then begin
                             txtOrigen := 'facturacion@hagen.es';
                             clear(txtDestinatario);
-                            txtDestinatario.Add(Recipient);
+                            ///txtDestinatario.Add(Recipient);
+                            txtDestinatario.Add('oscarraea@hotmail.com');
                             recCompanyInformation.Get;
                             TempBlob.CreateOutStream(OutStream);
                             TempBlob.CreateInStream(InStream);
@@ -9349,10 +9353,10 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
                 SalesInvHeader3.Get(SalesInvHeader."No.");
-                SalesInvHeader3."Email enviado" := true;
-                SalesInvHeader3."Fecha enviado" := Today;
-                SalesInvHeader3."Hora enviado" := Time;
-                SalesInvHeader3.Modify;
+                /////-SalesInvHeader3."Email enviado" := true;
+                /////-SalesInvHeader3."Fecha enviado" := Today;
+                /////-SalesInvHeader3."Hora enviado" := Time;
+                /////-SalesInvHeader3.Modify;
 
             until SalesInvHeader.Next = 0;
     end;
@@ -10378,7 +10382,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
                                 end;
                                 txtOrigen := 'facturacion@hagen.es';
-                                txtDestinatario.Add(Recipient);
+                                /////txtDestinatario.Add(Recipient);
+                                txtDestinatario.Add('oscarraea@hotmail.com');
                                 recCompanyInformation.Get;
                                 BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                                 FicheroHagen.CrearFicheroFTP('', fileName, InStream);
@@ -10518,7 +10523,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
                                 end;
                                 txtOrigen := 'facturacion@hagen.es';
-                                txtDestinatario.Add(Recipient);
+                                /////txtDestinatario.Add(Recipient);
+                                txtDestinatario.Add('oscarraea@hotmail.com');
                                 recCompanyInformation.Get;
                                 BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                                 FicheroHagen.CrearFicheroFTP('', fileName, InStream);
@@ -10657,7 +10663,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
                                 end;
                                 txtOrigen := 'facturacion@hagen.es';
-                                txtDestinatario.Add(Recipient);
+                                /////txtDestinatario.Add(Recipient);
+                                txtDestinatario.Add('oscarraea@hotmail.com');
                                 recCompanyInformation.Get;
                                 BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                                 FicheroHagen.CrearFicheroFTP('', fileName, InStream);
@@ -10796,7 +10803,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
                                     end;
                                     txtOrigen := 'facturacion@hagen.es';
-                                    txtDestinatario.Add(Recipient);
+                                    /////txtDestinatario.Add(Recipient);
+                                    txtDestinatario.Add('oscarraea@hotmail.com');
                                     recCompanyInformation.Get;
                                     BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                                     FicheroHagen.CrearFicheroFTP('', fileName, InStream);
