@@ -8630,7 +8630,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         OutStream: OutStream;
         repInforme: Report "OK Nueva Factura Venta";
         FicheroHagen: Codeunit FicherosHagen;
-
+        BlobAdjunto: Codeunit "Temp Blob";
 
 
     begin
@@ -8642,8 +8642,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         SalesInvHeader.SetRange(SalesInvHeader."Email enviado", false);
         /////SalesInvHeader.SetRange("No.", '24FV122053');
         */
-        SalesInvHeader.Reset;         
-        SalesInvHeader.SetRange("No.",Rec."No.");                          
+        SalesInvHeader.Reset;
+        SalesInvHeader.SetRange("No.", Rec."No.");
         if SalesInvHeader.FindSet then
             repeat
                 ///message('%1', SalesInvHeader."No.");
@@ -8952,10 +8952,10 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         txtOrigen := 'facturacion@hagen.es';
                         ///txtDestinatario.Add(Recipient);
                         txtDestinatario.Add('oscarraea@hotmail.com');
-                        recCompanyInformation.Get;                         
+                        recCompanyInformation.Get;
                         TempBlob.CreateOutStream(OutStream);
                         TempBlob.CreateInStream(InStream);
-                        clear(repInforme);                        
+                        clear(repInforme);
                         repInforme.SetTableView(SalesInvHeader2);
                         repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                         fileName := SalesInvHeader2."No." + '.PDF';
@@ -9206,7 +9206,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                     SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
                     if SalesInvHeader2.FindFirst then begin
                         txtOrigen := 'facturacion@hagen.es';
-                        clear(txtDestinatario);                         
+                        clear(txtDestinatario);
                         /////txtDestinatario.Add(Recipient);
                         txtDestinatario.Add('oscarraea@hotmail.com');
                         recCompanyInformation.Get;
@@ -9340,8 +9340,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             ///txtDestinatario.Add(Recipient);
                             txtDestinatario.Add('oscarraea@hotmail.com');
                             recCompanyInformation.Get;
-                            TempBlob.CreateOutStream(OutStream);
-                            TempBlob.CreateInStream(InStream);
+                            Clear(BlobAdjunto);
+                            Clear(OutStream);
+                            Clear(InStream);
+                            BlobAdjunto.CreateOutStream(OutStream);
+                            BlobAdjunto.CreateInStream(InStream);
                             clear(repInforme);
                             repInforme.SetTableView(SalesInvHeader2);
                             repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
@@ -9356,10 +9359,10 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
                 SalesInvHeader3.Get(SalesInvHeader."No.");
-                /////-SalesInvHeader3."Email enviado" := true;
-                /////-SalesInvHeader3."Fecha enviado" := Today;
-                /////-SalesInvHeader3."Hora enviado" := Time;
-                /////-SalesInvHeader3.Modify;
+            /////-SalesInvHeader3."Email enviado" := true;
+            /////-SalesInvHeader3."Fecha enviado" := Today;
+            /////-SalesInvHeader3."Hora enviado" := Time;
+            /////-SalesInvHeader3.Modify;
 
             until SalesInvHeader.Next = 0;
     end;
@@ -9403,6 +9406,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         /////- SmtpMail: Codeunit UnknownCodeunit400;
         CompanyInfo: Record "Company Information";
         FileManagment: Codeunit "File Management";
+        Blob: Codeunit "Temp Blob";
     /////- TempBlob: Record TempBlob temporary;
     begin
 
@@ -10143,6 +10147,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         PdfDocPath: Text;
         Path: Text;
         txtCC: Text;
+        Blob: Codeunit "Temp Blob";
 
 
 
