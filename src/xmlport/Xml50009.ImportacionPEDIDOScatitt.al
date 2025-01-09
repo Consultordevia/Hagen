@@ -504,7 +504,7 @@ XmlPort 50009 "Importacion PEDIDOS catitt"
                     end;
                 end;
                 if RecProd.Get(CODPROD) then begin
-                    if RecProd."No permite pedido"=false then begin
+                    ///if RecProd."No permite pedido"=false then begin
                         LINEAS := LINEAS + 10000;
                         RecLV."Document Type" := 1;
                         RecLV."Document No." := codacti;
@@ -528,7 +528,7 @@ XmlPort 50009 "Importacion PEDIDOS catitt"
                         Evaluate(CANTIDE, D17);
                         RecLV.Validate(RecLV."Unit Price", CANTIDE);
                         RecLV.Modify(true);
-                    end;
+                    ///end;
 
 
                 end;

@@ -588,7 +588,7 @@ XmlPort 50069 "Importacion PEDIDOS mano mano"
 
 
             if RecProd.Get(CODPROD) then begin
-                if RecProd."No permite pedido"=false then begin
+                ///if RecProd."No permite pedido"=false then begin
                     LINEAS := LINEAS + 10000;
                     RecLV."Document Type" := 1;
                     RecLV."Document No." := codacti;
@@ -615,7 +615,7 @@ XmlPort 50069 "Importacion PEDIDOS mano mano"
                     /////7CANTIDE:=CANTIDE/(1+(RecLV."VAT %")/100);
                     ///RecLV.VALIDATE(RecLV."Line Discount Amount",CANTIDE);
                     RecLV.Modify(true);
-                end;
+                ///end;
             end;
 
 

@@ -620,7 +620,7 @@ XmlPort 50051 "Importacion PEDIDOS tienda an2"
                             SALE := true;
                         end;
                         if not SALE then begin
-                            if RecProd."No permite pedido"=false then begin                            
+                            ///if RecProd."No permite pedido"=false then begin                            
                                 LINEAS := LINEAS + 10000;
                                 RecLV."Document Type" := 1;
                                 RecLV."Document No." := RecCV."No.";
@@ -670,7 +670,7 @@ XmlPort 50051 "Importacion PEDIDOS tienda an2"
                             PurchaseLine.MODIFY(TRUE);
                             PurchaseLine.VALIDATE("Direct Unit Cost",CANTIDE);
                             PurchaseLine.MODIFY(TRUE);*/
-                            end;
+                            ///end;
                         end else begin
                             RecRefCruz.Reset;
                             RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
@@ -683,7 +683,7 @@ XmlPort 50051 "Importacion PEDIDOS tienda an2"
                                         SALE := true;
                                     end;
                                     if not SALE then begin
-                                        if RecProd."No permite pedido"=false then begin
+                                        ///if RecProd."No permite pedido"=false then begin
                                             LINEAS := LINEAS + 10000;
                                             RecLV."Document Type" := 1;
                                             RecLV."Document No." := RecCV."No.";
@@ -716,7 +716,7 @@ XmlPort 50051 "Importacion PEDIDOS tienda an2"
                                                 RecLV.Validate("Unit Price", CANTitrans);
                                                 RecLV.Insert(true);
                                             end;
-                                        end;
+                                        ///end;
                                     /*PurchaseLine.INIT;
                                     PurchaseLine."Document Type":=1;
                                     PurchaseLine."Document No.":=PurchaseHeader."No.";

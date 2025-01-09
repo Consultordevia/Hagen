@@ -588,7 +588,7 @@ XmlPort 50080 "Importacion PEDIDOS WEB18"
         SALE := false;
         if D14 <> '' then begin
             if RecProd.Get(D14) then begin
-                if RecProd."No permite pedido"=false then begin
+                ///if RecProd."No permite pedido"=false then begin
                     LINEAS := LINEAS + 10000;
                     RecLV."Document Type" := 1;
                     RecLV."Document No." := D1;
@@ -604,7 +604,7 @@ XmlPort 50080 "Importacion PEDIDOS WEB18"
                     Evaluate(DPRECIO, D16);
                     RecLV.Validate(RecLV."Line Discount %", DPRECIO);
                     RecLV.Modify(true);                
-                end;
+                ///end;
             end;
         end;
 

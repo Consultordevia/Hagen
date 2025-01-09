@@ -223,7 +223,7 @@ XmlPort 50024 "Importacion PEDIDOS OTROS2"
 
         if D1 <> '' then begin
             if RecProd.Get(D1) then begin
-                if RecProd."No permite pedido"=false then begin
+                ///if RecProd."No permite pedido"=false then begin
                     RecProd.SetRange(RecProd."Location Filter", 'SILLA', 'SILLA');
                     RecProd.CalcFields(RecProd.Inventory);
                     if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
@@ -251,7 +251,7 @@ XmlPort 50024 "Importacion PEDIDOS OTROS2"
                     if RecRefCruz.FindFirst then begin
                         ref := RecRefCruz."Item No.";
                         if RecProd.Get(ref) then begin
-                            if RecProd."No permite pedido"=false then begin
+                            ///if RecProd."No permite pedido"=false then begin
                                 RecProd.CalcFields(RecProd.Inventory);
                                 if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
                                     SALE := true;
@@ -269,8 +269,8 @@ XmlPort 50024 "Importacion PEDIDOS OTROS2"
                                     RecLV.Validate(RecLV.Quantity, CANTIDE);
                                     RecLV.Modify(true);
                                 end;                                    
-                            end;
-                        end;
+                            ///end;
+                   ///     end;
                     end;
                 end;
             end;

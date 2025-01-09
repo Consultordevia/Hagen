@@ -417,7 +417,7 @@ XmlPort 50035 "Importacion PEDIDOS catit nue2"
                     end;
                 end;
                 if RecProd.Get(CODPROD) then begin
-                    if RecProd."No permite pedido"=false then begin
+                    ///if RecProd."No permite pedido"=false then begin
                         LINEAS := LINEAS + 10000;
                         RecLV."Document Type" := 1;
                         RecLV."Document No." := codacti;
@@ -430,7 +430,7 @@ XmlPort 50035 "Importacion PEDIDOS catit nue2"
                             RecLV.Validate(RecLV."Line Discount %", 100);
                         end;
                         RecLV.Insert(true);
-                    end;
+                    ///end;
                 end;
                 Evaluate(CANTitrans, D12);
                 impdto := 0;

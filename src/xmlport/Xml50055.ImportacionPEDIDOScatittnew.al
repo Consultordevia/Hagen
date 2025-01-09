@@ -607,7 +607,7 @@ XmlPort 50055 "Importacion PEDIDOS catitt new"
 
 
             if RecProd.Get(CODPROD) then begin
-                if RecProd."No permite pedido"=false then begin
+                ///if RecProd."No permite pedido"=false then begin
                     LINEAS := LINEAS + 10000;
                     RecLV."Document Type" := 1;
                     RecLV."Document No." := codacti;
@@ -635,7 +635,7 @@ XmlPort 50055 "Importacion PEDIDOS catitt new"
                     CANTIDE := CANTIDE / (1 + (RecLV."VAT %") / 100);
                     RecLV.Validate(RecLV."Line Discount Amount", CANTIDE);
                     RecLV.Modify(true);
-                end;
+                ///end;
             end;
 
 
