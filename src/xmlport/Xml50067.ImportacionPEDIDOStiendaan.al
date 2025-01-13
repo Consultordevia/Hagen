@@ -619,7 +619,7 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                             SALE := true;
                         end;
                         if not SALE then begin
-                            if RecProd."No permite pedido"=false then begin
+                            ///if RecProd."No permite pedido"=false then begin
                                 LINEAS := LINEAS + 10000;
                                 RecLV."Document Type" := 1;
                                 RecLV."Document No." := RecCV."No.";
@@ -638,7 +638,7 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                                 RecLV.Validate("Unit Price", CANTIDE);
                                 RecLV.Modify(true);
                                 Evaluate(CANTitrans, D18);
-                            end;
+                            ///end;
                             if CANTitrans <> 0 then begin
                                 RecLV."Document Type" := 1;
                                 RecLV."Document No." := codacti;
@@ -683,7 +683,7 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                                     SALE := true;
                                 end;
                                 if not SALE then begin
-                                    if RecProd."No permite pedido"=false then begin
+                                    ///if RecProd."No permite pedido"=false then begin
                                         LINEAS := LINEAS + 10000;
                                         RecLV."Document Type" := 1;
                                         RecLV."Document No." := RecCV."No.";
@@ -701,7 +701,7 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                                         CANTIDE := ROUND(CANTIDE, 0.01);
                                         RecLV.Validate("Unit Price", RecLV.Quantity * CANTIDE);
                                         RecLV.Modify(true);
-                                    end;
+                                    ///end;
                                     Evaluate(CANTitrans, D18);
                                     if CANTitrans <> 0 then begin
                                         RecLV."Document Type" := 1;

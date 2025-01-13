@@ -42,10 +42,14 @@ page 50064 ClientesWS
                     ToolTip = 'Specifies an additional part of the name.';
                     Visible = false;
                 }
-                field("CatalogoShopify";Rec."Catalogo Shopify")
+                field(AlmaTenerife; Rec.AlmaTenerife)
                 {
                     ApplicationArea = Basic;
-                }                
+                }
+                field("CatalogoShopify"; Rec."Catalogo Shopify")
+                {
+                    ApplicationArea = Basic;
+                }
                 field("ResponsibilityCenter"; Rec."Responsibility Center")
                 {
                     ApplicationArea = Basic, Suite;

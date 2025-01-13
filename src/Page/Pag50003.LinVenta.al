@@ -33,6 +33,12 @@ page 50003 LinVenta
                 {
                     ToolTip = 'Specifies the number of a general ledger account, item, resource, additional cost, or fixed asset, depending on the contents of the Type field.';
                 }
+
+                field(RefLinProdWeb; Rec.RefLinProdWeb)
+                {
+                    ToolTip = 'ProductoWeb';
+                }
+
                 field(Quantity; Rec.Quantity)
                 {
                     ToolTip = 'Specifies how many units are being sold.';

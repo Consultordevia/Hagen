@@ -640,6 +640,12 @@ tableextension 50104 Customer extends "Customer"
             FieldClass = FlowField;
 
         }
+        field(50769; AlmaTenerife; Boolean)
+
+        {
+            
+        }
+
 
         field(50999; "ContactoAInsertar"; code[100])
         {

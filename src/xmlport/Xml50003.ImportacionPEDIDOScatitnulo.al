@@ -444,7 +444,7 @@ XmlPort 50003 "Importacion PEDIDOS catit nulo"
                     end;
                 end;
                 if RecProd.Get(CODPROD) then begin
-                    if RecProd."No permite pedido"=false then begin
+                    ///if RecProd."No permite pedido"=false then begin
                         LINEAS := LINEAS + 10000;
                         RecLV."Document Type" := 1;
                         RecLV."Document No." := RecCV."No.";
@@ -459,7 +459,7 @@ XmlPort 50003 "Importacion PEDIDOS catit nulo"
                         Evaluate(PPRECIO, D27);
                         RecLV.Validate(RecLV."Unit Price", PPRECIO);
                         RecLV.Modify(true);
-                    end;
+                    ///end;
                 end;
             end;
         end;

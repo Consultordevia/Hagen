@@ -289,7 +289,7 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
                         SALE := true;
                     end;
                     if not SALE then begin
-                        if RecProd."No permite pedido"=false then begin
+                        ///if RecProd."No permite pedido"=false then begin
                             LINEAS := LINEAS + 10000;
                             RecLV."Document Type" := 0;
                             RecLV."Document No." := codpedido;
@@ -307,7 +307,7 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
                             RecLV.Insert(true);
                             RecLV.Validate(RecLV.Quantity, CANTIDE);
                             RecLV.Modify(true);
-                        end;
+                        ///end;
 
                     end;
                 end else begin
@@ -322,7 +322,7 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
                                 SALE := true;
                             end;
                             if not SALE then begin
-                                if RecProd."No permite pedido"=false then begin
+                                ///if RecProd."No permite pedido"=false then begin
                                     LINEAS := LINEAS + 10000;
                                     RecLV."Document Type" := 0;
                                     RecLV."Document No." := codpedido;
@@ -340,7 +340,7 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
                                     RecLV.Insert(true);
                                     RecLV.Validate(RecLV.Quantity, CANTIDE);
                                     RecLV.Modify(true);
-                                end;
+                                ///end;
 
                             end;
                         end;

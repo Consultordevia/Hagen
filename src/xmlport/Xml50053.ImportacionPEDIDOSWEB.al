@@ -592,7 +592,7 @@ XmlPort 50053 "Importacion PEDIDOS WEB"
         SALE := false;
         if D14 <> '' then begin
             if RecProd.Get(D14) then begin
-                if RecProd."No permite pedido"=false then begin
+                ///if RecProd."No permite pedido"=false then begin
                     LINEAS := LINEAS + 10000;
                     RecLV."Document Type" := 1;
                     RecLV."Document No." := RecCV."No.";
@@ -607,7 +607,7 @@ XmlPort 50053 "Importacion PEDIDOS WEB"
                     RecLV.Validate(RecLV."Unit Price", DPRECIO);
                     RecLV.Validate(RecLV.Quantity, CANTIDE);
                     RecLV.Modify(true);
-                end;
+                ///end;
             end;
         end;
 

@@ -2,6 +2,11 @@ pageextension 50010 "Sales Order Subform" extends "Sales Order Subform"
 {
     layout
     {
+        addafter("No.")
+        {
+            field(RefLinProdWeb; Rec.RefLinProdWeb) { ApplicationArea = All; }
+        }
+
         /*
         addafter("Qty. to Ship")
             {
@@ -74,5 +79,5 @@ pageextension 50010 "Sales Order Subform" extends "Sales Order Subform"
         }
         */
     }
-    
+
 }

@@ -679,7 +679,7 @@ XmlPort 50036 "Importacion PEDIDOS tienda ani"
                         if RecRefCruz.FindFirst then begin
                             ref := RecRefCruz."Item No.";
                             if RecProd.Get(ref) then begin
-                                if RecProd."No permite pedido"=false then begin
+                                ///if RecProd."No permite pedido"=false then begin
                                     RecProd.CalcFields(RecProd.Inventory);
                                     if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
                                         SALE := true;
@@ -717,7 +717,7 @@ XmlPort 50036 "Importacion PEDIDOS tienda ani"
                                             RecLV.Validate("Unit Price", CANTitrans);
                                             RecLV.Insert(true);
                                     end;
-                                    end;
+                                   /// end;
                                     /*PurchaseLine.INIT;
                                     PurchaseLine."Document Type":=1;
                                     PurchaseLine."Document No.":=PurchaseHeader."No.";

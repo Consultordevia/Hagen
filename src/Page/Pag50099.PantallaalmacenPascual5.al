@@ -458,7 +458,7 @@ Page 50099 "Pantalla almacen Pascual5"
                         RecSP: Record "Sales Price";
                         Automaticos: Codeunit "Automaticos Cartas";
                     begin
-                        Automaticos.ENVIAREMIALFACTURAS();
+                        ///Automaticos.ENVIAREMIALFACTURAS();
                         /*
                         RecItem.RESET;
                         if RecItem.FindFirst() then

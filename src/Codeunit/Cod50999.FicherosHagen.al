@@ -340,6 +340,7 @@ codeunit 50999 FicherosHagen
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS Leroy Merl", InStream);
                     end;
                     if Tipo = Tipo::TRSTOMOV then begin
+                        /*
                         if CopyStr(FileText, 1, 4) = 'STAJ' then begin
                             Xmlport.Import(Xmlport::"ADAIA_Alta del TRSTOMOV", InStream);
                             Rec83.Reset;
@@ -347,9 +348,8 @@ codeunit 50999 FicherosHagen
                             Rec83.SetRange(Rec83."Journal Batch Name", 'ADAIA');
                             if Rec83.FindFirst then begin
                                 CURegMov.Run(Rec83);
-                            end;
-
-                        end;
+                            end;                        
+                        end;*/
                         if CopyStr(FileText, 1, 4) = 'STSI' then begin
                             Xmlport.Import(Xmlport::"ADAIA_Alta del TRSTO", InStream);
                         end;

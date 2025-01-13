@@ -568,7 +568,7 @@ XmlPort 50064 "Importacion PED miriva NAV0324"
                         SALE := true;
                     end;
                     if not SALE then begin
-                        if RecProd."No permite pedido"=false then begin
+                        ///if RecProd."No permite pedido"=false then begin
                             LINEAS := LINEAS + 10000;
                             RecLV."Document Type" := 1;
                             RecLV."Document No." := RecCV."No.";
@@ -586,7 +586,7 @@ XmlPort 50064 "Importacion PED miriva NAV0324"
                             PRECIOLIN := PRECIOLIN / (1 + (RecLV."VAT %") / 100);
                             RecLV.Validate("Unit Price", PRECIOLIN);
                             RecLV.Modify(true);
-                        end;
+                        ///end;
                     end;
                 end else begin
                     RecRefCruz.Reset;
@@ -600,7 +600,7 @@ XmlPort 50064 "Importacion PED miriva NAV0324"
                                 SALE := true;
                             end;
                             if not SALE then begin
-                                if RecProd."No permite pedido"=false then begin
+                                ///if RecProd."No permite pedido"=false then begin
                                     LINEAS := LINEAS + 10000;
                                     RecLV."Document Type" := 1;
                                     RecLV."Document No." := RecCV."No.";
@@ -617,7 +617,7 @@ XmlPort 50064 "Importacion PED miriva NAV0324"
                                     PRECIOLIN := PRECIOLIN / (1 + (RecLV."VAT %") / 100);
                                     RecLV.Validate("Unit Price", PRECIOLIN);
                                     RecLV.Modify(true);
-                                end;
+                                ///end;
                             end;
                         end;
                     end;

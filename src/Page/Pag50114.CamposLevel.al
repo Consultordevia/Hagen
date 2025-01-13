@@ -59,6 +59,13 @@ page 50114 CamposLevel
                 field("Producto web"; Rec."Producto web")
                 {                                   
                 }
+                field("Unidades venta";Rec."Unidades venta")
+                {                                   
+                }
+                
+                
+                
+
 
 
 

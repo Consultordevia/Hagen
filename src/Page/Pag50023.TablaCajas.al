@@ -218,6 +218,7 @@ page 50023 TablaCajas
         RecBom: Record "BOM Component";
         RecVPG: Record "VAT Posting Setup";
         RecITREF: Record "Item Reference";
+        RecRefCruz: Record "Item Reference";
     begiN        
 
     RecTC.Reset();;
@@ -299,7 +300,20 @@ page 50023 TablaCajas
             RecTC."Voluminoso  web":=RecItem."Voluminoso web";
             RecTC.CodTarifa:=RecSP."Sales Code";
             RecTC.INCREMENTO:=RecSP.INCREMENTO;
-            RecTC.INSERT;                          
+            RecTC.INSERT;       
+
+            RecITREF.Reset();
+            RecITREF.SetRange("Item No.",RecItem."No.");
+            RecITREF.SetRange("Reference No.",RecTC.Sku);
+            IF not RecITREF.FindSet THEN BEGIN
+                RecITREF.init;
+                RecITREF."Reference Type":=RecITREF."Reference Type"::"Bar Code";
+                RecITREF."Item No.":=RecItem."No.";                 
+                RecITREF."Reference No.":=RecTC.Sku;
+                RecITREF."Unit of Measure":=RecTC."Unidad de medida";
+                RecITREF.Insert;                
+            END;
+
         end;    
     until RecSP.next=0;            
 

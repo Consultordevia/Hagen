@@ -94,7 +94,7 @@ tableextension 50115 SalesLine extends "Sales Line"
                                  (SalesHeader."Permite fraccionar uni. venta" = false) then begin
                                 DIVI := ROUND(Quantity / Item."Unidades venta", 1, '>');
                                 if DIVI * Item."Unidades venta" <> Quantity then begin
-                                        cantidadok := DIVI * Item."Unidades venta";
+                                    cantidadok := DIVI * Item."Unidades venta";
                                     Message('%4 ,cantidad %1 no es multipo %2, la cantidad correcta es %3.', Quantity, Item."Unidades venta", cantidadok, Item.Description);
                                     Rec.Validate(Rec.Quantity, cantidadok);
                                 end;
@@ -799,6 +799,36 @@ tableextension 50115 SalesLine extends "Sales Line"
 
         field(50503; "Estado"; Text[10])
         {
+        }
+
+        field(50504; RefLinProdWeb; Code[20])
+        {
+            trigger OnValidate()
+            var
+                RecProd: Record Item;
+                CodProd: Code[20];
+                RecRefCruz: Record "Item Reference";
+
+            begin
+                if RecProd.Get(RefLinProdWeb) then begin
+                    CodProd := RecProd."No.";
+                    rec.Validate(type, Rec.Type::Item);
+                    Rec.Validate("No.", CodProd);
+                end;
+                if not RecProd.Get(RefLinProdWeb) then begin
+                    RecRefCruz.Reset;
+                    RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
+                    RecRefCruz.SetRange(RecRefCruz."Reference No.", RefLinProdWeb);
+                    if RecRefCruz.FindFirst then begin
+                        CodProd := RecRefCruz."Item No.";
+                        rec.Validate(type, Rec.Type::Item);
+                        Rec.Validate("No.", CodProd);
+                        Rec.Validate("Unit of Measure Code",RecRefCruz."Unit of Measure");
+                    end;
+                end;
+            end;
+
+
         }
 
 

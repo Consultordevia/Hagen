@@ -14,6 +14,10 @@ Page 50106 "Clientes Lista2"
                 {
                     ApplicationArea = Basic;
                 }
+                field(AlmaTenerife;Rec.AlmaTenerife)
+                {
+                    ApplicationArea = Basic;
+                }
                 field("No."; Rec."No.")
                 {
                     ApplicationArea = Basic;

@@ -283,7 +283,7 @@ XmlPort 50029 "Importacion COVALPROPER"
             RecProd.Reset;
             RecProd.SetRange(ean, D5);             
             if RecProd.FindFirst then begin
-                if RecProd."No permite pedido"=false then begin                
+                ///if RecProd."No permite pedido"=false then begin                
                     RecProd.SetRange(RecProd."Location Filter", 'SILLA', 'SILLA');
                     RecProd.CalcFields(RecProd.Inventory);
                     if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
@@ -311,7 +311,7 @@ XmlPort 50029 "Importacion COVALPROPER"
                     if RecRefCruz.FindFirst then begin
                         ref := RecRefCruz."Item No.";
                         if RecProd.Get(ref) then begin
-                            if RecProd."No permite pedido"=false then begin
+                            ///if RecProd."No permite pedido"=false then begin
                                 RecProd.CalcFields(RecProd.Inventory);
                                 if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
                                     SALE := true;
@@ -331,8 +331,8 @@ XmlPort 50029 "Importacion COVALPROPER"
                                     RecLV.Validate(RecLV.Quantity, CANTIDE);
                                     RecLV.Modify(true);
                                 end;
-                            end;
-                        end;
+                            ///end;
+                   ///     end;
                     end;
                 end;
             end;

@@ -17,7 +17,7 @@ pageextension 50028 SalesOrder extends "Sales Order"
 
 
 
-
+            field("Fecha alta";Rec."Fecha alta") { ApplicationArea = All; }            
             field("Customer Disc. Group"; Rec."Customer Disc. Group") { ApplicationArea = All; }            
             field("Sell-to Customer Name 2"; Rec."Sell-to Customer Name 2") { ApplicationArea = All; }
             field("Observación para ALMACEN"; Rec."Observación para ALMACEN") { ApplicationArea = All; }

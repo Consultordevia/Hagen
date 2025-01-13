@@ -4,7 +4,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
 
 {
-    Permissions = tabledata "Sales Invoice Header" = rmid,  tabledata "Sales Cr.Memo Header" = rmid, tabledata "VAT Entry" = rmid;
+    Permissions = tabledata "Sales Invoice Header" = RMID,  tabledata "Sales Cr.Memo Header" = RMID, tabledata "VAT Entry" = RMID;
     
 
     trigger OnRun()

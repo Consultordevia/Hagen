@@ -361,7 +361,7 @@ XmlPort 50070 "Importacion PEDIDOS KIWOKO3"
                                     SALE := true;
                                 end;
                                 if not SALE then begin
-                                    if RecProd."No permite pedido"=false then begin
+                                    ///if RecProd."No permite pedido"=false then begin
                                         LINEAS := LINEAS + 10000;
                                         RecLV."Document Type" := 0;
                                         RecLV."Document No." := RecCV."No.";
@@ -379,7 +379,7 @@ XmlPort 50070 "Importacion PEDIDOS KIWOKO3"
                                         RecLV.Insert(true);
                                         RecLV.Validate(RecLV.Quantity, CANTIDE);
                                         RecLV.Modify(true);
-                                    end;
+                                    ///end;
 
                             end;
                         end;

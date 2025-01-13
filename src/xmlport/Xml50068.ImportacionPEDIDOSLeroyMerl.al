@@ -828,7 +828,7 @@ XmlPort 50068 "Importacion PEDIDOS Leroy Merl"
                                     SALE := true;
                                 end;
                                 if not SALE then begin
-                                    if RecProd."No permite pedido"=false then begin
+                                    ///if RecProd."No permite pedido"=false then begin
                                         LINEAS := LINEAS + 10000;
                                         RecLV."Document Type" := 1;
                                         RecLV."Document No." := RecCV."No.";
@@ -846,7 +846,7 @@ XmlPort 50068 "Importacion PEDIDOS Leroy Merl"
                                         CANTIDE := ROUND(CANTIDE, 0.01);
                                         RecLV.Validate("Unit Price", RecLV.Quantity * CANTIDE);
                                         RecLV.Modify(true);
-                                    end;
+                                    ///end;
                                         Evaluate(CANTitrans, D18);
                                         if CANTitrans <> 0 then begin
                                             RecLV."Document Type" := 1;

@@ -340,7 +340,7 @@ XmlPort 50071 "Importacion PEDIDOS MASKO-new"
                 if RecProd.FindFirst then begin
                     DD7 := RecProd."No.";
                     if SALTA = false then begin
-                        if RecProd."No permite pedido"=false then begin
+                        ///if RecProd."No permite pedido"=false then begin
                             LINEAS := LINEAS + 10000;
                             RecLV."Document Type" := 1;
                             RecLV."Document No." := RecCV."No.";
@@ -352,7 +352,7 @@ XmlPort 50071 "Importacion PEDIDOS MASKO-new"
                             RecLV.Insert(true);
                             RecLV.Validate(RecLV.Quantity, CANTIDE);
                             RecLV.Modify(true);
-                        end;
+                        ///end;
                     end;
                 end;
             end;
