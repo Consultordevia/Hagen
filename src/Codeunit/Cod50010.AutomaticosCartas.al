@@ -1553,8 +1553,25 @@ Codeunit 50010 "Automaticos Cartas"
 
 
     procedure ARTICULOSMODIF()
+    var
+        TempBlob: Codeunit "Temp Blob";
+        OutStream: OutStream;
+        FileName: Text;
+        InStream: InStream;
+        FicherosHagen: Codeunit FicherosHagen;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+        OutTxt: Text;
+
     begin
 
+
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
 
 
 
@@ -1573,7 +1590,7 @@ Codeunit 50010 "Automaticos Cartas"
                 CODI := Format(RecItem."No.", 16);
                 CODI := ConvertStr(CODI, ' ', ' ');
                 CONTROLAEA := 'S';
-                TextoSalida := 'AR' + '|' +
+                 OutTxt := 'AR' + '|' +
                                   'AG' + '|' +
                                  RecItem."No." + '|' +
                              Format(DESNOM1, 40) + '|' +
@@ -1611,7 +1628,8 @@ Codeunit 50010 "Automaticos Cartas"
                              '|';
 
 
-                OutStream.Writetext(TextoSalida);
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
 
 
 
@@ -1633,7 +1651,7 @@ Codeunit 50010 "Automaticos Cartas"
                 CODI := Format(RecItem."No.", 16);
                 CODI := ConvertStr(CODI, ' ', ' ');
                 CONTROLAEA := 'S';
-                TextoSalida := 'AR' + '|' +
+                 OutTxt := 'AR' + '|' +
                                   'MO' + '|' +
                                  RecItem."No." + '|' +
                                  Format(DESNOM1 + ' ' + DESNOM2 + ' ' + DESNOM3, 40) + '|' +
@@ -1672,7 +1690,8 @@ Codeunit 50010 "Automaticos Cartas"
 
 
 
-                OutStream.Writetext(TextoSalida);
+             OutTxt += Format(CarriageReturn) + Format(LineFeed);
+             data.AddText(OutTxt);
 
 
 

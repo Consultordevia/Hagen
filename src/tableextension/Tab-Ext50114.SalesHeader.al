@@ -352,7 +352,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                         /////Error('No puede modificar el estado del pedido.2');
                     end;
                     if UserSetup."No Permite pasar pedido a preparar" then begin
-                        Error('No puede modificar el estado del pedido.0');                    
+                        Error('No puede modificar el estado del pedido.0');
                     end;
                 end;
 
@@ -871,6 +871,17 @@ tableextension 50114 SalesHeader extends "Sales Header"
         field(50364; "Dpto.ECI"; Code[10])
         {
         }
+        field(50365; "Discount%"; Decimal)
+        {
+            CalcFormula = lookup("Payment Terms"."Discount %" where(code = field("Payment Terms Code")));
+            FieldClass = FlowField;
+
+
+
+        }
+
+
+
         field(60000; "Id Pedido Presta Shop"; BigInteger)
         {
             Description = 'WEB';
@@ -940,7 +951,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
             FieldClass = FlowField;
         }
         field(50669; "Etq.Adaia"; Code[30])
-        {            
+        {
         }
 
     }

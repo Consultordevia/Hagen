@@ -9,8 +9,8 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
         {
 
 
-            field("Customer Disc. Group";Rec."Customer Disc. Group") { ApplicationArea = All; }
-            
+            field("Customer Disc. Group"; Rec."Customer Disc. Group") { ApplicationArea = All; }
+
             field("Sell-to Customer Name 2"; Rec."Sell-to Customer Name 2") { ApplicationArea = All; }
             field("Observación para ALMACEN"; Rec."Observación para ALMACEN") { ApplicationArea = All; }
             field("Observación PDA"; Rec."Observación PDA") { ApplicationArea = All; }

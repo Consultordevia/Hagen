@@ -46,6 +46,10 @@ page 50064 ClientesWS
                 {
                     ApplicationArea = Basic;
                 }
+                field("Discount"; Rec."Discount%")
+                {
+                    ApplicationArea = Basic;
+                }
                 field("CatalogoShopify"; Rec."Catalogo Shopify")
                 {
                     ApplicationArea = Basic;
