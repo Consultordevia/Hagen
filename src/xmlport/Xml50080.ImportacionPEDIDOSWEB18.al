@@ -577,6 +577,8 @@ XmlPort 50080 "Importacion PEDIDOS WEB18"
             if CopyStr(D20,1,1)='S' THEN begin                
                 RecCV.Dropshipping:=TRUE;          
             END;       
+            RecCV."Estado pedido":=RecCV."Estado pedido"::Retenido;
+            RecCV."No incluir portes":=true;
                         
 
 

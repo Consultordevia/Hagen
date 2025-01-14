@@ -643,8 +643,18 @@ tableextension 50104 Customer extends "Customer"
         field(50769; AlmaTenerife; Boolean)
 
         {
-            
+
         }
+
+        field(50770; "Discount%"; Decimal)
+        {
+            CalcFormula = lookup("Payment Terms"."Discount %" where(code = field("Payment Terms Code")));
+            FieldClass = FlowField;
+
+
+
+        }
+
 
 
         field(50999; "ContactoAInsertar"; code[100])

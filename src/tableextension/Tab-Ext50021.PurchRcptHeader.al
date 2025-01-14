@@ -82,9 +82,38 @@ tableextension 50021 PurchRcptHeader extends "Purch. Rcpt. Header"
             CalcFormula = sum("Purch. Rcpt. Line".Quantity where("Document No." = field("No.")));
             FieldClass = FlowField;
         }
-        field(50061; "Cantidad facturada"; Decimal)
+        
+
+ 
+        ///field(50054;"Cantidad facturada";	Decimal)		
+        ///{
+            ///CalcFormula = sum("Sales Invoice Line".Quantity WHERE (.No.=FIELD(Rec.No.),Posting Date=FIELD(Date Filter),Sell-to Country/Region Code=FIELD(Filtro Pais),Sell-to Customer No.=FIELD(Filtro Cliente),Grupo clientes=FIELD(Filtro Grupo clientes)))
+           /// FieldClass = FlowField;           
+        
+        ///}
+        field(50055;	"Cantidad abonada";	Decimal)		
         {
-            CalcFormula = sum("Purch. Rcpt. Line"."Quantity Invoiced" where("Document No." = field("No.")));
+            CalcFormula = sum("Purch. Rcpt. Line".Quantity where("Document No." = field("No.")));
+            FieldClass = FlowField;
+        }
+
+        field(50056;	"Importe facturado";	Decimal)
+        {
+            CalcFormula = sum("Purch. Rcpt. Line".Quantity where("Document No." = field("No.")));
+            FieldClass = FlowField;
+        }
+
+        field(50057;	"Importe abonado";	Decimal)		
+        {
+            CalcFormula = sum("Purch. Rcpt. Line".Quantity where("Document No." = field("No.")));
+            FieldClass = FlowField;
+        }
+
+
+        field(50061; "Cantidad facturada compras"; Decimal)
+        {
+            CalcFormula = sum("Purch. Rcpt. Line"."Quantity Invoiced" where("Document No." = field("No.")));           
+
             FieldClass = FlowField;
         }
         field(50062; "Cantidad recida no facturada"; Decimal)
