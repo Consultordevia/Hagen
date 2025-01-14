@@ -2515,12 +2515,30 @@ Codeunit 50010 "Automaticos Cartas"
 
 
     procedure MODIFPROD(var RecI: Record Item)
+    ///adaia
+    var
+
+        TempBlob: Codeunit "Temp Blob";
+        OutStream: OutStream;
+        FileName: Text;
+        InStream: InStream;
+        FicherosHagen: Codeunit FicherosHagen;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+        OutTxt: Text;
+
     begin
 
 
         RecCE.Get;
-        TempBlob.CreateOutStream(OutStream);
+         
 
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
 
 
 
@@ -2546,7 +2564,7 @@ Codeunit 50010 "Automaticos Cartas"
             CODI := ConvertStr(CODI, ' ', ' ');
             CONTROLAEA := 'N';
             CRITERIO := RecI."Criterio rotacion";
-            TextoSalida := 'AR' + '|' +
+            OutTxt := 'AR' + '|' +
                            'AG' + '|' +
                           RecI."No." + '|' +
                       Format(DESNOM + ' ' + DESNOM2, 40) + '|' +
@@ -2585,10 +2603,13 @@ Codeunit 50010 "Automaticos Cartas"
 
 
 
-            OutStream.Writetext(TextoSalida);
+
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
 
 
-            TextoSalida := 'AR' + '|' +
+
+            OutTxt := 'AR' + '|' +
                            'MO' + '|' +
                           RecI."No." + '|' +
                       Format(DESNOM + ' ' + DESNOM2, 40) + '|' +
@@ -2626,7 +2647,9 @@ Codeunit 50010 "Automaticos Cartas"
                       '|';
 
 
-            OutStream.Writetext(TextoSalida);
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+
 
 
 
@@ -2658,7 +2681,7 @@ Codeunit 50010 "Automaticos Cartas"
 
             CD1 := Format(UNIPAL, 6, '<integer>');
 
-            TextoSalida3 := 'ARPR' + '|' +
+            OutTxt := 'ARPR' + '|' +
                             'DE' + '|' +
                             RecI."No." + '|' +
                             'UD' + '|' +
@@ -2675,7 +2698,9 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Writetext(TextoSalida3);
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+
 
             dc1 := ConvertStr(Format(RecIUM.Cubage * 1000, 9, Text1100007), ' ', '0');
             dc1 := '000000000';
@@ -2684,7 +2709,7 @@ Codeunit 50010 "Automaticos Cartas"
             dc4 := ConvertStr(Format((RecIUM.Height / 100) * 1000, 9, Text1100007), ' ', '0');
             PESO2 := ConvertStr(Format(RecIUM.Weight * 1000, 9, Text1100007), ' ', '0');
 
-            TextoSalida3 := 'ARPR' + '|' +
+            OutTxt := 'ARPR' + '|' +
                             'AG' + '|' +
                             RecI."No." + '|' +
                             'UD' + '|' +
@@ -2701,7 +2726,9 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Writetext(TextoSalida3);
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+
 
             CD1 := Format(UNICAJA, 6, '<integer>');
             CD2 := Format(CAJASPAL, 6, '<integer>');
@@ -2713,7 +2740,7 @@ Codeunit 50010 "Automaticos Cartas"
             dc4 := ConvertStr(Format((RecIUMMA.Height / 100) * 1000, 9, Text1100007), ' ', '0');
             PESO2 := ConvertStr(Format(RecIUMMA.Weight * 1000, 9, Text1100007), ' ', '0');
 
-            TextoSalida3 := 'ARPR' + '|' +
+            OutTxt := 'ARPR' + '|' +
                             'DE' + '|' +
                             RecI."No." + '|' +
                             'CJ' + '|' +
@@ -2730,7 +2757,9 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Writetext(TextoSalida3);
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+
 
             CD1 := Format(UNIPAL, 6, '<integer>');
 
@@ -2742,7 +2771,7 @@ Codeunit 50010 "Automaticos Cartas"
             PESO2 := ConvertStr(Format(RecIUM.Weight * 1000, 9, Text1100007), ' ', '0');
 
 
-            TextoSalida3 := 'ARPR' + '|' +
+            OutTxt := 'ARPR' + '|' +
                             'AG' + '|' +
                             RecI."No." + '|' +
                             'UD' + '|' +
@@ -2773,7 +2802,7 @@ Codeunit 50010 "Automaticos Cartas"
             PESO2 := ConvertStr(Format(RecIUMMA.Weight * 1000, 9, Text1100007), ' ', '0');
 
 
-            TextoSalida3 := 'ARPR' + '|' +
+            OutTxt := 'ARPR' + '|' +
                             'AG' + '|' +
                             RecI."No." + '|' +
                             'CJ' + '|' +
@@ -2790,7 +2819,9 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Writetext(TextoSalida3);
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+
 
 
             UNICAJA := RecIUMIN."Qty. per Unit of Measure";
@@ -2826,7 +2857,7 @@ Codeunit 50010 "Automaticos Cartas"
             PESO2 := ConvertStr(Format(RecIUMMA.Weight * 1000, 9, Text1100007), ' ', '0');
 
 
-            TextoSalida3 := 'ARPR' + '|' +
+            OutTxt := 'ARPR' + '|' +
                             'DE' + '|' +
                             RecI."No." + '|' +
                             'MA' + '|' +
@@ -2844,7 +2875,9 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Writetext(TextoSalida3);
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+
 
 
             CD1 := Format(UNIMA, 6, '<integer>');
@@ -2859,7 +2892,7 @@ Codeunit 50010 "Automaticos Cartas"
 
 
 
-            TextoSalida3 := 'ARPR' + '|' +
+            OutTxt := 'ARPR' + '|' +
                             'AG' + '|' +
                             RecI."No." + '|' +
                             'MA' + '|' +
@@ -2877,7 +2910,9 @@ Codeunit 50010 "Automaticos Cartas"
                             '1' + '|' +
                             '|' +
                             'N|';
-            OutStream.Writetext(TextoSalida3);
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+
 
 
 
@@ -2894,36 +2929,44 @@ Codeunit 50010 "Automaticos Cartas"
             end;
             if RecI.ean <> '' then begin
 
-                TextoSalida4 := 'AREA' + '|' +
+                OutTxt := 'AREA' + '|' +
                            'AG' + '|' +
                            RecI."No." + '|' +
                            RecI.ean + '|' +
                            CODBAR + '|';
-                OutStream.Writetext(TextoSalida4);
+                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+
             end;
             if StrLen(RecItem.ean) = 12 then begin
-                TextoSalida4 := 'AREA' + '|' +
+                OutTxt := 'AREA' + '|' +
                                'AG' + '|' +
                                 RecI."No." + '|' +
                                 '0' + RecI.ean + '|' +
                                 'E13|';
-                OutStream.Writetext(TextoSalida4);
+                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                data.AddText(OutTxt);
+
             end;
             if StrLen(RecItem.ean) = 11 then begin
-                TextoSalida4 := 'AREA' + '|' +
+                OutTxt := 'AREA' + '|' +
                               'AG' + '|' +
                                RecI."No." + '|' +
                                '00' + RecI.ean + '|' +
                                'E13|';
-                OutStream.Writetext(TextoSalida4);
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+
             end;
 
-            TextoSalida4 := 'AREA' + '|' +
+            OutTxt := 'AREA' + '|' +
                        'AG' + '|' +
                        RecI."No." + '|' +
                        RecI."No." + '|' +
                        'E13|';
-            OutStream.Writetext(TextoSalida4);
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+
 
             RecRefCruz.Reset;
             RecRefCruz.SetRange(RecRefCruz."Item No.", RecI."No.");
@@ -2939,29 +2982,35 @@ Codeunit 50010 "Automaticos Cartas"
                         CODBAR := 'E8';
                     end;
                     if RecRefCruz."Reference No." <> '' then begin
-                        TextoSalida4 := 'AREA' + '|' +
+                        OutTxt := 'AREA' + '|' +
                                         'AG' + '|' +
                                          RecI."No." + '|' +
                                          RecRefCruz."Reference No." + '|' +
                                          CODBAR + '|';
-                        OutStream.Writetext(TextoSalida4);
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+
 
                     end;
                     if StrLen(RecRefCruz."Reference No.") = 12 then begin
-                        TextoSalida4 := 'AREA' + '|' +
+                        OutTxt := 'AREA' + '|' +
                                         'AG' + '|' +
                                          RecI."No." + '|' +
                                          '0' + RecRefCruz."Reference No." + '|' +
                                          'E13|';
-                        OutStream.Writetext(TextoSalida4);
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+
                     end;
                     if StrLen(RecRefCruz."Reference No.") = 11 then begin
-                        TextoSalida4 := 'AREA' + '|' +
+                        OutTxt := 'AREA' + '|' +
                                         'AG' + '|' +
                                          RecI."No." + '|' +
                                          '00' + RecRefCruz."Reference No." + '|' +
                                          'E13|';
-                        OutStream.Writetext(TextoSalida4);
+                        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+
                     end;
 
 
@@ -2992,7 +3041,7 @@ Codeunit 50010 "Automaticos Cartas"
 
 
             ///      ARUB|AG|62600|01|||N||E150|||||||||
-            TextoSalida5 := 'ARUB' + '|' +
+            OutTxt := 'ARUB' + '|' +
                                   'AG' + '|' +
                                  RecI."No." + '|' +
                              '01|' +
@@ -3002,7 +3051,7 @@ Codeunit 50010 "Automaticos Cartas"
                              '|1|9|S||||||' +
                              PICCOMPAR + '||||100|C|||||||||||';
             if COMPANYNAME = 'PEPE' then begin
-                TextoSalida5 := 'ARUB' + '|' +
+                OutTxt := 'ARUB' + '|' +
                                   'AG' + '|' +
                                  RecI."No." + '|' +
                              '01|' +
@@ -3015,7 +3064,9 @@ Codeunit 50010 "Automaticos Cartas"
                              PICCOMPAR + '||||100|C|||||||||||';
                 ///PICCOMPAR+'|||'+FORMAT(RecI."Zona almacenaje")+'|100|C|||||||||||';
             end;
-            OutStream.Writetext(TextoSalida5);
+OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+
 
 
 

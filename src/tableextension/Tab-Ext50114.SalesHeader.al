@@ -879,6 +879,10 @@ tableextension 50114 SalesHeader extends "Sales Header"
 
 
         }
+        field(50366; TextoWebApi; Text[100])
+        {
+        }
+
 
 
 

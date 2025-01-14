@@ -26,6 +26,12 @@ page 50002 CabVenta
                     ToolTip = 'Specifies the value of the ASN field.', Comment = '%';
                 }
 
+                field(TextoWebApi; Rec.TextoWebApi)
+                {
+                    ToolTip = 'Specifies the value of the ASN field.', Comment = '%';
+                }
+
+
 
                 field("Albaran sin detalle"; Rec."Albaran sin detalle")
                 {
