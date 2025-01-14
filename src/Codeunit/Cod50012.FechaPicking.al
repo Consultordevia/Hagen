@@ -1452,8 +1452,9 @@ Codeunit 50012 FechaPicking
         Item.Reset;
         if Item.FindSet then
             repeat
-                FECHARECEP := 0D;
+                FECHARECEP := 0D;                 
                 Item."Fecha en picking" := 0D;
+                IF Item."Criterio rotacion"=Item."Criterio rotacion"::FC then begin
                 Multitabla.Reset;
                 Multitabla.SetRange(Tabla, Multitabla.Tabla::Ubicaciones);
                 Multitabla.SetRange(Multitabla.Producto, Item."No.");
@@ -1466,6 +1467,7 @@ Codeunit 50012 FechaPicking
                             Item."Fecha en picking" := Multitabla."Fecha caducidad";
                         end;
                     until Multitabla.Next = 0;
+                end;
 
 
 
