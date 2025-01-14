@@ -14,7 +14,14 @@ page 50002 CabVenta
         {
             repeater(General)
             {
-
+                field("No."; Rec."No.")
+                {
+                    ToolTip = 'Specifies the number of the sales document.';
+                }
+                field("Sell-to Customer No."; Rec."Sell-to Customer No.")
+                {
+                    ToolTip = 'Specifies the number of the customer who will receive the products and be billed by default.';
+                }
 
 
                 field(ASN; Rec.ASN)
@@ -569,10 +576,7 @@ page 50002 CabVenta
                 {
                     ToolTip = 'Specifies the value of the No incluir portes field.', Comment = '%';
                 }
-                field("No."; Rec."No.")
-                {
-                    ToolTip = 'Specifies the number of the sales document.';
-                }
+
                 field("No. Printed"; Rec."No. Printed")
                 {
                     ToolTip = 'Specifies the value of the No. Printed field.', Comment = '%';
@@ -937,10 +941,7 @@ page 50002 CabVenta
                 {
                     ToolTip = 'Specifies the value of the Sell-to Customer Name 2 field.', Comment = '%';
                 }
-                field("Sell-to Customer No."; Rec."Sell-to Customer No.")
-                {
-                    ToolTip = 'Specifies the number of the customer who will receive the products and be billed by default.';
-                }
+
                 field("Sell-to Customer Templ. Code"; Rec."Sell-to Customer Templ. Code")
                 {
                     ToolTip = 'Specifies the code for the template to create a new customer';
