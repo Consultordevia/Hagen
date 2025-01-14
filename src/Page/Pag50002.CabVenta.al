@@ -1183,9 +1183,22 @@ page 50002 CabVenta
                 {
                     ToolTip = 'Specifies the date used to include entries on VAT reports in a VAT period. This is either the date that the document was created or posted, depending on your setting on the General Ledger Setup page.';
                 }
-                field("Work Description"; Rec."Work Description")
+                /*field("Work Description"; Rec."Work Description")
                 {
                     ToolTip = 'Specifies the value of the Work Description field.', Comment = '%';
+                }*/
+                field(WorkDescription; WorkDescription)
+                {
+                    ApplicationArea = Basic, Suite;
+                    Importance = Additional;
+                    MultiLine = true;
+                    ShowCaption = false;
+                    ToolTip = 'Specifies the products or service being offered';
+
+                    trigger OnValidate()
+                    begin
+                        Rec.SetWorkDescription(WorkDescription);
+                    end;
                 }
                 field("Your Reference"; Rec."Your Reference")
                 {
@@ -1198,4 +1211,12 @@ page 50002 CabVenta
             }
         }
     }
+
+    var
+        WorkDescription: Text;
+
+    trigger OnAfterGetRecord()
+    begin
+        WorkDescription := Rec.GetWorkDescription();
+    end;
 }
