@@ -454,11 +454,11 @@ Page 50099 "Pantalla almacen Pascual5"
 
                     trigger OnAction()
                     var
-                        RecItem: Record Item;
-                        RecSP: Record "Sales Price";
-                        Automaticos: Codeunit "Automaticos Cartas";
+                        
+                        Automaticos: Codeunit 50004;
+
                     begin
-                        ///Automaticos.ENVIAREMIALFACTURAS();
+                        ///Automaticos. .ENVIAREMIALFACTURAS();
                         /*
                         RecItem.RESET;
                         if RecItem.FindFirst() then

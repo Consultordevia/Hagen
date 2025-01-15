@@ -2525,7 +2525,11 @@ Codeunit 50010 "Automaticos Cartas"
         FicherosHagen: Codeunit FicherosHagen;
         CarriageReturn: Char;
         LineFeed: Char;
-        Data: BigText;
+        Data1: BigText;
+        Data2: BigText;
+        Data3: BigText;
+        Data4: BigText;
+        Data5: BigText;
         OutTxt: Text;
 
     begin
@@ -2605,7 +2609,7 @@ Codeunit 50010 "Automaticos Cartas"
 
 
             OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data.AddText(OutTxt);
+            data1.AddText(OutTxt);
 
 
 
@@ -2648,7 +2652,7 @@ Codeunit 50010 "Automaticos Cartas"
 
 
             OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data.AddText(OutTxt);
+            data1.AddText(OutTxt);
 
 
 
@@ -2699,7 +2703,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '|' +
                             'N|';
             OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data.AddText(OutTxt);
+            data2.AddText(OutTxt);
 
 
             dc1 := ConvertStr(Format(RecIUM.Cubage * 1000, 9, Text1100007), ' ', '0');
@@ -2727,7 +2731,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '|' +
                             'N|';
             OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data.AddText(OutTxt);
+            data2.AddText(OutTxt);
 
 
             CD1 := Format(UNICAJA, 6, '<integer>');
@@ -2758,7 +2762,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '|' +
                             'N|';
             OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data.AddText(OutTxt);
+            data2.AddText(OutTxt);
 
 
             CD1 := Format(UNIPAL, 6, '<integer>');
@@ -2820,7 +2824,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '|' +
                             'N|';
             OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data.AddText(OutTxt);
+            data2.AddText(OutTxt);
 
 
 
@@ -2876,7 +2880,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '|' +
                             'N|';
             OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data.AddText(OutTxt);
+            data2.AddText(OutTxt);
 
 
 
@@ -2911,7 +2915,7 @@ Codeunit 50010 "Automaticos Cartas"
                             '|' +
                             'N|';
             OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data.AddText(OutTxt);
+            data2.AddText(OutTxt);
 
 
 
@@ -2935,7 +2939,7 @@ Codeunit 50010 "Automaticos Cartas"
                            RecI.ean + '|' +
                            CODBAR + '|';
                 OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data.AddText(OutTxt);
+            data3.AddText(OutTxt);
 
             end;
             if StrLen(RecItem.ean) = 12 then begin
@@ -2945,7 +2949,7 @@ Codeunit 50010 "Automaticos Cartas"
                                 '0' + RecI.ean + '|' +
                                 'E13|';
                 OutTxt += Format(CarriageReturn) + Format(LineFeed);
-                data.AddText(OutTxt);
+                data3.AddText(OutTxt);
 
             end;
             if StrLen(RecItem.ean) = 11 then begin
@@ -2955,7 +2959,7 @@ Codeunit 50010 "Automaticos Cartas"
                                '00' + RecI.ean + '|' +
                                'E13|';
             OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data.AddText(OutTxt);
+            data3.AddText(OutTxt);
 
             end;
 
@@ -2965,7 +2969,7 @@ Codeunit 50010 "Automaticos Cartas"
                        RecI."No." + '|' +
                        'E13|';
             OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data.AddText(OutTxt);
+            data3.AddText(OutTxt);
 
 
             RecRefCruz.Reset;
@@ -2988,7 +2992,7 @@ Codeunit 50010 "Automaticos Cartas"
                                          RecRefCruz."Reference No." + '|' +
                                          CODBAR + '|';
             OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data.AddText(OutTxt);
+            data3.AddText(OutTxt);
 
 
                     end;
@@ -2999,7 +3003,7 @@ Codeunit 50010 "Automaticos Cartas"
                                          '0' + RecRefCruz."Reference No." + '|' +
                                          'E13|';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data.AddText(OutTxt);
+            data3.AddText(OutTxt);
 
                     end;
                     if StrLen(RecRefCruz."Reference No.") = 11 then begin
@@ -3009,7 +3013,7 @@ Codeunit 50010 "Automaticos Cartas"
                                          '00' + RecRefCruz."Reference No." + '|' +
                                          'E13|';
                         OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data.AddText(OutTxt);
+            data3.AddText(OutTxt);
 
                     end;
 
@@ -3065,12 +3069,19 @@ Codeunit 50010 "Automaticos Cartas"
                 ///PICCOMPAR+'|||'+FORMAT(RecI."Zona almacenaje")+'|100|C|||||||||||';
             end;
 OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data.AddText(OutTxt);
+            data4.AddText(OutTxt);
 
 
 
 
         end;
+
+
+        Data1.Write(OutStream);
+        
+        
+
+
 
         contaser := CUNext.GetNextNo('DEGESTION', Today, true);
         RecCE.Get;
@@ -3082,16 +3093,17 @@ OutTxt += Format(CarriageReturn) + Format(LineFeed);
         FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
 
 
+        Data2.Write(OutStream);
         DAT2 := 'TRARPR.' + contaser + EXTEN + Format(ALEA) + Format(RecI."No.") + Format(LOGCAMBIOA);
         TempBlob.CreateInStream(InStream);
         FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
 
-
+        Data3.Write(OutStream);
         DAT2 := 'TRAREA.' + contaser + EXTEN + Format(ALEA) + Format(RecI."No.") + Format(LOGCAMBIOA);
         TempBlob.CreateInStream(InStream);
         FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
 
-
+        Data4.Write(OutStream);
         DAT2 := 'TRARUB.' + contaser + EXTEN + Format(ALEA) + Format(RecI."No.") + Format(LOGCAMBIOA);
         TempBlob.CreateInStream(InStream);
         FicherosHagen.CrearFichero(RUTA, DAT2, InStream);

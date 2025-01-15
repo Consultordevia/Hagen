@@ -2,9 +2,9 @@
 Page 50078 "Clientes Lista"
 {
     PageType = List;
-    SourceTable = Customer;     
+    SourceTable = Customer;
     ApplicationArea = All;
-    Caption = 'Clientes Lista';     
+    Caption = 'Clientes Lista';
     UsageCategory = Lists;
 
     layout
@@ -17,7 +17,7 @@ Page 50078 "Clientes Lista"
                 {
                     ApplicationArea = Basic;
                 }
-                field(AlmaTenerife;Rec.AlmaTenerife)
+                field(AlmaTenerife; Rec.AlmaTenerife)
                 {
                     ApplicationArea = Basic;
                 }
@@ -1164,10 +1164,18 @@ Page 50078 "Clientes Lista"
 
                     if Customer.FindFirst then
                         repeat
-                            if Customer."Email facturacion 1" = 'info@catit.es' then begin
-                                Customer."Tipo Factura SII" := Customer."tipo factura sii"::F2;
-                                Customer.Modify;
+                            IF Customer."Country/Region Code" = 'PT' THEN begin
+                                IF CopyStr(Customer."Post Code", 5, 1) = ' ' THEN begin
+                                    Customer."Post Code" :=
+                                    CopyStr(Customer."Post Code", 1, 4) + '-' +
+                                    CopyStr(Customer."Post Code", 6, 3);
+                                    Customer.Modify;
+                                end;
                             end;
+                        //if Customer."Email facturacion 1" = 'info@catit.es' then begin
+                        //  Customer."Tipo Factura SII" := Customer."tipo factura sii"::F2;
+                        //                                Customer.Modify;
+                        //end;
                         until Customer.Next = 0;
 
                     Message('hecho');
