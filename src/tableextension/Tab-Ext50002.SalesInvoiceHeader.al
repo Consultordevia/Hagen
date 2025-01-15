@@ -328,6 +328,8 @@ tableextension 50002 SalesInvoiceHeader extends "Sales Invoice Header"
             CalcFormula = lookup(Customer.GLN where("No." = field("Sell-to Customer No.")));
             FieldClass = FlowField;
         }
+        field(50900; FicheroFTP; Boolean)
+        { }
     }
 
     keys
