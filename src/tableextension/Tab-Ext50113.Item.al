@@ -1293,7 +1293,7 @@ tableextension 50113 Item extends Item
         }
 
         field(50346; subido; Boolean)
-        {            
+        {
         }
 
 
@@ -1411,6 +1411,7 @@ tableextension 50113 Item extends Item
         field(50562; "Etiquetas5"; Text[100]) { }
         field(50563; "Etiquetas6"; Text[100]) { }
         field(50564; "Gama"; Text[100]) { }
+        field(50900; FechaHoraModificacionWeb; DateTime) { }
 
     }
 

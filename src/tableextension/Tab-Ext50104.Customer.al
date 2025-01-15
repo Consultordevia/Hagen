@@ -741,6 +741,7 @@ tableextension 50104 Customer extends "Customer"
         field(66001; "Cliente Inversion Sujeto Pasiv"; Boolean)
         {
         }
+        field(50900; FechaHoraModificacionWeb; DateTime) { }
 
 
     }

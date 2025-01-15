@@ -153,8 +153,9 @@ tableextension 50046 "SalesPrice" extends "Sales Price"
         {
             CalcFormula = lookup("Customer Price Group"."Web-B2B" where(code = field("Sales Code")));
             FieldClass = FlowField;
-             
+
         }
+        field(50900; FechaHoraModificacionWeb; DateTime) { }
 
 
     }

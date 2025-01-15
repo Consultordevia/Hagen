@@ -60,19 +60,19 @@ codeunit 50002 Eventos
         /////-EnvioFicheros.MODIFPROVEE(Rec);
     end;
 
-    [EventSubscriber(ObjectType::Table, 27, 'OnAfterOnInsert', '', true, true)]
-    local procedure OnAfterOnInsertProd(var Item: Record Item; xItem: Record Item)
+    [EventSubscriber(ObjectType::Table, 27, 'OnBeforeOnInsert', '', true, true)]
+    local procedure OnAfterOnInsertProd(var Item: Record Item)
     var
         EnvioFicheros: Codeunit "Automaticos Cartas";
     begin
         Item."Fecha modif" := CreateDatetime(Today, Time);
         //EnvioFicheros.ALTAPROD(item);
-
+        item.FechaHoraModificacionWeb := CurrentDateTime;
 
     end;
 
     [EventSubscriber(ObjectType::Table, 27, OnBeforeModifyEvent, '', true, true)]
-    local procedure OnAfterModifyEventProd(RunTrigger: Boolean; var Rec: Record Item);
+    local procedure OnAfterModifyEventProd(RunTrigger: Boolean; var Rec: Record Item; var xRec: Record Item);
     var
         EnvioFicheros: Codeunit "Automaticos Cartas";
         recA: Record item;
@@ -96,8 +96,213 @@ codeunit 50002 Eventos
                 end;
             end;
         end;
+        if rec."Fecha en picking" <> xRec."Fecha en picking" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Fecha disponible Web" <> xrec."Fecha disponible Web" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Producto web" <> xrec."Producto web" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Estado WEB Inactivo" <> xrec."Estado WEB Inactivo" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Umbral stock" <> xrec."Umbral stock" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Unit Price" <> xrec."Unit Price" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        //if rec."PVP-Web" <> xrec. then
+        //rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.CodVariante1 <> xrec.CodVariante1 then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Dato Variante1" <> xrec."Dato Variante1" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.CodVariante2 <> xrec.CodVariante2 then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Dato Variante2" <> xrec."Dato Variante2" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.Level1 <> xrec.Level1 then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.Level2 <> xrec.Level2 then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.Level3 <> xrec.Level3 then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.Etiquetas1 <> xrec.Etiquetas1 then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.Etiquetas2 <> xrec.Etiquetas2 then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.Etiquetas3 <> xrec.Etiquetas3 then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.Etiquetas4 <> xrec.Etiquetas4 then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.Etiquetas5 <> xrec.Etiquetas5 then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.Etiquetas6 <> xrec.Etiquetas6 then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.Gama <> xrec.Gama then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Stock para Catit" <> xrec."Stock para Catit" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+
         /////        EnvioFicheros.MODIFPROD(Rec);
     end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Item Ledger Entry", OnBeforeInsertEvent, '', false, false)]
+    local procedure OnBeforeInsertEventItemLedgerEntry(var Rec: Record "Item Ledger Entry")
+    var
+        Item: Record Item;
+    begin
+        if (rec."Location Code" <> 'SILLA') AND (REC."Location Code" <> 'TENERIFE') THEN
+            EXIT;
+        if item.get(rec."Item No.") then begin
+            item.FechaHoraModificacionWeb := CurrentDateTime;
+            item.Modify();
+        end;
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Sales Price", 'OnBeforeModifyEvent', '', false, false)]
+    local procedure OnBeforeModifyEventSalesPrice(var Rec: Record "Sales Price"; var xRec: Record "Sales Price")
+    var
+        Item: Record Item;
+    begin
+        if rec."Sales Code" = '2022-2' then begin
+            if rec."Precio recomendado" <> xRec."Precio recomendado" then
+                if item.get(rec."Item No.") then begin
+                    item.FechaHoraModificacionWeb := CurrentDateTime;
+                    item.Modify();
+                end;
+        end;
+        if rec."Sales Code" <> xrec."Sales Code" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+
+        if rec."Unit of Measure Code" <> xrec."Unit of Measure Code" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Minimum Quantity" <> xrec."Minimum Quantity" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Unit Price" <> xrec."Unit Price" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.INCREMENTO <> xrec.INCREMENTO then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Starting Date" <> xrec."Starting Date" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Ending Date" <> xrec."Ending Date" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Sales Line", OnBeforeModifyEvent, '', false, false)]
+    local procedure OnBeforeModifyEventSalesLine(var Rec: Record "Sales Line"; var xRec: Record "Sales Line")
+    var
+        Item: Record Item;
+    begin
+        if rec."Document Type" <> rec."Document Type"::Order then
+            exit;
+        if rec.Type <> rec.Type::Item then
+            exit;
+        if Rec."Outstanding Quantity" <> xrec."Outstanding Quantity" then begin
+            if item.get(rec."No.") then begin
+                item.FechaHoraModificacionWeb := CurrentDateTime;
+                item.Modify();
+            end;
+        end;
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::Customer, 'OnBeforeInsert', '', false, false)]
+    local procedure OnBeforeInsertCustomer(var Customer: Record Customer)
+    begin
+        Customer.FechaHoraModificacionWeb := CurrentDateTime;
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::Customer, OnBeforeModifyEvent, '', false, false)]
+    local procedure OnBeforeModifyEventCustomer(var Rec: Record Customer; var xRec: Record Customer)
+    begin
+        if rec."Payment Terms Code" <> xrec."Payment Terms Code" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Payment Method Code" <> xrec."Payment Method Code" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Salesperson Code" <> xrec."Salesperson Code" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.Address <> xrec.Address then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.County <> xrec.County then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.City <> xrec.City then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Usuario Web" <> xrec."Usuario Web" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Ship-to Address", 'OnBeforeInsertEvent', '', false, false)]
+    local procedure OnBeforeInsertEventShiptoAddress(var Rec: Record "Ship-to Address")
+    begin
+        rec.FechaHoraModificacionWeb := CurrentDateTime;
+    end;
+
+
+    [EventSubscriber(ObjectType::Table, Database::"Ship-to Address", 'OnBeforeModifyEvent', '', false, false)]
+    local procedure OnBeforeModifyEventShiptoAddress(var Rec: Record "Ship-to Address"; var xRec: Record "Ship-to Address")
+    begin
+        if rec.Code <> xrec.Code then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.Address <> xrec.Address then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Address 2" <> xrec."Address 2" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.City <> xrec.City then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Country/Region Code" <> xrec."Country/Region Code" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.County <> xrec.County then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+
+        if rec."E-Mail" <> xrec."E-Mail" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+
+        if rec."Phone No." <> xrec."Phone No." then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+
+        if rec.Name <> xrec.Name then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+
+        if rec.Dir_Shopyfi <> xrec.Dir_Shopyfi then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+
+        if rec."Enviar a Web Distribuidor" <> xrec."Enviar a Web Distribuidor" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::TablaCajas, 'OnBeforeInsertEvent', '', false, false)]
+    local procedure OnBeforeInsertEventTablaCajas(var Rec: Record TablaCajas)
+    begin
+        rec.FechaHoraModificacionWeb := CurrentDateTime;
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::TablaCajas, 'OnBeforeModifyEvent', '', false, false)]
+    local procedure OnBeforeModifyEventTablaCajas(var Rec: Record TablaCajas; var xRec: Record TablaCajas)
+    begin
+        if rec."Atributo Variante1" <> xrec."Atributo Variante1" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Atributo Variante2" <> xrec."Atributo Variante2" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Cantidad x caja" <> xrec."Cantidad x caja" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Precio unitario" <> xrec."Precio unitario" then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec.Stock <> xrec.Stock then
+            rec.FechaHoraModificacionWeb := CurrentDateTime;
+    end;
+
+
+    [EventSubscriber(ObjectType::Table, Database::"Customer Discount Group", 'OnBeforeModifyEvent', '', false, false)]
+    local procedure OnBeforeModifyEventCustomerDiscountGroup(var Rec: Record "Customer Discount Group"; var xRec: Record "Customer Discount Group")
+    var
+        customer: record Customer;
+    begin
+        if rec."Catalogo Shopify" = xrec."Catalogo Shopify" then
+            exit;
+
+        customer.reset;
+        customer.SetRange("Customer Disc. Group", rec.Code);
+        customer.ModifyAll(FechaHoraModificacionWeb, CurrentDateTime);
+    end;
+
 
     [EventSubscriber(ObjectType::Table, 27, 'OnAfterValidateEvent', 'Item Category Code', false, false)]
 

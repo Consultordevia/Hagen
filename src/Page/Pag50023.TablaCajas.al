@@ -191,8 +191,10 @@ page 50023 TablaCajas
                 {
                     ToolTip = 'Specifies the value of the Umbral de Stock field.', Comment = '%';
                 }
-
-                
+                field(FechaHoraModificacionWeb;Rec.FechaHoraModificacionWeb)
+                {
+                    ApplicationArea = All;
+                }                           
 
 
             }

@@ -166,7 +166,8 @@ table 50051 TablaCajas
         field(40; INCREMENTO; Decimal)
         {
         }
-       
+        field(50900; FechaHoraModificacionWeb; DateTime) { }
+
 
 
     }

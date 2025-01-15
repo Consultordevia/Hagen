@@ -20,7 +20,7 @@ page 50041 ItemListWeb
                 {
                     ToolTip = 'Specifies a description of the item.';
                 }
-                field("Unit Price";Rec."Unit Price")
+                field("Unit Price"; Rec."Unit Price")
                 {
                     ToolTip = 'Specifies a description of the item.';
                 }
@@ -28,15 +28,15 @@ page 50041 ItemListWeb
                 {
                     ToolTip = 'Specifies a description of the item.';
                 }
-                field("Tarifa 2022-2";Rec."Tarifa 2022-2")
+                field("Tarifa 2022-2"; Rec."Tarifa 2022-2")
                 {
                     ToolTip = 'Specifies a description of the item.';
                 }
-                field("PVP Recomendado 2022-2";Rec."PVP Recomendado 2022-2")
+                field("PVP Recomendado 2022-2"; Rec."PVP Recomendado 2022-2")
                 {
                     ToolTip = 'Specifies a description of the item.';
                 }
-                
+
                 field("Ref. AMAZON"; Rec."Ref. AMAZON")
                 {
                     ToolTip = 'Specifies a description of the item.';
@@ -225,16 +225,10 @@ page 50041 ItemListWeb
                 {
                     ApplicationArea = All;
                 }
-                
-                
-
-
-
-
-
-
-
-
+                field(FechaHoraModificacionWeb; rec.FechaHoraModificacionWeb)
+                {
+                    ApplicationArea = All;
+                }
             }
         }
     }

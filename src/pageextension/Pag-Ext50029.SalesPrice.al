@@ -17,7 +17,7 @@ pageextension 50029 SalesPrice extends "Sales Prices"
                 Image = Order;
 
                 trigger OnAction()
-                var                     
+                var
                     XmlPortAltaprecios: XmlPort "Alta precios";
                 begin
                     clear(XmlPortAltaprecios);

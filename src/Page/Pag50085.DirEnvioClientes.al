@@ -208,6 +208,11 @@ page 50085 DirEnvioClientes
                 {
                     ToolTip = 'Dir_Shopyfi';
                 }
+                field(FechaHoraModificacionWeb; Rec.FechaHoraModificacionWeb)
+                {
+                    ApplicationArea = All;
+                }
+
             }
         }
     }

@@ -72,6 +72,7 @@ tableextension 50027 ShiptoAddress extends "Ship-to Address"
         field(60003; Dir_Shopyfi; Boolean)
         {
         }
+        field(50900; FechaHoraModificacionWeb; DateTime) { }
 
     }
 }
