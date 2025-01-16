@@ -12,6 +12,15 @@ page 50085 DirEnvioClientes
         {
             repeater(General)
             {
+                field("Customer No."; Rec."Customer No.")
+                {
+                    ToolTip = 'Specifies the customer number.';
+                }
+                field("Code"; Rec."Code")
+                {
+                    ToolTip = 'Specifies a ship-to address code.';
+                }
+
                 field(Address; Rec.Address)
                 {
                     ToolTip = 'Specifies the ship-to address.';
@@ -32,10 +41,7 @@ page 50085 DirEnvioClientes
                 {
                     ToolTip = 'Specifies the value of the Cod. forma de pago field.', Comment = '%';
                 }
-                field("Code"; Rec."Code")
-                {
-                    ToolTip = 'Specifies a ship-to address code.';
-                }
+
                 field(Contact; Rec.Contact)
                 {
                     ToolTip = 'Specifies the name of the person you contact about orders shipped to this address.';
@@ -48,10 +54,7 @@ page 50085 DirEnvioClientes
                 {
                     ToolTip = 'Specifies the state, province, or county as a part of the address.';
                 }
-                field("Customer No."; Rec."Customer No.")
-                {
-                    ToolTip = 'Specifies the customer number.';
-                }
+
                 field("Direccion Ruta"; Rec."Direccion Ruta")
                 {
                     ToolTip = 'Specifies the value of the Direccion Ruta field.', Comment = '%';
@@ -124,10 +127,7 @@ page 50085 DirEnvioClientes
                 {
                     ToolTip = 'Specifies the value of the Nº Movil field.', Comment = '%';
                 }
-                field("Phone No."; Rec."Phone No.")
-                {
-                    ToolTip = 'Specifies the recipient''s telephone number.';
-                }
+
                 field("Place of Export"; Rec."Place of Export")
                 {
                     ToolTip = 'Specifies the value of the Place of Export field.', Comment = '%';
@@ -211,6 +211,10 @@ page 50085 DirEnvioClientes
                 field(FechaHoraModificacionWeb; Rec.FechaHoraModificacionWeb)
                 {
                     ApplicationArea = All;
+                }
+                field("Phone No."; Rec."Phone No.")
+                {
+                    ToolTip = 'Specifies the recipient''s telephone number.';
                 }
 
             }
