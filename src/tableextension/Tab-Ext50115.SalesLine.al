@@ -65,8 +65,8 @@ tableextension 50115 SalesLine extends "Sales Line"
                             SalesCommentLine.Comment := RecItemPadre."No." + ' ' + RecItemPadre.Description;
                             SalesCommentLine.Insert;
                         end;
-                    until RecItemPadre.Next = 0;
-            end;*/
+                    until RecItemPadre.Next = 0;*/
+            end;
         }
 
         modify(Quantity)
