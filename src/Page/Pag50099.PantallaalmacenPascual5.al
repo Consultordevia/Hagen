@@ -456,8 +456,27 @@ Page 50099 "Pantalla almacen Pascual5"
                     var
                         
                         Automaticos: Codeunit 50004;
+                        RecCust: record Customer;
+                        Rec222: Record 222;
 
                     begin
+                        if RecCust.FindFirst() then repeat
+                            if RecCust."Enviar a Web" then begin
+                                if RecCust."Phone No."='' then begin
+                                    Rec222.Reset();
+                                    Rec222.SetRange("Customer No.",RecCust."No.");
+                                    Rec222.SetRange(Dir_Shopyfi,true);
+                                    if Rec222.FindFirst() then begin
+                                        RecCust."Phone No.":=Rec222."Phone No.";
+                                        RecCust."Mobile Phone No.":=Rec222."Phone No.";
+                                        RecCust.Modify();
+                                    end;
+
+                                end;
+                            end;
+                        until RecCust.next=0;
+                        Message('hecho');
+
                         ///Automaticos. .ENVIAREMIALFACTURAS();
                         /*
                         RecItem.RESET;

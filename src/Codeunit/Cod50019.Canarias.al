@@ -159,6 +159,7 @@ Codeunit 50019 Canarias
                 Rec1122.Modify;
 
             until Rec112.Next = 0;
+            
     end;
 
     var
