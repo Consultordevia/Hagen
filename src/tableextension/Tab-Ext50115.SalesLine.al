@@ -22,20 +22,20 @@ tableextension 50115 SalesLine extends "Sales Line"
                     end;
                 end;
 
-                SalesCommentLine.Reset;
+                /*SalesCommentLine.Reset;
                 SalesCommentLine.SetRange("Document Type", SalesCommentLine."document type"::DetalleProd);
                 SalesCommentLine.SetRange("No.", Rec."Document No.");
                 if SalesCommentLine.FindFirst then
                     repeat
                         SalesCommentLine.Delete;
-                    until SalesCommentLine.Next = 0;
+                    until SalesCommentLine.Next = 0;*/
 
 
                 codpadre := Rec."Producto Padre";
 
 
 
-                SalesLineDiscountPadre.Reset;
+                /*SalesLineDiscountPadre.Reset;
                 SalesLineDiscountPadre.SetRange(SalesLineDiscountPadre.Code, codpadre);
                 if SalesLineDiscountPadre.FindFirst then
                     repeat
@@ -66,7 +66,7 @@ tableextension 50115 SalesLine extends "Sales Line"
                             SalesCommentLine.Insert;
                         end;
                     until RecItemPadre.Next = 0;
-            end;
+            end;*/
         }
 
         modify(Quantity)
@@ -823,7 +823,7 @@ tableextension 50115 SalesLine extends "Sales Line"
                         CodProd := RecRefCruz."Item No.";
                         rec.Validate(type, Rec.Type::Item);
                         Rec.Validate("No.", CodProd);
-                        Rec.Validate("Unit of Measure Code",RecRefCruz."Unit of Measure");
+                        Rec.Validate("Unit of Measure Code", RecRefCruz."Unit of Measure");
                     end;
                 end;
             end;
