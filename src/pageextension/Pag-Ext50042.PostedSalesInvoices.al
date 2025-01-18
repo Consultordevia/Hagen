@@ -1,19 +1,19 @@
 pageextension 50042 PostedSalesInvoices extends "Posted Sales Invoices"
 
 {
-    
 
-        layout
-        
+
+    layout
+
     {
 
-    
-        
-        addafter("Posting Date")   
-    {
-        field("Your Reference";Rec."Your Reference") {ApplicationArea = All; }
-        
-    }
+
+
+        addafter("Posting Date")
+        {
+            field("Your Reference"; Rec."Your Reference") { ApplicationArea = All; }
+
+        }
 
     }
 
@@ -32,16 +32,60 @@ pageextension 50042 PostedSalesInvoices extends "Posted Sales Invoices"
                 var
 
                     CUAC: Codeunit "Automaticos Cartas";
-                                        
+
 
                 begin
 
 
-                    CUAC.ModifCanarias(Rec);                                          
-                    
-                    
+                    CUAC.ModifCanarias(Rec);
+
+
                 end;
-            }}
+            }
+
+            action(EDICOMFacturas)
+            {
+
+                ApplicationArea = Suite;
+                Caption = 'EDICOM Facturas';
+                ShortCutKey = 'F9';
+                trigger OnAction()
+                var
+                    AutomaticosEDICOM: Codeunit "Automaticos EDICOM facturas";
+
+                begin
+
+                    AutomaticosEDICOM.GrabaEDICOM(Rec."No.");
+
+
+                end;
+            }
+            action(EDICOMAlbaran)
+            {
+
+                ApplicationArea = Suite;
+                Caption = 'EDICOM Albaran';
+                ShortCutKey = 'F9';
+                trigger OnAction()
+                var
+                    AutomaticosEDICOMalb: Codeunit "Automaticos EDICOM albaran";
+
+                begin
+
+
+
+                    AutomaticosEDICOMalb.GrabaEDICOM(Rec."No.");
+
+
+                end;
+            }
+
+
+
+
+            ///AutomaticosEDICOMalbaran.GrabaEDICOM("No.");
+
+        }
     }
 
 

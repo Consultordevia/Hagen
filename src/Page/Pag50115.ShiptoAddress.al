@@ -1,7 +1,7 @@
 page 50115 ShiptoAddress
 {
     ApplicationArea = All;
-    Caption = 'ShiptoAddress';
+    Caption = 'DirenvioExcel';
     PageType = List;
     SourceTable = "Ship-to Address";
     UsageCategory = Lists;
@@ -217,73 +217,73 @@ page 50115 ShiptoAddress
         }
     }
 
- 
-/*
-  actions
+    actions
     {
-        addlast( )
+        area(creation)
         {
-            Caption = '';
-        }
-         area)
-        {
-
-         action(CopiaCliente)
+            action(pt)
             {
+                ApplicationArea = Basic;
 
-                ApplicationArea = Suite;
-                Caption = 'Copia Clientes';
-                ShortCutKey = 'F9';
                 trigger OnAction()
                 var
-
-                    RecCusto: Record Customer;
-                    SalesSetup: Record "Sales & Receivables Setup";
-                    NoSeriesManagement: Codeunit NoSeriesManagement;
-                    codclie: Code[20];
-                    SalesInvoiceLine: Record "Sales Invoice Line";
-                    ShiptoAddress: Record "Ship-to Address";
-                    ShiptoAddress2: Record "Ship-to Address";
-
+                    Rec222: Record "Ship-to Address";
 
                 begin
+                    if Rec222.FindFirst then
+                        repeat
+                            IF Rec222."Country/Region Code" = 'PT' THEN begin
+                                IF CopyStr(Rec222."Post Code", 5, 1) = ' ' THEN begin
+                                    Rec222."Post Code" :=
+                                    CopyStr(Rec222."Post Code", 1, 4) + '-' +
+                                    CopyStr(Rec222."Post Code", 6, 3);
+                                    Rec222."Country/Region Code" := 'PT';
+                                    Rec222.Modify;
+                                end;
+                            end;
+                        until Rec222.Next = 0;
+                    Message('HECHO');
 
+                end;
+            }
+            action(cero)
+            {
+                ApplicationArea = Basic;
 
-                    RecCusto.INIT;
-                    RecCusto := Rec;
-                    SalesSetup.GET;
-                    SalesSetup.TESTFIELD("Customer Nos.");
-                    codclie := NoSeriesManagement.GetNextNo('C-NAV', TODAY, TRUE);
+                trigger OnAction()
+                var
+                    Rec222: Record "Ship-to Address";
+                    RECcUST: Record Customer;
 
-                    RecCusto."No." := codclie;
-                    RecCusto."Fecha alta" := TODAY;
-                    RecCusto."Usuario alta" := USERID;
-                    RecCusto.Name := 'COPIA ' + COPYSTR(Rec.Name, 1, 53);
-                    RecCusto."Usuario Web" := '';
-                    RecCusto."Contraseña WEB" := '';
-                    RecCusto.INSERT;
-
-
-                    ShiptoAddress.RESET;
-                    ShiptoAddress.SETRANGE(ShiptoAddress."Customer No.", Rec."No.");
-                    IF ShiptoAddress.FINDFIRST THEN
-                        REPEAT
-                            ShiptoAddress2 := ShiptoAddress;
-                            ShiptoAddress2."Customer No." := codclie;
-                            ShiptoAddress2.INSERT;
-                        UNTIL ShiptoAddress.NEXT = 0;
-
-
-                    MESSAGE('El nuevo clientes es %1', codclie);
-
+                begin
+                    if Rec222.FindFirst then
+                        repeat
+                            IF Rec222."Country/Region Code" = 'ES' THEN begin
+                                IF StrLen(Rec222."Post Code") = 4 THEN begin
+                                    Rec222."Post Code" := '0' + Rec222."Post Code";
+                                    Rec222."Country/Region Code" := 'ES';
+                                    Rec222.Modify;
+                                end;
+                            end;
+                        until Rec222.Next = 0;
+                    Message('HECHO1');
+                    if RECcUST.FindFirst then
+                        repeat
+                            IF RECcUST."Country/Region Code" = 'ES' THEN begin
+                                IF StrLen(RECcUST."Post Code") = 4 THEN begin
+                                    RECcUST."Post Code" := '0' + RECcUST."Post Code";
+                                    RECcUST."Country/Region Code" := 'ES';
+                                    RECcUST.Modify;
+                                end;
+                            end;
+                        until RECcUST.Next = 0;
+                    Message('HECHO2');
 
 
                 end;
             }
         }
 
-
-*/
-
+    }
 
 }

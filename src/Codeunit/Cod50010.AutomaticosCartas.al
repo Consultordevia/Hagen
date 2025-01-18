@@ -50,7 +50,7 @@ Codeunit 50010 "Automaticos Cartas"
         TextoSalida7: Text[250];
         TextoSalida8: Text[250];
         RecItem: Record Item;
-        VENTANA: Dialog;
+        ///VENTANA: Dialog;
         COD: Code[13];
         COD2: Code[14];
         AA: Integer;
@@ -148,7 +148,7 @@ Codeunit 50010 "Automaticos Cartas"
         RecItem2: Record Item;
         CODBAR: Code[10];
         LENCB: Integer;
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         opcio: Integer;
         RecCV: Record "Sales Header";
         RecLV: Record "Sales Line";
@@ -376,14 +376,14 @@ Codeunit 50010 "Automaticos Cartas"
 
 
 
-        VENTANA.Update(1, 'TERCEROS');
+        ///VENTANA.Update(1, 'TERCEROS');
         Clie.Init;
         Clie.Reset;
 
         if Clie.FindSet then
             repeat
                 if Clie."No." <> '' then begin
-                    VENTANA.Update(2, Clie."No.");
+                    ///VENTANA.Update(2, Clie."No.");
                     DESNOM := ConvertStr(CopyStr(Clie.Name, 1, 30), 'ª', '.');
                     DESNOM := ConvertStr(DESNOM, 'º', '.');
                     DESNOM2 := ConvertStr(CopyStr(Clie."Search Name", 1, 30), 'ª', '.');
@@ -549,8 +549,8 @@ Codeunit 50010 "Automaticos Cartas"
     procedure ENVIATERCEROS()
     begin
 
-        VENTANA.Open('Exportando: #1####################\' +
-                     '            #2####################');
+        ///VENTANA.Open('Exportando: #1####################\' +
+        ///'            #2####################');
 
 
 
@@ -565,7 +565,7 @@ Codeunit 50010 "Automaticos Cartas"
         TempBlob.CreateInStream(InStream);
         FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
 
-        VENTANA.Close;
+        ///VENTANA.Close;
     end;
 
 
@@ -604,13 +604,13 @@ Codeunit 50010 "Automaticos Cartas"
 
 
 
-        VENTANA.Update(1, 'ARTICULOS');
+        ///VENTANA.Update(1, 'ARTICULOS');
         RecItem.Reset;
         RecItem.SetRange(RecItem."Producto almacenable", true);
         RecItem.SetRange(RecItem."Last Date Modified", Today);
         if RecItem.FindSet then
             repeat
-                VENTANA.Update(2, RecItem."No.");
+                ///VENTANA.Update(2, RecItem."No.");
                 PESO := 'N';
                 UNI1 := 'UD';
                 UNI2 := 'UD';
@@ -963,14 +963,14 @@ Codeunit 50010 "Automaticos Cartas"
 
 
 
-        VENTANA.Update(1, 'RECEPCIONES');
+        ///VENTANA.Update(1, 'RECEPCIONES');
 
         RecCC.Reset;
         RecCC.SetRange(RecCC."Document Type", 1);
         ////RecCC.SetRange(RecCC."No.", '106209');
         if RecCC.FindSet then
             repeat
-                VENTANA.Update(2, RecCC."No.");
+                ///VENTANA.Update(2, RecCC."No.");
                 if RecCC."Order Date" <> 0D then begin
                     ESDIA1 := Date2dmy(RecCC."Order Date", 1);
                     ESMES1 := Date2dmy(RecCC."Order Date", 2);
@@ -1098,7 +1098,7 @@ Codeunit 50010 "Automaticos Cartas"
 
 
 
-        VENTANA.Update(1, 'RECEPCIONES');
+        ///VENTANA.Update(1, 'RECEPCIONES');
 
         RecCV.Reset;
         RecCV.SetRange(RecCV."Document Type", 1);
@@ -1106,7 +1106,7 @@ Codeunit 50010 "Automaticos Cartas"
         RecCV.SetRange(RecCV."Order Date", 20080501D, 20081231D);
         if RecCV.FindSet then
             repeat
-                VENTANA.Update(2, RecCV."No.");
+                ///VENTANA.Update(2, RecCV."No.");
                 if RecCV."Order Date" <> 0D then begin
                     ESDIA1 := Date2dmy(RecCV."Order Date", 1);
                     ESMES1 := Date2dmy(RecCV."Order Date", 2);
@@ -1266,12 +1266,12 @@ Codeunit 50010 "Automaticos Cartas"
 
 
 
-        VENTANA.Update(1, 'RUTAS');
+        ///VENTANA.Update(1, 'RUTAS');
         Recterri.Reset;
         if Recterri.FindSet then
             repeat
                 if Recterri.Code <> '' then begin
-                    VENTANA.Update(2, Recterri.Code);
+                    ///VENTANA.Update(2, Recterri.Code);
 
                     TextoSalida3 := 'RUCA' + '|' +       //1
                                     'AG' + '|' +       //2
@@ -1285,7 +1285,7 @@ Codeunit 50010 "Automaticos Cartas"
                     if Clie.FindSet then
                         repeat
                             if Clie."No." <> '' then begin
-                                VENTANA.Update(2, Clie."No.");
+                                ///VENTANA.Update(2, Clie."No.");
                                 TextoSalida3 := 'RULI' + '|' +       //1
                                                 'AG' + '|' +       //2
                                                 Format(Clie."Territory Code") + '|' +  //3
@@ -1311,13 +1311,15 @@ Codeunit 50010 "Automaticos Cartas"
         /// Exportación a ADAIA TODOS LOS TERCEROS
 
         TERCEROSMODIF;
-        RecCE.Get;
+        
+    /*    RecCE.Get;
         RUTA := RecCE."Ruta salida de_gestion";
         TIPO := 3;
         BUSCAEXTENSION;
         DAT2 := 'TRTER.' + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
         FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        */
 
     end;
 
@@ -1352,17 +1354,41 @@ Codeunit 50010 "Automaticos Cartas"
 
 
     procedure TERCEROSMODIF()
+    var
+        TempBlob: Codeunit "Temp Blob";
+        OutStream: OutStream;
+        FileName: Text;
+        InStream: InStream;
+        FicherosHagen: Codeunit FicherosHagen;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+        Data1: BigText;
+        Data2: BigText;
+        Data3: BigText;
+        Data4: BigText;
+        Data5: BigText;
+        OutTxt: Text;
+
     begin
 
 
 
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
 
-        VENTANA.Update(1, 'TERCEROS');
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
+
+
+
+
+        ////////VENTANA.Update(1, 'TERCEROS');
         Clie.Init;
         Clie.Reset;
         if Clie.FindSet then
             repeat
-                VENTANA.Update(2, Clie."No.");
+                ///VENTANA.Update(2, Clie."No.");
                 DESNOM := ConvertStr(CopyStr(Clie.Name, 1, 30), 'ª', '.');
                 DESNOM := ConvertStr(DESNOM, 'º', '.');
                 DESNOM2 := ConvertStr(CopyStr(Clie."Search Name", 1, 30), 'ª', '.');
@@ -1374,7 +1400,7 @@ Codeunit 50010 "Automaticos Cartas"
                 TIPOPA := '';
                 RC := '';
 
-                TextoSalida4 := 'TE' + '|' +       //1
+                OutTxt := 'TE' + '|' +       //1
                                 'AG' + '|' +       //2
                                 Format(Clie."No.") + '|' +  //3
                                 Format(DESNOM, 40) + '|' +   //4
@@ -1394,7 +1420,10 @@ Codeunit 50010 "Automaticos Cartas"
                                 '|' +                     //18
                                 '|' +                      //19
                                 '|';                   //20                                    
-                OutStream.Writetext(TextoSalida4);
+
+                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                data.AddText(OutTxt);
+
                 Clie.Modify;
 
             until Clie.Next = 0;
@@ -1403,7 +1432,7 @@ Codeunit 50010 "Automaticos Cartas"
         Clie.Reset;
         if Clie.FindSet then
             repeat
-                VENTANA.Update(2, Clie."No.");
+                ///   ///VENTANA.Update(2, Clie."No.");
                 DESNOM := ConvertStr(CopyStr(Clie.Name, 1, 30), 'ª', '.');
                 DESNOM := ConvertStr(DESNOM, 'º', '.');
                 DESNOM2 := ConvertStr(CopyStr(Clie."Search Name", 1, 30), 'ª', '.');
@@ -1415,7 +1444,7 @@ Codeunit 50010 "Automaticos Cartas"
                 TIPOPA := '';
                 RC := '';
 
-                TextoSalida4 := 'TE' + '|' +       //1
+                OutTxt := 'TE' + '|' +       //1
                                 'MO' + '|' +       //2
                                 Format(Clie."No.") + '|' +  //3
                                 Format(DESNOM, 40) + '|' +   //4
@@ -1435,7 +1464,10 @@ Codeunit 50010 "Automaticos Cartas"
                                 '|' +                     //18
                                 '|' +                      //19
                                 '|';                   //20                                    
-                OutStream.Writetext(TextoSalida4);
+
+                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                data.AddText(OutTxt);
+
                 Clie.Modify;
 
             until Clie.Next = 0;
@@ -1446,7 +1478,7 @@ Codeunit 50010 "Automaticos Cartas"
         Prov.Reset;
         if Prov.FindSet then
             repeat
-                VENTANA.Update(2, Prov."No.");
+                ///////VENTANA.Update(2, Prov."No.");
                 DESNOM := ConvertStr(CopyStr(Prov.Name, 1, 30), 'ª', '.');
                 DESNOM := ConvertStr(DESNOM, 'º', '.');
                 DESNOM2 := ConvertStr(CopyStr(Prov."Search Name", 1, 30), 'ª', '.');
@@ -1455,7 +1487,7 @@ Codeunit 50010 "Automaticos Cartas"
                 DESNOM3 := ConvertStr(DESNOM3, 'º', '.');
                 DESNOM4 := ConvertStr(CopyStr(Prov.City, 1, 30), 'ª', '.');
                 DESNOM4 := ConvertStr(DESNOM4, 'º', '.');
-                TextoSalida4 := 'TE' + '|' +       //1
+                OutTxt := 'TE' + '|' +       //1
                                 'AG' + '|' +       //2
                                 Format(Prov."No.") + '|' +  //3
                                 Format(DESNOM, 40) + '|' +   //4
@@ -1475,7 +1507,10 @@ Codeunit 50010 "Automaticos Cartas"
                                 '|' +                     //18
                                 '|' +                      //19
                                 '|';                   //20                                    
-                OutStream.Writetext(TextoSalida4);
+
+                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                data.AddText(OutTxt);
+
                 Prov.Modify;
 
             until Prov.Next = 0;
@@ -1484,7 +1519,7 @@ Codeunit 50010 "Automaticos Cartas"
         Prov.Reset;
         if Prov.FindSet then
             repeat
-                VENTANA.Update(2, Prov."No.");
+                ///////VENTANA.Update(2, Prov."No.");
                 DESNOM := ConvertStr(CopyStr(Prov.Name, 1, 30), 'ª', '.');
                 DESNOM := ConvertStr(DESNOM, 'º', '.');
                 DESNOM2 := ConvertStr(CopyStr(Prov."Search Name", 1, 30), 'ª', '.');
@@ -1493,7 +1528,7 @@ Codeunit 50010 "Automaticos Cartas"
                 DESNOM3 := ConvertStr(DESNOM3, 'º', '.');
                 DESNOM4 := ConvertStr(CopyStr(Prov.City, 1, 30), 'ª', '.');
                 DESNOM4 := ConvertStr(DESNOM4, 'º', '.');
-                TextoSalida4 := 'TE' + '|' +       //1
+                OutTxt := 'TE' + '|' +       //1
                                 'MO' + '|' +       //2
                                 Format(Prov."No.") + '|' +  //3
                                 Format(DESNOM, 40) + '|' +   //4
@@ -1515,7 +1550,10 @@ Codeunit 50010 "Automaticos Cartas"
                                 '|';                   //20
 
 
-                OutStream.Writetext(TextoSalida4);
+
+                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                data.AddText(OutTxt);
+
                 Prov.Modify;
             until Prov.Next = 0;
 
@@ -1523,8 +1561,8 @@ Codeunit 50010 "Automaticos Cartas"
         Recterri.Reset;
         if Recterri.FindSet then
             repeat
-                VENTANA.Update(2, Recterri.Code);
-                TextoSalida4 := 'TE' + '|' +       //1
+                //////VENTANA.Update(2, Recterri.Code);
+                OutTxt := 'TE' + '|' +       //1
                                 'AG' + '|' +       //2
                                 Format(Recterri.Code) + '|' +  //3
                                 Format(Recterri.Name, 40) + '|' +   //4
@@ -1546,9 +1584,22 @@ Codeunit 50010 "Automaticos Cartas"
                                 '|';                   //20
 
 
-                OutStream.Writetext(TextoSalida4);
+
+                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                data.AddText(OutTxt);
+
                 Recterri.Modify;
             until Recterri.Next = 0;
+
+        Data.Write(OutStream);
+
+        RecCE.Get;
+        RUTA := RecCE."Ruta salida de_gestion";
+        TIPO := 3;
+        BUSCAEXTENSION;
+        DAT2 := 'TRTER.' + EXTEN + Format(ALEA);
+        TempBlob.CreateInStream(InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
     end;
 
 
@@ -1577,11 +1628,11 @@ Codeunit 50010 "Automaticos Cartas"
 
 
 
-        VENTANA.Update(1, 'ARTICULOS');
+        //////VENTANA.Update(1, 'ARTICULOS');
         RecItem.Reset;
         if RecItem.FindSet then
             repeat
-                VENTANA.Update(2, RecItem."No.");
+                //////VENTANA.Update(2, RecItem."No.");
                 PESO := 'N';
                 UNI1 := 'CJA';
                 UNI2 := 'CJA';
@@ -1590,46 +1641,46 @@ Codeunit 50010 "Automaticos Cartas"
                 CODI := Format(RecItem."No.", 16);
                 CODI := ConvertStr(CODI, ' ', ' ');
                 CONTROLAEA := 'S';
-                 OutTxt := 'AR' + '|' +
-                                  'AG' + '|' +
-                                 RecItem."No." + '|' +
-                             Format(DESNOM1, 40) + '|' +
-                             RecItem."No." + '|' +
-                             Format(CRITERIO, 4) + '|' +
-                             Format('     ', 5) + '|' +
-                             '|' +
-                             Format('', 5) + '|' +
-                             'N' + '|' +
-                             PESO + '|' +
-                             CONTROLAEA + '|' +
-                             'UD' + '|' +
-                             Format(UNI1, 4) + '|' +
-                             Format(UNI2, 4) + '|' +
-                             Format(UNI3, 4) + '|' +
-                             'N' + '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|';
+                OutTxt := 'AR' + '|' +
+                                 'AG' + '|' +
+                                RecItem."No." + '|' +
+                            Format(DESNOM1, 40) + '|' +
+                            RecItem."No." + '|' +
+                            Format(CRITERIO, 4) + '|' +
+                            Format('     ', 5) + '|' +
+                            '|' +
+                            Format('', 5) + '|' +
+                            'N' + '|' +
+                            PESO + '|' +
+                            CONTROLAEA + '|' +
+                            'UD' + '|' +
+                            Format(UNI1, 4) + '|' +
+                            Format(UNI2, 4) + '|' +
+                            Format(UNI3, 4) + '|' +
+                            'N' + '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|';
 
 
-            OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data.AddText(OutTxt);
+                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                data.AddText(OutTxt);
 
 
 
@@ -1639,7 +1690,7 @@ Codeunit 50010 "Automaticos Cartas"
         RecItem.Reset;
         if RecItem.FindSet then
             repeat
-                VENTANA.Update(2, RecItem."No.");
+                ///VENTANA.Update(2, RecItem."No.");
                 PESO := 'N';
                 UNI1 := 'CJA';
                 UNI2 := 'CJA';
@@ -1651,47 +1702,47 @@ Codeunit 50010 "Automaticos Cartas"
                 CODI := Format(RecItem."No.", 16);
                 CODI := ConvertStr(CODI, ' ', ' ');
                 CONTROLAEA := 'S';
-                 OutTxt := 'AR' + '|' +
-                                  'MO' + '|' +
-                                 RecItem."No." + '|' +
-                                 Format(DESNOM1 + ' ' + DESNOM2 + ' ' + DESNOM3, 40) + '|' +
-                             RecItem."No." + '|' +
-                             Format(CRITERIO, 4) + '|' +
-                             Format('     ', 5) + '|' +
-                             '|' +
-                             Format('', 5) + '|' +
-                             'N' + '|' +
-                             PESO + '|' +
-                             CONTROLAEA + '|' +
-                             'UD' + '|' +
-                             Format(UNI1, 4) + '|' +
-                             Format(UNI2, 4) + '|' +
-                             Format(UNI3, 4) + '|' +
-                             'N' + '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|' +
-                             '|';
+                OutTxt := 'AR' + '|' +
+                                 'MO' + '|' +
+                                RecItem."No." + '|' +
+                                Format(DESNOM1 + ' ' + DESNOM2 + ' ' + DESNOM3, 40) + '|' +
+                            RecItem."No." + '|' +
+                            Format(CRITERIO, 4) + '|' +
+                            Format('     ', 5) + '|' +
+                            '|' +
+                            Format('', 5) + '|' +
+                            'N' + '|' +
+                            PESO + '|' +
+                            CONTROLAEA + '|' +
+                            'UD' + '|' +
+                            Format(UNI1, 4) + '|' +
+                            Format(UNI2, 4) + '|' +
+                            Format(UNI3, 4) + '|' +
+                            'N' + '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|' +
+                            '|';
 
 
 
-             OutTxt += Format(CarriageReturn) + Format(LineFeed);
-             data.AddText(OutTxt);
+                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                data.AddText(OutTxt);
 
 
 
@@ -2536,7 +2587,7 @@ Codeunit 50010 "Automaticos Cartas"
 
 
         RecCE.Get;
-         
+
 
         CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
         LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
@@ -2939,7 +2990,7 @@ Codeunit 50010 "Automaticos Cartas"
                            RecI.ean + '|' +
                            CODBAR + '|';
                 OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data3.AddText(OutTxt);
+                data3.AddText(OutTxt);
 
             end;
             if StrLen(RecItem.ean) = 12 then begin
@@ -2958,8 +3009,8 @@ Codeunit 50010 "Automaticos Cartas"
                                RecI."No." + '|' +
                                '00' + RecI.ean + '|' +
                                'E13|';
-            OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data3.AddText(OutTxt);
+                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                data3.AddText(OutTxt);
 
             end;
 
@@ -2991,8 +3042,8 @@ Codeunit 50010 "Automaticos Cartas"
                                          RecI."No." + '|' +
                                          RecRefCruz."Reference No." + '|' +
                                          CODBAR + '|';
-            OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data3.AddText(OutTxt);
+                        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                        data3.AddText(OutTxt);
 
 
                     end;
@@ -3002,8 +3053,8 @@ Codeunit 50010 "Automaticos Cartas"
                                          RecI."No." + '|' +
                                          '0' + RecRefCruz."Reference No." + '|' +
                                          'E13|';
-        OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data3.AddText(OutTxt);
+                        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                        data3.AddText(OutTxt);
 
                     end;
                     if StrLen(RecRefCruz."Reference No.") = 11 then begin
@@ -3013,7 +3064,7 @@ Codeunit 50010 "Automaticos Cartas"
                                          '00' + RecRefCruz."Reference No." + '|' +
                                          'E13|';
                         OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data3.AddText(OutTxt);
+                        data3.AddText(OutTxt);
 
                     end;
 
@@ -3068,7 +3119,7 @@ Codeunit 50010 "Automaticos Cartas"
                              PICCOMPAR + '||||100|C|||||||||||';
                 ///PICCOMPAR+'|||'+FORMAT(RecI."Zona almacenaje")+'|100|C|||||||||||';
             end;
-OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
             data4.AddText(OutTxt);
 
 
@@ -3078,8 +3129,8 @@ OutTxt += Format(CarriageReturn) + Format(LineFeed);
 
 
         Data1.Write(OutStream);
-        
-        
+
+
 
 
 
@@ -8582,14 +8633,14 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
             RecpFL.RUNMODAL;
         END;
         
-        VENTANA.OPEN('#1################');
+        ///VENTANA.OPEN('#1################');
         x:=0;
         REPEAT
         x:=x+1;
-        VENTANA.UPDATE(1,x);
+        ///VENTANA.UPDATE(1,x);
         UNTIL x=10000;
         
-        VENTANA.CLOSE;
+        ///VENTANA.CLOSE;
         
         
         Rec91.GET(USERID);
@@ -8644,7 +8695,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA: Dialog;
+        ///VENTANA: Dialog;
         codcli: Code[10];
         RecFac: Record "Sales Invoice Header";
     begin
@@ -8666,7 +8717,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         codcli: Code[10];
         t: array[99] of Text[255];
         ret: Integer;
@@ -9465,7 +9516,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         codcli: Code[10];
         t: array[99] of Text[255];
         ret: Integer;
@@ -9756,7 +9807,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
 
-            /// VENTANA.CLOSE;
+            /// ///VENTANA.CLOSE;
 
             /////END;
 
@@ -9780,7 +9831,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         codcli: Code[10];
         t: array[99] of Text[255];
         ret: Integer;
@@ -10197,7 +10248,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         codcli: Code[10];
         t: array[99] of Text[255];
         ret: Integer;
@@ -10929,7 +10980,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         codcli: Code[10];
         t: array[99] of Text[255];
         ret: Integer;
@@ -11382,7 +11433,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         codcli: Code[10];
         t: array[99] of Text[255];
         ret: Integer;
@@ -11724,7 +11775,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         codcli: Code[10];
         t: array[99] of Text[255];
         ret: Integer;
@@ -11825,7 +11876,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         
         
         
-        VENTANA.OPEN('Espere un momento...');
+        ///VENTANA.OPEN('Espere un momento...');
         
         clie:='';
         
@@ -11892,7 +11943,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
              END;
         UNTIL Rec81.NEXT=0;
         
-        VENTANA.CLOSE;
+        ///VENTANA.CLOSE;
         
         */
 
@@ -11956,7 +12007,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         codcli: Code[10];
         t: array[99] of Text[255];
         ret: Integer;
@@ -12617,7 +12668,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         codcli: Code[10];
         t: array[99] of Text[255];
         ret: Integer;
@@ -13025,7 +13076,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         codcli: Code[10];
         t: array[99] of Text[255];
         ret: Integer;
@@ -13703,7 +13754,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         codcli: Code[10];
         t: array[99] of Text[255];
         ret: Integer;
@@ -13727,13 +13778,13 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     /////-ImpBull: Automation PDFPrinterSettings;
     begin
 
-        VENTANA.Open('#1####################################');
+        ///VENTANA.Open('#1####################################');
 
         Customer.Reset;
         Customer.SetRange("No enviar cartas contables", false);
         if Customer.FindFirst then
             repeat
-                VENTANA.Update(1, Customer."No.");
+                ///VENTANA.Update(1, Customer."No.");
                 Customer.CalcFields(Customer."Balance (LCY)");
                 if Customer."Balance (LCY)" <> 0 then begin
                     Fechalimite := CalcDate('+7D', Today);
@@ -13824,7 +13875,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         codcli: Code[10];
         t: array[99] of Text[255];
         ret: Integer;
@@ -13848,7 +13899,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     /////-ImpBull: Automation PDFPrinterSettings;
     begin
 
-        VENTANA.Open('#1####################################');
+        ///VENTANA.Open('#1####################################');
 
         Customer.Reset;
         Customer.SetRange("No enviar cartas contables", false);
@@ -13876,7 +13927,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             end;
                         until CustLedgerEntry.Next = 0;
                     if totalImpPdte <> 0 then begin
-                        VENTANA.Update(1, Customer."No.");
+                        ///VENTANA.Update(1, Customer."No.");
 
                         ///FileDirectory := 'C:\NavisionPdfs\'+Customer."No."+'.pdf';
                         FileDirectory := 'C:\kk\' + Customer."No." + '.pdf';
@@ -13953,7 +14004,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         codcli: Code[10];
         t: array[99] of Text[255];
         ret: Integer;
@@ -13977,13 +14028,13 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     /////-ImpBull: Automation PDFPrinterSettings;
     begin
 
-        VENTANA.Open('#1####################################');
+        ///VENTANA.Open('#1####################################');
 
         Customer.Reset;
         /////Customer.SETRANGE("No enviar cartas contables",FALSE);
         if Customer.FindFirst then
             repeat
-                VENTANA.Update(1, Customer."No.");
+                ///VENTANA.Update(1, Customer."No.");
                 Customer.CalcFields(Customer."Balance (LCY)");
                 if Customer."Balance (LCY)" <> 0 then begin
                     Fechalimite := CalcDate('+27D', Today);
@@ -14351,7 +14402,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         codcli: Code[10];
         t: array[99] of Text[255];
         ret: Integer;
@@ -14411,7 +14462,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         codcli: Code[10];
         t: array[99] of Text[255];
         ret: Integer;
@@ -14471,7 +14522,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         codcli: Code[10];
         t: array[99] of Text[255];
         ret: Integer;
@@ -14531,7 +14582,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         textocuerpo: Text[250];
         asunto: Text[250];
         REC91: Record "User Setup";
-        VENTANA2: Dialog;
+        ///VENTANA2: Dialog;
         codcli: Code[10];
         t: array[99] of Text[255];
         ret: Integer;

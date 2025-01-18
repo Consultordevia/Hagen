@@ -21,24 +21,28 @@ tableextension 50114 SalesHeader extends "Sales Header"
                 Rec110: Record "Sales Shipment Header";
             begin
                 if "Your Reference" <> '' then begin
-                    RecCV.reset;
-                    RecCV.SetCurrentKey("Your Reference");
-                    RecCV.SetRange("Your Reference", "Your Reference");
-                    IF RecCV.FindSet() THEN
-                        repeat
-                            IF RECCV."No." <> "No." THEN begin
-                                ERROR('Esta referencia de pedido %2 ya existe en el pedido %1', RecCV."No.", "Your Reference");
-                            end;
-                        UNTIL RecCV.NEXT = 0;
-                    Rec110.reset;
-                    Rec110.SetCurrentKey("Your Reference");
-                    Rec110.SetRange("Your Reference", "Your Reference");
-                    IF Rec110.FindSet() THEN
-                        repeat
-                            IF Rec110."No." <> "No." THEN begin
-                                ERROR('Esta referencia de pedido %2 ya existe en el albaran %1', Rec110."No.", "Your Reference");
-                            end;
-                        UNTIL Rec110.NEXT = 0;
+                    /////25B2B1058
+                    /////12345
+                    if CopyStr("No.",3,3)<>'B2B' then begin
+                        RecCV.reset;
+                        RecCV.SetCurrentKey("Your Reference");
+                        RecCV.SetRange("Your Reference", "Your Reference");
+                        IF RecCV.FindSet() THEN
+                            repeat
+                                IF RECCV."No." <> "No." THEN begin
+                                    ERROR('Esta referencia de pedido %2 ya existe en el pedido %1', RecCV."No.", "Your Reference");
+                                end;
+                            UNTIL RecCV.NEXT = 0;
+                        Rec110.reset;
+                        Rec110.SetCurrentKey("Your Reference");
+                        Rec110.SetRange("Your Reference", "Your Reference");
+                        IF Rec110.FindSet() THEN
+                            repeat
+                                IF Rec110."No." <> "No." THEN begin
+                                    ERROR('Esta referencia de pedido %2 ya existe en el albaran %1', Rec110."No.", "Your Reference");
+                                end;
+                            UNTIL Rec110.NEXT = 0;
+                    end;
                 end;
             end;
         }
