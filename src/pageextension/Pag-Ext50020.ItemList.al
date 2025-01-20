@@ -172,9 +172,41 @@ pageextension 50020 "Item List" extends "Item List"
 
 
 
-    
-     
+
+
     }
+
+    actions
+    {
+        addlast(reporting)
+        {
+            action(Ubicaciones)
+            {
+                ApplicationArea = All;
+                Caption = 'Ubicaciones';
+                Image = Order;
+
+
+                trigger OnAction()
+                var
+                    FUbica: page Ubicaciones;
+                    RecMT: Record Multitabla;
+                begin
+
+                    RecMT.Reset();
+                    RecMT.SetRange(Tabla, RecMT.Tabla::Ubicaciones);
+                    RecMT.SetRange(Producto, Rec."No.");
+                    FUbica.SetTableView(RecMT);
+                    FUbica.Run();
+                    ;
+
+                end;
+
+            }
+        }
+    }
+
+
     ///
     trigger OnAfterGetRecord()
     var

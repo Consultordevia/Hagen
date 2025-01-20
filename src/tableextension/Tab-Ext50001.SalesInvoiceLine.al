@@ -199,10 +199,18 @@ tableextension 50001 SalesInvoiceLine extends "Sales Invoice Line"
         key(Key50010; "Posting Date")
         {
         }
-        //key(Key50011; "No.", "Posting Date", "Sell-to Country/Region Code", "Sell-to Customer No.")
-        //{
-        //    SumIndexFields = Quantity, "VAT Base Amount";
-        //}
+        key(Key50011; "No.", "Posting Date")
+
+
+        {
+            SumIndexFields = Quantity, "VAT Base Amount";
+        }
+
+
+
+
+
+
     }
     trigger OnBeforeDelete()
     begin

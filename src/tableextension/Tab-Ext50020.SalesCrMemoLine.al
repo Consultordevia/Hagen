@@ -133,6 +133,11 @@ tableextension 50020 SalesCrMemoLine extends "Sales Cr.Memo Line"
         //{
         //   SumIndexFields = Quantity, "VAT Base Amount";
         //}
+        key(Key50011; "No.", "Posting Date")
+        {
+            SumIndexFields = Quantity, "VAT Base Amount";
+        }
+
     }
     trigger OnBeforeDelete()
     begin

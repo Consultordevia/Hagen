@@ -486,7 +486,7 @@ Page 50025 Demanda
             {
                 Caption = 'F&unctions';
                 Image = "Action";
-                action(Recalcula1)
+                action(Recalcula_Datos)
                 {
                     ApplicationArea = Basic;
                     Ellipsis = true;
@@ -721,6 +721,7 @@ Page 50025 Demanda
         SalesHeader22: Record "Sales Header";
         SUMACPV: Decimal;
         nofer: Integer;
+        v: Dialog;
 
     local procedure CurrentJnlBatchNameOnAfterVali()
     begin
@@ -780,15 +781,21 @@ Page 50025 Demanda
 
         desde3m := CalcDate('-' + Format(PurchasesPayablesSetup."Meses calculo demanda") + 'M', Today);
 
-        VENTANA.Open('#1#############################');
+        VENTANA.Open('#1#############################/' +
+                     '#2#############################/' +
+                     '#3#############################/' +
+                     '#4#############################/' +
+                     '#5#############################/' +
+                     '#6#############################/' +
+                     '#7#############################');
 
         RequisitionLine.Reset;
         RequisitionLine.SetRange("Worksheet Template Name", 'APROV.');
         RequisitionLine.SetRange("Journal Batch Name", 'DEMANDA');
-        if RequisitionLine.FindFirst then
+        if RequisitionLine.FindSet then
             repeat
                 RequisitionLine.Delete;
-                VENTANA.Update(1, 'B' + Format(RequisitionLine."Line No."));
+                VENTANA.Update(1, 'eliminando ' + Format(RequisitionLine."Line No."));
             until RequisitionLine.Next = 0;
 
 
@@ -799,6 +806,8 @@ Page 50025 Demanda
         Item.SetRange("Producto almacenable", true);
         if Item.FindSet then
             repeat
+                VENTANA.Update(1, '1-' + Format(Item."No."));
+                
                 Cdadpedcompra := 0;
                 TTOTAL := 0;
                 TTsumaofertas := 0;
@@ -840,12 +849,15 @@ Page 50025 Demanda
 
 
                 until I = 12;
+                
+                VENTANA.Update(2, '2-' + Format(Item."No."));
 
                 SUMACPV := 0;
                 SalesLine22.Reset;
-                SalesLine22.SetCurrentkey("Document Type", "No.");
+                SalesLine22.SetCurrentkey("Document Type", "No.", "Outstanding Quantity");
                 SalesLine22.SetRange("Document Type", SalesLine22."document type"::Order);
                 SalesLine22.SetRange("No.", Item."No.");
+                SalesLine22.SetFilter("Outstanding Quantity", '<>0');
                 if SalesLine22.FindSet then
                     repeat
                         if SalesHeader22.Get(SalesLine22."Document Type", SalesLine22."Document No.") then begin
@@ -855,6 +867,8 @@ Page 50025 Demanda
                             end;
                         end;
                     until SalesLine22.Next = 0;
+                    
+                VENTANA.Update(3, '3-' + Format(Item."No."));
                 TTOTAL := TTOTAL + SUMACPV;
 
                 total3m := CantIntervalo[1] + CantIntervalo[2] + CantIntervalo[3] + SUMACPV;
@@ -893,6 +907,7 @@ Page 50025 Demanda
 
                         end;
                     until RecLC.Next = 0;
+                VENTANA.Update(4, '4-' + Format(Item."No."));
 
                 pPEDIDO := 0;
                 FECHAP := 0D;
@@ -927,7 +942,9 @@ Page 50025 Demanda
 
                         end;
                     until RecLC.Next = 0;
+                VENTANA.Update(5, '5-' + Format(Item."No."));
                 Item.CalcFields("Qty. on Purch. Order", "Pro.Ped.Compra (cdad.)", Item.Inventory, Item."Existencia SILLA", "Existencia FOB");
+                VENTANA.Update(1, '6-' + Format(Item."No."));
                 Cdadpedcompra := Item."Qty. on Purch. Order" + Item."Pro.Ped.Compra (cdad.)";
                 cCOSTE := Item."Standard Cost";
                 sSTOCK := Item.Inventory - Item."Existencia FOB";
@@ -943,7 +960,7 @@ Page 50025 Demanda
                 /////Propuesta:=mMedia*Item."Unidad compra";
                 /////END;
                 /////IF TTOTAL<>0 THEN BEGIN
-
+                VENTANA.Update(6, '6-' + Format(Item."No."));
 
                 RequisitionLine."Worksheet Template Name" := 'APROV.';
                 RequisitionLine."Journal Batch Name" := 'DEMANDA';
@@ -1084,8 +1101,9 @@ Page 50025 Demanda
                 RequisitionLine."Media dia de ult. x meses" := media3;
                 RequisitionLine."Dias rearov." := Item."Lead Time Calculation";
                 RequisitionLine.Insert;
-                VENTANA.Update(1, Item."No.");
-                Commit();
+                VENTANA.Update(7, '7-' + Format(Item."No."));
+
+            ///Commit();
 
 
             until Item.Next = 0;

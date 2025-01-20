@@ -3,7 +3,7 @@ Codeunit 50019 Canarias
 
 
 {
-    Permissions = TableData "Sales Shipment Header" = rimd;
+    Permissions = TableData "Sales Shipment Header" = rimd, TableData "Sales Invoice Header" = rimd;
 
     trigger OnRun()
     begin
@@ -22,12 +22,12 @@ Codeunit 50019 Canarias
         Rec110.SetRange(Rec110."Pasada a Canarias", false);
         if Rec110.FindSet then
             repeat
-                /////  ERROR('%1',Rec110."No.");
+                ///Message('%1', Rec110."No.");
                 if not SalesInvoiceHeader.Get(Rec110."No.") then begin
                     Rec36.Init;
                     Rec36."Document Type" := 2;
                     Rec36."No." := Rec110."No.";
-                    Rec36."Posting No." := Rec110."No.";
+                    Rec36."Posting No." := 'F'+Rec110."No.";
                     Rec36."Order Date" := Rec110."Posting Date";
                     Rec36."Posting Date" := Rec110."Posting Date";
                     Rec36."Document Date" := Rec110."Posting Date";
@@ -159,7 +159,7 @@ Codeunit 50019 Canarias
                 Rec1122.Modify;
 
             until Rec112.Next = 0;
-            
+
     end;
 
     var

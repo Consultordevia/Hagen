@@ -850,6 +850,7 @@ tableextension 50115 SalesLine extends "Sales Line"
         key(Key28; "Document Type", "Sell-to Customer No.", "Outstanding Quantity")
         {
         }
+
         //key(Key29; "Document Type", "No.", "Fecha alta")
         //{
         //}
