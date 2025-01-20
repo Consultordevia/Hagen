@@ -23,7 +23,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
         SalesInvoiceHeader3.SetCurrentkey("EDI factueas enviar", "EDI factueas enviado");
         SalesInvoiceHeader3.SetRange("EDI factueas enviar", true);
         SalesInvoiceHeader3.SetRange("EDI factueas enviado", false);
-        ////SalesInvoiceHeader3.SetRange("Posting Date", 20241206D, TODAY);
+        SalesInvoiceHeader3.SetRange("Posting Date", 20241206D, TODAY);
         if SalesInvoiceHeader3.FindFirst then
             repeat
                 Customer.Get(SalesInvoiceHeader3."Sell-to Customer No.");
@@ -42,7 +42,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
         SalesCrMemoHeader3.SetCurrentkey("EDI factueas enviar", "EDI factueas enviado");
         SalesCrMemoHeader3.SetRange("EDI factueas enviar", true);
         SalesCrMemoHeader3.SetRange("EDI factueas enviado", false);
-        ///////SalesCrMemoHeader3.SetRange("Posting Date", 20241206D, TODAY);
+        SalesCrMemoHeader3.SetRange("Posting Date", 20241206D, TODAY);
         if SalesCrMemoHeader3.FindFirst then
             repeat
                 Customer.Get(SalesCrMemoHeader3."Sell-to Customer No.");
