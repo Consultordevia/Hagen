@@ -34,6 +34,7 @@ codeunit 50006 SubirFicherosFTP
                 SalesInvHeader2.get(SalesInvHeader."No.");
                 SalesInvHeader2.FicheroFTP := true;
                 SalesInvHeader2.Modify();
+                Commit;
             until SalesInvHeader.Next() = 0;
         end;
     end;
