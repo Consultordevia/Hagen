@@ -282,6 +282,29 @@ page 50115 ShiptoAddress
 
                 end;
             }
+
+                action(movil)
+            {
+                ApplicationArea = Basic;
+
+                trigger OnAction()
+                var
+                    Rec222: Record "Ship-to Address";
+                    RECcUST: Record Customer;
+
+                begin
+                    if Rec222.FindFirst then
+                        repeat
+                            IF Rec222."Nº Movil"='' THEN begin                                 
+                                    Rec222."Nº Movil":=Rec222."Phone No.";                                     
+                                    Rec222.Modify;
+                                end;                    
+                        until Rec222.Next = 0;
+                    Message('HECHO1');
+                    
+
+                end;
+            }
         }
 
     }

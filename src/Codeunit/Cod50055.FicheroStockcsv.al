@@ -377,8 +377,8 @@ Codeunit 50055 "Fichero Stock.csv"
 
         OutTxt := 'Ean;Referencia;Descripcion;Estado;Línea;Familia;Tarifa;PVPR;Disponibilidad;Und. Mínimo Compra;Fecha Prox.;Pesos;Largo;Alto;Ancho;Volumen;Marca;URL imagen;Iva;Fecha Lanzamiento;' +
         'Cantidad_1;Descuento_1;Cantidad_2;Descuento_2;Cantidad_3;Descuento_3';
-        ////        OutTxt += Format(CarriageReturn) + Format(LineFeed);
-        ////data.AddText(OutTxt);
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
 
 
 
@@ -427,14 +427,16 @@ Codeunit 50055 "Fichero Stock.csv"
                               Format(ItemTemp."Vendor No.") + ';' +
                               Format(ItemTemp."Last Date Modified");
 
-            ///OutTxt:=TextoSalida1+TextoSalida2+TextoSalida3;
-            ///OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            ////data.AddText(OutTxt);
+                OutTxt := TextoSalida1 + TextoSalida2 + TextoSalida3;
+                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                data.AddText(OutTxt);
 
             ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4);
 
 
             until ItemTemp.Next = 0;
+
+        Data.Write(OutStream);
 
         ///ArchSalida4.Close;
 
@@ -895,6 +897,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR."Last Date Modified" := Item."Fecha Lanzamiento";
                                 ItemtempR."IVA IGIC" := Item."IVA IGIC";
                                 contal := 0;
+                                /*
                                 SalesLineDiscount.Reset;
                                 SalesLineDiscount.SetRange(Code, Item."No.");
                                 SalesLineDiscount.SetRange(SalesLineDiscount."Sales Code", 'DC00');
@@ -914,6 +917,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                             ItemtempR.Descuento_3 := SalesLineDiscount."Line Discount %";
                                         end;
                                     until SalesLineDiscount.Next = 0;
+                                    */
 
                                 ItemtempR.Insert;
                             end;
@@ -1180,6 +1184,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR."Last Date Modified" := Item."Fecha Lanzamiento";
                                 ItemtempR."IVA IGIC" := Item."IVA IGIC";
                                 contal := 0;
+                                /*
                                 SalesLineDiscount.Reset;
                                 SalesLineDiscount.SetRange(Code, Item."No.");
                                 SalesLineDiscount.SetRange(SalesLineDiscount."Sales Code", 'DC00');
@@ -1199,6 +1204,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                             ItemtempR.Descuento_3 := SalesLineDiscount."Line Discount %";
                                         end;
                                     until SalesLineDiscount.Next = 0;
+                                    */
 
                                 ItemtempR.Insert;
 
