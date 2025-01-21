@@ -679,7 +679,15 @@ Report 50063 "OK Nueva Factura Venta"
                                     Item.CalcFields(Item."Tarifa 2019");
                                     "Sales Invoice Line"."Precio Tarifa" := Item."Tarifa 2019";
                                 end;
-                                "Sales Invoice Line"."Precio base" := "Sales Invoice Line"."Unit Price";
+                                /////"Sales Invoice Line"."Precio base" := "Sales Invoice Line"."Unit Price";
+
+                                dif:=0;
+                                if "Sales Invoice Line"."Precio base" <> "Sales Invoice Line"."Unit Price" then begin
+                                    if "Sales Invoice Line"."Line Discount %"=0 then begin
+                                    dif := round((("Sales Invoice Line"."Precio base" - "Sales Invoice Line"."Unit Price")*100)/("Sales Invoice Line"."Precio base"),0.01); 
+                                        "Sales Invoice Line"."Line Discount %":=dif;
+                                    end;
+                                end;
 
                             end;
 
@@ -1374,6 +1382,8 @@ Report 50063 "OK Nueva Factura Venta"
         SalesShipmentHeader2: Record "Sales Shipment Header";
         RelacionproductogrupoMetros: Record "Relacion producto-grupo Metros";
         Customer: Record Customer;
+        dif: Decimal;
+
 
 
     procedure InitLogInteraction()
