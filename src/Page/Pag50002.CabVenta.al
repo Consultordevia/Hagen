@@ -1215,6 +1215,12 @@ page 50002 CabVenta
                 {
                     ToolTip = 'Specifies the value of the ASN field.', Comment = '%';
                 }
+                /*field("Ship-to Phone No."; Rec."Ship-to Phone No.")
+                {
+                    ApplicationArea = All;
+                }*/
+
+
             }
         }
     }
