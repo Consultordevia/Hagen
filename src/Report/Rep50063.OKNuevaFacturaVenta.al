@@ -457,10 +457,10 @@ Report 50063 "OK Nueva Factura Venta"
                         column(IsLineWithTotals; LineNoWithTotal = "Line No.")
                         {
                         }
-                        column(Preciobase_SalesInvoiceLine; "Sales Invoice Line"."Precio base")
+                        column(Preciobase_SalesInvoiceLine; "Precio base")
                         {
                         }
-                        column(PrecioTarifa_SalesInvoiceLine; "Sales Invoice Line"."Precio Tarifa")
+                        column(PrecioTarifa_SalesInvoiceLine; "Precio base")
                         {
                         }
                         column(Preciobase_SalesInvoiceLineCaption; FieldCaption("Precio base"))
