@@ -166,6 +166,8 @@ tableextension 50019 SalesCrMemoHeader extends "Sales Cr.Memo Header"
         field(50663; "Fecha fact. rectifi."; Date)
         {
         }
+        field(50900; FicheroFTP; Boolean)
+        { }
         field(60000; "Id Pedido Presta Shop"; BigInteger)
         {
         }

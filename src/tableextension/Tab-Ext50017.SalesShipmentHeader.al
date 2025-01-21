@@ -378,6 +378,8 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
         field(50366; Num_lineas; Integer)
         {
         }
+        field(50900; FicheroFTP; Boolean)
+        { }
         field(60000; "Id Pedido Presta Shop"; BigInteger)
         {
         }
@@ -385,7 +387,7 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
         {
         }
         field(50669; "Etq.Adaia"; Code[30])
-        {            
+        {
         }
     }
 
@@ -403,7 +405,7 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
         key(Key50008; "Aviso falta stock")
         {
         }
-        
+
     }
 
     fieldgroups
