@@ -308,11 +308,11 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemTemp."No. 2" := Item.ean;
                                 ItemTemp."No." := Item."No.";
                                 ItemTemp.Description := dtext1;
-                                ItemTemp."Description 2" := Format(Item."Estado Producto");
+                                ItemTemp."Description 2" := CopyStr(Format(Item."Estado Producto"), 1, 50);
                                 dtext1 := CASCII.Ascii2Ansi(Item."Gen. Prod. Posting Group");
-                                ItemTemp."Gen. Prod. Posting Group" := dtext1;
+                                ItemTemp."Gen. Prod. Posting Group" := CopyStr(dtext1, 1, 20);
                                 dtext1 := CASCII.Ascii2Ansi(Item.Familia);
-                                ItemTemp.Familia := dtext1;
+                                ItemTemp.Familia := CopyStr(dtext1, 1, 50);
                                 ItemTemp."Unit Price" := Item."Tarifa 2022-2";
                                 ItemTemp."Unit Cost" := Item."PVP-Web";
                                 ItemTemp."Maximum Inventory" := DISPONI;
@@ -402,7 +402,7 @@ Codeunit 50055 "Fichero Stock.csv"
                 SalesLineDiscount.SetRange(SalesLineDiscount."Sales Code", 'DC00');
                 if SalesLineDiscount.FindSet then
                     repeat
-                        TextoSalida4 := TextoSalida4 + Format(SalesLineDiscount."Minimum Quantity") + ';' + Format(SalesLineDiscount."Line Discount %") + ';';
+                    /////TextoSalida4 := TextoSalida4 + Format(SalesLineDiscount."Minimum Quantity") + ';' + Format(SalesLineDiscount."Line Discount %") + ';';
                     until SalesLineDiscount.Next = 0;
 
 
@@ -587,11 +587,11 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR."No. 2" := Item.ean;
                                 ItemtempR."No." := Item."No.";
                                 ItemtempR.Description := dtext1;
-                                ItemtempR."Description 2" := Format(Item."Estado Producto");
+                                ItemtempR."Description 2" := CopyStr(Format(Item."Estado Producto"), 1, 50);
                                 dtext1 := CASCII.Ascii2Ansi(Item."Gen. Prod. Posting Group");
-                                ItemtempR."Gen. Prod. Posting Group" := dtext1;
+                                ItemtempR."Gen. Prod. Posting Group" := CopyStr(dtext1, 1, 20);
                                 dtext1 := CASCII.Ascii2Ansi(Item.Familia);
-                                ItemtempR.Familia := dtext1;
+                                ItemtempR.Familia := CopyStr(dtext1, 1, 50);
                                 ItemtempR."Unit Price" := Item."Tarifa 2021";
                                 ItemtempR."Unit Cost" := Item."PVP Recomendado 2021";
                                 ItemtempR."Maximum Inventory" := DISPONI;
@@ -608,6 +608,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR."Last Date Modified" := Item."Fecha Lanzamiento";
                                 ItemtempR."IVA IGIC" := Item."IVA IGIC";
                                 contadto := 0;
+                                /*
                                 SalesLineDiscount.Reset;
                                 SalesLineDiscount.SetRange(Code, ItemTemp."No.");
                                 SalesLineDiscount.SetRange(SalesLineDiscount."Sales Code", 'DC00');
@@ -629,6 +630,7 @@ Codeunit 50055 "Fichero Stock.csv"
 
 
                                     until SalesLineDiscount.Next = 0;
+                                    */
 
 
 
