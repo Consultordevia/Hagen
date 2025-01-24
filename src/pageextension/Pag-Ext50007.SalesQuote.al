@@ -690,6 +690,23 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                     MESSAGE('Hecho.');
                 end;
             }
+            action(ImportacionPEDIDOSKIWOKO5)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Importacion PEDIDOS AVILA';
+                trigger OnAction()
+                var
+                    ImportacionPEDIDOSKIWOKO5: XmlPort "Importacion PEDIDOS AVILA";
+                begin
+                    Clear(ImportacionPEDIDOSKIWOKO5);
+                    ImportacionPEDIDOSKIWOKO5.Run();
+                    MESSAGE('Hecho.');
+                end;
+            }
+
+
+
+
 
 
 

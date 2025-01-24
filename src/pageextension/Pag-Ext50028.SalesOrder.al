@@ -689,20 +689,7 @@ pageextension 50028 SalesOrder extends "Sales Order"
                     MESSAGE('Hecho.');
                 end;
             }
-            action(ImportacionPEDIDOSKIWOKO5)
-            {
-                ApplicationArea = Suite;
-                Caption = 'Importacion PEDIDOS KIWOKO5';
-                trigger OnAction()
-                var
-                    ImportacionPEDIDOSKIWOKO5: XmlPort "Importacion PEDIDOS KIWOKO5";
-                begin
-                    Clear(ImportacionPEDIDOSKIWOKO5);
-                    ImportacionPEDIDOSKIWOKO5.Run();
-                    MESSAGE('Hecho.');
-                end;
-            }
-
+            
 
 
 
