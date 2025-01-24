@@ -179,6 +179,7 @@ XmlPort 50082 "Importacion PEDIDOS KIWOKO5"
         NoSeriesManagement: Codeunit NoSeriesManagement;
         rec222: Record 222;
         Dtos: Decimal;
+        NPEDIDO: Text;
 
     local procedure InitializeGlobals()
     var
@@ -246,20 +247,14 @@ XmlPort 50082 "Importacion PEDIDOS KIWOKO5"
 
 
         if linea > 1 then begin
-            if linea = 2 then begin
+            if NPEDIDO <> D1 then begin
+                NPEDIDO := D1;
                 clie := '';
                 Rec222.Reset;
                 Rec222.SetRange("Filtro ECI", D2);
                 if Rec222.FindFirst then begin
                     clie := Rec222."Customer No.";
                 end;
-                if not RecClie.FindFirst then begin
-                    Enviaemail;
-                end;
-                //codacti := IncStr(RecUser."Serie pedidos");
-                //RecUser."Serie pedidos" := codacti;
-                //RecUser."Nº cliente" := clie;
-                //RecUser.Modify;
                 codacti := NoSeriesManagement.GetNextNo('V-KIWO-1', Today, true);
                 RecCV.Init;
                 RecCV."Document Type" := 0;
@@ -283,7 +278,6 @@ XmlPort 50082 "Importacion PEDIDOS KIWOKO5"
                 RecCV.Insert(true);
 
             end;
-
             SALE := false;
 
             ///// D[10]:=COPYSTR(D[10],2);
@@ -300,13 +294,13 @@ XmlPort 50082 "Importacion PEDIDOS KIWOKO5"
                         if RecProd."No permite pedido" = false then begin
                             LINEAS := LINEAS + 10000;
                             RecLV."Document Type" := 0;
-                            RecLV."Document No." := RecCV."No.";
+                            RecLV."Document No." := codacti;
                             RecLV."Line No." := LINEAS;
                             RecLV.Type := 2;
                             RecLV.Validate(RecLV."No.", D3);
                             Evaluate(CANTIDE, D5);
-                            Evaluate(Dprecio, d6);
-                            Evaluate(Dtos, d7);
+                            ///Evaluate(Dprecio, d6);
+                            ///Evaluate(Dtos, d7);
 
                             RelacionproductogrupoMetros.Reset;
                             RelacionproductogrupoMetros.SetRange(RelacionproductogrupoMetros.Producto, D3);
@@ -314,12 +308,11 @@ XmlPort 50082 "Importacion PEDIDOS KIWOKO5"
                             if RelacionproductogrupoMetros.FindSet then begin
                                 CANTIDE := ROUND(CANTIDE / RelacionproductogrupoMetros.Metros, 0.01);
                             end;
-                            RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            RecLV."Customer Price Group" := '';
+                            RecLV.Validate(RecLV.Quantity, CANTIDE);                             
                             RecLV.Insert(true);
                             RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            RecLV.Validate(RecLV."Unit Price", Dprecio);
-                            RecLV.Validate(RecLV."Line Discount %", Dtos);
+                            ///RecLV.Validate(RecLV."Unit Price", Dprecio);
+                            ///RecLV.Validate(RecLV."Line Discount %", Dtos);
                             RecLV.Modify(true);
                         end;
                     end;
@@ -338,13 +331,13 @@ XmlPort 50082 "Importacion PEDIDOS KIWOKO5"
                                 ///if RecProd."No permite pedido"=false then begin
                                 LINEAS := LINEAS + 10000;
                                 RecLV."Document Type" := 0;
-                                RecLV."Document No." := RecCV."No.";
+                                RecLV."Document No." := codacti;
                                 RecLV."Line No." := LINEAS;
                                 RecLV.Type := 2;
                                 RecLV.Validate(RecLV."No.", ref);
                                 Evaluate(CANTIDE, D5);
-                                Evaluate(Dprecio, d6);
-                                Evaluate(Dtos, d7);
+                                ///Evaluate(Dprecio, d6);
+                                ///Evaluate(Dtos, d7);
                                 RelacionproductogrupoMetros.Reset;
                                 RelacionproductogrupoMetros.SetRange(RelacionproductogrupoMetros.Producto, ref);
                                 ////RelacionproductogrupoMetros.SETRANGE(RelacionproductogrupoMetros."Grupo Cliente",RecCV."Grupo clientes");
@@ -352,11 +345,11 @@ XmlPort 50082 "Importacion PEDIDOS KIWOKO5"
                                     CANTIDE := ROUND(CANTIDE / RelacionproductogrupoMetros.Metros, 0.01);
                                 end;
                                 RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                RecLV."Customer Price Group" := '';
+                                ///RecLV."Customer Price Group" := '';
                                 RecLV.Insert(true);
                                 RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                RecLV.Validate(RecLV."Unit Price", Dprecio);
-                                RecLV.Validate(RecLV."Line Discount %", Dtos);
+                                ///RecLV.Validate(RecLV."Unit Price", Dprecio);
+                                ///RecLV.Validate(RecLV."Line Discount %", Dtos);
                                 RecLV.Modify(true);
                                 ///end;
 
