@@ -596,7 +596,7 @@ Page 50031 "Almacen Datos"
                         SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
                         SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::Retenido);
 
-                        SalesHeader.SetFilter(SalesHeader."Payment Method Code", 'P.ANTICIPA|TRANSFWEB');
+                        SalesHeader.SetFilter(SalesHeader."Payment Method Code", 'P.ANTICIPA|TRANSFWEB|S_TRANSF');
                         if SalesHeader.FindFirst then begin
                             Clear(PantallaAlmacen);
                             PantallaAlmacen.SetTableview(SalesHeader);

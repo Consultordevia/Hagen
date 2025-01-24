@@ -681,12 +681,14 @@ Report 50063 "OK Nueva Factura Venta"
                                 end;
                                 /////"Sales Invoice Line"."Precio base" := "Sales Invoice Line"."Unit Price";
 
-                                dif:=0;
+                                dif := 0;
                                 if "Sales Invoice Line"."Precio base" <> "Sales Invoice Line"."Unit Price" then begin
-                                    if "Sales Invoice Line"."Line Discount %"=0 then begin
-                                    dif := round((("Sales Invoice Line"."Precio base" - "Sales Invoice Line"."Unit Price")*100)/("Sales Invoice Line"."Precio base"),0.01); 
-                                        "Sales Invoice Line"."Line Discount %":=dif;
-                                    end;
+                                    IF "Sales Invoice Line"."Precio base" <> 0 THEN BEGIN
+                                        if "Sales Invoice Line"."Line Discount %" = 0 then begin
+                                            dif := round((("Sales Invoice Line"."Precio base" - "Sales Invoice Line"."Unit Price") * 100) / ("Sales Invoice Line"."Precio base"), 0.01);
+                                            "Sales Invoice Line"."Line Discount %" := dif;
+                                        end;
+                                    END;
                                 end;
 
                             end;

@@ -1206,7 +1206,7 @@ tableextension 50113 Item extends Item
         field(50326; "Tarifa 2022-2"; Decimal)
         {
             CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
-                                                                   "Sales Code" = const('2022-2')));
+                                                                   "Sales Code" = const('2025')));
             Caption = 'Tarifa 2022-2';
             FieldClass = FlowField;
         }

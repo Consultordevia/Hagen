@@ -2,6 +2,8 @@
 Codeunit 50044 "Automaticos top clie"
 {
 
+    Permissions = tabledata 110 = rmid, tabledata 113 = rmid, tabledata 17 = rmid;
+
     trigger OnRun()
     begin
 

@@ -64,7 +64,7 @@ tableextension 50050 "Sales Cue" extends "Sales Cue"
                                                       "Responsibility Center" = field("Responsibility Center Filter"),
                                                       "Salesperson Code" = field("Vendedor Filtro"),
                                                       "Order Date" = field("Date Filter"),
-                                                      "Payment Method Code" = filter('TRANSFWEB' | 'P.ANTICIPA')));
+                                                      "Payment Method Code" = filter('TRANSFWEB' | 'P.ANTICIPA'|'S_TRANSF')));
             Caption = 'Pedidos Anteriores Resto';
             Editable = false;
             FieldClass = FlowField;
@@ -151,7 +151,7 @@ tableextension 50050 "Sales Cue" extends "Sales Cue"
         {
             CalcFormula = count("Sales Header" where("Document Type" = filter(Order),
                                                       "Estado pedido" = const(Retenido),
-                                                      "Payment Method Code" = filter('P.ANTICIPA' | 'TRANSFWEB'),
+                                                      "Payment Method Code" = filter('P.ANTICIPA' | 'TRANSFWEB'|'S_TRANSF'),
                                                       "Salesperson Code" = field("Vendedor Filtro")));
             FieldClass = FlowField;
         }

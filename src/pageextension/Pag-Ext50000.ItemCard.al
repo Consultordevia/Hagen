@@ -5,9 +5,12 @@ pageextension 50000 "Item Card" extends "Item Card"
 
     {
 
-
-
-
+        addafter("Unit Price")
+        {
+            field("PVP-Web";Rec."PVP-Web") { ApplicationArea = ALL; } 
+        }
+        
+        
         addlast(InventoryGrp)
         {
             group(Hagen_)

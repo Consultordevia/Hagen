@@ -586,7 +586,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR.Init;
                                 ItemtempR."No. 2" := Item.ean;
                                 ItemtempR."No." := Item."No.";
-                                ItemtempR.Description := dtext1;
+                                ItemtempR.Description := copystr(dtext1, 1, 50);
                                 ItemtempR."Description 2" := CopyStr(Format(Item."Estado Producto"), 1, 50);
                                 dtext1 := CASCII.Ascii2Ansi(Item."Gen. Prod. Posting Group");
                                 ItemtempR."Gen. Prod. Posting Group" := CopyStr(dtext1, 1, 20);
@@ -877,7 +877,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR.Init;
                                 ItemtempR."No. 2" := Item.ean;
                                 ItemtempR."No." := Item."No.";
-                                ItemtempR.Description := dtext1;
+                                ItemtempR.Description := CopyStr(dtext1, 1, 50);
                                 ItemtempR."Description 2" := Format(Item."Estado Producto");
                                 dtext1 := CASCII.Ascii2Ansi(Item."Gen. Prod. Posting Group");
                                 ItemtempR."Gen. Prod. Posting Group" := dtext1;
@@ -1164,7 +1164,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR.Init;
                                 ItemtempR."No. 2" := Item.ean;
                                 ItemtempR."No." := Item."No.";
-                                ItemtempR.Description := dtext1;
+                                ItemtempR.Description := CopyStr(dtext1, 1, 50);
                                 ItemtempR."Description 2" := Format(Item."Estado Producto");
                                 dtext1 := CASCII.Ascii2Ansi(Item."Gen. Prod. Posting Group");
                                 ItemtempR."Gen. Prod. Posting Group" := dtext1;
@@ -1453,7 +1453,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR.Init;
                                 ItemtempR."No. 2" := Item.ean;
                                 ItemtempR."No." := Item."No.";
-                                ItemtempR.Description := dtext1;
+                                ItemtempR.Description := CopyStr(dtext1, 1, 50);
                                 ItemtempR."Description 2" := Format(Item."Estado Producto");
                                 dtext1 := CASCII.Ascii2Ansi(Item."Gen. Prod. Posting Group");
                                 ItemtempR."Gen. Prod. Posting Group" := dtext1;
@@ -1616,7 +1616,7 @@ Codeunit 50055 "Fichero Stock.csv"
             Error('ERROR');
 
         tempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(nomdir, 'TarifaStock2022-2.xls', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'Tarifa.xls', InStream);
 
 
 

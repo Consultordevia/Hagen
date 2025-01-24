@@ -16,9 +16,9 @@ pageextension 50028 SalesOrder extends "Sales Order"
         {
 
 
-            field(TextoWebApi;Rec.TextoWebApi) { ApplicationArea = All; }            
-            field("Fecha alta";Rec."Fecha alta") { ApplicationArea = All; }            
-            field("Customer Disc. Group"; Rec."Customer Disc. Group") { ApplicationArea = All; }            
+            field(TextoWebApi; Rec.TextoWebApi) { ApplicationArea = All; }
+            field("Fecha alta"; Rec."Fecha alta") { ApplicationArea = All; }
+            field("Customer Disc. Group"; Rec."Customer Disc. Group") { ApplicationArea = All; }
             field("Sell-to Customer Name 2"; Rec."Sell-to Customer Name 2") { ApplicationArea = All; }
             field("Observación para ALMACEN"; Rec."Observación para ALMACEN") { ApplicationArea = All; }
             field("Observación PDA"; Rec."Observación PDA") { ApplicationArea = All; }
@@ -689,6 +689,20 @@ pageextension 50028 SalesOrder extends "Sales Order"
                     MESSAGE('Hecho.');
                 end;
             }
+            action(ImportacionPEDIDOSKIWOKO5)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Importacion PEDIDOS KIWOKO5';
+                trigger OnAction()
+                var
+                    ImportacionPEDIDOSKIWOKO5: XmlPort "Importacion PEDIDOS KIWOKO5";
+                begin
+                    Clear(ImportacionPEDIDOSKIWOKO5);
+                    ImportacionPEDIDOSKIWOKO5.Run();
+                    MESSAGE('Hecho.');
+                end;
+            }
+
 
 
 
