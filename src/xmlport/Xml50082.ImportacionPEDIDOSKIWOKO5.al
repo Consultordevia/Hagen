@@ -287,6 +287,7 @@ XmlPort 50082 "Importacion PEDIDOS KIWOKO5"
                 if RecProd.Get(D3) then begin
                     RecProd.SetRange(RecProd."Location Filter", 'SILLA', 'SILLA');
                     RecProd.CalcFields(RecProd.Inventory);
+                    SALE := false;
                     if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
                         SALE := true;
                     end;
@@ -324,6 +325,7 @@ XmlPort 50082 "Importacion PEDIDOS KIWOKO5"
                         ref := RecRefCruz."Item No.";
                         if RecProd.Get(ref) then begin
                             RecProd.CalcFields(RecProd.Inventory);
+                            SALE := false;
                             if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
                                 SALE := true;
                             end;
