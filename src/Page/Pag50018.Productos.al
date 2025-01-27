@@ -184,8 +184,8 @@ Page 50018 Productos
             PVPrecomendado := SalesPrice."Precio recomendado";
         end;
 
-        Rec.CalcFields(Rec.Inventory, Rec."Existencia FOB", Rec."Qty. on Sales Order");
-        Existencia := Rec.Inventory - Rec."Existencia FOB" - Rec."Qty. on Sales Order";
+        Rec.CalcFields(Rec.Inventory, Rec."Existencia FOB", Rec."Qty. on Sales Order","Existencia CATIT");
+        Existencia := Rec.Inventory - Rec."Existencia FOB" - Rec."Qty. on Sales Order"-Rec."Existencia CATIT";
     end;
 
     trigger OnOpenPage()

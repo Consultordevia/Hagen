@@ -721,5 +721,18 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
 
     }
 
+ trigger OnClosePage()
+    var
+    SalesLine: Record "Sales Line";
+    begin
+        SalesLine.RESET;
+        SalesLine.SETRANGE("Document Type",Rec."Document Type");
+        SalesLine.SETRANGE("Document No.",rec."No.");
+        IF NOT SalesLine.FINDFIRST THEN BEGIN
+            Rec.DELETE;
+        END;
+    end;
+
+
 
 }

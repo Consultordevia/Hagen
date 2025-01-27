@@ -9086,6 +9086,9 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         ///txtDestinatario.Add(Recipient);
                         txtDestinatario.Add('oscarraea@hotmail.com');
                         recCompanyInformation.Get;
+                        Clear(TempBlob);
+                        Clear(OutStream);
+                        Clear(InStream);                
                         TempBlob.CreateOutStream(OutStream);
                         TempBlob.CreateInStream(InStream);
                         clear(repInforme);
@@ -9094,6 +9097,9 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         fileName := SalesInvHeader2."No." + '.PDF';
                         BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                         FicheroHagen.CrearFicheroFTP('', fileName, InStream);
+
+
+
                     end;
 
 
@@ -9226,6 +9232,9 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         /////txtDestinatario.Add(Recipient);
                         txtDestinatario.Add('oscarraea@hotmail.com');
                         recCompanyInformation.Get;
+                        Clear(TempBlob);
+                        Clear(OutStream);
+                        Clear(InStream);                
                         TempBlob.CreateOutStream(OutStream);
                         TempBlob.CreateInStream(InStream);
                         clear(repInforme);
@@ -9343,6 +9352,9 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         /////txtDestinatario.Add(Recipient);
                         txtDestinatario.Add('oscarraea@hotmail.com');
                         recCompanyInformation.Get;
+                        Clear(TempBlob);
+                        Clear(OutStream);
+                        Clear(InStream);                
                         TempBlob.CreateOutStream(OutStream);
                         TempBlob.CreateInStream(InStream);
                         clear(repInforme);
@@ -9473,9 +9485,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             ///txtDestinatario.Add(Recipient);
                             txtDestinatario.Add('oscarraea@hotmail.com');
                             recCompanyInformation.Get;
-                            Clear(BlobAdjunto);
+                            Clear(TempBlob);
                             Clear(OutStream);
-                            Clear(InStream);
+                            Clear(InStream);                
+
+                            Clear(BlobAdjunto);
                             BlobAdjunto.CreateOutStream(OutStream);
                             BlobAdjunto.CreateInStream(InStream);
                             clear(repInforme);

@@ -689,7 +689,7 @@ pageextension 50028 SalesOrder extends "Sales Order"
                     MESSAGE('Hecho.');
                 end;
             }
-            
+
 
 
 
@@ -735,4 +735,17 @@ pageextension 50028 SalesOrder extends "Sales Order"
 
         }
     }
+    trigger OnClosePage()
+    var
+        SalesLine: Record "Sales Line";
+    begin
+        SalesLine.RESET;
+        SalesLine.SETRANGE("Document Type", Rec."Document Type");
+        SalesLine.SETRANGE("Document No.", rec."No.");
+        IF NOT SalesLine.FINDFIRST THEN BEGIN
+            Rec.DELETE;
+        END;
+    end;
+
+
 }

@@ -455,11 +455,13 @@ Page 50099 "Pantalla almacen Pascual5"
                     trigger OnAction()
                     var
                         
-                        Automaticos: Codeunit 50004;
+                        Automaticos: Codeunit "Automaticos Cartas";
+                        RecHFV: Record "Sales Invoice Header";
                         RecCust: record Customer;
                         Rec222: Record 222;
 
                     begin
+                        /*
                         if RecCust.FindFirst() then repeat
                             if RecCust."Enviar a Web" then begin
                                 if RecCust."Phone No."='' then begin
@@ -476,8 +478,14 @@ Page 50099 "Pantalla almacen Pascual5"
                             end;
                         until RecCust.next=0;
                         Message('hecho');
+                        */
+                        RecHFV.Reset();;
+                        RecHFV.SetRange("Posting Date",20250120D,TODAY);
+                        if RecHFV.FindFirst then repeat
+                            Automaticos.ENVIAREMIALFACTURAS(RecHFV);
+                        until RecHFV.next=0;
+                        Message('hecho');
 
-                        ///Automaticos. .ENVIAREMIALFACTURAS();
                         /*
                         RecItem.RESET;
                         if RecItem.FindFirst() then

@@ -251,6 +251,7 @@ XmlPort 50082 "Importacion PEDIDOS AVILA"
                 RecCV.Validate(RecCV."Shipment Date", Today);
                 RecCV."Posting Description" := 'Pedido nº ' + codacti;
                 RecCV.Validate(RecCV."Sell-to Customer No.", clie);
+                RecCV.Validate("Ship-to Code",rec222.Code);
                 RecCV."Estado pedido" := 2;
                 RecCV."Usuario alta" := UserId;
                 RecCV."Fecha alta" := Today;
@@ -261,6 +262,7 @@ XmlPort 50082 "Importacion PEDIDOS AVILA"
                 RecCV."Shipping No. Series" := SalesSetup."Posted Shipment Nos.";
                 RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                 RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
+                RecCV."Permite fraccionar uni. venta":=true;
                 RecCV.Validate("Your Reference", D1);
                 RecCV.Insert(true);
 
@@ -276,7 +278,7 @@ XmlPort 50082 "Importacion PEDIDOS AVILA"
                         SALE := true;
                     end;
                     if not SALE then begin
-                        if RecProd."No permite pedido" = false then begin
+                        ///if RecProd."No permite pedido" = false then begin
                             LINEAS := LINEAS + 10000;
                             RecLV."Document Type" := 0;
                             RecLV."Document No." := codacti;
@@ -284,12 +286,6 @@ XmlPort 50082 "Importacion PEDIDOS AVILA"
                             RecLV.Type := 2;
                             RecLV.Validate(RecLV."No.", D3);
                             Evaluate(CANTIDE, D4);
-                            RelacionproductogrupoMetros.Reset;
-                            RelacionproductogrupoMetros.SetRange(RelacionproductogrupoMetros.Producto, D3);
-                            /////RelacionproductogrupoMetros.SETRANGE(RelacionproductogrupoMetros."Grupo Cliente",RecCV."Grupo clientes");
-                            if RelacionproductogrupoMetros.FindSet then begin
-                                CANTIDE := ROUND(CANTIDE / RelacionproductogrupoMetros.Metros, 0.01);
-                            end;
                             if CANTIDE<>0 then begin
                                 RecLV.Validate(RecLV.Quantity, CANTIDE);
                                 RecLV.Insert(true);
@@ -298,7 +294,7 @@ XmlPort 50082 "Importacion PEDIDOS AVILA"
                             ///RecLV.Validate(RecLV."Unit Price", Dprecio);
                             ///RecLV.Validate(RecLV."Line Discount %", Dtos);
                             ///RecLV.Modify(true);
-                        end;
+                        ///end;
                     end;
                 end;
                 if NOT RecProd.Get(D3) then begin                  
@@ -322,13 +318,6 @@ XmlPort 50082 "Importacion PEDIDOS AVILA"
                                  RecLV.Type := 2;
                                  RecLV.Validate(RecLV."No.", ref);
                                  Evaluate(CANTIDE, D4);
-                                 RelacionproductogrupoMetros.Reset;
-                                 RelacionproductogrupoMetros.SetRange(RelacionproductogrupoMetros.Producto, ref);
-                                 ////RelacionproductogrupoMetros.SETRANGE(RelacionproductogrupoMetros."Grupo Cliente",RecCV."Grupo clientes");
-                                 if RelacionproductogrupoMetros.FindSet then begin
-                                     CANTIDE := ROUND(CANTIDE / RelacionproductogrupoMetros.Metros, 0.01);
-                                 end;
-                                
                                  ///RecLV."Customer Price Group" := '';
                                  if CANTIDE<>0 then begin
                                     RecLV.Validate(RecLV.Quantity, CANTIDE);
