@@ -9096,7 +9096,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                         fileName := SalesInvHeader2."No." + '.PDF';
                         BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
-                        FicheroHagen.CrearFicheroFTP('', fileName, InStream);
+                        ///FicheroHagen.CrearFicheroFTP('', fileName, InStream);
 
 
 
@@ -9242,7 +9242,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                         fileName := SalesInvHeader2."No." + '.PDF';
                         BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
-                        FicheroHagen.CrearFicheroFTP('', fileName, InStream);
+                        ///FicheroHagen.CrearFicheroFTP('', fileName, InStream);
                     end;
 
 
@@ -9362,7 +9362,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                         fileName := SalesInvHeader2."No." + '.PDF';
                         BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
-                        FicheroHagen.CrearFicheroFTP('', fileName, InStream);
+                        ///FicheroHagen.CrearFicheroFTP('', fileName, InStream);
                     end;
 
                     if RecCust."Adjuntar pub. facturacion 1" then begin
@@ -9497,7 +9497,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                             fileName := SalesInvHeader2."No." + '.PDF';
                             BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
-                            FicheroHagen.CrearFicheroFTP('', fileName, InStream);
+                            ///FicheroHagen.CrearFicheroFTP('', fileName, InStream);
                         end;
 
                     end;

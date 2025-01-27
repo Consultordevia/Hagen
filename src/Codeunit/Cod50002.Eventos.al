@@ -1090,4 +1090,5 @@ codeunit 50002 Eventos
 
         //OnAfterOnModify(Contact, OldContact, Cust);
     end;
+    
 }
