@@ -9082,7 +9082,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                     SalesInvHeader2.Reset;
                     SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
                     if SalesInvHeader2.FindFirst then begin
-                        txtOrigen := 'facturacion@hagen.es';
+                        ///txtOrigen := 'facturacion@hagen.es';
                         ///txtDestinatario.Add(Recipient);
                         txtDestinatario.Add('oscarraea@hotmail.com');
                         recCompanyInformation.Get;
@@ -9227,7 +9227,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                     SalesInvHeader2.Reset;
                     SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
                     if SalesInvHeader2.FindFirst then begin
-                        txtOrigen := 'facturacion@hagen.es';
+                        ///txtOrigen := 'facturacion@hagen.es';
                         clear(txtDestinatario);
                         /////txtDestinatario.Add(Recipient);
                         txtDestinatario.Add('oscarraea@hotmail.com');
@@ -9347,7 +9347,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                     SalesInvHeader2.Reset;
                     SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
                     if SalesInvHeader2.FindFirst then begin
-                        txtOrigen := 'facturacion@hagen.es';
+                        ///txtOrigen := 'facturacion@hagen.es';
                         clear(txtDestinatario);
                         /////txtDestinatario.Add(Recipient);
                         txtDestinatario.Add('oscarraea@hotmail.com');
@@ -9480,7 +9480,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         SalesInvHeader2.Reset;
                         SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
                         if SalesInvHeader2.FindFirst then begin
-                            txtOrigen := 'facturacion@hagen.es';
+                            /////txtOrigen := 'facturacion@hagen.es';
                             clear(txtDestinatario);
                             ///txtDestinatario.Add(Recipient);
                             txtDestinatario.Add('oscarraea@hotmail.com');

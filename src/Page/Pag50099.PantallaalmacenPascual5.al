@@ -480,7 +480,7 @@ Page 50099 "Pantalla almacen Pascual5"
                         Message('hecho');
                         */
                         RecHFV.Reset();;
-                        RecHFV.SetRange("Posting Date",20250120D,TODAY);
+                        RecHFV.SetRange("Posting Date",20250127D,TODAY);
                         if RecHFV.FindFirst then repeat
                             Automaticos.ENVIAREMIALFACTURAS(RecHFV);
                         until RecHFV.next=0;
