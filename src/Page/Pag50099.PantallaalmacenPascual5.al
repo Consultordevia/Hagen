@@ -479,11 +479,17 @@ Page 50099 "Pantalla almacen Pascual5"
                         until RecCust.next=0;
                         Message('hecho');
                         */
-                        RecHFV.Reset();;
-                        RecHFV.SetRange("Posting Date",20250127D,TODAY);
-                        if RecHFV.FindFirst then repeat
-                            Automaticos.ENVIAREMIALFACTURAS(RecHFV);
-                        until RecHFV.next=0;
+                        IF RecItem.FindFirst() THEN repeat
+                            RecItem.CalcFields("PVP-Web2");
+                            RecItem."PVP-Web":=RecItem."PVP-Web2";
+                            RecItem.Modify;
+                        UNTIL RecItem.NEXT=0;
+
+                        //RecHFV.Reset();;
+                        //RecHFV.SetRange("Posting Date",20250127D,TODAY);
+                        //if RecHFV.FindFirst then repeat
+                          //  Automaticos.ENVIAREMIALFACTURAS(RecHFV);
+                        //until RecHFV.next=0;
                         Message('hecho');
 
                         /*

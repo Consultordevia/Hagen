@@ -693,6 +693,7 @@ XmlPort 50030 "Importacion PEDIDOS ECI EDICOM"
             RecCV.validate("Your Reference", D4);
             RecCV."Dpto.ECI" := D18;
             RecCV."External Document No." := D1;
+            RecCV."Permite fraccionar uni. venta":=true;
             RecCV."No agrupar en ADAIA" := true;
             /*
             if (D7 <> '') then begin

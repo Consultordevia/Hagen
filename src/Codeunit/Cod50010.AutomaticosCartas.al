@@ -1311,15 +1311,15 @@ Codeunit 50010 "Automaticos Cartas"
         /// Exportación a ADAIA TODOS LOS TERCEROS
 
         TERCEROSMODIF;
-        
-    /*    RecCE.Get;
-        RUTA := RecCE."Ruta salida de_gestion";
-        TIPO := 3;
-        BUSCAEXTENSION;
-        DAT2 := 'TRTER.' + EXTEN + Format(ALEA);
-        TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
-        */
+
+        /*    RecCE.Get;
+            RUTA := RecCE."Ruta salida de_gestion";
+            TIPO := 3;
+            BUSCAEXTENSION;
+            DAT2 := 'TRTER.' + EXTEN + Format(ALEA);
+            TempBlob.CreateInStream(InStream);
+            FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+            */
 
     end;
 
@@ -8792,34 +8792,53 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                 end;
                 if RecCust."Country/Region Code" <> 'PT' then begin
                     Body := 'Muy señores nuestros, adjunto remitimos factura nº: ' + SalesInvHeader."No." +
+                    '<br><br>' +
                     ' de su pedido ' + Format(SalesInvHeader."Your Reference") +
+                      '<br><br>' +
                     ' que fue entregado a la agencia de transporte ' + SalesInvHeader."Shipping Agent Code" +
+                      '<br><br>' +
                     ' con Nº expedicion: ' + Format(NEXPEDI) +
-                    ' el cual debe de recibir en el trascurso de 24 a 48 horas.';
+                      '<br><br>' +
+                    ' el cual debe de recibir en el trascurso de 24 a 48 horas.' +
+                      '<br><br>';
                     if SalesInvHeader."Shipping Agent Code" = 'DHL' then begin
                         Body := 'Muy señores nuestros, adjunto remitimos factura nº: ' + SalesInvHeader."No." +
+                          '<br><br>' +
                         ' de su pedido ' + Format(SalesInvHeader."Your Reference") +
+                          '<br><br>' +
                         ' que fue entregado a la agencia de transporte ' + SalesInvHeader."Shipping Agent Code" +
+                          '<br><br>' +
                         ' con Nº expedicion: ' + Format(NEXPEDI) +
+                          '<br><br>' +
                         ' el cual debe de recibir en el trascurso de 24 a 48 horas.' +
+                          '<br><br>' +
                         '  Puede hacerle el seguimiento a su envio desde este enlace web ' +
                         'http://www.dhl.es/services_es/seg_3dd/integra/SeguimientoDocumentos.aspx?codigo=' +
-                        Format(NEXPEDI) + '&anno=2013&lang=sp&refCli=1 , a partir de hoy a las 22:00.';
+                        Format(NEXPEDI) + '&anno=2013&lang=sp&refCli=1 , a partir de hoy a las 22:00.' +
+                          '<br><br>';
                     end;
                     if SalesInvHeader."Shipping Agent Code" = 'CRON' then begin
                         RecTra.Get(SalesInvHeader."Shipping Agent Code");
                         Body := 'Muy señores nuestros, adjunto remitimos factura nº: ' + SalesInvHeader."No." +
+                          '<br><br>' +
                         ' de su pedido ' + Format(SalesInvHeader."Your Reference") +
+                          '<br><br>' +
                         ' que fue entregado a la agencia de transporte ' + RecTra.Name +
+                          '<br><br>' +
                         ' con Nº expedicion: ' + Format(NEXPEDI) +
+                          '<br><br>' +
                         ' el cual debe de recibir en el trascurso de 24 a 48 horas.' +
+                          '<br><br>' +
                         '  Puede hacerle el seguimiento a su envio desde este enlace web ' +
+                          '<br><br>' +
                         'https://www.correosexpress.com/url/v?s=' +
                         Format(NEXPEDI) + '&cp=' + Format(SalesInvHeader."Ship-to Post Code") +
                         ///                    'http://www.chronoexpres.com/chronoExtraNET/env/verEnvio.seam?usuario=f4429f061740b2a5528f4aa361d36dac'+
                         //                    '&tipo=referencia&valor='+FORMAT(SalesInvHeader."Nº expedición")+
                         //                    '&cp='+FORMAT(SalesInvHeader."Ship-to Post Code")+
-                        ', a partir de hoy a las 22:00.';
+                          '<br><br>' +
+                        ', a partir de hoy a las 22:00.' +
+                          '<br><br>';
 
                         //paginaweb:='https://www.correosexpress.com/url/v?s='+FORMAT("Nº expedición")+'&cp='+FORMAT("Ship-to Post Code");
                         //HYPERLINK(paginaweb);
@@ -8828,56 +8847,82 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                     if SalesInvHeader."Shipping Agent Code" = 'CORR' then begin
                         RecTra.Get(SalesInvHeader."Shipping Agent Code");
                         Body := 'Muy señores nuestros, adjunto remitimos factura nº: ' + SalesInvHeader."No." +
+                          '<br><br>' +
                         ' de su pedido ' + Format(SalesInvHeader."Your Reference") +
+                          '<br><br>' +
                         ' que fue entregado a la agencia de transporte ' + RecTra.Name +
+                          '<br><br>' +
                         ' con Nº expedicion: ' + Format(NEXPEDI) +
+                          '<br><br>' +
                         ' el cual debe de recibir en el trascurso de 24 a 48 horas.' +
+                          '<br><br>' +
                         '  Puede hacerle el seguimiento a su envio desde este enlace web ' +
                         'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
-                        Format(NEXPEDI) +
-                        ', a partir de hoy a las 22:00.';
+                        Format(NEXPEDI) + '<br><br>' +
+                        ', a partir de hoy a las 22:00.' +
+                        '<br><br>';
                     end;
                     if SalesInvHeader."Shipping Agent Code" = 'TNT' then begin
                         Body := 'Muy señores nuestros, adjunto remitimos factura nº: ' + SalesInvHeader."No." +
+                          '<br><br>' +
                         ' de su pedido ' + Format(SalesInvHeader."Your Reference") +
+                          '<br><br>' +
                         ' que fue entregado a la agencia de transporte ' + SalesInvHeader."Shipping Agent Code" +
+                          '<br><br>' +
                         ' con Nº expedicion: ' + Format(NEXPEDI) +
+                          '<br><br>' +
                         ' el cual debe de recibir en el trascurso de 24 a 48 horas.' +
+                          '<br><br>' +
                         '  Puede hacerle el seguimiento a su envio desde este enlace web ' +
+                          '<br><br>' +
                         'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=' +
                         'REF&respLang=ES&respCountry=ES&sourceID=1&sourceCountry=' +
                         'ES&sourceID=1&sourceCountry=ww&cons=' +
-                        Format(NEXPEDI) + ', a partir de hoy a las 22:00.' +
-                        ' A fin de mes recibira una factura de todos sus albaranes.';
+                        Format(NEXPEDI) + ', a partir de hoy a las 22:00.' + '<br><br>' +
+                        ' A fin de mes recibira una factura de todos sus albaranes.' +
+                         '<br><br>';
                     end;
                     if SalesInvHeader."Shipping Agent Code" = 'TIPSA' then begin
                         if COMPANYNAME = 'PEPE' then begin
                             Body := 'Muy señores nuestros, adjunto remitimos factura nº: ' + SalesInvHeader."No." +
+                              '<br><br>' +
                             ' de su pedido ' + Format(SalesInvHeader."Your Reference") +
+                              '<br><br>' +
                             ' que fue entregado a la agencia de transporte ' + SalesInvHeader."Shipping Agent Code" +
+                              '<br><br>' +
                             ' con Nº expedicion: ' + Format(NEXPEDI) +
+                              '<br><br>' +
                             ' el cual debe de recibir en el trascurso de 24 a 48 horas.' +
+                              '<br><br>' +
                             '  Puede hacerle el seguimiento a su envio desde este enlace web ' +
+                              '<br><br>' +
                             'http://www.tip-sa.com/cliente/datos.php?id=04600400393' +
                             Format(NEXPEDI) + ' - ' +
                             Format(SalesInvHeader."Your Reference") + ' - ' +
                             Format(SalesInvHeader."Order No.") +
-                            Format(SalesInvHeader."Ship-to Post Code") +
+                            Format(SalesInvHeader."Ship-to Post Code") + '<br><br>' +
                             ', a partir de hoy a las 22:00.' +
-                            ' A fin de mes recibira una factura de todos sus albaranes.';
+                              '<br><br>' +
+                            ' A fin de mes recibira una factura de todos sus albaranes.' + '<br><br>';
                         end;
                         if COMPANYNAME <> 'PEPE' then begin
                             Body := 'Muy señores nuestros, adjunto remitimos factura nº: ' + SalesInvHeader."No." +
+                              '<br><br>' +
                             ' de su pedido ' + Format(SalesInvHeader."Your Reference") +
+                              '<br><br>' +
                             ' que fue entregado a la agencia de transporte ' + SalesInvHeader."Shipping Agent Code" +
+                              '<br><br>' +
                             ' con Nº expedicion: ' + Format(NEXPEDI) +
+                              '<br><br>' +
                             ' el cual debe de recibir en el trascurso de 24 a 48 horas.' +
+                              '<br><br>' +
                             '  Puede hacerle el seguimiento a su envio desde este enlace web ' +
+                              '<br><br>' +
                             'http://www.tip-sa.com/cliente/datos.php?id=04600400393' +
                             Format(NEXPEDI) +
-                            Format(SalesInvHeader."Ship-to Post Code") +
-                            ', a partir de hoy a las 22:00.' +
-                            ' A fin de mes recibira una factura de todos sus albaranes.';
+                            Format(SalesInvHeader."Ship-to Post Code") + '<br><br>' +
+                            ', a partir de hoy a las 22:00.' + '<br><br>' +
+                            ' A fin de mes recibira una factura de todos sus albaranes.' + '<br><br>';
                         end;
 
                     end;
@@ -8889,19 +8934,26 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                 RecTra."Link transporte" := 'http://tracking.txt.es/?EXPED=@68381@fcyd0y4ui2n6emo@R@' + Format(NEXPEDI) + '@' + Format(ANYO) + '@';
                             end;
                             Body := 'Muy señores nuestros, adjunto remitimos enlace transporte' +
+                              '<br><br>' +
                             ' de su pedido ' + Format(SalesInvHeader."Your Reference") +
+                              '<br><br>' +
                             ' que fue entregado a la agencia de transporte ' + SalesInvHeader."Shipping Agent Code" +
+                              '<br><br>' +
                             ' con Nº expedicion: ' + Format(NEXPEDI) +
+                              '<br><br>' +
                             ' el cual debe de recibir en el trascurso de 24 a 48 horas.' +
+                              '<br><br>' +
                             '  Puede hacerle el seguimiento a su envio desde este enlace web ' +
-                            Format(RecTra."Link transporte");
+                            Format(RecTra."Link transporte") +
+                              '<br><br>';
                             /////                         IF RecTra.Añadir=0 THEN Body:=Body+FORMAT(SalesInvHeader."Nº expedición");
                             if RecTra.Añadir = 0 then Body := Body + Format(NEXPEDI);
                             if RecTra.Añadir = 2 then
                                 Body := Body + Format(NEXPEDI) + '/' +
                                 Format(SalesInvHeader."Ship-to Post Code");
                             /////                         FORMAT(SalesInvHeader."Ship-to Post Code");
-                            Body := Body + ', a partir de hoy a las 22:00.';
+                            Body := Body + ', a partir de hoy a las 22:00.' +
+                              '<br><br>';
 
                         end;
                     end;
@@ -8914,90 +8966,134 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                 if RecCust."Country/Region Code" = 'PT' then begin
 
                     Body := 'V. Sas.: Adjunto remitimos a fatura nº: ' + SalesInvHeader."No." +
+                      '<br><br>' +
                     ' da sua encomenda ' + Format(SalesInvHeader."Your Reference") +
+                      '<br><br>' +
                     ' que foi entregada  á agência de transporte   ' + SalesInvHeader."Shipping Agent Code" +
+                      '<br><br>' +
                     ' com Nº expedição: ' + Format(NEXPEDI) +
-                    ' o qual deve de receber no trascurso de 24 a 48 horas. ';
+                      '<br><br>' +
+                    ' o qual deve de receber no trascurso de 24 a 48 horas. ' +
+                      '<br><br>';
                     if SalesInvHeader."Shipping Agent Code" = 'DHL' then begin
                         Body := 'V. Sas.: Adjunto remitimos a fatura nº: ' + SalesInvHeader."No." +
+                          '<br><br>' +
                         ' da sua encomenda ' + Format(SalesInvHeader."Your Reference") +
+                        '<br><br>' +
                         ' que foi entregada  á agência de transporte   ' + SalesInvHeader."Shipping Agent Code" +
+                        '<br><br>' +
                         ' com Nº expedição: ' + Format(NEXPEDI) +
+                        '<br><br>' +
                         ' o qual deve de receber no trascurso de 24 a 48 horas. ' +
+                        '<br><br>' +
                         ' Pode fazer o seguimento do seu envío desde este site web. ' +
+                        '<br><br>' +
                         'http://www.dhl.es/services_es/seg_3dd/integra/SeguimientoDocumentos.aspx?codigo=' +
-                        Format(NEXPEDI) + '&anno=2013&lang=sp&refCli=1 , a partir de hoje as 22:00.';
+                        Format(NEXPEDI) + '&anno=2013&lang=sp&refCli=1 , a partir de hoje as 22:00.' + '<br><br>';
                     end;
                     if SalesInvHeader."Shipping Agent Code" = 'CRON' then begin
                         RecTra.Get(SalesInvHeader."Shipping Agent Code");
                         Body := 'V. Sas.: Adjunto remitimos a fatura nº: ' + SalesInvHeader."No." +
+                        '<br><br>' +
                         ' da sua encomenda ' + Format(SalesInvHeader."Your Reference") +
+                        '<br><br>' +
                         ' que foi entregada  á agência de transporte   ' + SalesInvHeader."Shipping Agent Code" +
+                        '<br><br>' +
                         ' com Nº expedição: ' + Format(NEXPEDI) +
+                        '<br><br>' +
                         ' o qual deve de receber no trascurso de 24 a 48 horas. ' +
+                        '<br><br>' +
                         ' Pode fazer o seguimento do seu envío desde este site web. ' +
+                        '<br><br>' +
                         'https://www.correosexpress.com/url/v?s=' +
                         Format(NEXPEDI) + '&cp=' + Format(SalesInvHeader."Ship-to Post Code") +
                             ///                    'http://www.chronoexpres.com/chronoExtraNET/env/verEnvio.seam?usuario=f4429f061740b2a5528f4aa361d36dac'+
                             ///                    '&tipo=referencia&valor='+FORMAT(SalesInvHeader."Nº expedición")+
                             ///                    '&cp='+FORMAT(SalesInvHeader."Ship-to Post Code")+
-                            ', a partir de hoje as 22:00.';
+                            ', a partir de hoje as 22:00.' + '<br><br>';
                         //paginaweb:='https://www.correosexpress.com/url/v?s='+FORMAT("Nº expedición")+'&cp='+FORMAT("Ship-to Post Code");
                     end;
                     if SalesInvHeader."Shipping Agent Code" = 'CORR' then begin
                         RecTra.Get(SalesInvHeader."Shipping Agent Code");
                         Body := 'V. Sas.: Adjunto remitimos a fatura nº: ' + SalesInvHeader."No." +
+                        '<br><br>' +
                         ' da sua encomenda ' + Format(SalesInvHeader."Your Reference") +
+                        '<br><br>' +
                         ' que foi entregada  á agência de transporte   ' + SalesInvHeader."Shipping Agent Code" +
+                        '<br><br>' +
                         ' com Nº expedição: ' + Format(NEXPEDI) +
+                        '<br><br>' +
                         ' o qual deve de receber no trascurso de 24 a 48 horas. ' +
+                        '<br><br>' +
                         ' Pode fazer o seguimento do seu envío desde este site web. ' +
+                        '<br><br>' +
                         'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
-                        Format(NEXPEDI) +
-                        ', a partir de hoje as 22:00.';
+                        Format(NEXPEDI) + '<br><br>' +
+                        ', a partir de hoje as 22:00.' + '<br><br>';
                     end;
 
 
 
                     if SalesInvHeader."Shipping Agent Code" = 'TNT' then begin
                         Body := 'V. Sas.: Adjunto remitimos a fatura nº: ' + SalesInvHeader."No." +
+                        '<br><br>' +
                         ' da sua encomenda ' + Format(SalesInvHeader."Your Reference") +
+                        '<br><br>' +
                         ' que foi entregada  á agência de transporte   ' + SalesInvHeader."Shipping Agent Code" +
+                        '<br><br>' +
                         ' com Nº expedição: ' + Format(NEXPEDI) +
+                        '<br><br>' +
                         ' o qual deve de receber no trascurso de 24 a 48 horas. ' +
+                        '<br><br>' +
                         ' Pode fazer o seguimento do seu envío desde este site web. ' +
+                        '<br><br>' +
                         'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=' +
                         'REF&respLang=ES&respCountry=ES&sourceID=1&sourceCountry=' +
                         'ES&sourceID=1&sourceCountry=ww&cons=' +
-                        Format(NEXPEDI) + ', a partir de hoje as 22:00.';
+                        Format(NEXPEDI) + '<br><br>' +
+                        ', a partir de hoje as 22:00.' + '<br><br>';
                         /////                    ' A fin de mes recibira una factura de todos sus albaranes.';
                     end;
                     if SalesInvHeader."Shipping Agent Code" = 'TIPSA' then begin
                         if COMPANYNAME = 'PEPE' then begin
                             Body := 'V. Sas.: Adjunto remitimos a fatura nº: ' + SalesInvHeader."No." +
+                            '<br><br>' +
                             ' da sua encomenda ' + Format(SalesInvHeader."Your Reference") +
+                            '<br><br>' +
                             ' que foi entregada  á agência de transporte   ' + SalesInvHeader."Shipping Agent Code" +
+                            '<br><br>' +
                             ' com Nº expedição: ' + Format(NEXPEDI) +
+                            '<br><br>' +
                             ' o qual deve de receber no trascurso de 24 a 48 horas. ' +
+                            '<br><br>' +
                             ' Pode fazer o seguimento do seu envío desde este site web. ' +
+                            '<br><br>' +
                             'http://www.tip-sa.com/cliente/datos.php?id=04600400393' +
                             Format(NEXPEDI) + ' - ' +
                             Format(SalesInvHeader."Your Reference") + ' - ' +
                             Format(SalesInvHeader."Order No.") +
-                            Format(SalesInvHeader."Ship-to Post Code") +
-                            ', a partir de hoje as 22:00.';
+                            Format(SalesInvHeader."Ship-to Post Code")
+                            + '<br><br>' +
+                            ', a partir de hoje as 22:00.' + '<br><br>';
                         end;
                         if COMPANYNAME <> 'PEPE' then begin
                             Body := 'V. Sas.: Adjunto remitimos a fatura nº: ' + SalesInvHeader."No." +
+                            '<br><br>' +
                             ' da sua encomenda ' + Format(SalesInvHeader."Your Reference") +
+                            '<br><br>' +
                             ' que foi entregada  á agência de transporte   ' + SalesInvHeader."Shipping Agent Code" +
+                            '<br><br>' +
                             ' com Nº expedição: ' + Format(NEXPEDI) +
+                            '<br><br>' +
                             ' o qual deve de receber no trascurso de 24 a 48 horas. ' +
+                            '<br><br>' +
                             ' Pode fazer o seguimento do seu envío desde este site web. ' +
+                            '<br><br>' +
                             'http://www.tip-sa.com/cliente/datos.php?id=04600400393' +
                             Format(NEXPEDI) +
                             Format(SalesInvHeader."Ship-to Post Code") +
-                            ', a partir de hoje as 22:00.';
+                             '<br><br>' +
+                            ', a partir de hoje as 22:00.' + '<br><br>';
                         end;
                     end;
                     if RecTra.Get(SalesInvHeader."Shipping Agent Code") then begin
@@ -9008,17 +9104,23 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             end;
 
                             Body := 'V. Sas.: Adjunto remitimos a fatura nº: ' + SalesInvHeader."No." +
+                            '<br><br>' +
                             ' da sua encomenda ' + Format(SalesInvHeader."Your Reference") +
+                            '<br><br>' +
                             ' que foi entregada  á agência de transporte   ' + SalesInvHeader."Shipping Agent Code" +
+                            '<br><br>' +
                             ' com Nº expedição: ' + Format(NEXPEDI) +
+                            '<br><br>' +
                             ' o qual deve de receber no trascurso de 24 a 48 horas. ' +
+                            '<br><br>' +
                             ' Pode fazer o seguimento do seu envío desde este site web. ' +
+                            '<br><br>' +
                             Format(RecTra."Link transporte");
                             if RecTra.Añadir = 0 then Body := Body + Format(NEXPEDI);
                             if RecTra.Añadir = 2 then
                                 Body := Body + Format(NEXPEDI) + '/' +
                                 Format(SalesInvHeader."Ship-to Post Code");
-                            Body := Body + ', a partir de hoje as 22:00.';
+                            Body := Body + '<br><br>' + ', a partir de hoje as 22:00.' + '<br><br>';
 
                         end;
                     end;
@@ -9030,9 +9132,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
                 if SalesInvHeader."Shipping Agent Code" = 'CLI' then begin
                     Body := 'Muy señores nuestros, adjunto remitimos factura nº: ' + SalesInvHeader."No." +
+                    '<br><br>' +
                     ' de su pedido ' + Format(SalesInvHeader."Your Reference") +
+                    '<br><br>' +
                     ' estando a su disposición en nuestro almacén para su recogida,' +
-                    ' con Nº expedicion: ' + Format(NEXPEDI);
+                    '<br><br>' +
+                    ' con Nº expedicion: ' + Format(NEXPEDI) + '<br><br>';
 
                 end;
 
@@ -9083,12 +9188,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                     SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
                     if SalesInvHeader2.FindFirst then begin
                         ///txtOrigen := 'facturacion@hagen.es';
-                        ///txtDestinatario.Add(Recipient);
-                        txtDestinatario.Add('oscarraea@hotmail.com');
+                        txtDestinatario.Add(Recipient);
+                        ///txtDestinatario.Add('oscarraea@hotmail.com');
                         recCompanyInformation.Get;
                         Clear(TempBlob);
                         Clear(OutStream);
-                        Clear(InStream);                
+                        Clear(InStream);
                         TempBlob.CreateOutStream(OutStream);
                         TempBlob.CreateInStream(InStream);
                         clear(repInforme);
@@ -9229,12 +9334,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                     if SalesInvHeader2.FindFirst then begin
                         ///txtOrigen := 'facturacion@hagen.es';
                         clear(txtDestinatario);
-                        /////txtDestinatario.Add(Recipient);
-                        txtDestinatario.Add('oscarraea@hotmail.com');
+                        txtDestinatario.Add(Recipient);
+                        ///txtDestinatario.Add('oscarraea@hotmail.com');
                         recCompanyInformation.Get;
                         Clear(TempBlob);
                         Clear(OutStream);
-                        Clear(InStream);                
+                        Clear(InStream);
                         TempBlob.CreateOutStream(OutStream);
                         TempBlob.CreateInStream(InStream);
                         clear(repInforme);
@@ -9349,12 +9454,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                     if SalesInvHeader2.FindFirst then begin
                         ///txtOrigen := 'facturacion@hagen.es';
                         clear(txtDestinatario);
-                        /////txtDestinatario.Add(Recipient);
-                        txtDestinatario.Add('oscarraea@hotmail.com');
+                        txtDestinatario.Add(Recipient);
+                        /////txtDestinatario.Add('oscarraea@hotmail.com');
                         recCompanyInformation.Get;
                         Clear(TempBlob);
                         Clear(OutStream);
-                        Clear(InStream);                
+                        Clear(InStream);
                         TempBlob.CreateOutStream(OutStream);
                         TempBlob.CreateInStream(InStream);
                         clear(repInforme);
@@ -9482,12 +9587,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         if SalesInvHeader2.FindFirst then begin
                             /////txtOrigen := 'facturacion@hagen.es';
                             clear(txtDestinatario);
-                            ///txtDestinatario.Add(Recipient);
-                            txtDestinatario.Add('oscarraea@hotmail.com');
+                            txtDestinatario.Add(Recipient);
+                            ////txtDestinatario.Add('oscarraea@hotmail.com');
                             recCompanyInformation.Get;
                             Clear(TempBlob);
                             Clear(OutStream);
-                            Clear(InStream);                
+                            Clear(InStream);
 
                             Clear(BlobAdjunto);
                             BlobAdjunto.CreateOutStream(OutStream);
@@ -9506,10 +9611,10 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
                 SalesInvHeader3.Get(SalesInvHeader."No.");
-            /////-SalesInvHeader3."Email enviado" := true;
-            /////-SalesInvHeader3."Fecha enviado" := Today;
-            /////-SalesInvHeader3."Hora enviado" := Time;
-            /////-SalesInvHeader3.Modify;
+                SalesInvHeader3."Email enviado" := true;
+                SalesInvHeader3."Fecha enviado" := Today;
+                SalesInvHeader3."Hora enviado" := Time;
+                SalesInvHeader3.Modify;
 
             until SalesInvHeader.Next = 0;
     end;

@@ -11,7 +11,7 @@ Codeunit 50032 "Envio emails Facturas"
         SalesInvHeader.Reset;
         SalesInvHeader.SetCurrentkey(SalesInvHeader."Enviar email", SalesInvHeader."Email enviado");
         SalesInvHeader.SetRange(SalesInvHeader."Enviar email", true);
-        SalesInvHeader.SETRANGE("Posting Date",20250101D,TODAY);
+        SalesInvHeader.SETRANGE("Posting Date",20250128D,TODAY);
         SalesInvHeader.SetRange(SalesInvHeader."Email enviado", false);
         if SalesInvHeader.FindFirst() then repeat
             Clear(Codeunit50010);

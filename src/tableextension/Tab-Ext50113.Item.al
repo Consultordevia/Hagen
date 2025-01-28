@@ -1230,9 +1230,16 @@ tableextension 50113 Item extends Item
         }
         field(50327; "PVP-Web"; Decimal)
         {
+            ///CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
+                                                                           ///"Sales Code" = const('2022-2')));
+            Caption = 'PVP-Web';
+            ///FieldClass = FlowField;
+        }
+          field(50347; "PVP-Web2"; Decimal)
+        {
             CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
                                                                            "Sales Code" = const('2022-2')));
-            Caption = 'PVP-Web';
+            Caption = 'PVP-Web2';
             FieldClass = FlowField;
         }
         field(50328; "Tarifa AMZ2023"; Decimal)
