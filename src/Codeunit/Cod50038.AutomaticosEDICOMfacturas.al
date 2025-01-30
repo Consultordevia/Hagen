@@ -11,6 +11,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
     begin
 
 
+        v.Open('#1#############################');
         nomdir := '';
         ADAIA.Reset();
         ADAIA.SetRange(texto, 'AUTOMATICOS EDICOM-CU-50038');
@@ -27,13 +28,16 @@ Codeunit 50038 "Automaticos EDICOM facturas"
         if SalesInvoiceHeader3.FindFirst then
             repeat
                 Customer.Get(SalesInvoiceHeader3."Sell-to Customer No.");
+                v.Update(1,'1-'+format(SalesInvoiceHeader3."No."));
                 if Customer."No enviar a EDICOM" = false then begin
+                    v.Update(1,'2-'+format(SalesInvoiceHeader3."No."));
                     GrabaEDICOM(SalesInvoiceHeader3."No.");
                 end;
                 SalesInvoiceHeader2.Get(SalesInvoiceHeader3."No.");
                 SalesInvoiceHeader2."EDI factueas enviado" := true;
                 SalesInvoiceHeader2."EDI Facturas Fecha enviado" := CreateDatetime(Today, Time);
                 SalesInvoiceHeader2.Modify;
+                commit;
             until SalesInvoiceHeader3.Next = 0;
 
 
@@ -53,6 +57,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                 SalesCrMemoHeader2."EDI factueas enviado" := true;
                 SalesCrMemoHeader2."EDI Facturas Fecha enviado" := CreateDatetime(Today, Time);
                 SalesCrMemoHeader2.Modify;
+                commit;
             until SalesCrMemoHeader3.Next = 0;
     end;
 
@@ -325,6 +330,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
         CAPITALSOCIAL: Code[10];
         ADAIA: Record ADAIA;
         NOMDIR: TEXT;
+        v: Dialog;
 
 
 
@@ -612,6 +618,10 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
 
                     FFECHA := SalesInvoiceHeader."Due Date";
+                    if SalesInvoiceHeader."Due Date"=0D THEN begin
+                        FFECHA := SalesInvoiceHeader."Posting Date";
+
+                    end;
                     CALCULOFECHA;
                     VTO1 := FECHA;
                     contavto := 0;
