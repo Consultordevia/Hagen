@@ -89,6 +89,7 @@ tableextension 50115 SalesLine extends "Sales Line"
                     exit;
                 if not SalesHeader.Get("Document Type", "Document No.") then
                     exit;
+
                 if SalesHeader."Usuario alta" <> 'USERNWS' then begin
                     if ("Document Type" = 1) or ("Document Type" = 0) then begin
                         /// VER MULTIPO

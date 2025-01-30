@@ -583,6 +583,7 @@ codeunit 50002 Eventos
         SalesLine.CalcFields("Cantidad padre");
         if SalesLine.IsTemporary then
             exit;
+
         if not SalesHeader.Get(SalesLine."Document Type", SalesLine."Document No.") then
             exit;
 
