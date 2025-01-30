@@ -403,7 +403,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     ///X 17 Número de pedido del destinatario de la factura. ///-10
 
                     FFECHA := SalesInvoiceHeader."Posting Date";
-                    CALCULOFECHA;
+                    CALCULOFECHA;                    
                     FECHAEFE := FECHA;
                     NODO := '380';
                     RSOCIAL := CopyStr(SalesInvoiceHeader."Bill-to Name", 1, 70);
@@ -624,6 +624,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
                     end;
                     CALCULOFECHA;
+                    ///message('1- %1 - %2',FFECHA,FECHA);
                     VTO1 := FECHA;
                     contavto := 0;
                     CustLedgerEntry.Reset;
@@ -751,6 +752,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     data.AddText(OutTxt);
                     FFECHA := SalesInvoiceHeader."Posting Date";
                     CALCULOFECHA;
+                    ///message('2 - %1 - %2',FFECHA,FECHA);
                     FECHADOC := LAFECHA;
                     ERMERCA := 'Tomo:7.753, Folio:!, Nº hoja registral: v95742.';
                     OutTxt := Format(CopyStr(ERMERCA, 1, 70)) + '|' + ///// X 70 Registro mercantil del emisor de la factura. 83 ///-93
@@ -784,6 +786,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
                     FFECHA := fechapediso;
                     CALCULOFECHA;
+                    ///message('3 - %1 - %2',FFECHA,FECHA);
                     FPEDIDO := FECHA;
 
                     FEMBARQUE := '';
@@ -791,7 +794,10 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     CAPITALSOCIAL := '';
                     if Multitabla."EDICON Grupo Sonae" then begin
                         FFECHA := SalesInvoiceHeader."Fecha enviado";
-                        CALCULOFECHA;
+                        if FFECHA =0D then begin
+                            FFECHA := SalesInvoiceHeader."Posting Date";
+                        end;
+                        CALCULOFECHA;                         
                         FEMBARQUE := FECHA;
                         FENTRGA := FEMBARQUE;
                         CAPITALSOCIAL := '500000';
