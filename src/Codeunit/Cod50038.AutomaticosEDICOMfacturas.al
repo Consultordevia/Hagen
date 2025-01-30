@@ -4,8 +4,8 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
 
 {
-    Permissions = tabledata "Sales Invoice Header" = RMID,  tabledata "Sales Cr.Memo Header" = RMID, tabledata "VAT Entry" = RMID;
-    
+    Permissions = tabledata "Sales Invoice Header" = RMID, tabledata "Sales Cr.Memo Header" = RMID, tabledata "VAT Entry" = RMID;
+
 
     trigger OnRun()
     begin
@@ -28,9 +28,10 @@ Codeunit 50038 "Automaticos EDICOM facturas"
         if SalesInvoiceHeader3.FindFirst then
             repeat
                 Customer.Get(SalesInvoiceHeader3."Sell-to Customer No.");
-                v.Update(1,'1-'+format(SalesInvoiceHeader3."No."));
+                v.Update(1, '1-' + format(SalesInvoiceHeader3."No."));
                 if Customer."No enviar a EDICOM" = false then begin
-                    v.Update(1,'2-'+format(SalesInvoiceHeader3."No."));
+                    v.Update(1, '2-' + format(SalesInvoiceHeader3."No."));
+                    message('%1', SalesInvoiceHeader3."No.");
                     GrabaEDICOM(SalesInvoiceHeader3."No.");
                 end;
                 SalesInvoiceHeader2.Get(SalesInvoiceHeader3."No.");
@@ -618,7 +619,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
 
                     FFECHA := SalesInvoiceHeader."Due Date";
-                    if SalesInvoiceHeader."Due Date"=0D THEN begin
+                    if SalesInvoiceHeader."Due Date" = 0D THEN begin
                         FFECHA := SalesInvoiceHeader."Posting Date";
 
                     end;
