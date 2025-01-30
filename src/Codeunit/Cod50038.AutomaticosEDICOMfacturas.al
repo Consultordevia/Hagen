@@ -30,8 +30,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                 Customer.Get(SalesInvoiceHeader3."Sell-to Customer No.");
                 v.Update(1, '1-' + format(SalesInvoiceHeader3."No."));
                 if Customer."No enviar a EDICOM" = false then begin
-                    v.Update(1, '2-' + format(SalesInvoiceHeader3."No."));
-                    message('%1', SalesInvoiceHeader3."No.");
+                    v.Update(1, '2-' + format(SalesInvoiceHeader3."No."));                     
                     GrabaEDICOM(SalesInvoiceHeader3."No.");
                 end;
                 SalesInvoiceHeader2.Get(SalesInvoiceHeader3."No.");
