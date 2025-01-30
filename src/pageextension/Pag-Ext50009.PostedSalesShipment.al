@@ -22,7 +22,10 @@ pageextension 50009 "Posted Sales Shipment" extends "Posted Sales Shipments"
 
             field("Importe albaran"; Rec."Importe albaran") { ApplicationArea = All; }
             field("Importe Coste"; ImporteCoste) { ApplicationArea = All; }
-            field("Importe transporte";Rec."Importe transporte") { ApplicationArea = All; }
+            field("Importe transporte"; Rec."Importe transporte") { ApplicationArea = All; }
+            field("Enlace transporte"; Rec."Enlace transporte") { ApplicationArea = All; }
+            field("Enlace transporte 2"; Rec."Enlace transporte 2") { ApplicationArea = All; }
+            field("Enlace transporte 3"; Rec."Enlace transporte 3") { ApplicationArea = All; }
 
         }
     }

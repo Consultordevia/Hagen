@@ -1298,7 +1298,9 @@ tableextension 50114 SalesHeader extends "Sales Header"
                 end;
 
                 if SEPASA then begin
-                    Error('El cliente %1 esta bloqueado por exceso en dias %2 %3 de pago. ', "Sell-to Customer No.", Fechavto, RecCVP."Dias aviso falta pago" + Cust."Dias tolerancias fecha vto.");
+                    if CopyStr("No.",3,3)<>'B2B' then begin
+                        Error('El cliente %1 esta bloqueado por exceso en dias %2 %3 de pago. ', "Sell-to Customer No.", Fechavto, RecCVP."Dias aviso falta pago" + Cust."Dias tolerancias fecha vto.");
+                    END;
                 end;
 
 

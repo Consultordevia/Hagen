@@ -3,13 +3,27 @@ Codeunit 50034 "Envio emails Albaran sin detal"
 {
 
     trigger OnRun()
-    begin
-        Clear(Codeunit50010);
-        Codeunit50010.ENVIAREMIALALBARSINDETALLE;
-    end;
-
     var
-    Codeunit50010: Codeunit "Automaticos Cartas";
-        
+        SalesShipment: Record "Sales Shipment Header";
+        Codeunit50010: Codeunit "Automaticos Cartas";
+        RecClie: Record Customer;
+
+    begin
+        SalesShipment.Reset;
+        SalesShipment.SetCurrentkey("Enviar email sin detalle", "Email enviado sin detalle");
+        SalesShipment.SetRange("Enviar email sin detalle", true);
+        ///SalesShipment.SetRange("Email enviado sin detalle", false);
+        SalesShipment.SETRANGE("Posting Date", 20250128D, TODAY);
+        if SalesShipment.FindFirst() then
+            repeat
+                if RecClie.geT(SalesShipment."Sell-to Customer No.") then begin
+                    if RecClie."Servicio email" then begin
+                        Clear(Codeunit50010);
+                        Codeunit50010.ENVIAREMIALALBARSINDETALLE(SalesShipment);
+                    end;
+                end;
+            until SalesShipment.next = 0;
+
+    end;
 }
 

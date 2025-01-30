@@ -10622,7 +10622,9 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                             if Rec1102.FindFirst then begin
                                 if Rec1102."Bill-to Customer No." <> '6445' then begin
-                                    /////-Report.SaveAsPdf(50903, FileDirectory, Rec1102);
+                                    Clear(TempBlob);
+                                    Clear(OutStream);
+                                    Clear(InStream);
                                     TempBlob.CreateOutStream(OutStream);
                                     TempBlob.CreateInStream(InStream);
                                     clear(repInforme1);
@@ -10630,9 +10632,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                     repInforme1.SaveAs('', ReportFormat::Pdf, OutStream);
                                     fileName := Rec1102."No." + '.PDF';
 
+
                                 end;
                                 if Rec1102."Bill-to Customer No." = '6445' then begin
-                                    /////                   REPORT.RUNMODAL(50035,FALSE,FALSE,Rec1102);
+                                    Clear(TempBlob);
+                                    Clear(OutStream);
+                                    Clear(InStream);
                                     TempBlob.CreateOutStream(OutStream);
                                     TempBlob.CreateInStream(InStream);
                                     clear(repInforme2);
@@ -10763,7 +10768,9 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                             if Rec1102.FindFirst then begin
                                 if Rec1102."Bill-to Customer No." <> '6445' then begin
-                                    /////-Report.SaveAsPdf(50903, FileDirectory, Rec1102);
+                                    Clear(TempBlob);
+                                    Clear(OutStream);
+                                    Clear(InStream);
                                     TempBlob.CreateOutStream(OutStream);
                                     TempBlob.CreateInStream(InStream);
                                     clear(repInforme1);
@@ -10771,9 +10778,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                     repInforme1.SaveAs('', ReportFormat::Pdf, OutStream);
                                     fileName := Rec1102."No." + '.PDF';
 
+
                                 end;
                                 if Rec1102."Bill-to Customer No." = '6445' then begin
-                                    /////                   REPORT.RUNMODAL(50035,FALSE,FALSE,Rec1102);
+                                    Clear(TempBlob);
+                                    Clear(OutStream);
+                                    Clear(InStream);
                                     TempBlob.CreateOutStream(OutStream);
                                     TempBlob.CreateInStream(InStream);
                                     clear(repInforme2);
@@ -10787,7 +10797,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                 txtDestinatario.Add('oscarraea@hotmail.com');
                                 recCompanyInformation.Get;
                                 BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
-                                FicheroHagen.CrearFicheroFTP('', fileName, InStream);
+
                             end;
 
 
@@ -10903,7 +10913,9 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                             if Rec1102.FindFirst then begin
                                 if Rec1102."Bill-to Customer No." <> '6445' then begin
-                                    /////-Report.SaveAsPdf(50903, FileDirectory, Rec1102);
+                                    Clear(TempBlob);
+                                    Clear(OutStream);
+                                    Clear(InStream);
                                     TempBlob.CreateOutStream(OutStream);
                                     TempBlob.CreateInStream(InStream);
                                     clear(repInforme1);
@@ -10911,9 +10923,13 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                     repInforme1.SaveAs('', ReportFormat::Pdf, OutStream);
                                     fileName := Rec1102."No." + '.PDF';
 
+
                                 end;
                                 if Rec1102."Bill-to Customer No." = '6445' then begin
-                                    /////                   REPORT.RUNMODAL(50035,FALSE,FALSE,Rec1102);
+
+                                    Clear(TempBlob);
+                                    Clear(OutStream);
+                                    Clear(InStream);
                                     TempBlob.CreateOutStream(OutStream);
                                     TempBlob.CreateInStream(InStream);
                                     clear(repInforme2);
@@ -10921,13 +10937,15 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                     repInforme2.SaveAs('', ReportFormat::Pdf, OutStream);
                                     fileName := Rec1102."No." + '.PDF';
 
+
+
                                 end;
                                 txtOrigen := 'facturacion@hagen.es';
                                 /////txtDestinatario.Add(Recipient);
                                 txtDestinatario.Add('oscarraea@hotmail.com');
                                 recCompanyInformation.Get;
                                 BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
-                                FicheroHagen.CrearFicheroFTP('', fileName, InStream);
+
                             end;
 
                             if RecCust."Adjuntar pub. albaran 3" then begin
@@ -11043,7 +11061,10 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                 Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                                 if Rec1102.FindFirst then begin
                                     if Rec1102."Bill-to Customer No." <> '6445' then begin
-                                        /////-Report.SaveAsPdf(50903, FileDirectory, Rec1102);
+
+                                        Clear(TempBlob);
+                                        Clear(OutStream);
+                                        Clear(InStream);
                                         TempBlob.CreateOutStream(OutStream);
                                         TempBlob.CreateInStream(InStream);
                                         clear(repInforme1);
@@ -11051,9 +11072,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                         repInforme1.SaveAs('', ReportFormat::Pdf, OutStream);
                                         fileName := Rec1102."No." + '.PDF';
 
+
                                     end;
                                     if Rec1102."Bill-to Customer No." = '6445' then begin
-                                        /////                   REPORT.RUNMODAL(50035,FALSE,FALSE,Rec1102);
+                                        Clear(TempBlob);
+                                        Clear(OutStream);
+                                        Clear(InStream);
                                         TempBlob.CreateOutStream(OutStream);
                                         TempBlob.CreateInStream(InStream);
                                         clear(repInforme2);
@@ -11067,7 +11091,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                     txtDestinatario.Add('oscarraea@hotmail.com');
                                     recCompanyInformation.Get;
                                     BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
-                                    FicheroHagen.CrearFicheroFTP('', fileName, InStream);
+
+
+
+
+
                                 end;
 
                             end;
@@ -11075,18 +11103,18 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
                     end;
                     Rec1103.Get(Rec110."No.");
-                    Rec1103."Email enviado" := true;
-                    Rec1103."Fecha enviado" := Today;
-                    Rec1103."Hora enviado" := Time;
-                    Rec1103.Modify;
+                    ///Rec1103."Email enviado" := true;
+                    ///Rec1103."Fecha enviado" := Today;
+                    ///Rec1103."Hora enviado" := Time;
+                    ///Rec1103.Modify;
 
                 end;
             until Rec110.Next = 0;
 
     end;
 
-
-    procedure ENVIAREMIALALBARSINDETALLE()
+    ///// albaranes
+    procedure ENVIAREMIALALBARSINDETALLE(var Rec: Record "Sales Shipment Header")
     var
         SenderName: Text[250];
         SenderAddress: Text[250];
@@ -11117,6 +11145,43 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         RecVende: Record "Salesperson/Purchaser";
         SalesInvHeader2: Record "Sales Header";
         RecCust: Record Customer;
+        RepInforme1: REPORT 50904;
+        RepInforme2: REPORT 50035;
+        txtDestinatario: List of [Text]; //BC20
+
+        RecCus: Record Customer;
+        FormFac: Page "Posted Sales Invoice";
+        rut: Text[1000];
+        ArchExt22: Text[1000];
+        cuMail: Codeunit Mail;
+        txtOrigen: Text;
+        txtCC: Text;
+        txtSubject: Text;
+        txtBody: Text;
+        xmlParameters: Text;
+        currentUser: Code[100];
+        ReportParameters: Record "Report Selections";
+        PdfDocPath: Text;
+        Path: Text;
+        txtOrigenJM: Text;
+        txtDestinatarioJM: Text;
+        txtCCJM: Text;
+        txtSubjectJM: Text;
+        txtFecha: Text;
+        intIDreport: Integer;
+        recCompanyInformation: Record "Company Information";
+        dia: Integer;
+        FechasDate: Record Date;
+        DiaCorrecto: Boolean;
+        AttachmentTempBlob: Codeunit "Temp Blob";
+        BOMComponent: Record "BOM Component";
+        OutStream: OutStream;
+        repInforme: Report "OK Nueva Factura Venta";
+        FicheroHagen: Codeunit FicherosHagen;
+        BlobAdjunto: Codeunit "Temp Blob";
+
+
+
     ///// SMTP: Codeunit smtp UnknownCodeunit400;
     begin
 
@@ -11125,9 +11190,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
         Rec110.Reset;
-        Rec110.SetCurrentkey(Rec110."Enviar email sin detalle", Rec110."Email enviado sin detalle");
-        Rec110.SetRange(Rec110."Enviar email sin detalle", true);
-        Rec110.SetRange(Rec110."Email enviado sin detalle", false);
+        rec110.SetRange("No.", Rec."No.");
         if Rec110.FindSet then
             repeat
                 if Rec110."Bill-to Customer No." <> '6445' then begin
@@ -11138,61 +11201,97 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         NEXPEDI := Format(Rec110."Nº expedición dropshp");
                     end;
                     Body := 'Muy señores nuestros, adjunto remitimos albaran nº: ' + Rec110."No." +
+                    '<br><br>' +
                     ' de su pedido ' + Format(Rec110."Your Reference") +
+                    '<br><br>' +
                     ' que fue entregado a la agencia de transporte ' + Rec110."Shipping Agent Code" +
+                    '<br><br>' +
                     ' con Nº expedicion: ' + Format(NEXPEDI) +
+                    '<br><br>' +
                     ' el cual debe de recibir en el trascurso de 24 a 48 horas.' +
+                    '<br><br>' +
                     ' Adicionalmente en la caja ó palet le ira anexado un packing' +
+                    '<br><br>' +
                     ' list con información detallada de donde se encuentra cada producto ya' +
-                    ' que se puede dar el caso que un articuló pueda estar en diferentes cajas.';
+                    '<br><br>' +
+                    ' que se puede dar el caso que un articuló pueda estar en diferentes cajas.' + '<br><br>';
 
                     if Rec110."Shipping Agent Code" = 'DHL' then begin
                         Body := 'Muy señores nuestros, adjunto remitimos albaran nº: ' + Rec110."No." +
+                        '<br><br>' +
                         ' de su pedido ' + Format(Rec110."Your Reference") +
+                        '<br><br>' +
                         ' que fue entregado a la agencia de transporte ' + Rec110."Shipping Agent Code" +
+                        '<br><br>' +
                         ' con Nº expedicion: ' + Format(NEXPEDI) +
+                        '<br><br>' +
                         ' el cual debe de recibir en el trascurso de 24 a 48 horas.' +
+                        '<br><br>' +
                         '  Puede hacerle el seguimiento a su envio desde este enlace web ' +
+                        '<br><br>' +
                         'http://www.dhl.es/services_es/seg_3dd/integra/SeguimientoDocumentos.aspx?codigo=' +
                         Format(Rec110."Nº expedición") + '&anno=2013&lang=sp&refCli=1 , a partir de hoy a las 22:00.' +
+                        '<br><br>' +
                        ' Adicionalmente en la caja ó palet le ira anexado un packing' +
+                       '<br><br>' +
                        ' list con información detallada de donde se encuentra cada producto ya' +
-                       ' que se puede dar el caso que un articuló pueda estar en diferentes cajas.';
+                       '<br><br>' +
+                       ' que se puede dar el caso que un articuló pueda estar en diferentes cajas.' + '<br><br>';
                     end;
                     if Rec110."Shipping Agent Code" = 'CRON' then begin
                         RecTra.Get(Rec110."Shipping Agent Code");
                         Body := 'Muy señores nuestros, adjunto remitimos albaran nº: ' + Rec110."No." +
+                        '<br><br>' +
                         ' de su pedido ' + Format(Rec110."Your Reference") +
+                        '<br><br>' +
                         ' que fue entregado a la agencia de transporte ' + RecTra.Name +
+                        '<br><br>' +
                         ' con Nº expedicion: ' + Format(NEXPEDI) +
+                        '<br><br>' +
                         ' el cual debe de recibir en el trascurso de 24 a 48 horas.' +
+                        '<br><br>' +
                         '  Puede hacerle el seguimiento a su envio desde este enlace web ' +
+                        '<br><br>' +
                         'https://www.correosexpress.com/url/v?s=' +
-                        Format(NEXPEDI) + '&cp=' + Format(Rec110."Ship-to Post Code") +
+                        Format(NEXPEDI) + '&cp=' + Format(Rec110."Ship-to Post Code") + '<br><br>' +
+                    
                        ///               'http://www.chronoexpres.com/chronoExtraNET/env/verEnvio.seam?usuario=f4429f061740b2a5528f4aa361d36dac'+
                        ///               '&tipo=referencia&valor='+FORMAT(Rec110."Nº expedición")+
                        ///               '&cp='+FORMAT(Rec110."Ship-to Post Code")+
                        ', a partir de hoy a las 22:00.' +
+                       '<br><br>' +
                         ' Adicionalmente en la caja ó palet le ira anexado un packing' +
+                        '<br><br>' +
                        ' list con información detallada de donde se encuentra cada producto ya' +
-                       ' que se puede dar el caso que un articuló pueda estar en diferentes cajas.';
+                       '<br><br>' +
+                       ' que se puede dar el caso que un articuló pueda estar en diferentes cajas.' + '<br><br>';
 
                         //paginaweb:='https://www.correosexpress.com/url/v?s='+FORMAT("Nº expedición")+'&cp='+FORMAT("Ship-to Post Code");
                     end;
                     if Rec110."Shipping Agent Code" = 'CRON' then begin
                         RecTra.Get(Rec110."Shipping Agent Code");
                         Body := 'Muy señores nuestros, adjunto remitimos albaran nº: ' + Rec110."No." +
+                        '<br><br>' +
                         ' de su pedido ' + Format(Rec110."Your Reference") +
+                        '<br><br>' +
                         ' que fue entregado a la agencia de transporte ' + RecTra.Name +
+                        '<br><br>' +
                         ' con Nº expedicion: ' + Format(NEXPEDI) +
+                        '<br><br>' +
                         ' el cual debe de recibir en el trascurso de 24 a 48 horas.' +
+                        '<br><br>' +
                         '  Puede hacerle el seguimiento a su envio desde este enlace web ' +
+                        '<br><br>' +
                         'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
                         Format(NEXPEDI) +
+                        '<br><br>' +
                         ', a partir de hoy a las 22:00.' +
+                        '<br><br>' +
                         ' Adicionalmente en la caja ó palet le ira anexado un packing' +
+                        '<br><br>' +
                        ' list con información detallada de donde se encuentra cada producto ya' +
-                       ' que se puede dar el caso que un articuló pueda estar en diferentes cajas.';
+                       '<br><br>' +
+                       ' que se puede dar el caso que un articuló pueda estar en diferentes cajas.' + '<br><br>';
                     end;
 
 
@@ -11200,48 +11299,68 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
                     if Rec110."Shipping Agent Code" = 'TNT' then begin
                         Body := 'Muy señores nuestros, adjunto remitimos albaran nº: ' + Rec110."No." +
+                        '<br><br>' +
                         ' de su pedido ' + Format(Rec110."Your Reference") +
+                        '<br><br>' +
                         ' que fue entregado a la agencia de transporte ' + Rec110."Shipping Agent Code" +
+                        '<br><br>' +
                         ' con Nº expedicion: ' + Format(NEXPEDI) +
+                        '<br><br>' +
                         ' el cual debe de recibir en el trascurso de 24 a 48 horas.' +
+                        '<br><br>' +
                         '  Puede hacerle el seguimiento a su envio desde este enlace web ' +
+                        '<br><br>' +
                         'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=' +
                         'REF&respLang=ES&respCountry=ES&sourceID=1&sourceCountry=' +
                         'ES&sourceID=1&sourceCountry=ww&cons=' +
                         Format(NEXPEDI) + ', a partir de hoy a las 22:00.' +
-                        ' A fin de mes recibira una factura de todos sus albaranes.';
+                        '<br><br>' +
+                        ' A fin de mes recibira una factura de todos sus albaranes.' +
+                        '<br><br>';
                     end;
 
                     if Rec110."Shipping Agent Code" = 'TIPSA' then begin
                         if COMPANYNAME = 'PEPE' then begin
                             RecTra.Get(Rec110."Shipping Agent Code");
                             Body := 'Muy señores nuestros, adjunto remitimos albaran nº: ' + Rec110."No." +
+                            '<br><br>' +
                             ' de su pedido ' + Format(Rec110."Your Reference") +
+                            '<br><br>' +
                             ' que fue entregado a la agencia de transporte ' + RecTra.Name +
+                            '<br><br>' +
                             ' con Nº expedicion: ' + Format(NEXPEDI) +
+                            '<br><br>' +
                             ' el cual debe de recibir en el trascurso de 24 a 48 horas.' +
+                            '<br><br>' +
                             '  Puede hacerle el seguimiento a su envio desde este enlace web ' +
+                            '<br><br>' +
                             'http://www.tip-sa.com/cliente/datos.php?id=04600400393' +
                             Format(NEXPEDI) + ' - ' +
                             Format(Rec110."Your Reference") + ' - ' +
                             Format(Rec110."Order No.") +
                             Format(Rec110."Ship-to Post Code") +
-                            ', a partir de hoy a las 22:00.' +
-                            ' A fin de mes recibira una factura de todos sus albaranes.';
+                            ', a partir de hoy a las 22:00.' + '<br><br>' +
+                            ' A fin de mes recibira una factura de todos sus albaranes.' + '<br><br>';
                         end;
                         if COMPANYNAME <> 'PEPE' then begin
                             RecTra.Get(Rec110."Shipping Agent Code");
                             Body := 'Muy señores nuestros, adjunto remitimos albaran nº: ' + Rec110."No." +
+                            '<br><br>' +
                             ' de su pedido ' + Format(Rec110."Your Reference") +
+                            '<br><br>' +
                             ' que fue entregado a la agencia de transporte ' + RecTra.Name +
+                            '<br><br>' +
                             ' con Nº expedicion: ' + Format(NEXPEDI) +
+                            '<br><br>' +
                             ' el cual debe de recibir en el trascurso de 24 a 48 horas.' +
+                            '<br><br>' +
                             '  Puede hacerle el seguimiento a su envio desde este enlace web ' +
+                            '<br><br>' +
                             'http://www.tip-sa.com/cliente/datos.php?id=04600400393' +
                             Format(NEXPEDI) +
-                            Format(Rec110."Ship-to Post Code") +
-                            ', a partir de hoy a las 22:00.' +
-                            ' A fin de mes recibira una factura de todos sus albaranes.';
+                            Format(Rec110."Ship-to Post Code") + '<br><br>' +
+                            ', a partir de hoy a las 22:00.' + '<br><br>' +
+                            ' A fin de mes recibira una factura de todos sus albaranes.' + '<br><br>';
                         end;
 
 
@@ -11251,12 +11370,19 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
                     if Rec110."Shipping Agent Code" = 'CLI' then begin
                         Body := 'Muy señores nuestros, adjunto remitimos albaran nº: ' + Rec110."No." +
+                        '<br><br>' +
                         ' de su pedido ' + Format(Rec110."Your Reference") +
+                        '<br><br>' +
                         ' estando a su disposición en nuestro almacén para su recogida,' +
+                        '<br><br>' +
                         ' con Nº expedicion: ' + Format(NEXPEDI) +
+                        '<br><br>' +
                         ' Adicionalmente en la caja ó palet le ira anexado un packing' +
+                        '<br><br>' +
                         ' list con información detallada de donde se encuentra cada producto ya' +
-                        ' que se puede dar el caso que un articuló pueda estar en diferentes cajas.';
+                        '<br><br>' +
+                        ' que se puede dar el caso que un articuló pueda estar en diferentes cajas.' +
+                        '<br><br>';
 
                     end;
 
@@ -11284,37 +11410,70 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                     */
 
 
+                    Body := Body +
+                            '  Puede hacerle el seguimiento a su envio desde este enlace web ' +
+                            '<br><br>' +                                                         
+                            Format(Rec110. "Ship-to Post Code") + '<br><br>' +
+                            ', a partir de hoy a las 22:00.' + '<br><br>' +
+                            ' A fin de mes recibira una factura de todos sus albaranes.' + '<br><br>';
+                       
+
                     FileDirectory := 'F:\NavisionPdfs\' + Rec110."No." + '.pdf';
 
                     Rec1102.Reset;
                     Rec1102.SetRange(Rec1102."No.", Rec110."No.");
                     if Rec1102.FindFirst then begin
-                        if Rec1102."Bill-to Customer No." <> '6445' then begin
-                            /////-Report.SaveAsPdf(50904, FileDirectory, Rec1102);
-                        end;
-                        if Rec1102."Bill-to Customer No." = '6445' then begin
-                            /////                   REPORT.RUNMODAL(50035,FALSE,FALSE,Rec1102);
-                        end;
-
-                        FileDirectoryexcel := 'F:\NavisionPdfs\' + Rec110."No." + '.xls';
-                        Rec1102.Reset;
-                        Rec1102.SetRange(Rec1102."No.", Rec110."No.");
-                        if Rec1102.FindFirst then begin
-                            if Rec1102."Bill-to Customer No." <> '6445' then begin
-                                /////-Report.SaveAsExcel(50904, FileDirectoryexcel, Rec1102);
-                            end;
-                        end;
-
 
                         Sleep(5000);
                         REC91.Get(UserId);
                         RecCust.Get(Rec110."Sell-to Customer No.");
 
                         SenderName := 'HAGEN';
-                        Subject := SenderName + ' ' + RecCust."Search Name" + ' - ALBARAN Nº ' + Format(Rec110."No.");
+                        txtSubject := SenderName + ' ' + RecCust."Search Name" + ' - ALBARAN Nº ' + Format(Rec110."No.");
                         SenderAddress := REC91."E-Mail";
                         if RecCust."Email albaran sin detalle 1" <> '' then begin
                             Recipient := RecCust."Email albaran sin detalle 1";
+
+                            Rec1102.Reset;
+                            Rec1102.SetRange(Rec1102."No.", Rec110."No.");
+                            if Rec1102.FindFirst then begin
+                                if Rec1102."Bill-to Customer No." <> '6445' then begin                                     
+                                    clear(txtDestinatario);
+                                    ////txtDestinatario.Add(Recipient);                                     
+                                    txtDestinatario.Add('oscarraea@hotmail.com');                                     
+                                    Clear(TempBlob);
+                                    Clear(OutStream);
+                                    Clear(InStream);
+                                    TempBlob.CreateOutStream(OutStream);
+                                    TempBlob.CreateInStream(InStream);
+                                    clear(RepInforme1);
+                                    RepInforme1.SetTableView(Rec1102);
+                                    RepInforme1.SaveAs('', ReportFormat::Pdf, OutStream);
+                                    fileName := SalesInvHeader2."No." + '.PDF';
+                                    BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                                end;
+                                if Rec1102."Bill-to Customer No." = '6445' then begin                                     
+                                    clear(txtDestinatario);
+                                    ////txtDestinatario.Add(Recipient);                                     
+                                    txtDestinatario.Add('oscarraea@hotmail.com');                                     
+                                    Clear(TempBlob);
+                                    Clear(OutStream);
+                                    Clear(InStream);
+                                    TempBlob.CreateOutStream(OutStream);
+                                    TempBlob.CreateInStream(InStream);
+                                    clear(RepInforme2);
+                                    RepInforme2.SetTableView(rec1102);
+                                    RepInforme2.SaveAs('', ReportFormat::Pdf, OutStream);
+                                    fileName := SalesInvHeader2."No." + '.PDF';
+                                    BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                                end;
+
+                            end;
+
+
+
+
+
                             /////-Clear(SMTP);
                             /////-SMTP.Run;
                             /////-SMTP.CreateMessage(SenderName, SenderAddress, Recipient, Subject, Body, true);
@@ -11323,6 +11482,10 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             /////-SMTP.AddAttachment(FileDirectoryexcel, '');
                             /////-end;
                             /////SMTP.AddBCC('oscarraea@hotmail.com');
+
+
+
+
                             if RecCust."Adjuntar pub. albaran sin det." then begin
                                 RecCVC.Get;
                                 /*
@@ -11421,6 +11584,47 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
                         if RecCust."Email albaran sin detalle 2" <> '' then begin
                             Recipient := RecCust."Email albaran sin detalle 2";
+
+                            Rec1102.Reset;
+                            Rec1102.SetRange(Rec1102."No.", Rec110."No.");
+                            if Rec1102.FindFirst then begin
+                                if Rec1102."Bill-to Customer No." <> '6445' then begin                                     
+                                    clear(txtDestinatario);
+                                    txtDestinatario.Add(Recipient);                                     
+                                    Clear(TempBlob);
+                                    Clear(OutStream);
+                                    Clear(InStream);
+                                    TempBlob.CreateOutStream(OutStream);
+                                    TempBlob.CreateInStream(InStream);
+                                    clear(RepInforme1);
+                                    RepInforme1.SetTableView(Rec1102);
+                                    RepInforme1.SaveAs('', ReportFormat::Pdf, OutStream);
+                                    fileName := SalesInvHeader2."No." + '.PDF';
+                                    BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                                end;
+                                if Rec1102."Bill-to Customer No." = '6445' then begin                                     
+                                    clear(txtDestinatario);
+                                    txtDestinatario.Add(Recipient);                                     
+                                    Clear(TempBlob);
+                                    Clear(OutStream);
+                                    Clear(InStream);
+                                    TempBlob.CreateOutStream(OutStream);
+                                    TempBlob.CreateInStream(InStream);
+                                    clear(RepInforme2);
+                                    RepInforme2.SetTableView(rec1102);
+                                    RepInforme2.SaveAs('', ReportFormat::Pdf, OutStream);
+                                    fileName := SalesInvHeader2."No." + '.PDF';
+                                    BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                                end;
+
+                            end;
+
+
+
+
+
+
+
                             /////-Clear(SMTP);
                             /////-SMTP.Run;
                             /////-SMTP.CreateMessage(SenderName, SenderAddress, Recipient, Subject, Body, true);
@@ -11521,17 +11725,17 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
                             end;
 
-                            /////-SMTP.Send;
-                            /////-Clear(SMTP);
+
+
                         end;
 
                     end;
                 end;
                 Rec1103.Get(Rec110."No.");
-                Rec1103."Email enviado sin detalle" := true;
-                Rec1103."Fecha enviado sin detalle" := Today;
-                Rec1103."Hora enviado sin detalle" := Time;
-                Rec1103.Modify;
+            Rec1103."Email enviado sin detalle" := true;
+            Rec1103."Fecha enviado sin detalle" := Today;
+            Rec1103."Hora enviado sin detalle" := Time;
+            Rec1103.Modify;
 
 
             until Rec110.Next = 0;

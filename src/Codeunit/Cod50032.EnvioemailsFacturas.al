@@ -5,6 +5,7 @@ Codeunit 50032 "Envio emails Facturas"
     trigger OnRun()
     var
         SalesInvHeader: Record "Sales Invoice Header";    
+        RecClie: Record Customer;
     begin
 
 
@@ -14,8 +15,12 @@ Codeunit 50032 "Envio emails Facturas"
         SalesInvHeader.SETRANGE("Posting Date",20250128D,TODAY);
         SalesInvHeader.SetRange(SalesInvHeader."Email enviado", false);
         if SalesInvHeader.FindFirst() then repeat
-            Clear(Codeunit50010);
-            Codeunit50010.ENVIAREMIALFACTURAS(SalesInvHeader);
+            if RecClie.geT(SalesInvHeader."Sell-to Customer No.") then begin
+                if RecClie."Servicio email" then begin
+                    Clear(Codeunit50010);
+                    Codeunit50010.ENVIAREMIALFACTURAS(SalesInvHeader);
+                end;
+            end;
         until SalesInvHeader.next=0;
                                 
     end;
