@@ -85,7 +85,10 @@ tableextension 50115 SalesLine extends "Sales Line"
                 ResItem2: Record Item;
                 RecLV2: Record "Sales Line";
             begin
-                SalesHeader.Get("Document Type", "Document No.");
+                if rec.IsTemporary then
+                    exit;
+                if not SalesHeader.Get("Document Type", "Document No.") then
+                    exit;
                 if SalesHeader."Usuario alta" <> 'USERNWS' then begin
                     if ("Document Type" = 1) or ("Document Type" = 0) then begin
                         /// VER MULTIPO
@@ -870,8 +873,10 @@ tableextension 50115 SalesLine extends "Sales Line"
         dtoantes: Decimal;
     begin
 
-
-        SalesHeader.Get("Document Type", "Document No.");
+        if rec.IsTemporary then
+            exit;
+        if not SalesHeader.Get("Document Type", "Document No.") then
+            exit;
         AÑO := Date2dmy(SalesHeader."Order Date", 3);
 
         MES := Date2dmy(SalesHeader."Order Date", 2);
