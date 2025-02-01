@@ -70,6 +70,7 @@ tableextension 50115 SalesLine extends "Sales Line"
         }
 
         modify(Quantity)
+        
         {
             trigger OnAfterValidate()
             var
