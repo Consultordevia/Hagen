@@ -12727,20 +12727,20 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                 FileDirectory := 'F:\NavisionPdfs\' + SalesInvHeader."No." + '.pdf';
 
 
-                SalesInvHeader2.Reset;
-                SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
-                if SalesInvHeader2.FindFirst then begin
+                /////-SalesInvHeader2.Reset;
+                /////-SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
+                /////-if SalesInvHeader2.FindFirst then begin
                     /////-Report.SaveAsPdf(50914, FileDirectory, SalesInvHeader2);
-                end;
+                /////-end;
 
                 FileDirectoryexcel := 'F:\NavisionPdfs\' + SalesInvHeader."No." + '.xls';
 
 
-                SalesInvHeader2.Reset;
-                SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
-                if SalesInvHeader2.FindFirst then begin
+                /////-SalesInvHeader2.Reset;
+                /////-SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
+                /////-if SalesInvHeader2.FindFirst then begin
                     /////-Report.SaveAsExcel(50914, FileDirectoryexcel, SalesInvHeader2);
-                end;
+                /////-end;
 
 
                 Sleep(5000);
@@ -12754,24 +12754,10 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                 SenderAddress := REC91."E-Mail";
                 if RecCust."Email facturacion 1" <> '' then begin
                     Recipient := RecCust."Email facturacion 1";
-                    /////Recipient:='oscarraea@hotmail.com;martinjesus241@gmail.com';
-                    /////-Clear(SMTP);
-                    /////-SMTP.Run;
-                    /////-SMTP.CreateMessage(SenderName, SenderAddress, Recipient, Subject, Body, true);
-                    /////-SMTP.AddAttachment(FileDirectory, '');
-                    /////-if RecCust."No enviar excel" = false then begin
-                    /////-SMTP.AddAttachment(FileDirectoryexcel, '');
-                    /////-end;
-                    ///// SMTP.AddBCC('oscarraea@hotmail.com');
-
-
-
-
+                    
                     SalesInvHeader2.Reset;
                     SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
-                    if SalesInvHeader2.FindFirst then begin
-                        ///txtOrigen := 'facturacion@hagen.es';
-                        ///txtDestinatario.Add(Recipient);
+                    if SalesInvHeader2.FindFirst then begin                                              
                         Clear(TempBlob);
                         Clear(OutStream);
                         Clear(InStream);
@@ -12780,9 +12766,10 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         clear(repInforme);
                         repInforme.SetTableView(SalesInvHeader2);
                         repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
-                        fileName := SalesInvHeader2."No." + '.PDF';
+                        fileName := SalesInvHeader2."No." + '.PDF';                        
+                        Recipient := 'oscarraea@hotmail.com';
                         clear(txtDestinatario);
-                        txtDestinatario.Add('oscarraea@hotmail.com');
+                        txtDestinatario.Add(Recipient);
                         message('1 %1 %2 ', SalesInvHeader."No.", txtDestinatario);
                         BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                     end;
