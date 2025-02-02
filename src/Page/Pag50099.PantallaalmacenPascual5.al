@@ -295,6 +295,14 @@ Page 50099 "Pantalla almacen Pascual5"
                 {
                     ApplicationArea = Basic;
                 }
+                field("Grupo clientes"; Rec."Grupo clientes")
+                {
+                    ApplicationArea = Basic;
+                }
+                field("Invoice Disc. Code"; Rec."Invoice Disc. Code")
+                {
+                    ApplicationArea = Basic;
+                }
             }
         }
     }
@@ -454,7 +462,7 @@ Page 50099 "Pantalla almacen Pascual5"
 
                     trigger OnAction()
                     var
-                        
+
                         Automaticos: Codeunit "Automaticos Cartas";
                         RecHFV: Record "Sales Invoice Header";
                         RecCust: record Customer;
@@ -489,7 +497,7 @@ Page 50099 "Pantalla almacen Pascual5"
                         //RecHFV.Reset();;
                         //RecHFV.SetRange("Posting Date",20250127D,TODAY);
                         //if RecHFV.FindFirst then repeat
-                          //  Automaticos.ENVIAREMIALFACTURAS(RecHFV);
+                        //  Automaticos.ENVIAREMIALFACTURAS(RecHFV);
                         //until RecHFV.next=0;
                         Message('hecho');
 
@@ -1286,7 +1294,8 @@ Page 50099 "Pantalla almacen Pascual5"
                             if (Rec.Dropshipping = true) and (Rec."Marcar para agrupar" = true) then begin
                                 EXPEDROP := NoSeriesManagement.GetNextNo('ADAIADROP', Today, true);
                             end;
-                            if CopyStr(SalesHeader3."No.", 3, 4) = 'CATW' then begin
+                            ///if CopyStr(SalesHeader3."No.", 3, 4) = 'CATW' then begin
+                            if (SalesHeader3."Grupo clientes" = 'G52') and (SalesHeader3."Invoice Disc. Code" = 'DCCA') then begin
                                 EXPEDROP := SalesHeader3."Your Reference";
                             end;
                             SalesHeader22."Nº expedición dropshp" := EXPEDROP;
