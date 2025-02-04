@@ -1297,8 +1297,8 @@ Page 50099 "Pantalla almacen Pascual5"
                             SalesHeader3.CalcFields("Grupo clientes");
                             if (SalesHeader3."Grupo clientes" = 'G52') and (SalesHeader3."Customer Disc. Group" = 'DCCA') then begin
                                 EXPEDROP := CopyStr(SalesHeader3."Your Reference", 1, 10);
+                                SalesHeader22.Validate("Bill-to Customer No.", '11010');
                             end;
-                            SalesHeader22."Nº expedición dropshp" := EXPEDROP;
                             SalesHeader22.Modify;
                         end;
                     end;

@@ -40,7 +40,7 @@ codeunit 50002 Eventos
             Error('No tiene permiso para modificar clientes.');
         end;
 
-        /////-EnvioFicheros.MODIFCLIENTES(Rec);
+        ///EnvioFicheros.MODIFCLIENTES(Rec);
 
     end;
 
