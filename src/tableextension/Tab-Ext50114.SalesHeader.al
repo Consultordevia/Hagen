@@ -562,7 +562,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                                                                          "Document No." = field("No.")));
             FieldClass = FlowField;
         }
-        field(50034; "Observación para transporte"; Text[60])
+        field(50034; "Observación para transporte"; Text[80])
         {
         }
         field(50035; "Permite fraccionar uni. venta"; Boolean)

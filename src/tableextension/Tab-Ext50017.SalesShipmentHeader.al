@@ -121,7 +121,7 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
                                                              Quantity = filter(<> 0)));
             FieldClass = FlowField;
         }
-        field(50034; "Observación para transporte"; Text[60])
+        field(50034; "Observación para transporte"; Text[80])
         {
         }
         field(50035; "Permite multiplos distintos"; Boolean)

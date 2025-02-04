@@ -1293,11 +1293,10 @@ Page 50099 "Pantalla almacen Pascual5"
                             EXPEDROP := '';
                             if (Rec.Dropshipping = true) and (Rec."Marcar para agrupar" = true) then begin
                                 EXPEDROP := NoSeriesManagement.GetNextNo('ADAIADROP', Today, true);
-                            end;                            
-                            SalesHeader3.CalcFields("Grupo clientes"); 
-                            if (SalesHeader3."Grupo clientes" = 'G52') and (SalesHeader3."Customer Disc. Group" = 'DCCA') then begin                             
-                                Message('entra');
-                                EXPEDROP := SalesHeader3."Your Reference";                                
+                            end;
+                            SalesHeader3.CalcFields("Grupo clientes");
+                            if (SalesHeader3."Grupo clientes" = 'G52') and (SalesHeader3."Customer Disc. Group" = 'DCCA') then begin
+                                EXPEDROP := CopyStr(SalesHeader3."Your Reference", 1, 10);
                             end;
                             SalesHeader22."Nº expedición dropshp" := EXPEDROP;
                             SalesHeader22.Modify;

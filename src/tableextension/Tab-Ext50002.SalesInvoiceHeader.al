@@ -95,7 +95,7 @@ tableextension 50002 SalesInvoiceHeader extends "Sales Invoice Header"
         field(50028; Volumen; Decimal)
         {
         }
-        field(50034; "Observación para transporte"; Text[60])
+        field(50034; "Observación para transporte"; Text[80])
         {
         }
         field(50035; "Permite multiplos distintos"; Boolean)
