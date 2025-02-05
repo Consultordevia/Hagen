@@ -12769,8 +12769,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         fileName := SalesInvHeader2."No." + '.PDF';                        
                         Recipient := 'oscarraea@hotmail.com';
                         clear(txtDestinatario);
-                        txtDestinatario.Add(Recipient);
-                        message('1 %1 %2 ', SalesInvHeader."No.", txtDestinatario);
+                        txtDestinatario.Add(Recipient);                         
                         BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                     end;
 
