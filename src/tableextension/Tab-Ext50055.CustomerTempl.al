@@ -19,5 +19,10 @@ tableextension 50055 CustomerTempl extends "Customer Templ."
         field(50008; "Permite seguir adelante"; Boolean) { }
         field(50009; "Servicio email"; Boolean) { }
         field(50010; "Respeta Tipo facturacion"; Boolean) { }
+         field(50062; "Tipo Factura SII"; Option)
+        {
+            OptionCaption = 'F1,F2';
+            OptionMembers = F1,F2;
+        }
     }
 }
