@@ -12767,7 +12767,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         repInforme.SetTableView(SalesInvHeader2);
                         repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                         fileName := SalesInvHeader2."No." + '.PDF';                        
-                        Recipient := 'oscarraea@hotmail.com';
+                        /////Recipient := 'oscarraea@hotmail.com';
                         clear(txtDestinatario);
                         txtDestinatario.Add(Recipient);                         
                         BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
@@ -12891,8 +12891,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                     SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
                     if SalesInvHeader2.FindFirst then begin
                         ///txtOrigen := 'facturacion@hagen.es';
-                        ///txtDestinatario.Add(Recipient);
-                        txtDestinatario.Add('oscarraea@hotmail.com');
+                        txtDestinatario.Add(Recipient);
+                        /////txtDestinatario.Add('oscarraea@hotmail.com');
                         Clear(TempBlob);
                         Clear(OutStream);
                         Clear(InStream);
@@ -12902,7 +12902,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         repInforme.SetTableView(SalesInvHeader2);
                         repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                         fileName := SalesInvHeader2."No." + '.PDF';
-                        message('2 %1', SalesInvHeader."No.");
+                        /////message('2 %1', SalesInvHeader."No.");
                         BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                     end;
 
@@ -13008,8 +13008,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                     SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
                     if SalesInvHeader2.FindFirst then begin
                         ///txtOrigen := 'facturacion@hagen.es';
-                        ///txtDestinatario.Add(Recipient);
-                        txtDestinatario.Add('oscarraea@hotmail.com');
+                        txtDestinatario.Add(Recipient);
+                        /////txtDestinatario.Add('oscarraea@hotmail.com');
                         Clear(TempBlob);
                         Clear(OutStream);
                         Clear(InStream);
@@ -13019,7 +13019,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         repInforme.SetTableView(SalesInvHeader2);
                         repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                         fileName := SalesInvHeader2."No." + '.PDF';
-                        message('3 %1', SalesInvHeader."No.");
+                        /////message('3 %1', SalesInvHeader."No.");
                         BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                     end;
 
