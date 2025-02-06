@@ -161,12 +161,12 @@ codeunit 50007 StockCatit
             until RecItem.next = 0;
 
 
-        //Rec83.Reset;
-        //Rec83.SetRange(Rec83."Journal Template Name", 'ELEMENTO');
-        //Rec83.SetRange(Rec83."Journal Batch Name", 'CATIT');
-        //if Rec83.FindFirst then begin
-        //CURegMov.Run(Rec83);
-        //end;                        
+        Rec83.Reset;
+        Rec83.SetRange(Rec83."Journal Template Name", 'PRODUCTO');
+        Rec83.SetRange(Rec83."Journal Batch Name", 'CATIT');
+        if Rec83.FindFirst then begin
+                CURegMov.Run(Rec83);
+        end;                        
 
 
 

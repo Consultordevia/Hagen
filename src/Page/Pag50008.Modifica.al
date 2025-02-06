@@ -1040,7 +1040,7 @@ Page 50008 Modifica
         esancho10: Integer;
         esalto10: Integer;
         tipopalet10: Code[20];
-        Observacion: Text[60];
+        Observacion: Text[80];
         SalesShipmentHeader: Record "Sales Shipment Header";
         RecTransp: Record "Shipping Agent";
         Rec1103: Record "Sales Shipment Header";

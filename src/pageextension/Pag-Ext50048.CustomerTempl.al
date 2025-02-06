@@ -18,6 +18,7 @@ pageextension 50048 CustomerTempl extends "Customer Templ. Card"
             field("Permite seguir adelante"; Rec."Permite seguir adelante") { ApplicationArea = All; }
             field("Servicio email"; Rec."Servicio email") { ApplicationArea = All; }
             field("Respeta Tipo facturacion"; Rec."Respeta Tipo facturacion") { ApplicationArea = All; }
+            field("Tipo Factura SII";Rec."Tipo Factura SII") { ApplicationArea = All; }
 
 
 
