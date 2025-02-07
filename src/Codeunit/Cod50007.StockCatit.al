@@ -110,6 +110,7 @@ codeunit 50007 StockCatit
                 Existencia := RecItem.Inventory - RecItem."Existencia FOB" - RecItem."Qty. on Sales Order" - RecItem."Existencia CATIT";
                 if RecItem."Stock para Catit" <> 0 then begin
                     atraspasar := RecItem."Stock para Catit" - RecItem."Existencia CATIT";
+                    ///// 
                     if atraspasar > 0 then begin
                         if RecItem.Inventory <= 0 then begin
                             atraspasar := 0;
@@ -117,6 +118,9 @@ codeunit 50007 StockCatit
                         if RecItem.Inventory < atraspasar then begin
                             atraspasar := RecItem.Inventory;
                         end;
+                        if RecItem."Stock para Catit"> RecItem.Inventory then begin
+                            atraspasar := RecItem.Inventory;
+                        end;                        
                         if atraspasar > 0 then begin
                             RecUMP.Reset();
                             RecUMP.SetRange("Item No.", RecItem."No.");
