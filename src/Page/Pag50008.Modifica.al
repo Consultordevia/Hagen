@@ -25,7 +25,7 @@ Page 50008 Modifica
     SourceTable = "Integer";
     UsageCategory = Lists;
     ApplicationArea = All;
-    Permissions = tabledata 110 = rmid;     
+    Permissions = tabledata 110 = rmid;
 
     layout
     {
@@ -1123,6 +1123,7 @@ Page 50008 Modifica
             Rec110."Observación para transporte" := Observacion;
             Rec110.ASN := CASN;
             Rec110.Modify;
+            commit;
             if RecTra.Get(CODTRAS) then begin
                 if RecTra."Fichero estandar" = true then begin
                     Rec1102.Reset;
