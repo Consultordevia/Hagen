@@ -13150,7 +13150,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             repInforme.SetTableView(SalesInvHeader2);
                             repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                             fileName := SalesInvHeader2."No." + '.PDF';
-                            message('4 %1', SalesInvHeader."No.");
+                            txtDestinatario.Add(Recipient);
+                            /// message('4 %1', SalesInvHeader."No.");
                             BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                         end;
 
@@ -13159,11 +13160,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
 
-                SalesInvHeader3.Get(SalesInvHeader."No.");
-            ///SalesInvHeader3."Email enviado" := true;
-            ///SalesInvHeader3."Fecha enviado" := Today;
-            ///SalesInvHeader3."Hora enviado" := Time;
-            ///SalesInvHeader3.Modify;
+            SalesInvHeader3.Get(SalesInvHeader."No.");
+            SalesInvHeader3."Email enviado" := true;
+            SalesInvHeader3."Fecha enviado" := Today;
+            SalesInvHeader3."Hora enviado" := Time;
+            SalesInvHeader3.Modify;
 
             until SalesInvHeader.Next = 0;
 

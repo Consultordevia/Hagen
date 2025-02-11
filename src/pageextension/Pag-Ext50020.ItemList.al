@@ -139,6 +139,8 @@ pageextension 50020 "Item List" extends "Item List"
 
             /////field(subido;Rec.subido) { ApplicationArea = All; }
             
+            field("PVP-Web";Rec."PVP-Web") { ApplicationArea = All; }
+            
             field("PVP 2025DC00"; Rec."PVP 2025DC00") { ApplicationArea = All; }
             field("Tarifa 2022-2"; Rec."Tarifa 2022-2") { ApplicationArea = All; }
             field("PVP Recomendado 2022-2"; Rec."PVP Recomendado 2022-2") { ApplicationArea = All; }

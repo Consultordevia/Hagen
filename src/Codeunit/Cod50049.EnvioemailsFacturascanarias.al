@@ -10,7 +10,7 @@ Codeunit 50049 "Envio emails Facturas canarias"
 
 
 
-
+        VENTANA.Open('#1########################');
 
         SalesInvHeader.Reset;
         SalesInvHeader.SetCurrentkey(SalesInvHeader."Enviar email", SalesInvHeader."Email enviado");
@@ -21,11 +21,13 @@ Codeunit 50049 "Envio emails Facturas canarias"
             repeat
                 if RecClie.geT(SalesInvHeader."Bill-to Customer No.") then begin
                     if RecClie."Servicio email" then begin
+                        VENTANA.Update(1,SalesInvHeader."No.");
                         Clear(Codeunit50010);
                         Codeunit50010.ENVIAREMIALFACTURASCANARIAS(SalesInvHeader);
                     end;
                 end;
             until SalesInvHeader.next = 0;
+            VENTANA.close; 
 
 
     end;

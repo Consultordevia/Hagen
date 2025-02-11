@@ -125,7 +125,7 @@ tableextension 50002 SalesInvoiceHeader extends "Sales Invoice Header"
         {
             //CalcFormula = lookup("Ship-to Address".Field19876728 where("Customer No." = field("Sell-to Customer No."),
             //                                                          Code = field("Ship-to Code")));
-            FieldClass = FlowField;
+            ///FieldClass = FlowField;
         }
         field(50053; "Pedido WEB"; Boolean)
         {

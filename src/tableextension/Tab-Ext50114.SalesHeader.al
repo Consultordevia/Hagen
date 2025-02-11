@@ -247,7 +247,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                 end;
 
                 if "Estado pedido" = 1 then begin
-
+/*
                     if Rec."Respeta agencia transporte" = false then begin
                         BuscaOptimo;
                     end;
@@ -264,6 +264,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                             Commit;
                         end;
                     end;
+                    */
 
                 end;
 

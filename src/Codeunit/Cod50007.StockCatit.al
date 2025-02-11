@@ -106,20 +106,40 @@ codeunit 50007 StockCatit
         if RecItem.FindSet then
             repeat
 
-                RecItem.CalcFields(Inventory, "Existencia FOB", "Qty. on Sales Order", "Existencia CATIT");
-                Existencia := RecItem.Inventory - RecItem."Existencia FOB" - RecItem."Qty. on Sales Order" - RecItem."Existencia CATIT";
+                RecItem.CalcFields("Existencia SILLA", "Existencia FOB", "Qty. on Sales Order", "Existencia CATIT");
+                Existencia := RecItem."Existencia SILLA" - RecItem."Existencia FOB" - RecItem."Qty. on Sales Order" - RecItem."Existencia CATIT";
                 if RecItem."Stock para Catit" <> 0 then begin
                     atraspasar := RecItem."Stock para Catit" - RecItem."Existencia CATIT";
                     ///// 
-                    if atraspasar > 0 then begin
-                        if RecItem.Inventory <= 0 then begin
+                    if (RecItem."Existencia SILLA" = 0) then begin
+                        Rec83.Init;
+                        Rec83."Journal Template Name" := 'PRODUCTO';
+                        Rec83."Journal Batch Name" := 'CATIT';
+                        lin := lin + 10000;
+                        Rec83."Line No." := lin;
+                        Rec83.Validate(Rec83."Item No.", RecItem."No.");
+                        Rec83."Posting Date" := Today;
+                        Rec83.Validate(Rec83."Entry Type", Rec83."Entry Type"::"Positive Adjmt.");
+                        Rec83.Validate(Rec83.Quantity, RecItem."Existencia CATIT" * -1);
+                        Rec83."Document No." := 'AJUSTES CATIT';
+                        Rec83."Location Code" := 'CATIT';
+                        IF RecItem."Existencia CATIT"<>0 THEN BEGIN
+                            Rec83.Insert;
+                        END;
+
+                    end;
+                    if atraspasar >= 0 then begin
+                        if RecItem."Existencia SILLA" <= 0 then begin
                             atraspasar := 0;
                         end;
-                        if RecItem.Inventory < atraspasar then begin
-                            atraspasar := RecItem.Inventory;
+                        if RecItem."Existencia SILLA" < atraspasar then begin
+                            atraspasar := RecItem."Existencia SILLA" - RecItem."Existencia CATIT";
                         end;
-                        if RecItem."Stock para Catit"> RecItem.Inventory then begin
-                            atraspasar := RecItem.Inventory;
+                        if RecItem."Stock para Catit" > RecItem."Existencia SILLA" then begin
+                            atraspasar := RecItem."Existencia SILLA";
+                        end;
+                        if atraspasar = 0 then begin
+                            atraspasar := RecItem."Existencia CATIT"*-1;
                         end;                        
                         if atraspasar > 0 then begin
                             RecUMP.Reset();
@@ -169,8 +189,8 @@ codeunit 50007 StockCatit
         Rec83.SetRange(Rec83."Journal Template Name", 'PRODUCTO');
         Rec83.SetRange(Rec83."Journal Batch Name", 'CATIT');
         if Rec83.FindFirst then begin
-                CURegMov.Run(Rec83);
-        end;                        
+            /////CURegMov.Run(Rec83);
+        end;
 
 
 
