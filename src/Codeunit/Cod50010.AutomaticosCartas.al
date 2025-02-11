@@ -4214,8 +4214,8 @@ OutStream.Write('Tercera línea después del salto');
         end;
 
         NTEL2 := Format(RecCusto."Phone No.");
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL2 := Format(RecCusto."Nº movil");
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL2 := Format(RecCusto."Mobile Phone No.");
         end;
         if Rec110."Envio a-Nº Telefono" <> '' then begin
             NTEL2 := Format(Rec110."Envio a-Nº Telefono");
@@ -4911,8 +4911,8 @@ OutStream.Write('Tercera línea después del salto');
         end;
 
         NTEL := RecCusto."Phone No.";
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := RecCusto."Nº movil";
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := RecCusto."Mobile Phone No.";
         end;
         if Rec110."Envio a-Nº Telefono" <> '' then begin
             NTEL := Rec110."Envio a-Nº Telefono";
@@ -5089,8 +5089,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         end;
 
         NTEL := Format(RecCusto."Phone No.", 9);
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := Format(RecCusto."Nº movil", 9);
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCusto."Mobile Phone No.", 9);
         end;
         if Rec110."Envio a-Nº Telefono" <> '' then begin
             NTEL := Format(Rec110."Envio a-Nº Telefono", 9);
@@ -5270,8 +5270,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         end;
 
         NTEL := Format(RecCusto."Phone No.", 9);
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := Format(RecCusto."Nº movil", 9);
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCusto."Mobile Phone No.", 9);
         end;
         if Rec110."Envio a-Nº Telefono" <> '' then begin
             NTEL := Format(Rec110."Envio a-Nº Telefono", 9);
@@ -5461,8 +5461,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         end;
 
         NTEL := Format(RecCusto."Phone No.", 9);
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := Format(RecCusto."Nº movil", 9);
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCusto."Mobile Phone No.", 9);
         end;
         if Rec110."Envio a-Nº Telefono" <> '' then begin
             NTEL := Format(Rec110."Envio a-Nº Telefono", 9);
@@ -5633,8 +5633,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         end;
 
         NTEL := Format(RecCusto."Phone No.", 9);
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := Format(RecCusto."Nº movil", 9);
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCusto."Mobile Phone No.", 9);
         end;
         if Rec110."Envio a-Nº Telefono" <> '' then begin
             NTEL := Format(Rec110."Envio a-Nº Telefono", 9);
@@ -5841,8 +5841,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
         NTEL := Format(RecCusto."Phone No.", 9);
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := Format(RecCusto."Nº movil", 9);
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCusto."Mobile Phone No.", 9);
         end;
         if Rec110."Envio a-Nº Telefono" <> '' then begin
             NTEL := Format(Rec110."Envio a-Nº Telefono", 9);
@@ -5912,8 +5912,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         ///ecIE.GET;
         ///
         ///NTEL:=FORMAT(RecCusto."Phone No.",9);
-        ///IF RecCusto."Nº movil"<>'' THEN BEGIN
-        ///NTEL:=FORMAT(RecCusto."Nº movil",9);
+        ///IF RecCusto."Mobile Phone No."<>'' THEN BEGIN
+        ///NTEL:=FORMAT(RecCusto."Mobile Phone No.",9);
         ///END;
 
 
@@ -6011,8 +6011,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         end;
 
         NTEL := Format(RecCusto."Phone No.", 9);
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := Format(RecCusto."Nº movil", 9);
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCusto."Mobile Phone No.", 9);
         end;
         if Rec112."Envio a-Nº Telefono" <> '' then begin
             NTEL := Format(Rec112."Envio a-Nº Telefono", 9);
@@ -6217,8 +6217,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         end;
 
         NTEL := Format(RecCusto."Phone No.", 9);
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := Format(RecCusto."Nº movil", 9);
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCusto."Mobile Phone No.", 9);
         end;
         if Rec112."Envio a-Nº Telefono" <> '' then begin
             NTEL := Format(Rec112."Envio a-Nº Telefono", 9);
@@ -6443,8 +6443,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         end;
 
         NTEL := Format(RecCusto."Phone No.", 9);
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := Format(RecCusto."Nº movil", 9);
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCusto."Mobile Phone No.", 9);
         end;
         if Rec112."Envio a-Nº Telefono" <> '' then begin
             NTEL := Format(Rec112."Envio a-Nº Telefono", 9);
@@ -6665,8 +6665,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         end;
 
         NTEL := Format(RecCusto."Phone No.", 9);
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := Format(RecCusto."Nº movil", 9);
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCusto."Mobile Phone No.", 9);
         end;
 
         if Rec112."Envio a-Nº Telefono" <> '' then begin
@@ -6714,8 +6714,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
         NTEL := Format(RecCusto."Phone No.", 9);
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := Format(RecCusto."Nº movil", 9);
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCusto."Mobile Phone No.", 9);
         end;
 
 
@@ -6977,8 +6977,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
         NTEL := Format(RecCusto."Phone No.", 9);
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := Format(RecCusto."Nº movil", 9);
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCusto."Mobile Phone No.", 9);
         end;
         if Rec110."Envio a-Nº Telefono" <> '' then begin
             NTEL := Format(Rec110."Envio a-Nº Telefono", 9);
@@ -7153,8 +7153,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         end;
 
         NTEL := Format(RecCusto."Phone No.", 9);
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := Format(RecCusto."Nº movil", 9);
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCusto."Mobile Phone No.", 9);
         end;
         if Rec110."Envio a-Nº Telefono" <> '' then begin
             NTEL := Format(Rec110."Envio a-Nº Telefono", 9);
@@ -7376,8 +7376,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         end;
 
         NTEL := Format(RecCusto."Phone No.", 9);
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := Format(RecCusto."Nº movil", 9);
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCusto."Mobile Phone No.", 9);
         end;
         if Rec110."Envio a-Nº Telefono" <> '' then begin
             NTEL := Format(Rec110."Envio a-Nº Telefono", 9);
@@ -7594,8 +7594,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         end;
 
         NTEL := Format(RecCusto."Phone No.", 9);
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := Format(RecCusto."Nº movil", 9);
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCusto."Mobile Phone No.", 9);
         end;
         if Rec110."Envio a-Nº Telefono" <> '' then begin
             NTEL := Format(Rec110."Envio a-Nº Telefono", 9);
@@ -7823,8 +7823,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         end;
 
         NTEL := Format(RecCusto."Phone No.", 9);
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := Format(RecCusto."Nº movil", 9);
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCusto."Mobile Phone No.", 9);
         end;
         if Rec110."Envio a-Nº Telefono" <> '' then begin
             NTEL := Format(Rec110."Envio a-Nº Telefono", 9);
@@ -8086,8 +8086,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
         NTEL := Format(RecCusto."Phone No.", 9);
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := Format(RecCusto."Nº movil", 9);
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCusto."Mobile Phone No.", 9);
         end;
         if RecDEC."Phone No." <> '' then begin
             NTEL := Format(RecDEC."Phone No.", 9);
@@ -8227,8 +8227,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         ///END;
 
         NTEL := Format(RecCUSTO."Phone No.", 9);
-        if RecCUSTO."Nº movil" <> '' then begin
-            NTEL := Format(RecCUSTO."Nº movil", 9);
+        if RecCUSTO."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCUSTO."Mobile Phone No.", 9);
         end;
         if RecDEC."Phone No." <> '' then begin
             NTEL := Format(RecDEC."Phone No.", 9);
@@ -8376,8 +8376,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         ////END;
 
         NTEL := Format(RecCUSTO."Phone No.", 9);
-        if RecCUSTO."Nº movil" <> '' then begin
-            NTEL := Format(RecCUSTO."Nº movil", 9);
+        if RecCUSTO."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCUSTO."Mobile Phone No.", 9);
         end;
         if RecDEC."Phone No." <> '' then begin
             NTEL := Format(RecDEC."Phone No.", 9);
@@ -8533,8 +8533,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         ///END;
 
         NTEL := Format(RecCUSTO."Phone No.", 9);
-        if RecCUSTO."Nº movil" <> '' then begin
-            NTEL := Format(RecCUSTO."Nº movil", 9);
+        if RecCUSTO."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCUSTO."Mobile Phone No.", 9);
         end;
         if RecDEC."Phone No." <> '' then begin
             NTEL := Format(RecDEC."Phone No.", 9);
@@ -11907,8 +11907,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         end;
 
         NTEL := Format(RecCusto."Phone No.", 9);
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL := Format(RecCusto."Nº movil", 9);
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL := Format(RecCusto."Mobile Phone No.", 9);
         end;
         if Rec110."Envio a-Nº Telefono" <> '' then begin
             NTEL := Format(Rec110."Envio a-Nº Telefono", 9);
@@ -13414,8 +13414,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         end;
 
         NTEL2 := Format(RecCusto."Phone No.");
-        if RecCusto."Nº movil" <> '' then begin
-            NTEL2 := Format(RecCusto."Nº movil");
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL2 := Format(RecCusto."Mobile Phone No.");
         end;
         if SalesHeader."Envio a-Nº Telefono" <> '' then begin
             NTEL2 := Format(SalesHeader."Envio a-Nº Telefono");
@@ -15307,7 +15307,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         */
         NTEL2 := Format(ServiceItem."Ship-to Phone No.");
         if ServiceItem."Ship-to Phone No." <> '' then begin
-            NTEL2 := Format(RecCusto."Nº movil");
+            NTEL2 := Format(RecCusto."Mobile Phone No.");
         end;
         ///IF Rec110."Envio a-Nº Telefono"<>'' THEN BEGIN
         ///     NTEL2:=FORMAT(Rec110."Envio a-Nº Telefono");
