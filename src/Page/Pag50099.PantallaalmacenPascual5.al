@@ -1255,13 +1255,14 @@ Page 50099 "Pantalla almacen Pascual5"
                 repeat
                     SalesHeader33.Get(SalesHeader3."Document Type", SalesHeader3."No.");
                     SalesHeader33."Nº expedición" := NPEDIDO;
+                    SalesHeader33."Package Tracking No.":=NPEDIDO; 
                     SalesLine3.Reset;
                     SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
                     SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");
                     if SalesLine3.FindSet then
                         repeat
                             if SalesLine3.Type = 2 then begin
-                                SalesLine3."Nº expedición" := NPEDIDO;
+                                SalesLine3."Nº expedición" := NPEDIDO;                                
                                 SalesLine3.Modify;
                             end;
                         until SalesLine3.Next = 0;
@@ -1299,7 +1300,8 @@ Page 50099 "Pantalla almacen Pascual5"
                                 EXPEDROP := CopyStr(SalesHeader3."Your Reference", 1, 10);
                                 ////SalesHeader22.Validate("Bill-to Customer No.", '11010');
                             end;
-                            SalesHeader22."Nº expedición dropshp" := EXPEDROP;
+                            SalesHeader22."Nº expedición dropshp" := EXPEDROP;                             
+                            SalesHeader22."Package Tracking No.":= EXPEDROP;                             
                             SalesHeader22.Modify;
                         end;
                     end;
@@ -1353,6 +1355,7 @@ Page 50099 "Pantalla almacen Pascual5"
                     SalesHeader33.Get(SalesHeader3."Document Type", SalesHeader3."No.");
                     SalesHeader33."Nº expedición" := NPEDIDO;
                     SalesHeader33."Nº expedición dropshp" := EXPEDROP;
+                    SalesHeader33."Package Tracking No.":=  EXPEDROP;
                     SalesLine3.Reset;
                     SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
                     SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");
