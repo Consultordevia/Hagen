@@ -12,7 +12,7 @@ pageextension 50026 ClientesLista extends "Customer List"
                 ApplicationArea = All;
             }
 
-            
+            field("Permite fraccionar unidad de venta";Rec."Permite fraccionar unidad de venta") { ApplicationArea = All; }
             field(GLN;Rec.GLN) { ApplicationArea = All; }
             field("Discount%";Rec."Discount%") { ApplicationArea = All; }
             field("Catalogo Shopify";Rec."Catalogo Shopify") { ApplicationArea = All; }

@@ -14,14 +14,14 @@ Codeunit 50055 "Fichero Stock.csv"
         TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
 
 
-        ItemTemp.Reset;
+/*        ItemTemp.Reset;
         if ItemTemp.FindFirst then
             repeat
                 ItemTemp.Delete;
             until ItemTemp.Next = 0;
 
         GrabaStock;
-
+*/
         Commit;
 
         ItemtempR.Reset;
@@ -170,13 +170,6 @@ Codeunit 50055 "Fichero Stock.csv"
 
     procedure GrabaStock()
     begin
-
-
-
-
-
-
-
 
 
         Item.Reset;

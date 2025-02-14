@@ -503,6 +503,9 @@ tableextension 50104 Customer extends "Customer"
         field(50175; "No agrupar en ADAIA"; Boolean)
         {
         }
+        field(50176; "Permite fraccionar unidad de venta"; Boolean)
+        {
+        }
         field(50200; "Top produccto 1"; Code[12])
         {
             TableRelation = Item;
