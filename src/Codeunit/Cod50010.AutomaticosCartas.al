@@ -11439,8 +11439,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             if Rec1102.FindFirst then begin
                                 if Rec1102."Bill-to Customer No." <> '6445' then begin
                                     clear(txtDestinatario);
-                                    ////txtDestinatario.Add(Recipient);                                     
-                                    txtDestinatario.Add('oscarraea@hotmail.com');
+                                    txtDestinatario.Add(Recipient);                                     
+                                    ///txtDestinatario.Add('oscarraea@hotmail.com');
                                     Clear(TempBlob);
                                     Clear(OutStream);
                                     Clear(InStream);
@@ -11454,8 +11454,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                 end;
                                 if Rec1102."Bill-to Customer No." = '6445' then begin
                                     clear(txtDestinatario);
-                                    ////txtDestinatario.Add(Recipient);                                     
-                                    txtDestinatario.Add('oscarraea@hotmail.com');
+                                    txtDestinatario.Add(Recipient);                                     
+                                    ////txtDestinatario.Add('oscarraea@hotmail.com');
                                     Clear(TempBlob);
                                     Clear(OutStream);
                                     Clear(InStream);

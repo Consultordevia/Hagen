@@ -13,7 +13,7 @@ Codeunit 50034 "Envio emails Albaran sin detal"
         SalesShipment.SetCurrentkey("Enviar email sin detalle", "Email enviado sin detalle");
         SalesShipment.SetRange("Enviar email sin detalle", true);
         ///SalesShipment.SetRange("Email enviado sin detalle", false);
-        SalesShipment.SETRANGE("Posting Date", 20250128D, TODAY);
+        SalesShipment.SETRANGE("Posting Date", 20250215D, TODAY);
         if SalesShipment.FindFirst() then
             repeat
                 if RecClie.geT(SalesShipment."Sell-to Customer No.") then begin
