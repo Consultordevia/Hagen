@@ -5,7 +5,7 @@ XmlPort 50130 "ImportaDescuentos"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -63,7 +63,7 @@ XmlPort 50130 "ImportaDescuentos"
                 }
                 textelement(D16)
                 {
-                }                
+                }
                 textelement(D17)
                 {
 
@@ -146,7 +146,6 @@ XmlPort 50130 "ImportaDescuentos"
         CODIGO: Code[10];
         codprod2: Code[20];
         x: Integer;
-        RecSP: Record "Sales Price";
         cantimin: Decimal;
         fechaini: Date;
         fechafin: Date;
@@ -283,6 +282,23 @@ XmlPort 50130 "ImportaDescuentos"
         mm: Integer;
         aa: Integer;
         PrecioVenta: Decimal;
+        Cantidad1: Decimal;
+        Cantidad2: Decimal;
+        Cantidad3: Decimal;
+        Cantidad4: Decimal;
+        Cantidad5: Decimal;
+        Descuento1: Decimal;
+        Descuento2: Decimal;
+        Descuento3: Decimal;
+        Descuento4: Decimal;
+        Descuento5: Decimal;
+        Descuento6: Decimal;
+        CodTarifa: code[20];
+        GrpoDesc: code[20];
+        Incremento: Decimal;
+        RecSP: Record "Sales Price";
+        RecSLD: Record "Sales Line Discount";
+
 
     local procedure InitializeGlobals()
     var
@@ -342,52 +358,286 @@ XmlPort 50130 "ImportaDescuentos"
     local procedure ValidateHeaderTag()
     begin
 
-        if (D1 <> '') then begin
-            ref := D1;            
-        end;
-        if (D16 <> '') then begin  ////// fecha inicial
-            cdd := CopyStr(Format(D16), 1, 2);
-            cmm := CopyStr(Format(D16), 4, 2);
-            caa := CopyStr(Format(D16), 7, 4);
-            Evaluate(dd, cdd);
-            Evaluate(mm, cmm);
-            Evaluate(aa, caa);
-            fechaini := Dmy2date(dd, mm, aa);
-
-        end;
-        if (D17 <> '') then begin  ///// fecha final
-            cdd := CopyStr(Format(D17), 1, 2);
-            cmm := CopyStr(Format(D17), 4, 2);
-            caa := CopyStr(Format(D17), 7, 4);
-            Evaluate(dd, cdd);
-            Evaluate(mm, cmm);
-            Evaluate(aa, caa);
-            fechafin := Dmy2date(dd, mm, aa);
-
-        end;
-        if (D2 <> '') then begin ///// tipo
-            Evaluate(PrecioVenta, D2);            
-        end;
-        if (D2 <> '') then begin ///// tipo
-            Evaluate(PrecioVenta, D2);
-        end;
+        linea := linea + 1;
+        if linea > 1 then begin
 
 
-        SalesLineDiscountPadre.Init;
-        
-        SalesLineDiscountPadre.Type := TIPO;
-        
+            if (D1 <> '') then begin ///// producto
+                ref := D1;
+            end;
+            if (D2 <> '') then begin ///// precio venta
+                Evaluate(PrecioVenta, D2);
+            end;
+            if (D3 <> '') then begin ///// cantidad 1
+                Evaluate(Cantidad1, D3);
+            end;
+            if (D4 <> '') then begin ///// Descuento 1 
+                Evaluate(Descuento1, D4);
+            end;
+            if (D5 <> '') then begin ///// cantidad 2
+                Evaluate(Cantidad2, D5);
+            end;
+            if (D6 <> '') then begin ///// Descuento 2 
+                Evaluate(Descuento2, D6);
+            end;
+            if (D7 <> '') then begin ///// cantidad 3
+                Evaluate(Cantidad3, D7);
+            end;
+            if (D8 <> '') then begin ///// Descuento 3 
+                Evaluate(Descuento3, D8);
+            end;
+            if (D9 <> '') then begin ///// cantidad 4
+                Evaluate(Cantidad4, D9);
+            end;
+            if (D10 <> '') then begin ///// Descuento 4 
+                Evaluate(Descuento4, D10);
+            end;
+            if (D11 <> '') then begin ///// cantidad 5
+                Evaluate(Cantidad5, D11);
+            end;
+            if (D12 <> '') then begin ///// Descuento 5 
+                Evaluate(Descuento5, D12);
+            end;
+            if (D13 <> '') then begin ///// tarifa
+                CodTarifa := D13;
+            end;
+            if (D14 <> '') then begin ///// GrpoDesc
+                GrpoDesc := D14;
+            end;
+            if (D15 <> '') then begin ///// Incremento
+                Evaluate(Incremento, D15);
+            end;
+            if (D16 <> '') then begin  ////// fecha inicial
+                cdd := CopyStr(Format(D16), 1, 2);
+                cmm := CopyStr(Format(D16), 4, 2);
+                caa := CopyStr(Format(D16), 7, 4);
+                Evaluate(dd, cdd);
+                Evaluate(mm, cmm);
+                Evaluate(aa, caa);
+                fechaini := Dmy2date(dd, mm, aa);
 
-        SalesLineDiscountPadre.Code := D1;
-        SalesLineDiscountPadre."Sales Type" := TIPOVENTA;         
-        SalesLineDiscountPadre."Sales Code" := D3;
-        SalesLineDiscountPadre."Starting Date" := fechaini;
-        SalesLineDiscountPadre."Currency Code" := D4;
-        SalesLineDiscountPadre."Unit of Measure Code" := D11;
-        SalesLineDiscountPadre."Minimum Quantity" := MINIMO;
-        SalesLineDiscountPadre."Line Discount %" := DESCUENTO;
-        SalesLineDiscountPadre."Ending Date" := fechafin;
-        if SalesLineDiscountPadre.Insert then;
+            end;
+            if (D17 <> '') then begin  ///// fecha final
+                cdd := CopyStr(Format(D17), 1, 2);
+                cmm := CopyStr(Format(D17), 4, 2);
+                caa := CopyStr(Format(D17), 7, 4);
+                Evaluate(dd, cdd);
+                Evaluate(mm, cmm);
+                Evaluate(aa, caa);
+                fechafin := Dmy2date(dd, mm, aa);
+
+            end;
+
+            IF RecProd.get(ref) THEN BEGIN
+                RecProd."Unit Price" := PrecioVenta;
+                RecProd.Modify;
+
+                RecSP.Init;
+                RecSP."Item No." := ref;
+                RecSP."Sales Code" := CodTarifa;
+                RecSP."Starting Date" := fechaini;
+                RecSP."Unit Price" := PrecioVenta;
+                RecSP."Sales Type" := RecSP."Sales Type"::"Customer Price Group";
+                RecSP."Unit of Measure Code" := 'UDS';
+                RecSP."Minimum Quantity" := 1;
+                RecSP.INCREMENTO := 1;
+                RecSP."Unidades Venta" := 1;
+                RecSP."Ending Date" := fechafin;
+                IF RecSP.insert THEN;
+
+                RecSP."Item No." := ref;
+                RecSP."Sales Code" := CodTarifa + 'DC00';
+                RecSP."Minimum Quantity" := Cantidad1;
+                RecSP."Starting Date" := fechaini;
+                RecSP."Unit Price" := PrecioVenta;
+                RecSP."Sales Type" := RecSP."Sales Type"::"Customer Price Group";
+                RecSP."Ending Date" := fechafin;
+                RecSP.INCREMENTO := 1;
+                RecSP."Unidades Venta" := 1;
+                RecSP."Unit of Measure Code" := 'UDS';
+                IF RecSP.insert THEN;
+
+                RecSP."Item No." := ref;
+                RecSP."Sales Code" := CodTarifa + 'DC00';
+                RecSP."Minimum Quantity" := Cantidad2;
+                RecSP."Starting Date" := fechaini;
+                RecSP."Unit Price" := PrecioVenta - ROUND((PrecioVenta * Descuento2 / 100));
+                RecSP."Sales Type" := RecSP."Sales Type"::"Customer Price Group";
+                RecSP."Ending Date" := fechafin;
+                RecSP.INCREMENTO := 1;
+                RecSP."Unidades Venta" := 1;
+                RecSP."Unit of Measure Code" := 'UDS';
+                IF RecSP.insert THEN;
+
+
+                RecSP."Item No." := ref;
+                RecSP."Sales Code" := CodTarifa + 'DC00';
+                RecSP."Minimum Quantity" := Cantidad3;
+                RecSP."Starting Date" := fechaini;
+                RecSP."Unit Price" := PrecioVenta - ROUND((PrecioVenta * Descuento3 / 100));
+                RecSP."Sales Type" := RecSP."Sales Type"::"Customer Price Group";
+                RecSP."Ending Date" := fechafin;
+                RecSP.INCREMENTO := 1;
+                RecSP."Unidades Venta" := 1;
+                RecSP."Unit of Measure Code" := 'UDS';
+                IF RecSP.insert THEN;
+
+
+                RecSP."Item No." := ref;
+                RecSP."Sales Code" := CodTarifa + 'DC20';
+                RecSP."Minimum Quantity" := Cantidad1;
+                RecSP."Starting Date" := fechaini;
+                RecSP."Unit Price" := PrecioVenta - ROUND((PrecioVenta * Descuento1 / 100));
+                RecSP."Sales Type" := RecSP."Sales Type"::"Customer Price Group";
+                RecSP."Ending Date" := fechafin;
+                RecSP.INCREMENTO := 1;
+                RecSP."Unidades Venta" := 1;
+                RecSP."Unit of Measure Code" := 'UDS';
+                IF RecSP.insert THEN;
+
+                RecSP."Item No." := ref;
+                RecSP."Sales Code" := CodTarifa + 'DC20';
+                RecSP."Minimum Quantity" := Cantidad2;
+                RecSP."Starting Date" := fechaini;
+                RecSP."Unit Price" := PrecioVenta - ROUND((PrecioVenta * Descuento2 / 100));
+                RecSP."Sales Type" := RecSP."Sales Type"::"Customer Price Group";
+                RecSP."Ending Date" := fechafin;
+                RecSP.INCREMENTO := 1;
+                RecSP."Unidades Venta" := 1;
+                RecSP."Unit of Measure Code" := 'UDS';
+                IF RecSP.insert THEN;
+
+
+                RecSP."Item No." := ref;
+                RecSP."Sales Code" := CodTarifa + 'DC20';
+                RecSP."Minimum Quantity" := Cantidad3;
+                RecSP."Starting Date" := fechaini;
+                RecSP."Unit Price" := PrecioVenta - ROUND((PrecioVenta * Descuento3 / 100));
+                RecSP."Sales Type" := RecSP."Sales Type"::"Customer Price Group";
+                RecSP."Ending Date" := fechafin;
+                RecSP.INCREMENTO := 1;
+                RecSP."Unidades Venta" := 1;
+                RecSP."Unit of Measure Code" := 'UDS';
+                IF RecSP.insert THEN;
+
+
+
+                RecSP."Item No." := ref;
+                RecSP."Sales Code" := CodTarifa + 'DC25';
+                RecSP."Minimum Quantity" := Cantidad1;
+                RecSP."Starting Date" := fechaini;
+                RecSP."Unit Price" := PrecioVenta - ROUND((PrecioVenta * Descuento2 / 100));
+                RecSP."Sales Type" := RecSP."Sales Type"::"Customer Price Group";
+                RecSP."Ending Date" := fechafin;
+                RecSP.INCREMENTO := 1;
+                RecSP."Unidades Venta" := 1;
+                RecSP."Unit of Measure Code" := 'UDS';
+                IF RecSP.insert THEN;
+
+                RecSP."Item No." := ref;
+                RecSP."Sales Code" := CodTarifa + 'DC30';
+                RecSP."Minimum Quantity" := Cantidad1;
+                RecSP."Starting Date" := fechaini;
+                RecSP."Unit Price" := PrecioVenta - ROUND((PrecioVenta * Descuento3 / 100));
+                RecSP."Sales Type" := RecSP."Sales Type"::"Customer Price Group";
+                RecSP."Ending Date" := fechafin;
+                RecSP.INCREMENTO := 1;
+                RecSP."Unidades Venta" := 1;
+                RecSP."Unit of Measure Code" := 'UDS';
+                IF RecSP.insert THEN;
+
+
+
+                RecSLD.Code := ref;
+                RecSLD."Sales Code" := GrpoDesc;
+                RecSLD."Line Discount %" := Descuento1;
+                RecSLD."Sales Type" := RecSLD."Sales Type"::"Customer Disc. Group";
+                RecSLD."Starting Date" := fechaini;
+                RecSLD."Ending Date" := fechafin;
+                RecSLD."Minimum Quantity" := Cantidad1;
+                RecSLD."Unit of Measure Code" := 'UDS';
+                IF RecSLD.insert THEN;
+
+                RecSLD.Code := ref;
+                RecSLD."Sales Code" := GrpoDesc;
+                RecSLD."Line Discount %" := Descuento2;
+                RecSLD."Sales Type" := RecSLD."Sales Type"::"Customer Disc. Group";
+                RecSLD."Starting Date" := fechaini;
+                RecSLD."Ending Date" := fechafin;
+                RecSLD."Minimum Quantity" := Cantidad2;
+                RecSLD."Unit of Measure Code" := 'UDS';
+                IF RecSLD.insert THEN;
+
+                RecSLD.Code := ref;
+                RecSLD."Sales Code" := GrpoDesc;
+                RecSLD."Line Discount %" := Descuento3;
+                RecSLD."Sales Type" := RecSLD."Sales Type"::"Customer Disc. Group";
+                RecSLD."Starting Date" := fechaini;
+                RecSLD."Ending Date" := fechafin;
+                RecSLD."Minimum Quantity" := Cantidad3;
+                RecSLD."Unit of Measure Code" := 'UDS';
+                IF RecSLD.insert THEN;
+
+
+                RecSLD.Code := ref;
+                RecSLD."Sales Code" := CopyStr(GrpoDesc, 1, 4) + '20';
+                RecSLD."Line Discount %" := Descuento1;
+                RecSLD."Sales Type" := RecSLD."Sales Type"::"Customer Disc. Group";
+                RecSLD."Starting Date" := fechaini;
+                RecSLD."Ending Date" := fechafin;
+                RecSLD."Minimum Quantity" := Cantidad1;
+                RecSLD."Unit of Measure Code" := 'UDS';
+                IF RecSLD.insert THEN;
+
+                RecSLD.Code := ref;
+                RecSLD."Sales Code" := CopyStr(GrpoDesc, 1, 4) + '20';
+                RecSLD."Line Discount %" := Descuento2;
+                RecSLD."Sales Type" := RecSLD."Sales Type"::"Customer Disc. Group";
+                RecSLD."Starting Date" := fechaini;
+                RecSLD."Ending Date" := fechafin;
+                RecSLD."Minimum Quantity" := Cantidad2;
+                RecSLD."Unit of Measure Code" := 'UDS';
+                IF RecSLD.insert THEN;
+
+                RecSLD.Code := ref;
+                RecSLD."Sales Code" := CopyStr(GrpoDesc, 1, 4) + '20';
+                RecSLD."Line Discount %" := Descuento3;
+                RecSLD."Sales Type" := RecSLD."Sales Type"::"Customer Disc. Group";
+                RecSLD."Starting Date" := fechaini;
+                RecSLD."Ending Date" := fechafin;
+                RecSLD."Minimum Quantity" := Cantidad3;
+                RecSLD."Unit of Measure Code" := 'UDS';
+                IF RecSLD.insert THEN;
+
+
+
+                RecSLD.Code := ref;
+                RecSLD."Sales Code" := CopyStr(GrpoDesc, 1, 4) + '25';
+                RecSLD."Line Discount %" := Descuento2;
+                RecSLD."Sales Type" := RecSLD."Sales Type"::"Customer Disc. Group";
+                RecSLD."Starting Date" := fechaini;
+                RecSLD."Ending Date" := fechafin;
+                RecSLD."Minimum Quantity" := Cantidad1;
+                RecSLD."Unit of Measure Code" := 'UDS';
+                IF RecSLD.insert THEN;
+
+                
+
+                RecSLD.Code := ref;
+                RecSLD."Sales Code" := CopyStr(GrpoDesc, 1, 4) + '30';
+                RecSLD."Line Discount %" := Descuento3;
+                RecSLD."Sales Type" := RecSLD."Sales Type"::"Customer Disc. Group";
+                RecSLD."Starting Date" := fechaini;
+                RecSLD."Ending Date" := fechafin;
+                RecSLD."Minimum Quantity" := Cantidad1;
+                RecSLD."Unit of Measure Code" := 'UDS';
+                IF RecSLD.insert THEN;
+
+
+
+
+            end;
+        END;
     end;
 }
 
