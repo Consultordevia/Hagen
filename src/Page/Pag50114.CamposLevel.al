@@ -62,7 +62,9 @@ page 50114 CamposLevel
                 field("Unidades venta";Rec."Unidades venta")
                 {                                   
                 }
-                
+                field("Stock para Catit";Rec."Stock para Catit")
+                {                                   
+                }
                 
                 
 

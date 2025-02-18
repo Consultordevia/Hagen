@@ -27,7 +27,7 @@ Page 50028 "Pantalla Oficina"
                         SalesHeader.Reset;
                         SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
                         SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::Retenido);
-                        SalesHeader.SetFilter(SalesHeader."Payment Method Code", '<>P.ANTICIPA&<>TRANSFWEB');
+                        SalesHeader.SetFilter(SalesHeader."Payment Method Code", '<>P.ANTICIPA&<>TRANSFWEB&<>S_TRANSF');
                         if SalesHeader.FindFirst then begin
                             Clear(PantallaAlmacen);
                             PantallaAlmacen.SetTableview(SalesHeader);
@@ -48,7 +48,7 @@ Page 50028 "Pantalla Oficina"
                         SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
                         SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::Retenido);
 
-                        SalesHeader.SetFilter(SalesHeader."Payment Method Code", 'P.ANTICIPA|TRANSFWEB');
+                        SalesHeader.SetFilter(SalesHeader."Payment Method Code", 'P.ANTICIPA|TRANSFWEB|S_TRANSF');
                         if SalesHeader.FindFirst then begin
                             Clear(PantallaAlmacen);
                             PantallaAlmacen.SetTableview(SalesHeader);
@@ -87,6 +87,7 @@ Page 50028 "Pantalla Oficina"
                         SalesHeader.SetRange("Document Type", SalesHeader."document type"::Order);
                         SalesHeader.SetRange("Estado pedido", SalesHeader."estado pedido"::Retenido);
                         SalesHeader.SetRange("Grupo clientes", 'G52');
+                        SalesHeader.SetRange("Invoice Disc. Code", 'DCCA');
                         if SalesHeader.FindFirst then begin
                             Clear(PantallaAlmacen);
                             PantallaAlmacen.SetTableview(SalesHeader);

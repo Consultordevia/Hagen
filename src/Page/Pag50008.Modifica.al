@@ -25,7 +25,7 @@ Page 50008 Modifica
     SourceTable = "Integer";
     UsageCategory = Lists;
     ApplicationArea = All;
-    Permissions = tabledata 110 = rmid;     
+    Permissions = tabledata 110 = rmid;
 
     layout
     {
@@ -1040,7 +1040,7 @@ Page 50008 Modifica
         esancho10: Integer;
         esalto10: Integer;
         tipopalet10: Code[20];
-        Observacion: Text[60];
+        Observacion: Text[80];
         SalesShipmentHeader: Record "Sales Shipment Header";
         RecTransp: Record "Shipping Agent";
         Rec1103: Record "Sales Shipment Header";
@@ -1123,6 +1123,7 @@ Page 50008 Modifica
             Rec110."Observación para transporte" := Observacion;
             Rec110.ASN := CASN;
             Rec110.Modify;
+            commit;
             if RecTra.Get(CODTRAS) then begin
                 if RecTra."Fichero estandar" = true then begin
                     Rec1102.Reset;

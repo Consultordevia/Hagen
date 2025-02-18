@@ -12,6 +12,11 @@ pageextension 50042 PostedSalesInvoices extends "Posted Sales Invoices"
         addafter("Posting Date")
         {
             field("Your Reference"; Rec."Your Reference") { ApplicationArea = All; }
+            field("Nº expedición";Rec."Nº expedición") { ApplicationArea = All; }
+            field("Nº expedición dropshp";Rec."Nº expedición dropshp") { ApplicationArea = All; }
+            field("EDI factueas enviar";Rec."EDI factueas enviar") { ApplicationArea = All; }
+            field("EDI factueas enviado";Rec."EDI factueas enviado") { ApplicationArea = All; }
+            field("EDI Facturas Fecha enviado";Rec."EDI Facturas Fecha enviado") { ApplicationArea = All; }
 
         }
 

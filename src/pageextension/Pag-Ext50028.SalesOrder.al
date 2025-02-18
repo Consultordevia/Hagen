@@ -16,9 +16,9 @@ pageextension 50028 SalesOrder extends "Sales Order"
         {
 
 
-            field(TextoWebApi;Rec.TextoWebApi) { ApplicationArea = All; }            
-            field("Fecha alta";Rec."Fecha alta") { ApplicationArea = All; }            
-            field("Customer Disc. Group"; Rec."Customer Disc. Group") { ApplicationArea = All; }            
+            field(TextoWebApi; Rec.TextoWebApi) { ApplicationArea = All; }
+            field("Fecha alta"; Rec."Fecha alta") { ApplicationArea = All; }
+            field("Customer Disc. Group"; Rec."Customer Disc. Group") { ApplicationArea = All; }
             field("Sell-to Customer Name 2"; Rec."Sell-to Customer Name 2") { ApplicationArea = All; }
             field("Observación para ALMACEN"; Rec."Observación para ALMACEN") { ApplicationArea = All; }
             field("Observación PDA"; Rec."Observación PDA") { ApplicationArea = All; }
@@ -695,6 +695,7 @@ pageextension 50028 SalesOrder extends "Sales Order"
 
 
 
+
             /*
                                    Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
                                    Xmlport.Import(Xmlport::"Importacion PEDIDOS KIWOKO3", InStream);
@@ -734,4 +735,17 @@ pageextension 50028 SalesOrder extends "Sales Order"
 
         }
     }
+    trigger OnClosePage()
+    var
+        SalesLine: Record "Sales Line";
+    begin
+        SalesLine.RESET;
+        SalesLine.SETRANGE("Document Type", Rec."Document Type");
+        SalesLine.SETRANGE("Document No.", rec."No.");
+        IF NOT SalesLine.FINDFIRST THEN BEGIN
+            Rec.DELETE;
+        END;
+    end;
+
+
 }

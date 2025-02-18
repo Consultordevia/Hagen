@@ -41,7 +41,7 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.50695in</Width>
+                  <Width>2.5764in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -94,7 +94,6 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
                                 <TextRun>
                                   <Value>=Fields!SalesHeaderNoexpedicion___SalesHeaderNoexpedicionagrupada.Value</Value>
                                   <Style>
-                                    <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -114,6 +113,7 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -259,7 +259,6 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -287,8 +286,8 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
-            <Height>1.07652in</Height>
-            <Width>2.50695in</Width>
+            <Height>1.07651in</Height>
+            <Width>2.5764in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -299,7 +298,7 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
         <Height>2.73436cm</Height>
         <Style />
       </Body>
-      <Width>6.36766cm</Width>
+      <Width>6.54405cm</Width>
       <Page>
         <PageHeight>2.08cm</PageHeight>
         <PageWidth>7cm</PageWidth>

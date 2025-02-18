@@ -491,6 +491,9 @@ XmlPort 50055 "Importacion PEDIDOS catitt new"
                     if PaymentMethod.Code = 'TRANSFWEB' then begin
                         RecCV."Estado pedido" := RecCV."estado pedido"::Retenido;
                     end;
+                    if PaymentMethod.Code = 'S_TRANSF' then begin
+                        RecCV."Estado pedido" := RecCV."estado pedido"::Retenido;
+                    end;                    
                 end;
                 /*
                 ShippingAgent.RESET;

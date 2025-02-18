@@ -40,7 +40,7 @@ codeunit 50002 Eventos
             Error('No tiene permiso para modificar clientes.');
         end;
 
-        /////-EnvioFicheros.MODIFCLIENTES(Rec);
+        ///EnvioFicheros.MODIFCLIENTES(Rec);
 
     end;
 
@@ -581,7 +581,12 @@ codeunit 50002 Eventos
         SalesLine3: Record "Sales Line";
     begin
         SalesLine.CalcFields("Cantidad padre");
-        SalesHeader.get(SalesLine."Document Type", SalesLine."Document No.");
+        if SalesLine.IsTemporary then
+            exit;
+
+        if not SalesHeader.Get(SalesLine."Document Type", SalesLine."Document No.") then
+            exit;
+
 
         SalesLineDiscount2.Reset;
         SalesLineDiscount2.SetRange(Code, SalesLine."No.");
@@ -1090,4 +1095,5 @@ codeunit 50002 Eventos
 
         //OnAfterOnModify(Contact, OldContact, Cust);
     end;
+
 }

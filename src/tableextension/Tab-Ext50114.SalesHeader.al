@@ -3,6 +3,20 @@ tableextension 50114 SalesHeader extends "Sales Header"
     // VER  cesta compra
     fields
     {
+
+        modify("Sell-to Customer No.")
+        {
+            trigger OnAfterValidate()
+            var
+                Reccust: Record customer;
+            begin
+                if Reccust.get("Sell-to Customer No.") then begin
+                    Rec."Permite fraccionar uni. venta" := Reccust."Permite fraccionar unidad de venta";
+                end;
+
+            end;
+        }
+
         modify("No.")
         {
             trigger OnAfterValidate()
@@ -23,7 +37,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                 if "Your Reference" <> '' then begin
                     /////25B2B1058
                     /////12345
-                    if CopyStr("No.",3,3)<>'B2B' then begin
+                    if CopyStr("No.", 3, 3) <> 'B2B' then begin
                         RecCV.reset;
                         RecCV.SetCurrentKey("Your Reference");
                         RecCV.SetRange("Your Reference", "Your Reference");
@@ -54,7 +68,15 @@ tableextension 50114 SalesHeader extends "Sales Header"
             var
                 Item2: Record Item;
                 dtolin: Decimal;
+                RecUS: Record "User Setup";
             begin
+                if Rec."Document Type" = Rec."Document Type"::Quote then begin
+                    IF RecUS.get(userid) THEN begin
+                        IF RecUS."Permite modif. Grupo dto en OFERTA" = false then begin
+                            Error('No tiene permiso a modificar este campo');
+                        end;
+                    end;
+                end;
                 SalesLine.Reset;
                 SalesLine.SetRange(SalesLine."Document Type", Rec."Document Type");
                 SalesLine.SetRange("Document No.", Rec."No.");
@@ -247,23 +269,24 @@ tableextension 50114 SalesHeader extends "Sales Header"
                 end;
 
                 if "Estado pedido" = 1 then begin
-
-                    if Rec."Respeta agencia transporte" = false then begin
-                        BuscaOptimo;
-                    end;
-                    if Rec."Respeta agencia transporte" = true then begin
-                        CODAGENRESPE := "Shipping Agent Code";
-                        BuscaOptimo;
-                        Rec89.Reset;
-                        Rec89.SetRange(Rec89."Parent Item No.", "No.");
-                        Rec89.SetRange(Rec89."Cod. transportista", CODAGENRESPE);
-                        if Rec89.FindFirst then begin
-                            "Importe optimo transporte" := Rec89.Euros;
-                            Validate("Shipping Agent Code", CODAGENRESPE);
-                            Modify;
-                            Commit;
-                        end;
-                    end;
+                    /*
+                                        if Rec."Respeta agencia transporte" = false then begin
+                                            BuscaOptimo;
+                                        end;
+                                        if Rec."Respeta agencia transporte" = true then begin
+                                            CODAGENRESPE := "Shipping Agent Code";
+                                            BuscaOptimo;
+                                            Rec89.Reset;
+                                            Rec89.SetRange(Rec89."Parent Item No.", "No.");
+                                            Rec89.SetRange(Rec89."Cod. transportista", CODAGENRESPE);
+                                            if Rec89.FindFirst then begin
+                                                "Importe optimo transporte" := Rec89.Euros;
+                                                Validate("Shipping Agent Code", CODAGENRESPE);
+                                                Modify;
+                                                Commit;
+                                            end;
+                                        end;
+                                        */
 
                 end;
 
@@ -562,7 +585,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                                                                          "Document No." = field("No.")));
             FieldClass = FlowField;
         }
-        field(50034; "Observación para transporte"; Text[60])
+        field(50034; "Observación para transporte"; Text[80])
         {
         }
         field(50035; "Permite fraccionar uni. venta"; Boolean)
@@ -883,7 +906,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
 
 
         }
-        field(50367; TextoWebApi; Text[100])
+        field(50367; TextoWebApi; Text[300])
         {
         }
 
@@ -1298,7 +1321,9 @@ tableextension 50114 SalesHeader extends "Sales Header"
                 end;
 
                 if SEPASA then begin
-                    Error('El cliente %1 esta bloqueado por exceso en dias %2 %3 de pago. ', "Sell-to Customer No.", Fechavto, RecCVP."Dias aviso falta pago" + Cust."Dias tolerancias fecha vto.");
+                    if CopyStr("No.", 3, 3) <> 'B2B' then begin
+                        Error('El cliente %1 esta bloqueado por exceso en dias %2 %3 de pago. ', "Sell-to Customer No.", Fechavto, RecCVP."Dias aviso falta pago" + Cust."Dias tolerancias fecha vto.");
+                    END;
                 end;
 
 

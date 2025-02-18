@@ -3,20 +3,39 @@ Codeunit 50049 "Envio emails Facturas canarias"
 {
 
     trigger OnRun()
+    var
+        SalesInvHeader: Record "Sales Invoice Header";
+        RecClie: Record Customer;
     begin
 
 
 
+        VENTANA.Open('#1########################');
+
+        SalesInvHeader.Reset;
+        SalesInvHeader.SetCurrentkey(SalesInvHeader."Enviar email", SalesInvHeader."Email enviado");
+        SalesInvHeader.SetRange(SalesInvHeader."Enviar email", true);
+        SalesInvHeader.SETRANGE("Posting Date", 20250205D, TODAY);
+        SalesInvHeader.SetRange(SalesInvHeader."Email enviado", false);
+        if SalesInvHeader.FindFirst() then
+            repeat
+                if RecClie.geT(SalesInvHeader."Bill-to Customer No.") then begin
+                    if RecClie."Servicio email" then begin
+                        VENTANA.Update(1,SalesInvHeader."No.");
+                        Clear(Codeunit50010);
+                        Codeunit50010.ENVIAREMIALFACTURASCANARIAS(SalesInvHeader);
+                    end;
+                end;
+            until SalesInvHeader.next = 0;
+            VENTANA.close; 
 
 
-                 Clear(Codeunit50010);
-                 Codeunit50010.ENVIAREMIALFACTURASCANARIAS;
     end;
 
     var
         varXmlFile: File;
         varInputStream: InStream;
-        NombreFichero: Code[200];        
+        NombreFichero: Code[200];
         lon1: Decimal;
         NOMFIC: Code[200];
         QUETIENDAES: Code[10];
@@ -73,7 +92,7 @@ Codeunit 50049 "Envio emails Facturas canarias"
         codemesano: Code[10];
         RecClie: Record Customer;
         RecItem: Record Item;
-        RecCE: Record "Inventory Setup";        
+        RecCE: Record "Inventory Setup";
         RecUser: Record "User Setup";
         codacti: Code[20];
         RecCV: Record "Sales Header";
@@ -87,7 +106,7 @@ Codeunit 50049 "Envio emails Facturas canarias"
         TIENE: Boolean;
         ImportaADAIA: Codeunit "Conecta ADAIA";
         CURegMov: Codeunit "Item Jnl.-Post Batch";
-        SalesReceivablesSetup: Record "Sales & Receivables Setup";        
+        SalesReceivablesSetup: Record "Sales & Receivables Setup";
         JobQueueLogEntry: Record "Job Queue Log Entry";
 }
 

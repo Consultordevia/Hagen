@@ -295,6 +295,14 @@ Page 50099 "Pantalla almacen Pascual5"
                 {
                     ApplicationArea = Basic;
                 }
+                field("Grupo clientes"; Rec."Grupo clientes")
+                {
+                    ApplicationArea = Basic;
+                }
+                field("Customer Disc. Group"; Rec."Customer Disc. Group")
+                {
+                    ApplicationArea = Basic;
+                }
             }
         }
     }
@@ -454,12 +462,14 @@ Page 50099 "Pantalla almacen Pascual5"
 
                     trigger OnAction()
                     var
-                        
-                        Automaticos: Codeunit 50004;
+
+                        Automaticos: Codeunit "Automaticos Cartas";
+                        RecHFV: Record "Sales Invoice Header";
                         RecCust: record Customer;
                         Rec222: Record 222;
 
                     begin
+                        /*
                         if RecCust.FindFirst() then repeat
                             if RecCust."Enviar a Web" then begin
                                 if RecCust."Phone No."='' then begin
@@ -476,8 +486,21 @@ Page 50099 "Pantalla almacen Pascual5"
                             end;
                         until RecCust.next=0;
                         Message('hecho');
+                        */
+                        /*IF RecItem.FindFirst() THEN repeat
+                            RecItem.CalcFields("PVP-Web2");
+                            RecItem."PVP-Web":=RecItem."PVP-Web2";
+                            RecItem.Modify;
+                        UNTIL RecItem.NEXT=0;
+                        */
 
-                        ///Automaticos. .ENVIAREMIALFACTURAS();
+                        //RecHFV.Reset();;
+                        //RecHFV.SetRange("Posting Date",20250127D,TODAY);
+                        //if RecHFV.FindFirst then repeat
+                        //  Automaticos.ENVIAREMIALFACTURAS(RecHFV);
+                        //until RecHFV.next=0;
+                        Message('hecho');
+
                         /*
                         RecItem.RESET;
                         if RecItem.FindFirst() then
@@ -1232,13 +1255,14 @@ Page 50099 "Pantalla almacen Pascual5"
                 repeat
                     SalesHeader33.Get(SalesHeader3."Document Type", SalesHeader3."No.");
                     SalesHeader33."Nº expedición" := NPEDIDO;
+                    SalesHeader33."Package Tracking No.":=NPEDIDO; 
                     SalesLine3.Reset;
                     SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
                     SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");
                     if SalesLine3.FindSet then
                         repeat
                             if SalesLine3.Type = 2 then begin
-                                SalesLine3."Nº expedición" := NPEDIDO;
+                                SalesLine3."Nº expedición" := NPEDIDO;                                
                                 SalesLine3.Modify;
                             end;
                         until SalesLine3.Next = 0;
@@ -1271,10 +1295,13 @@ Page 50099 "Pantalla almacen Pascual5"
                             if (Rec.Dropshipping = true) and (Rec."Marcar para agrupar" = true) then begin
                                 EXPEDROP := NoSeriesManagement.GetNextNo('ADAIADROP', Today, true);
                             end;
-                            if CopyStr(SalesHeader3."No.", 3, 4) = 'CATW' then begin
-                                EXPEDROP := SalesHeader3."Your Reference";
+                            SalesHeader3.CalcFields("Grupo clientes");
+                            if (SalesHeader3."Grupo clientes" = 'G52') and (SalesHeader3."Customer Disc. Group" = 'DCCA') then begin
+                                EXPEDROP := CopyStr(SalesHeader3."Your Reference", 1, 10);
+                                ////SalesHeader22.Validate("Bill-to Customer No.", '11010');
                             end;
-                            SalesHeader22."Nº expedición dropshp" := EXPEDROP;
+                            SalesHeader22."Nº expedición dropshp" := EXPEDROP;                             
+                            SalesHeader22."Package Tracking No.":= EXPEDROP;                             
                             SalesHeader22.Modify;
                         end;
                     end;
@@ -1328,6 +1355,7 @@ Page 50099 "Pantalla almacen Pascual5"
                     SalesHeader33.Get(SalesHeader3."Document Type", SalesHeader3."No.");
                     SalesHeader33."Nº expedición" := NPEDIDO;
                     SalesHeader33."Nº expedición dropshp" := EXPEDROP;
+                    SalesHeader33."Package Tracking No.":=  EXPEDROP;
                     SalesLine3.Reset;
                     SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
                     SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");

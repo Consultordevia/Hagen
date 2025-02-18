@@ -518,19 +518,20 @@ XmlPort 50010 "Importa Datos Productos"
 
 
             end;
-            ///if (D2 <> '') then begin
-            /// D2DESCRIP := D2;
-            ///if D2DESCRIP <> '' then begin
-            if RecItem.Get(D1) then begin
-                ///D2DESCRIP := CASCII.Ascii2Ansi(D2DESCRIP);
-                ///RecItem.Description := CopyStr(D2DESCRIP, 1, 50);
-                ///RecItem."Description 2" := CopyStr(D2DESCRIP, 51, 50);
-                RecItem."Estado WEB Inactivo" := TRUE;
-                RecItem.Modify;
-            end;
-            ///end;
+            if (D2 <> '') then begin
+                D2DESCRIP := D2;
+                if D2DESCRIP <> '' then begin
+                    if RecItem.Get(D1) then begin
+                        D2DESCRIP := CASCII.Ascii2Ansi(D2DESCRIP);
+                        RecItem.Description := CopyStr(D2DESCRIP, 1, 50);
+                        RecItem."Description 2" := CopyStr(D2DESCRIP, 51, 50);
+                        RecItem."Descripcion web" := CopyStr(D2DESCRIP, 1, 200);
+                        RecItem."Estado WEB Inactivo" := TRUE;
+                        RecItem.Modify;
+                    end;
+                end;
 
-            ////end;
+            end;
 
             if (D3 <> '') then begin
                 D3DESWEB := D3;
@@ -833,6 +834,11 @@ XmlPort 50010 "Importa Datos Productos"
             if (D20 <> '') then begin
                 D18PRECIOTAR := D20;
                 if D18PRECIOTAR <> '' then begin
+                    if RecItem.Get(D1) then begin
+                        Evaluate(RecItem."Unit Price", D18PRECIOTAR);
+                        RecItem.Modify;
+                    end;
+
                     RecSP.Reset;
                     RecSP.SetRange(RecSP."Sales Type", 1);
                     RecSP.SetRange(RecSP."Sales Code", D17CODVENTA);
@@ -855,6 +861,11 @@ XmlPort 50010 "Importa Datos Productos"
             if (D21 <> '') then begin
                 D19PVPR := D21;
                 if D19PVPR <> '' then begin
+                    if RecItem.Get(D1) then begin
+                        Evaluate(RecItem."PVP-Web", D19PVPR);
+                        RecItem.Modify;
+                    end;
+
                     RecSP.Reset;
                     RecSP.SetRange(RecSP."Sales Type", 1);
                     RecSP.SetRange(RecSP."Sales Code", D17CODVENTA);
@@ -902,6 +913,16 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
 
+            if (D24 <> '') then begin
+                D22COSTEUNIDIC := D24;
+                if D22COSTEUNIDIC <> '' then begin
+                    if RecItem.Get(D1) then begin
+                        RecItem.Modify;
+                    end;
+                end;
+            end;
+
+
 
 
             /*
@@ -934,6 +955,25 @@ XmlPort 50010 "Importa Datos Productos"
                         end;
                     end;*/
 
+            if (D25 <> '') then begin
+                D21ESTADO := UpperCase(D25);
+
+                if D21ESTADO = 'S' then begin
+                    if RecItem.Get(D1) then begin
+                        RecItem."Estatus Web" := RecItem."Estatus Web"::Activo;
+                        RecItem.Modify;
+                    end;
+                end;
+                if D21ESTADO <> 'S' then begin
+                    if RecItem.Get(D1) then begin
+                        RecItem."Estatus Web" := RecItem."Estatus Web"::Inactivo;
+                        RecItem.Modify;
+                    end;
+                end;
+
+            end;
+
+
             if (D26 <> '') then begin
                 D24GRIVAPROD := D26;
                 if D24GRIVAPROD <> '' then begin
@@ -958,8 +998,8 @@ XmlPort 50010 "Importa Datos Productos"
                 D24GRIVAPROD := D28;
                 if D24GRIVAPROD <> '' then begin
                     if RecItem.Get(D1) then begin
-                        /////RecItem.Level2 := D24GRIVAPROD;
-                        /////RecItem.Modify;
+                        RecItem.Level2 := D24GRIVAPROD;
+                        RecItem.Modify;
                     end;
                 end;
             end;
@@ -967,8 +1007,8 @@ XmlPort 50010 "Importa Datos Productos"
                 D24GRIVAPROD := D29;
                 if D24GRIVAPROD <> '' then begin
                     if RecItem.Get(D1) then begin
-                        /////RecItem.Level3 := D24GRIVAPROD;
-                        /////RecItem.Modify;
+                        RecItem.Level3 := D24GRIVAPROD;
+                        RecItem.Modify;
                     end;
                 end;
             end;
@@ -1033,7 +1073,12 @@ XmlPort 50010 "Importa Datos Productos"
                 D30TIPOPALETS := D32;
                 if D30TIPOPALETS <> '' then begin
                     if RecItem.Get(D1) then begin
-                        /////RecItem."Tipo palet":=D30TIPOPALETS;
+                        if D30TIPOPALETS = 'E80' then begin
+                            RecItem."Tipo palet" := RecItem."Tipo palet"::E80;
+                        END;
+                        if D30TIPOPALETS <> 'E80' then begin
+                            RecItem."Tipo palet" := RecItem."Tipo palet"::A100;
+                        END;
                         RecItem.Modify;
                     end;
                 end;

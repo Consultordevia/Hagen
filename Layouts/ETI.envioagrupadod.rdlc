@@ -94,7 +94,6 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
                                 <TextRun>
                                   <Value>=Fields!SalesHeaderNoexpedicion___SalesHeaderNoexpedicionagrupada.Value</Value>
                                   <Style>
-                                    <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -114,6 +113,7 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>

@@ -41,7 +41,7 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.50695in</Width>
+                  <Width>2.58334in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -94,7 +94,6 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
                                 <TextRun>
                                   <Value>=Fields!SalesHeaderNoexpedicion___SalesHeaderNoexpedicionagrupada.Value</Value>
                                   <Style>
-                                    <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -154,7 +153,6 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -180,7 +178,7 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
             <Height>0.83335in</Height>
-            <Width>2.50695in</Width>
+            <Width>2.58334in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -188,10 +186,10 @@ yu3tjX3ZBIWSIp+9rTE2p/rqaq7TKd0e3+qef4Y7/wM=
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2.1167cm</Height>
+        <Height>2.11671cm</Height>
         <Style />
       </Body>
-      <Width>6.36766cm</Width>
+      <Width>6.56169cm</Width>
       <Page>
         <PageHeight>2.08cm</PageHeight>
         <PageWidth>7cm</PageWidth>

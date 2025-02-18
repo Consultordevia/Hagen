@@ -5,7 +5,10 @@ pageextension 50000 "Item Card" extends "Item Card"
 
     {
 
-
+        addafter("Unit Price")
+        {
+            field("PVP-Web"; Rec."PVP-Web") { ApplicationArea = ALL; }
+        }
 
 
         addlast(InventoryGrp)
@@ -52,7 +55,7 @@ pageextension 50000 "Item Card" extends "Item Card"
             {
 
 
-            
+
                 field("Usuario última modificación"; Rec."Usuario última modificación") { ApplicationArea = All; }
                 field("Fecha Alta"; Rec."Fecha Alta") { ApplicationArea = All; }
                 field("Fecha Lanzamiento"; Rec."Fecha Lanzamiento") { ApplicationArea = All; }
@@ -282,6 +285,23 @@ pageextension 50000 "Item Card" extends "Item Card"
 
 
             }
+            action("Importa Plantilla Descuentos")
+            {
+                ApplicationArea = Basic;
+
+                trigger OnAction()
+                var
+                    xmlImportaDescuentos: XmlPort "ImportaDescuentos";
+                begin
+                    clear(xmlImportaDescuentos);
+                    xmlImportaDescuentos.run;
+                    Message('hecho');
+
+                end;
+
+
+            }
+
         }
 
 

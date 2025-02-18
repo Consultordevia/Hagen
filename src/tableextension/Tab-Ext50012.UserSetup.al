@@ -167,6 +167,9 @@ tableextension 50012 UserSetup extends "User Setup"
         field(50050; "No Permite NO PERMITE PEDIDO"; Boolean)
         {
         }
+        field(50051; "Permite modif. Grupo dto en OFERTA"; Boolean)
+        {
+        }
 
     }
 }

@@ -10,6 +10,10 @@ Page 50106 "Clientes Lista2"
         {
             repeater(Group)
             {
+                field("Permite fraccionar unidad de venta";Rec."Permite fraccionar unidad de venta")
+                {
+                    ApplicationArea = Basic;
+                }                
                 field("Last Modified Date Time"; Rec."Last Modified Date Time")
                 {
                     ApplicationArea = Basic;

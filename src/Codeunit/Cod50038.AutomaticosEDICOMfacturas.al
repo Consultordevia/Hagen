@@ -4,13 +4,14 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
 
 {
-    Permissions = tabledata "Sales Invoice Header" = RMID,  tabledata "Sales Cr.Memo Header" = RMID, tabledata "VAT Entry" = RMID;
-    
+    Permissions = tabledata "Sales Invoice Header" = RMID, tabledata "Sales Cr.Memo Header" = RMID, tabledata "VAT Entry" = RMID;
+
 
     trigger OnRun()
     begin
 
 
+        v.Open('#1#############################');
         nomdir := '';
         ADAIA.Reset();
         ADAIA.SetRange(texto, 'AUTOMATICOS EDICOM-CU-50038');
@@ -27,13 +28,16 @@ Codeunit 50038 "Automaticos EDICOM facturas"
         if SalesInvoiceHeader3.FindFirst then
             repeat
                 Customer.Get(SalesInvoiceHeader3."Sell-to Customer No.");
+                v.Update(1, '1-' + format(SalesInvoiceHeader3."No."));
                 if Customer."No enviar a EDICOM" = false then begin
+                    v.Update(1, '2-' + format(SalesInvoiceHeader3."No."));                     
                     GrabaEDICOM(SalesInvoiceHeader3."No.");
                 end;
                 SalesInvoiceHeader2.Get(SalesInvoiceHeader3."No.");
                 SalesInvoiceHeader2."EDI factueas enviado" := true;
                 SalesInvoiceHeader2."EDI Facturas Fecha enviado" := CreateDatetime(Today, Time);
                 SalesInvoiceHeader2.Modify;
+                commit;
             until SalesInvoiceHeader3.Next = 0;
 
 
@@ -53,6 +57,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                 SalesCrMemoHeader2."EDI factueas enviado" := true;
                 SalesCrMemoHeader2."EDI Facturas Fecha enviado" := CreateDatetime(Today, Time);
                 SalesCrMemoHeader2.Modify;
+                commit;
             until SalesCrMemoHeader3.Next = 0;
     end;
 
@@ -325,6 +330,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
         CAPITALSOCIAL: Code[10];
         ADAIA: Record ADAIA;
         NOMDIR: TEXT;
+        v: Dialog;
 
 
 
@@ -396,7 +402,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     ///X 17 Número de pedido del destinatario de la factura. ///-10
 
                     FFECHA := SalesInvoiceHeader."Posting Date";
-                    CALCULOFECHA;
+                    CALCULOFECHA;                    
                     FECHAEFE := FECHA;
                     NODO := '380';
                     RSOCIAL := CopyStr(SalesInvoiceHeader."Bill-to Name", 1, 70);
@@ -612,7 +618,12 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
 
                     FFECHA := SalesInvoiceHeader."Due Date";
+                    if SalesInvoiceHeader."Due Date" = 0D THEN begin
+                        FFECHA := SalesInvoiceHeader."Posting Date";
+
+                    end;
                     CALCULOFECHA;
+                    ///message('1- %1 - %2',FFECHA,FECHA);
                     VTO1 := FECHA;
                     contavto := 0;
                     CustLedgerEntry.Reset;
@@ -740,6 +751,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     data.AddText(OutTxt);
                     FFECHA := SalesInvoiceHeader."Posting Date";
                     CALCULOFECHA;
+                    ///message('2 - %1 - %2',FFECHA,FECHA);
                     FECHADOC := LAFECHA;
                     ERMERCA := 'Tomo:7.753, Folio:!, Nº hoja registral: v95742.';
                     OutTxt := Format(CopyStr(ERMERCA, 1, 70)) + '|' + ///// X 70 Registro mercantil del emisor de la factura. 83 ///-93
@@ -773,6 +785,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
                     FFECHA := fechapediso;
                     CALCULOFECHA;
+                    ///message('3 - %1 - %2',FFECHA,FECHA);
                     FPEDIDO := FECHA;
 
                     FEMBARQUE := '';
@@ -780,7 +793,10 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     CAPITALSOCIAL := '';
                     if Multitabla."EDICON Grupo Sonae" then begin
                         FFECHA := SalesInvoiceHeader."Fecha enviado";
-                        CALCULOFECHA;
+                        if FFECHA =0D then begin
+                            FFECHA := SalesInvoiceHeader."Posting Date";
+                        end;
+                        CALCULOFECHA;                         
                         FEMBARQUE := FECHA;
                         FENTRGA := FEMBARQUE;
                         CAPITALSOCIAL := '500000';
