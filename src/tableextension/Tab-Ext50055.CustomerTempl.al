@@ -37,5 +37,8 @@ tableextension 50055 CustomerTempl extends "Customer Templ."
             OptionCaption = 'F1,F2';
             OptionMembers = F1,F2;
         }
+        field(50176; "Permite fraccionar unidad de venta"; Boolean)
+        {
+        }
     }
 }

@@ -572,6 +572,7 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                     RecCV."Observación para transporte" := D46;
                     RecCV."Prices Including VAT" := true;
                     RecCV."Prices Including VAT" := false;
+                    RecCV."No agrupar en ADAIA" := false;
                     RecCV.Insert(true);
                     AltaRegalos;
                     codpedido := D2;

@@ -535,6 +535,19 @@ XmlPort 50130 "ImportaDescuentos"
                 IF RecSP.insert THEN;
 
                 RecSP."Item No." := ref;
+                RecSP."Sales Code" := CodTarifa + 'DC25';
+                RecSP."Minimum Quantity" := Cantidad3;
+                RecSP."Starting Date" := fechaini;
+                RecSP."Unit Price" := PrecioVenta - ROUND((PrecioVenta * Descuento3 / 100));
+                RecSP."Sales Type" := RecSP."Sales Type"::"Customer Price Group";
+                RecSP."Ending Date" := fechafin;
+                RecSP.INCREMENTO := 1;
+                RecSP."Unidades Venta" := 1;
+                RecSP."Unit of Measure Code" := 'UDS';
+                IF RecSP.insert THEN;
+
+
+                RecSP."Item No." := ref;
                 RecSP."Sales Code" := CodTarifa + 'DC30';
                 RecSP."Minimum Quantity" := Cantidad1;
                 RecSP."Starting Date" := fechaini;
@@ -621,7 +634,18 @@ XmlPort 50130 "ImportaDescuentos"
                 RecSLD."Unit of Measure Code" := 'UDS';
                 IF RecSLD.insert THEN;
 
-                
+
+
+                RecSLD.Code := ref;
+                RecSLD."Sales Code" := CopyStr(GrpoDesc, 1, 4) + '25';
+                RecSLD."Line Discount %" := Descuento3;
+                RecSLD."Sales Type" := RecSLD."Sales Type"::"Customer Disc. Group";
+                RecSLD."Starting Date" := fechaini;
+                RecSLD."Ending Date" := fechafin;
+                RecSLD."Minimum Quantity" := Cantidad3;
+                RecSLD."Unit of Measure Code" := 'UDS';
+                IF RecSLD.insert THEN;
+
 
                 RecSLD.Code := ref;
                 RecSLD."Sales Code" := CopyStr(GrpoDesc, 1, 4) + '30';

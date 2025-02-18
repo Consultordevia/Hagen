@@ -14,14 +14,14 @@ Codeunit 50055 "Fichero Stock.csv"
         TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
 
 
-/*        ItemTemp.Reset;
+        ItemTemp.Reset;
         if ItemTemp.FindFirst then
             repeat
                 ItemTemp.Delete;
             until ItemTemp.Next = 0;
 
-        GrabaStock;
-*/
+        ///GrabaStock;
+
         Commit;
 
         ItemtempR.Reset;
@@ -172,6 +172,7 @@ Codeunit 50055 "Fichero Stock.csv"
     begin
 
 
+
         Item.Reset;
         Item.SetFilter(Item."Estado Producto", '0|1');
         Item.SetRange(Item."Excluir de dropbox", false);
@@ -185,8 +186,6 @@ Codeunit 50055 "Fichero Stock.csv"
                                 IVA := VATPostingSetup."VAT+EC %";
                             end;
                             Item.CalcFields(Item."Tarifa 2022-2");
-                            Clear(TextoSalida1);
-                            Clear(TextoSalida2);
                             Item.CalcFields(Inventory, "Existencia FOB", Item."Existencia SILLA", Item."Qty. on Sales Order");
                             DISPONI := Item.Inventory - Item."Existencia FOB" - Item."Qty. on Sales Order" - Item."Stock para Catit";
                             ENTRA := true;
@@ -321,12 +320,6 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemTemp."Vendor No." := Format(IVA);
                                 ItemTemp."Last Date Modified" := Item."Fecha Lanzamiento";
                                 ItemTemp.Insert;
-
-
-
-
-
-
                             end;
                         end;
                     end;
@@ -340,48 +333,25 @@ Codeunit 50055 "Fichero Stock.csv"
 
         SalesReceivablesSetup.Get;
 
-        ArchExt4 := SalesReceivablesSetup."Ruta fiche. FTP" + 'stock-CSV.CSV';
-
-
-        ArchExt4 := 'c:\tmp\stock-CSV.CSV';
-
-
-        ///if FILE.Exists(ArchExt4) then begin
-
-        ///             FILE.Erase(ArchExt4);
-
-        ///end;
-
-
 
         ArchExt4 := SalesReceivablesSetup."Ruta fiche. FTP" + 'stock-CSV.CSV';
         ArchExt4 := 'c:\tmp\stock-CSV.CSV';
 
 
 
-        ///        ArchSalida4.TextMode := true;
-        ///ArchSalida4.WriteMode := true;
-        ///ArchSalida4.Create(ArchExt4);
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
 
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
 
-        /////TextoSalida1:='ean;ref;descripcion;estado;linea;familia;tarifa 2019;'+
-        /////                'pvr2019;disponibilidad;unidad minima venta;fecha recepcion esperada;'+
-        /////                'peso;largo;ancho;alto;volumen;marca;URL imagen 1;IVA';
+        ///TempBlob.CreateOutStream(OutStream);
+
 
         OutTxt := 'Ean;Referencia;Descripcion;Estado;Línea;Familia;Tarifa;PVPR;Disponibilidad;Und. Mínimo Compra;Fecha Prox.;Pesos;Largo;Alto;Ancho;Volumen;Marca;URL imagen;Iva;Fecha Lanzamiento;' +
         'Cantidad_1;Descuento_1;Cantidad_2;Descuento_2;Cantidad_3;Descuento_3';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-
-
-
-
-
-
-
-
-        ///             ArchSalida4.Write(TextoSalida1);
-
 
 
         ItemTemp.Reset;
@@ -423,15 +393,25 @@ Codeunit 50055 "Fichero Stock.csv"
                 OutTxt := TextoSalida1 + TextoSalida2 + TextoSalida3;
                 OutTxt += Format(CarriageReturn) + Format(LineFeed);
                 data.AddText(OutTxt);
-
-            ///ArchSalida4.Write(TextoSalida1+TextoSalida2+TextoSalida3+TextoSalida4);
-
-
             until ItemTemp.Next = 0;
 
         Data.Write(OutStream);
 
-        ///ArchSalida4.Close;
+
+        nomdir := '';
+        ADAIA.Reset();
+        ADAIA.SetRange(texto, 'AUTOMATICO STOCKCSV-CU-50055');
+        IF ADAIA.FindSet() THEN begin
+            nomdir := ADAIA.Ruta;
+        end;
+
+        Data.Write(OutStream);
+
+
+        TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+        FicherosHagen.CrearFichero(nomdir, 'stock1.csv', InStream);
+
+
 
     end;
 
@@ -1315,6 +1295,19 @@ Codeunit 50055 "Fichero Stock.csv"
     procedure GrabaStock5()
     begin
 
+
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
+
+        ///TempBlob.CreateOutStream(OutStream);
+
+
+
+
+
         Item.Reset;
         Item.SetFilter(Item."Estado Producto", '0|1');
         Item.SetRange(Item."Excluir de dropbox", false);
@@ -1452,7 +1445,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR."Gen. Prod. Posting Group" := dtext1;
                                 dtext1 := CASCII.Ascii2Ansi(Item.Familia);
                                 ItemtempR.Familia := dtext1;
-                                ItemtempR."Unit Price" := Item."Tarifa 2022-2";
+                                ItemtempR."Unit Price" := Item."Unit Price";
                                 ItemtempR."Unit Cost" := Item."PVP-Web";
                                 ItemtempR."Maximum Inventory" := DISPONI;
                                 ItemtempR."Unidad compra" := UNIMEDAD;
