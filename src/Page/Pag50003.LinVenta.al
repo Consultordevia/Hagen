@@ -3,7 +3,7 @@ page 50003 LinVenta
     ApplicationArea = All;
     Caption = 'LinVenta';
     PageType = List;
-    SourceTable = "Sales Line";
+    SourceTable = LinVenta;
     UsageCategory = Lists;
     SourceTableView = where("Document Type" = filter(Order));
 
@@ -1042,6 +1042,14 @@ page 50003 LinVenta
                 field("prod canarias"; Rec."prod canarias")
                 {
                     ToolTip = 'Specifies the value of the prod canarias field.', Comment = '%';
+                }
+                field(Error; Rec.Error)
+                {
+                    ApplicationArea = All;
+                }
+                field(CreadoSalesHeader; Rec.CreadoSalesHeader)
+                {
+                    ApplicationArea = All;
                 }
             }
         }
