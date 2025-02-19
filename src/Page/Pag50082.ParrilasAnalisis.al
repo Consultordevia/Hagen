@@ -276,6 +276,7 @@ Page 50082 "Parrilas Analisis"
         SalesShipmentHeader: Record "Sales Shipment Header";
         MATRIX2: array [13] of Decimal;
         MATRIX3: array [13] of Decimal;
+        InventarioPMP: Record "Inventario PMP";
 
     local procedure Recalcula()
     begin
@@ -296,7 +297,7 @@ Page 50082 "Parrilas Analisis"
         Date.Reset;
         Date.SetRange(Date."Period Start",DESDEINI,HASTAINI);
         Date.SetRange(Date."Period Type",Date."period type"::Month);
-        if Date.FindFirst then repeat
+        if Date.FindSet() then repeat
             X:=X+1;
             DESDEFECHA[X]:=Date."Period Start";
             HASTAFECHA[X]:=Date."Period End";
@@ -317,9 +318,11 @@ Page 50082 "Parrilas Analisis"
         Clear(MATRIX_CellDataDescuento);
         Clear(MATRIX_CellDataImporte);
         Clear(MATRIX_CellDataCoste);
+        
         Customer.Reset;
+        Customer.SetCurrentKey("Grupo clientes");
         Customer.SetRange("Grupo clientes",CodAnalisis);
-        if Customer.FindFirst then repeat
+        if Customer.FindSet() then repeat
              VerVentasPortes;
              VerCostePortes;
         until Customer.Next=0;
@@ -347,9 +350,11 @@ Page 50082 "Parrilas Analisis"
         Clear(MATRIX_CellDataDescuento);
         Clear(MATRIX_CellDataImporte);
         Clear(MATRIX_CellDataCoste);
+        
         Customer.Reset;
+        Customer.SetCurrentKey("Grupo clientes");
         Customer.SetRange("Grupo clientes",CodAnalisis);
-        if Customer.FindFirst then repeat
+        if Customer.FindSet then repeat
              VerVentas;
         until Customer.Next=0;
         
@@ -496,8 +501,9 @@ Page 50082 "Parrilas Analisis"
         
         CONTA:='000';
         Item.Reset;
+        Item.SetCurrentKey("Inventory Posting Group");
         Item.SetRange("Inventory Posting Group",'GASTOSPARRILLA');
-        if Item.FindFirst then repeat
+        if Item.FindSet then repeat
             CONTA:=IncStr(CONTA);
             Rec.Init;Rec."No.":='B'+Format(CONTA);Rec."Block Reason":=Item.Description+' ('+Format(Item."No.")+')';
             Clear(MATRIX_CellData);
@@ -505,18 +511,20 @@ Page 50082 "Parrilas Analisis"
             repeat
                 X:=X+1;
                 PurchInvLine.Reset;
+                PurchInvLine.SetCurrentKey("No.","Posting Date","Analisis margenes");
                 PurchInvLine.SetRange("No.",Item."No.");
                 PurchInvLine.SetRange("Posting Date",DESDEFECHA[X],HASTAFECHA[X]);
                 PurchInvLine.SetRange("Analisis margenes",CodAnalisis);
-                if PurchInvLine.FindFirst then repeat
+                if PurchInvLine.FindSet then repeat
                     MATRIX_CellData[X]:=MATRIX_CellData[X]+PurchInvLine.Amount;
                     MATRIX_CellData[13]:=MATRIX_CellData[13]+PurchInvLine.Amount;
                 until PurchInvLine.Next=0;
                 PurchCrMemoLine.Reset;
+                PurchCrMemoLine.SetCurrentKey("No.","Posting Date","Analisis margenes");
                 PurchCrMemoLine.SetRange("No.",Item."No.");
                 PurchCrMemoLine.SetRange("Posting Date",DESDEFECHA[X],HASTAFECHA[X]);
                 PurchCrMemoLine.SetRange("Analisis margenes",CodAnalisis);
-                if PurchCrMemoLine.FindFirst then repeat
+                if PurchCrMemoLine.FindSet then repeat
                     MATRIX_CellData[X]:=MATRIX_CellData[X]+PurchCrMemoLine.Amount*-1;
                     MATRIX_CellData[13]:=MATRIX_CellData[13]+PurchCrMemoLine.Amount*-1;
                 until PurchCrMemoLine.Next=0;
@@ -780,6 +788,10 @@ Page 50082 "Parrilas Analisis"
         DIFPORTES: Decimal;
         esmedia: Decimal;
         COSTEFAC: Decimal;
+        RecPMP: Record "Inventario PMP";
+        PMP: Decimal;
+            
+            
     begin
         
         
@@ -788,10 +800,11 @@ Page 50082 "Parrilas Analisis"
         repeat
             X:=X+1;
             SalesInvoiceHeader.Reset;
+            SalesInvoiceHeader.SetCurrentKey("Sell-to Customer No.","Posting Date");
             SalesInvoiceHeader.SetRange("Sell-to Customer No.",Customer."No.");
             SalesInvoiceHeader.SetRange("Posting Date",DESDEFECHA[X],HASTAFECHA[X]);
-            if SalesInvoiceHeader.FindFirst then repeat
-              V.Update(1,SalesInvoiceHeader."No."+' '+Format(SalesInvoiceHeader."Posting Date"));
+            if SalesInvoiceHeader.FindSet then repeat
+              V.Update(1,'ventas:'+SalesInvoiceHeader."Sell-to Customer No."+' '+Format(SalesInvoiceHeader."Posting Date"));
                 Margen:=0;
                 COSTEFAC:=0;
                 margenlin:=0;
@@ -804,9 +817,10 @@ Page 50082 "Parrilas Analisis"
                 sumacostes:=0;
                 portescobrados:=0;
                 Rec113.Reset;
+                Rec113.SetCurrentKey("Document No.",Type);
                 Rec113.SetRange(Rec113."Document No.",SalesInvoiceHeader."No.");
                 Rec113.SetRange(Rec113.Type,2);
-                if Rec113.FindFirst then repeat
+                if Rec113.Findset then repeat
                     if Rec113."No."='TRAN' then begin
                         portescobrados:=Rec113.Amount;
                     end;
@@ -824,8 +838,16 @@ Page 50082 "Parrilas Analisis"
                         SUMAPF:=SUMAPF+Rec113.Amount;
                     end;
                     CUANTALIN:=CUANTALIN+1;
-                    if Rec113."VAT Base Amount"<>0 then begin
-                        margenlin:=margenlin+(100-(100*(Rec113."Unit Cost"*Rec113.Quantity)/(Rec113."VAT Base Amount")));
+                    if Rec113."VAT Base Amount"<>0 then begin                        
+                        PMP:=0;
+                        RecPMP.RESET;
+                        RecPMP.SETCURRENTKEY(RecPMP."Item No.",RecPMP."Posting Date");                         
+                        RecPMP.SETRANGE(RecPMP."Item No.",rec113."No.");
+                        RecPMP.SETRANGE(RecPMP."Posting Date",0D,Rec113."Posting Date"); 
+                        IF RecPMP.FINDLAST THEN BEGIN
+                            PMP:=RecPMP."Unit Cost";
+                        END;
+                        margenlin:=margenlin+(100-(100*(PMP*Rec113.Quantity)/(Rec113."VAT Base Amount")));
                     end;
                     sumaventas:=sumaventas+Rec113."VAT Base Amount";
                     HASTAFEC:=HASTAFECHA[X];
@@ -837,9 +859,10 @@ Page 50082 "Parrilas Analisis"
                     Margen:=ROUND((SalesInvoiceHeader.Amount-COSTEFAC)/SalesInvoiceHeader.Amount*100,0.01);
                 end;
                 Rec113.Reset;
+                Rec113.SetCurrentKey("Document No.",Type);
                 Rec113.SetRange(Rec113."Document No.",SalesInvoiceHeader."No.");
                 Rec113.SetRange(Rec113.Type,1);
-                if Rec113.FindFirst then begin
+                if Rec113.Findset then begin
                     if Rec113."No."='62400000' then begin
                         portescobrados:=Rec113.Amount;
                     end;
@@ -872,9 +895,10 @@ Page 50082 "Parrilas Analisis"
         ///// abonos
         
             SalesCrMemoHeader.Reset;
+            SalesCrMemoHeader.SetCurrentKey("Sell-to Customer No.","Posting Date");
             SalesCrMemoHeader.SetRange("Sell-to Customer No.",Customer."No.");
             SalesCrMemoHeader.SetRange("Posting Date",DESDEFECHA[X],HASTAFECHA[X]);
-            if SalesCrMemoHeader.FindFirst then repeat
+            if SalesCrMemoHeader.FindSet then repeat
               V.Update(1,SalesCrMemoHeader."No."+' '+Format(SalesCrMemoHeader."Posting Date"));
                 Margen:=0;
                 COSTEFAC:=0;
@@ -888,9 +912,10 @@ Page 50082 "Parrilas Analisis"
                 sumacostes:=0;
                 portescobrados:=0;
                 Rec115.Reset;
+                Rec115.SetCurrentKey("Document No.",Type);
                 Rec115.SetRange(Rec115."Document No.",SalesCrMemoHeader."No.");
                 Rec115.SetRange(Rec115.Type,2);
-                if Rec115.FindFirst then repeat
+                if Rec115.Findset then repeat
                     if Rec115."No."='TRAN' then begin
                         portescobrados:=Rec115.Amount;
                     end;
@@ -909,7 +934,16 @@ Page 50082 "Parrilas Analisis"
                     end;
                     CUANTALIN:=CUANTALIN+1;
                     if Rec115."VAT Base Amount"<>0 then begin
-                        margenlin:=margenlin+(100-(100*(Rec115."Unit Cost"*Rec115.Quantity)/(Rec115."VAT Base Amount")));
+                        PMP:=0;
+                        RecPMP.RESET;
+                        RecPMP.SETCURRENTKEY(RecPMP."Item No.",RecPMP."Posting Date");
+                        RecPMP.SETRANGE(RecPMP."Item No.",rec115."No.");
+                        RecPMP.SETRANGE(RecPMP."Posting Date",0D,Rec115."Posting Date"); 
+                        IF RecPMP.FINDLAST THEN BEGIN
+                            PMP:=RecPMP."Unit Cost";
+                        END;
+
+                        margenlin:=margenlin+(100-(100*(pmp*Rec115.Quantity)/(Rec115."VAT Base Amount")));
                     end;
                     sumaventas:=sumaventas+Rec115."VAT Base Amount";
         
@@ -922,9 +956,10 @@ Page 50082 "Parrilas Analisis"
                     Margen:=ROUND((SalesCrMemoHeader.Amount-COSTEFAC)/SalesCrMemoHeader.Amount*100,0.01);
                 end;
                 Rec115.Reset;
+                Rec115.SetCurrentKey("Document No.",Type);
                 Rec115.SetRange(Rec115."Document No.",SalesCrMemoHeader."No.");
                 Rec115.SetRange(Rec115.Type,1);
-                if Rec115.FindFirst then begin
+                if Rec115.FindSet then begin
                     if Rec115."No."='62400000' then begin
                         portescobrados:=Rec115.Amount;
                     end;
@@ -1082,6 +1117,9 @@ Page 50082 "Parrilas Analisis"
         VALORSTOC: Decimal;
         vMEDIA: Decimal;
         Unfavorable: Text;
+        InventarioPMP: Record "Inventario PMP";
+        PMP: Decimal;
+        RecPMP: Record "Inventario PMP";
     begin
 
 
@@ -1112,7 +1150,7 @@ Page 50082 "Parrilas Analisis"
         STOCKACT:=RecItem."Net Change";
         CONTADOR:=99999999;
         Rec32.Reset;
-        Rec32.SetCurrentkey(Rec32."Item No.");
+        Rec32.SetCurrentkey("Item No.","Entry Type","Location Code","Posting Date");
         Rec32.SetRange(Rec32."Item No.",codprod);
         Rec32.SetRange(Rec32."Entry Type",0);
         Rec32.SetRange(Rec32."Location Code",'SILLA');
@@ -1122,7 +1160,15 @@ Page 50082 "Parrilas Analisis"
              CONTADOR:=CONTADOR-1;
              Rec32Temp."Entry No.":=CONTADOR;
              Rec32.CalcFields(Rec32."Cost Amount (Actual)",Rec32."Tiene cargos");
-             Rec32Temp."Invoiced Quantity":=Rec32."Cost Amount (Actual)";
+             PMP:=0;
+             RecPMP.RESET;
+             RecPMP.SETCURRENTKEY(RecPMP."Item No.",RecPMP."Posting Date");
+             RecPMP.SETRANGE(RecPMP."Item No.",codprod);
+             RecPMP.SETRANGE(RecPMP."Posting Date",0D,Rec32."Posting Date");
+             IF RecPMP.FINDLAST THEN BEGIN
+                 PMP:=RecPMP."Unit Cost";
+             END;
+             Rec32Temp."Invoiced Quantity":=PMP*Rec32.Quantity;
              Rec32Temp.Insert;
         until (Rec32.Next=0);
 
@@ -1138,7 +1184,7 @@ Page 50082 "Parrilas Analisis"
         STOCKACT:=RecItem."Net Change";
 
         Rec32Temp.Reset;
-        if Rec32Temp.FindFirst then repeat
+        if Rec32Temp.Findset then repeat
               vMEDIA:=Rec32Temp."Invoiced Quantity"/Rec32Temp.Quantity;
 
               if STOCKACT<Rec32Temp.Quantity then begin
@@ -1245,6 +1291,7 @@ Page 50082 "Parrilas Analisis"
         DIFPORTES: Decimal;
         esmedia: Decimal;
         COSTEFAC: Decimal;
+        InventarioPMP: Record "Inventario PMP";
     begin
 
 
@@ -1254,9 +1301,10 @@ Page 50082 "Parrilas Analisis"
             portescobrados:=0;
             X:=X+1;
             SalesInvoiceHeader.Reset;
+            SalesInvoiceHeader.SetCurrentKey("Sell-to Customer No.","Posting Date");
             SalesInvoiceHeader.SetRange("Sell-to Customer No.",Customer."No.");
             SalesInvoiceHeader.SetRange("Posting Date",DESDEFECHA[X],HASTAFECHA[X]);
-            if SalesInvoiceHeader.FindFirst then repeat
+            if SalesInvoiceHeader.FindSet then repeat
               V.Update(1,SalesInvoiceHeader."No."+' '+Format(SalesInvoiceHeader."Posting Date"));
                 Margen:=0;
                 COSTEFAC:=0;
@@ -1270,18 +1318,20 @@ Page 50082 "Parrilas Analisis"
                 sumacostes:=0;
                 portescobrados:=0;
                 Rec113.Reset;
+                Rec113.SetCurrentKey("Document No.",Type);
                 Rec113.SetRange(Rec113."Document No.",SalesInvoiceHeader."No.");
                 Rec113.SetRange(Rec113.Type,2);
-                if Rec113.FindFirst then repeat
+                if Rec113.Findset then repeat
                     if Rec113."No."='TRAN' then begin
                         MATRIX_CellDataPortes[X]:=MATRIX_CellDataPortes[X]+Rec113.Amount;
                         MATRIX_CellDataPortes[13]:=MATRIX_CellDataPortes[13]+Rec113.Amount;
                     end;
                 until Rec113.Next=0;
                 Rec113.Reset;
+                Rec113.SetCurrentKey("Document No.",Type);
                 Rec113.SetRange(Rec113."Document No.",SalesInvoiceHeader."No.");
                 Rec113.SetRange(Rec113.Type,1);
-                if Rec113.FindFirst then begin
+                if Rec113.Findset then begin
                     if Rec113."No."='62400000' then begin
                         MATRIX_CellDataPortes[X]:=MATRIX_CellDataPortes[X]+Rec113.Amount;
                         MATRIX_CellDataPortes[13]:=MATRIX_CellDataPortes[13]+Rec113.Amount;
@@ -1298,9 +1348,10 @@ Page 50082 "Parrilas Analisis"
         ///// abonos
 
             SalesCrMemoHeader.Reset;
+            SalesCrMemoHeader.SetCurrentKey("Sell-to Customer No.","Posting Date");
             SalesCrMemoHeader.SetRange("Sell-to Customer No.",Customer."No.");
             SalesCrMemoHeader.SetRange("Posting Date",DESDEFECHA[X],HASTAFECHA[X]);
-            if SalesCrMemoHeader.FindFirst then repeat
+            if SalesCrMemoHeader.Findset then repeat
               V.Update(1,SalesCrMemoHeader."No."+' '+Format(SalesCrMemoHeader."Posting Date"));
                 Margen:=0;
                 COSTEFAC:=0;
@@ -1315,18 +1366,20 @@ Page 50082 "Parrilas Analisis"
                 portescobrados:=0;
 
                 Rec115.Reset;
+                Rec115.SetCurrentKey("Document No.",Type);
                 Rec115.SetRange(Rec115."Document No.",SalesCrMemoHeader."No.");
                 Rec115.SetRange(Rec115.Type,2);
-                if Rec115.FindFirst then repeat
+                if Rec115.Findset then repeat
                     if Rec115."No."='TRAN' then begin
                         MATRIX_CellDataPortes[X]:=MATRIX_CellDataPortes[X]+Rec115.Amount*-1;
                         MATRIX_CellDataPortes[13]:=MATRIX_CellDataPortes[13]+Rec115.Amount*-1;
                     end;
                 until Rec115.Next=0;
                 Rec115.Reset;
+                Rec115.SetCurrentKey("Document No.",Type);
                 Rec115.SetRange(Rec115."Document No.",SalesCrMemoHeader."No.");
                 Rec115.SetRange(Rec115.Type,1);
-                if Rec115.FindFirst then begin
+                if Rec115.Findset then begin
                     if Rec115."No."='62400000' then begin
                         MATRIX_CellDataPortes[X]:=MATRIX_CellDataPortes[X]+Rec115.Amount*-1;
                         MATRIX_CellDataPortes[13]:=MATRIX_CellDataPortes[13]+Rec115.Amount*-1;
@@ -1413,17 +1466,19 @@ Page 50082 "Parrilas Analisis"
         DIFPORTES: Decimal;
         esmedia: Decimal;
         COSTEFAC: Decimal;
+        InventarioPMP: Record "Inventario PMP";
     begin
 
 
 
         X:=0;
         repeat
-            X:=X+1;
+            X:=X+1;            
             SalesShipmentHeader.Reset;
+            SalesShipmentHeader.SetCurrentKey("Sell-to Customer No.","Posting Date");
             SalesShipmentHeader.SetRange("Sell-to Customer No.",Customer."No.");
             SalesShipmentHeader.SetRange("Posting Date",DESDEFECHA[X],HASTAFECHA[X]);
-            if SalesShipmentHeader.FindFirst then repeat
+            if SalesShipmentHeader.Findset then repeat
                 V.Update(1,SalesShipmentHeader."No."+' '+Format(SalesShipmentHeader."Posting Date"));
 
                 MATRIX_CellDataCosteTranspor[X]:=MATRIX_CellDataCosteTranspor[X] + SalesShipmentHeader."Importe transporte";

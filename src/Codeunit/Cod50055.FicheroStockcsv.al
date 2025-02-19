@@ -1295,14 +1295,18 @@ Codeunit 50055 "Fichero Stock.csv"
     procedure GrabaStock5()
     begin
 
-
         CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
         LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
 
         Clear(TempBlob);
-        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);       
 
-        ///TempBlob.CreateOutStream(OutStream);
+
+        OutTxt := 'Ean;Referencia;Descripcion;Estado;Línea;Familia;Tarifa;PVPR;Disponibilidad;Und. Mínimo Compra;Fecha Prox.;Pesos;Largo;Alto;Ancho;Volumen;Marca;URL imagen;Iva;Fecha Lanzamiento;' +
+        'Cantidad_1;Descuento_1;Cantidad_2;Descuento_2;Cantidad_3;Descuento_3';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+
 
 
 
@@ -1483,6 +1487,33 @@ Codeunit 50055 "Fichero Stock.csv"
 
                                 ItemtempR.Insert;
 
+              TextoSalida1 := Format(ItemTempR."No. 2") + ';' +
+                              Format(ItemTempR."No.") + ';' +
+                              Format(ItemTempR.Description) + ';' +
+                              Format(ItemTempR."Description 2") + ';';
+                TextoSalida2 := Format(ItemTempR."Gen. Prod. Posting Group") + ';' +
+                              Format(ItemTempR.Familia) + ';' +
+                              Format(ItemTempR."Unit Price") + ';' +
+                              Format(ItemTempR."Unit Cost") + ';' +
+                              Format(ItemTempR."Maximum Inventory") + ';' +
+                              Format(ItemTempR."Unidad compra") + ';' +
+                              Format(ItemTempR."Descripcion web") + ';' +
+                              Format(ItemTempR."Units per Parcel") + ';' +
+                              Format(ItemTempR."Gross Weight") + ';' +
+                              Format(ItemTempR."Minimum Order Quantity") + ';' +
+                              Format(ItemTempR."Maximum Order Quantity") + ';' +
+                              Format(ItemTempR."Safety Stock Quantity") + ';' +
+                              Format(ItemTempR."Tariff No.") + ';';
+                TextoSalida3 := Format(ItemTempR."URL IMAGEN 1") + ';' +
+                              Format(ItemTempR."Vendor No.") + ';' +
+                              Format(ItemTempR."Last Date Modified");
+
+
+                                OutTxt := TextoSalida1 + TextoSalida2 + TextoSalida3;
+                                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                                data.AddText(OutTxt);
+
+
 
 
 
@@ -1502,80 +1533,6 @@ Codeunit 50055 "Fichero Stock.csv"
         SalesReceivablesSetup.Get;
 
 
-
-
-        /////ArchExt4:='c:\tmp\TarifaStock2021 .CSV';
-
-
-        /////IF FILE.EXISTS(ArchExt4) THEN BEGIN
-
-        /////     FILE.ERASE(ArchExt4);
-
-        /////END;
-
-
-
-
-        /////ArchExt4:='c:\tmp\TarifaStock2021.CSV';
-
-
-
-        /////ArchSalida4.TEXTMODE := TRUE;
-        /////ArchSalida4.WRITEMODE := TRUE;
-        /////ArchSalida4.CREATE(ArchExt4);
-
-
-        /////TextoSalida1:='ean;ref;descripcion;estado;linea;familia;tarifa 2019;'+
-        /////                'pvr2019;disponibilidad;unidad minima venta;fecha recepcion esperada;'+
-        /////                'peso;largo;ancho;alto;volumen;marca;URL imagen 1;IVA';
-
-        /////TextoSalida1:='Ean;Referencia;Descripcion;Estado;Línea;Familia;Tarifa;PVPR;Disponibilidad;Und. Mínimo Compra;Fecha Prox.;Pesos;Largo;Alto;Ancho;Volumen;Marca;URL imagen;Iva;Fecha Lanzamiento';
-
-
-
-
-
-
-
-        /////                ArchSalida4.WRITE(TextoSalida1);
-
-        /*
-        
-        ItemtempR.RESET;
-        ItemtempR.SETCURRENTKEY("No. 2");
-        IF ItemtempR.FINDFIRST THEN REPEAT
-        
-                         TextoSalida1:=FORMAT(ItemtempR."No. 2")+';'+
-                                       FORMAT(ItemtempR."No.")+';'+
-                                       FORMAT(ItemtempR.Description)+';'+
-                                       FORMAT(ItemtempR."Description 2")+';';
-                         TextoSalida2:=FORMAT(ItemtempR."Gen. Prod. Posting Group")+';'+
-                                       FORMAT(ItemtempR.Familia)+';'+
-                                       FORMAT(ItemtempR."Unit Price")+';'+
-                                       FORMAT(ItemtempR."Unit Cost")+';'+
-                                       FORMAT(ItemtempR."Maximum Inventory")+';'+
-                                       FORMAT(ItemtempR."Unidad compra")+';'+
-                                       FORMAT(ItemtempR."Descripcion web")+';'+
-                                       FORMAT(ItemtempR."Units per Parcel")+';'+
-                                       FORMAT(ItemtempR."Gross Weight")+';'+
-                                       FORMAT(ItemtempR."Minimum Order Quantity")+';'+
-                                       FORMAT(ItemtempR."Maximum Order Quantity")+';'+
-                                       FORMAT(ItemtempR."Safety Stock Quantity")+';'+
-                                       FORMAT(ItemtempR."Tariff No.")+';';
-                         TextoSalida3:=FORMAT(ItemtempR."URL IMAGEN 1")+';'+
-                                       FORMAT(ItemtempR."Vendor No.")+';'+
-                                       FORMAT(ItemtempR."Last Date Modified");
-        
-        
-             /////           ArchSalida4.WRITE(TextoSalida1+TextoSalida2+TextoSalida3);
-        
-        
-        UNTIL ItemtempR.NEXT=0;
-        
-        /////ArchSalida4.CLOSE;
-        
-        
-        */
 
 
         nomdir := '';
