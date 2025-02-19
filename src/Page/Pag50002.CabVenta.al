@@ -3,7 +3,7 @@ page 50002 CabVenta
     ApplicationArea = All;
     Caption = 'CabVenta';
     PageType = List;
-    SourceTable = "Sales Header";
+    SourceTable = CabVenta;
     UsageCategory = Lists;
     SourceTableView = where("Document Type" = filter(Order));
 
@@ -1204,7 +1204,7 @@ page 50002 CabVenta
 
                     trigger OnValidate()
                     begin
-                        Rec.SetWorkDescription(WorkDescription);
+                        //Rec.SetWorkDescription(WorkDescription);
                     end;
                 }
                 field("Your Reference"; Rec."Your Reference")
@@ -1219,6 +1219,15 @@ page 50002 CabVenta
                 {
                     ApplicationArea = All;
                 }*/
+                field(Error; Rec.Error)
+                {
+                    ApplicationArea = All;
+                }
+                field(CreadoSalesHeader; Rec.CreadoSalesHeader)
+                {
+                    ApplicationArea = All;
+                }
+
 
 
             }
@@ -1230,6 +1239,6 @@ page 50002 CabVenta
 
     trigger OnAfterGetRecord()
     begin
-        WorkDescription := Rec.GetWorkDescription();
+        //WorkDescription := Rec.GetWorkDescription();
     end;
 }
