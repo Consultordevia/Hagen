@@ -270,10 +270,13 @@ Table 50047 "Inventario PMP"
 
     keys
     {
-        key(Key1; "Journal Template Name", "Line No.")
+        key(Key1; "Journal Template Name", "Line No.")        
         {
             Clustered = true;
             MaintainSIFTIndex = false;
+        }
+        key(Key2; "Item No.","Posting Date")        
+        {            
         }
     }
 
