@@ -20,7 +20,7 @@ Page 50099 "Pantalla almacen Pascual5"
     PageType = List;
     SourceTable = "Sales Header";
     SourceTableView = sorting("Document Type", "Estado pedido", "Super urgente", Urgente, "Fecha para preparar", "Hora para preparar");
-    Permissions = tabledata 110 = rmid, tabledata "Cajas por pedido" = rmid;
+    Permissions = tabledata 110 = rmid, tabledata "Cajas por pedido" = rmid, tabledata 113 = rmid, tabledata 115 = rmid;
 
     layout
     {
@@ -390,10 +390,68 @@ Page 50099 "Pantalla almacen Pascual5"
                     trigger OnAction()
                     var
                         xmlunitprice: XmlPort "Importa datos precio venta";
+                         PMP: Decimal;                         
+                         RecPMP: Record "Inventario PMP";                          
+                         Rec113: Record "Sales Invoice Line";
+                         Rec115: Record "Sales Cr.Memo Line";
+                         v: Dialog;
+                         conta: Integer;
                     begin
-                        clear(xmlunitprice);
-                        xmlunitprice.Run();
+                        /*clear(xmlunitprice);
+                        xmlunitprice.Run();                
+                        Message('hecho');*/
+                        v.Open('#1######################');
+                        conta:=0;
+
+                        rec113.Reset();;
+                        REC113.SetRange("Posting Date",20240101D,20241231D);    
+                        REC113.SetRange(type,rec113.type::Item);
+                        if Rec113.FindSet() then repeat
+                            v.Update(1,Rec113."Document No.");
+                            conta:=conta+1;
+                            if conta>1000 then begin
+                                Commit();;
+                                conta:=0;
+                            end;
+                            
+                            PMP := 0;
+                            RecPMP.RESET;
+                            RecPMP.SETCURRENTKEY(RecPMP."Item No.", RecPMP."Posting Date");
+                            RecPMP.SETRANGE(RecPMP."Item No.", rec113."No.");
+                            RecPMP.SETRANGE(RecPMP."Posting Date", 0D, Rec113."Posting Date");
+                            IF RecPMP.FINDLAST THEN BEGIN
+                                PMP := RecPMP."Unit Cost";
+                            END;
+                            rec113."Unit Cost (LCY)":=pmp;
+                            rec113.Modify;
+                        until rec113.next=0;
+
+                        rec115.Reset();;
+                        REC115.SetRange("Posting Date",20240101D,20241231D);    
+                        REC115.SetRange(type,rec115.type::Item);
+                        if Rec115.FindSet() then repeat
+                        v.Update(1,Rec115."Document No.");
+                        if conta>1000 then begin
+                                Commit();;
+                                conta:=0;
+                            end;
+                            
+                            PMP := 0;
+                            RecPMP.RESET;
+                            RecPMP.SETCURRENTKEY(RecPMP."Item No.", RecPMP."Posting Date");
+                            RecPMP.SETRANGE(RecPMP."Item No.", rec115."No.");
+                            RecPMP.SETRANGE(RecPMP."Posting Date", 0D, Rec115."Posting Date");
+                            IF RecPMP.FINDLAST THEN BEGIN
+                                PMP := RecPMP."Unit Cost";
+                            END;
+                            rec115."Unit Cost (LCY)":=pmp;
+                            rec115.Modify;
+                        until rec115.next=0;
+                        v.Close();
                         Message('hecho');
+
+
+
 
                     end;
                 }
@@ -876,6 +934,8 @@ Page 50099 "Pantalla almacen Pascual5"
                         LineasPedidosexpedicion.Run;
                     end;
                 }
+
+                
             }
         }
     }

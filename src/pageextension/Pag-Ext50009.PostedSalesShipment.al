@@ -178,6 +178,9 @@ pageextension 50009 "Posted Sales Shipment" extends "Posted Sales Shipments"
 
     trigger OnAfterGetRecord()
 
+    var
+        PMP: Decimal;
+        RecPMP: Record "Inventario PMP";
 
     begin
         Customer.INIT;
@@ -192,7 +195,16 @@ pageextension 50009 "Posted Sales Shipment" extends "Posted Sales Shipments"
         SalesShipmentLine.SETRANGE(SalesShipmentLine."Document No.", Rec."No.");
         IF SalesShipmentLine.FINDFIRST THEN
             REPEAT
-                ImporteCoste := ImporteCoste + SalesShipmentLine."Unit Cost (LCY)" * SalesShipmentLine."Quantity (Base)";
+                PMP := 0;
+                RecPMP.RESET;
+                RecPMP.SETCURRENTKEY(RecPMP."Item No.", RecPMP."Posting Date");
+                RecPMP.SETRANGE(RecPMP."Item No.", SalesShipmentLine."No.");
+                RecPMP.SETRANGE(RecPMP."Posting Date", 0D, SalesShipmentLine."Posting Date");
+                IF RecPMP.FINDLAST THEN BEGIN
+                    PMP := RecPMP."Unit Cost";
+                END;
+
+                ImporteCoste := ImporteCoste + PMP * SalesShipmentLine."Quantity (Base)";
 
 
 
