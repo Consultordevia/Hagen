@@ -10,7 +10,14 @@
   "help": "",
   "url": "",
   "logo": "",
-  "dependencies": [],
+  "dependencies": [
+    {
+      "appId": "5afd1556-4470-43bf-aa2d-d58f23e00e90",
+      "name": "FTP Agent",
+      "publisher": "Vffice",
+      "version": "1.0.0.2"
+    }
+  ],
   "screenshots": [],
   "platform": "1.0.0.0",
   "application": "24.0.0.0",
