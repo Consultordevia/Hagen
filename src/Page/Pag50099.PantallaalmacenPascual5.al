@@ -525,26 +525,20 @@ Page 50099 "Pantalla almacen Pascual5"
                         RecHFV: Record "Sales Invoice Header";
                         RecCust: record Customer;
                         Rec222: Record 222;
+                        v: Dialog;
 
                     begin
-                        /*
+                        v.open('#1###########################');
                         if RecCust.FindFirst() then repeat
-                            if RecCust."Enviar a Web" then begin
-                                if RecCust."Phone No."='' then begin
-                                    Rec222.Reset();
-                                    Rec222.SetRange("Customer No.",RecCust."No.");
-                                    Rec222.SetRange(Dir_Shopyfi,true);
-                                    if Rec222.FindFirst() then begin
-                                        RecCust."Phone No.":=Rec222."Phone No.";
-                                        RecCust."Mobile Phone No.":=Rec222."Phone No.";
-                                        RecCust.Modify();
-                                    end;
-
-                                end;
+                        v.Update(1,RecCust."No.");                        
+                            if RecCust."Nº movil"='617285625' then begin
+                                RecCust."Nº movil":='';
+                                RecCust.Modify();                                
                             end;
                         until RecCust.next=0;
+                        v.Close();
                         Message('hecho');
-                        */
+                        
                         /*IF RecItem.FindFirst() THEN repeat
                             RecItem.CalcFields("PVP-Web2");
                             RecItem."PVP-Web":=RecItem."PVP-Web2";
@@ -557,7 +551,7 @@ Page 50099 "Pantalla almacen Pascual5"
                         //if RecHFV.FindFirst then repeat
                         //  Automaticos.ENVIAREMIALFACTURAS(RecHFV);
                         //until RecHFV.next=0;
-                        Message('hecho');
+                        
 
                         /*
                         RecItem.RESET;
@@ -573,7 +567,7 @@ Page 50099 "Pantalla almacen Pascual5"
                                 
                             until RecItem.next = 0;
                             */
-                        Message('hecho');
+                         
 
                     end;
                 }
