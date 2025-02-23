@@ -719,13 +719,13 @@ codeunit 50002 Eventos
         //SalesInvoiceHeader: Record "Sales Invoice Header";
         RecClie: Record Customer;
     begin
-        RecClie.Get(SalesInvoiceHeader."Sell-to Customer No.");
+        /*RecClie.Get(SalesInvoiceHeader."Sell-to Customer No.");
         if RecClie."No Enviar factura en exp." = true then begin
             Report.Run(50907, false, false, SalesInvoiceHeader);
         end;
         if RecClie."No Enviar factura en exp." = false then begin
             Report.Run(50063, false, false, SalesInvoiceHeader);
-        end;
+        end;*/
     end;
 
     [EventSubscriber(ObjectType::Table, 5404, 'OnAfterCalcCubage', '', false, false)]

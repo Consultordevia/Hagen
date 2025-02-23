@@ -2,7 +2,11 @@
   "id": "4c82943b-44ff-4cd2-9606-25a7de64c606",
   "name": "Hagen",
   "publisher": "DevConsultIA",
+<<<<<<< HEAD
   "version": "1.0.0.980",
+=======
+  "version": "1.0.0.979",
+>>>>>>> 8a5321ef038fdb8964f64f7ca30f136a011ea6f1
     "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -10,7 +14,14 @@
   "help": "",
   "url": "",
   "logo": "",
-  "dependencies": [],
+  "dependencies": [
+    {
+      "appId": "5afd1556-4470-43bf-aa2d-d58f23e00e90",
+      "name": "FTP Agent",
+      "publisher": "Vffice",
+      "version": "1.0.0.2"
+    }
+  ],
   "screenshots": [],
   "platform": "1.0.0.0",
   "application": "24.0.0.0",
