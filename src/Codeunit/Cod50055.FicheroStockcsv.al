@@ -1563,6 +1563,22 @@ Codeunit 50055 "Fichero Stock.csv"
 
 
 
+
+/*
+/////-SalesInvHeader2.Reset;
+                /////-SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
+                /////-if SalesInvHeader2.FindFirst then begin
+                    /////-Report.SaveAsExcel(50914, FileDirectoryexcel, SalesInvHeader2);
+                /////-end;
+
+*/
+
+
+
+
+
+
+
     end;
 }
 
