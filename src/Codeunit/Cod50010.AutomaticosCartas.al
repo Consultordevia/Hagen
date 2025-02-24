@@ -12357,7 +12357,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         PdfDocPath: Text;
         Path: Text;
         txtCC: Text;
-        RepItemTemporal: REPORT 1306;
+        RepItemTemporal: REPORT 50914;
 
 
 
