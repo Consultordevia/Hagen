@@ -38,11 +38,12 @@ codeunit 50006 SubirFicherosFTP
                 repInforme.SetTableView(SalesInvHeader2);
                 repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                 fileName := SalesInvHeader2."No." + '.PDF';
-                if not ftp.FtpUpload('HAGEN', fileName, InStream, Errort) then
-                    Error(ErrorT);
-                SalesInvHeader2.get(SalesInvHeader."No.");
-                SalesInvHeader2.FicheroFTP := true;
-                SalesInvHeader2.Modify();
+                if ftp.FtpUpload('HAGEN', fileName, InStream, Errort) then begin
+                    //Error(ErrorT);
+                    SalesInvHeader2.get(SalesInvHeader."No.");
+                    SalesInvHeader2.FicheroFTP := true;
+                    SalesInvHeader2.Modify();
+                end;
                 Commit;
             until SalesInvHeader.Next() = 0;
         end;
@@ -64,11 +65,12 @@ codeunit 50006 SubirFicherosFTP
                 Albaran.SetTableView(SalesShipmentHeader2);
                 Albaran.SaveAs('', ReportFormat::Pdf, OutStream);
                 fileName := SalesShipmentHeader2."No." + '.PDF';
-                if not ftp.FtpUpload('HAGEN', fileName, InStream, Errort) then
-                    Error(ErrorT);
-                SalesShipmentHeader2.get(SalesShipmentHeader."No.");
-                SalesShipmentHeader2.FicheroFTP := true;
-                SalesShipmentHeader2.Modify();
+                if not ftp.FtpUpload('HAGEN', fileName, InStream, Errort) then begin
+                    //Error(ErrorT);
+                    SalesShipmentHeader2.get(SalesShipmentHeader."No.");
+                    SalesShipmentHeader2.FicheroFTP := true;
+                    SalesShipmentHeader2.Modify();
+                end;
                 Commit;
             until SalesShipmentHeader.Next() = 0;
         end;
@@ -90,11 +92,12 @@ codeunit 50006 SubirFicherosFTP
                 Abono.SetTableView(SalesCrMemoHeader2);
                 Abono.SaveAs('', ReportFormat::Pdf, OutStream);
                 fileName := SalesCrMemoHeader2."No." + '.PDF';
-                if not ftp.FtpUpload('HAGEN', fileName, InStream, Errort) then
-                    Error(ErrorT);
-                SalesCrMemoHeader2.get(SalesCrMemoHeader."No.");
-                SalesCrMemoHeader2.FicheroFTP := true;
-                SalesCrMemoHeader2.Modify();
+                if ftp.FtpUpload('HAGEN', fileName, InStream, Errort) then begin
+                    //Error(ErrorT);
+                    SalesCrMemoHeader2.get(SalesCrMemoHeader."No.");
+                    SalesCrMemoHeader2.FicheroFTP := true;
+                    SalesCrMemoHeader2.Modify();
+                end;
                 Commit;
             until SalesCrMemoHeader.Next() = 0;
         end;
