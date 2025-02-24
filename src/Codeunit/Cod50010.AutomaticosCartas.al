@@ -12349,14 +12349,15 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         RecVende: Record "Salesperson/Purchaser";
         rut: Text[1000];
         ArchExt22: Text[1000];
-        repInforme: report 50914;
+        //// repInforme: report 50914;
+        repInforme: report 1306;
         SalesInvHeader: Record "Sales Invoice Header";
         txtDestinatario: List of [Text]; //BC20
         txtSubject: Text;
         PdfDocPath: Text;
         Path: Text;
         txtCC: Text;
-        RepItemTemporal: REPORT "OK FACTURA CANARIAS2";
+        RepItemTemporal: REPORT 1306;
 
 
 
@@ -13121,7 +13122,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
                 if RecVende.Get(SalesInvHeader."Salesperson Code") then begin
                     if RecVende."E-Mail" <> '' then begin
-                        Recipient := RecVende."E-Mail";
+                        /////Recipient := RecVende."E-Mail";
                         /////-Clear(SMTP);
                         /////-SMTP.Run;
                         /////-SMTP.CreateMessage(SenderName, SenderAddress, Recipient, Subject, Body, true);
@@ -13138,7 +13139,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         if SalesInvHeader2.FindFirst then begin
                             ///txtOrigen := 'facturacion@hagen.es';
                             ///txtDestinatario.Add(Recipient);
-                            txtDestinatario.Add('oscarraea@hotmail.com');
+                            //// txtDestinatario.Add('oscarraea@hotmail.com');
+                            Recipient := 'oscarraea@hotmail.com';
                             Clear(TempBlob);
                             Clear(OutStream);
                             Clear(InStream);
