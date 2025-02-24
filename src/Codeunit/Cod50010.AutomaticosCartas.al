@@ -13157,6 +13157,9 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             IF ADAIA.FindSet() THEN begin
                                 nomdir := ADAIA.Ruta;
                             end;
+                            Clear(TempBlob);
+                            Clear(OutStream);
+                            Clear(InStream);
                             Clear(RepItemTemporal);
                             RepItemTemporal.SetTableView(SalesInvHeader2);
                             RepItemTemporal.UseRequestPage(false);
@@ -13166,7 +13169,6 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
                             tempBlob.CreateInStream(InStream);
                             fileName := SalesInvHeader2."No." + '.xlsx';
-                            FicherosHagen.CrearFichero(nomdir, fileName, InStream);
                             BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
 
 
