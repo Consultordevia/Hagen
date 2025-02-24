@@ -13165,9 +13165,9 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                 Error('ERROR');
 
                             tempBlob.CreateInStream(InStream);
-                            fileName := SalesInvHeader2."No." + '.xls';
+                            fileName := SalesInvHeader2."No." + '.xlsx';
                             FicherosHagen.CrearFichero(nomdir, fileName, InStream);
-                            BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLS', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                            BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
 
 
 
