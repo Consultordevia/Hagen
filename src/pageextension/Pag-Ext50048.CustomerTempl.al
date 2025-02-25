@@ -20,6 +20,7 @@ pageextension 50048 CustomerTempl extends "Customer Templ. Card"
             field("Respeta Tipo facturacion"; Rec."Respeta Tipo facturacion") { ApplicationArea = All; }
             field("Tipo Factura SII"; Rec."Tipo Factura SII") { ApplicationArea = All; }
             field("Permite fraccionar unidad de venta"; Rec."Permite fraccionar unidad de venta") { ApplicationArea = All; }
+            field("No enviar excel"; Rec."No enviar excel") { ApplicationArea = All; }
 
 
 

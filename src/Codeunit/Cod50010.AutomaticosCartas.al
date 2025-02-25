@@ -12350,7 +12350,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         rut: Text[1000];
         ArchExt22: Text[1000];
         //// repInforme: report 50914;
-        repInforme: report 1306;
+        repInforme: report 50914;
         SalesInvHeader: Record "Sales Invoice Header";
         txtDestinatario: List of [Text]; //BC20
         txtSubject: Text;
@@ -12772,7 +12772,30 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         /////Recipient := 'oscarraea@hotmail.com';
                         clear(txtDestinatario);
                         txtDestinatario.Add(Recipient);
-                        /////BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                        BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                        if RecCust."No enviar excel"=false then begin
+                                nomdir := '';
+                                ADAIA.Reset();
+                                ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
+                                IF ADAIA.FindSet() THEN begin
+                                    nomdir := ADAIA.Ruta;
+                                end;
+                            
+                                Clear(TempBlob);
+                                Clear(OutStream);
+                                Clear(InStream);
+                                Clear(RepItemTemporal);
+                                RepItemTemporal.SetTableView(SalesInvHeader2);
+                                RepItemTemporal.UseRequestPage(false);
+                                TempBlob.CreateOutStream(OutStream);
+                                if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
+                                    Error('ERROR');
+
+                                tempBlob.CreateInStream(InStream);
+                                fileName := SalesInvHeader2."No." + '.xlsx';
+                                BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                            end;
+
                     end;
 
 
@@ -12905,7 +12928,30 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                         fileName := SalesInvHeader2."No." + '.PDF';
                         /////message('2 %1', SalesInvHeader."No.");
-                        /////BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                        BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                        if RecCust."No enviar excel"=false then begin
+                                nomdir := '';
+                                ADAIA.Reset();
+                                ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
+                                IF ADAIA.FindSet() THEN begin
+                                    nomdir := ADAIA.Ruta;
+                                end;
+                            
+                                Clear(TempBlob);
+                                Clear(OutStream);
+                                Clear(InStream);
+                                Clear(RepItemTemporal);
+                                RepItemTemporal.SetTableView(SalesInvHeader2);
+                                RepItemTemporal.UseRequestPage(false);
+                                TempBlob.CreateOutStream(OutStream);
+                                if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
+                                    Error('ERROR');
+
+                                tempBlob.CreateInStream(InStream);
+                                fileName := SalesInvHeader2."No." + '.xlsx';
+                                BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                            end;
+
                     end;
 
                     if RecCust."Adjuntar pub. facturacion 2" then begin
@@ -13021,7 +13067,31 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         repInforme.SetTableView(SalesInvHeader2);
                         repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                         fileName := SalesInvHeader2."No." + '.PDF';
-                        /////BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                        BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+
+                        if RecCust."No enviar excel"=false then begin
+                                nomdir := '';
+                                ADAIA.Reset();
+                                ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
+                                IF ADAIA.FindSet() THEN begin
+                                    nomdir := ADAIA.Ruta;
+                                end;
+                            
+                                Clear(TempBlob);
+                                Clear(OutStream);
+                                Clear(InStream);
+                                Clear(RepItemTemporal);
+                                RepItemTemporal.SetTableView(SalesInvHeader2);
+                                RepItemTemporal.UseRequestPage(false);
+                                TempBlob.CreateOutStream(OutStream);
+                                if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
+                                    Error('ERROR');
+
+                                tempBlob.CreateInStream(InStream);
+                                fileName := SalesInvHeader2."No." + '.xlsx';
+                                BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                            end;
+
                     end;
 
                     if RecCust."Adjuntar pub. facturacion 1" then begin
@@ -13122,7 +13192,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
                 if RecVende.Get(SalesInvHeader."Salesperson Code") then begin
                     if RecVende."E-Mail" <> '' then begin
-                        /////Recipient := RecVende."E-Mail";
+                        Recipient := RecVende."E-Mail";
                         /////-Clear(SMTP);
                         /////-SMTP.Run;
                         /////-SMTP.CreateMessage(SenderName, SenderAddress, Recipient, Subject, Body, true);
@@ -13140,7 +13210,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             ///txtOrigen := 'facturacion@hagen.es';
                             ///txtDestinatario.Add(Recipient);
                             //// txtDestinatario.Add('oscarraea@hotmail.com');
-                            Recipient := 'oscarraea@hotmail.com';
+                            /////Recipient := 'oscarraea@hotmail.com';
                             Clear(TempBlob);
                             Clear(OutStream);
                             Clear(InStream);
@@ -13153,25 +13223,28 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             txtDestinatario.Add(Recipient);
                             BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
 
-                            nomdir := '';
-                            ADAIA.Reset();
-                            ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
-                            IF ADAIA.FindSet() THEN begin
-                                nomdir := ADAIA.Ruta;
-                            end;
-                            Clear(TempBlob);
-                            Clear(OutStream);
-                            Clear(InStream);
-                            Clear(RepItemTemporal);
-                            RepItemTemporal.SetTableView(SalesInvHeader2);
-                            RepItemTemporal.UseRequestPage(false);
-                            TempBlob.CreateOutStream(OutStream);
-                            if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
-                                Error('ERROR');
+                            if RecCust."No enviar excel"=false then begin
+                                nomdir := '';
+                                ADAIA.Reset();
+                                ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
+                                IF ADAIA.FindSet() THEN begin
+                                    nomdir := ADAIA.Ruta;
+                                end;
+                            
+                                Clear(TempBlob);
+                                Clear(OutStream);
+                                Clear(InStream);
+                                Clear(RepItemTemporal);
+                                RepItemTemporal.SetTableView(SalesInvHeader2);
+                                RepItemTemporal.UseRequestPage(false);
+                                TempBlob.CreateOutStream(OutStream);
+                                if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
+                                    Error('ERROR');
 
-                            tempBlob.CreateInStream(InStream);
-                            fileName := SalesInvHeader2."No." + '.xlsx';
-                            BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                                tempBlob.CreateInStream(InStream);
+                                fileName := SalesInvHeader2."No." + '.xlsx';
+                                BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                            end;
 
 
 
@@ -13183,9 +13256,9 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
                 SalesInvHeader3.Get(SalesInvHeader."No.");
-                /////SalesInvHeader3."Email enviado" := true;
-                /////SalesInvHeader3."Fecha enviado" := Today;
-                /////SalesInvHeader3."Hora enviado" := Time;
+                SalesInvHeader3."Email enviado" := true;
+                SalesInvHeader3."Fecha enviado" := Today;
+                SalesInvHeader3."Hora enviado" := Time;
                 SalesInvHeader3.Modify;
 
             until SalesInvHeader.Next = 0;

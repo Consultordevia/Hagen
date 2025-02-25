@@ -842,6 +842,9 @@ codeunit 50002 Eventos
             if RecTransp."Sacar etiqueta envio GRA" then begin
                 SalesShptHeader."Imprime eti. envio" := true;
             end;
+            if SalesShptHeader."Nº expedición dropshp"<>'' then begin
+               SalesShptHeader."Nº expedición":=SalesShptHeader."Nº expedición dropshp";
+            end;
 
 
             if RecTransp."Link transporte" = '' then begin
@@ -945,6 +948,10 @@ codeunit 50002 Eventos
             SalesInvHeader."CSV Enviar" := RecClie."Factura CSV";
 
         end;
+        if SalesInvHeader."Nº expedición dropshp"<>'' then begin
+               SalesInvHeader."Nº expedición":=SalesInvHeader."Nº expedición dropshp";
+            end;
+
         if RecTransp.Get(SalesInvHeader."Shipping Agent Code") then begin
             if RecTransp."Link transporte" = '' then begin
                 if COMPANYNAME = 'PEPE' then begin

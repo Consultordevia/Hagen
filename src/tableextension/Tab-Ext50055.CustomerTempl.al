@@ -40,5 +40,9 @@ tableextension 50055 CustomerTempl extends "Customer Templ."
         field(50176; "Permite fraccionar unidad de venta"; Boolean)
         {
         }
+        field(50005; "No enviar excel"; Boolean)
+        {
+        }
+        
     }
 }

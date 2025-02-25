@@ -16,7 +16,7 @@ Codeunit 50049 "Envio emails Facturas canarias"
         SalesInvHeader.SetCurrentkey(SalesInvHeader."Enviar email", SalesInvHeader."Email enviado");
         SalesInvHeader.SetRange(SalesInvHeader."Enviar email", true);
         SalesInvHeader.SETRANGE("Posting Date", 20250201D, TODAY);
-        /////SalesInvHeader.SetRange(SalesInvHeader."Email enviado", false);
+        SalesInvHeader.SetRange(SalesInvHeader."Email enviado", false);
         if SalesInvHeader.FindFirst() then
             repeat
                 if RecClie.geT(SalesInvHeader."Bill-to Customer No.") then begin
