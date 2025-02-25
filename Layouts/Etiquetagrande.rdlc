@@ -468,11 +468,32 @@ fgeHVghbha6tAwrCcq/ZW5QDmejFgaqSRuUmecSMjv7zb5Srfv9XuD2pqrRT3m2KtspvTrKdQeb5
   <DataSets>
     <DataSet Name="DataSet_Result">
       <Fields>
-        <Field Name="Bulto_">
-          <DataField>Bulto_</DataField>
+        <Field Name="ReportForNavId_1">
+          <DataField>ReportForNavId_1</DataField>
         </Field>
-        <Field Name="V_">
-          <DataField>V_</DataField>
+        <Field Name="ReportForNavId_2">
+          <DataField>ReportForNavId_2</DataField>
+        </Field>
+        <Field Name="SalesShipmentHeaderSell_toCustomerNo__CustAddr1">
+          <DataField>SalesShipmentHeaderSell_toCustomerNo__CustAddr1</DataField>
+        </Field>
+        <Field Name="SalesShipmentHeaderShip_toPostCode__SalesShipmentHeaderShip_">
+          <DataField>SalesShipmentHeaderShip_toPostCode__SalesShipmentHeaderShip_</DataField>
+        </Field>
+        <Field Name="SalesShipmentHeaderShip_toAddress__SalesShipmentHeaderShip_t">
+          <DataField>SalesShipmentHeaderShip_toAddress__SalesShipmentHeaderShip_t</DataField>
+        </Field>
+        <Field Name="Telefono__TELEFONO">
+          <DataField>Telefono__TELEFONO</DataField>
+        </Field>
+        <Field Name="SalesShipmentHeaderShip_toCountry_RegionCode__SalesShipmentH">
+          <DataField>SalesShipmentHeaderShip_toCountry_RegionCode__SalesShipmentH</DataField>
+        </Field>
+        <Field Name="Totalbultos__FORMAT_SalesShipmentHeaderTotalbultos__FORMAT_c">
+          <DataField>Totalbultos__FORMAT_SalesShipmentHeaderTotalbultos__FORMAT_c</DataField>
+        </Field>
+        <Field Name="Noexpedicion__SalesShipmentHeaderNoexpedicion">
+          <DataField>Noexpedicion__SalesShipmentHeaderNoexpedicion</DataField>
         </Field>
         <Field Name="SalesHeaderTotalbultos">
           <DataField>SalesHeaderTotalbultos</DataField>
@@ -512,9 +533,6 @@ fgeHVghbha6tAwrCcq/ZW5QDmejFgaqSRuUmecSMjv7zb5Srfv9XuD2pqrRT3m2KtspvTrKdQeb5
         </Field>
         <Field Name="SalesHeaderNoexpedicion">
           <DataField>SalesHeaderNoexpedicion</DataField>
-        </Field>
-        <Field Name="nomcomercial">
-          <DataField>nomcomercial</DataField>
         </Field>
       </Fields>
       <Query>

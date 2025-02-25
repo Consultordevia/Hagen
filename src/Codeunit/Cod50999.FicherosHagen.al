@@ -327,6 +327,10 @@ codeunit 50999 FicherosHagen
                     if Tipo = Tipo::GLS then begin
                         Xmlport.Import(Xmlport::"Importacion GLS", InStream);
                     end;
+                    if Tipo = Tipo::MRW then begin
+                        Xmlport.Import(Xmlport::"Importacion MRW", InStream);
+                    end;
+                    
                     if Tipo = Tipo::CORREOS then begin
                         Xmlport.Import(Xmlport::"Importacion CORREOS", InStream);
                     end;

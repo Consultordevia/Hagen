@@ -95,6 +95,9 @@ enum 50000 Ficherets
     {
         Caption = 'EDICOMLIN';
     }
-    
+    value(31; MRW)
+    {
+        Caption = 'MRW';
+    }
     
 }
