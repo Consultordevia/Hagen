@@ -7310,7 +7310,6 @@ Cstr(Fields!CACCaption.Value)
                                 </Filter>
                               </Filters>
                               <Top>3.34297cm</Top>
-                              <Left>4.35241cm</Left>
                               <Height>6.64026cm</Height>
                               <Width>11.4288cm</Width>
                               <ZIndex>7</ZIndex>
@@ -8911,7 +8910,6 @@ Cstr(Fields!CACCaption.Value)
               <Source>Embedded</Source>
               <Value>Piecanarias</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0cm</Top>
               <Left>0.94821cm</Left>
               <Height>0.98564cm</Height>
               <Width>14.0895cm</Width>

@@ -4205,7 +4205,7 @@ OutStream.Write('Tercera línea después del salto');
         if Rec110."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
@@ -4902,7 +4902,7 @@ OutStream.Write('Tercera línea después del salto');
         if Rec110."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
@@ -5080,7 +5080,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec110."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
@@ -5261,7 +5261,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec110."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
@@ -5452,7 +5452,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec110."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
@@ -5624,7 +5624,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec110."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
@@ -5803,7 +5803,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec110."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
@@ -6002,7 +6002,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec112."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec112."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec112."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec112."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
@@ -6208,7 +6208,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec112."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec112."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec112."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec112."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
@@ -6434,7 +6434,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec112."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec112."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec112."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec112."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
@@ -6656,7 +6656,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec112."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec112."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec112."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec112."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
@@ -6939,7 +6939,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec110."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
@@ -7144,7 +7144,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec110."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
@@ -7367,7 +7367,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec110."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
@@ -7585,7 +7585,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec110."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
@@ -7814,7 +7814,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec110."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
@@ -11439,7 +11439,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             if Rec1102.FindFirst then begin
                                 if Rec1102."Bill-to Customer No." <> '6445' then begin
                                     clear(txtDestinatario);
-                                    txtDestinatario.Add(Recipient);                                     
+                                    txtDestinatario.Add(Recipient);
                                     ///txtDestinatario.Add('oscarraea@hotmail.com');
                                     Clear(TempBlob);
                                     Clear(OutStream);
@@ -11454,7 +11454,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                 end;
                                 if Rec1102."Bill-to Customer No." = '6445' then begin
                                     clear(txtDestinatario);
-                                    txtDestinatario.Add(Recipient);                                     
+                                    txtDestinatario.Add(Recipient);
                                     ////txtDestinatario.Add('oscarraea@hotmail.com');
                                     Clear(TempBlob);
                                     Clear(OutStream);
@@ -11898,7 +11898,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec110."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
@@ -12349,13 +12349,15 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         RecVende: Record "Salesperson/Purchaser";
         rut: Text[1000];
         ArchExt22: Text[1000];
-        repInforme: report 50914;
+        //// repInforme: report 50914;
+        repInforme: report 1306;
         SalesInvHeader: Record "Sales Invoice Header";
         txtDestinatario: List of [Text]; //BC20
         txtSubject: Text;
         PdfDocPath: Text;
         Path: Text;
         txtCC: Text;
+        RepItemTemporal: REPORT 50914;
 
 
 
@@ -12730,7 +12732,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                 /////-SalesInvHeader2.Reset;
                 /////-SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
                 /////-if SalesInvHeader2.FindFirst then begin
-                    /////-Report.SaveAsPdf(50914, FileDirectory, SalesInvHeader2);
+                /////-Report.SaveAsPdf(50914, FileDirectory, SalesInvHeader2);
                 /////-end;
 
                 FileDirectoryexcel := 'F:\NavisionPdfs\' + SalesInvHeader."No." + '.xls';
@@ -12739,7 +12741,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                 /////-SalesInvHeader2.Reset;
                 /////-SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
                 /////-if SalesInvHeader2.FindFirst then begin
-                    /////-Report.SaveAsExcel(50914, FileDirectoryexcel, SalesInvHeader2);
+                /////-Report.SaveAsExcel(50914, FileDirectoryexcel, SalesInvHeader2);
                 /////-end;
 
 
@@ -12754,10 +12756,10 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                 SenderAddress := REC91."E-Mail";
                 if RecCust."Email facturacion 1" <> '' then begin
                     Recipient := RecCust."Email facturacion 1";
-                    
+
                     SalesInvHeader2.Reset;
                     SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
-                    if SalesInvHeader2.FindFirst then begin                                              
+                    if SalesInvHeader2.FindFirst then begin
                         Clear(TempBlob);
                         Clear(OutStream);
                         Clear(InStream);
@@ -12766,11 +12768,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         clear(repInforme);
                         repInforme.SetTableView(SalesInvHeader2);
                         repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
-                        fileName := SalesInvHeader2."No." + '.PDF';                        
+                        fileName := SalesInvHeader2."No." + '.PDF';
                         /////Recipient := 'oscarraea@hotmail.com';
                         clear(txtDestinatario);
-                        txtDestinatario.Add(Recipient);                         
-                        BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                        txtDestinatario.Add(Recipient);
+                        /////BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                     end;
 
 
@@ -12903,7 +12905,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                         fileName := SalesInvHeader2."No." + '.PDF';
                         /////message('2 %1', SalesInvHeader."No.");
-                        BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                        /////BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                     end;
 
                     if RecCust."Adjuntar pub. facturacion 2" then begin
@@ -13019,8 +13021,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         repInforme.SetTableView(SalesInvHeader2);
                         repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                         fileName := SalesInvHeader2."No." + '.PDF';
-                        /////message('3 %1', SalesInvHeader."No.");
-                        BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                        /////BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                     end;
 
                     if RecCust."Adjuntar pub. facturacion 1" then begin
@@ -13117,13 +13118,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
                     end;
-                    /////-SMTP.Send;
-                    /////-Clear(SMTP);
                 end;
 
                 if RecVende.Get(SalesInvHeader."Salesperson Code") then begin
                     if RecVende."E-Mail" <> '' then begin
-                        Recipient := RecVende."E-Mail";
+                        /////Recipient := RecVende."E-Mail";
                         /////-Clear(SMTP);
                         /////-SMTP.Run;
                         /////-SMTP.CreateMessage(SenderName, SenderAddress, Recipient, Subject, Body, true);
@@ -13140,7 +13139,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         if SalesInvHeader2.FindFirst then begin
                             ///txtOrigen := 'facturacion@hagen.es';
                             ///txtDestinatario.Add(Recipient);
-                            /////txtDestinatario.Add('oscarraea@hotmail.com');
+                            //// txtDestinatario.Add('oscarraea@hotmail.com');
+                            Recipient := 'oscarraea@hotmail.com';
                             Clear(TempBlob);
                             Clear(OutStream);
                             Clear(InStream);
@@ -13151,8 +13151,30 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             repInforme.SaveAs('', ReportFormat::Pdf, OutStream);
                             fileName := SalesInvHeader2."No." + '.PDF';
                             txtDestinatario.Add(Recipient);
-                            /// message('4 %1', SalesInvHeader."No.");
                             BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+
+                            nomdir := '';
+                            ADAIA.Reset();
+                            ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
+                            IF ADAIA.FindSet() THEN begin
+                                nomdir := ADAIA.Ruta;
+                            end;
+                            Clear(TempBlob);
+                            Clear(OutStream);
+                            Clear(InStream);
+                            Clear(RepItemTemporal);
+                            RepItemTemporal.SetTableView(SalesInvHeader2);
+                            RepItemTemporal.UseRequestPage(false);
+                            TempBlob.CreateOutStream(OutStream);
+                            if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
+                                Error('ERROR');
+
+                            tempBlob.CreateInStream(InStream);
+                            fileName := SalesInvHeader2."No." + '.xlsx';
+                            BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+
+
+
                         end;
 
                     end;
@@ -13160,11 +13182,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
 
-            SalesInvHeader3.Get(SalesInvHeader."No.");
-            SalesInvHeader3."Email enviado" := true;
-            SalesInvHeader3."Fecha enviado" := Today;
-            SalesInvHeader3."Hora enviado" := Time;
-            SalesInvHeader3.Modify;
+                SalesInvHeader3.Get(SalesInvHeader."No.");
+                /////SalesInvHeader3."Email enviado" := true;
+                /////SalesInvHeader3."Fecha enviado" := Today;
+                /////SalesInvHeader3."Hora enviado" := Time;
+                SalesInvHeader3.Modify;
 
             until SalesInvHeader.Next = 0;
 
@@ -13405,7 +13427,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec110."Nº expedición agrupada" <> '' then begin
             OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
         end;
-        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte",1,40);
+        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte", 1, 40);
         OBSERV1 := CopyStr(OBSERV1, 1, 40);
 
         OBSERV2 := '';
