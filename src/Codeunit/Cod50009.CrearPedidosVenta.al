@@ -14,7 +14,7 @@ codeunit 50009 CrearPedidosVenta
                     CabVenta.CreadoSalesHeader := true;
                     CabVenta.Error := '';
                     CabVenta.Modify();
-                    //Commit();
+                    Commit();
                 end else begin
                     CabVenta.Error := GetLastErrorText();
                     CabVenta.Modify();
@@ -31,7 +31,7 @@ codeunit 50009 CrearPedidosVenta
                     LinVenta.Error := '';
                     LinVenta.CreadoSalesHeader := true;
                     LinVenta.Modify();
-                    //Commit();
+                    Commit();
                 end else begin
                     LinVenta.Error := GetLastErrorText();
                     LinVenta.Modify();
@@ -99,6 +99,7 @@ codeunit 50009 CrearPedidosVenta
         field.SetRange(TableNo, Database::"Sales Line");
         field.SetRange(ObsoleteState, Field.ObsoleteState::No);
         Field.SetRange(class, Field.class::Normal);
+        Field.SetFilter("No.", '<>77');
         if Field.FindSet() then begin
             repeat
                 FieldDestino.reset;
@@ -106,7 +107,7 @@ codeunit 50009 CrearPedidosVenta
                 FieldDestino.SetRange("No.", Field."No.");
                 FieldDestino.SetRange(ObsoleteState, Field.ObsoleteState::No);
                 FieldDestino.SetRange(class, Field.class::Normal);
-                FieldDestino.SetFilter("No.", '<>77');
+                //FieldDestino.SetFilter("No.", '<>77');
                 if FieldDestino.FindFirst() then begin
                     SourceFieldRef := SourceRecordRef.Field(Field."No.");
                     if IsFieldFilled(SourceFieldRef) then begin
