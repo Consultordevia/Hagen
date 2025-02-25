@@ -32,6 +32,10 @@ XmlPort 50098 "Importacion MRW"
                 }              
                 textelement(D4)
                 {
+                }              
+
+                textelement(D5)
+                {
 
                     trigger OnAfterAssignVariable()
                     begin
@@ -230,31 +234,10 @@ XmlPort 50098 "Importacion MRW"
 
 
             fecha2:=0D;
-            if D4<>'' then begin
-                x:=0;
-                SALE:=false;
-                DDA:='';
-                repeat
-                    x:=x+1;
-                    if CopyStr(D4,x,1)='/' then begin
-                        SALE:=true;
-                    end;
-                    if CopyStr(D4,x,1)<>'/' then begin
-                        DDA:=DDA+CopyStr(D4,x,1);
-                    end;
-                until (x>=StrLen(D4)) or SALE;
-                MMA:='';
-                SALE:=false;
-                repeat
-                    x:=x+1;
-                    if CopyStr(D4,x,1)='/' then begin
-                        SALE:=true;
-                    end;
-                    if CopyStr(D4,x,1)<>'/' then begin
-                        MMA:=MMA+CopyStr(D4,x,1);
-                    end;
-                until (x>=StrLen(D4)) or SALE;
-                AAA:=CopyStr(D4,x+1);
+            if D5<>'' then begin
+                DDA:=CopyStr(D5,1,2);
+                MMA:=CopyStr(D5,4,2);                
+                AAA:=CopyStr(D5,7,4);
                 Evaluate(DD,DDA);
                 Evaluate(MM,MMA);
                 Evaluate(AA,AAA);
@@ -275,7 +258,7 @@ XmlPort 50098 "Importacion MRW"
 
         choras:='';
         totalhoras:=0;
-        DDH:=CopyStr(D4,12,5);
+        DDH:=CopyStr(D5,12,5);
 
 
         if DDH<>'' then begin
