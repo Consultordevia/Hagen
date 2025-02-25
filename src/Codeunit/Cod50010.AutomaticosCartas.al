@@ -304,7 +304,8 @@ Codeunit 50010 "Automaticos Cartas"
         SERVIRDABADO: Code[1];
         DESNOMa1: Text[50];
         DESNOMa2: Text[50];
-        DESNOMa3: Text[50];
+        DESNOMa3: Text[100];
+        DESNOMa33: Text[200];
         DESNOMa4: Text[50];
         totapeso: Decimal;
         codpais: Code[2];
@@ -4146,7 +4147,11 @@ OutStream.Write('Tercera línea después del salto');
             DESNOMa2 := CASCII.Ascii2Ansi(DESNOMa2);
         end;
 
-        DESNOMa3 := ConvertStr(CopyStr(Rec110."Ship-to Address", 1, 50), 'ª', '.');
+
+        DESNOMa33:= CopyStr(Rec110."Ship-to Address",1,STRLEN(Rec110."Ship-to Address"))+
+                    CopyStr(Rec110."Ship-to Address 2",1,STRLEN(Rec110."Ship-to Address 2"));
+        
+        DESNOMa3 := ConvertStr(CopyStr(DESNOMa33, 1, 100), 'ª', '.');
         DESNOMa3 := ConvertStr(DESNOMa3, 'º', '.');
         DESNOMa3 := CASCII.Ascii2Ansi(DESNOMa3);
         DESNOMa4 := ConvertStr(CopyStr(Rec110."Ship-to Address 2", 1, 50), 'ª', '.');
@@ -4342,8 +4347,8 @@ OutStream.Write('Tercera línea después del salto');
 
         TextoSalida1 := Format(DESNOMa1, 50) +
                       Format(DESNOMa2, 50) +
-                      Format(DESNOMa3, 50) +
-                      Format(DESNOMa4, 50);
+                      Format(DESNOMa3, 100);
+                      /// Format(DESNOMa4, 50);
         TextoSalida2 := Format(Rec110."Ship-to Post Code", 5) +
                       Format(Rec110."Ship-to City", 30) +
                       Format(Rec110."Ship-to County", 30) +
@@ -13439,7 +13444,10 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
             DESNOMa2 := CASCII.Ascii2Ansi(DESNOMa2);
         end;
 
-        DESNOMa3 := ConvertStr(CopyStr(SalesHeader."Ship-to Address", 1, 50), 'ª', '.');
+        DESNOMa33:= CopyStr(SalesHeader."Ship-to Address",1,STRLEN(SalesHeader."Ship-to Address"))+
+                    CopyStr(SalesHeader."Ship-to Address 2",1,STRLEN(SalesHeader."Ship-to Address 2"));
+        
+        DESNOMa3 := ConvertStr(CopyStr(DESNOMa33, 1, 100), 'ª', '.');         
         DESNOMa3 := ConvertStr(DESNOMa3, 'º', '.');
         DESNOMa3 := CASCII.Ascii2Ansi(DESNOMa3);
         DESNOMa4 := ConvertStr(CopyStr(SalesHeader."Ship-to Address 2", 1, 50), 'ª', '.');
@@ -13597,8 +13605,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         TextoSalida1 := Format(DESNOMa1, 50) +
                       Format(DESNOMa2, 50) +
-                      Format(DESNOMa3, 50) +
-                      Format(DESNOMa4, 50);
+                      Format(DESNOMa3, 100);
+                      //Format(DESNOMa4, 50);
         TextoSalida2 := Format(SalesHeader."Ship-to Post Code", 5) +
                       Format(SalesHeader."Ship-to City", 30) +
                       Format(SalesHeader."Ship-to County", 30) +
@@ -15337,7 +15345,10 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
             DESNOMa2 := CASCII.Ascii2Ansi(DESNOMa2);
         end;
 
-        DESNOMa3 := ConvertStr(CopyStr(ServiceItem."Ship-to Address", 1, 50), 'ª', '.');
+        DESNOMa33:= CopyStr(ServiceItem."Ship-to Address",1,STRLEN(ServiceItem."Ship-to Address"))+
+                    CopyStr(ServiceItem."Ship-to Address 2",1,STRLEN(ServiceItem."Ship-to Address 2"));
+        
+        DESNOMa3 := ConvertStr(CopyStr(DESNOMa33, 1, 100), 'ª', '.');                 
         DESNOMa3 := ConvertStr(DESNOMa3, 'º', '.');
         DESNOMa3 := CASCII.Ascii2Ansi(DESNOMa3);
         DESNOMa4 := ConvertStr(CopyStr(ServiceItem."Ship-to Address 2", 1, 50), 'ª', '.');
@@ -15492,8 +15503,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         TextoSalida1 := Format(DESNOMa1, 50) +
                       Format(DESNOMa2, 50) +
-                      Format(DESNOMa3, 50) +
-                      Format(DESNOMa4, 50);
+                      Format(DESNOMa3, 100); 
+                      ///Format(DESNOMa4, 50);
         TextoSalida2 := Format(ServiceItem."Ship-to Post Code", 5) +
                       Format(ServiceItem."Ship-to City", 30) +
                       Format(ServiceItem."Ship-to County", 30) +
