@@ -106,6 +106,7 @@ codeunit 50009 CrearPedidosVenta
                 FieldDestino.SetRange("No.", Field."No.");
                 FieldDestino.SetRange(ObsoleteState, Field.ObsoleteState::No);
                 FieldDestino.SetRange(class, Field.class::Normal);
+                FieldDestino.SetFilter("No.", '<>77');
                 if FieldDestino.FindFirst() then begin
                     SourceFieldRef := SourceRecordRef.Field(Field."No.");
                     if IsFieldFilled(SourceFieldRef) then begin
