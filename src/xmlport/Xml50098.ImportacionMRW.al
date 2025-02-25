@@ -17,7 +17,7 @@ XmlPort 50098 "Importacion MRW"
         textelement(root)
         {
             MinOccurs = Zero;
-            tableelement("Payment Terms";"Payment Terms")
+            tableelement("Payment Terms"; "Payment Terms")
             {
                 AutoSave = false;
                 XmlName = 'DataExchDocument';
@@ -29,10 +29,10 @@ XmlPort 50098 "Importacion MRW"
                 }
                 textelement(D3)
                 {
-                }              
+                }
                 textelement(D4)
                 {
-                }              
+                }
 
                 textelement(D5)
                 {
@@ -96,12 +96,12 @@ XmlPort 50098 "Importacion MRW"
         codconta: Code[20];
         XX: Integer;
         POSI: Integer;
-        DDD: array [42] of Decimal;
+        DDD: array[42] of Decimal;
         YY: Integer;
         LATARIFA: Code[20];
         LALAMA: Code[20];
         CUANTA1: Integer;
-        ELANCHO: array [70] of Decimal;
+        ELANCHO: array[70] of Decimal;
         ELALTO: Decimal;
         LINEAS: Integer;
         UNO: Code[255];
@@ -184,8 +184,8 @@ XmlPort 50098 "Importacion MRW"
         SkipLine := CurrentLineType <> Linetype::Data;
 
         if not SkipLine then begin
-          HeaderLineCount := 0;
-          ImportedLineNo += 1;
+            HeaderLineCount := 0;
+            ImportedLineNo += 1;
         end;
     end;
 
@@ -213,14 +213,14 @@ XmlPort 50098 "Importacion MRW"
     begin
     end;
 
-    local procedure GetFieldLength(TableNo: Integer;FieldNo: Integer): Integer
+    local procedure GetFieldLength(TableNo: Integer; FieldNo: Integer): Integer
     var
         RecRef: RecordRef;
         FieldRef: FieldRef;
     begin
     end;
 
-    local procedure InsertColumn(columnNumber: Integer;var columnValue: Text)
+    local procedure InsertColumn(columnNumber: Integer; var columnValue: Text)
     var
         savedColumnValue: Text;
     begin
@@ -229,107 +229,116 @@ XmlPort 50098 "Importacion MRW"
     local procedure ValidateHeaderTag()
     begin
 
-        linea:=linea+1;
-        if linea>1 then begin
+        linea := linea + 1;
+        if linea > 1 then begin
 
 
-            fecha2:=0D;
-            if D5<>'' then begin
-                DDA:=CopyStr(D5,1,2);
-                MMA:=CopyStr(D5,4,2);                
-                AAA:=CopyStr(D5,7,4);
-                Evaluate(DD,DDA);
-                Evaluate(MM,MMA);
-                Evaluate(AA,AAA);
-                fecha2:=Dmy2date(DD,MM,AA);
+            fecha2 := 0D;
+            if D5 <> '' then begin
+                DDA := CopyStr(D5, 1, 2);
+                MMA := CopyStr(D5, 4, 2);
+                AAA := CopyStr(D5, 7, 4);
+                Evaluate(DD, DDA);
+                Evaluate(MM, MMA);
+                Evaluate(AA, AAA);
+                fecha2 := Dmy2date(DD, MM, AA);
             end;
 
 
-        CUANTOSDIAS:=0;
-        Date.Reset;
-        Date.SetRange(Date."Period Type",Date."period type"::Date);
-        Date.SetFilter(Date."Period No.",'1|2|3|4|5');
-        Date.SetRange(Date."Period Start",fecha2,fecha1);
-        if Date.FindFirst then repeat
-             CUANTOSDIAS:=CUANTOSDIAS+1;
-        until Date.Next=0;
-        CUANTOSDIAS:=CUANTOSDIAS-1;
+            CUANTOSDIAS := 0;
+            Date.Reset;
+            Date.SetRange(Date."Period Type", Date."period type"::Date);
+            Date.SetFilter(Date."Period No.", '1|2|3|4|5');
+            Date.SetRange(Date."Period Start", fecha2, fecha1);
+            if Date.FindFirst then
+                repeat
+                    CUANTOSDIAS := CUANTOSDIAS + 1;
+                until Date.Next = 0;
+            CUANTOSDIAS := CUANTOSDIAS - 1;
 
 
-        choras:='';
-        totalhoras:=0;
-        DDH:=CopyStr(D5,12,5);
-
-
-        if DDH<>'' then begin
-            if (CopyStr(DDH,1,1)='0') or
-               (CopyStr(DDH,1,1)='1') or
-               (CopyStr(DDH,1,1)='2') or
-               (CopyStr(DDH,1,1)='3') or
-               (CopyStr(DDH,1,1)='4') or
-               (CopyStr(DDH,1,1)='5') or
-               (CopyStr(DDH,1,1)='6') or
-               (CopyStr(DDH,1,1)='7') or
-               (CopyStr(DDH,1,1)='8') or
-               (CopyStr(DDH,1,1)='9') then begin
-                horas:=CopyStr(DDH,1,2);
-                Evaluate(dhoras,horas);
-                minu:=CopyStr(DDH,4,2);
-                Evaluate(dminu,minu);
-                totalhoras:=(12+dhoras)+(CUANTOSDIAS-1)*24;
-                choras:=DDH;
+            choras := '';
+            totalhoras := 0;
+            if CopyStr(D5, 13, 1) = ':' then begin
+                DDH := '0'+CopyStr(D5, 12, 4);                
+            end;
+            if CopyStr(D5, 14, 1) = ':' then begin                  
+                DDH := CopyStr(D5, 12, 5);                 
             end;
 
-        end;
+            if DDH <> '' then begin
+                if (CopyStr(DDH, 1, 1) = ' ') or
+                   (CopyStr(DDH, 1, 1) = '0') or
+                   (CopyStr(DDH, 1, 1) = '1') or
+                   (CopyStr(DDH, 1, 1) = '2') or
+                   (CopyStr(DDH, 1, 1) = '3') or
+                   (CopyStr(DDH, 1, 1) = '4') or
+                   (CopyStr(DDH, 1, 1) = '5') or
+                   (CopyStr(DDH, 1, 1) = '6') or
+                   (CopyStr(DDH, 1, 1) = '7') or
+                   (CopyStr(DDH, 1, 1) = '8') or
+                   (CopyStr(DDH, 1, 1) = '9') then begin
+                    horas := CopyStr(DDH, 1, 2);
+                    Evaluate(dhoras, horas);
+                    minu := CopyStr(DDH, 4, 2);
+                    Evaluate(dminu, minu);
+                    totalhoras := (12 + dhoras) + (CUANTOSDIAS - 1) * 24;
+                    choras := DDH;
+                end;
+
+            end;
 
 
 
 
 
-        D1:=CopyStr(D1,1,20);
+            D1 := CopyStr(D1, 1, 20);
 
-        ///MESSAGE('%1',D3);
+            ///MESSAGE('%1',D3);
 
-        if D1<>'' then begin
-            SalesShipmentHeader.Reset;
-            SalesShipmentHeader.SetCurrentkey(ASN);
-            SalesShipmentHeader.SetRange(ASN,D1);
-            if SalesShipmentHeader.FindFirst then repeat
-                SalesShipmentHeader."Estado Expedicion":=D4;
-                SalesShipmentHeader."Fecha envio":=fecha2;
-                SalesShipmentHeader."Fecha entrega":=fecha1;
-                SalesShipmentHeader."Hora entrega":=choras;
-                SalesShipmentHeader."Total horas":=totalhoras;
-                SalesShipmentHeader."Numero segumiento":=D2;
-                SalesShipmentHeader.Modify;
-            until SalesShipmentHeader.Next=0;
+            if D1 <> '' then begin
+                SalesShipmentHeader.Reset;
+                SalesShipmentHeader.SetCurrentkey(ASN);
+                SalesShipmentHeader.SetRange(ASN, D1);
+                if SalesShipmentHeader.FindFirst then
+                    repeat
+                        SalesShipmentHeader."Estado Expedicion" := D4;
+                        SalesShipmentHeader."Fecha envio" := fecha2;
+                        SalesShipmentHeader."Fecha entrega" := fecha1;
+                        SalesShipmentHeader."Hora entrega" := choras;
+                        SalesShipmentHeader."Total horas" := totalhoras;
+                        SalesShipmentHeader."Numero segumiento" := D2;
+                        SalesShipmentHeader.Modify;
+                    until SalesShipmentHeader.Next = 0;
 
-            SalesShipmentHeader.Reset;
-            SalesShipmentHeader.SetCurrentkey("Nº expedición");
-            SalesShipmentHeader.SetRange("Nº expedición",D1);
-            if SalesShipmentHeader.FindFirst then repeat
-                SalesShipmentHeader."Estado Expedicion":=D4;
-                SalesShipmentHeader."Fecha envio":=fecha2;
-                SalesShipmentHeader."Fecha entrega":=fecha1;
-                SalesShipmentHeader."Hora entrega":=choras;
-                SalesShipmentHeader."Total horas":=totalhoras;
-                SalesShipmentHeader."Numero segumiento":=D2;
-                SalesShipmentHeader.Modify;
-            until SalesShipmentHeader.Next=0;
-            SalesShipmentHeader.Reset;
-            SalesShipmentHeader.SetCurrentkey("Nº expedición dropshp");
-            SalesShipmentHeader.SetRange("Nº expedición dropshp",D1);
-            if SalesShipmentHeader.FindFirst then repeat
-                SalesShipmentHeader."Estado Expedicion":=D4;
-                SalesShipmentHeader."Fecha envio":=fecha2;
-                SalesShipmentHeader."Fecha entrega":=fecha1;
-                SalesShipmentHeader."Hora entrega":=choras;
-                SalesShipmentHeader."Total horas":=totalhoras;
-                SalesShipmentHeader."Numero segumiento":=D2;
-                SalesShipmentHeader.Modify;
-            until SalesShipmentHeader.Next=0;
-            Commit;
-        end;
+                SalesShipmentHeader.Reset;
+                SalesShipmentHeader.SetCurrentkey("Nº expedición");
+                SalesShipmentHeader.SetRange("Nº expedición", D1);
+                if SalesShipmentHeader.FindFirst then
+                    repeat
+                        SalesShipmentHeader."Estado Expedicion" := D4;
+                        SalesShipmentHeader."Fecha envio" := fecha2;
+                        SalesShipmentHeader."Fecha entrega" := fecha1;
+                        SalesShipmentHeader."Hora entrega" := choras;
+                        SalesShipmentHeader."Total horas" := totalhoras;
+                        SalesShipmentHeader."Numero segumiento" := D2;
+                        SalesShipmentHeader.Modify;
+                    until SalesShipmentHeader.Next = 0;
+                SalesShipmentHeader.Reset;
+                SalesShipmentHeader.SetCurrentkey("Nº expedición dropshp");
+                SalesShipmentHeader.SetRange("Nº expedición dropshp", D1);
+                if SalesShipmentHeader.FindFirst then
+                    repeat
+                        SalesShipmentHeader."Estado Expedicion" := D4;
+                        SalesShipmentHeader."Fecha envio" := fecha2;
+                        SalesShipmentHeader."Fecha entrega" := fecha1;
+                        SalesShipmentHeader."Hora entrega" := choras;
+                        SalesShipmentHeader."Total horas" := totalhoras;
+                        SalesShipmentHeader."Numero segumiento" := D2;
+                        SalesShipmentHeader.Modify;
+                    until SalesShipmentHeader.Next = 0;
+                Commit;
+            end;
 
         end;
     end;
