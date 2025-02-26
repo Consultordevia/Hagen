@@ -252,7 +252,7 @@ Page 50080 "Albaranes dia-2"
                             Rec110.Reset;
                             Rec110.SetRange(Rec110."No.", Rec."No.");
                             if Rec110.FindFirst then begin
-                                /////- AutomaticosAdaia.ETISTD(Rec110);
+                                AutomaticosAdaia.ETISTD(Rec110);
                             end;
                         end;
                     end;

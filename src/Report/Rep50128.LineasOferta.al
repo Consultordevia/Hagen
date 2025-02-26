@@ -46,7 +46,7 @@ Report 50128 "Lineas Oferta"
             column(totalMix; totalMix)
             {
             }
-            column(Nexpedi; SalesHeader."Nº expedición")
+            column(Nexpedi; SalesHeader."No.")
             {
             }
             column(TotalBulLin; Q_Masters + Q_Inners)
@@ -85,16 +85,29 @@ Report 50128 "Lineas Oferta"
             column(Precio; "Sales Line"."Unit Price")
             {
             }
+            column(cajainnner; cajainnner)
+            {
+            }
+            column(cajamaster; cajamaster)
+            {
+            }
+
 
 
             trigger OnAfterGetRecord()
             begin
 
 
-                Peso := (SalesLine.Quantity * SalesLine."Net Weight");
+                Peso := ("Sales Line".Quantity * "Sales Line"."Net Weight");
 
+                cajainnner := 0;
+                cajamaster := 0;
 
-
+                IF Item.get("Sales Line"."No.") then begin
+                    item.CalcFields("Cantidad inner", "Cantidad master");
+                    cajainnner := Item."Cantidad inner";
+                    cajamaster := Item."Cantidad master";
+                end;
 
 
                 ncajas := 0;
@@ -109,7 +122,7 @@ Report 50128 "Lineas Oferta"
 
 
 
-                SalesHeader.Get(1, "Sales Line"."Document No.");
+                SalesHeader.Get("Sales Line"."Document Type", "Sales Line"."Document No.");
 
                 if "Sales Line"."No." = 'TRAN' then begin
                     CurrReport.Skip;
@@ -198,7 +211,7 @@ Report 50128 "Lineas Oferta"
 
         layout
         {
-                
+
         }
 
         actions
@@ -234,6 +247,11 @@ Report 50128 "Lineas Oferta"
         textocajas: Text;
         Peso: decimal;
         SalesLine2: Record "Sales Line";
+        RecUMP: Record "Item Unit of Measure";
+
+        cajainnner: Decimal;
+        Precioventa: Decimal;
+        cajamaster: Decimal;
 
 }
 
