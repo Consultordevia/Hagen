@@ -843,9 +843,9 @@ codeunit 50002 Eventos
             if RecTransp."Sacar etiqueta envio GRA" then begin
                 SalesShptHeader."Imprime eti. envio" := true;
             end;
-            nexpefinal:=SalesShptHeader."Nº expedición dropshp";
-            if SalesShptHeader."Nº expedición dropshp"<>'' then begin
-               nexpefinal:=SalesShptHeader."Nº expedición dropshp";
+            nexpefinal := SalesShptHeader."Nº expedición dropshp";
+            if SalesShptHeader."Nº expedición dropshp" <> '' then begin
+                nexpefinal := SalesShptHeader."Nº expedición dropshp";
             end;
 
 
@@ -919,7 +919,7 @@ codeunit 50002 Eventos
             SalesShptHeader."Pasada a Canarias" := false;
         end;
         if SalesHeader."Nº expedición agrupada" <> '' then begin
-            SalesShptHeader."Nº expedición" := nexpefinal + '-' + SalesHeader."Nº expedición agrupada";
+            SalesShptHeader."Nº expedición" := SalesHeader."Nº expedición" + '-' + SalesHeader."Nº expedición agrupada";
             SalesShptHeader."Nº bultos" := 1;
             SalesShptHeader."Total bultos" := 1;
             if SalesShptHeader."Incrementa bultos" <> 0 then begin
@@ -951,10 +951,10 @@ codeunit 50002 Eventos
             SalesInvHeader."CSV Enviar" := RecClie."Factura CSV";
 
         end;
-        nexpefinal:=SalesInvHeader."Nº expedición dropshp";
-        if SalesInvHeader."Nº expedición dropshp"<>'' then begin
-               nexpefinal:=SalesInvHeader."Nº expedición dropshp";
-            end;
+        nexpefinal := SalesInvHeader."Nº expedición dropshp";
+        if SalesInvHeader."Nº expedición dropshp" <> '' then begin
+            nexpefinal := SalesInvHeader."Nº expedición dropshp";
+        end;
 
         if RecTransp.Get(SalesInvHeader."Shipping Agent Code") then begin
             if RecTransp."Link transporte" = '' then begin
