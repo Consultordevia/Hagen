@@ -919,7 +919,7 @@ codeunit 50002 Eventos
             SalesShptHeader."Pasada a Canarias" := false;
         end;
         if SalesHeader."Nº expedición agrupada" <> '' then begin
-            SalesShptHeader."Nº expedición" := nexpefinal + '-' + SalesHeader."Nº expedición agrupada";
+            SalesShptHeader."Nº expedición" := SalesHeader."Nº expedición" + '-' + SalesHeader."Nº expedición agrupada";
             SalesShptHeader."Nº bultos" := 1;
             SalesShptHeader."Total bultos" := 1;
             if SalesShptHeader."Incrementa bultos" <> 0 then begin

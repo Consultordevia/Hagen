@@ -88,6 +88,7 @@ Page 50086 "Modifica albaran"
                 {
                     ApplicationArea = Basic;
                 }
+                
             }
         }
     }
