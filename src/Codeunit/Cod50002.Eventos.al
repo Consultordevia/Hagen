@@ -212,7 +212,7 @@ codeunit 50002 Eventos
     [EventSubscriber(ObjectType::Table, Database::Customer, OnBeforeModifyEvent, '', false, false)]
     local procedure OnBeforeModifyEventCustomer(var Rec: Record Customer; var xRec: Record Customer)
     begin
-        if rec."Payment Terms Code" <> xrec."Payment Terms Code" then
+        /*if rec."Payment Terms Code" <> xrec."Payment Terms Code" then
             rec.FechaHoraModificacionWeb := CurrentDateTime;
         if rec."Payment Method Code" <> xrec."Payment Method Code" then
             rec.FechaHoraModificacionWeb := CurrentDateTime;
@@ -224,8 +224,8 @@ codeunit 50002 Eventos
             rec.FechaHoraModificacionWeb := CurrentDateTime;
         if rec.City <> xrec.City then
             rec.FechaHoraModificacionWeb := CurrentDateTime;
-        if rec."Usuario Web" <> xrec."Usuario Web" then
-            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Usuario Web" <> xrec."Usuario Web" then*/
+        rec.FechaHoraModificacionWeb := CurrentDateTime;
     end;
 
     [EventSubscriber(ObjectType::Table, Database::"Ship-to Address", 'OnBeforeInsertEvent', '', false, false)]
