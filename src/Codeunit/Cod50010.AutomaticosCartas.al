@@ -13342,7 +13342,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                 PurchRcptHeader2.Reset;
                                 PurchRcptHeader2.SetRange("No.", PurchRcptHeader."No.");
                                 if PurchRcptHeader2.FindFirst then begin
-                                    /////-Report.SaveAsPdf(408, FileDirectory, PurchRcptHeader2);
+                                    /// -Report.SaveAsPdf(408, FileDirectory, PurchRcptHeader2);
                                 end;
                             end;
                         end;
@@ -13398,11 +13398,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                 end;
 
                 PurchRcptHeader2.Get(PurchRcptHeader."No.");
-                PurchRcptHeader2."Email enviado" := true;
-                PurchRcptHeader2."Enviar email" := false;
-                PurchRcptHeader2."Fecha enviado" := Today;
-                PurchRcptHeader2."Hora enviado" := Time;
-                PurchRcptHeader2.Modify;
+                ///PurchRcptHeader2."Email enviado" := true;
+                ///PurchRcptHeader2."Enviar email" := false;
+                ///PurchRcptHeader2."Fecha enviado" := Today;
+                ///PurchRcptHeader2."Hora enviado" := Time;
+                ///PurchRcptHeader2.Modify;
                 Commit;
 
 

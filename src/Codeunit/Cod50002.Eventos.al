@@ -843,7 +843,7 @@ codeunit 50002 Eventos
             if RecTransp."Sacar etiqueta envio GRA" then begin
                 SalesShptHeader."Imprime eti. envio" := true;
             end;
-            nexpefinal := SalesShptHeader."Nº expedición dropshp";
+            nexpefinal := SalesShptHeader."Nº expedición";
             if SalesShptHeader."Nº expedición dropshp" <> '' then begin
                 nexpefinal := SalesShptHeader."Nº expedición dropshp";
             end;
@@ -905,6 +905,13 @@ codeunit 50002 Eventos
                 if RecTransp.Añadir = 1 then
                     PAGINAWEB := PAGINAWEB + Format(nexpefinal) +
                         Format(SalesShptHeader."Ship-to Post Code");
+                if RecTransp.Añadir = 2 then
+                    PAGINAWEB := PAGINAWEB + Format(nexpefinal) +'/'+
+                        Format(SalesShptHeader."Ship-to Post Code"); 
+                if RecTransp.Añadir = 3 then
+                    PAGINAWEB := PAGINAWEB + Format(nexpefinal) +
+                        Format(Date2DMY(SalesShptHeader."Posting Date",3));
+
                 SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
                 SalesShptHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
                 SalesShptHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
