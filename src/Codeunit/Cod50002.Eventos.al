@@ -212,7 +212,7 @@ codeunit 50002 Eventos
     [EventSubscriber(ObjectType::Table, Database::Customer, OnBeforeModifyEvent, '', false, false)]
     local procedure OnBeforeModifyEventCustomer(var Rec: Record Customer; var xRec: Record Customer)
     begin
-        if rec."Payment Terms Code" <> xrec."Payment Terms Code" then
+        /*if rec."Payment Terms Code" <> xrec."Payment Terms Code" then
             rec.FechaHoraModificacionWeb := CurrentDateTime;
         if rec."Payment Method Code" <> xrec."Payment Method Code" then
             rec.FechaHoraModificacionWeb := CurrentDateTime;
@@ -224,8 +224,8 @@ codeunit 50002 Eventos
             rec.FechaHoraModificacionWeb := CurrentDateTime;
         if rec.City <> xrec.City then
             rec.FechaHoraModificacionWeb := CurrentDateTime;
-        if rec."Usuario Web" <> xrec."Usuario Web" then
-            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Usuario Web" <> xrec."Usuario Web" then*/
+        rec.FechaHoraModificacionWeb := CurrentDateTime;
     end;
 
     [EventSubscriber(ObjectType::Table, Database::"Ship-to Address", 'OnBeforeInsertEvent', '', false, false)]
@@ -843,9 +843,9 @@ codeunit 50002 Eventos
             if RecTransp."Sacar etiqueta envio GRA" then begin
                 SalesShptHeader."Imprime eti. envio" := true;
             end;
-            nexpefinal:=SalesShptHeader."Nº expedición dropshp";
-            if SalesShptHeader."Nº expedición dropshp"<>'' then begin
-               nexpefinal:=SalesShptHeader."Nº expedición dropshp";
+            nexpefinal := SalesShptHeader."Nº expedición dropshp";
+            if SalesShptHeader."Nº expedición dropshp" <> '' then begin
+                nexpefinal := SalesShptHeader."Nº expedición dropshp";
             end;
 
 
@@ -951,10 +951,10 @@ codeunit 50002 Eventos
             SalesInvHeader."CSV Enviar" := RecClie."Factura CSV";
 
         end;
-        nexpefinal:=SalesInvHeader."Nº expedición dropshp";
-        if SalesInvHeader."Nº expedición dropshp"<>'' then begin
-               nexpefinal:=SalesInvHeader."Nº expedición dropshp";
-            end;
+        nexpefinal := SalesInvHeader."Nº expedición dropshp";
+        if SalesInvHeader."Nº expedición dropshp" <> '' then begin
+            nexpefinal := SalesInvHeader."Nº expedición dropshp";
+        end;
 
         if RecTransp.Get(SalesInvHeader."Shipping Agent Code") then begin
             if RecTransp."Link transporte" = '' then begin
