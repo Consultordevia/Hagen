@@ -43,8 +43,8 @@ codeunit 50006 SubirFicherosFTP
                     SalesInvHeader2.get(SalesInvHeader."No.");
                     SalesInvHeader2.FicheroFTP := true;
                     SalesInvHeader2.Modify();
+                    Commit;
                 end;
-                Commit;
             until SalesInvHeader.Next() = 0;
         end;
 
@@ -70,8 +70,8 @@ codeunit 50006 SubirFicherosFTP
                     SalesShipmentHeader2.get(SalesShipmentHeader."No.");
                     SalesShipmentHeader2.FicheroFTP := true;
                     SalesShipmentHeader2.Modify();
+                    Commit;
                 end;
-                Commit;
             until SalesShipmentHeader.Next() = 0;
         end;
 
@@ -97,8 +97,8 @@ codeunit 50006 SubirFicherosFTP
                     SalesCrMemoHeader2.get(SalesCrMemoHeader."No.");
                     SalesCrMemoHeader2.FicheroFTP := true;
                     SalesCrMemoHeader2.Modify();
+                    Commit;
                 end;
-                Commit;
             until SalesCrMemoHeader.Next() = 0;
         end;
     end;
