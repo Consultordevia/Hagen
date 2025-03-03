@@ -91,6 +91,13 @@ Report 50128 "Lineas Oferta"
             column(cajamaster; cajamaster)
             {
             }
+            column(Dto; Dto)
+            {
+            }
+            column(precioneto; precioneto)
+            {
+            }
+
 
 
 
@@ -99,6 +106,8 @@ Report 50128 "Lineas Oferta"
 
 
                 Peso := ("Sales Line".Quantity * "Sales Line"."Net Weight");
+                Dto := "Sales Line"."Line Discount %";
+                precioneto := "Sales Line".Amount / "Sales Line".Quantity;
 
                 cajainnner := 0;
                 cajamaster := 0;
@@ -252,6 +261,8 @@ Report 50128 "Lineas Oferta"
         cajainnner: Decimal;
         Precioventa: Decimal;
         cajamaster: Decimal;
+        Dto: Decimal;
+        precioneto: Decimal;
 
 }
 

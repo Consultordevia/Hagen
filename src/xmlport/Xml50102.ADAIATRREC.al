@@ -92,7 +92,7 @@ XmlPort 50102 "ADAIATRREC"
     begin
         if TIPOPEDI = 'ENPR' then begin
             if ESPEDIDO and (not ESPEPE) then begin
-                Message('2-%1 ', NPEDIDO);
+                ///Message('2-%1 ', NPEDIDO);
                 PurchaseHeader.Get(1, NPEDIDO);
                 PurchaseHeader.Receive := true;
                 PurchaseHeader.Invoice := false;
