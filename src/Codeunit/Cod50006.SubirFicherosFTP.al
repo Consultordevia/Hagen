@@ -24,7 +24,7 @@ codeunit 50006 SubirFicherosFTP
         SalesInvHeader.Reset;
         SalesInvHeader.SetRange(SalesInvHeader.FicheroFTP, false);
         SalesInvHeader.SETRANGE("Posting Date", 20241205D, TODAY);
-        if SalesInvHeader.FindSet(false, true) then begin
+        if SalesInvHeader.FindSet() then begin
             repeat
                 Clear(TempBlob);
                 Clear(OutStream);
@@ -51,7 +51,7 @@ codeunit 50006 SubirFicherosFTP
         SalesShipmentHeader.Reset;
         SalesShipmentHeader.SetRange(SalesShipmentHeader.FicheroFTP, false);
         SalesShipmentHeader.SETRANGE("Posting Date", 20241205D, TODAY);
-        if SalesShipmentHeader.FindSet(false, true) then begin
+        if SalesShipmentHeader.FindSet() then begin
             repeat
                 Clear(TempBlob);
                 Clear(OutStream);
@@ -78,7 +78,7 @@ codeunit 50006 SubirFicherosFTP
         SalesCrMemoHeader.Reset;
         SalesCrMemoHeader.SetRange(SalesCrMemoHeader.FicheroFTP, false);
         SalesCrMemoHeader.SETRANGE("Posting Date", 20241205D, TODAY);
-        if SalesCrMemoHeader.FindSet(false, true) then begin
+        if SalesCrMemoHeader.FindSet() then begin
             repeat
                 Clear(TempBlob);
                 Clear(OutStream);
