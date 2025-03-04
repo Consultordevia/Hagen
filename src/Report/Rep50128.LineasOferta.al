@@ -97,7 +97,9 @@ Report 50128 "Lineas Oferta"
             column(precioneto; precioneto)
             {
             }
-
+            column(urlprod; urlprod)
+            {
+            }
 
 
 
@@ -111,11 +113,13 @@ Report 50128 "Lineas Oferta"
 
                 cajainnner := 0;
                 cajamaster := 0;
+                urlprod := '';
 
                 IF Item.get("Sales Line"."No.") then begin
                     item.CalcFields("Cantidad inner", "Cantidad master");
                     cajainnner := Item."Cantidad inner";
                     cajamaster := Item."Cantidad master";
+                    urlprod := Item."URL IMAGEN 1";
                 end;
 
 
@@ -263,6 +267,7 @@ Report 50128 "Lineas Oferta"
         cajamaster: Decimal;
         Dto: Decimal;
         precioneto: Decimal;
+        urlprod: Text[250];
 
 }
 

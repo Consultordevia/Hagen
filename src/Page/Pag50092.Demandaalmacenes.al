@@ -37,6 +37,41 @@ Page 50092 "Demanda almacenes"
                     ApplicationArea = Basic;
                     StyleExpr = color;
                 }
+                field("Existencia FOB";Rec."Existencia FOB")
+                {
+                    ApplicationArea = Basic;
+                    StyleExpr = color;
+                }
+                field("Existencia CATIT";Rec."Existencia CATIT")
+                {
+                    ApplicationArea = Basic;
+                    StyleExpr = color;
+                }
+                field("Existencia OPER";Rec."Existencia OPER")
+                {
+                    ApplicationArea = Basic;
+                    StyleExpr = color;
+                }
+                field("Existencia TENERIFE";Rec."Existencia TENERIFE")
+                {
+                    ApplicationArea = Basic;
+                    StyleExpr = color;
+                }
+                field("Existencia TRANS";Rec."Existencia TRANS")
+                {
+                    ApplicationArea = Basic;
+                    StyleExpr = color;
+                }
+                field("Existencia TSTO";Rec."Existencia TSTO")
+                {
+                    ApplicationArea = Basic;
+                    StyleExpr = color;
+                }
+                field("Existencia VCD";Rec."Existencia VCD")
+                {
+                    ApplicationArea = Basic;
+                    StyleExpr = color;
+                }
                 field(Laventasp; Laventasp)
                 {
                     ApplicationArea = Basic;
