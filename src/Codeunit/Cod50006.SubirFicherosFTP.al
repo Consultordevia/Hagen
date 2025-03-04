@@ -24,7 +24,7 @@ codeunit 50006 SubirFicherosFTP
         SalesInvHeader.Reset;
         SalesInvHeader.SetRange(SalesInvHeader.FicheroFTP, false);
         SalesInvHeader.SETRANGE("Posting Date", 20241205D, TODAY);
-        if SalesInvHeader.FindSet(false, true) then begin
+        if SalesInvHeader.FindSet() then begin
             repeat
                 Clear(TempBlob);
                 Clear(OutStream);
@@ -43,15 +43,15 @@ codeunit 50006 SubirFicherosFTP
                     SalesInvHeader2.get(SalesInvHeader."No.");
                     SalesInvHeader2.FicheroFTP := true;
                     SalesInvHeader2.Modify();
+                    Commit;
                 end;
-                Commit;
             until SalesInvHeader.Next() = 0;
         end;
 
         SalesShipmentHeader.Reset;
         SalesShipmentHeader.SetRange(SalesShipmentHeader.FicheroFTP, false);
         SalesShipmentHeader.SETRANGE("Posting Date", 20241205D, TODAY);
-        if SalesShipmentHeader.FindSet(false, true) then begin
+        if SalesShipmentHeader.FindSet() then begin
             repeat
                 Clear(TempBlob);
                 Clear(OutStream);
@@ -70,15 +70,15 @@ codeunit 50006 SubirFicherosFTP
                     SalesShipmentHeader2.get(SalesShipmentHeader."No.");
                     SalesShipmentHeader2.FicheroFTP := true;
                     SalesShipmentHeader2.Modify();
+                    Commit;
                 end;
-                Commit;
             until SalesShipmentHeader.Next() = 0;
         end;
 
         SalesCrMemoHeader.Reset;
         SalesCrMemoHeader.SetRange(SalesCrMemoHeader.FicheroFTP, false);
         SalesCrMemoHeader.SETRANGE("Posting Date", 20241205D, TODAY);
-        if SalesCrMemoHeader.FindSet(false, true) then begin
+        if SalesCrMemoHeader.FindSet() then begin
             repeat
                 Clear(TempBlob);
                 Clear(OutStream);
@@ -97,8 +97,8 @@ codeunit 50006 SubirFicherosFTP
                     SalesCrMemoHeader2.get(SalesCrMemoHeader."No.");
                     SalesCrMemoHeader2.FicheroFTP := true;
                     SalesCrMemoHeader2.Modify();
+                    Commit;
                 end;
-                Commit;
             until SalesCrMemoHeader.Next() = 0;
         end;
     end;
