@@ -883,6 +883,10 @@ tableextension 50114 SalesHeader extends "Sales Header"
         field(50301; "Incrementa bultos"; Integer)
         {
         }
+        field(50302; ClienteEnviadoAdaia; Boolean)
+        {
+        }
+        
         field(50321; "EDI factueas enviar"; Boolean)
         {
         }
@@ -995,6 +999,10 @@ tableextension 50114 SalesHeader extends "Sales Header"
         key(Key15; "Estado pedido", "Super urgente", Urgente, "Fecha para preparar", "Hora para preparar")
         {
         }
+        key(Key16; ClienteEnviadoAdaia)
+        {
+        }
+    
     }
 
     fieldgroups

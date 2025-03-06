@@ -5,7 +5,7 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
     Direction = Import;
     FieldSeparator = '|';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
     UseRequestPage = false;
 
     ///    1   2    3        4        5     6      7    8        9   10     11 12 13      14   15 16 17   18   19   20
@@ -166,7 +166,9 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
                 Rec83."Unit of Measure Code" := Item."Base Unit of Measure";
                 Rec83.VALIDATE(Rec83."Qty. (Calculated)", STOCCAL);
                 Rec83."Document No." := 'AJUSTES';
-                Rec83.INSERT;
+                IF Rec83.Quantity <> 0 THEN begin
+                    Rec83.INSERT;
+                END;
 
             UNTIL Item.NEXT = 0;
 

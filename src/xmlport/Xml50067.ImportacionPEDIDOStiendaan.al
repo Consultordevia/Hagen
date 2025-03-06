@@ -87,7 +87,7 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -152,12 +152,9 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                 textelement(D18)
                 {
                 }
-                textelement("<d19>")
+                textelement(D19)
                 {
-                    XmlName = 'D19';
-                }
-                textelement(D67)
-                {
+
                 }
                 textelement(D20)
                 {
@@ -298,6 +295,64 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                 {
                 }
                 textelement(D66)
+                {
+                }
+                textelement(D67)
+                {
+                }
+                textelement(D68)
+                {
+                }
+                textelement(D69)
+                {
+                }
+                textelement(D70)
+                {
+                }
+                textelement(D71)
+                {
+                }
+                textelement(D72)
+                {
+                }
+                textelement(D73)
+                {
+                }
+                textelement(D74)
+                {
+                }
+                textelement(D75)
+                {
+                }
+                textelement(D76)
+                {
+                }
+                textelement(D77)
+                {
+                }
+                textelement(D78)
+                {
+                }
+                textelement(D79)
+                {
+                }
+                textelement(D80)
+                {
+                }
+                textelement(D81)
+                {
+                }
+                textelement(D82)
+                {
+                }
+                textelement(D83)
+                {
+                }
+                textelement(D84)
+                {
+                }
+
+                textelement(D85)
                 {
 
                     trigger OnAfterAssignVariable()
@@ -448,6 +503,7 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
         PurchasesPayablesSetup: Record "Purchases & Payables Setup";
         SalesLineDiscount: Record "Sales Line Discount";
         NoSeriesManagement: Codeunit NoSeriesManagement;
+        CASCII: Codeunit "ANSI <-> ASCII converter2";
 
     local procedure InitializeGlobals()
     var
@@ -549,7 +605,7 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                     RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                     RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
                     RecCV."Permite fraccionar uni. venta" := true;
-                    RecCV.Validate("Your Reference" , D1);
+                    RecCV.Validate("Your Reference", D2);
                     RecCV."Shipment Date" := Today;
                     RecCV."Requested Delivery Date" := Today;
                     RecCV.Validate(RecCV."Ship-to Code", CODDIRENVIO);
@@ -559,17 +615,17 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                     RecCV."Super urgente" := true;
                     ///TempBlob.WriteAsText(D2,TEXTENCODING::Windows);
                     ///RecCV."Work Description":=TempBlob.Blob;
-                    RecCV.Validate("Your Reference" , D2);
-                    RecCV."Ship-to Name" := CopyStr(D35 + D36, 1, 50);
-                    RecCV."Ship-to Name 2" := CopyStr(D35 + D36, 51, 50);
-                    RecCV."Ship-to Address" := CopyStr(D38 + D39, 1, 50);
-                    RecCV."Ship-to Address 2" := CopyStr(D38 + D39, 51, 50);
-                    RecCV."Ship-to Contact" := D36;
+                    RecCV.Validate("Your Reference", D2);
+                    RecCV."Ship-to Name" := CASCII.Ascii2Ansi(CopyStr(D52 + D53, 1, 50));
+                    RecCV."Ship-to Name 2" := CASCII.Ascii2Ansi(CopyStr(D52 + D53, 51, 50));
+                    RecCV."Ship-to Address" := CASCII.Ascii2Ansi(CopyStr(D55 + D56, 1, 50));
+                    RecCV."Ship-to Address 2" := CASCII.Ascii2Ansi(CopyStr(D55 + D56, 51, 50));
+                    RecCV."Ship-to Contact" := D52;
                     RecCV."E-MAIL" := 'ventas@hagen.es';
-                    RecCV.Validate(RecCV."Ship-to Post Code", D40);
-                    RecCV.Validate(RecCV."Ship-to City", D41);
-                    RecCV."Envio a-Nº Telefono" := D44;
-                    RecCV."Observación para transporte" := D46;
+                    RecCV.Validate(RecCV."Ship-to Post Code", CASCII.Ascii2Ansi(D57));
+                    RecCV.Validate(RecCV."Ship-to City", CASCII.Ascii2Ansi(D58));
+                    RecCV."Envio a-Nº Telefono" := CASCII.Ascii2Ansi(D61);
+                    ///RecCV."Observación para transporte" := D46;
                     RecCV."Prices Including VAT" := true;
                     RecCV."Prices Including VAT" := false;
                     RecCV."No agrupar en ADAIA" := false;
@@ -611,11 +667,11 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
             END;
         END;*/
             SALE := false;
-            if (D11 <> '') then begin
+            if (D12 <> '') then begin
                 RecLV.Reset;
                 RecLV.SetRange("id linea externo", D16);
                 if not RecLV.FindFirst then begin
-                    if RecProd.Get(D11) then begin
+                    if RecProd.Get(D12) then begin
                         RecProd.SetRange(RecProd."Location Filter", 'SILLA', 'SILLA');
                         RecProd.CalcFields(RecProd.Inventory);
                         if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
@@ -623,24 +679,24 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                         end;
                         if not SALE then begin
                             ///if RecProd."No permite pedido"=false then begin
-                                LINEAS := LINEAS + 10000;
-                                RecLV."Document Type" := 1;
-                                RecLV."Document No." := RecCV."No.";
-                                RecLV."Line No." := LINEAS;
-                                RecLV.Type := 2;
-                                RecLV.Validate(RecLV."No.", D11);
-                                RecLV."id linea externo" := D16;
-                                Evaluate(CANTIDE, D3);
-                                RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                RecLV.Insert(true);
-                                RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                RecLV.Modify(true);
-                                Evaluate(CANTIDE, D17);
-                                CANTIDE := CANTIDE / (1 + (RecLV."VAT %") / 100);
-                                CANTIDE := ROUND(CANTIDE, 0.01);
-                                RecLV.Validate("Unit Price", CANTIDE);
-                                RecLV.Modify(true);
-                                Evaluate(CANTitrans, D18);
+                            LINEAS := LINEAS + 10000;
+                            RecLV."Document Type" := 1;
+                            RecLV."Document No." := RecCV."No.";
+                            RecLV."Line No." := LINEAS;
+                            RecLV.Type := 2;
+                            RecLV.Validate(RecLV."No.", D12);
+                            ///RecLV."id linea externo" := D16;
+                            Evaluate(CANTIDE, D3);
+                            RecLV.Validate(RecLV.Quantity, CANTIDE);
+                            RecLV.Insert(true);
+                            RecLV.Validate(RecLV.Quantity, CANTIDE);
+                            RecLV.Modify(true);
+                            Evaluate(CANTIDE, D21);
+                            CANTIDE := CANTIDE / (1 + (RecLV."VAT %") / 100);
+                            CANTIDE := ROUND(CANTIDE, 0.01);
+                            RecLV.Validate("Unit Price", CANTIDE);
+                            RecLV.Modify(true);
+                            Evaluate(CANTitrans, D22);
                             ///end;
                             if CANTitrans <> 0 then begin
                                 RecLV."Document Type" := 1;
@@ -677,7 +733,7 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                     end else begin
                         RecRefCruz.Reset;
                         RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
-                        RecRefCruz.SetRange(RecRefCruz."Reference No.", D11);
+                        RecRefCruz.SetRange(RecRefCruz."Reference No.", D12);
                         if RecRefCruz.FindFirst then begin
                             ref := RecRefCruz."Item No.";
                             if RecProd.Get(ref) then begin
@@ -687,25 +743,25 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                                 end;
                                 if not SALE then begin
                                     ///if RecProd."No permite pedido"=false then begin
-                                        LINEAS := LINEAS + 10000;
-                                        RecLV."Document Type" := 1;
-                                        RecLV."Document No." := RecCV."No.";
-                                        RecLV."Line No." := LINEAS;
-                                        RecLV.Type := 2;
-                                        RecLV.Validate(RecLV."No.", ref);
-                                        RecLV."id linea externo" := D16;
-                                        Evaluate(CANTIDE, D3);
-                                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                        RecLV.Insert(true);
-                                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                        RecLV.Modify(true);
-                                        Evaluate(CANTIDE, D17);
-                                        CANTIDE := CANTIDE / (1 + (RecLV."VAT %") / 100);
-                                        CANTIDE := ROUND(CANTIDE, 0.01);
-                                        RecLV.Validate("Unit Price", RecLV.Quantity * CANTIDE);
-                                        RecLV.Modify(true);
+                                    LINEAS := LINEAS + 10000;
+                                    RecLV."Document Type" := 1;
+                                    RecLV."Document No." := RecCV."No.";
+                                    RecLV."Line No." := LINEAS;
+                                    RecLV.Type := 2;
+                                    RecLV.Validate(RecLV."No.", ref);
+                                    ///RecLV."id linea externo" := D16;
+                                    Evaluate(CANTIDE, D3);
+                                    RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                    RecLV.Insert(true);
+                                    RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                    RecLV.Modify(true);
+                                    Evaluate(CANTIDE, D21);
+                                    CANTIDE := CANTIDE / (1 + (RecLV."VAT %") / 100);
+                                    CANTIDE := ROUND(CANTIDE, 0.01);
+                                    RecLV.Validate("Unit Price", RecLV.Quantity * CANTIDE);
+                                    RecLV.Modify(true);
                                     ///end;
-                                    Evaluate(CANTitrans, D18);
+                                    Evaluate(CANTitrans, D22);
                                     if CANTitrans <> 0 then begin
                                         RecLV."Document Type" := 1;
                                         RecLV."Document No." := codacti;

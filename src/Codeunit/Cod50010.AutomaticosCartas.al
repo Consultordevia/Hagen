@@ -4148,9 +4148,9 @@ OutStream.Write('Tercera línea después del salto');
         end;
 
 
-        DESNOMa33:= CopyStr(Rec110."Ship-to Address",1,STRLEN(Rec110."Ship-to Address"))+
-                    CopyStr(Rec110."Ship-to Address 2",1,STRLEN(Rec110."Ship-to Address 2"));
-        
+        DESNOMa33 := CopyStr(Rec110."Ship-to Address", 1, STRLEN(Rec110."Ship-to Address")) +
+                    CopyStr(Rec110."Ship-to Address 2", 1, STRLEN(Rec110."Ship-to Address 2"));
+
         DESNOMa3 := ConvertStr(CopyStr(DESNOMa33, 1, 100), 'ª', '.');
         DESNOMa3 := ConvertStr(DESNOMa3, 'º', '.');
         DESNOMa3 := CASCII.Ascii2Ansi(DESNOMa3);
@@ -4348,7 +4348,7 @@ OutStream.Write('Tercera línea después del salto');
         TextoSalida1 := Format(DESNOMa1, 50) +
                       Format(DESNOMa2, 50) +
                       Format(DESNOMa3, 100);
-                      /// Format(DESNOMa4, 50);
+        /// Format(DESNOMa4, 50);
         TextoSalida2 := Format(Rec110."Ship-to Post Code", 5) +
                       Format(Rec110."Ship-to City", 30) +
                       Format(Rec110."Ship-to County", 30) +
@@ -12778,28 +12778,28 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         clear(txtDestinatario);
                         txtDestinatario.Add(Recipient);
                         BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
-                        if RecCust."No enviar excel"=false then begin
-                                nomdir := '';
-                                ADAIA.Reset();
-                                ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
-                                IF ADAIA.FindSet() THEN begin
-                                    nomdir := ADAIA.Ruta;
-                                end;
-                            
-                                Clear(TempBlob);
-                                Clear(OutStream);
-                                Clear(InStream);
-                                Clear(RepItemTemporal);
-                                RepItemTemporal.SetTableView(SalesInvHeader2);
-                                RepItemTemporal.UseRequestPage(false);
-                                TempBlob.CreateOutStream(OutStream);
-                                if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
-                                    Error('ERROR');
-
-                                tempBlob.CreateInStream(InStream);
-                                fileName := SalesInvHeader2."No." + '.xlsx';
-                                BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                        if RecCust."No enviar excel" = false then begin
+                            nomdir := '';
+                            ADAIA.Reset();
+                            ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
+                            IF ADAIA.FindSet() THEN begin
+                                nomdir := ADAIA.Ruta;
                             end;
+
+                            Clear(TempBlob);
+                            Clear(OutStream);
+                            Clear(InStream);
+                            Clear(RepItemTemporal);
+                            RepItemTemporal.SetTableView(SalesInvHeader2);
+                            RepItemTemporal.UseRequestPage(false);
+                            TempBlob.CreateOutStream(OutStream);
+                            if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
+                                Error('ERROR');
+
+                            tempBlob.CreateInStream(InStream);
+                            fileName := SalesInvHeader2."No." + '.xlsx';
+                            BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                        end;
 
                     end;
 
@@ -12934,28 +12934,28 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         fileName := SalesInvHeader2."No." + '.PDF';
                         /////message('2 %1', SalesInvHeader."No.");
                         BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
-                        if RecCust."No enviar excel"=false then begin
-                                nomdir := '';
-                                ADAIA.Reset();
-                                ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
-                                IF ADAIA.FindSet() THEN begin
-                                    nomdir := ADAIA.Ruta;
-                                end;
-                            
-                                Clear(TempBlob);
-                                Clear(OutStream);
-                                Clear(InStream);
-                                Clear(RepItemTemporal);
-                                RepItemTemporal.SetTableView(SalesInvHeader2);
-                                RepItemTemporal.UseRequestPage(false);
-                                TempBlob.CreateOutStream(OutStream);
-                                if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
-                                    Error('ERROR');
-
-                                tempBlob.CreateInStream(InStream);
-                                fileName := SalesInvHeader2."No." + '.xlsx';
-                                BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                        if RecCust."No enviar excel" = false then begin
+                            nomdir := '';
+                            ADAIA.Reset();
+                            ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
+                            IF ADAIA.FindSet() THEN begin
+                                nomdir := ADAIA.Ruta;
                             end;
+
+                            Clear(TempBlob);
+                            Clear(OutStream);
+                            Clear(InStream);
+                            Clear(RepItemTemporal);
+                            RepItemTemporal.SetTableView(SalesInvHeader2);
+                            RepItemTemporal.UseRequestPage(false);
+                            TempBlob.CreateOutStream(OutStream);
+                            if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
+                                Error('ERROR');
+
+                            tempBlob.CreateInStream(InStream);
+                            fileName := SalesInvHeader2."No." + '.xlsx';
+                            BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                        end;
 
                     end;
 
@@ -13074,28 +13074,28 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         fileName := SalesInvHeader2."No." + '.PDF';
                         BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
 
-                        if RecCust."No enviar excel"=false then begin
-                                nomdir := '';
-                                ADAIA.Reset();
-                                ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
-                                IF ADAIA.FindSet() THEN begin
-                                    nomdir := ADAIA.Ruta;
-                                end;
-                            
-                                Clear(TempBlob);
-                                Clear(OutStream);
-                                Clear(InStream);
-                                Clear(RepItemTemporal);
-                                RepItemTemporal.SetTableView(SalesInvHeader2);
-                                RepItemTemporal.UseRequestPage(false);
-                                TempBlob.CreateOutStream(OutStream);
-                                if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
-                                    Error('ERROR');
-
-                                tempBlob.CreateInStream(InStream);
-                                fileName := SalesInvHeader2."No." + '.xlsx';
-                                BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                        if RecCust."No enviar excel" = false then begin
+                            nomdir := '';
+                            ADAIA.Reset();
+                            ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
+                            IF ADAIA.FindSet() THEN begin
+                                nomdir := ADAIA.Ruta;
                             end;
+
+                            Clear(TempBlob);
+                            Clear(OutStream);
+                            Clear(InStream);
+                            Clear(RepItemTemporal);
+                            RepItemTemporal.SetTableView(SalesInvHeader2);
+                            RepItemTemporal.UseRequestPage(false);
+                            TempBlob.CreateOutStream(OutStream);
+                            if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
+                                Error('ERROR');
+
+                            tempBlob.CreateInStream(InStream);
+                            fileName := SalesInvHeader2."No." + '.xlsx';
+                            BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                        end;
 
                     end;
 
@@ -13228,14 +13228,14 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             txtDestinatario.Add(Recipient);
                             BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
 
-                            if RecCust."No enviar excel"=false then begin
+                            if RecCust."No enviar excel" = false then begin
                                 nomdir := '';
                                 ADAIA.Reset();
                                 ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
                                 IF ADAIA.FindSet() THEN begin
                                     nomdir := ADAIA.Ruta;
                                 end;
-                            
+
                                 Clear(TempBlob);
                                 Clear(OutStream);
                                 Clear(InStream);
@@ -13444,10 +13444,10 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
             DESNOMa2 := CASCII.Ascii2Ansi(DESNOMa2);
         end;
 
-        DESNOMa33:= CopyStr(SalesHeader."Ship-to Address",1,STRLEN(SalesHeader."Ship-to Address"))+
-                    CopyStr(SalesHeader."Ship-to Address 2",1,STRLEN(SalesHeader."Ship-to Address 2"));
-        
-        DESNOMa3 := ConvertStr(CopyStr(DESNOMa33, 1, 100), 'ª', '.');         
+        DESNOMa33 := CopyStr(SalesHeader."Ship-to Address", 1, STRLEN(SalesHeader."Ship-to Address")) +
+                    CopyStr(SalesHeader."Ship-to Address 2", 1, STRLEN(SalesHeader."Ship-to Address 2"));
+
+        DESNOMa3 := ConvertStr(CopyStr(DESNOMa33, 1, 100), 'ª', '.');
         DESNOMa3 := ConvertStr(DESNOMa3, 'º', '.');
         DESNOMa3 := CASCII.Ascii2Ansi(DESNOMa3);
         DESNOMa4 := ConvertStr(CopyStr(SalesHeader."Ship-to Address 2", 1, 50), 'ª', '.');
@@ -13606,7 +13606,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         TextoSalida1 := Format(DESNOMa1, 50) +
                       Format(DESNOMa2, 50) +
                       Format(DESNOMa3, 100);
-                      //Format(DESNOMa4, 50);
+        //Format(DESNOMa4, 50);
         TextoSalida2 := Format(SalesHeader."Ship-to Post Code", 5) +
                       Format(SalesHeader."Ship-to City", 30) +
                       Format(SalesHeader."Ship-to County", 30) +
@@ -15345,10 +15345,10 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
             DESNOMa2 := CASCII.Ascii2Ansi(DESNOMa2);
         end;
 
-        DESNOMa33:= CopyStr(ServiceItem."Ship-to Address",1,STRLEN(ServiceItem."Ship-to Address"))+
-                    CopyStr(ServiceItem."Ship-to Address 2",1,STRLEN(ServiceItem."Ship-to Address 2"));
-        
-        DESNOMa3 := ConvertStr(CopyStr(DESNOMa33, 1, 100), 'ª', '.');                 
+        DESNOMa33 := CopyStr(ServiceItem."Ship-to Address", 1, STRLEN(ServiceItem."Ship-to Address")) +
+                    CopyStr(ServiceItem."Ship-to Address 2", 1, STRLEN(ServiceItem."Ship-to Address 2"));
+
+        DESNOMa3 := ConvertStr(CopyStr(DESNOMa33, 1, 100), 'ª', '.');
         DESNOMa3 := ConvertStr(DESNOMa3, 'º', '.');
         DESNOMa3 := CASCII.Ascii2Ansi(DESNOMa3);
         DESNOMa4 := ConvertStr(CopyStr(ServiceItem."Ship-to Address 2", 1, 50), 'ª', '.');
@@ -15503,8 +15503,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         TextoSalida1 := Format(DESNOMa1, 50) +
                       Format(DESNOMa2, 50) +
-                      Format(DESNOMa3, 100); 
-                      ///Format(DESNOMa4, 50);
+                      Format(DESNOMa3, 100);
+        ///Format(DESNOMa4, 50);
         TextoSalida2 := Format(ServiceItem."Ship-to Post Code", 5) +
                       Format(ServiceItem."Ship-to City", 30) +
                       Format(ServiceItem."Ship-to County", 30) +
@@ -15627,6 +15627,142 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
 
+    end;
+
+    procedure TERCEROSMODIFcliente(Codclie: Code[20])
+    var
+        TempBlob: Codeunit "Temp Blob";
+        OutStream: OutStream;
+        FileName: Text;
+        InStream: InStream;
+        FicherosHagen: Codeunit FicherosHagen;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+        Data1: BigText;
+        Data2: BigText;
+        Data3: BigText;
+        Data4: BigText;
+        Data5: BigText;
+        OutTxt: Text;
+
+    begin
+
+
+
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
+
+
+
+
+        ////////VENTANA.Update(1, 'TERCEROS');
+        Clie.Init;
+        Clie.Reset;
+        Clie.SetRange("No.", Codclie);
+        if Clie.FindSet then
+            repeat
+                ///VENTANA.Update(2, Clie."No.");
+                DESNOM := ConvertStr(CopyStr(Clie.Name, 1, 30), 'ª', '.');
+                DESNOM := ConvertStr(DESNOM, 'º', '.');
+                DESNOM2 := ConvertStr(CopyStr(Clie."Search Name", 1, 30), 'ª', '.');
+                DESNOM2 := ConvertStr(DESNOM2, 'º', '.');
+                DESNOM3 := ConvertStr(CopyStr(Clie.Address, 1, 30), 'ª', '.');
+                DESNOM3 := ConvertStr(DESNOM3, 'º', '.');
+                DESNOM4 := ConvertStr(CopyStr(Clie.City, 1, 30), 'ª', '.');
+                DESNOM4 := ConvertStr(DESNOM4, 'º', '.');
+                TIPOPA := '';
+                RC := '';
+
+                OutTxt := 'TE' + '|' +       //1
+                                'AG' + '|' +       //2
+                                Format(Clie."No.") + '|' +  //3
+                                Format(DESNOM, 40) + '|' +   //4
+                                Format(Clie."No.") + '|' +  //5
+                                Format(DESNOM2, 12) + '|' +   //6
+                                'CLI' + '|' +               //7
+                                Format(DESNOM3, 40) + '|' +  //8
+                                Format(DESNOM4, 40) + '|' +  //9
+                                 '|' +  //10
+                                 '|' +  //11
+                                Format(Clie."Post Code", 6) + '|' + //12
+                                Format(Clie.County, 4) + '|' +  //13
+                                'N|' +                           //14
+                                '|' +                     //15
+                                '|' +                     //16
+                                '|' +                     //17
+                                '|' +                     //18
+                                '|' +                      //19
+                                '|';                   //20                                    
+
+                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                data.AddText(OutTxt);
+
+                Clie.Modify;
+
+            until Clie.Next = 0;
+
+        Clie.Init;
+        Clie.Reset;
+        Clie.SetRange("No.", Codclie);
+        if Clie.FindSet then
+            repeat
+                ///   ///VENTANA.Update(2, Clie."No.");
+                DESNOM := ConvertStr(CopyStr(Clie.Name, 1, 30), 'ª', '.');
+                DESNOM := ConvertStr(DESNOM, 'º', '.');
+                DESNOM2 := ConvertStr(CopyStr(Clie."Search Name", 1, 30), 'ª', '.');
+                DESNOM2 := ConvertStr(DESNOM2, 'º', '.');
+                DESNOM3 := ConvertStr(CopyStr(Clie.Address, 1, 30), 'ª', '.');
+                DESNOM3 := ConvertStr(DESNOM3, 'º', '.');
+                DESNOM4 := ConvertStr(CopyStr(Clie.City, 1, 30), 'ª', '.');
+                DESNOM4 := ConvertStr(DESNOM4, 'º', '.');
+                TIPOPA := '';
+                RC := '';
+
+                OutTxt := 'TE' + '|' +       //1
+                                'MO' + '|' +       //2
+                                Format(Clie."No.") + '|' +  //3
+                                Format(DESNOM, 40) + '|' +   //4
+                                Format(Clie."No.") + '|' +  //5
+                                Format(DESNOM2, 12) + '|' +   //6
+                                'CLI' + '|' +               //7
+                                Format(DESNOM3, 40) + '|' +  //8
+                                Format(DESNOM4, 40) + '|' +  //9
+                                 '|' +  //10
+                                 '|' +  //11
+                                Format(Clie."Post Code", 6) + '|' + //12
+                                Format(Clie.County, 4) + '|' +  //13
+                                'N|' +                           //14
+                                '|' +                     //15
+                                '|' +                     //16
+                                '|' +                     //17
+                                '|' +                     //18
+                                '|' +                      //19
+                                '|';                   //20                                    
+
+                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                data.AddText(OutTxt);
+
+                Clie.Modify;
+
+            until Clie.Next = 0;
+
+
+
+
+
+        Data.Write(OutStream);
+
+        RecCE.Get;
+        RUTA := RecCE."Ruta salida de_gestion";
+        TIPO := 3;
+        BUSCAEXTENSION;
+        DAT2 := 'TRTER.' + EXTEN + Format(ALEA);
+        TempBlob.CreateInStream(InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
     end;
 
 
