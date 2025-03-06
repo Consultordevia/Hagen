@@ -170,6 +170,8 @@ XmlPort 50098 "Importacion MRW"
         DDF: Code[20];
         DDH: Code[20];
         choras: Code[20];
+        CASCII: Codeunit "ANSI <-> ASCII converter2";
+
 
     local procedure InitializeGlobals()
     var
@@ -297,6 +299,7 @@ XmlPort 50098 "Importacion MRW"
             ///MESSAGE('%1',D3);
 
             if D1 <> '' then begin
+                D4 := CASCII.Ascii2Ansi(D4);
                 SalesShipmentHeader.Reset;
                 SalesShipmentHeader.SetCurrentkey(ASN);
                 SalesShipmentHeader.SetRange(ASN, D1);

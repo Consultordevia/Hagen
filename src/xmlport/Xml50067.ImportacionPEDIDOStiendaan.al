@@ -503,6 +503,7 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
         PurchasesPayablesSetup: Record "Purchases & Payables Setup";
         SalesLineDiscount: Record "Sales Line Discount";
         NoSeriesManagement: Codeunit NoSeriesManagement;
+        CASCII: Codeunit "ANSI <-> ASCII converter2";
 
     local procedure InitializeGlobals()
     var
@@ -615,15 +616,15 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                     ///TempBlob.WriteAsText(D2,TEXTENCODING::Windows);
                     ///RecCV."Work Description":=TempBlob.Blob;
                     RecCV.Validate("Your Reference", D2);
-                    RecCV."Ship-to Name" := CopyStr(D52 + D53, 1, 50);
-                    RecCV."Ship-to Name 2" := CopyStr(D52 + D53, 51, 50);
-                    RecCV."Ship-to Address" := CopyStr(D55 + D56, 1, 50);
-                    RecCV."Ship-to Address 2" := CopyStr(D55 + D56, 51, 50);
+                    RecCV."Ship-to Name" := CASCII.Ascii2Ansi(CopyStr(D52 + D53, 1, 50));
+                    RecCV."Ship-to Name 2" := CASCII.Ascii2Ansi(CopyStr(D52 + D53, 51, 50));
+                    RecCV."Ship-to Address" := CASCII.Ascii2Ansi(CopyStr(D55 + D56, 1, 50));
+                    RecCV."Ship-to Address 2" := CASCII.Ascii2Ansi(CopyStr(D55 + D56, 51, 50));
                     RecCV."Ship-to Contact" := D52;
                     RecCV."E-MAIL" := 'ventas@hagen.es';
-                    RecCV.Validate(RecCV."Ship-to Post Code", D57);
-                    RecCV.Validate(RecCV."Ship-to City", D58);
-                    RecCV."Envio a-Nº Telefono" := D61;
+                    RecCV.Validate(RecCV."Ship-to Post Code", CASCII.Ascii2Ansi(D57));
+                    RecCV.Validate(RecCV."Ship-to City", CASCII.Ascii2Ansi(D58));
+                    RecCV."Envio a-Nº Telefono" := CASCII.Ascii2Ansi(D61);
                     ///RecCV."Observación para transporte" := D46;
                     RecCV."Prices Including VAT" := true;
                     RecCV."Prices Including VAT" := false;
@@ -695,7 +696,7 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                             CANTIDE := ROUND(CANTIDE, 0.01);
                             RecLV.Validate("Unit Price", CANTIDE);
                             RecLV.Modify(true);
-                            Evaluate(CANTitrans, D23);
+                            Evaluate(CANTitrans, D22);
                             ///end;
                             if CANTitrans <> 0 then begin
                                 RecLV."Document Type" := 1;
@@ -760,7 +761,7 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
                                     RecLV.Validate("Unit Price", RecLV.Quantity * CANTIDE);
                                     RecLV.Modify(true);
                                     ///end;
-                                    Evaluate(CANTitrans, D23);
+                                    Evaluate(CANTitrans, D22);
                                     if CANTitrans <> 0 then begin
                                         RecLV."Document Type" := 1;
                                         RecLV."Document No." := codacti;

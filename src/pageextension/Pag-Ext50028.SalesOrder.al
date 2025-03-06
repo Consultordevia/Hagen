@@ -9,6 +9,7 @@ pageextension 50028 SalesOrder extends "Sales Order"
             field("Envio a-Nº Telefono"; Rec."Envio a-Nº Telefono") { ApplicationArea = All; }
             field("E-MAIL"; Rec."E-MAIL") { ApplicationArea = All; }
             field(Dropshipping; Rec.Dropshipping) { ApplicationArea = All; }
+            field("Tipo facturación"; Rec."Tipo facturación") { ApplicationArea = All; }
         }
 
 
