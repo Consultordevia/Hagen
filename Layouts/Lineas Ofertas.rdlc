@@ -183,7 +183,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>cajainnner</Value>
+                                  <Value>Inner</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -215,7 +215,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>cajamaster</Value>
+                                  <Value>Master</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -311,7 +311,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>precioneto</Value>
+                                  <Value>Precio Neto</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -343,7 +343,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>urlprod</Value>
+                                  <Value>URL producto</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
