@@ -704,6 +704,27 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                 end;
             }
 
+            action(LineasOfertaaExcel)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Lineas Oferta a Excel';
+                trigger OnAction()
+                var
+                    ReportLineasExcel: Report "Lineas Oferta";
+                    Rec37: Record "Sales Line";
+                begin
+                    Clear(ReportLineasExcel);
+                    Rec37.reset;
+                    Rec37.SetRange("Document Type", Rec."Document Type");
+                    Rec37.SetRange("Document No.", Rec."No.");
+                    IF Rec37.FindFirst() THEN BEGIN
+                        ReportLineasExcel.SetTableView(Rec37);
+                        ReportLineasExcel.Run();
+                    END;
+
+                    MESSAGE('Hecho.');
+                end;
+            }
 
 
 
@@ -721,13 +742,13 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
 
     }
 
- trigger OnClosePage()
+    trigger OnClosePage()
     var
-    SalesLine: Record "Sales Line";
+        SalesLine: Record "Sales Line";
     begin
         SalesLine.RESET;
-        SalesLine.SETRANGE("Document Type",Rec."Document Type");
-        SalesLine.SETRANGE("Document No.",rec."No.");
+        SalesLine.SETRANGE("Document Type", Rec."Document Type");
+        SalesLine.SETRANGE("Document No.", rec."No.");
         IF NOT SalesLine.FINDFIRST THEN BEGIN
             Rec.DELETE;
         END;

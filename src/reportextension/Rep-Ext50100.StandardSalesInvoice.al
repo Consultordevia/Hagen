@@ -31,7 +31,7 @@ reportextension 50100 StandardSalesInvoice extends "Standard Sales - Invoice"
 
                 //NETO := 0;
                 if "Line".Quantity <> 0 then begin
-                    "Precio final" := "Line".Amount / "Line".Quantity;
+                    "Precio final" := round("Line".Amount / "Line".Quantity,0.01);
                 end;
 
                 if not Line.HasTypeToFillMandatoryFields() then begin

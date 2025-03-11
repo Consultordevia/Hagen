@@ -767,6 +767,70 @@ Page 50031 "Almacen Datos"
                         Page.Run(50093);
                     end;
                 }
+                field(TareasFallidas; TareasFallidas)
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'Tareas Fallidas';
+
+                    trigger OnDrillDown()
+                    var
+                        pagejqe: page "Job Queue Entries";
+                        recjqe: Record "Job Queue Entry";
+
+                    begin
+                        recjqe.Reset();
+                        recjqe.SetRange(Status, recjqe.Status::Error);
+                        IF recjqe.FindFirst() THEN begin
+                            CLEAR(pagejqe);
+                            pagejqe.SetTableView(recjqe);
+                            pagejqe.RunModal();
+                        end;
+                    end;
+                }
+                field(TareasEnCurso; TareasEnCurso)
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'Tareas En Curso';
+
+                    trigger OnDrillDown()
+                    var
+                        pagejqe: page "Job Queue Entries";
+                        recjqe: Record "Job Queue Entry";
+
+                    begin
+                        recjqe.Reset();
+                        recjqe.SetRange(Status, recjqe.Status::"In Process");
+                        IF recjqe.FindFirst() THEN begin
+                            CLEAR(pagejqe);
+                            pagejqe.SetTableView(recjqe);
+                            pagejqe.RunModal();
+                        end;
+                    END;
+
+                }
+                field(TareasEnCola; TareasEnCola)
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'Tareas En Cola';
+
+                    trigger OnDrillDown()
+                    var
+                        pagejqe: page "Job Queue Entries";
+                        recjqe: Record "Job Queue Entry";
+
+                    begin
+                        recjqe.Reset();
+                        recjqe.SetRange(Status, recjqe.Status::Ready);
+                        IF recjqe.FindFirst() THEN begin
+                            CLEAR(pagejqe);
+                            pagejqe.SetTableView(recjqe);
+                            pagejqe.RunModal();
+                        end;
+
+                    end;
+                }
+
+
             }
         }
     }
@@ -889,6 +953,29 @@ Page 50031 "Almacen Datos"
         SalesCue2.SetRange("Date Filter", lunes, viernes);
         SalesCue2.CalcFields("Pedidos contenedor sem.actual");
         PEDIDOCONTENEDORact := SalesCue2."Pedidos contenedor sem.actual";
+
+
+        TareasEnCola := 0;
+        TareasEnCurso := 0;
+        TareasFallidas := 0;
+
+        recjqe.Reset();
+        recjqe.SetRange(Status, recjqe.Status::Ready);
+        IF recjqe.FindFirst() THEN begin
+            TareasEnCola := recjqe.CountApprox;
+        end;
+        recjqe.Reset();
+        recjqe.SetRange(Status, recjqe.Status::"In Process");
+        IF recjqe.FindFirst() THEN begin
+            TareasEnCurso := recjqe.CountApprox;
+        end;
+        recjqe.Reset();
+        recjqe.SetRange(Status, recjqe.Status::Error);
+        IF recjqe.FindFirst() THEN begin
+            TareasFallidas := recjqe.CountApprox;
+        end;
+
+
     end;
 
     trigger OnOpenPage()
@@ -917,6 +1004,11 @@ Page 50031 "Almacen Datos"
     end;
 
     var
+        pagejqe: page "Job Queue Entries";
+        recjqe: Record "Job Queue Entry";
+        TareasFallidas: Integer;
+        TareasEnCurso: Integer;
+        TareasEnCola: Integer;
         CueSetup: Codeunit "Cues And KPIs";
         ShowDocumentsPendingDodExchService: Boolean;
         ESTADO0: Integer;

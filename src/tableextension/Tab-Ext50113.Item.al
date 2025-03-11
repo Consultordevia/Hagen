@@ -609,6 +609,22 @@ tableextension 50113 Item extends Item
             Editable = false;
             FieldClass = FlowField;
         }
+        field(50086; "Existencia TSTO"; Decimal)
+        {
+            CalcFormula = sum("Item Ledger Entry".Quantity where("Item No." = field("No."),
+                                                                  "Global Dimension 1 Code" = field("Global Dimension 1 Filter"),
+                                                                  "Global Dimension 2 Code" = field("Global Dimension 2 Filter"),
+                                                                  "Location Code" = const('TSTO'),
+                                                                  "Drop Shipment" = field("Drop Shipment Filter"),
+                                                                  "Variant Code" = field("Variant Filter"),
+                                                                  "Lot No." = field("Lot No. Filter"),
+                                                                  "Serial No." = field("Serial No. Filter")));
+            Caption = 'Existencia VCD';
+            DecimalPlaces = 0 : 5;
+            Editable = false;
+            FieldClass = FlowField;
+        }
+        
         field(50088; "No permite pedido"; Boolean)
         {
 

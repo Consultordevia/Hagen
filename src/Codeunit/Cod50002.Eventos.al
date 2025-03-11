@@ -212,7 +212,7 @@ codeunit 50002 Eventos
     [EventSubscriber(ObjectType::Table, Database::Customer, OnBeforeModifyEvent, '', false, false)]
     local procedure OnBeforeModifyEventCustomer(var Rec: Record Customer; var xRec: Record Customer)
     begin
-        if rec."Payment Terms Code" <> xrec."Payment Terms Code" then
+        /*if rec."Payment Terms Code" <> xrec."Payment Terms Code" then
             rec.FechaHoraModificacionWeb := CurrentDateTime;
         if rec."Payment Method Code" <> xrec."Payment Method Code" then
             rec.FechaHoraModificacionWeb := CurrentDateTime;
@@ -224,8 +224,8 @@ codeunit 50002 Eventos
             rec.FechaHoraModificacionWeb := CurrentDateTime;
         if rec.City <> xrec.City then
             rec.FechaHoraModificacionWeb := CurrentDateTime;
-        if rec."Usuario Web" <> xrec."Usuario Web" then
-            rec.FechaHoraModificacionWeb := CurrentDateTime;
+        if rec."Usuario Web" <> xrec."Usuario Web" then*/
+        rec.FechaHoraModificacionWeb := CurrentDateTime;
     end;
 
     [EventSubscriber(ObjectType::Table, Database::"Ship-to Address", 'OnBeforeInsertEvent', '', false, false)]
@@ -843,9 +843,9 @@ codeunit 50002 Eventos
             if RecTransp."Sacar etiqueta envio GRA" then begin
                 SalesShptHeader."Imprime eti. envio" := true;
             end;
-            nexpefinal:=SalesShptHeader."Nº expedición dropshp";
-            if SalesShptHeader."Nº expedición dropshp"<>'' then begin
-               nexpefinal:=SalesShptHeader."Nº expedición dropshp";
+            nexpefinal := SalesShptHeader."Nº expedición";
+            if SalesShptHeader."Nº expedición dropshp" <> '' then begin
+                nexpefinal := SalesShptHeader."Nº expedición dropshp";
             end;
 
 
@@ -905,6 +905,13 @@ codeunit 50002 Eventos
                 if RecTransp.Añadir = 1 then
                     PAGINAWEB := PAGINAWEB + Format(nexpefinal) +
                         Format(SalesShptHeader."Ship-to Post Code");
+                if RecTransp.Añadir = 2 then
+                    PAGINAWEB := PAGINAWEB + Format(nexpefinal) +'/'+
+                        Format(SalesShptHeader."Ship-to Post Code"); 
+                if RecTransp.Añadir = 3 then
+                    PAGINAWEB := PAGINAWEB + Format(nexpefinal) +
+                        Format(Date2DMY(SalesShptHeader."Posting Date",3));
+
                 SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
                 SalesShptHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
                 SalesShptHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
@@ -919,7 +926,7 @@ codeunit 50002 Eventos
             SalesShptHeader."Pasada a Canarias" := false;
         end;
         if SalesHeader."Nº expedición agrupada" <> '' then begin
-            SalesShptHeader."Nº expedición" := nexpefinal + '-' + SalesHeader."Nº expedición agrupada";
+            SalesShptHeader."Nº expedición" := SalesHeader."Nº expedición" + '-' + SalesHeader."Nº expedición agrupada";
             SalesShptHeader."Nº bultos" := 1;
             SalesShptHeader."Total bultos" := 1;
             if SalesShptHeader."Incrementa bultos" <> 0 then begin
@@ -951,10 +958,10 @@ codeunit 50002 Eventos
             SalesInvHeader."CSV Enviar" := RecClie."Factura CSV";
 
         end;
-        nexpefinal:=SalesInvHeader."Nº expedición dropshp";
-        if SalesInvHeader."Nº expedición dropshp"<>'' then begin
-               nexpefinal:=SalesInvHeader."Nº expedición dropshp";
-            end;
+        nexpefinal := SalesInvHeader."Nº expedición dropshp";
+        if SalesInvHeader."Nº expedición dropshp" <> '' then begin
+            nexpefinal := SalesInvHeader."Nº expedición dropshp";
+        end;
 
         if RecTransp.Get(SalesInvHeader."Shipping Agent Code") then begin
             if RecTransp."Link transporte" = '' then begin

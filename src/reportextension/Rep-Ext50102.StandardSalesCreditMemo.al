@@ -32,7 +32,7 @@ reportextension 50102 StandardSalesCreditMemo extends "Standard Sales - Credit M
 
                 //NETO := 0;
                 if "Line".Quantity <> 0 then begin
-                    "Precio final" := "Line".Amount / "Line".Quantity;
+                    "Precio final" := round("Line".Amount / "Line".Quantity, 0.01);
                 end;
 
 
