@@ -52,6 +52,7 @@ codeunit 50006 SubirFicherosFTP
         SalesShipmentHeader.SetRange(SalesShipmentHeader.FicheroFTP, false);
         SalesShipmentHeader.SETRANGE("Posting Date", 20241205D, TODAY);
         if SalesShipmentHeader.FindSet() then begin
+
             repeat
                 Clear(TempBlob);
                 Clear(OutStream);
