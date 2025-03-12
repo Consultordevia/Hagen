@@ -26,12 +26,12 @@ Report 50050 "ETI. envio agrupado d"
             {
             }
             column(SalesHeaderNoexpedicion___SalesHeaderNoexpedicionagrupada; "Sales Header"."Nº expedición" + '  -  ' + "Sales Header"."Nº expedición dropshp" +
-             ' B:' + Format(bultos)+
+             ' B:' + Format(bultos) +
              ' ' + Format("Sales Header"."Nº expedición agrupada"))
             {
-            }         
+            }
 
-            
+
             column(SearchName_RecCust; RecCust."Search Name")
             {
             }

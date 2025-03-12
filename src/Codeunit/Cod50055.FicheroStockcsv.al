@@ -1299,7 +1299,7 @@ Codeunit 50055 "Fichero Stock.csv"
         LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
 
         Clear(TempBlob);
-        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);       
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
 
 
         OutTxt := 'Ean;Referencia;Descripcion;Estado;Línea;Familia;Tarifa;PVPR;Disponibilidad;Und. Mínimo Compra;Fecha Prox.;Pesos;Largo;Alto;Ancho;Volumen;Marca;URL imagen;Iva;Fecha Lanzamiento;' +
@@ -1487,26 +1487,26 @@ Codeunit 50055 "Fichero Stock.csv"
 
                                 ItemtempR.Insert;
 
-              TextoSalida1 := Format(ItemTempR."No. 2") + ';' +
-                              Format(ItemTempR."No.") + ';' +
-                              Format(ItemTempR.Description) + ';' +
-                              Format(ItemTempR."Description 2") + ';';
-                TextoSalida2 := Format(ItemTempR."Gen. Prod. Posting Group") + ';' +
-                              Format(ItemTempR.Familia) + ';' +
-                              Format(ItemTempR."Unit Price") + ';' +
-                              Format(ItemTempR."Unit Cost") + ';' +
-                              Format(ItemTempR."Maximum Inventory") + ';' +
-                              Format(ItemTempR."Unidad compra") + ';' +
-                              Format(ItemTempR."Descripcion web") + ';' +
-                              Format(ItemTempR."Units per Parcel") + ';' +
-                              Format(ItemTempR."Gross Weight") + ';' +
-                              Format(ItemTempR."Minimum Order Quantity") + ';' +
-                              Format(ItemTempR."Maximum Order Quantity") + ';' +
-                              Format(ItemTempR."Safety Stock Quantity") + ';' +
-                              Format(ItemTempR."Tariff No.") + ';';
-                TextoSalida3 := Format(ItemTempR."URL IMAGEN 1") + ';' +
-                              Format(ItemTempR."Vendor No.") + ';' +
-                              Format(ItemTempR."Last Date Modified");
+                                TextoSalida1 := Format(ItemTempR."No. 2") + ';' +
+                                                Format(ItemTempR."No.") + ';' +
+                                                Format(ItemTempR.Description) + ';' +
+                                                Format(ItemTempR."Description 2") + ';';
+                                TextoSalida2 := Format(ItemTempR."Gen. Prod. Posting Group") + ';' +
+                                              Format(ItemTempR.Familia) + ';' +
+                                              Format(ItemTempR."Unit Price") + ';' +
+                                              Format(ItemTempR."Unit Cost") + ';' +
+                                              Format(ItemTempR."Maximum Inventory") + ';' +
+                                              Format(ItemTempR."Unidad compra") + ';' +
+                                              Format(ItemTempR."Descripcion web") + ';' +
+                                              Format(ItemTempR."Units per Parcel") + ';' +
+                                              Format(ItemTempR."Gross Weight") + ';' +
+                                              Format(ItemTempR."Minimum Order Quantity") + ';' +
+                                              Format(ItemTempR."Maximum Order Quantity") + ';' +
+                                              Format(ItemTempR."Safety Stock Quantity") + ';' +
+                                              Format(ItemTempR."Tariff No.") + ';';
+                                TextoSalida3 := Format(ItemTempR."URL IMAGEN 1") + ';' +
+                                              Format(ItemTempR."Vendor No.") + ';' +
+                                              Format(ItemTempR."Last Date Modified");
 
 
                                 OutTxt := TextoSalida1 + TextoSalida2 + TextoSalida3;
@@ -1548,10 +1548,6 @@ Codeunit 50055 "Fichero Stock.csv"
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
         FicherosHagen.CrearFichero(nomdir, 'stock.csv', InStream);
 
-
-        /////FileDirectoryexcel := 'c:\tmp\TarifaStock2022-2.xls';
-
-
         Clear(RepItemTemporal);
         RepItemTemporal.UseRequestPage(false);
         TempBlob.CreateOutStream(OutStream);
@@ -1564,14 +1560,14 @@ Codeunit 50055 "Fichero Stock.csv"
 
 
 
-/*
-/////-SalesInvHeader2.Reset;
-                /////-SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
-                /////-if SalesInvHeader2.FindFirst then begin
-                    /////-Report.SaveAsExcel(50914, FileDirectoryexcel, SalesInvHeader2);
-                /////-end;
+        /*
+        /////-SalesInvHeader2.Reset;
+                        /////-SalesInvHeader2.SetRange("No.", SalesInvHeader."No.");
+                        /////-if SalesInvHeader2.FindFirst then begin
+                            /////-Report.SaveAsExcel(50914, FileDirectoryexcel, SalesInvHeader2);
+                        /////-end;
 
-*/
+        */
 
 
 

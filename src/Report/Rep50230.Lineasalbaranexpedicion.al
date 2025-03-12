@@ -44,7 +44,7 @@ Report 50230 "Lineas albaran expedicion"
             column(totalMix; totalMix)
             {
             }
-            column(Nexpedi; SalesHeader."Nº expedición")
+            column(Nexpedi; "Sales Shipment Line"."Nº expedición")
             {
             }
             column(TotalBulLin; Q_Masters + Q_Inners)
@@ -89,13 +89,14 @@ Report 50230 "Lineas albaran expedicion"
             column(ObservacPDA; ObservacPDA)
             {
             }
+            column(Nexpediciónagrupada;SalesHeader."Nº expedición agrupada")
+            {
+            }
 
             trigger OnAfterGetRecord()
             begin
 
-                "Sales Shipment Line".SetFilter("Nº expedición", Nexpe);
-
-
+                ///"Sales Shipment Line".SetFilter("Nº expedición", Nexpe);
 
 
 
@@ -114,13 +115,13 @@ Report 50230 "Lineas albaran expedicion"
 
 
 
-                YREF := Nexpe;
+                YREF := "Sales Shipment Line"."Nº expedición";
             end;
 
             trigger OnPreDataItem()
             begin
 
-                "Sales Shipment Line".SetFilter("Nº expedición", Nexpe);
+                /////"Sales Shipment Line".SetFilter("Nº expedición", Nexpe);
             end;
         }
     }
