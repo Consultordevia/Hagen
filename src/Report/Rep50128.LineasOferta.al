@@ -107,7 +107,7 @@ Report 50128 "Lineas Oferta"
             begin
 
 
-                Peso := ("Sales Line".Quantity * "Sales Line"."Net Weight");
+                Peso := ("Sales Line"."Net Weight");
                 Dto := "Sales Line"."Line Discount %";
                 precioneto := "Sales Line".Amount / "Sales Line".Quantity;
 

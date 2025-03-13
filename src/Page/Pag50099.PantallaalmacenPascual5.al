@@ -46597,7 +46597,7 @@ fichero:='G70246.pdf';graba;
         LineaspedidoAMAZON: Report "Lineas pedido AMAZON";
         SalesLine33: Record "Sales Line";
         npedi: Code[20];
-        LineasPedidosexpedicion: Report "Lineas albaran expedicion";
+        LineasPedidosexpedicion: Report "Lineas pedido expedicion";
         TotalCantidad: Decimal;
 
 

@@ -7,7 +7,6 @@
         <DataProvider>SQL</DataProvider>
         <ConnectString />
       </ConnectionProperties>
-      <rd:SecurityType>None</rd:SecurityType>
       <rd:DataSourceID>7830194d-714f-4fa1-932e-9d37ba9b2bbc</rd:DataSourceID>
     </DataSource>
   </DataSources>
@@ -50,7 +49,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">Referencia</Value>
+                                  <Value>Referencia</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -80,7 +79,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">Cantidad</Value>
+                                  <Value>Cantidad</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -114,7 +113,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">Descripcion</Value>
+                                  <Value>Descripcion</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -144,7 +143,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">EAN</Value>
+                                  <Value>EAN</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -178,7 +177,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">Transportista</Value>
+                                  <Value>Transportista</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -212,7 +211,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">Observac PDA</Value>
+                                  <Value>Observac PDA</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -251,7 +250,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!NombreCliente.Value</Value>
+                                  <Value>=Fields!NombreCliente.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -289,7 +288,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -323,7 +322,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!ShippingAgentCode.Value</Value>
+                                  <Value>=Fields!ShippingAgentCode.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -357,7 +356,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!ObservacPDA.Value</Value>
+                                  <Value>=Fields!ObservacPDA.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -380,7 +379,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -397,7 +395,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Prod.Value</Value>
+                                  <Value>=Fields!Prod.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -431,7 +429,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Cantidad.Value</Value>
+                                  <Value>=Fields!Cantidad.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -465,7 +463,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!Descrip.Value</Value>
+                                  <Value>=Fields!Descrip.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -497,7 +495,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!EAN.Value</Value>
+                                  <Value>=Fields!EAN.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -531,7 +529,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -565,7 +563,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -597,14 +595,14 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox15">
+                        <Textbox Name="Nexpediciónagrupada">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value>=Fields!Nexpediciónagrupada.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -616,7 +614,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox15</rd:DefaultName>
+                          <rd:DefaultName>Nexpediciónagrupada</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -628,6 +626,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -639,7 +638,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">Bultos:</Value>
+                                  <Value>Bultos:</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -674,7 +673,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto">=Fields!totalBultos.Value</Value>
+                                  <Value>=Fields!totalBultos.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -709,7 +708,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -744,7 +743,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -779,7 +778,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Auto" />
+                                  <Value />
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -832,7 +831,7 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value EvaluationMode="Auto">expedicindropshp</Value>
+                                <Value>expedicindropshp</Value>
                                 <Style />
                               </TextRun>
                             </TextRuns>
@@ -879,7 +878,7 @@
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value EvaluationMode="Auto">=Fields!expedicindropshp.Value</Value>
+                                <Value>=Fields!expedicindropshp.Value</Value>
                                 <Style>
                                   <FontSize>8pt</FontSize>
                                 </Style>
@@ -928,7 +927,6 @@
               </SortExpression>
             </SortExpressions>
             <Top>0.62722in</Top>
-            <Left>0in</Left>
             <Height>1in</Height>
             <Width>7.54862in</Width>
             <Style>
@@ -944,7 +942,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value EvaluationMode="Auto">=Last(Fields!YREF.Value, "DataSet_Result")</Value>
+                    <Value>=Last(Fields!YREF.Value, "DataSet_Result")</Value>
                     <Style>
                       <FontSize>16pt</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -955,7 +953,6 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
-            <Top>0in</Top>
             <Left>1.20141in</Left>
             <Height>0.50222in</Height>
             <Width>5.34721in</Width>
@@ -977,9 +974,7 @@
       <Width>7.54862in</Width>
       <Page>
         <LeftMargin>0.25in</LeftMargin>
-        <RightMargin>0in</RightMargin>
         <TopMargin>0.25in</TopMargin>
-        <BottomMargin>0in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>
@@ -1142,6 +1137,9 @@ End Function
         </Field>
         <Field Name="ObservacPDA">
           <DataField>ObservacPDA</DataField>
+        </Field>
+        <Field Name="Nexpediciónagrupada">
+          <DataField>Nexpediciónagrupada</DataField>
         </Field>
       </Fields>
       <Query>

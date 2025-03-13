@@ -472,6 +472,12 @@ tableextension 50114 SalesHeader extends "Sales Header"
                     "Notificar Envio" := true;
                 // FIN
 
+                if "Estado pedido"="Estado pedido"::"Para preparar" then begin
+                    if TextoWebApi<>'' then begin
+                        Error('Revise el campo TextoWebAp');
+                    end;
+                end;
+
             end;
         }
         field(50003; "Usuario alta"; Code[30])
