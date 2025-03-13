@@ -23,7 +23,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>5.7578cm</Height>
+                  <Height>1.94685cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -275,14 +275,14 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="VATPctLbl">
+                                          <Textbox Name="Textbox22">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=First(Fields!VATPctLbl.Value, "DataSet_Result")</Value>
+                                                    <Value />
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -294,6 +294,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox22</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>None</Style>
@@ -309,14 +310,14 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="VATAmountLbl">
+                                          <Textbox Name="Textbox23">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=First(Fields!VATAmountLbl.Value, "DataSet_Result")</Value>
+                                                    <Value />
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -328,6 +329,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox23</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>None</Style>
@@ -570,14 +572,14 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="VATPct">
+                                          <Textbox Name="Textbox24">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!VATPct.Value</Value>
+                                                    <Value />
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
                                                     </Style>
@@ -588,6 +590,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox24</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -601,14 +604,14 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="VATAmount">
+                                          <Textbox Name="Textbox25">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=IIF(Fields!Quantity.Value = 0,"",Fields!VATAmount.Value)</Value>
+                                                    <Value />
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
                                                     </Style>
@@ -619,6 +622,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox25</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1122,14 +1126,14 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="TotalWeightLbl">
+                                          <Textbox Name="Textbox2">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=First(Fields!TotalWeightLbl.Value, "DataSet_Result")</Value>
+                                                    <Value />
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -1141,6 +1145,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox2</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>None</Style>
@@ -1159,14 +1164,14 @@
                                       <TablixCell />
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="TotalWeight">
+                                          <Textbox Name="Textbox3">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Last(Fields!TotalWeight.Value)</Value>
+                                                    <Value />
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
                                                     </Style>
@@ -1177,6 +1182,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox3</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Style>None</Style>
@@ -1323,14 +1329,14 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="TotalAmountLbl">
+                                          <Textbox Name="Textbox17">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=First(Fields!TotalAmountLbl.Value, "DataSet_Result")</Value>
+                                                    <Value />
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -1342,6 +1348,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox17</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1358,14 +1365,14 @@
                                       <TablixCell />
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="TotalAmount">
+                                          <Textbox Name="Textbox18">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Last(Fields!TotalValue.Value)</Value>
+                                                    <Value />
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
                                                     </Style>
@@ -1376,6 +1383,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox18</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1520,14 +1528,14 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="TotalVATAmountLbl">
+                                          <Textbox Name="Textbox19">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=First(Fields!VATAmountLbl.Value, "DataSet_Result")</Value>
+                                                    <Value />
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -1539,6 +1547,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox19</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1555,14 +1564,14 @@
                                       <TablixCell />
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="TotalVATAmount">
+                                          <Textbox Name="Textbox20">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Last(Fields!TotalVATAmount.Value)</Value>
+                                                    <Value />
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
                                                     </Style>
@@ -1573,6 +1582,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
+                                            <rd:DefaultName>Textbox20</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -1724,7 +1734,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=First(Fields!TotalAmountInclVATLbl.Value, "DataSet_Result")</Value>
+                                                    <Value EvaluationMode="Constant">Total</Value>
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -1939,7 +1949,7 @@ Cstr(Fields!CompanyPhoneNo.Value))</Hidden>
             <PageBreak>
               <BreakLocation>End</BreakLocation>
             </PageBreak>
-            <Height>5.7578cm</Height>
+            <Height>1.94685cm</Height>
             <Width>19.2cm</Width>
             <Style>
               <Border>
@@ -1948,7 +1958,7 @@ Cstr(Fields!CompanyPhoneNo.Value))</Hidden>
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>5.7578cm</Height>
+        <Height>1.94685cm</Height>
         <Style />
       </Body>
       <Width>19.2cm</Width>
@@ -2055,7 +2065,7 @@ Cstr(Fields!CompanyPhoneNo.Value))</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=First(Fields!DocumentTitleLbl.Value, "DataSet_Result")</Value>
+                      <Value EvaluationMode="Constant">Factura</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <FontSize>14pt</FontSize>
@@ -2086,7 +2096,7 @@ Cstr(Fields!CompanyPhoneNo.Value))</Hidden>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Code.GetData(1)</Value>
+                      <Value>=First(Fields!PostingNo.Value, "DataSet_Result")</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <FontSize>14pt</FontSize>
@@ -3651,6 +3661,9 @@ End Function
         </Field>
         <Field Name="TotalAmountInclVAT">
           <DataField>TotalAmountInclVAT</DataField>
+        </Field>
+        <Field Name="PostingNo">
+          <DataField>PostingNo</DataField>
         </Field>
       </Fields>
       <Query>

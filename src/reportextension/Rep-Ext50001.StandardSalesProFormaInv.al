@@ -3,5 +3,10 @@ reportextension 50001 StandardSalesProFormaInv extends "Standard Sales - Pro For
     RDLCLayout = './src/ReportExtension/Layouts/StandardSalesProFormaInv.rdlc';
     dataset
     {
+
+        add(Header)
+        {
+            column(PostingNo; "Posting No.") { }
+        }
     }
 }
