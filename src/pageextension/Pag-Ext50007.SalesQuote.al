@@ -9,6 +9,8 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
         {
 
 
+            field("Posting No.";Rec."Posting No.") { ApplicationArea = All; }
+
             field("Customer Disc. Group"; Rec."Customer Disc. Group") { ApplicationArea = All; }
 
             field("Sell-to Customer Name 2"; Rec."Sell-to Customer Name 2") { ApplicationArea = All; }
@@ -728,7 +730,7 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
             action(Proforma)
             {
                 ApplicationArea = Suite;
-                Caption = 'Proforma';
+                Caption = 'Proforma Catit Canarias';
                 trigger OnAction()
                 var
                     ReportProforma: report "Standard Sales - Pro Forma Inv";

@@ -3,6 +3,7 @@ pageextension 50014 "Purchase Order" extends "Purchase Order"
     layout
     {
 
+    
         addlast(content)
         {
             group(Hagen)
