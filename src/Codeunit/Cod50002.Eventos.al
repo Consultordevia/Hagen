@@ -234,6 +234,15 @@ codeunit 50002 Eventos
         rec.FechaHoraModificacionWeb := CurrentDateTime;
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Customer Templ. Mgt.", 'OnCreateTemplateFromCustomerOnAfterInsertTemplateFromCustomer', '', false, false)]
+    local procedure OnCreateTemplateFromCustomerOnAfterInsertTemplateFromCustomer(Customer: Record Customer; var CustomerTempl: Record "Customer Templ.")
+    begin
+        if (CustomerTempl."Country/Region Code" <> '') and (Customer."Country/Region Code" = '') then begin
+            Customer."Country/Region Code" := CustomerTempl."Country/Region Code";
+            Customer.Modify();
+        end;
+    end;
+
 
     [EventSubscriber(ObjectType::Table, Database::"Ship-to Address", 'OnBeforeModifyEvent', '', false, false)]
     local procedure OnBeforeModifyEventShiptoAddress(var Rec: Record "Ship-to Address"; var xRec: Record "Ship-to Address")
@@ -906,11 +915,11 @@ codeunit 50002 Eventos
                     PAGINAWEB := PAGINAWEB + Format(nexpefinal) +
                         Format(SalesShptHeader."Ship-to Post Code");
                 if RecTransp.Añadir = 2 then
-                    PAGINAWEB := PAGINAWEB + Format(nexpefinal) +'/'+
-                        Format(SalesShptHeader."Ship-to Post Code"); 
+                    PAGINAWEB := PAGINAWEB + Format(nexpefinal) + '/' +
+                        Format(SalesShptHeader."Ship-to Post Code");
                 if RecTransp.Añadir = 3 then
                     PAGINAWEB := PAGINAWEB + Format(nexpefinal) +
-                        Format(Date2DMY(SalesShptHeader."Posting Date",3));
+                        Format(Date2DMY(SalesShptHeader."Posting Date", 3));
 
                 SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
                 SalesShptHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
