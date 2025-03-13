@@ -725,6 +725,27 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                     MESSAGE('Hecho.');
                 end;
             }
+            action(Proforma)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Proforma';
+                trigger OnAction()
+                var
+                    ReportProforma: report "Standard Sales - Pro Forma Inv";
+                    Rec36: Record "Sales Header";
+                begin
+                    Clear(ReportProforma);
+                    Rec36.reset;
+                    Rec36.SetRange("Document Type", Rec."Document Type");
+                    Rec36.SetRange("No.", Rec."No.");
+                    IF Rec36.FindFirst() THEN BEGIN
+                        ReportProforma.SetTableView(Rec36);
+                        ReportProforma.Run();
+                    END;
+
+                    MESSAGE('Hecho.');
+                end;
+            }
 
 
 
