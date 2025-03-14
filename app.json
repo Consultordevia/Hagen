@@ -16,6 +16,12 @@
       "name": "FTP Agent",
       "publisher": "Vffice",
       "version": "1.0.0.2"
+    },
+    {
+      "appId": "ec255f57-31d0-4ca2-b751-f2fa7c745abb",
+      "name": "Shopify Connector",
+      "publisher": "Microsoft",
+      "version": "25.0.23364.25481"
     }
   ],
   "screenshots": [],
