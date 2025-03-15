@@ -3,7 +3,7 @@ pageextension 50052 CrearAsiento extends "Cash Receipt Journal"
 
     ///(30124)
 
- actions
+    actions
     {
         addlast(navigation)
         {
@@ -17,13 +17,13 @@ pageextension 50052 CrearAsiento extends "Cash Receipt Journal"
                 trigger OnAction()
                 var
 
-                  ///  Rec30124: Record "Shpfy Payment Transaction";
+                    Rec30124: Record "Shpfy Payment Transaction";
 
 
                 begin
 
 
-                
+
 
 
                 end;

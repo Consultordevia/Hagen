@@ -56,13 +56,7 @@ XmlPort 50078 "Importacion CORREOS"
                 }
                 textelement(D12)
                 {
-                }
-                textelement(D13)
-                {
-                }
-                textelement(D14)
-                {
-
+                
                     trigger OnAfterAssignVariable()
                     begin
 

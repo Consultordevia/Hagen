@@ -301,10 +301,12 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemTemp."No." := Item."No.";
                                 ItemTemp.Description := dtext1;
                                 ItemTemp."Description 2" := CopyStr(Format(Item."Estado Producto"), 1, 50);
-                                dtext1 := CASCII.Ascii2Ansi(Item."Gen. Prod. Posting Group");
-                                ItemTemp."Gen. Prod. Posting Group" := CopyStr(dtext1, 1, 20);
-                                dtext1 := CASCII.Ascii2Ansi(Item.Familia);
-                                ItemTemp.Familia := CopyStr(dtext1, 1, 50);
+                                /////dtext1 := CASCII.Ascii2Ansi(Item.Level1);
+                                /////ItemTemp."Gen. Prod. Posting Group" := CopyStr(dtext1, 1, 20);
+                                /////dtext1 := CASCII.Ascii2Ansi(Item.Level2);
+                                /////ItemTemp.Familia := CopyStr(dtext1, 1, 50);
+                                ItemTemp.Level1:=Item.Level1;
+                                ItemTemp.Level2:=Item.Level2;
                                 ItemTemp."Unit Price" := Item."Tarifa 2022-2";
                                 ItemTemp."Unit Cost" := Item."PVP-Web";
                                 ItemTemp."Maximum Inventory" := DISPONI;
@@ -373,8 +375,8 @@ Codeunit 50055 "Fichero Stock.csv"
                               Format(ItemTemp."No.") + ';' +
                               Format(ItemTemp.Description) + ';' +
                               Format(ItemTemp."Description 2") + ';';
-                TextoSalida2 := Format(ItemTemp."Gen. Prod. Posting Group") + ';' +
-                              Format(ItemTemp.Familia) + ';' +
+                TextoSalida2 := Format(ItemTemp.Level1) + ';' +
+                              Format(ItemTemp.Level2) + ';' +
                               Format(ItemTemp."Unit Price") + ';' +
                               Format(ItemTemp."Unit Cost") + ';' +
                               Format(ItemTemp."Maximum Inventory") + ';' +
@@ -561,10 +563,12 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR."No." := Item."No.";
                                 ItemtempR.Description := copystr(dtext1, 1, 50);
                                 ItemtempR."Description 2" := CopyStr(Format(Item."Estado Producto"), 1, 50);
-                                dtext1 := CASCII.Ascii2Ansi(Item."Gen. Prod. Posting Group");
-                                ItemtempR."Gen. Prod. Posting Group" := CopyStr(dtext1, 1, 20);
-                                dtext1 := CASCII.Ascii2Ansi(Item.Familia);
-                                ItemtempR.Familia := CopyStr(dtext1, 1, 50);
+                                ///dtext1 := CASCII.Ascii2Ansi(Item."Gen. Prod. Posting Group");
+                                ///ItemtempR."Gen. Prod. Posting Group" := CopyStr(dtext1, 1, 20);
+                                ///dtext1 := CASCII.Ascii2Ansi(Item.Familia);
+                                ///ItemtempR.Familia := CopyStr(dtext1, 1, 50);
+                                ItemtempR.Level1:=Item.Level1;
+                                ItemtempR.Level2:=Item.Level2;                                
                                 ItemtempR."Unit Price" := Item."Tarifa 2021";
                                 ItemtempR."Unit Cost" := Item."PVP Recomendado 2021";
                                 ItemtempR."Maximum Inventory" := DISPONI;
@@ -852,10 +856,12 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR."No." := Item."No.";
                                 ItemtempR.Description := CopyStr(dtext1, 1, 50);
                                 ItemtempR."Description 2" := Format(Item."Estado Producto");
-                                dtext1 := CASCII.Ascii2Ansi(Item."Gen. Prod. Posting Group");
-                                ItemtempR."Gen. Prod. Posting Group" := dtext1;
-                                dtext1 := CASCII.Ascii2Ansi(Item.Familia);
-                                ItemtempR.Familia := dtext1;
+                                /////dtext1 := CASCII.Ascii2Ansi(Item."Gen. Prod. Posting Group");
+                                /////ItemtempR."Gen. Prod. Posting Group" := dtext1;
+                                /////dtext1 := CASCII.Ascii2Ansi(Item.Familia);
+                                /////ItemtempR.Familia := dtext1;
+                                ItemtempR.Level1:=Item.Level1;
+                                ItemtempR.Level2:=Item.Level2;                                
                                 ItemtempR."Unit Price" := Item."Tarifa 2021-2";
                                 ItemtempR."Unit Cost" := Item."PVP Recomendado 2021-2";
                                 ItemtempR."Maximum Inventory" := DISPONI;
@@ -1139,10 +1145,12 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR."No." := Item."No.";
                                 ItemtempR.Description := CopyStr(dtext1, 1, 50);
                                 ItemtempR."Description 2" := Format(Item."Estado Producto");
-                                dtext1 := CASCII.Ascii2Ansi(Item."Gen. Prod. Posting Group");
-                                ItemtempR."Gen. Prod. Posting Group" := dtext1;
-                                dtext1 := CASCII.Ascii2Ansi(Item.Familia);
-                                ItemtempR.Familia := dtext1;
+                                /////dtext1 := CASCII.Ascii2Ansi(Item."Gen. Prod. Posting Group");
+                                /////ItemtempR."Gen. Prod. Posting Group" := dtext1;
+                                /////dtext1 := CASCII.Ascii2Ansi(Item.Familia);
+                                /////ItemtempR.Familia := dtext1;
+                                ItemtempR.Level1:=Item.Level1;
+                                ItemtempR.Level2:=Item.Level2;                                
                                 ItemtempR."Unit Price" := Item."Tarifa 2022-2";
                                 ItemtempR."Unit Cost" := Item."PVP-Web";
                                 ItemtempR."Maximum Inventory" := DISPONI;
@@ -1445,10 +1453,12 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR."No." := Item."No.";
                                 ItemtempR.Description := CopyStr(dtext1, 1, 50);
                                 ItemtempR."Description 2" := Format(Item."Estado Producto");
-                                dtext1 := CASCII.Ascii2Ansi(Item."Gen. Prod. Posting Group");
-                                ItemtempR."Gen. Prod. Posting Group" := dtext1;
-                                dtext1 := CASCII.Ascii2Ansi(Item.Familia);
-                                ItemtempR.Familia := dtext1;
+                                ///dtext1 := CASCII.Ascii2Ansi(Item."Gen. Prod. Posting Group");
+                                ///ItemtempR."Gen. Prod. Posting Group" := dtext1;
+                                ///dtext1 := CASCII.Ascii2Ansi(Item.Familia);
+                                ///ItemtempR.Familia := dtext1;                                
+                                ItemtempR.Level1:=Item.Level1;
+                                ItemtempR.Level2:=Item.Level2;
                                 ItemtempR."Unit Price" := Item."Unit Price";
                                 ItemtempR."Unit Cost" := Item."PVP-Web";
                                 ItemtempR."Maximum Inventory" := DISPONI;
@@ -1491,8 +1501,8 @@ Codeunit 50055 "Fichero Stock.csv"
                                                 Format(ItemTempR."No.") + ';' +
                                                 Format(ItemTempR.Description) + ';' +
                                                 Format(ItemTempR."Description 2") + ';';
-                                TextoSalida2 := Format(ItemTempR."Gen. Prod. Posting Group") + ';' +
-                                              Format(ItemTempR.Familia) + ';' +
+                                TextoSalida2 := Format(ItemTempR.Level1) + ';' +
+                                              Format(ItemTempR.Level2) + ';' +
                                               Format(ItemTempR."Unit Price") + ';' +
                                               Format(ItemTempR."Unit Cost") + ';' +
                                               Format(ItemTempR."Maximum Inventory") + ';' +
@@ -1548,6 +1558,9 @@ Codeunit 50055 "Fichero Stock.csv"
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
         FicherosHagen.CrearFichero(nomdir, 'stock.csv', InStream);
 
+        Clear(TempBlob);
+        Clear(OutStream);
+        Clear(InStream);                             
         Clear(RepItemTemporal);
         RepItemTemporal.UseRequestPage(false);
         TempBlob.CreateOutStream(OutStream);
@@ -1555,7 +1568,7 @@ Codeunit 50055 "Fichero Stock.csv"
             Error('ERROR');
 
         tempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(nomdir, 'Tarifa.xls', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'Tarifa.xlsx', InStream);
 
 
 
