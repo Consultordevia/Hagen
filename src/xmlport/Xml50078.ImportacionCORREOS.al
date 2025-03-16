@@ -5,11 +5,26 @@ XmlPort 50078 "Importacion CORREOS"
     // Numero de SeguimientoSu ReferenciaESTADO EXPEDICIONFrcha y HoraFecha de envio
     // 1Columna3            2Columna7    3Columna15      4Columna16      5Columna37
 
+    ///1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+    ///         10        20        30        40        50        60        70       80        90         100      110       120                                                           
+    ///                                         suref               estado          fecha       hora                    nexpe                  
+    ///                                         123456789012        123456789012345                                     1234567890123456
+    ///C	2010v001	PKAJ580710018430133290V	CAT31223	ES0010	PREREGISTRADO	20250312	09:40	0000000000		PKAJ58071001843P
+    ///R	2010v001	PKAJ580710018420133290Q	CAT31223	ES0010	PREREGISTRADO	20250312	09:40	0000000000		PKAJ58071001842F
+    ///R	2010v001	PKAJ580710018440128924A	CAT31225	ES0010	PREREGISTRADO	20250312	09:44	0000000000		PKAJ58071001844D
+    ///R	2010v001	PKAJ580710018440228924G	CAT31225	ES0010	PREREGISTRADO	20250312	09:44	0000000000		PKAJ58071001844D
+    ///R	2010v001	PKAJ580710018450137006H	CAT31220	ES0010	PREREGISTRADO	20250312	09:46	0000000000		PKAJ58071001845X
+    ///R	2010v001	PKAJ580710018530117310J	CAT31240	ES0010	PREREGISTRADO	20250312	11:49	0000000000		PKAJ58071001853D
+    ///R	2010v001	PKAJ580710018570108029R	CAT31251	ES0010	PREREGISTRADO	20250312	11:49	0000000000		PKAJ58071001857J
+    ///R	2010v001	PKAJ580710018540133010D	CAT31244	ES0010	PREREGISTRADO	20250312	11:49	0000000000		PKAJ58071001854X
+    ///R	2010v001	PKAJ580710018500228915R	CAT31241	ES0010	PREREGISTRADO	20250312	11:49	0000000000		PKAJ58071001850Y
+
+
     Caption = 'Importacion GLS';
     Direction = Import;
-    FieldSeparator = ';';
-    Format = VariableText;
-    TextEncoding =  UTF16;
+    ///FieldSeparator = ';';
+    Format = FixedText;
+    TextEncoding = UTF16;
     Permissions = TableData "Sales Shipment Header" = rim;
 
     schema
@@ -17,46 +32,12 @@ XmlPort 50078 "Importacion CORREOS"
         textelement(root)
         {
             MinOccurs = Zero;
-            tableelement("Payment Terms";"Payment Terms")
+            tableelement("Payment Terms"; "Payment Terms")
             {
                 AutoSave = false;
                 XmlName = 'DataExchDocument';
                 textelement(D1)
                 {
-                }
-                textelement(D2)
-                {
-                }
-                textelement(D3)
-                {
-                }
-                textelement(D4)
-                {
-                }
-                textelement(D5)
-                {
-                }
-                textelement(D6)
-                {
-                }
-                textelement(D7)
-                {
-                }
-                textelement(D8)
-                {
-                }
-                textelement(D9)
-                {
-                }
-                textelement(D10)
-                {
-                }
-                textelement(D11)
-                {
-                }
-                textelement(D12)
-                {
-                
                     trigger OnAfterAssignVariable()
                     begin
 
@@ -88,6 +69,9 @@ XmlPort 50078 "Importacion CORREOS"
     end;
 
     var
+        NSEGUIMIENTO: CODE[16];
+        ESTADO: Code[15];
+        nexpe: Code[12];
         DataExchField: Record "Data Exch. Field";
         DataExchEntryNo: Integer;
         ImportedLineNo: Integer;
@@ -116,12 +100,12 @@ XmlPort 50078 "Importacion CORREOS"
         codconta: Code[20];
         XX: Integer;
         POSI: Integer;
-        DDD: array [42] of Decimal;
+        DDD: array[42] of Decimal;
         YY: Integer;
         LATARIFA: Code[20];
         LALAMA: Code[20];
         CUANTA1: Integer;
-        ELANCHO: array [70] of Decimal;
+        ELANCHO: array[70] of Decimal;
         ELALTO: Decimal;
         LINEAS: Integer;
         UNO: Code[255];
@@ -204,8 +188,8 @@ XmlPort 50078 "Importacion CORREOS"
         SkipLine := CurrentLineType <> Linetype::Data;
 
         if not SkipLine then begin
-          HeaderLineCount := 0;
-          ImportedLineNo += 1;
+            HeaderLineCount := 0;
+            ImportedLineNo += 1;
         end;
     end;
 
@@ -233,14 +217,14 @@ XmlPort 50078 "Importacion CORREOS"
     begin
     end;
 
-    local procedure GetFieldLength(TableNo: Integer;FieldNo: Integer): Integer
+    local procedure GetFieldLength(TableNo: Integer; FieldNo: Integer): Integer
     var
         RecRef: RecordRef;
         FieldRef: FieldRef;
     begin
     end;
 
-    local procedure InsertColumn(columnNumber: Integer;var columnValue: Text)
+    local procedure InsertColumn(columnNumber: Integer; var columnValue: Text)
     var
         savedColumnValue: Text;
     begin
@@ -249,182 +233,154 @@ XmlPort 50078 "Importacion CORREOS"
     local procedure ValidateHeaderTag()
     begin
 
-        linea:=linea+1;
-IF linea>1 THEN BEGIN
+        linea := linea + 1;
+        IF linea > 1 THEN BEGIN
 
-IF D4<>'' THEN BEGIN
-DDF:=COPYSTR(D4,1,10);
-  
+            nexpe:=CopyStr(D1,42,12);
+            ESTADO:=CopyStr(D1,62,15);
+            NSEGUIMIENTO:=CopyStr(D1,114,16);
 
-IF DDF<>'' THEN BEGIN
-    IF (COPYSTR(DDF,1,1)='0') OR
-       (COPYSTR(DDF,1,1)='1') OR
-       (COPYSTR(DDF,1,1)='2') OR
-       (COPYSTR(DDF,1,1)='3') OR
-       (COPYSTR(DDF,1,1)='4') OR
-       (COPYSTR(DDF,1,1)='5') OR
-       (COPYSTR(DDF,1,1)='6') OR
-       (COPYSTR(DDF,1,1)='7') OR
-       (COPYSTR(DDF,1,1)='8') OR
-       (COPYSTR(DDF,1,1)='9') THEN BEGIN
+            IF nexpe <> '' THEN BEGIN
 
+            IF nexpe <> '' THEN BEGIN
+                SalesShipmentHeader.RESET;
+                SalesShipmentHeader.SETCURRENTKEY(ASN);
+                SalesShipmentHeader.SETRANGE(ASN, nexpe);
+                IF SalesShipmentHeader.FINDFIRST THEN
+                    REPEAT
+                        fecha2:=SalesShipmentHeader."Posting Date";                         
+                    UNTIL SalesShipmentHeader.NEXT = 0;
 
-
-    x:=0;
-    SALE:=FALSE;
-    DDA:='';
-    REPEAT
-        x:=x+1;
-        IF COPYSTR(DDF,x,1)='/' THEN BEGIN
-            SALE:=TRUE;
-        END;
-        IF COPYSTR(DDF,x,1)<>'/' THEN BEGIN
-            DDA:=DDA+COPYSTR(DDF,x,1);
-        END;
-    UNTIL (x>=STRLEN(DDF)) OR SALE;
-    MMA:='';
-    SALE:=FALSE;
-    REPEAT
-        x:=x+1;
-        IF COPYSTR(DDF,x,1)='/' THEN BEGIN
-            SALE:=TRUE;
-        END;
-        IF COPYSTR(DDF,x,1)<>'/' THEN BEGIN
-            MMA:=MMA+COPYSTR(DDF,x,1);
-        END;
-    UNTIL (x>=STRLEN(DDF)) OR SALE;
-    AAA:=COPYSTR(DDF,x+1);
-    EVALUATE(DD,DDA);
-    EVALUATE(MM,MMA);
-    EVALUATE(AA,AAA);
-    fecha1:=DMY2DATE(DD,MM,AA);
-END;
-END;
-
-    
-    fecha2:=0D;
-    IF D6<>'' THEN BEGIN
-        x:=0;
-        SALE:=FALSE;
-        DDA:='';
-        REPEAT
-            x:=x+1;
-            IF COPYSTR(D6,x,1)='/' THEN BEGIN
-                SALE:=TRUE;
+                SalesShipmentHeader.RESET;
+                SalesShipmentHeader.SETCURRENTKEY("Nº expedición");
+                SalesShipmentHeader.SETRANGE("Nº expedición", nexpe);
+                IF SalesShipmentHeader.FINDFIRST THEN
+                    REPEAT
+                        fecha2:=SalesShipmentHeader."Posting Date";                                                 
+                    UNTIL SalesShipmentHeader.NEXT = 0;
+                SalesShipmentHeader.RESET;
+                SalesShipmentHeader.SETCURRENTKEY("Nº expedición dropshp");
+                SalesShipmentHeader.SETRANGE("Nº expedición dropshp", nexpe);
+                IF SalesShipmentHeader.FINDFIRST THEN
+                    REPEAT
+                        fecha2:=SalesShipmentHeader."Posting Date";                                                                                                   
+                    UNTIL SalesShipmentHeader.NEXT = 0;
+                COMMIT;
             END;
-            IF COPYSTR(D6,x,1)<>'/' THEN BEGIN
-                DDA:=DDA+COPYSTR(D6,x,1);
+
+
+
+
+
+                DDF := COPYSTR(D1, 78, 10);
+
+
+                IF DDF <> '' THEN BEGIN                 
+                    AAA := COPYSTR(DDF,1,4);                                            
+                    MMA := COPYSTR(DDF, 5, 2);                        
+                    DDA := COPYSTR(DDF, 7, 2);                      
+                    EVALUATE(DD, DDA);
+                    EVALUATE(MM, MMA);
+                    EVALUATE(AA, AAA);
+                    fecha1 := DMY2DATE(DD, MM, AA);                     
+                END;
+
+                
+                CUANTOSDIAS := 0;
+                Date.RESET;
+                Date.SETRANGE(Date."Period Type", Date."Period Type"::Date);
+                Date.SETFILTER(Date."Period No.", '1|2|3|4|5');
+                Date.SETRANGE(Date."Period Start", fecha2, fecha1);
+                IF Date.FINDFIRST THEN
+                    REPEAT
+                        CUANTOSDIAS := CUANTOSDIAS + 1;
+                    UNTIL Date.NEXT = 0;
+                CUANTOSDIAS := CUANTOSDIAS - 1;
+
+
+                choras := '';
+                totalhoras := 0;
+                DDH := COPYSTR(D1, 90, 5);
+
+                IF STRLEN(DDH) < 5 THEN BEGIN DDH := '0' + DDH; END;
+                IF DDH <> '' THEN BEGIN
+                    IF (COPYSTR(DDH, 1, 1) = '0') OR
+                       (COPYSTR(DDH, 1, 1) = '1') OR
+                       (COPYSTR(DDH, 1, 1) = '2') OR
+                       (COPYSTR(DDH, 1, 1) = '3') OR
+                       (COPYSTR(DDH, 1, 1) = '4') OR
+                       (COPYSTR(DDH, 1, 1) = '5') OR
+                       (COPYSTR(DDH, 1, 1) = '6') OR
+                       (COPYSTR(DDH, 1, 1) = '7') OR
+                       (COPYSTR(DDH, 1, 1) = '8') OR
+                       (COPYSTR(DDH, 1, 1) = '9') THEN BEGIN
+                        horas := COPYSTR(DDH, 1, 2);
+                        EVALUATE(dhoras, horas);
+                        minu := COPYSTR(DDH, 4, 2);
+                        EVALUATE(dminu, minu);
+                        totalhoras := (12 + dhoras) + (CUANTOSDIAS - 1) * 24;
+                        choras := DDH;
+                    END;
+
+                END;
+
+
             END;
-        UNTIL (x>=STRLEN(D6)) OR SALE;
-        MMA:='';
-        SALE:=FALSE;
-        REPEAT
-            x:=x+1;
-            IF COPYSTR(D6,x,1)='/' THEN BEGIN
-                SALE:=TRUE;
+
+
+            IF nexpe <> '' THEN BEGIN
+                SalesShipmentHeader.RESET;
+                SalesShipmentHeader.SETCURRENTKEY(ASN);
+                SalesShipmentHeader.SETRANGE(ASN, nexpe);
+                IF SalesShipmentHeader.FINDFIRST THEN
+                    REPEAT 
+                        SalesShipmentHeader."Estado Expedicion" := COPYSTR(ESTADO, 1, 100);
+                        SalesShipmentHeader."Fecha envio" := fecha2;
+                        SalesShipmentHeader."Fecha entrega" := fecha1;
+                        SalesShipmentHeader."Hora entrega" := choras;
+                        SalesShipmentHeader."Total horas" := totalhoras;
+                        SalesShipmentHeader."Numero segumiento" := COPYSTR(NSEGUIMIENTO, 1, 20);
+                        SalesShipmentHeader.MODIFY;
+                    UNTIL SalesShipmentHeader.NEXT = 0;
+
+                SalesShipmentHeader.RESET;
+                SalesShipmentHeader.SETCURRENTKEY("Nº expedición");
+                SalesShipmentHeader.SETRANGE("Nº expedición", nexpe);
+                IF SalesShipmentHeader.FINDFIRST THEN
+                    REPEAT
+                        SalesShipmentHeader."Estado Expedicion" := COPYSTR(ESTADO, 1, 100);
+                        SalesShipmentHeader."Fecha envio" := fecha2;
+                        SalesShipmentHeader."Fecha entrega" := fecha1;
+                        SalesShipmentHeader."Hora entrega" := choras;
+                        SalesShipmentHeader."Total horas" := totalhoras;
+                        SalesShipmentHeader."Numero segumiento" := COPYSTR(NSEGUIMIENTO, 1, 20);
+                        SalesShipmentHeader.MODIFY;
+                    UNTIL SalesShipmentHeader.NEXT = 0;
+                SalesShipmentHeader.RESET;
+                SalesShipmentHeader.SETCURRENTKEY("Nº expedición dropshp");
+                SalesShipmentHeader.SETRANGE("Nº expedición dropshp", nexpe);
+                IF SalesShipmentHeader.FINDFIRST THEN
+                    REPEAT
+                        SalesShipmentHeader."Estado Expedicion" := COPYSTR(ESTADO, 1, 100);
+                        SalesShipmentHeader."Fecha envio" := fecha2;
+                        SalesShipmentHeader."Fecha entrega" := fecha1;
+                        SalesShipmentHeader."Hora entrega" := choras;
+                        SalesShipmentHeader."Total horas" := totalhoras;
+                        SalesShipmentHeader."Numero segumiento" := COPYSTR(NSEGUIMIENTO, 1, 20);
+                        SalesShipmentHeader.MODIFY;
+                    UNTIL SalesShipmentHeader.NEXT = 0;
+                COMMIT;
             END;
-            IF COPYSTR(D6,x,1)<>'/' THEN BEGIN
-                MMA:=MMA+COPYSTR(D6,x,1);
-            END;
-        UNTIL (x>=STRLEN(D6)) OR SALE;
-        AAA:=COPYSTR(D6,x+1);
-        EVALUATE(DD,DDA);
-        EVALUATE(MM,MMA);
-        EVALUATE(AA,AAA);
-        fecha2:=DMY2DATE(DD,MM,AA);
-    END;
-        
-  
-CUANTOSDIAS:=0;  
-Date.RESET;
-Date.SETRANGE(Date."Period Type",Date."Period Type"::Date);
-Date.SETFILTER(Date."Period No.",'1|2|3|4|5');
-Date.SETRANGE(Date."Period Start",fecha2,fecha1);
-IF Date.FINDFIRST THEN REPEAT
-     CUANTOSDIAS:=CUANTOSDIAS+1;
-UNTIL Date.NEXT=0;
-CUANTOSDIAS:=CUANTOSDIAS-1;
 
 
-choras:='';
-totalhoras:=0;
-DDH:=COPYSTR(D4,12,5);
 
-IF STRLEN(DDH)<5 THEN BEGIN DDH:='0'+DDH;END;
-IF DDH<>'' THEN BEGIN
-    IF (COPYSTR(DDH,1,1)='0') OR
-       (COPYSTR(DDH,1,1)='1') OR
-       (COPYSTR(DDH,1,1)='2') OR
-       (COPYSTR(DDH,1,1)='3') OR
-       (COPYSTR(DDH,1,1)='4') OR
-       (COPYSTR(DDH,1,1)='5') OR
-       (COPYSTR(DDH,1,1)='6') OR
-       (COPYSTR(DDH,1,1)='7') OR
-       (COPYSTR(DDH,1,1)='8') OR
-       (COPYSTR(DDH,1,1)='9') THEN BEGIN
-        horas:=COPYSTR(DDH,1,2);
-        EVALUATE(dhoras,horas);
-        minu:=COPYSTR(DDH,4,2);
-        EVALUATE(dminu,minu);
-        totalhoras:=(12+dhoras)+(CUANTOSDIAS-1)*24;
-        choras:=DDH;
-    END;
-
-END;
+             
 
 
-END;
-
-
-D7:=COPYSTR(D7,1,20);
-
-///MESSAGE('%1',D3);
-
-IF D7<>'' THEN BEGIN
-    SalesShipmentHeader.RESET;
-    SalesShipmentHeader.SETCURRENTKEY(ASN);
-    SalesShipmentHeader.SETRANGE(ASN,D7);
-    IF SalesShipmentHeader.FINDFIRST THEN REPEAT    
-        SalesShipmentHeader."Estado Expedicion":=COPYSTR(D5,1,100);
-        SalesShipmentHeader."Fecha envio":=fecha2;
-        SalesShipmentHeader."Fecha entrega":=fecha1;
-        SalesShipmentHeader."Hora entrega":=choras;         
-        SalesShipmentHeader."Total horas":=totalhoras;
-        SalesShipmentHeader."Numero segumiento":=COPYSTR(D1,1,20);;
-        SalesShipmentHeader.MODIFY;
-    UNTIL SalesShipmentHeader.NEXT=0;
-    
-    SalesShipmentHeader.RESET;
-    SalesShipmentHeader.SETCURRENTKEY("Nº expedición");
-    SalesShipmentHeader.SETRANGE("Nº expedición",D7);
-    IF SalesShipmentHeader.FINDFIRST THEN REPEAT    
-        SalesShipmentHeader."Estado Expedicion":=COPYSTR(D5,1,100);
-        SalesShipmentHeader."Fecha envio":=fecha2;
-        SalesShipmentHeader."Fecha entrega":=fecha1;
-        SalesShipmentHeader."Hora entrega":=choras;         
-        SalesShipmentHeader."Total horas":=totalhoras;
-        SalesShipmentHeader."Numero segumiento":=COPYSTR(D1,1,20);;
-        SalesShipmentHeader.MODIFY;
-    UNTIL SalesShipmentHeader.NEXT=0;
-    SalesShipmentHeader.RESET;
-    SalesShipmentHeader.SETCURRENTKEY("Nº expedición dropshp");
-    SalesShipmentHeader.SETRANGE("Nº expedición dropshp",D7);
-    IF SalesShipmentHeader.FINDFIRST THEN REPEAT    
-        SalesShipmentHeader."Estado Expedicion":=COPYSTR(D5,1,100);
-        SalesShipmentHeader."Fecha envio":=fecha2;
-        SalesShipmentHeader."Fecha entrega":=fecha1;
-        SalesShipmentHeader."Hora entrega":=choras;         
-        SalesShipmentHeader."Total horas":=totalhoras;
-        SalesShipmentHeader."Numero segumiento":=COPYSTR(D1,1,20);;
-        SalesShipmentHeader.MODIFY;
-    UNTIL SalesShipmentHeader.NEXT=0;
-    COMMIT;
-END;
-
-END;
+        END;
 
     end;
-        
-        
+
+
 }
 

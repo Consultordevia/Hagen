@@ -46238,6 +46238,7 @@ fichero:='G70246.pdf';graba;
                                 SalesHeader3.SetRange(SalesHeader3."Nº expedición", SalesHeader4."Nº expedición");
                                 if SalesHeader3.FindSet then
                                     repeat
+                                        /////Message('1 - %1',SalesHeader3."No.");
                                         Clear(ETIenvioagrupadod);
                                         ETIenvioagrupadod.SetTableview(SalesHeader3);
                                         ETIenvioagrupadod.RunModal;
