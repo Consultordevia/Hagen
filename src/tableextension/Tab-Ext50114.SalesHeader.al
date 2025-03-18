@@ -73,7 +73,9 @@ tableextension 50114 SalesHeader extends "Sales Header"
                 if Rec."Document Type" = Rec."Document Type"::Quote then begin
                     IF RecUS.get(userid) THEN begin
                         IF RecUS."Permite modif. Grupo dto en OFERTA" = false then begin
-                            Error('No tiene permiso a modificar este campo');
+                            if CopyStr("No.", 3, 3) <> 'B2B' then begin
+                                    Error('No tiene permiso a modificar este campo');
+                            END;
                         end;
                     end;
                 end;
@@ -159,8 +161,8 @@ tableextension 50114 SalesHeader extends "Sales Header"
                     Cust.CalcFields(Cust."Importe impagado");
                     if Cust."Permite seguir adelante" = false then begin
                         if Cust."Importe impagado" <> 0 then begin
-                            if UserSetup."Permite alta pedido con impago" = false then begin
-                                Error('No puede pasar pedido porque el cliente tiene impagos.');
+                            if UserSetup."Permite alta pedido con impago" = false then begin                                 
+                                Error('No puede pasar pedido porque el cliente tiene impagos.');                                 
                             end;
                         end;
                     end;
@@ -184,8 +186,8 @@ tableextension 50114 SalesHeader extends "Sales Header"
                     Cust.CalcFields(Cust."Importe impagado");
                     if Cust."Permite seguir adelante" = false then begin
                         if Cust."Importe impagado" <> 0 then begin
-                            if UserSetup."Permite alta pedido con impago" = false then begin
-                                Error('No puede pasar pedido porque el cliente tiene impagos.');
+                            if UserSetup."Permite alta pedido con impago" = false then begin                                 
+                                Error('No puede pasar pedido porque el cliente tiene impagos.');                                 
                             end;
                         end;
                     end;
@@ -193,8 +195,8 @@ tableextension 50114 SalesHeader extends "Sales Header"
 
 
                 if "Estado pedido" = 1 then begin
-                    if "Ship-to Post Code" = '' then begin
-                        Error('Falta el codigo postal en la direccion de envio.');
+                    if "Ship-to Post Code" = '' then begin                         
+                        Error('Falta el codigo postal en la direccion de envio.');                         
                     end;
 
 
@@ -218,8 +220,8 @@ tableextension 50114 SalesHeader extends "Sales Header"
 
                 if "Estado pedido" = 1 then begin
                     RecClie4.Get("Sell-to Customer No.");
-                    if RecClie4."Estatus del cliente" <> 0 then begin
-                        Error('Este cliente no esta activo, esta %1', RecClie4."Estatus del cliente");
+                    if RecClie4."Estatus del cliente" <> 0 then begin                     
+                        Error('Este cliente no esta activo, esta %1', RecClie4."Estatus del cliente");                         
                     end;
                 end;
 
@@ -252,8 +254,8 @@ tableextension 50114 SalesHeader extends "Sales Header"
                         /////RecClie4.GET("Sell-to Customer No.");
                         /////RecClie4.SETRANGE(RecClie4."Date Filter",0D,TODAY);
                         /////RecClie4.CALCFIELDS(RecClie4."Balance Due (LCY)");
-                        if SUMAVAL + SALDOC > 0 then begin
-                            Error('Tiene saldos vencidos por un importe de %1', SUMAVAL + SALDOC);
+                        if SUMAVAL + SALDOC > 0 then begin                             
+                            Error('Tiene saldos vencidos por un importe de %1', SUMAVAL + SALDOC);                             
                         end;
                     end;
                 end;
@@ -261,9 +263,8 @@ tableextension 50114 SalesHeader extends "Sales Header"
 
                 if "Estado pedido" = 1 then begin
                     if PaymentMethod.Get("Payment Method Code") then begin
-                        if PaymentMethod."Transferencia WEB" then begin
+                        if PaymentMethod."Transferencia WEB" then begin                             
                             Error('Este pedido no se puede pasar a preparar porque es transferencia WEB.');
-
                         end;
                     end;
                 end;
@@ -1315,8 +1316,8 @@ tableextension 50114 SalesHeader extends "Sales Header"
             RecIE.Get;
 
             ///// IF COPYSTR(RecIE.Name,1,4)='PEPE' THEN BEGIN
-            if "Usuario alta" <> 'USERNWS' then begin
-
+            ///if "Usuario alta" <> 'USERNWS' then begin
+            if CopyStr("No.", 3, 3) <> 'B2B' then begin
 
 
                 RecCVP.Get;

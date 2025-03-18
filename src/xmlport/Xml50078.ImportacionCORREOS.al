@@ -5,10 +5,21 @@ XmlPort 50078 "Importacion CORREOS"
     // Numero de SeguimientoSu ReferenciaESTADO EXPEDICIONFrcha y HoraFecha de envio
     // 1Columna3            2Columna7    3Columna15      4Columna16      5Columna37
 
-    ///1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+    /////12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+    /////         1         2         3          4        5         6        7        8         9          0         1         2         3         4          5         6        7
+    /////C	2010v001	PKAJ580710018430133290V	CAT31223	ES0010	PREREGISTRADO	20250312	09:40	0000000000			PKAJ58071001843P
+    /////R	2010v001	PKAJ580710018420133290Q	CAT31223	ES0010	PREREGISTRADO	20250312	09:40	0000000000			PKAJ58071001842F
+    /////R	2010v001	PKAJ580710018440128924A	CAT31225	ES0010	PREREGISTRADO	20250312	09:44	0000000000			PKAJ58071001844D
+    /////R	2010v001	PKAJ580710018440228924G	CAT31225	ES0010	PREREGISTRADO	20250312	09:44	0000000000			PKAJ58071001844D
+    /////R	2010v001	PKAJ580710018450137006H	CAT31220	ES0010	PREREGISTRADO	20250312	09:46	0000000000			PKAJ58071001845X
+    /////R	2010v001	PKAJ580710018530117310J	CAT31240	ES0010	PREREGISTRADO	20250312	11:49	0000000000			PKAJ58071001853D
+
+
+
+    /////12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890 
     ///         10        20        30        40        50        60        70       80        90         100      110       120                                                           
     ///                                         suref               estado          fecha       hora                    nexpe                  
-    ///                                         123456789012        123456789012345                                     1234567890123456
+    ///                                        123456789012        123456789012345                                     1234567890123456
     ///C	2010v001	PKAJ580710018430133290V	CAT31223	ES0010	PREREGISTRADO	20250312	09:40	0000000000		PKAJ58071001843P
     ///R	2010v001	PKAJ580710018420133290Q	CAT31223	ES0010	PREREGISTRADO	20250312	09:40	0000000000		PKAJ58071001842F
     ///R	2010v001	PKAJ580710018440128924A	CAT31225	ES0010	PREREGISTRADO	20250312	09:44	0000000000		PKAJ58071001844D
@@ -20,9 +31,8 @@ XmlPort 50078 "Importacion CORREOS"
     ///R	2010v001	PKAJ580710018500228915R	CAT31241	ES0010	PREREGISTRADO	20250312	11:49	0000000000		PKAJ58071001850Y
 
 
-    Caption = 'Importacion GLS';
+    Caption = 'Importacion correos';
     Direction = Import;
-    ///FieldSeparator = ';';
     Format = FixedText;
     TextEncoding = UTF16;
     Permissions = TableData "Sales Shipment Header" = rim;
@@ -40,6 +50,7 @@ XmlPort 50078 "Importacion CORREOS"
                 {
                     trigger OnAfterAssignVariable()
                     begin
+                        Message('1- %1', D1);
 
                         ValidateHeaderTag;
                     end;
@@ -47,6 +58,8 @@ XmlPort 50078 "Importacion CORREOS"
             }
         }
     }
+
+
 
     requestpage
     {
@@ -234,58 +247,60 @@ XmlPort 50078 "Importacion CORREOS"
     begin
 
         linea := linea + 1;
+
         IF linea > 1 THEN BEGIN
 
-            nexpe:=CopyStr(D1,42,12);
-            ESTADO:=CopyStr(D1,62,15);
-            NSEGUIMIENTO:=CopyStr(D1,114,16);
+            nexpe := CopyStr(D1, 49, 12);
+
+            ESTADO := CopyStr(D1, 73, 15);
+            NSEGUIMIENTO := CopyStr(D1, 145, 16);
 
             IF nexpe <> '' THEN BEGIN
 
-            IF nexpe <> '' THEN BEGIN
-                SalesShipmentHeader.RESET;
-                SalesShipmentHeader.SETCURRENTKEY(ASN);
-                SalesShipmentHeader.SETRANGE(ASN, nexpe);
-                IF SalesShipmentHeader.FINDFIRST THEN
-                    REPEAT
-                        fecha2:=SalesShipmentHeader."Posting Date";                         
-                    UNTIL SalesShipmentHeader.NEXT = 0;
+                IF nexpe <> '' THEN BEGIN
+                    SalesShipmentHeader.RESET;
+                    SalesShipmentHeader.SETCURRENTKEY(ASN);
+                    SalesShipmentHeader.SETRANGE(ASN, nexpe);
+                    IF SalesShipmentHeader.FINDFIRST THEN
+                        REPEAT
+                            fecha2 := SalesShipmentHeader."Posting Date";
+                        UNTIL SalesShipmentHeader.NEXT = 0;
 
-                SalesShipmentHeader.RESET;
-                SalesShipmentHeader.SETCURRENTKEY("Nº expedición");
-                SalesShipmentHeader.SETRANGE("Nº expedición", nexpe);
-                IF SalesShipmentHeader.FINDFIRST THEN
-                    REPEAT
-                        fecha2:=SalesShipmentHeader."Posting Date";                                                 
-                    UNTIL SalesShipmentHeader.NEXT = 0;
-                SalesShipmentHeader.RESET;
-                SalesShipmentHeader.SETCURRENTKEY("Nº expedición dropshp");
-                SalesShipmentHeader.SETRANGE("Nº expedición dropshp", nexpe);
-                IF SalesShipmentHeader.FINDFIRST THEN
-                    REPEAT
-                        fecha2:=SalesShipmentHeader."Posting Date";                                                                                                   
-                    UNTIL SalesShipmentHeader.NEXT = 0;
-                COMMIT;
-            END;
-
-
+                    SalesShipmentHeader.RESET;
+                    SalesShipmentHeader.SETCURRENTKEY("Nº expedición");
+                    SalesShipmentHeader.SETRANGE("Nº expedición", nexpe);
+                    IF SalesShipmentHeader.FINDFIRST THEN
+                        REPEAT
+                            fecha2 := SalesShipmentHeader."Posting Date";
+                        UNTIL SalesShipmentHeader.NEXT = 0;
+                    SalesShipmentHeader.RESET;
+                    SalesShipmentHeader.SETCURRENTKEY("Nº expedición dropshp");
+                    SalesShipmentHeader.SETRANGE("Nº expedición dropshp", nexpe);
+                    IF SalesShipmentHeader.FINDFIRST THEN
+                        REPEAT
+                            fecha2 := SalesShipmentHeader."Posting Date";
+                        UNTIL SalesShipmentHeader.NEXT = 0;
+                    COMMIT;
+                END;
 
 
 
-                DDF := COPYSTR(D1, 78, 10);
 
 
-                IF DDF <> '' THEN BEGIN                 
-                    AAA := COPYSTR(DDF,1,4);                                            
-                    MMA := COPYSTR(DDF, 5, 2);                        
-                    DDA := COPYSTR(DDF, 7, 2);                      
+                DDF := COPYSTR(D1, 89, 10);
+
+
+                IF DDF <> '' THEN BEGIN
+                    AAA := COPYSTR(DDF, 1, 4);
+                    MMA := COPYSTR(DDF, 5, 2);
+                    DDA := COPYSTR(DDF, 7, 2);
                     EVALUATE(DD, DDA);
                     EVALUATE(MM, MMA);
                     EVALUATE(AA, AAA);
-                    fecha1 := DMY2DATE(DD, MM, AA);                     
+                    fecha1 := DMY2DATE(DD, MM, AA);
                 END;
 
-                
+
                 CUANTOSDIAS := 0;
                 Date.RESET;
                 Date.SETRANGE(Date."Period Type", Date."Period Type"::Date);
@@ -300,7 +315,7 @@ XmlPort 50078 "Importacion CORREOS"
 
                 choras := '';
                 totalhoras := 0;
-                DDH := COPYSTR(D1, 90, 5);
+                DDH := COPYSTR(D1, 105, 5);
 
                 IF STRLEN(DDH) < 5 THEN BEGIN DDH := '0' + DDH; END;
                 IF DDH <> '' THEN BEGIN
@@ -333,7 +348,7 @@ XmlPort 50078 "Importacion CORREOS"
                 SalesShipmentHeader.SETCURRENTKEY(ASN);
                 SalesShipmentHeader.SETRANGE(ASN, nexpe);
                 IF SalesShipmentHeader.FINDFIRST THEN
-                    REPEAT 
+                    REPEAT
                         SalesShipmentHeader."Estado Expedicion" := COPYSTR(ESTADO, 1, 100);
                         SalesShipmentHeader."Fecha envio" := fecha2;
                         SalesShipmentHeader."Fecha entrega" := fecha1;
@@ -374,7 +389,7 @@ XmlPort 50078 "Importacion CORREOS"
 
 
 
-             
+
 
 
         END;

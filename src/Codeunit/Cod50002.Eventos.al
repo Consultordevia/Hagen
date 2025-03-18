@@ -1123,4 +1123,13 @@ codeunit 50002 Eventos
         //OnAfterOnModify(Contact, OldContact, Cust);
     end;
 
+    [EventSubscriber(ObjectType::Codeunit, 1303, 'OnBeforeSalesHeaderInsert', '', false, false)]
+    local procedure OnBeforeSalesHeaderInsert(var SalesHeader: Record "Sales Header"; var SalesInvoiceHeader: Record "Sales Invoice Header"); ///; var CancellingOnly: Boolean);
+    var    
+    begin        
+        /////SalesHeader.Validate("Posting Date",WorkDate());         
+    end;
+
+
+
 }

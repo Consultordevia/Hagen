@@ -305,7 +305,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 /////ItemTemp."Gen. Prod. Posting Group" := CopyStr(dtext1, 1, 20);
                                 /////dtext1 := CASCII.Ascii2Ansi(Item.Level2);
                                 /////ItemTemp.Familia := CopyStr(dtext1, 1, 50);
-                                ItemTemp.Level1:=Item.Level1;
+                                ItemTemp.Level1:=Item.Etiquetas6;
                                 ItemTemp.Level2:=Item.Level2;
                                 ItemTemp."Unit Price" := Item."Tarifa 2022-2";
                                 ItemTemp."Unit Cost" := Item."PVP-Web";
@@ -375,7 +375,7 @@ Codeunit 50055 "Fichero Stock.csv"
                               Format(ItemTemp."No.") + ';' +
                               Format(ItemTemp.Description) + ';' +
                               Format(ItemTemp."Description 2") + ';';
-                TextoSalida2 := Format(ItemTemp.Level1) + ';' +
+                TextoSalida2 := Format(ItemTemp.Etiquetas6) + ';' +
                               Format(ItemTemp.Level2) + ';' +
                               Format(ItemTemp."Unit Price") + ';' +
                               Format(ItemTemp."Unit Cost") + ';' +
@@ -567,7 +567,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ///ItemtempR."Gen. Prod. Posting Group" := CopyStr(dtext1, 1, 20);
                                 ///dtext1 := CASCII.Ascii2Ansi(Item.Familia);
                                 ///ItemtempR.Familia := CopyStr(dtext1, 1, 50);
-                                ItemtempR.Level1:=Item.Level1;
+                                ItemtempR.Level1:=Item.Etiquetas6;
                                 ItemtempR.Level2:=Item.Level2;                                
                                 ItemtempR."Unit Price" := Item."Tarifa 2021";
                                 ItemtempR."Unit Cost" := Item."PVP Recomendado 2021";
@@ -860,7 +860,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 /////ItemtempR."Gen. Prod. Posting Group" := dtext1;
                                 /////dtext1 := CASCII.Ascii2Ansi(Item.Familia);
                                 /////ItemtempR.Familia := dtext1;
-                                ItemtempR.Level1:=Item.Level1;
+                                ItemtempR.Level1:=Item.Etiquetas6;
                                 ItemtempR.Level2:=Item.Level2;                                
                                 ItemtempR."Unit Price" := Item."Tarifa 2021-2";
                                 ItemtempR."Unit Cost" := Item."PVP Recomendado 2021-2";
@@ -1149,7 +1149,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 /////ItemtempR."Gen. Prod. Posting Group" := dtext1;
                                 /////dtext1 := CASCII.Ascii2Ansi(Item.Familia);
                                 /////ItemtempR.Familia := dtext1;
-                                ItemtempR.Level1:=Item.Level1;
+                                ItemtempR.Level1:=Item.Etiquetas6;
                                 ItemtempR.Level2:=Item.Level2;                                
                                 ItemtempR."Unit Price" := Item."Tarifa 2022-2";
                                 ItemtempR."Unit Cost" := Item."PVP-Web";
@@ -1457,7 +1457,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ///ItemtempR."Gen. Prod. Posting Group" := dtext1;
                                 ///dtext1 := CASCII.Ascii2Ansi(Item.Familia);
                                 ///ItemtempR.Familia := dtext1;                                
-                                ItemtempR.Level1:=Item.Level1;
+                                ItemtempR.Level1:=Item.Etiquetas6;
                                 ItemtempR.Level2:=Item.Level2;
                                 ItemtempR."Unit Price" := Item."Unit Price";
                                 ItemtempR."Unit Cost" := Item."PVP-Web";

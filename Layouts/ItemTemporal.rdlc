@@ -211,7 +211,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Level1</Value>
+                                  <Value>Linea</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -241,7 +241,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Level2</Value>
+                                  <Value>Familia</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -290,6 +290,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>

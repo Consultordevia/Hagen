@@ -100,6 +100,16 @@ Report 50128 "Lineas Oferta"
             column(urlprod; urlprod)
             {
             }
+            column(Largo; Item.Largo)
+            {
+            }
+            column(Ancho; Item.Ancho)
+            {
+            }
+            column(Alto; Item.Alto)
+            {
+            }
+
 
 
 
