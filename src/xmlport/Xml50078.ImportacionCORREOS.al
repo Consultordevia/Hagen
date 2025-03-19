@@ -5,12 +5,14 @@ XmlPort 50078 "Importacion CORREOS"
     ///         10        20        30        40        50        60        70       80        90         100      110       120                                                           
     ///                                         suref               estado          fecha       hora                    nexpe                  
     ///                                        123456789012        123456789012345                                     1234567890123456
+    ///1        2        3                      4         5         6              7           8      9            10
     ///C	2010v001	PKAJ580710018430133290V	CAT31223	ES0010	PREREGISTRADO	20250312	09:40	0000000000		PKAJ58071001843P
     ///R	2010v001	PKAJ580710018420133290Q	CAT31223	ES0010	PREREGISTRADO	20250312	09:40	0000000000		PKAJ58071001842F
     ///R	2010v001	PKAJ580710018440128924A	CAT31225	ES0010	PREREGISTRADO	20250312	09:44	0000000000		PKAJ58071001844D
     Caption = 'Importacion correos';
     Direction = Import;
-    Format = FixedText;
+    Format = VariableText;
+    FieldSeparator = '<TAB>';
     TextEncoding = UTF16;
     Permissions = TableData "Sales Shipment Header" = rim;
 
@@ -24,11 +26,32 @@ XmlPort 50078 "Importacion CORREOS"
                 AutoSave = false;
                 XmlName = 'DataExchDocument';
                 textelement(D1)
+                { }
+                textelement(D2)
+                { }
+                textelement(D3)
+                { }
+                textelement(D4)
+                { }
+                textelement(D5)
+                { }
+                textelement(D6)
+                { }
+                textelement(D7)
+                { }
+                textelement(D8)
+                { }
+                textelement(D9)
+                { }
+                textelement(D10)
+                { }
+                textelement(D11)
+                { }
+                
+                textelement(D12)
                 {
                     trigger OnAfterAssignVariable()
-                    begin
-                        Message('1- %1', D1);
-
+                    begin                         
                         ValidateHeaderTag;
                     end;
                 }
@@ -227,10 +250,10 @@ XmlPort 50078 "Importacion CORREOS"
 
         IF linea > 1 THEN BEGIN
 
-            nexpe := CopyStr(D1, 49, 12);
+            nexpe := D4;
 
-            ESTADO := CopyStr(D1, 73, 15);
-            NSEGUIMIENTO := CopyStr(D1, 145, 16);
+            ESTADO := D6;
+            NSEGUIMIENTO := D12;
 
             IF nexpe <> '' THEN BEGIN
 
@@ -264,7 +287,7 @@ XmlPort 50078 "Importacion CORREOS"
 
 
 
-                DDF := COPYSTR(D1, 89, 10);
+                DDF := D7;
 
 
                 IF DDF <> '' THEN BEGIN
@@ -292,7 +315,7 @@ XmlPort 50078 "Importacion CORREOS"
 
                 choras := '';
                 totalhoras := 0;
-                DDH := COPYSTR(D1, 105, 5);
+                DDH := D8;
 
                 IF STRLEN(DDH) < 5 THEN BEGIN DDH := '0' + DDH; END;
                 IF DDH <> '' THEN BEGIN

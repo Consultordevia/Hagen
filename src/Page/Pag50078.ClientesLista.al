@@ -1147,6 +1147,9 @@ Page 50078 "Clientes Lista"
                 {
                     ApplicationArea = Basic;
                 }
+                
+
+                 
 
 
             }

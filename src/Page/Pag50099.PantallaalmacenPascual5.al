@@ -394,16 +394,24 @@ Page 50099 "Pantalla almacen Pascual5"
                          RecPMP: Record "Inventario PMP";                          
                          Rec113: Record "Sales Invoice Line";
                          Rec115: Record "Sales Cr.Memo Line";
+                         Reccust: Record customer;
                          v: Dialog;
                          conta: Integer;
                     begin
                         /*clear(xmlunitprice);
                         xmlunitprice.Run();                
                         Message('hecho');*/
+                        /*
                         v.Open('#1######################');
                         conta:=0;
+                        Reccust.reset;
+                        IF Reccust.FindFirst() THEN repeat
+                            Reccust."No enviar excel":=TRUE;                             
+                            Reccust.Modify;
+                        UNTIL Reccust.NEXT=0;
+                        */
 
-                        rec113.Reset();;
+                        /*rec113.Reset();;
                         REC113.SetRange("Posting Date",20240101D,20241231D);    
                         REC113.SetRange(type,rec113.type::Item);
                         if Rec113.FindSet() then repeat
@@ -447,6 +455,7 @@ Page 50099 "Pantalla almacen Pascual5"
                             rec115."Unit Cost (LCY)":=pmp;
                             rec115.Modify;
                         until rec115.next=0;
+                        */
                         v.Close();
                         Message('hecho');
 
