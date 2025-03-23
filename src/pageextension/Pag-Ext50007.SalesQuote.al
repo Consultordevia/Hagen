@@ -709,10 +709,10 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
             action(LineasOfertaaExcel)
             {
                 ApplicationArea = Suite;
-                Caption = 'Lineas Oferta a Excel';
+                Caption = 'Plantilla de Alta Productos';
                 trigger OnAction()
                 var
-                    ReportLineasExcel: Report "Lineas Oferta";
+                    ReportLineasExcel: Report "Plantilla de Alta Productos";
                     Rec37: Record "Sales Line";
                 begin
                     Clear(ReportLineasExcel);

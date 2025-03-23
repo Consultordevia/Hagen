@@ -213,6 +213,7 @@ tableextension 50115 SalesLine extends "Sales Line"
                         end;
                     end;
                 end;                 
+                /*
                 if CopyStr(SalesHeader."No.", 3, 3) <> 'B2B' then begin                              
                     if ("Document Type" = 1) or ("Document Type" = 0) then begin
                         if Quantity <> 0 then begin
@@ -316,6 +317,7 @@ tableextension 50115 SalesLine extends "Sales Line"
                     end;
 
                 end;
+                */
 
                 /*
                 ControlFecha:=CALCDATE('-1D',TODAY);

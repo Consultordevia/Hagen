@@ -1,5 +1,5 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
-Report 50128 "Lineas Oferta"
+Report 50128 "Plantilla de Alta Productos"
 {
     DefaultLayout = RDLC;
     RDLCLayout = './Layouts/Lineas Ofertas.rdlc';
@@ -109,6 +109,18 @@ Report 50128 "Lineas Oferta"
             column(Alto; Item.Alto)
             {
             }
+            column(PesoInner; PesoInner) { }
+
+            column(LargoInner; LargoInner) { }
+            column(AnchoInner; AnchoInner) { }
+            column(AltoInner; AltoInner) { }
+            column(DUM14Inner; DUM14Inner) { }
+            column(DUM14Master; DUM14Master) { }
+            column(PesoMaster; PesoMaster) { }
+            column(LargoMaster; LargoMaster) { }
+            column(AnchoMaster; AnchoMaster) { }
+            column(AltoMaster; AltoMaster) { }
+
 
 
 
@@ -224,7 +236,46 @@ Report 50128 "Lineas Oferta"
                         YREF := YREF + ' ' + SalesHeadertmp."Your Reference";
                     until SalesHeadertmp.Next = 0;
 
-
+                PesoInner := 0;
+                LargoInner := 0;
+                AnchoInner := 0;
+                AltoInner := 0;
+                DUM14Inner := '';
+                DUM14Master := '';
+                PesoMaster := 0;
+                LargoMaster := 0;
+                AnchoMaster := 0;
+                AltoMaster := 0;
+                RefCruzada.reset;
+                RefCruzada.SetRange("Item No.", "Sales Line"."No.");
+                RefCruzada.SetRange("Unit of Measure", 'IN');
+                if RefCruzada.FindFirst() then begin
+                    DUM14Inner := RefCruzada."Reference No.";
+                end;
+                RefCruzada.reset;
+                RefCruzada.SetRange("Item No.", "Sales Line"."No.");
+                RefCruzada.SetRange("Unit of Measure", 'MA');
+                if RefCruzada.FindFirst() then begin
+                    DUM14Master := RefCruzada."Reference No.";
+                end;
+                RecUMP.reset;
+                RecUMP.SetRange("Item No.", "Sales Line"."No.");
+                RecUMP.SetRange(Code, 'IN');
+                if RecUMP.FindFirst() then begin
+                    PesoInner := RecUMP.Weight;
+                    LargoInner := RecUMP.Length;
+                    AnchoInner := RecUMP.Width;
+                    AltoInner := RecUMP.Height;
+                end;
+                RecUMP.reset;
+                RecUMP.SetRange("Item No.", "Sales Line"."No.");
+                RecUMP.SetRange(Code, 'MA');
+                if RecUMP.FindFirst() then begin
+                    PesoMaster := RecUMP.Weight;
+                    LargoMaster := RecUMP.Length;
+                    AnchoMaster := RecUMP.Width;
+                    AltoMaster := RecUMP.Height;
+                end;
             end;
         }
     }
@@ -278,6 +329,20 @@ Report 50128 "Lineas Oferta"
         Dto: Decimal;
         precioneto: Decimal;
         urlprod: Text[250];
+        RefCruzada: Record "Item Reference";
+
+        PesoInner: Decimal;
+        LargoInner: Decimal;
+        AnchoInner: Decimal;
+        AltoInner: Decimal;
+        DUM14Inner: Code[30];
+        DUM14Master: Code[30];
+        PesoMaster: Decimal;
+        LargoMaster: Decimal;
+        AnchoMaster: Decimal;
+        AltoMaster: Decimal;
+
+
 
 }
 
