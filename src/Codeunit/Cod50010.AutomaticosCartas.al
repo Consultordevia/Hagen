@@ -13415,14 +13415,41 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         RecCust: Record Customer;
         /////- SMTP: Codeunit UnknownCodeunit400;
         FileDirectory3: Code[250];
+        cuMail: Codeunit Mail;
+        txtOrigen: Text;
+        txtDestinatario: List of [Text]; //BC20
+        txtCC: Text;
+        txtSubject: Text;
+        txtBody: Text;
+        xmlParameters: Text;
+        currentUser: Code[100];
+        ReportParameters: Record "Report Selections";
+        PdfDocPath: Text;
+        Path: Text;
+        txtOrigenJM: Text;
+        txtDestinatarioJM: Text;
+        txtCCJM: Text;
+        txtSubjectJM: Text;
+        txtFecha: Text;
+        intIDreport: Integer;
+        recCompanyInformation: Record "Company Information";
+        dia: Integer;
+        FechasDate: Record Date;
+        DiaCorrecto: Boolean;
+        RepCartaPagare: report 50116;
+        RepCartaPagarePT: report 50118;
+        RepRecibido: report 50066;
+        Rep408: report 408;
+
     begin
 
 
-        ///// 2
+        ///// albaran compra
 
 
         PurchRcptHeader.Reset;
         PurchRcptHeader.SetCurrentkey(PurchRcptHeader."Enviar email");
+        PurchRcptHeader.SetRange("Posting Date", 20250301D, today);
         PurchRcptHeader.SetRange(PurchRcptHeader."Enviar email", true);
         PurchRcptHeader.SetRange(PurchRcptHeader."Email enviado", false);
         if PurchRcptHeader.FindSet then
@@ -13453,7 +13480,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                 PurchRcptHeader2.Reset;
                                 PurchRcptHeader2.SetRange("No.", PurchRcptHeader."No.");
                                 if PurchRcptHeader2.FindFirst then begin
-                                    /// -Report.SaveAsPdf(408, FileDirectory, PurchRcptHeader2);
+                                    ///Report.SaveAsPdf(408, FileDirectory, PurchRcptHeader2);
                                 end;
                             end;
                         end;
@@ -13473,7 +13500,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                             PurchRcptHeader2."Vendedor temp" := UserSetup."Salespers./Purch. Code";
                                             PurchRcptHeader2.Modify;
                                             Commit;
-                                            /////-Report.SaveAsExcel(50066, FileDirectory3, PurchRcptHeader2);
+                                            /////Report.SaveAsExcel(50066, FileDirectory3, PurchRcptHeader2);
                                         end;
                                     end;
 
@@ -13488,20 +13515,67 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                     /////-SMTP.AddAttachment(FileDirectory, '');
                                     /////SMTP.AddBCC('oscarraea@hotmail.com');
                                     /////-SMTP.Send;
+                                    SenderName := 'HAGEN';
+                                    txtSubject := 'Recepcion compra  Nº ' + Format(PurchRcptHeader."No.") + ' ' + Format(UserSetup."E-Mail");
+                                    SenderAddress := REC91."E-Mail";
+                                    Recipient := UserSetup."E-Mail";
+                                    Body := '';
+                                    SenderAddress := REC91."E-Mail";
+                                    clear(txtDestinatario);
+                                    Body := 'Recepcion compra  Nº ' + Format(PurchRcptHeader."No.") + ' ' + Format(UserSetup."E-Mail") +
+                                         '<hr>' +
+                                         '<br>' +
+                                         'Atentamente,<br>' +
+                                         'ROLF C HAGEN ESPAÑA S.A.,<br>';
+                                    Recipient := UserSetup."E-Mail";
+                                    txtDestinatario.Add(Recipient);
+                                    recCompanyInformation.Get;
+                                    Clear(TempBlob);
+                                    Clear(OutStream);
+                                    Clear(InStream);
+                                    TempBlob.CreateOutStream(OutStream);
+                                    TempBlob.CreateInStream(InStream);
+                                    PurchRcptHeader2.Reset;
+                                    PurchRcptHeader2.SetRange("No.", PurchRcptHeader."No.");
+                                    if PurchRcptHeader2.FindFirst then begin
+                                        clear(Rep408);
+                                        Rep408.setTableView(PurchRcptHeader2);
+                                        Rep408.SaveAs('', ReportFormat::Pdf, OutStream);
+                                    END;
+                                    fileName := PurchRcptHeader."No." + '.PDF';
+                                    ///BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
 
                                     if tienerotura then begin
                                         SenderName := 'HAGEN';
-                                        Subject := 'Rotura compra  Nº ' + Format(PurchRcptHeader."No.") + ' ' + Format(UserSetup."E-Mail");
+                                        txtSubject := 'Rotura compra  Nº ' + Format(PurchRcptHeader."No.") + ' ' + Format(UserSetup."E-Mail");
                                         SenderAddress := REC91."E-Mail";
                                         Recipient := UserSetup."E-Mail";
-                                        /////Recipient:='oscarraea@hotmail.com;alexis.martin@hagen.es';
-                                        /////-Clear(SMTP);
-                                        /////-SMTP.Run;
-                                        /////-SMTP.CreateMessage(SenderName, SenderAddress, Recipient, Subject, Body, true);
-                                        /////-SMTP.AddAttachment(FileDirectory3, '');
-                                        /////SMTP.AddBCC('oscarraea@hotmail.com');
-                                        /////-SMTP.Send;
+                                        Body := '';
+                                        SenderAddress := REC91."E-Mail";
+                                        clear(txtDestinatario);
+                                        Body := 'Rotura compra  Nº ' + Format(PurchRcptHeader."No.") + ' ' + Format(UserSetup."E-Mail") +
+                                             '<hr>' +
+                                             '<br>' +
+                                             'Atentamente,<br>' +
+                                             'ROLF C HAGEN ESPAÑA S.A.,<br>';
+                                        Recipient := UserSetup."E-Mail";
+                                        txtDestinatario.Add(Recipient);
+                                        recCompanyInformation.Get;
+                                        Clear(TempBlob);
+                                        Clear(OutStream);
+                                        Clear(InStream);
+                                        TempBlob.CreateOutStream(OutStream);
+                                        TempBlob.CreateInStream(InStream);
+                                        PurchRcptHeader2.Reset;
+                                        PurchRcptHeader2.SetRange("No.", PurchRcptHeader."No.");
+                                        if PurchRcptHeader2.FindFirst then begin
+                                            clear(RepRecibido);
+                                            RepRecibido.setTableView(PurchRcptHeader2);
+                                            RepRecibido.SaveAs('', ReportFormat::Excel, OutStream);
+                                        END;
 
+                                        fileName := PurchRcptHeader."No." + '.xlsx';
+                                        ///BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                                     end;
                                 until UserSetup.Next = 0;
                         end;
@@ -13509,11 +13583,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                 end;
 
                 PurchRcptHeader2.Get(PurchRcptHeader."No.");
-                ///PurchRcptHeader2."Email enviado" := true;
-                ///PurchRcptHeader2."Enviar email" := false;
-                ///PurchRcptHeader2."Fecha enviado" := Today;
-                ///PurchRcptHeader2."Hora enviado" := Time;
-                ///PurchRcptHeader2.Modify;
+                PurchRcptHeader2."Email enviado" := true;
+                PurchRcptHeader2."Enviar email" := false;
+                PurchRcptHeader2."Fecha enviado" := Today;
+                PurchRcptHeader2."Hora enviado" := Time;
+                PurchRcptHeader2.Modify;
                 Commit;
 
 
