@@ -1,6 +1,88 @@
 Codeunit 50010 "Automaticos Cartas"
 {
-    // Potyugal
+
+/*
+field(10707; "Invoice Type"; Enum "SII Sales Invoice Type")
+        {
+            Caption = 'Invoice Type';
+            trigger OnValidate()
+            begin
+                SetSIIFirstSummaryDocNo('');
+                SetSIILastSummaryDocNo('');
+            end;
+        }
+        field(10708; "Cr. Memo Type"; Enum "SII Sales Credit Memo Type")
+        {
+            Caption = 'Cr. Memo Type';
+            trigger OnValidate()
+            begin
+                SetSIIFirstSummaryDocNo('');
+                SetSIILastSummaryDocNo('');
+            end;
+        }
+        field(10709; "Special Scheme Code"; Enum "SII Sales Special Scheme Code")
+        {
+            Caption = 'Special Scheme Code';
+
+            trigger OnValidate()
+            var
+                SIISchemeCodeMgt: Codeunit "SII Scheme Code Mgt.";
+            begin
+                SIISchemeCodeMgt.UpdateSalesSpecialSchemeCodeInSalesHeader(Rec, xRec);
+            end;
+        }
+        field(10710; "Operation Description"; Text[250])
+        {
+            Caption = 'Operation Description';
+        }
+        field(10711; "Correction Type"; Option)
+        {
+            Caption = 'Correction Type';
+            OptionCaption = ' ,Replacement,Difference,Removal';
+            OptionMembers = " ",Replacement,Difference,Removal;
+
+            trigger OnValidate()
+            var
+                SIIManagement: Codeunit "SII Management";
+            begin
+                Validate("ID Type", SIIManagement.GetSalesIDType("Bill-to Customer No.", "Correction Type", "Corrected Invoice No."));
+            end;
+        }
+        field(10712; "Operation Description 2"; Text[250])
+        {
+            Caption = 'Operation Description 2';
+        }
+        field(10720; "Succeeded Company Name"; Text[250])
+        {
+            Caption = 'Succeeded Company Name';
+        }
+        field(10721; "Succeeded VAT Registration No."; Text[20])
+        {
+            Caption = 'Succeeded VAT Registration No.';
+        }
+        field(10722; "ID Type"; Enum "SII ID Type")
+        {
+            Caption = 'ID Type';
+        }
+        field(10724; "Do Not Send To SII"; Boolean)
+        {
+            Caption = 'Do Not Send To SII';
+        }
+        field(10725; "Issued By Third Party"; Boolean)
+        {
+            Caption = 'Issued By Third Party';
+        }
+        field(10726; "SII First Summary Doc. No."; Blob)
+        {
+            Caption = 'First Summary Doc. No.';
+        }
+        field(10727; "SII Last Summary Doc. No."; Blob)
+        {
+            Caption = 'Last Summary Doc. No.';
+        }
+        
+*/
+
 
     Permissions = TableData "Purch. Rcpt. Header" = rim, TableData "Sales Invoice Line" = rim,
     TableData "Sales Shipment Header" = rim,

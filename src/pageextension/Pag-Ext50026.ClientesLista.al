@@ -7,15 +7,21 @@ pageextension 50026 ClientesLista extends "Customer List"
 
         addafter("Salesperson Code")
         {
+            field("Fecha alta";Rec."Fecha alta") { ApplicationArea = All; }
+            field("Invoice Type"; Rec."Invoice Type") { ApplicationArea = All; }
+            field("Cr. Memo Type"; Rec."Cr. Memo Type") { ApplicationArea = All; }
+            field("Special Scheme Code"; Rec."Special Scheme Code") { ApplicationArea = All; }
+            field("Correction Type"; Rec."Correction Type") { ApplicationArea = All; }
+            field("Do Not Send To SII"; Rec."Do Not Send To SII") { ApplicationArea = All; }
             field("Document Sending Profile"; Rec."Document Sending Profile")
             {
                 ApplicationArea = All;
             }
 
-            field("Permite fraccionar unidad de venta";Rec."Permite fraccionar unidad de venta") { ApplicationArea = All; }
-            field(GLN;Rec.GLN) { ApplicationArea = All; }
-            field("Discount%";Rec."Discount%") { ApplicationArea = All; }
-            field("Catalogo Shopify";Rec."Catalogo Shopify") { ApplicationArea = All; }
+            field("Permite fraccionar unidad de venta"; Rec."Permite fraccionar unidad de venta") { ApplicationArea = All; }
+            field(GLN; Rec.GLN) { ApplicationArea = All; }
+            field("Discount%"; Rec."Discount%") { ApplicationArea = All; }
+            field("Catalogo Shopify"; Rec."Catalogo Shopify") { ApplicationArea = All; }
             field("Codigo cliente externo"; Rec."Codigo cliente externo") { ApplicationArea = All; }
             field("Payment Method Code"; Rec."Payment Method Code") { ApplicationArea = All; }
             field("VAT Registration No."; Rec."VAT Registration No.") { ApplicationArea = All; }
