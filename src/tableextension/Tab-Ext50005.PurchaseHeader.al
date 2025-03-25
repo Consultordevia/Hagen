@@ -1,7 +1,35 @@
 tableextension 50005 PurchaseHeader extends "Purchase Header"
 {
+
+    
     fields
     {
+
+         modify("Buy-from Vendor No.")
+        {
+            trigger OnAfterValidate()
+            var
+                RecVendor: Record Vendor;
+            begin
+                if RecVendor.get("Buy-from Vendor No.") then begin                     
+                    if PurchHeader."Document Type" <> PurchHeader."Document Type"::"Credit Memo" then begin
+                        
+                        Rec."Invoice Type" := RecVendor."Invoice Type";
+                    end;
+                    if PurchHeader."Document Type" = PurchHeader."Document Type"::"Credit Memo" then begin
+                        
+                        Rec."Cr. Memo Type" := RecVendor."Cr. Memo Type";
+                    end;
+                    Rec."Special Scheme Code" := RecVendor."Special Scheme Code";
+                    Rec."Correction Type" := RecVendor."Correction Type";
+                    Rec."Do Not Send To SII" := RecVendor."Do Not Send To SII";
+
+
+
+                end;
+
+            end;
+        }
         field(50000; "Importe pedido"; Decimal)
         {
             AutoFormatExpression = "Currency Code";
