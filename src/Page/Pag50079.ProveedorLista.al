@@ -3,6 +3,10 @@ Page 50079 "Proveedor Lista"
 {
     PageType = List;
     SourceTable = Vendor;
+    ApplicationArea = All;
+    Caption = 'Proveedor Lista';
+    UsageCategory = Lists;
+
 
     layout
     {
