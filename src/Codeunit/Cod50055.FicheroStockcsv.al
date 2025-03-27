@@ -1558,6 +1558,15 @@ Codeunit 50055 "Fichero Stock.csv"
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
         FicherosHagen.CrearFichero(nomdir, 'stock.csv', InStream);
 
+
+
+        nomdir := '';
+        ADAIA.Reset();
+        ADAIA.SetRange(texto, 'AUTOMATICO STOCKEXCEL-CU-50055');
+        IF ADAIA.FindSet() THEN begin
+            nomdir := ADAIA.Ruta;
+        end;
+
         Clear(TempBlob);
         Clear(OutStream);
         Clear(InStream);                             
