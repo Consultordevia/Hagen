@@ -1332,8 +1332,8 @@ Codeunit 50055 "Fichero Stock.csv"
                             Item.CalcFields(Item."Tarifa 2022-2");
                             Clear(TextoSalida1);
                             Clear(TextoSalida2);
-                            Item.CalcFields(Inventory, "Existencia FOB", Item."Existencia SILLA", Item."Qty. on Sales Order");
-                            DISPONI := Item.Inventory - Item."Existencia FOB" - Item."Qty. on Sales Order" - Item."Stock para Catit";
+                            Item.CalcFields(Inventory, "Existencia FOB", Item."Existencia SILLA", Item."Qty. on Sales Order", "Existencia TENERIFE");
+                            DISPONI := Item.Inventory - Item."Existencia FOB" - Item."Qty. on Sales Order" - Item."Stock para Catit"-item."Existencia TENERIFE";
                             ENTRA := true;
                             if (DISPONI <= 0) and (Item."Estado Producto" = 1) then begin
                                 ENTRA := false;
@@ -1359,8 +1359,8 @@ Codeunit 50055 "Fichero Stock.csv"
                                 end;
 
 
-                                if DISPONI > 30 then begin
-                                    DISPONI := 30;
+                                if DISPONI > 200 then begin
+                                    DISPONI := 200;
                                 end;
 
 
