@@ -317,8 +317,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemTemp."Minimum Order Quantity" := RecUMP.Width;
                                 ItemTemp."Maximum Order Quantity" := RecUMP.Height;
                                 ItemTemp."Safety Stock Quantity" := RecUMP.Cubage;
-                                ItemTemp."Tariff No." := CMARCA;
-                                ItemTemp."URL IMAGEN 1" := Item."URL IMAGEN 1";
+                                ItemTemp."Tariff No." := CMARCA;                                
                                 ItemTemp."Vendor No." := Format(IVA);
                                 ItemTemp."Last Date Modified" := Item."Fecha Lanzamiento";
                                 ItemTemp.Insert;
@@ -350,7 +349,7 @@ Codeunit 50055 "Fichero Stock.csv"
         ///TempBlob.CreateOutStream(OutStream);
 
 
-        OutTxt := 'Ean;Referencia;Descripcion;Estado;Línea;Familia;Tarifa;PVPR;Disponibilidad;Und. Mínimo Compra;Fecha Prox.;Pesos;Largo;Alto;Ancho;Volumen;Marca;URL imagen;Iva;Fecha Lanzamiento;' +
+        OutTxt := 'Ean;Referencia;Descripcion;Estado;Línea;Familia;Tarifa;PVPR;Disponibilidad;Und. Mínimo Compra;Fecha Prox.;Pesos;Largo;Alto;Ancho;Volumen;Marca;Iva;Fecha Lanzamiento;' +
         'Cantidad_1;Descuento_1;Cantidad_2;Descuento_2;Cantidad_3;Descuento_3';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
@@ -388,8 +387,7 @@ Codeunit 50055 "Fichero Stock.csv"
                               Format(ItemTemp."Maximum Order Quantity") + ';' +
                               Format(ItemTemp."Safety Stock Quantity") + ';' +
                               Format(ItemTemp."Tariff No.") + ';';
-                TextoSalida3 := Format(ItemTemp."URL IMAGEN 1") + ';' +
-                              Format(ItemTemp."Vendor No.") + ';' +
+                TextoSalida3 :=  Format(ItemTemp."Vendor No.") + ';' +
                               Format(ItemTemp."Last Date Modified");
 
                 OutTxt := TextoSalida1 + TextoSalida2 + TextoSalida3;
@@ -579,8 +577,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR."Minimum Order Quantity" := RecUMP.Width;
                                 ItemtempR."Maximum Order Quantity" := RecUMP.Height;
                                 ItemtempR."Safety Stock Quantity" := RecUMP.Cubage;
-                                ItemtempR."Tariff No." := CMARCA;
-                                ItemtempR."URL IMAGEN 1" := Item."URL IMAGEN 1";
+                                ItemtempR."Tariff No." := CMARCA;                                
                                 ItemtempR."Vendor No." := Format(IVA);
                                 ItemtempR."Last Date Modified" := Item."Fecha Lanzamiento";
                                 ItemtempR."IVA IGIC" := Item."IVA IGIC";
@@ -872,8 +869,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR."Minimum Order Quantity" := RecUMP.Width;
                                 ItemtempR."Maximum Order Quantity" := RecUMP.Height;
                                 ItemtempR."Safety Stock Quantity" := RecUMP.Cubage;
-                                ItemtempR."Tariff No." := CMARCA;
-                                ItemtempR."URL IMAGEN 1" := Item."URL IMAGEN 1";
+                                ItemtempR."Tariff No." := CMARCA;                                
                                 ItemtempR."Vendor No." := Format(IVA);
                                 ItemtempR."Last Date Modified" := Item."Fecha Lanzamiento";
                                 ItemtempR."IVA IGIC" := Item."IVA IGIC";
@@ -1161,8 +1157,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR."Minimum Order Quantity" := RecUMP.Width;
                                 ItemtempR."Maximum Order Quantity" := RecUMP.Height;
                                 ItemtempR."Safety Stock Quantity" := RecUMP.Cubage;
-                                ItemtempR."Tariff No." := CMARCA;
-                                ItemtempR."URL IMAGEN 1" := Item."URL IMAGEN 1";
+                                ItemtempR."Tariff No." := CMARCA;                                
                                 ItemtempR."Vendor No." := Format(IVA);
                                 ItemtempR."Last Date Modified" := Item."Fecha Lanzamiento";
                                 ItemtempR."IVA IGIC" := Item."IVA IGIC";
@@ -1310,7 +1305,7 @@ Codeunit 50055 "Fichero Stock.csv"
         TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
 
 
-        OutTxt := 'Ean;Referencia;Descripcion;Estado;Línea;Familia;Tarifa;PVPR;Disponibilidad;Und. Mínimo Compra;Fecha Prox.;Pesos;Largo;Alto;Ancho;Volumen;Marca;URL imagen;Iva;Fecha Lanzamiento;' +
+        OutTxt := 'Ean;Referencia;Descripcion;Estado;Línea;Familia;Tarifa;PVPR;Disponibilidad;Und. Mínimo Compra;Fecha Prox.;Pesos;Largo;Alto;Ancho;Volumen;Marca;Iva;Fecha Lanzamiento;' +
         'Cantidad_1;Descuento_1;Cantidad_2;Descuento_2;Cantidad_3;Descuento_3';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
@@ -1469,8 +1464,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR."Minimum Order Quantity" := RecUMP.Width;
                                 ItemtempR."Maximum Order Quantity" := RecUMP.Height;
                                 ItemtempR."Safety Stock Quantity" := RecUMP.Cubage;
-                                ItemtempR."Tariff No." := CMARCA;
-                                ItemtempR."URL IMAGEN 1" := Item."URL IMAGEN 1";
+                                ItemtempR."Tariff No." := CMARCA;                                
                                 ItemtempR."Vendor No." := Format(IVA);
                                 ItemtempR."Last Date Modified" := Item."Fecha Lanzamiento";
                                 ItemtempR."IVA IGIC" := Item."IVA IGIC";
@@ -1514,8 +1508,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                               Format(ItemTempR."Maximum Order Quantity") + ';' +
                                               Format(ItemTempR."Safety Stock Quantity") + ';' +
                                               Format(ItemTempR."Tariff No.") + ';';
-                                TextoSalida3 := Format(ItemTempR."URL IMAGEN 1") + ';' +
-                                              Format(ItemTempR."Vendor No.") + ';' +
+                                TextoSalida3 := Format(ItemTempR."Vendor No.") + ';' +
                                               Format(ItemTempR."Last Date Modified");
 
 
