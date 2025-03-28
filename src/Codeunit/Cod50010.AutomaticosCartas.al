@@ -13625,7 +13625,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                         Rep408.SaveAs('', ReportFormat::Pdf, OutStream);
                                     END;
                                     fileName := PurchRcptHeader."No." + '.PDF';
-                                    ///BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                                    BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
 
                                     if tienerotura then begin
                                         SenderName := 'HAGEN';
@@ -13657,7 +13657,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                         END;
 
                                         fileName := PurchRcptHeader."No." + '.xlsx';
-                                        ///BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                                        BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                                     end;
                                 until UserSetup.Next = 0;
                         end;

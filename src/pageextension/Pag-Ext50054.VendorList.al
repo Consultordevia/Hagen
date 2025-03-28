@@ -4,7 +4,7 @@ pageextension 50054 VendorList extends "Vendor List"
     {
         addafter(Contact)
         {
-           
+
 
         }
     }
