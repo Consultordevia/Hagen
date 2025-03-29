@@ -13,6 +13,9 @@ Page 50078 "Clientes Lista"
         {
             repeater(Group)
             {
+                field(Plantilla_Cliente; Rec.Plantilla_Cliente)
+                { ApplicationArea = All; }
+
                 field("Permite fraccionar unidad de venta"; Rec."Permite fraccionar unidad de venta")
                 { ApplicationArea = All; }
                 field("Invoice Type"; Rec."Invoice Type") { ApplicationArea = All; }

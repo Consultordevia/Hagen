@@ -770,6 +770,26 @@ tableextension 50104 Customer extends "Customer"
             Caption = 'Do Not Send To SII';
         }
         
+        field(50725; Plantilla_Cliente; Code[20])
+        {
+            TableRelation = "Customer Templ.";
+            trigger OnValidate()
+            
+            Var
+            RecCT: Record "Customer Templ.";
+            CustomerTemplMgt: Codeunit "Customer Templ. Mgt.";            
+
+            Begin           
+                RecCT.Reset();
+                RecCT.SetRange(Code,Plantilla_Cliente);
+                IF RecCT.FindFirst() THEN BEGIN
+                    CustomerTemplMgt.ApplyCustomerTemplate(Rec, RecCT);
+                END;
+            end;
+
+        }        
+
+
 
 
     }

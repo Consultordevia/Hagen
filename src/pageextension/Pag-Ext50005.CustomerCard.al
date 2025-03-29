@@ -47,6 +47,7 @@ pageextension 50005 "Customer Card" extends "Customer Card"
             group(Hagen)
             {
 
+                field(Plantilla_Cliente; Rec.Plantilla_Cliente) { ApplicationArea = All; }
                 field("Permite fraccionar unidad de venta"; Rec."Permite fraccionar unidad de venta") { ApplicationArea = All; }
                 field(AlmaTenerife; Rec.AlmaTenerife) { ApplicationArea = All; }
                 field("Permite seguir adelante "; Rec."Permite seguir adelante") { ApplicationArea = All; }
