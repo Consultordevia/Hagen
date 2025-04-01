@@ -8851,7 +8851,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         repInforme: Report "OK Nueva Factura Venta";
         FicheroHagen: Codeunit FicherosHagen;
         BlobAdjunto: Codeunit "Temp Blob";
-        RepItemTemporal: REPORT 50914;
+        RepItemTemporal: REPORT  "OK Nueva Factura Venta";
 
 
     begin
