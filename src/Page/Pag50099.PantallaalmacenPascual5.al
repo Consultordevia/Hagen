@@ -49000,7 +49000,7 @@ Page 50099 "Pantalla almacen Pascual5"
 
 
 
-
+        Sleep(3000);
         SalesHeader3.Reset;
         SalesHeader3.SetCurrentkey("Document Type", "Nº expedición");
         SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
