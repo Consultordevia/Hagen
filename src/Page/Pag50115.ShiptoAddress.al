@@ -213,6 +213,14 @@ page 50115 ShiptoAddress
                 {
                     ToolTip = 'Specifies the value of the Transportista ficha cliente field.', Comment = '%';
                 }
+                field("VAT Registration No."; Rec."VAT Registration No.")
+                {
+                    ToolTip = '';
+                }
+                field("Grupo clientes"; Rec."Grupo clientes")
+                {
+                    ToolTip = '';
+                }
             }
         }
     }
@@ -283,7 +291,7 @@ page 50115 ShiptoAddress
                 end;
             }
 
-                action(movil)
+            action(movil)
             {
                 ApplicationArea = Basic;
 
@@ -295,13 +303,13 @@ page 50115 ShiptoAddress
                 begin
                     if Rec222.FindFirst then
                         repeat
-                            IF Rec222."Nº Movil"='' THEN begin                                 
-                                    Rec222."Nº Movil":=Rec222."Phone No.";                                     
-                                    Rec222.Modify;
-                                end;                    
+                            IF Rec222."Nº Movil" = '' THEN begin
+                                Rec222."Nº Movil" := Rec222."Phone No.";
+                                Rec222.Modify;
+                            end;
                         until Rec222.Next = 0;
                     Message('HECHO1');
-                    
+
 
                 end;
             }

@@ -216,7 +216,16 @@ page 50085 DirEnvioClientes
                 {
                     ToolTip = 'Specifies the recipient''s telephone number.';
                 }
-
+                field("VAT Registration No.";Rec."VAT Registration No.")
+                {
+                    ToolTip = '';
+                }
+                field("Grupo clientes";Rec."Grupo clientes")
+                {
+                    ToolTip = '';
+                }
+                
+                
             }
         }
     }

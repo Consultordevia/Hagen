@@ -3,6 +3,10 @@ Page 50079 "Proveedor Lista"
 {
     PageType = List;
     SourceTable = Vendor;
+    ApplicationArea = All;
+    Caption = 'Proveedor Lista';
+    UsageCategory = Lists;
+
 
     layout
     {
@@ -26,6 +30,13 @@ Page 50079 "Proveedor Lista"
                 {
                     ApplicationArea = Basic;
                 }
+                 field("Invoice Type";Rec."Invoice Type"){ ApplicationArea = All; }
+                field("Cr. Memo Type";Rec."Cr. Memo Type"){ ApplicationArea = All; }
+                 field("Special Scheme Code";Rec."Special Scheme Code"){ ApplicationArea = All; }
+                field("Correction Type";Rec."Correction Type"){ ApplicationArea = All; }
+        
+                field("Do Not Send To SII";Rec."Do Not Send To SII"){ ApplicationArea = All; }        
+
                 field("Area";Rec.Area)
                 {
                     ApplicationArea = Basic;

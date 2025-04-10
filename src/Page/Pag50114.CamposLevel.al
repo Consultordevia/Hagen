@@ -65,6 +65,12 @@ page 50114 CamposLevel
                 field("Stock para Catit";Rec."Stock para Catit")
                 {                                   
                 }
+                field(ean;Rec.ean)
+                {                                   
+                }
+                field(GTIN;Rec.GTIN)
+                {                                   
+                }
                 
                 
 

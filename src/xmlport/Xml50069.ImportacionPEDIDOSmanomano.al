@@ -151,7 +151,35 @@ XmlPort 50069 "Importacion PEDIDOS mano mano"
                 textelement(D43)
                 {
                 }
+                
                 textelement(D44)
+                {
+                }
+                textelement(D45)
+                {
+                }
+                textelement(D46)
+                {
+                }
+                textelement(D47)
+                {
+                }
+                textelement(D48)
+                {
+                }
+                textelement(D49)
+                {
+                }
+                textelement(D50)
+                {
+                }
+                textelement(D51)
+                {
+                }
+                textelement(D52)
+                {
+                }
+                textelement(D53)
                 {
 
                     trigger OnAfterAssignVariable()
@@ -478,8 +506,8 @@ XmlPort 50069 "Importacion PEDIDOS mano mano"
                 //END;
 
 
-                RecCV."Ship-to Name" := CopyStr(D5 + ' ' + D6, 1, 50);
-                RecCV."Ship-to Name 2" := CopyStr(D5 + ' ' + D6, 1, 50);
+                RecCV."Ship-to Name" := CopyStr(D4 + ' ' + D5, 1, 50);
+                RecCV."Ship-to Name 2" := CopyStr(D4 + ' ' + D5, 1, 50);
                 RecCV."Ship-to Address" := CopyStr(D7 + ' ' + D8, 1, 50);
                 RecCV."Ship-to Address 2" := CopyStr(D7 + ' ' + D8, 51, 50);
                 RecCV."Ship-to City" := CopyStr(D11, 1, 30);
@@ -549,8 +577,8 @@ XmlPort 50069 "Importacion PEDIDOS mano mano"
 
 
 
-                D39 := ConvertStr(D39, '.', ',');
-                Evaluate(CANTitrans, D39);
+                D38 := ConvertStr(D38, '.', ',');
+                Evaluate(CANTitrans, D38);
                 if CANTitrans <> 0 then begin
                     RecLV."Document Type" := 1;
                     RecLV."Document No." := codacti;

@@ -32,9 +32,22 @@ pageextension 50005 "Customer Card" extends "Customer Card"
         }
         addlast(content)
         {
+            group(BC_SII)
+            {
+                field("Invoice Type";Rec."Invoice Type") { ApplicationArea = All; }
+                field("Cr. Memo Type";Rec."Cr. Memo Type") { ApplicationArea = All; }                                                                               
+                field("Special Scheme Code";Rec."Special Scheme Code") { ApplicationArea = All; }                                   
+                field("Correction Type";Rec."Correction Type"){ ApplicationArea = All; }                                   
+                field("Do Not Send To SII";Rec."Do Not Send To SII"){ ApplicationArea = All; }                                   
+                     
+                    
+
+
+            }
             group(Hagen)
             {
 
+                field(Plantilla_Cliente; Rec.Plantilla_Cliente) { ApplicationArea = All; }
                 field("Permite fraccionar unidad de venta"; Rec."Permite fraccionar unidad de venta") { ApplicationArea = All; }
                 field(AlmaTenerife; Rec.AlmaTenerife) { ApplicationArea = All; }
                 field("Permite seguir adelante "; Rec."Permite seguir adelante") { ApplicationArea = All; }

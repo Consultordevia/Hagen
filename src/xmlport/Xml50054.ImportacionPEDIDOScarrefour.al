@@ -152,9 +152,8 @@ XmlPort 50054 "Importacion PEDIDOS carrefour"
                 textelement(D18)
                 {
                 }
-                textelement("<d19>")
-                {
-                    XmlName = 'D19';
+                textelement(D19)
+                {                    
                 }
                 textelement(D20)
                 {
@@ -292,6 +291,60 @@ XmlPort 50054 "Importacion PEDIDOS carrefour"
                 {
                 }
                 textelement(D65)
+                {
+                }
+                textelement(D66)
+                {
+                }
+                textelement(D67)
+                {
+                }
+                textelement(D68)
+                {
+                }
+                textelement(D69)
+                {
+                }
+                textelement(D70)
+                {
+                }
+                textelement(D71)
+                {
+                }
+                textelement(D72)
+                {
+                }
+                textelement(D73)
+                {
+                }
+                textelement(D74)
+                {
+                }
+                textelement(D75)
+                {
+                }
+                textelement(D76)
+                {
+                }
+                textelement(D77)
+                {
+                }
+                textelement(D78)
+                {
+                }
+                textelement(D79)
+                {
+                }
+                textelement(D80)
+                {
+                }
+                textelement(D81)
+                {
+                }
+                textelement(D82)
+                {
+                }
+                textelement(D84)
                 {
 
                     trigger OnAfterAssignVariable()
@@ -554,16 +607,16 @@ XmlPort 50054 "Importacion PEDIDOS carrefour"
                     ///TempBlob.WriteAsText(D2,TEXTENCODING::Windows);
                     ///RecCV."Work Description":=TempBlob.Blob;
                     RecCV.Validate("Your Reference" , D2);
-                    RecCV."Ship-to Name" := CopyStr(D35 + D36, 1, 50);
-                    RecCV."Ship-to Name 2" := CopyStr(D35 + D36, 51, 50);
-                    RecCV."Ship-to Address" := CopyStr(D38 + D39, 1, 50);
-                    RecCV."Ship-to Address 2" := CopyStr(D38 + D39, 51, 50);
-                    RecCV."Ship-to Contact" := D36;
+                    RecCV."Ship-to Name" := CopyStr(D42 + D43, 1, 50);
+                    RecCV."Ship-to Name 2" := CopyStr(D42 + D43, 51, 50);
+                    RecCV."Ship-to Address" := CopyStr(D44 + D45, 1, 50);
+                    RecCV."Ship-to Address 2" := CopyStr(D44 + D45, 51, 50);
+                    RecCV."Ship-to Contact" := CopyStr(D42 + D43, 1, 50);
                     RecCV."E-MAIL" := 'ventas@hagen.es';
-                    RecCV.Validate(RecCV."Ship-to Post Code", D40);
-                    RecCV.Validate(RecCV."Ship-to City", D41);
-                    RecCV."Envio a-Nº Telefono" := D44;
-                    RecCV."Observación para transporte" := D46;
+                    RecCV.Validate(RecCV."Ship-to Post Code", D46);
+                    RecCV.Validate(RecCV."Ship-to City", D47);
+                    RecCV."Envio a-Nº Telefono" := D50;
+                    RecCV."Observación para transporte" := '';
                     RecCV."Prices Including VAT" := true;
                     RecCV."Prices Including VAT" := false;
                     RecCV.Insert(true);

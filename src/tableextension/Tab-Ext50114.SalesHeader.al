@@ -12,6 +12,20 @@ tableextension 50114 SalesHeader extends "Sales Header"
             begin
                 if Reccust.get("Sell-to Customer No.") then begin
                     Rec."Permite fraccionar uni. venta" := Reccust."Permite fraccionar unidad de venta";
+                    if SalesHeader."Document Type" <> SalesHeader."Document Type"::"Credit Memo" then begin
+                        
+                        Rec."Invoice Type" := Reccust."Invoice Type";
+                    end;
+                    if SalesHeader."Document Type" = SalesHeader."Document Type"::"Credit Memo" then begin
+                        
+                        Rec."Cr. Memo Type" := Reccust."Cr. Memo Type";
+                    end;
+                    Rec."Special Scheme Code" := Reccust."Special Scheme Code";
+                    Rec."Correction Type" := Reccust."Correction Type";
+                    Rec."Do Not Send To SII" := Reccust."Do Not Send To SII";
+
+
+
                 end;
 
             end;
@@ -73,7 +87,9 @@ tableextension 50114 SalesHeader extends "Sales Header"
                 if Rec."Document Type" = Rec."Document Type"::Quote then begin
                     IF RecUS.get(userid) THEN begin
                         IF RecUS."Permite modif. Grupo dto en OFERTA" = false then begin
-                            Error('No tiene permiso a modificar este campo');
+                            if CopyStr("No.", 3, 3) <> 'B2B' then begin
+                                Error('No tiene permiso a modificar este campo');
+                            END;
                         end;
                     end;
                 end;
@@ -263,7 +279,6 @@ tableextension 50114 SalesHeader extends "Sales Header"
                     if PaymentMethod.Get("Payment Method Code") then begin
                         if PaymentMethod."Transferencia WEB" then begin
                             Error('Este pedido no se puede pasar a preparar porque es transferencia WEB.');
-
                         end;
                     end;
                 end;
@@ -471,6 +486,12 @@ tableextension 50114 SalesHeader extends "Sales Header"
                   and (COMPANYNAME = 'ROLF C HAGEN ESPAÑA S.A.') then
                     "Notificar Envio" := true;
                 // FIN
+
+                if "Estado pedido" = "Estado pedido"::"Para preparar" then begin
+                    if TextoWebApi <> '' then begin
+                        Error('Revise el campo TextoWebAp');
+                    end;
+                end;
 
             end;
         }
@@ -886,7 +907,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
         field(50302; ClienteEnviadoAdaia; Boolean)
         {
         }
-        
+
         field(50321; "EDI factueas enviar"; Boolean)
         {
         }
@@ -1002,7 +1023,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
         key(Key16; ClienteEnviadoAdaia)
         {
         }
-    
+
     }
 
     fieldgroups
@@ -1309,8 +1330,8 @@ tableextension 50114 SalesHeader extends "Sales Header"
             RecIE.Get;
 
             ///// IF COPYSTR(RecIE.Name,1,4)='PEPE' THEN BEGIN
-            if "Usuario alta" <> 'USERNWS' then begin
-
+            ///if "Usuario alta" <> 'USERNWS' then begin
+            if CopyStr("No.", 3, 3) <> 'B2B' then begin
 
 
                 RecCVP.Get;

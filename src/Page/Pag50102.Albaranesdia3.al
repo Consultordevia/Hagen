@@ -714,8 +714,9 @@ Page 50102 "Albaranes dia-3"
                 trigger OnAction()
                 begin
 
-                    /////- Clear(Lineasalbaranexpedicion);
-                    /////- Lineasalbaranexpedicion.Run;
+                    Clear(Lineasalbaranexpedicion);
+                    Lineasalbaranexpedicion.Run;                     
+                      
                 end;
             }
         }
@@ -757,6 +758,6 @@ Page 50102 "Albaranes dia-3"
         codexpe: Code[20];
         ANYO: Integer;
         Report50109: Report "Lineas Albaran AMAZON";
-    /////- Lineasalbaranexpedicion: Report UnknownReport50230;
+        Lineasalbaranexpedicion: Report 50230;
 }
 

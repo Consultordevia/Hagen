@@ -2132,6 +2132,9 @@ Table 50039 "Item temp"
         field(50505; Descuento_3; Decimal)
         {
         }
+        field(50555; "Level1"; Text[100]) { }
+        field(50556; "Level2"; Text[100]) { }
+
         field(60000; "Actualizar WEB"; Boolean)
         {
         }

@@ -13,11 +13,17 @@ Page 50078 "Clientes Lista"
         {
             repeater(Group)
             {
-                field("Permite fraccionar unidad de venta";Rec."Permite fraccionar unidad de venta")
-                {
-                    ApplicationArea = Basic;
-                }
-                
+                field(Plantilla_Cliente; Rec.Plantilla_Cliente)
+                { ApplicationArea = All; }
+
+                field("Permite fraccionar unidad de venta"; Rec."Permite fraccionar unidad de venta")
+                { ApplicationArea = All; }
+                field("Invoice Type"; Rec."Invoice Type") { ApplicationArea = All; }
+                field("Cr. Memo Type"; Rec."Cr. Memo Type") { ApplicationArea = All; }
+                field("Special Scheme Code"; Rec."Special Scheme Code") { ApplicationArea = All; }
+                field("Correction Type"; Rec."Correction Type") { ApplicationArea = All; }
+                field("Do Not Send To SII"; Rec."Do Not Send To SII") { ApplicationArea = All; }
+
                 field("Last Modified Date Time"; Rec."Last Modified Date Time")
                 {
                     ApplicationArea = Basic;
@@ -1147,6 +1153,9 @@ Page 50078 "Clientes Lista"
                 {
                     ApplicationArea = Basic;
                 }
+
+
+
 
 
             }

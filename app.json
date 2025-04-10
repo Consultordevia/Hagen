@@ -2,7 +2,7 @@
   "id": "4c82943b-44ff-4cd2-9606-25a7de64c606",
   "name": "Hagen",
   "publisher": "DevConsultIA",
-  "version": "1.0.0.1038",
+  "version": "1.0.0.1140",
     "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -16,6 +16,12 @@
       "name": "FTP Agent",
       "publisher": "Vffice",
       "version": "1.0.0.2"
+    },
+    {
+      "appId": "ec255f57-31d0-4ca2-b751-f2fa7c745abb",
+      "name": "Shopify Connector",
+      "publisher": "Microsoft",
+      "version": "25.0.23364.25481"
     }
   ],
   "screenshots": [],

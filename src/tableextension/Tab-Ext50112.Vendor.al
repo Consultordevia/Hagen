@@ -208,6 +208,31 @@ tableextension 50112 Vendor extends "Vendor"
         {
             TableRelation = "G/L Account"."No." where("Account Type" = const(Posting));
         }
+        field(50707; "Invoice Type"; Enum "SII Purch. Invoice Type")
+        {
+            Caption = 'Invoice Type';
+        }
+        field(50708; "Cr. Memo Type"; Enum "SII Purch. Credit Memo Type")
+        {
+            Caption = 'Cr. Memo Type';
+        }
+         field(50709; "Special Scheme Code"; Enum "SII Purch. Special Scheme Code")
+        {
+            Caption = 'Special Scheme Code';
+        }
+        field(50711; "Correction Type"; Option)
+        {
+            Caption = 'Correction Type';
+            OptionCaption = ' ,Replacement,Difference,Removal';
+            OptionMembers = " ",Replacement,Difference,Removal;
+            
+        }
+        field(50724; "Do Not Send To SII"; Boolean)
+        {
+            Caption = 'Do Not Send To SII';
+        }
+        
+
     }
     fieldgroups
     {

@@ -746,6 +746,51 @@ tableextension 50104 Customer extends "Customer"
         }
         field(50900; FechaHoraModificacionWeb; DateTime) { }
 
+        field(50707; "Invoice Type"; Enum "SII Sales Invoice Type")
+        {
+            Caption = 'Invoice Type';
+        }
+        field(50708; "Cr. Memo Type"; Enum "SII Sales Credit Memo Type")
+        {
+            Caption = 'Cr. Memo Type';
+        }
+         field(50709; "Special Scheme Code"; Enum "SII Sales Special Scheme Code")
+        {
+            Caption = 'Special Scheme Code';
+        }
+        field(50711; "Correction Type"; Option)
+        {
+            Caption = 'Correction Type';
+            OptionCaption = ' ,Replacement,Difference,Removal';
+            OptionMembers = " ",Replacement,Difference,Removal;
+            
+        }
+        field(50724; "Do Not Send To SII"; Boolean)
+        {
+            Caption = 'Do Not Send To SII';
+        }
+        
+        field(50725; Plantilla_Cliente; Code[20])
+        {
+            TableRelation = "Customer Templ.";
+            trigger OnValidate()
+            
+            Var
+            RecCT: Record "Customer Templ.";
+            CustomerTemplMgt: Codeunit "Customer Templ. Mgt.";            
+
+            Begin           
+                RecCT.Reset();
+                RecCT.SetRange(Code,Plantilla_Cliente);
+                IF RecCT.FindFirst() THEN BEGIN
+                    CustomerTemplMgt.ApplyCustomerTemplate(Rec, RecCT);
+                END;
+            end;
+
+        }        
+
+
+
 
     }
     fieldgroups

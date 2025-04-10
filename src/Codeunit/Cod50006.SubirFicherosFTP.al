@@ -52,6 +52,7 @@ codeunit 50006 SubirFicherosFTP
         SalesShipmentHeader.SetRange(SalesShipmentHeader.FicheroFTP, false);
         SalesShipmentHeader.SETRANGE("Posting Date", 20241205D, TODAY);
         if SalesShipmentHeader.FindSet() then begin
+
             repeat
                 Clear(TempBlob);
                 Clear(OutStream);
@@ -65,7 +66,7 @@ codeunit 50006 SubirFicherosFTP
                 Albaran.SetTableView(SalesShipmentHeader2);
                 Albaran.SaveAs('', ReportFormat::Pdf, OutStream);
                 fileName := SalesShipmentHeader2."No." + '.PDF';
-                if not ftp.FtpUpload('HAGEN', fileName, InStream, Errort) then begin
+                if ftp.FtpUpload('HAGEN', fileName, InStream, Errort) then begin
                     //Error(ErrorT);
                     SalesShipmentHeader2.get(SalesShipmentHeader."No.");
                     SalesShipmentHeader2.FicheroFTP := true;

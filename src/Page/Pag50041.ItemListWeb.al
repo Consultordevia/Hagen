@@ -229,6 +229,16 @@ page 50041 ItemListWeb
                 {
                     ApplicationArea = All;
                 }
+                field(pmp; pmp)
+                {
+                    ApplicationArea = All;
+                }
+                field("Clasificación A,B,C"; Rec."Clasificación A,B,C")
+                {
+                    ApplicationArea = All;
+                }
+
+
             }
         }
     }

@@ -9,6 +9,8 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
         {
 
 
+            field("Posting No.";Rec."Posting No.") { ApplicationArea = All; }
+
             field("Customer Disc. Group"; Rec."Customer Disc. Group") { ApplicationArea = All; }
 
             field("Sell-to Customer Name 2"; Rec."Sell-to Customer Name 2") { ApplicationArea = All; }
@@ -707,10 +709,10 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
             action(LineasOfertaaExcel)
             {
                 ApplicationArea = Suite;
-                Caption = 'Lineas Oferta a Excel';
+                Caption = 'Plantilla de Alta Productos';
                 trigger OnAction()
                 var
-                    ReportLineasExcel: Report "Lineas Oferta";
+                    ReportLineasExcel: Report "Plantilla de Alta Productos";
                     Rec37: Record "Sales Line";
                 begin
                     Clear(ReportLineasExcel);
@@ -720,6 +722,27 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                     IF Rec37.FindFirst() THEN BEGIN
                         ReportLineasExcel.SetTableView(Rec37);
                         ReportLineasExcel.Run();
+                    END;
+
+                    MESSAGE('Hecho.');
+                end;
+            }
+            action(Proforma)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Proforma Catit Canarias';
+                trigger OnAction()
+                var
+                    ReportProforma: report "Standard Sales - Pro Forma Inv";
+                    Rec36: Record "Sales Header";
+                begin
+                    Clear(ReportProforma);
+                    Rec36.reset;
+                    Rec36.SetRange("Document Type", Rec."Document Type");
+                    Rec36.SetRange("No.", Rec."No.");
+                    IF Rec36.FindFirst() THEN BEGIN
+                        ReportProforma.SetTableView(Rec36);
+                        ReportProforma.Run();
                     END;
 
                     MESSAGE('Hecho.');

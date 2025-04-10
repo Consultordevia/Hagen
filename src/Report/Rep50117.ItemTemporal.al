@@ -23,10 +23,10 @@ Report 50117 ItemTemporal
             column(Estado; "Item temp"."Description 2")
             {
             }
-            column(Linea; "Item temp"."Gen. Prod. Posting Group")
+            column(Level1; "Item temp".Level1)
             {
             }
-            column(Familia; "Item temp".Familia)
+            column(Level2; "Item temp".Level2)
             {
             }
             column(Tarifa; "Item temp"."Unit Price")

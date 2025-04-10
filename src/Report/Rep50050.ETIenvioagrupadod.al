@@ -26,12 +26,12 @@ Report 50050 "ETI. envio agrupado d"
             {
             }
             column(SalesHeaderNoexpedicion___SalesHeaderNoexpedicionagrupada; "Sales Header"."Nº expedición" + '  -  ' + "Sales Header"."Nº expedición dropshp" +
-             ' B:' + Format(bultos)+
+             ' B:' + Format(bultos) +
              ' ' + Format("Sales Header"."Nº expedición agrupada"))
             {
-            }         
+            }
 
-            
+
             column(SearchName_RecCust; RecCust."Search Name")
             {
             }
@@ -247,12 +247,14 @@ Report 50050 "ETI. envio agrupado d"
                         if Rec37.FindFirst then
                             repeat
                                 if (Rec37."No." <> 'TRAN') and (Rec37."No." <> 'REM') then begin
-                                    if Rec37."Outstanding Quantity" <> 0 then begin
+                                    if Rec37."Outstanding Qty. (Base)" <> 0 then begin
                                         if RecItem2.Get(Rec37."No.") then begin
                                         end;
                                         RecItem2.CalcFields("Assembly BOM");
+                                        /////Message('2 - %1 %2 %3 ', Rec37."No.",RecItem2."Producto almacenable",RecItem2."Assembly BOM");
                                         if (RecItem2."Producto almacenable") and (not RecItem2."Assembly BOM") then begin
-                                            NLIN := NLIN + 1;
+                                            NLIN := NLIN + 1;                                             
+
                                             if NLIN = 1 then obs1 := obs1 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
                                             if NLIN = 2 then obs1 := obs1 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
                                             if NLIN = 3 then obs1 := obs1 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
@@ -298,6 +300,7 @@ Report 50050 "ETI. envio agrupado d"
                 textocaja1 := textocaja + ' ' + obs1;
                 textocaja2 := obs2;
                 textocaja3 := obs3;
+                ///Message('2 - %1 %2 %3 %4', "Sales Header"."No.",textocaja1, textocaja2, textocaja3);
             end;
 
         }

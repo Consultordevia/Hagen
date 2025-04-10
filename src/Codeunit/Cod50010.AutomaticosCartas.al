@@ -1,6 +1,88 @@
 Codeunit 50010 "Automaticos Cartas"
 {
-    // Potyugal
+
+    /*
+    field(10707; "Invoice Type"; Enum "SII Sales Invoice Type")
+            {
+                Caption = 'Invoice Type';
+                trigger OnValidate()
+                begin
+                    SetSIIFirstSummaryDocNo('');
+                    SetSIILastSummaryDocNo('');
+                end;
+            }
+            field(10708; "Cr. Memo Type"; Enum "SII Sales Credit Memo Type")
+            {
+                Caption = 'Cr. Memo Type';
+                trigger OnValidate()
+                begin
+                    SetSIIFirstSummaryDocNo('');
+                    SetSIILastSummaryDocNo('');
+                end;
+            }
+            field(10709; "Special Scheme Code"; Enum "SII Sales Special Scheme Code")
+            {
+                Caption = 'Special Scheme Code';
+
+                trigger OnValidate()
+                var
+                    SIISchemeCodeMgt: Codeunit "SII Scheme Code Mgt.";
+                begin
+                    SIISchemeCodeMgt.UpdateSalesSpecialSchemeCodeInSalesHeader(Rec, xRec);
+                end;
+            }
+            field(10710; "Operation Description"; Text[250])
+            {
+                Caption = 'Operation Description';
+            }
+            field(10711; "Correction Type"; Option)
+            {
+                Caption = 'Correction Type';
+                OptionCaption = ' ,Replacement,Difference,Removal';
+                OptionMembers = " ",Replacement,Difference,Removal;
+
+                trigger OnValidate()
+                var
+                    SIIManagement: Codeunit "SII Management";
+                begin
+                    Validate("ID Type", SIIManagement.GetSalesIDType("Bill-to Customer No.", "Correction Type", "Corrected Invoice No."));
+                end;
+            }
+            field(10712; "Operation Description 2"; Text[250])
+            {
+                Caption = 'Operation Description 2';
+            }
+            field(10720; "Succeeded Company Name"; Text[250])
+            {
+                Caption = 'Succeeded Company Name';
+            }
+            field(10721; "Succeeded VAT Registration No."; Text[20])
+            {
+                Caption = 'Succeeded VAT Registration No.';
+            }
+            field(10722; "ID Type"; Enum "SII ID Type")
+            {
+                Caption = 'ID Type';
+            }
+            field(10724; "Do Not Send To SII"; Boolean)
+            {
+                Caption = 'Do Not Send To SII';
+            }
+            field(10725; "Issued By Third Party"; Boolean)
+            {
+                Caption = 'Issued By Third Party';
+            }
+            field(10726; "SII First Summary Doc. No."; Blob)
+            {
+                Caption = 'First Summary Doc. No.';
+            }
+            field(10727; "SII Last Summary Doc. No."; Blob)
+            {
+                Caption = 'Last Summary Doc. No.';
+            }
+
+    */
+
 
     Permissions = TableData "Purch. Rcpt. Header" = rim, TableData "Sales Invoice Line" = rim,
     TableData "Sales Shipment Header" = rim,
@@ -8779,6 +8861,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         repInforme: Report "OK Nueva Factura Venta";
         FicheroHagen: Codeunit FicherosHagen;
         BlobAdjunto: Codeunit "Temp Blob";
+        RepItemTemporal: REPORT "OK Nueva Factura Venta";
 
 
     begin
@@ -9217,7 +9300,28 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         fileName := SalesInvHeader2."No." + '.PDF';
                         BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                         ///FicheroHagen.CrearFicheroFTP('', fileName, InStream);
+                        if RecCust."No enviar excel" = false then begin
+                            nomdir := '';
+                            ADAIA.Reset();
+                            ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
+                            IF ADAIA.FindSet() THEN begin
+                                nomdir := ADAIA.Ruta;
+                            end;
 
+                            Clear(TempBlob);
+                            Clear(OutStream);
+                            Clear(InStream);
+                            Clear(RepItemTemporal);
+                            RepItemTemporal.SetTableView(SalesInvHeader2);
+                            RepItemTemporal.UseRequestPage(false);
+                            TempBlob.CreateOutStream(OutStream);
+                            if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
+                                Error('ERROR');
+
+                            tempBlob.CreateInStream(InStream);
+                            fileName := SalesInvHeader2."No." + '.xlsx';
+                            BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                        end;
 
 
                     end;
@@ -9363,6 +9467,28 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         fileName := SalesInvHeader2."No." + '.PDF';
                         BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                         ///FicheroHagen.CrearFicheroFTP('', fileName, InStream);
+                        if RecCust."No enviar excel" = false then begin
+                            nomdir := '';
+                            ADAIA.Reset();
+                            ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
+                            IF ADAIA.FindSet() THEN begin
+                                nomdir := ADAIA.Ruta;
+                            end;
+
+                            Clear(TempBlob);
+                            Clear(OutStream);
+                            Clear(InStream);
+                            Clear(RepItemTemporal);
+                            RepItemTemporal.SetTableView(SalesInvHeader2);
+                            RepItemTemporal.UseRequestPage(false);
+                            TempBlob.CreateOutStream(OutStream);
+                            if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
+                                Error('ERROR');
+
+                            tempBlob.CreateInStream(InStream);
+                            fileName := SalesInvHeader2."No." + '.xlsx';
+                            BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                        end;
                     end;
 
 
@@ -9483,6 +9609,28 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         fileName := SalesInvHeader2."No." + '.PDF';
                         BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                         ///FicheroHagen.CrearFicheroFTP('', fileName, InStream);
+                        if RecCust."No enviar excel" = false then begin
+                            nomdir := '';
+                            ADAIA.Reset();
+                            ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
+                            IF ADAIA.FindSet() THEN begin
+                                nomdir := ADAIA.Ruta;
+                            end;
+
+                            Clear(TempBlob);
+                            Clear(OutStream);
+                            Clear(InStream);
+                            Clear(RepItemTemporal);
+                            RepItemTemporal.SetTableView(SalesInvHeader2);
+                            RepItemTemporal.UseRequestPage(false);
+                            TempBlob.CreateOutStream(OutStream);
+                            if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
+                                Error('ERROR');
+
+                            tempBlob.CreateInStream(InStream);
+                            fileName := SalesInvHeader2."No." + '.xlsx';
+                            BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                        end;
                     end;
 
                     if RecCust."Adjuntar pub. facturacion 1" then begin
@@ -9618,6 +9766,28 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             fileName := SalesInvHeader2."No." + '.PDF';
                             BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                             ///FicheroHagen.CrearFicheroFTP('', fileName, InStream);
+                            if RecCust."No enviar excel" = false then begin
+                                nomdir := '';
+                                ADAIA.Reset();
+                                ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
+                                IF ADAIA.FindSet() THEN begin
+                                    nomdir := ADAIA.Ruta;
+                                end;
+
+                                Clear(TempBlob);
+                                Clear(OutStream);
+                                Clear(InStream);
+                                Clear(RepItemTemporal);
+                                RepItemTemporal.SetTableView(SalesInvHeader2);
+                                RepItemTemporal.UseRequestPage(false);
+                                TempBlob.CreateOutStream(OutStream);
+                                if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
+                                    Error('ERROR');
+
+                                tempBlob.CreateInStream(InStream);
+                                fileName := SalesInvHeader2."No." + '.xlsx';
+                                BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                            end;
                         end;
 
                     end;
@@ -10415,6 +10585,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         Path: Text;
         txtCC: Text;
         Blob: Codeunit "Temp Blob";
+        RepItemTemporal: REPORT 50914;
 
 
 
@@ -10667,6 +10838,28 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                 recCompanyInformation.Get;
                                 BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                                 FicheroHagen.CrearFicheroFTP('', fileName, InStream);
+                                if RecCust."No enviar excel" = false then begin
+                                    nomdir := '';
+                                    ADAIA.Reset();
+                                    ADAIA.SetRange(texto, 'ENVIOFACTCANARIAS');
+                                    IF ADAIA.FindSet() THEN begin
+                                        nomdir := ADAIA.Ruta;
+                                    end;
+
+                                    Clear(TempBlob);
+                                    Clear(OutStream);
+                                    Clear(InStream);
+                                    Clear(RepItemTemporal);
+                                    RepItemTemporal.SetTableView(SalesInvHeader2);
+                                    RepItemTemporal.UseRequestPage(false);
+                                    TempBlob.CreateOutStream(OutStream);
+                                    if not RepItemTemporal.SaveAs('', ReportFormat::Excel, OutStream) then
+                                        Error('ERROR');
+
+                                    tempBlob.CreateInStream(InStream);
+                                    fileName := SalesInvHeader2."No." + '.xlsx';
+                                    BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'XLSX', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                                end;
                             end;
 
 
@@ -13314,14 +13507,41 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         RecCust: Record Customer;
         /////- SMTP: Codeunit UnknownCodeunit400;
         FileDirectory3: Code[250];
+        cuMail: Codeunit Mail;
+        txtOrigen: Text;
+        txtDestinatario: List of [Text]; //BC20
+        txtCC: Text;
+        txtSubject: Text;
+        txtBody: Text;
+        xmlParameters: Text;
+        currentUser: Code[100];
+        ReportParameters: Record "Report Selections";
+        PdfDocPath: Text;
+        Path: Text;
+        txtOrigenJM: Text;
+        txtDestinatarioJM: Text;
+        txtCCJM: Text;
+        txtSubjectJM: Text;
+        txtFecha: Text;
+        intIDreport: Integer;
+        recCompanyInformation: Record "Company Information";
+        dia: Integer;
+        FechasDate: Record Date;
+        DiaCorrecto: Boolean;
+        RepCartaPagare: report 50116;
+        RepCartaPagarePT: report 50118;
+        RepRecibido: report 50066;
+        Rep408: report 408;
+
     begin
 
 
-        ///// 2
+        ///// albaran compra
 
 
         PurchRcptHeader.Reset;
         PurchRcptHeader.SetCurrentkey(PurchRcptHeader."Enviar email");
+        PurchRcptHeader.SetRange("Posting Date", 20250301D, today);
         PurchRcptHeader.SetRange(PurchRcptHeader."Enviar email", true);
         PurchRcptHeader.SetRange(PurchRcptHeader."Email enviado", false);
         if PurchRcptHeader.FindSet then
@@ -13352,7 +13572,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                 PurchRcptHeader2.Reset;
                                 PurchRcptHeader2.SetRange("No.", PurchRcptHeader."No.");
                                 if PurchRcptHeader2.FindFirst then begin
-                                    /// -Report.SaveAsPdf(408, FileDirectory, PurchRcptHeader2);
+                                    ///Report.SaveAsPdf(408, FileDirectory, PurchRcptHeader2);
                                 end;
                             end;
                         end;
@@ -13372,7 +13592,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                             PurchRcptHeader2."Vendedor temp" := UserSetup."Salespers./Purch. Code";
                                             PurchRcptHeader2.Modify;
                                             Commit;
-                                            /////-Report.SaveAsExcel(50066, FileDirectory3, PurchRcptHeader2);
+                                            /////Report.SaveAsExcel(50066, FileDirectory3, PurchRcptHeader2);
                                         end;
                                     end;
 
@@ -13387,20 +13607,67 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                     /////-SMTP.AddAttachment(FileDirectory, '');
                                     /////SMTP.AddBCC('oscarraea@hotmail.com');
                                     /////-SMTP.Send;
+                                    SenderName := 'HAGEN';
+                                    txtSubject := 'Recepcion compra  Nº ' + Format(PurchRcptHeader."No.") + ' ' + Format(UserSetup."E-Mail");
+                                    SenderAddress := REC91."E-Mail";
+                                    Recipient := UserSetup."E-Mail";
+                                    Body := '';
+                                    SenderAddress := REC91."E-Mail";
+                                    clear(txtDestinatario);
+                                    Body := 'Recepcion compra  Nº ' + Format(PurchRcptHeader."No.") + ' ' + Format(UserSetup."E-Mail") +
+                                         '<hr>' +
+                                         '<br>' +
+                                         'Atentamente,<br>' +
+                                         'ROLF C HAGEN ESPAÑA S.A.,<br>';
+                                    Recipient := UserSetup."E-Mail";
+                                    txtDestinatario.Add(Recipient);
+                                    recCompanyInformation.Get;
+                                    Clear(TempBlob);
+                                    Clear(OutStream);
+                                    Clear(InStream);
+                                    TempBlob.CreateOutStream(OutStream);
+                                    TempBlob.CreateInStream(InStream);
+                                    PurchRcptHeader2.Reset;
+                                    PurchRcptHeader2.SetRange("No.", PurchRcptHeader."No.");
+                                    if PurchRcptHeader2.FindFirst then begin
+                                        clear(Rep408);
+                                        Rep408.setTableView(PurchRcptHeader2);
+                                        Rep408.SaveAs('', ReportFormat::Pdf, OutStream);
+                                    END;
+                                    fileName := PurchRcptHeader."No." + '.PDF';
+                                    BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
 
                                     if tienerotura then begin
                                         SenderName := 'HAGEN';
-                                        Subject := 'Rotura compra  Nº ' + Format(PurchRcptHeader."No.") + ' ' + Format(UserSetup."E-Mail");
+                                        txtSubject := 'Rotura compra  Nº ' + Format(PurchRcptHeader."No.") + ' ' + Format(UserSetup."E-Mail");
                                         SenderAddress := REC91."E-Mail";
                                         Recipient := UserSetup."E-Mail";
-                                        /////Recipient:='oscarraea@hotmail.com;alexis.martin@hagen.es';
-                                        /////-Clear(SMTP);
-                                        /////-SMTP.Run;
-                                        /////-SMTP.CreateMessage(SenderName, SenderAddress, Recipient, Subject, Body, true);
-                                        /////-SMTP.AddAttachment(FileDirectory3, '');
-                                        /////SMTP.AddBCC('oscarraea@hotmail.com');
-                                        /////-SMTP.Send;
+                                        Body := '';
+                                        SenderAddress := REC91."E-Mail";
+                                        clear(txtDestinatario);
+                                        Body := 'Rotura compra  Nº ' + Format(PurchRcptHeader."No.") + ' ' + Format(UserSetup."E-Mail") +
+                                             '<hr>' +
+                                             '<br>' +
+                                             'Atentamente,<br>' +
+                                             'ROLF C HAGEN ESPAÑA S.A.,<br>';
+                                        Recipient := UserSetup."E-Mail";
+                                        txtDestinatario.Add(Recipient);
+                                        recCompanyInformation.Get;
+                                        Clear(TempBlob);
+                                        Clear(OutStream);
+                                        Clear(InStream);
+                                        TempBlob.CreateOutStream(OutStream);
+                                        TempBlob.CreateInStream(InStream);
+                                        PurchRcptHeader2.Reset;
+                                        PurchRcptHeader2.SetRange("No.", PurchRcptHeader."No.");
+                                        if PurchRcptHeader2.FindFirst then begin
+                                            clear(RepRecibido);
+                                            RepRecibido.setTableView(PurchRcptHeader2);
+                                            RepRecibido.SaveAs('', ReportFormat::Excel, OutStream);
+                                        END;
 
+                                        fileName := PurchRcptHeader."No." + '.xlsx';
+                                        BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                                     end;
                                 until UserSetup.Next = 0;
                         end;
@@ -13408,11 +13675,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                 end;
 
                 PurchRcptHeader2.Get(PurchRcptHeader."No.");
-                ///PurchRcptHeader2."Email enviado" := true;
-                ///PurchRcptHeader2."Enviar email" := false;
-                ///PurchRcptHeader2."Fecha enviado" := Today;
-                ///PurchRcptHeader2."Hora enviado" := Time;
-                ///PurchRcptHeader2.Modify;
+                PurchRcptHeader2."Email enviado" := true;
+                PurchRcptHeader2."Enviar email" := false;
+                PurchRcptHeader2."Fecha enviado" := Today;
+                PurchRcptHeader2."Hora enviado" := Time;
+                PurchRcptHeader2.Modify;
                 Commit;
 
 
@@ -14403,8 +14670,37 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         FormFac: Page "Posted Sales Invoice";
         rut: Text[1000];
         ArchExt22: Text[1000];
-    /////-SMTP: Codeunit UnknownCodeunit400;
-    /////-ImpBull: Automation PDFPrinterSettings;
+        AttachmentTempBlob: Codeunit "Temp Blob";
+        BOMComponent: Record "BOM Component";
+        OutStream: OutStream;
+        repInforme: Report "OK Nueva Factura Venta";
+        FicheroHagen: Codeunit FicherosHagen;
+        BlobAdjunto: Codeunit "Temp Blob";
+        cuMail: Codeunit Mail;
+        txtOrigen: Text;
+        txtDestinatario: List of [Text]; //BC20
+        txtCC: Text;
+        txtSubject: Text;
+        txtBody: Text;
+        xmlParameters: Text;
+        currentUser: Code[100];
+        ReportParameters: Record "Report Selections";
+        PdfDocPath: Text;
+        Path: Text;
+        txtOrigenJM: Text;
+        txtDestinatarioJM: Text;
+        txtCCJM: Text;
+        txtSubjectJM: Text;
+        txtFecha: Text;
+        intIDreport: Integer;
+        recCompanyInformation: Record "Company Information";
+        dia: Integer;
+        FechasDate: Record Date;
+        DiaCorrecto: Boolean;
+        RepCartaTransf: report 50113;
+        RepCartaTransfPT: report 50112;
+
+
     begin
 
         ///VENTANA.Open('#1####################################');
@@ -14430,34 +14726,34 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             end;
                         until CustLedgerEntry.Next = 0;
                     if totalImpPdte <> 0 then begin
-                        FileDirectory := 'C:\kk\' + Customer."No." + '.pdf';
-                        if Customer."Country/Region Code" <> 'PT' then begin
-                            Customer2.Reset;
-                            Customer2.SetRange("No.", Customer."No.");
-                            if Customer2.FindFirst then begin
-                                /////-Report.SaveAsPdf(50113, FileDirectory, Customer2);
-                            end;
-                        end;
-                        if Customer."Country/Region Code" = 'PT' then begin
-                            Customer2.Reset;
-                            Customer2.SetRange("No.", Customer."No.");
-                            if Customer2.FindFirst then begin
-                                /////-Report.SaveAsPdf(50112, FileDirectory, Customer2);
-                            end;
-                        end;
+                        /////FileDirectory := 'C:\kk\' + Customer."No." + '.pdf';
+                        /////if Customer."Country/Region Code" <> 'PT' then begin
+                        /////Customer2.Reset;
+                        /////Customer2.SetRange("No.", Customer."No.");
+                        /////if Customer2.FindFirst then begin
+                        /////-Report.SaveAsPdf(50113, FileDirectory, Customer2);
+                        /////end;
+                        /////end;
+                        /////if Customer."Country/Region Code" = 'PT' then begin
+                        /////Customer2.Reset;
+                        /////Customer2.SetRange("No.", Customer."No.");
+                        /////if Customer2.FindFirst then begin
+                        /////-Report.SaveAsPdf(50112, FileDirectory, Customer2);
+                        /////end;
+                        /////end;
 
                         Sleep(5000);
                         if REC91.Get(UserId) then;
                         SenderName := 'HAGEN';
-                        Subject := 'NOTIFICACIONES CONTABLES';
+                        txtSubject := 'NOTIFICACIONES CONTABLES';
                         Body := '';
                         SenderAddress := REC91."E-Mail";
                         if Customer."Email facturacion 1" <> '' then begin
                             Recipient := Customer."Email facturacion 1";
-                            /////Recipient:='oscarraea@hotmail.com';   /////;ramon.yago@hagen.es;alexis.martin@hagen.es';
+                            txtCC := '';
                             SalespersonPurchaser.Get(Customer."Salesperson Code");
                             if SalespersonPurchaser."E-Mail" <> '' then begin
-                                Recipient := Customer."Email facturacion 1" + ';' + SalespersonPurchaser."E-Mail";
+                                txtCC := SalespersonPurchaser."E-Mail";
                             end;
 
 
@@ -14483,6 +14779,44 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
                             /////-SMTP.Send;
                             /////-Clear(SMTP);
+
+                            clear(txtDestinatario);
+                            Customer2.Reset;
+                            Customer2.SetRange("No.", Customer."No.");
+                            if Customer2.FindFirst then begin
+
+                                Body := Customer2."No." + ' ' + Customer.Name + ' <br>' +
+                                'Muy señores nuestros, adjunto le remitimos la relación de facturas <br>' +
+                                'cuyo vencimiento esta proximo. <br>' +
+                                '<hr>' +
+                                '<br>' +
+                                'Atentamente,<br>' +
+                                'ROLF C HAGEN ESPAÑA S.A.,<br>';
+                                /////format(Customer2."Email facturacion 1");
+                                ///txtOrigen := 'facturacion@hagen.es';
+                                txtDestinatario.Add(Recipient);
+
+                                recCompanyInformation.Get;
+                                Clear(TempBlob);
+                                Clear(OutStream);
+                                Clear(InStream);
+                                TempBlob.CreateOutStream(OutStream);
+                                TempBlob.CreateInStream(InStream);
+                                IF Customer2."Country/Region Code" <> 'PT' then begin
+                                    clear(RepCartaTransf);
+                                    RepCartaTransf.setTableView(Customer2);
+                                    RepCartaTransf.SaveAs('', ReportFormat::Pdf, OutStream);
+                                END;
+                                IF Customer2."Country/Region Code" = 'PT' then begin
+                                    clear(RepCartaTransfPT);
+                                    RepCartaTransfPT.SetTableView(Customer2);
+                                    RepCartaTransfPT.SaveAs('', ReportFormat::Pdf, OutStream);
+                                END;
+                                fileName := Customer2."No." + '.PDF';
+                                BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                            end;
+
+
                         end;
                     end;
                 end;
@@ -14524,11 +14858,43 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         FormFac: Page "Posted Sales Invoice";
         rut: Text[1000];
         ArchExt22: Text[1000];
-    /////-SMTP: Codeunit UnknownCodeunit400;
-    /////-ImpBull: Automation PDFPrinterSettings;
+        AttachmentTempBlob: Codeunit "Temp Blob";
+        BOMComponent: Record "BOM Component";
+        OutStream: OutStream;
+        repInforme: Report "OK Nueva Factura Venta";
+        FicheroHagen: Codeunit FicherosHagen;
+        BlobAdjunto: Codeunit "Temp Blob";
+
+
+
+
+        cuMail: Codeunit Mail;
+        txtOrigen: Text;
+        txtDestinatario: List of [Text]; //BC20
+        txtCC: Text;
+        txtSubject: Text;
+        txtBody: Text;
+        xmlParameters: Text;
+        currentUser: Code[100];
+        ReportParameters: Record "Report Selections";
+        PdfDocPath: Text;
+        Path: Text;
+        txtOrigenJM: Text;
+        txtDestinatarioJM: Text;
+        txtCCJM: Text;
+        txtSubjectJM: Text;
+        txtFecha: Text;
+        intIDreport: Integer;
+        recCompanyInformation: Record "Company Information";
+        dia: Integer;
+        FechasDate: Record Date;
+        DiaCorrecto: Boolean;
+        RepEmailVencido: report 50114;
+        RepEmailVencidoPT: report 50115;
     begin
 
         ///VENTANA.Open('#1####################################');
+        ///// emailvencido
 
         Customer.Reset;
         Customer.SetRange("No enviar cartas contables", false);
@@ -14559,34 +14925,74 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                         ///VENTANA.Update(1, Customer."No.");
 
                         ///FileDirectory := 'C:\NavisionPdfs\'+Customer."No."+'.pdf';
-                        FileDirectory := 'C:\kk\' + Customer."No." + '.pdf';
-                        if Customer."Country/Region Code" <> 'PT' then begin
-                            Customer2.Reset;
-                            Customer2.SetRange("No.", Customer."No.");
-                            if Customer2.FindFirst then begin
-                                /////-Report.SaveAsPdf(50114, FileDirectory, Customer2);
-                            end;
-                        end;
-                        if Customer."Country/Region Code" = 'PT' then begin
-                            Customer2.Reset;
-                            Customer2.SetRange("No.", Customer."No.");
-                            if Customer2.FindFirst then begin
-                                /////-Report.SaveAsPdf(50115, FileDirectory, Customer2);
-                            end;
-                        end;
+                        ///FileDirectory := 'C:\kk\' + Customer."No." + '.pdf';
+                        ///if Customer."Country/Region Code" <> 'PT' then begin
+                        /// Customer2.Reset;
+                        ///Customer2.SetRange("No.", Customer."No.");
+                        ///if Customer2.FindFirst then begin
+                        ////////-Report.SaveAsPdf(50114, FileDirectory, Customer2);
+                        ////end;
+                        ///end;
+                        ///if Customer."Country/Region Code" = 'PT' then begin
+                        /// Customer2.Reset;
+                        ////Customer2.SetRange("No.", Customer."No.");
+                        ///if Customer2.FindFirst then begin
+                        /////-Report.SaveAsPdf(50115, FileDirectory, Customer2);
+                        ////end;
+                        ////end;
 
                         Sleep(5000);
                         if REC91.Get(UserId) then;
                         SenderName := 'HAGEN';
-                        Subject := 'NOTIFICACIONES CONTABLES';
+                        txtSubject := 'NOTIFICACIONES CONTABLES';
                         Body := '';
                         SenderAddress := REC91."E-Mail";
                         if Customer."Email facturacion 1" <> '' then begin
                             Recipient := Customer."Email facturacion 1";
                             ///Recipient:='oscarraea@hotmail.com';
-                            SalespersonPurchaser.Get(Customer."Salesperson Code");
+                            ///SalespersonPurchaser.Get(Customer."Salesperson Code");
+                            txtCC := '';
                             if SalespersonPurchaser."E-Mail" <> '' then begin
-                                Recipient := Customer."Email facturacion 1" + ';' + SalespersonPurchaser."E-Mail";
+                                txtCC := SalespersonPurchaser."E-Mail";
+                            end;
+                            ///txtOrigen := 'facturacion@hagen.es';
+                            /////txtDestinatario.Add(Recipient);                          
+
+                            clear(txtDestinatario);
+                            Customer2.Reset;
+                            Customer2.SetRange("No.", Customer."No.");
+                            if Customer2.FindFirst then begin
+
+                                Body := Customer2."No." + ' ' + Customer.Name + ' <br>' +
+                                'Muy señores nuestros, adjunto le remitimos la relación de facturas <br>' +
+                                'ya vencidas. <br>' +
+                                '<hr>' +
+                                '<br>' +
+                                'Atentamente,<br>' +
+                                'ROLF C HAGEN ESPAÑA S.A.,<br>';
+                                /////format(Customer2."Email facturacion 1");
+                                ///txtOrigen := 'facturacion@hagen.es';
+                                txtDestinatario.Add(Recipient);
+
+
+                                recCompanyInformation.Get;
+                                Clear(TempBlob);
+                                Clear(OutStream);
+                                Clear(InStream);
+                                TempBlob.CreateOutStream(OutStream);
+                                TempBlob.CreateInStream(InStream);
+                                IF Customer2."Country/Region Code" <> 'PT' then begin
+                                    clear(RepEmailVencido);
+                                    RepEmailVencido.SetTableView(Customer2);
+                                    RepEmailVencido.SaveAs('', ReportFormat::Pdf, OutStream);
+                                END;
+                                IF Customer2."Country/Region Code" = 'PT' then begin
+                                    clear(RepEmailVencidoPT);
+                                    RepEmailVencidoPT.SetTableView(Customer2);
+                                    RepEmailVencidoPT.SaveAs('', ReportFormat::Pdf, OutStream);
+                                END;
+                                fileName := Customer2."No." + '.PDF';
+                                BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
                             end;
 
 
@@ -14653,8 +15059,36 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         FormFac: Page "Posted Sales Invoice";
         rut: Text[1000];
         ArchExt22: Text[1000];
-    /////-SMTP: Codeunit UnknownCodeunit400;
-    /////-ImpBull: Automation PDFPrinterSettings;
+        AttachmentTempBlob: Codeunit "Temp Blob";
+        BOMComponent: Record "BOM Component";
+        OutStream: OutStream;
+        repInforme: Report "OK Nueva Factura Venta";
+        FicheroHagen: Codeunit FicherosHagen;
+        BlobAdjunto: Codeunit "Temp Blob";
+        cuMail: Codeunit Mail;
+        txtOrigen: Text;
+        txtDestinatario: List of [Text]; //BC20
+        txtCC: Text;
+        txtSubject: Text;
+        txtBody: Text;
+        xmlParameters: Text;
+        currentUser: Code[100];
+        ReportParameters: Record "Report Selections";
+        PdfDocPath: Text;
+        Path: Text;
+        txtOrigenJM: Text;
+        txtDestinatarioJM: Text;
+        txtCCJM: Text;
+        txtSubjectJM: Text;
+        txtFecha: Text;
+        intIDreport: Integer;
+        recCompanyInformation: Record "Company Information";
+        dia: Integer;
+        FechasDate: Record Date;
+        DiaCorrecto: Boolean;
+        RepCartaPagare: report 50116;
+        RepCartaPagarePT: report 50118;
+
     begin
 
         ///VENTANA.Open('#1####################################');
@@ -14687,33 +15121,33 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             end;
                         until CustLedgerEntry.Next = 0;
                     if totalImpPdte <> 0 then begin
-                        FileDirectory := 'C:\kk\' + Customer."No." + '.pdf';
-                        if Customer."Country/Region Code" <> 'PT' then begin
-                            Customer2.Reset;
-                            Customer2.SetRange("No.", Customer."No.");
-                            if Customer2.FindFirst then begin
-                                /////-Report.SaveAsPdf(50116, FileDirectory, Customer2);
-                            end;
-                        end;
-                        if Customer."Country/Region Code" = 'PT' then begin
-                            Customer2.Reset;
-                            Customer2.SetRange("No.", Customer."No.");
-                            if Customer2.FindFirst then begin
-                                /////-Report.SaveAsPdf(50118, FileDirectory, Customer2);
-                            end;
-                        end;
+                        /////FileDirectory := 'C:\kk\' + Customer."No." + '.pdf';
+                        /////if Customer."Country/Region Code" <> 'PT' then begin
+                        /////Customer2.Reset;
+                        /////Customer2.SetRange("No.", Customer."No.");
+                        /////if Customer2.FindFirst then begin
+                        /////-Report.SaveAsPdf(50116, FileDirectory, Customer2);
+                        /////end;
+                        /////end;
+                        /////if Customer."Country/Region Code" = 'PT' then begin
+                        /////Customer2.Reset;
+                        /////Customer2.SetRange("No.", Customer."No.");
+                        /////if Customer2.FindFirst then begin
+                        /////-Report.SaveAsPdf(50118, FileDirectory, Customer2);
+                        /////end;
+                        /////end;
 
                         Sleep(5000);
                         if REC91.Get(UserId) then;
                         SenderName := 'HAGEN';
-                        Subject := 'NOTIFICACIONES CONTABLES';
+                        txtSubject := 'NOTIFICACIONES CONTABLES';
                         Body := '';
                         SenderAddress := REC91."E-Mail";
                         if Customer."Email facturacion 1" <> '' then begin
                             Recipient := Customer."Email facturacion 1";
                             SalespersonPurchaser.Get(Customer."Salesperson Code");
                             if SalespersonPurchaser."E-Mail" <> '' then begin
-                                Recipient := Customer."Email facturacion 1" + ';' + SalespersonPurchaser."E-Mail";
+                                txtCC := SalespersonPurchaser."E-Mail";
                             end;
                             ///Recipient:='oscarraea@hotmail.com';
 
@@ -14740,6 +15174,57 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
                             /////-SMTP.Send;
                             /////-Clear(SMTP);
+
+                            Recipient := Customer."Email facturacion 1";
+                            ///Recipient:='oscarraea@hotmail.com';
+                            ///SalespersonPurchaser.Get(Customer."Salesperson Code");
+                            ///if SalespersonPurchaser."E-Mail" <> '' then begin
+                            ///    Recipient := Customer."Email facturacion 1" + ';' + SalespersonPurchaser."E-Mail";
+                            ////end;
+                            ///txtOrigen := 'facturacion@hagen.es';
+                            /////txtDestinatario.Add(Recipient);                          
+
+
+                            clear(txtDestinatario);
+                            Customer2.Reset;
+                            Customer2.SetRange("No.", Customer."No.");
+                            if Customer2.FindFirst then begin
+
+                                Body := Customer2."No." + ' ' + Customer.Name + ' <br>' +
+                                'Muy señores nuestros, adjunto le remitimos la relación de facturas <br>' +
+                                'cuyo vencimiento esta proximo. <br>' +
+                                '<hr>' +
+                                '<br>' +
+                                'Atentamente,<br>' +
+                                'ROLF C HAGEN ESPAÑA S.A.,<br>';
+                                /////format(Customer2."Email facturacion 1");
+                                ///txtOrigen := 'facturacion@hagen.es';
+                                txtDestinatario.Add(Recipient);
+                                recCompanyInformation.Get;
+                                Clear(TempBlob);
+                                Clear(OutStream);
+                                Clear(InStream);
+                                TempBlob.CreateOutStream(OutStream);
+                                TempBlob.CreateInStream(InStream);
+                                IF Customer2."Country/Region Code" <> 'PT' then begin
+                                    clear(RepCartaPagare);
+                                    RepCartaPagare.setTableView(Customer2);
+                                    RepCartaPagare.SaveAs('', ReportFormat::Pdf, OutStream);
+                                END;
+                                IF Customer2."Country/Region Code" = 'PT' then begin
+                                    clear(RepCartaPagarePT);
+                                    RepCartaPagarePT.SetTableView(Customer2);
+                                    RepCartaPagarePT.SaveAs('', ReportFormat::Pdf, OutStream);
+                                END;
+                                fileName := Customer2."No." + '.PDF';
+                                BCEnviarEmailSinC(txtDestinatario, txtSubject, Body, true, Path, fileName, 'PDF', Enum::"Email Scenario"::Albaran, txtCC, '', InStream);
+                            end;
+
+
+
+
+
+
                         end;
                     end;
                 end;
