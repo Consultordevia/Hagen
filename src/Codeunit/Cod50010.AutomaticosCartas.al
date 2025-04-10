@@ -3332,7 +3332,8 @@ OutStream.Write('Tercera línea después del salto');
         LineFeed: Char;
         Data: BigText;
         OutTxt: Text;
-
+        logficheroadaia: Record LogFicherosAdaia;
+        OutStrm: outstream;
     begin
 
 
@@ -3345,102 +3346,102 @@ OutStream.Write('Tercera línea después del salto');
 
 
         NPEDIDO := RecCV."Nº expedición";
+        //RecCVE.Reset;
+        //RecCVE.SetCurrentkey("Document Type", "Nº expedición");
+        //RecCVE.SetRange(RecCVE."Document Type", 1);
+        //RecCVE.SetRange(RecCVE."Nº expedición", RecCV."Nº expedición");
+        //if RecCVE.Find('-') then begin
+        if Today <> 0D then begin
+            ESDIA1 := Date2dmy(Today, 1);
+            ESMES1 := Date2dmy(Today, 2);
+            ESAÑO1 := Date2dmy(Today, 3);
+            ESMES11 := Format(ESMES1);
+            if ESMES1 = 1 then ESMES11 := '01';
+            if ESMES1 = 2 then ESMES11 := '02';
+            if ESMES1 = 3 then ESMES11 := '03';
+            if ESMES1 = 4 then ESMES11 := '04';
+            if ESMES1 = 5 then ESMES11 := '05';
+            if ESMES1 = 6 then ESMES11 := '06';
+            if ESMES1 = 7 then ESMES11 := '07';
+            if ESMES1 = 8 then ESMES11 := '08';
+            if ESMES1 = 9 then ESMES11 := '09';
+            if ESMES1 = 10 then ESMES11 := '10';
+            if ESMES1 = 11 then ESMES11 := '11';
+            if ESMES1 = 12 then ESMES11 := '12';
+
+            ESDIA11 := Format(ESDIA1);
+            if ESDIA1 = 1 then ESDIA11 := '01';
+            if ESDIA1 = 2 then ESDIA11 := '02';
+            if ESDIA1 = 3 then ESDIA11 := '03';
+            if ESDIA1 = 4 then ESDIA11 := '04';
+            if ESDIA1 = 5 then ESDIA11 := '05';
+            if ESDIA1 = 6 then ESDIA11 := '06';
+            if ESDIA1 = 7 then ESDIA11 := '07';
+            if ESDIA1 = 8 then ESDIA11 := '08';
+            if ESDIA1 = 9 then ESDIA11 := '09';
+            FECORD1 := Format(ESAÑO1, 4, '<integer>') + ESMES11 + ESDIA11;
+        end;
+
+        FECORD2 := FECORD1;
+
+        OBS := '';
+        NOMULTIPEDIDO := false;
         RecCVE.Reset;
         RecCVE.SetCurrentkey("Document Type", "Nº expedición");
         RecCVE.SetRange(RecCVE."Document Type", 1);
         RecCVE.SetRange(RecCVE."Nº expedición", RecCV."Nº expedición");
-        if RecCVE.Find('-') then begin
-            if Today <> 0D then begin
-                ESDIA1 := Date2dmy(Today, 1);
-                ESMES1 := Date2dmy(Today, 2);
-                ESAÑO1 := Date2dmy(Today, 3);
-                ESMES11 := Format(ESMES1);
-                if ESMES1 = 1 then ESMES11 := '01';
-                if ESMES1 = 2 then ESMES11 := '02';
-                if ESMES1 = 3 then ESMES11 := '03';
-                if ESMES1 = 4 then ESMES11 := '04';
-                if ESMES1 = 5 then ESMES11 := '05';
-                if ESMES1 = 6 then ESMES11 := '06';
-                if ESMES1 = 7 then ESMES11 := '07';
-                if ESMES1 = 8 then ESMES11 := '08';
-                if ESMES1 = 9 then ESMES11 := '09';
-                if ESMES1 = 10 then ESMES11 := '10';
-                if ESMES1 = 11 then ESMES11 := '11';
-                if ESMES1 = 12 then ESMES11 := '12';
-
-                ESDIA11 := Format(ESDIA1);
-                if ESDIA1 = 1 then ESDIA11 := '01';
-                if ESDIA1 = 2 then ESDIA11 := '02';
-                if ESDIA1 = 3 then ESDIA11 := '03';
-                if ESDIA1 = 4 then ESDIA11 := '04';
-                if ESDIA1 = 5 then ESDIA11 := '05';
-                if ESDIA1 = 6 then ESDIA11 := '06';
-                if ESDIA1 = 7 then ESDIA11 := '07';
-                if ESDIA1 = 8 then ESDIA11 := '08';
-                if ESDIA1 = 9 then ESDIA11 := '09';
-                FECORD1 := Format(ESAÑO1, 4, '<integer>') + ESMES11 + ESDIA11;
-            end;
-
-            FECORD2 := FECORD1;
-
-            OBS := '';
-            NOMULTIPEDIDO := false;
-            RecCVE.Reset;
-            RecCVE.SetCurrentkey("Document Type", "Nº expedición");
-            RecCVE.SetRange(RecCVE."Document Type", 1);
-            RecCVE.SetRange(RecCVE."Nº expedición", RecCV."Nº expedición");
-            if RecCVE.FindSet then
-                repeat
-                    RecLV.Reset;
-                    RecLV.SetRange(RecLV."Document Type", RecCVE."Document Type");
-                    RecLV.SetRange(RecLV."Document No.", RecCVE."No.");
-                    if RecLV.FindSet then
-                        repeat
-                            if RecItem2.Get(RecLV."No.") then begin
-                                if RecLV."Outstanding Quantity" <> 0 then begin
-                                    if RecLV."Enviar a ADAIA" then begin
-                                        RecItem2."No permite pedido" := false;
-                                    end;
-                                    /////IF (RecItem2."Producto almacenable") AND (NOT RecItem2."No permite pedido") THEN BEGIN
-                                    if (RecItem2."Producto almacenable") then begin
-                                        if RecItem2."NO MULTIPEDIDO" then begin
-                                            NOMULTIPEDIDO := true;
-                                        end;
+        if RecCVE.FindSet then
+            repeat
+                RecLV.Reset;
+                RecLV.SetRange(RecLV."Document Type", RecCVE."Document Type");
+                RecLV.SetRange(RecLV."Document No.", RecCVE."No.");
+                if RecLV.FindSet then
+                    repeat
+                        if RecItem2.Get(RecLV."No.") then begin
+                            if RecLV."Outstanding Quantity" <> 0 then begin
+                                if RecLV."Enviar a ADAIA" then begin
+                                    RecItem2."No permite pedido" := false;
+                                end;
+                                /////IF (RecItem2."Producto almacenable") AND (NOT RecItem2."No permite pedido") THEN BEGIN
+                                if (RecItem2."Producto almacenable") then begin
+                                    if RecItem2."NO MULTIPEDIDO" then begin
+                                        NOMULTIPEDIDO := true;
                                     end;
                                 end;
                             end;
-                        until RecLV.Next = 0;
-                until RecCVE.Next = 0;
+                        end;
+                    until RecLV.Next = 0;
+            until RecCVE.Next = 0;
 
-            OBS := RecCVE."Observación PDA";
-            if (RecCVE."NO MULTIPEDIDO") or (NOMULTIPEDIDO) then begin
-                OBS := 'NO MULTIPEDIDO' + ' ' + RecCVE."Observación PDA";
-            end;
-
-            if CopyStr(Reccve."Nº expedición", 1, 3) = 'CAT' then begin
-                RecCVE."Sell-to Customer No." := '11010';
-            end;
-
-
-
-            OutTxt := 'OECA' + '|' +
-                           'AG' + '|' +
-                           NPEDIDO + '|' +
-                           '01' + '|' +
-                           RecCVE."Sell-to Customer No." + '|' +
-                           '|' +
-                           'PED|' +
-                           '|' +
-                           '|' +
-                           FECORD1 + '|' +
-                           FECORD1 + '|' +
-                           HH + MI + '|' +
-                           'N|' +
-                           Format(OBS, 40) + '|||||';
-            OutTxt += Format(CarriageReturn) + Format(LineFeed);
-            data.AddText(OutTxt);
-
+        OBS := RecCVE."Observación PDA";
+        if (RecCVE."NO MULTIPEDIDO") or (NOMULTIPEDIDO) then begin
+            OBS := 'NO MULTIPEDIDO' + ' ' + RecCVE."Observación PDA";
         end;
+
+        if CopyStr(Reccve."Nº expedición", 1, 3) = 'CAT' then begin
+            RecCVE."Sell-to Customer No." := '11010';
+        end;
+
+
+
+        OutTxt := 'OECA' + '|' +
+                       'AG' + '|' +
+                       NPEDIDO + '|' +
+                       '01' + '|' +
+                       RecCVE."Sell-to Customer No." + '|' +
+                       '|' +
+                       'PED|' +
+                       '|' +
+                       '|' +
+                       FECORD1 + '|' +
+                       FECORD1 + '|' +
+                       HH + MI + '|' +
+                       'N|' +
+                       Format(OBS, 40) + '|||||';
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+
+        //end;
 
         codtras := '';
         CONTALIN := 0;
@@ -3615,6 +3616,15 @@ OutStream.Write('Tercera línea después del salto');
         DAT2 := 'TREXPORD.' + contaser + EXTEN + Format(ALEA) + Format(RecI."No.") + Format(LOGCAMBIOA);
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+        if logficheroadaia.get(NPEDIDO) then begin
+            logficheroadaia.fichero.CreateOutStream(OutStrm);
+
+            // Copias el contenido del InStream al OutStream (y por tanto al Blob)
+            CopyStream(OutStrm, InStream);
+
+            // Guardas los cambios en el registro
+            logficheroadaia.Modify();
+        end;
         FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
 
     end;
@@ -15594,7 +15604,9 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     end;
 
     procedure BCEnviarEmailSinC(parDestinatarios: List of [Text]; parSubject: Text; parBody: Text; parHtmlFormatted: Boolean; parPath: Text;
-       parAttachmentName: Text[250]; parContentType: Text[250]; parEmailScenario: Enum "Email Scenario"; parCC: Text; parBCC: Text; AttachmentInStream: InStream)
+       parAttachmentName: Text[250]; parContentType: Text[250]; parEmailScenario: Enum "Email Scenario"; parCC: Text;
+                                                                                      parBCC: Text;
+                                                                                      AttachmentInStream: InStream)
 
 
 

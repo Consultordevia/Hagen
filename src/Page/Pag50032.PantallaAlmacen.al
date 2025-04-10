@@ -1026,6 +1026,8 @@ Page 50032 "Pantalla Almacen"
     var
         AutomaticosAdaia: Codeunit "Automaticos Cartas";
         SalesHeader: Record "Sales Header";
+        LogAdaiaPedidos: Record LogAdaiaPedidos;
+        LogAdaiaFicheros: Record LogFicherosAdaia;
     begin
 
 
@@ -1049,6 +1051,11 @@ Page 50032 "Pantalla Almacen"
             NoSeriesLine."Last No. Used" := IncStr(NPEDIDO);
             NoSeriesLine.Modify;
         end;
+
+        LogAdaiaFicheros.Init();
+        LogAdaiaFicheros.Expedicion := NPEDIDO;
+        LogAdaiaFicheros.Error := true;
+        LogAdaiaFicheros.Insert();
 
         if Rec."No agrupar en ADAIA" = false then begin
 
@@ -1097,6 +1104,7 @@ Page 50032 "Pantalla Almacen"
                 repeat
                     SalesHeader33.Get(SalesHeader3."Document Type", SalesHeader3."No.");
                     SalesHeader33."Nº expedición" := NPEDIDO;
+
                     SalesLine3.Reset;
                     SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
                     SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");
@@ -1105,6 +1113,15 @@ Page 50032 "Pantalla Almacen"
                             if SalesLine3.Type = 2 then begin
                                 SalesLine3."Nº expedición" := NPEDIDO;
                                 SalesLine3.Modify;
+                                LogAdaiaPedidos.Init();
+                                LogAdaiaPedidos.Expedicion := NPEDIDO;
+                                LogAdaiaPedidos.Pedido := SalesLine3."Document No.";
+                                LogAdaiaPedidos.Producto := SalesLine3."No.";
+                                LogAdaiaPedidos.Linea := SalesLine3."Line No.";
+                                LogAdaiaPedidos.Cantidad := SalesLine3.Quantity;
+                                if LogAdaiaPedidos.Insert() then;
+                                if SalesLine3."Location Code" = '' then
+                                    Error('Falta el almacen en la lineas %1 %2', SalesLine3."No.", SalesLine3.Description)
                             end;
                         until SalesLine3.Next = 0;
 
@@ -1115,26 +1132,17 @@ Page 50032 "Pantalla Almacen"
                             end;
                         end;
                     end;
-                    SalesHeader33.Modify;
-                    SalesLine3.Reset;
-                    SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
-                    SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");
-                    if SalesLine3.FindSet then
-                        repeat
-                            if SalesLine3.Type = 2 then begin
-                                if SalesLine3."Location Code" = '' then begin
-                                    Error('Falta el almacen en la lineas %1 %2', SalesLine3."No.", SalesLine3.Description)
-                                end;
-                            end;
-                        until SalesLine3.Next = 0;
+
+
                     if SalesHeader3."Marcar para agrupar" = true then begin
                         if SalesHeader3."Shipping Agent Code" <> 'ECI' then begin
-                            SalesHeader22.Get(SalesHeader3."Document Type", SalesHeader3."No.");
+                            //SalesHeader22.Get(SalesHeader3."Document Type", SalesHeader3."No.");
                             contadordeagrup := IncStr(contadordeagrup);
-                            SalesHeader22."Nº expedición agrupada" := contadordeagrup;
-                            SalesHeader22.Modify;
+                            SalesHeader33."Nº expedición agrupada" := contadordeagrup;
+                            //SalesHeader22.Modify;
                         end;
                     end;
+                    SalesHeader33.Modify;
                 until SalesHeader3.Next = 0;
         end;
 
@@ -1192,6 +1200,15 @@ Page 50032 "Pantalla Almacen"
                             if SalesLine3.Type = 2 then begin
                                 SalesLine3."Nº expedición" := NPEDIDO;
                                 SalesLine3.Modify;
+                                LogAdaiaPedidos.Init();
+                                LogAdaiaPedidos.Expedicion := NPEDIDO;
+                                LogAdaiaPedidos.Pedido := SalesLine3."Document No.";
+                                LogAdaiaPedidos.Producto := SalesLine3."No.";
+                                LogAdaiaPedidos.Linea := SalesLine3."Line No.";
+                                LogAdaiaPedidos.Cantidad := SalesLine3.Quantity;
+                                if LogAdaiaPedidos.Insert() then;
+                                if SalesLine3."Location Code" = '' then
+                                    Error('Falta el almacen en la lineas %1 %2', SalesLine3."No.", SalesLine3.Description)
                             end;
                         until SalesLine3.Next = 0;
                     if npedidos > 1 then begin
@@ -1202,17 +1219,6 @@ Page 50032 "Pantalla Almacen"
                         end;
                     end;
                     SalesHeader33.Modify;
-                    SalesLine3.Reset;
-                    SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
-                    SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");
-                    if SalesLine3.FindSet then
-                        repeat
-                            if SalesLine3.Type = 2 then begin
-                                if SalesLine3."Location Code" = '' then begin
-                                    Error('Falta el almacen en la lineas %1 %2', SalesLine3."No.", SalesLine3.Description)
-                                end;
-                            end;
-                        until SalesLine3.Next = 0;
                 until SalesHeader3.Next = 0;
         end;
 
@@ -1228,8 +1234,15 @@ Page 50032 "Pantalla Almacen"
         if SalesHeader3.FindFirst then begin
             Clear(AutomaticosAdaia);
             AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);
-
         end;
+
+        if LogAdaiaFicheros.get(NPEDIDO) then begin
+            LogAdaiaFicheros.Error := false;
+            LogAdaiaFicheros.Subido := true;
+            LogAdaiaFicheros.Modify();
+        end;
+
+
 
         Commit;
 

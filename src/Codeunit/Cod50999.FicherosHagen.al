@@ -31,7 +31,11 @@ codeunit 50999 FicherosHagen
         Client.Clear();
         Client.DefaultRequestHeaders.Add('accept', 'application/json');
 
-        Client.Post(URL, Content, ResponseMessage);
+
+        if not Client.Post(URL, Content, ResponseMessage) then begin
+            if GuiAllowed then
+                Error('No se ha podido crear el fichero en el servidor');
+        end;
         if ResponseMessage.IsSuccessStatusCode then begin
             //exit(true);
         end else begin
@@ -286,7 +290,7 @@ codeunit 50999 FicherosHagen
 
                     FileText := Base64Convert.FromBase64(FileText);
                     OutStream.WriteText(FileText);
-                    TempBlob.CreateInStream(InStream);              
+                    TempBlob.CreateInStream(InStream);
 
                     if Tipo = Tipo::PedidosManoMano then begin
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS mano mano", InStream);
@@ -330,7 +334,7 @@ codeunit 50999 FicherosHagen
                     if Tipo = Tipo::MRW then begin
                         Xmlport.Import(Xmlport::"Importacion MRW", InStream);
                     end;
-                    
+
                     if Tipo = Tipo::CORREOS then begin
                         Xmlport.Import(Xmlport::"Importacion CORREOS", InStream);
                     end;
