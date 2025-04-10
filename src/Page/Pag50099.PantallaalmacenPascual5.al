@@ -48622,9 +48622,12 @@ Page 50099 "Pantalla almacen Pascual5"
                 Tipocaja.SetRange(Combinable, true);
                 Tipocaja.SetRange("Maximo kilos", pesopedido, 999999);
                 if Tipocaja.FindFirst then begin
+                    IF Tipocaja."Maximo kilos"<>0 THEN BEGIN
                     NCAJAS := ROUND(pesopedido / Tipocaja."Maximo kilos", 1);
+                    END;
                     if NCAJAS = 0 then NCAJAS := 1;
                     textocaja := textocaja + ' ' + Tipocaja."Tipo caja" + ': ' + Format(NCAJAS);
+                    
                 end;
                 if not Tipocaja.FindFirst then begin
                     Tipocaja.Reset;
