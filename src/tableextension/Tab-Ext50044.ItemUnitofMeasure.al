@@ -10,11 +10,10 @@ tableextension 50044 ItemUnitofMeasure extends "Item Unit of Measure"
 
             begin
                 if CopyStr(COMPANYNAME, 1, 4) = 'ROLF' then begin
-                    Commit;
                     RecItem.Reset;
                     RecItem.SetRange("No.", Rec."Item No.");
                     if RecItem.FindFirst then begin
-                        CUADAIA.MODIFPROD(RecItem);
+                        ///                       CUADAIA.MODIFPROD(RecItem);
                     end;
                 end;
             end;
@@ -158,7 +157,7 @@ tableextension 50044 ItemUnitofMeasure extends "Item Unit of Measure"
 
 
 
-        if GuiAllowed then begin
+/*        if GuiAllowed then begin
             if CopyStr(COMPANYNAME, 1, 4) = 'ROLF' then begin
                 RecA.Reset;
                 RecA.ChangeCompany('HAGEN CANARIAS S.C.');
@@ -172,7 +171,9 @@ tableextension 50044 ItemUnitofMeasure extends "Item Unit of Measure"
                 end;
             end;
         end;
+        */
     end;
+
 
     var
         RecA: Record "Item Unit of Measure";
