@@ -325,8 +325,10 @@ Page 50099 "Pantalla almacen Pascual5"
                     PromotedOnly = true;
 
                     trigger OnAction()
+                    var
+                        Cu14: Codeunit 50014;
                     begin
-
+                        cu14.Run();
                         EnviaraADAIA;
                     end;
                 }
@@ -455,10 +457,10 @@ Page 50099 "Pantalla almacen Pascual5"
                             repeat
                                 v.Update(1, Rec36."No.");
                                 if Reccust.get(Rec36."Bill-to Customer No.") then begin
-                                
-                                rec36."Invoice Type" := Reccust."Invoice Type";
-                                rec36."Cr. Memo Type" := Reccust."Cr. Memo Type";                                
-                                rec36.Modify;
+
+                                    rec36."Invoice Type" := Reccust."Invoice Type";
+                                    rec36."Cr. Memo Type" := Reccust."Cr. Memo Type";
+                                    rec36.Modify;
                                 end;
                             until rec36.next = 0;
 
@@ -48622,12 +48624,12 @@ Page 50099 "Pantalla almacen Pascual5"
                 Tipocaja.SetRange(Combinable, true);
                 Tipocaja.SetRange("Maximo kilos", pesopedido, 999999);
                 if Tipocaja.FindFirst then begin
-                    IF Tipocaja."Maximo kilos"<>0 THEN BEGIN
-                    NCAJAS := ROUND(pesopedido / Tipocaja."Maximo kilos", 1);
+                    IF Tipocaja."Maximo kilos" <> 0 THEN BEGIN
+                        NCAJAS := ROUND(pesopedido / Tipocaja."Maximo kilos", 1);
                     END;
                     if NCAJAS = 0 then NCAJAS := 1;
                     textocaja := textocaja + ' ' + Tipocaja."Tipo caja" + ': ' + Format(NCAJAS);
-                    
+
                 end;
                 if not Tipocaja.FindFirst then begin
                     Tipocaja.Reset;
