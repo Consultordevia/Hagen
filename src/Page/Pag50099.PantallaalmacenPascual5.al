@@ -325,8 +325,10 @@ Page 50099 "Pantalla almacen Pascual5"
                     PromotedOnly = true;
 
                     trigger OnAction()
+                    var
+                        Cu14: Codeunit 50014;
                     begin
-
+                        cu14.Run();
                         EnviaraADAIA;
                     end;
                 }
