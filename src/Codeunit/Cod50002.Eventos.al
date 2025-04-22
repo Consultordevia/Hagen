@@ -243,6 +243,13 @@ codeunit 50002 Eventos
         end;
     end;
 
+    [EventSubscriber(ObjectType::Table, database::Customer, 'OnAfterValidatePostCode', '', false, false)]
+    local procedure OnAfterValidatePostCodeCustomer(var Customer: Record Customer; xCustomer: Record Customer)
+    begin
+        if (xCustomer."Country/Region Code" <> '') and (Customer."Country/Region Code" = '') then
+            Customer."Country/Region Code" := xCustomer."Country/Region Code";
+    end;
+
 
     [EventSubscriber(ObjectType::Table, Database::"Ship-to Address", 'OnBeforeModifyEvent', '', false, false)]
     local procedure OnBeforeModifyEventShiptoAddress(var Rec: Record "Ship-to Address"; var xRec: Record "Ship-to Address")
