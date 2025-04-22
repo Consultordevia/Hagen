@@ -25,7 +25,7 @@ tableextension 50104 Customer extends "Customer"
                         Rec.Comunidad := RecArea.Comunidad;
                     end;
                     "Zona de ventas" := RecPc."Zona Venta";
-                    "Country/Region Code" := RecPc.Pais;
+                    //"Country/Region Code" := RecPc.Pais;
                 end;
                 if not RecPc.FindFirst then begin
                     RecPc.Reset;
@@ -754,7 +754,7 @@ tableextension 50104 Customer extends "Customer"
         {
             Caption = 'Cr. Memo Type';
         }
-         field(50709; "Special Scheme Code"; Enum "SII Sales Special Scheme Code")
+        field(50709; "Special Scheme Code"; Enum "SII Sales Special Scheme Code")
         {
             Caption = 'Special Scheme Code';
         }
@@ -763,31 +763,31 @@ tableextension 50104 Customer extends "Customer"
             Caption = 'Correction Type';
             OptionCaption = ' ,Replacement,Difference,Removal';
             OptionMembers = " ",Replacement,Difference,Removal;
-            
+
         }
         field(50724; "Do Not Send To SII"; Boolean)
         {
             Caption = 'Do Not Send To SII';
         }
-        
+
         field(50725; Plantilla_Cliente; Code[20])
         {
             TableRelation = "Customer Templ.";
             trigger OnValidate()
-            
-            Var
-            RecCT: Record "Customer Templ.";
-            CustomerTemplMgt: Codeunit "Customer Templ. Mgt.";            
 
-            Begin           
+            Var
+                RecCT: Record "Customer Templ.";
+                CustomerTemplMgt: Codeunit "Customer Templ. Mgt.";
+
+            Begin
                 RecCT.Reset();
-                RecCT.SetRange(Code,Plantilla_Cliente);
+                RecCT.SetRange(Code, Plantilla_Cliente);
                 IF RecCT.FindFirst() THEN BEGIN
                     CustomerTemplMgt.ApplyCustomerTemplate(Rec, RecCT);
                 END;
             end;
 
-        }        
+        }
 
 
 
