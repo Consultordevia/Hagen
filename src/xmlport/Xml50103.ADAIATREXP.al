@@ -5,7 +5,7 @@ XmlPort 50103 "ADAIATREXP"
     Direction = Import;
     FieldSeparator = '|';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
     UseRequestPage = false;
     Permissions = tabledata 110 = rmid, tabledata 113 = rmid, tabledata 17 = rmid;
 
@@ -427,54 +427,7 @@ XmlPort 50103 "ADAIATREXP"
         LLINEA: Integer;
         RecLVSuma: Record "Sales Line";
 
-    local procedure InitializeGlobals()
-    var
-        DataExchDef: Record "Data Exch. Def";
-    begin
-    end;
 
-    local procedure CheckLineType()
-    begin
-        ValidateNonDataLine;
-        TrackNonDataLines;
-    end;
-
-    local procedure IdentifyLineType()
-    begin
-    end;
-
-    local procedure ValidateNonDataLine()
-    begin
-    end;
-
-    local procedure TrackNonDataLines()
-    begin
-    end;
-
-    local procedure HeaderTagLength(): Integer
-    var
-        DataExchDef: Record "Data Exch. Def";
-    begin
-    end;
-
-    local procedure FooterTagLength(): Integer
-    var
-        DataExchDef: Record "Data Exch. Def";
-    begin
-    end;
-
-    local procedure GetFieldLength(TableNo: Integer; FieldNo: Integer): Integer
-    var
-        RecRef: RecordRef;
-        FieldRef: FieldRef;
-    begin
-    end;
-
-    local procedure InsertColumn(columnNumber: Integer; var columnValue: Text)
-    var
-        savedColumnValue: Text;
-    begin
-    end;
 
     local procedure ValidateHeaderTag()
     begin
@@ -489,14 +442,14 @@ XmlPort 50103 "ADAIATREXP"
 
 
         if CopyStr(D1, 1, 4) = 'CECN' then begin
-            NPEDIDO := D3;                                       
-                IF CC.GET(1, NPEDIDO) THEN BEGIN
-                    CC."Etq.Adaia":=D5;
-                    CC.Modify;                     
-                END;
+            NPEDIDO := D3;
+            IF CC.GET(1, NPEDIDO) THEN BEGIN
+                CC."Etq.Adaia" := D5;
+                CC.Modify;
+            END;
         end;
 
-        
+
         if CopyStr(D1, 1, 4) = 'CECA' then begin
             NPEDIDO := D3;
             CLIENTE := D6;
@@ -657,7 +610,7 @@ XmlPort 50103 "ADAIATREXP"
                         RecCV2.MODIFY;
                     END;
                 END;
-                IF REF = '15' THEN BEGIN                     
+                IF REF = '15' THEN BEGIN
                     RecCV2.RESET;
                     RecCV2.SETCURRENTKEY(RecCV2."Document Type", RecCV2."Nº expedición");
                     RecCV2.SETRANGE(RecCV2."Document Type", 1);
