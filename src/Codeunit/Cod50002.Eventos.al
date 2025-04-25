@@ -243,6 +243,13 @@ codeunit 50002 Eventos
         end;
     end;
 
+    [EventSubscriber(ObjectType::Table, database::Customer, 'OnAfterValidatePostCode', '', false, false)]
+    local procedure OnAfterValidatePostCodeCustomer(var Customer: Record Customer; xCustomer: Record Customer)
+    begin
+        if (xCustomer."Country/Region Code" <> '') and (Customer."Country/Region Code" = '') then
+            Customer."Country/Region Code" := xCustomer."Country/Region Code";
+    end;
+
 
     [EventSubscriber(ObjectType::Table, Database::"Ship-to Address", 'OnBeforeModifyEvent', '', false, false)]
     local procedure OnBeforeModifyEventShiptoAddress(var Rec: Record "Ship-to Address"; var xRec: Record "Ship-to Address")
@@ -1125,11 +1132,37 @@ codeunit 50002 Eventos
 
     [EventSubscriber(ObjectType::Codeunit, 1303, 'OnBeforeSalesHeaderInsert', '', false, false)]
     local procedure OnBeforeSalesHeaderInsert(var SalesHeader: Record "Sales Header"; var SalesInvoiceHeader: Record "Sales Invoice Header"); ///; var CancellingOnly: Boolean);
-    var    
-    begin        
+    var
+    begin
         /////SalesHeader.Validate("Posting Date",WorkDate());         
     end;
 
+    [EventSubscriber(ObjectType::Page, Page::"Posted Sales Shipment - Update", 'OnAfterRecordChanged', '', false, false)]
+    local procedure OnAfterRecordChangedPostedSalesShipmentUpdate(var IsChanged: Boolean; var SalesShipmentHeader: Record "Sales Shipment Header"; xSalesShipmentHeader: Record "Sales Shipment Header")
+    begin
+        if Not IsChanged then begin
+            IsChanged :=
+                (SalesShipmentHeader."Numero segumiento" <> xSalesShipmentHeader."Numero segumiento") or
+                (SalesShipmentHeader."Estado Expedicion" <> xSalesShipmentHeader."Estado Expedicion") or
+                (SalesShipmentHeader."Total bultos" <> xSalesShipmentHeader."Total bultos") or
+                (SalesShipmentHeader."Nº Palets" <> xSalesShipmentHeader."Nº Palets") or
+                (SalesShipmentHeader."Total peso" <> xSalesShipmentHeader."Total peso") or
+                (SalesShipmentHeader.ASN <> xSalesShipmentHeader.ASN) or
+                (SalesShipmentHeader."Observación para transporte" <> xSalesShipmentHeader."Observación para transporte");
+        end;
+    end;
 
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Shipment Header - Edit", 'OnBeforeSalesShptHeaderModify', '', false, false)]
+    local procedure OnBeforeSalesShptHeaderModify(var SalesShptHeader: Record "Sales Shipment Header"; FromSalesShptHeader: Record "Sales Shipment Header")
+    begin
+        SalesShptHeader."Numero segumiento" := FromSalesShptHeader."Numero segumiento";
+        SalesShptHeader."Estado Expedicion" := FromSalesShptHeader."Estado Expedicion";
+        SalesShptHeader."Total bultos" := FromSalesShptHeader."Total bultos";
+        SalesShptHeader."Nº Palets" := FromSalesShptHeader."Nº Palets";
+        SalesShptHeader."Total peso" := FromSalesShptHeader."Total peso";
+        SalesShptHeader.ASN := FromSalesShptHeader.ASN;
+        SalesShptHeader."Observación para transporte" := FromSalesShptHeader."Observación para transporte";
+    end;
 
 }

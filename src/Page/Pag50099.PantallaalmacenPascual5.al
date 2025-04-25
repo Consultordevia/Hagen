@@ -325,8 +325,10 @@ Page 50099 "Pantalla almacen Pascual5"
                     PromotedOnly = true;
 
                     trigger OnAction()
+                    var
+                        Cu14: Codeunit 50014;
                     begin
-
+                        cu14.Run();
                         EnviaraADAIA;
                     end;
                 }
@@ -455,10 +457,10 @@ Page 50099 "Pantalla almacen Pascual5"
                             repeat
                                 v.Update(1, Rec36."No.");
                                 if Reccust.get(Rec36."Bill-to Customer No.") then begin
-                                
-                                rec36."Invoice Type" := Reccust."Invoice Type";
-                                rec36."Cr. Memo Type" := Reccust."Cr. Memo Type";                                
-                                rec36.Modify;
+
+                                    rec36."Invoice Type" := Reccust."Invoice Type";
+                                    rec36."Cr. Memo Type" := Reccust."Cr. Memo Type";
+                                    rec36.Modify;
                                 end;
                             until rec36.next = 0;
 
@@ -48622,12 +48624,12 @@ Page 50099 "Pantalla almacen Pascual5"
                 Tipocaja.SetRange(Combinable, true);
                 Tipocaja.SetRange("Maximo kilos", pesopedido, 999999);
                 if Tipocaja.FindFirst then begin
-                    IF Tipocaja."Maximo kilos"<>0 THEN BEGIN
-                    NCAJAS := ROUND(pesopedido / Tipocaja."Maximo kilos", 1);
+                    IF Tipocaja."Maximo kilos" <> 0 THEN BEGIN
+                        NCAJAS := ROUND(pesopedido / Tipocaja."Maximo kilos", 1);
                     END;
                     if NCAJAS = 0 then NCAJAS := 1;
                     textocaja := textocaja + ' ' + Tipocaja."Tipo caja" + ': ' + Format(NCAJAS);
-                    
+
                 end;
                 if not Tipocaja.FindFirst then begin
                     Tipocaja.Reset;
@@ -48757,6 +48759,8 @@ Page 50099 "Pantalla almacen Pascual5"
     var
         AutomaticosAdaia: Codeunit "Automaticos Cartas";
         SalesHeader: Record "Sales Header";
+        LogAdaiaPedidos: Record LogAdaiaPedidos;
+        LogAdaiaFicheros: Record LogFicherosAdaia;
     begin
 
         Commit;
@@ -48781,6 +48785,11 @@ Page 50099 "Pantalla almacen Pascual5"
             NoSeriesLine."Last No. Used" := IncStr(NPEDIDO);
             NoSeriesLine.Modify;
         end;
+
+        LogAdaiaFicheros.Init();
+        LogAdaiaFicheros.Expedicion := NPEDIDO;
+        LogAdaiaFicheros.Error := true;
+        LogAdaiaFicheros.Insert();
 
 
 
@@ -48875,7 +48884,15 @@ Page 50099 "Pantalla almacen Pascual5"
                             if SalesLine3.Type = 2 then begin
                                 SalesLine3."Nº expedición" := NPEDIDO;
                                 SalesLine3.Modify;
+                                LogAdaiaPedidos.Init();
+                                LogAdaiaPedidos.Expedicion := NPEDIDO;
+                                LogAdaiaPedidos.Pedido := SalesLine3."Document No.";
+                                LogAdaiaPedidos.Producto := SalesLine3."No.";
+                                LogAdaiaPedidos.Linea := SalesLine3."Line No.";
+                                LogAdaiaPedidos.Cantidad := SalesLine3.Quantity;
+                                if LogAdaiaPedidos.Insert() then;
                             end;
+
                         until SalesLine3.Next = 0;
 
                     if npedidos > 1 then begin
@@ -48975,6 +48992,13 @@ Page 50099 "Pantalla almacen Pascual5"
                             if SalesLine3.Type = 2 then begin
                                 SalesLine3."Nº expedición" := NPEDIDO;
                                 SalesLine3.Modify;
+                                LogAdaiaPedidos.Init();
+                                LogAdaiaPedidos.Expedicion := NPEDIDO;
+                                LogAdaiaPedidos.Pedido := SalesLine3."Document No.";
+                                LogAdaiaPedidos.Producto := SalesLine3."No.";
+                                LogAdaiaPedidos.Linea := SalesLine3."Line No.";
+                                LogAdaiaPedidos.Cantidad := SalesLine3.Quantity;
+                                if LogAdaiaPedidos.Insert() then;
                             end;
                         until SalesLine3.Next = 0;
                     if npedidos > 1 then begin
@@ -49011,6 +49035,13 @@ Page 50099 "Pantalla almacen Pascual5"
         if SalesHeader3.FindFirst then begin
             Clear(AutomaticosAdaia);
             AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);
+
+
+            if LogAdaiaFicheros.get(NPEDIDO) then begin
+                LogAdaiaFicheros.Error := false;
+                LogAdaiaFicheros.Subido := true;
+                LogAdaiaFicheros.Modify();
+            end;
 
         end;
 
