@@ -458,7 +458,8 @@ XmlPort 50103 "ADAIATREXP"
                 IF CC.GET(1, NPEDIDO) THEN BEGIN
                     ESPEDIDO := TRUE;
                     ESTRANSF := FALSE;
-                    ReleaseSalesDoc.Reopen(CC);
+                    if cc.Status = cc.Status::Released then
+                        ReleaseSalesDoc.Reopen(CC);
                 END;
                 ESPEDIDO := TRUE;
                 RecCV.SETCURRENTKEY(RecCV."Document Type", RecCV."Nº expedición");
@@ -492,13 +493,19 @@ XmlPort 50103 "ADAIATREXP"
                     LC.SETRANGE(LC."Nº expedición", NPEDIDO);
                     IF LC.FINDSET THEN
                         REPEAT
-                            LC.VALIDATE(LC."Qty. to Ship", 0);
                             IF RecItem2.GET(LC."No.") THEN BEGIN
                                 IF RecItem2."Enviar siempre" = TRUE THEN BEGIN
-                                    LC.VALIDATE(LC."Qty. to Ship", LC.Quantity);
+                                    if lc."Qty. to Ship" <> LC.Quantity then begin
+                                        LC.VALIDATE(LC."Qty. to Ship", LC.Quantity);
+                                        lc.Modify();
+                                    end;
                                 END;
-                            END;
-                            LC.MODIFY;
+                            end else begin
+                                if lc."Qty. to Ship" <> 0 then begin
+                                    LC.VALIDATE(LC."Qty. to Ship", 0);
+                                    LC.MODIFY;
+                                end;
+                            end;
                         UNTIL LC.NEXT = 0;
                 END;
             END;
@@ -534,7 +541,7 @@ XmlPort 50103 "ADAIATREXP"
                     LC.SETRANGE(LC."Nº expedición", NPEDIDO);
                     LC.SETRANGE(LC."Linea Nº expedición", LLINEA);
                     LC.SETRANGE(LC."No.", REF);
-                    IF LC.FIND('-') THEN BEGIN
+                    IF LC.FINDfirst THEN BEGIN
                         LC.CALCFIELDS(LC."Suma cdad. por envio");
                         IF LC."Suma cdad. por envio" = LC."Outstanding Quantity" THEN BEGIN
                             EVALUATE(DECI, CANTI);
@@ -554,7 +561,7 @@ XmlPort 50103 "ADAIATREXP"
                             RecLVSuma.SETRANGE(RecLVSuma."Nº expedición", NPEDIDO);
                             RecLVSuma.SETRANGE(RecLVSuma."No.", REF);
                             RecLVSuma.SETRANGE(RecLVSuma."Linea Nº expedición", LLINEA);
-                            IF RecLVSuma.FINDFIRST THEN
+                            IF RecLVSuma.FindSet() THEN
                                 REPEAT
                                     IF RecLVSuma."Outstanding Quantity" <= DECI THEN BEGIN
                                         IF RecLVSuma."Document No." <> LC."Document No." THEN BEGIN
