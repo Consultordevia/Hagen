@@ -305,8 +305,8 @@ Codeunit 50055 "Fichero Stock.csv"
                                 /////ItemTemp."Gen. Prod. Posting Group" := CopyStr(dtext1, 1, 20);
                                 /////dtext1 := CASCII.Ascii2Ansi(Item.Level2);
                                 /////ItemTemp.Familia := CopyStr(dtext1, 1, 50);
-                                ItemTemp.Level1:=Item.Etiquetas6;
-                                ItemTemp.Level2:=Item.Level2;
+                                ItemTemp.Level1 := Item.Etiquetas6;
+                                ItemTemp.Level2 := Item.Level2;
                                 ItemTemp."Unit Price" := Item."Tarifa 2022-2";
                                 ItemTemp."Unit Cost" := Item."PVP-Web";
                                 ItemTemp."Maximum Inventory" := DISPONI;
@@ -317,7 +317,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemTemp."Minimum Order Quantity" := RecUMP.Width;
                                 ItemTemp."Maximum Order Quantity" := RecUMP.Height;
                                 ItemTemp."Safety Stock Quantity" := RecUMP.Cubage;
-                                ItemTemp."Tariff No." := CMARCA;                                
+                                ItemTemp."Tariff No." := CMARCA;
                                 ItemTemp."Vendor No." := Format(IVA);
                                 ItemTemp."Last Date Modified" := Item."Fecha Lanzamiento";
                                 ItemTemp.Insert;
@@ -387,7 +387,7 @@ Codeunit 50055 "Fichero Stock.csv"
                               Format(ItemTemp."Maximum Order Quantity") + ';' +
                               Format(ItemTemp."Safety Stock Quantity") + ';' +
                               Format(ItemTemp."Tariff No.") + ';';
-                TextoSalida3 :=  Format(ItemTemp."Vendor No.") + ';' +
+                TextoSalida3 := Format(ItemTemp."Vendor No.") + ';' +
                               Format(ItemTemp."Last Date Modified");
 
                 OutTxt := TextoSalida1 + TextoSalida2 + TextoSalida3;
@@ -565,8 +565,8 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ///ItemtempR."Gen. Prod. Posting Group" := CopyStr(dtext1, 1, 20);
                                 ///dtext1 := CASCII.Ascii2Ansi(Item.Familia);
                                 ///ItemtempR.Familia := CopyStr(dtext1, 1, 50);
-                                ItemtempR.Level1:=Item.Etiquetas6;
-                                ItemtempR.Level2:=Item.Level2;                                
+                                ItemtempR.Level1 := Item.Etiquetas6;
+                                ItemtempR.Level2 := Item.Level2;
                                 ItemtempR."Unit Price" := Item."Tarifa 2021";
                                 ItemtempR."Unit Cost" := Item."PVP Recomendado 2021";
                                 ItemtempR."Maximum Inventory" := DISPONI;
@@ -577,7 +577,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR."Minimum Order Quantity" := RecUMP.Width;
                                 ItemtempR."Maximum Order Quantity" := RecUMP.Height;
                                 ItemtempR."Safety Stock Quantity" := RecUMP.Cubage;
-                                ItemtempR."Tariff No." := CMARCA;                                
+                                ItemtempR."Tariff No." := CMARCA;
                                 ItemtempR."Vendor No." := Format(IVA);
                                 ItemtempR."Last Date Modified" := Item."Fecha Lanzamiento";
                                 ItemtempR."IVA IGIC" := Item."IVA IGIC";
@@ -857,8 +857,8 @@ Codeunit 50055 "Fichero Stock.csv"
                                 /////ItemtempR."Gen. Prod. Posting Group" := dtext1;
                                 /////dtext1 := CASCII.Ascii2Ansi(Item.Familia);
                                 /////ItemtempR.Familia := dtext1;
-                                ItemtempR.Level1:=Item.Etiquetas6;
-                                ItemtempR.Level2:=Item.Level2;                                
+                                ItemtempR.Level1 := Item.Etiquetas6;
+                                ItemtempR.Level2 := Item.Level2;
                                 ItemtempR."Unit Price" := Item."Tarifa 2021-2";
                                 ItemtempR."Unit Cost" := Item."PVP Recomendado 2021-2";
                                 ItemtempR."Maximum Inventory" := DISPONI;
@@ -869,7 +869,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR."Minimum Order Quantity" := RecUMP.Width;
                                 ItemtempR."Maximum Order Quantity" := RecUMP.Height;
                                 ItemtempR."Safety Stock Quantity" := RecUMP.Cubage;
-                                ItemtempR."Tariff No." := CMARCA;                                
+                                ItemtempR."Tariff No." := CMARCA;
                                 ItemtempR."Vendor No." := Format(IVA);
                                 ItemtempR."Last Date Modified" := Item."Fecha Lanzamiento";
                                 ItemtempR."IVA IGIC" := Item."IVA IGIC";
@@ -1145,8 +1145,8 @@ Codeunit 50055 "Fichero Stock.csv"
                                 /////ItemtempR."Gen. Prod. Posting Group" := dtext1;
                                 /////dtext1 := CASCII.Ascii2Ansi(Item.Familia);
                                 /////ItemtempR.Familia := dtext1;
-                                ItemtempR.Level1:=Item.Etiquetas6;
-                                ItemtempR.Level2:=Item.Level2;                                
+                                ItemtempR.Level1 := Item.Etiquetas6;
+                                ItemtempR.Level2 := Item.Level2;
                                 ItemtempR."Unit Price" := Item."Tarifa 2022-2";
                                 ItemtempR."Unit Cost" := Item."PVP-Web";
                                 ItemtempR."Maximum Inventory" := DISPONI;
@@ -1157,7 +1157,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR."Minimum Order Quantity" := RecUMP.Width;
                                 ItemtempR."Maximum Order Quantity" := RecUMP.Height;
                                 ItemtempR."Safety Stock Quantity" := RecUMP.Cubage;
-                                ItemtempR."Tariff No." := CMARCA;                                
+                                ItemtempR."Tariff No." := CMARCA;
                                 ItemtempR."Vendor No." := Format(IVA);
                                 ItemtempR."Last Date Modified" := Item."Fecha Lanzamiento";
                                 ItemtempR."IVA IGIC" := Item."IVA IGIC";
@@ -1333,7 +1333,7 @@ Codeunit 50055 "Fichero Stock.csv"
                             Clear(TextoSalida1);
                             Clear(TextoSalida2);
                             Item.CalcFields(Inventory, "Existencia FOB", Item."Existencia SILLA", Item."Qty. on Sales Order", "Existencia TENERIFE");
-                            DISPONI := Item.Inventory - Item."Existencia FOB" - Item."Qty. on Sales Order" - Item."Stock para Catit"-item."Existencia TENERIFE";
+                            DISPONI := Item.Inventory - Item."Existencia FOB" - Item."Qty. on Sales Order" - Item."Stock para Catit" - item."Existencia TENERIFE";
                             ENTRA := true;
                             if (DISPONI <= 0) and (Item."Estado Producto" = 1) then begin
                                 ENTRA := false;
@@ -1452,8 +1452,8 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ///ItemtempR."Gen. Prod. Posting Group" := dtext1;
                                 ///dtext1 := CASCII.Ascii2Ansi(Item.Familia);
                                 ///ItemtempR.Familia := dtext1;                                
-                                ItemtempR.Level1:=Item.Etiquetas6;
-                                ItemtempR.Level2:=Item.Level2;
+                                ItemtempR.Level1 := Item.Etiquetas6;
+                                ItemtempR.Level2 := Item.Level2;
                                 ItemtempR."Unit Price" := Item."Unit Price";
                                 ItemtempR."Unit Cost" := Item."PVP-Web";
                                 ItemtempR."Maximum Inventory" := DISPONI;
@@ -1464,7 +1464,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ItemtempR."Minimum Order Quantity" := RecUMP.Width;
                                 ItemtempR."Maximum Order Quantity" := RecUMP.Height;
                                 ItemtempR."Safety Stock Quantity" := RecUMP.Cubage;
-                                ItemtempR."Tariff No." := CMARCA;                                
+                                ItemtempR."Tariff No." := CMARCA;
                                 ItemtempR."Vendor No." := Format(IVA);
                                 ItemtempR."Last Date Modified" := Item."Fecha Lanzamiento";
                                 ItemtempR."IVA IGIC" := Item."IVA IGIC";
@@ -1489,7 +1489,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                         end;
                                     until SalesLineDiscount.Next = 0;
 
-                                ItemtempR.Insert;
+                                ItemtempR.Insert
 
                                 TextoSalida1 := Format(ItemTempR."No. 2") + ';' +
                                                 Format(ItemTempR."No.") + ';' +
@@ -1562,7 +1562,7 @@ Codeunit 50055 "Fichero Stock.csv"
 
         Clear(TempBlob);
         Clear(OutStream);
-        Clear(InStream);                             
+        Clear(InStream);
         Clear(RepItemTemporal);
         RepItemTemporal.UseRequestPage(false);
         TempBlob.CreateOutStream(OutStream);
