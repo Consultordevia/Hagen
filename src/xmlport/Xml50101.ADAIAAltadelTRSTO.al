@@ -106,42 +106,37 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
 
         RecMT.RESET;
         RecMT.SETRANGE(RecMT.Tabla, 17);
-        IF RecMT.FINDFIRST THEN
-            REPEAT
-                RecMT.DELETE;
-            UNTIL RecMT.NEXT = 0;
+        RecMT.deleteall;
 
         WORKDATED := WORKDATE;
         FechaFichero := FORMAT(WORKDATED);
-        RecSDP.RESET;
-        RecSDP.SETRANGE(RecSDP."Journal Template Name", 'INVENT. FÍ');
-        RecSDP.SETRANGE(RecSDP.Name, FechaFichero);
-        IF RecSDP.FINDFIRST THEN BEGIN
-            Rec83.RESET;
-            Rec83.SETRANGE(Rec83."Journal Template Name", RecSDP."Journal Template Name");
-            Rec83.SETRANGE(Rec83."Journal Batch Name", RecSDP.Name);
-            IF Rec83.FIND('-') THEN BEGIN
-                Rec83.DELETEALL;
-            END;
-        END;
 
         IF NOT RecSDP.FINDFIRST THEN BEGIN
             RecSDP."Journal Template Name" := 'INVENT. FÍ';
             RecSDP.Name := FechaFichero;
             RecSDP.Description := 'INVENTARIO ' + FechaFichero;
             RecSDP.INSERT;
+        END else begin
+            RecSDP.RESET;
+            RecSDP.SETRANGE(RecSDP."Journal Template Name", 'INVENT. FÍ');
+            RecSDP.SETRANGE(RecSDP.Name, FechaFichero);
+            IF RecSDP.FINDFIRST THEN BEGIN
+                Rec83.RESET;
+                Rec83.SETRANGE(Rec83."Journal Template Name", RecSDP."Journal Template Name");
+                Rec83.SETRANGE(Rec83."Journal Batch Name", RecSDP.Name);
+                IF Rec83.FIND('-') THEN BEGIN
+                    Rec83.DELETEALL;
+                END;
+            END;
+        end;
 
-        END;
-
-        Item.RESET;
+        /*Item.RESET;
         Item.SETRANGE(Blocked, FALSE);
         Item.SETRANGE(Item."Producto almacenable", TRUE);
         IF Item.FINDSET THEN
             REPEAT
-                ItemUnitofMeasure.RESET;
-                ItemUnitofMeasure.SETRANGE(ItemUnitofMeasure."Item No.", Item."No.");
-                ItemUnitofMeasure.SETRANGE(ItemUnitofMeasure.Code, 'UDS');
-                IF NOT ItemUnitofMeasure.FINDFIRST THEN BEGIN
+                
+                IF NOT ItemUnitofMeasure.get(item."No.",'UDS') THEN BEGIN
                     ItemUnitofMeasure.INIT;
                     ItemUnitofMeasure."Item No." := Item."No.";
                     ItemUnitofMeasure.Code := 'UDS';
@@ -150,9 +145,10 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
                 END;
 
                 RecItem2.GET(Item."No.");
-                RecItem2.SETRANGE(RecItem2."Location Filter", 'SILLA', 'SILLA');
+                RecItem2.SETRANGE(RecItem2."Location Filter", 'SILLA');
                 RecItem2.CALCFIELDS(RecItem2.Inventory);
                 STOCCAL := RecItem2.Inventory;
+                
                 Rec83.INIT;
                 Rec83."Journal Template Name" := 'INVENT. FÍ';
                 Rec83."Journal Batch Name" := FechaFichero;
@@ -170,16 +166,7 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
                     Rec83.INSERT;
                 END;
 
-            UNTIL Item.NEXT = 0;
-
-
-
-
-
-
-
-
-
+            UNTIL Item.NEXT = 0;*/
 
     end;
 
@@ -268,56 +255,6 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
         codlote: CODE[20];
 
 
-
-    local procedure InitializeGlobals()
-    var
-        DataExchDef: Record "Data Exch. Def";
-    begin
-    end;
-
-    local procedure CheckLineType()
-    begin
-        ValidateNonDataLine;
-        TrackNonDataLines;
-    end;
-
-    local procedure IdentifyLineType()
-    begin
-    end;
-
-    local procedure ValidateNonDataLine()
-    begin
-    end;
-
-    local procedure TrackNonDataLines()
-    begin
-    end;
-
-    local procedure HeaderTagLength(): Integer
-    var
-        DataExchDef: Record "Data Exch. Def";
-    begin
-    end;
-
-    local procedure FooterTagLength(): Integer
-    var
-        DataExchDef: Record "Data Exch. Def";
-    begin
-    end;
-
-    local procedure GetFieldLength(TableNo: Integer; FieldNo: Integer): Integer
-    var
-        RecRef: RecordRef;
-        FieldRef: FieldRef;
-    begin
-    end;
-
-    local procedure InsertColumn(columnNumber: Integer; var columnValue: Text)
-    var
-        savedColumnValue: Text;
-    begin
-    end;
-
     local procedure ValidateHeaderTag()
     begin
 
@@ -356,59 +293,38 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
         END;
         IF Item.GET(REF) THEN BEGIN
             IF Item.Blocked = FALSE THEN BEGIN
-                ItemUnitofMeasure.RESET;
-                ItemUnitofMeasure.SETRANGE(ItemUnitofMeasure."Item No.", REF);
-                ItemUnitofMeasure.SETRANGE(ItemUnitofMeasure.Code, 'UDS');
-                IF NOT ItemUnitofMeasure.FINDFIRST THEN BEGIN
+                IF NOT ItemUnitofMeasure.get(ITEM."No.", 'UDS') THEN BEGIN
                     ItemUnitofMeasure.INIT;
                     ItemUnitofMeasure."Item No." := REF;
                     ItemUnitofMeasure.Code := 'UDS';
                     ItemUnitofMeasure."Qty. per Unit of Measure" := 1;
                     ItemUnitofMeasure.INSERT;
                 END;
-                Rec83.RESET;
-                Rec83.SETRANGE(Rec83."Journal Template Name", 'INVENT. FÍ');
-                Rec83.SETRANGE(Rec83."Journal Batch Name", FechaFichero);
-                Rec83.SETRANGE(Rec83."Item No.", REF);
-                IF Rec83.FINDFIRST THEN BEGIN
-                    Rec83.VALIDATE(Rec83."Qty. (Phys. Inventory)", Rec83."Qty. (Phys. Inventory)" + DCanti);
-                    Rec83.MODIFY;
-                    COMMIT;
+
+                RecItem2.GET(Item."No.");
+                RecItem2.SETRANGE(RecItem2."Location Filter", 'SILLA');
+                RecItem2.CALCFIELDS(RecItem2.Inventory);
+                STOCCAL := RecItem2.Inventory;
+
+                Rec83.INIT;
+                Rec83."Journal Template Name" := 'INVENT. FÍ';
+                Rec83."Journal Batch Name" := FechaFichero;
+                lin := lin + 10000;
+                Rec83."Line No." := lin;
+                Rec83."Phys. Inventory" := FALSE;
+                Rec83.VALIDATE(Rec83."Item No.", Item."No.");
+                Rec83."Phys. Inventory" := TRUE;
+                Rec83."Location Code" := 'SILLA';
+                Rec83."Posting Date" := TODAY;
+                Rec83."Unit of Measure Code" := Item."Base Unit of Measure";
+                Rec83.VALIDATE(Rec83."Qty. (Calculated)", STOCCAL);
+                Rec83."Document No." := 'AJUSTES';
+                Rec83.VALIDATE(Rec83."Qty. (Phys. Inventory)", Rec83."Qty. (Phys. Inventory)" + DCanti);
+                IF Rec83.Quantity <> 0 THEN begin
+                    Rec83.INSERT;
                 END;
             END;
         END;
     end;
-
-    /*
-
-
-
-
-
-
-
-
-    {
-
-
-
-
-    RecSDP.RESET;                                   
-    RecSDP.SETRANGE(RecSDP."Journal Template Name",'INVENT. FÍ');
-    RecSDP.SETRANGE(RecSDP.Name,FechaFichero);
-    IF RecSDP.FINDFIRST THEN BEGIN      
-         Rec83.RESET;
-         Rec83.SETRANGE(Rec83."Journal Template Name",RecSDP."Journal Template Name");
-         Rec83.SETRANGE(Rec83."Journal Batch Name",RecSDP.Name);
-         IF Rec83.FIND('-') THEN REPEAT
-              IF Rec83.Quantity=0 THEN BEGIN
-                   Rec83.DELETE;
-              END;
-         UNTIL Rec83.NEXT=0;
-    END;
-    */
-
-
-
 }
 

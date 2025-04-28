@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ﻿{"Added":[],"Modified":[{"Id":50051,"Kind":16,"Name":"Posted SalesShipmentUpdate","Namespace":""},{"Id":50002,"Kind":11,"Name":"Eventos","Namespace":""}],"Removed":[]}
+=======
+﻿{"Added":[],"Modified":[{"Kind":106,"Name":"RequestOptionsPage","Namespace":""},{"Id":50103,"Kind":15,"Name":"ADAIATREXP","Namespace":""},{"Id":50102,"Kind":15,"Name":"ADAIATRREC","Namespace":""}],"Removed":[]}
+>>>>>>> 10d7197daa451c1c225310721029ab3b7b1ea684

@@ -3729,6 +3729,7 @@ OutStream.Write('Tercera línea después del salto');
     var
         Rec362: Record "Sales Header";
         RecBom: Record "BOM Component";
+        User: Record user;
     begin
 
 
@@ -3739,7 +3740,10 @@ OutStream.Write('Tercera línea después del salto');
 
         if Rec36."No incluir portes" = false then begin
             Rec36.CalcFields(Rec36.Base);
-            Rec91.Get(Rec36."Usuario alta");
+            if not Rec91.Get(Rec36."Usuario alta") then
+                if User.get(rec36.SystemCreatedBy) then
+                    rec91.get(User."User Name");
+
             if Rec91.Comercial <> '' then begin
                 if Rec36.Base >= 190 then begin
                     PORTES := 0;

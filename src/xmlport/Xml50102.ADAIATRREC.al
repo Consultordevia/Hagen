@@ -5,7 +5,7 @@ XmlPort 50102 "ADAIATRREC"
     Direction = Import;
     FieldSeparator = '|';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
     UseRequestPage = false;
 
     ///   1   2  3         4       5         6       7         8         9         10     11  12       
@@ -248,56 +248,6 @@ XmlPort 50102 "ADAIATRREC"
         LIN2: Integer;
         RecCV: Record "Sales Header";
 
-
-    local procedure InitializeGlobals()
-    var
-        DataExchDef: Record "Data Exch. Def";
-    begin
-    end;
-
-    local procedure CheckLineType()
-    begin
-        ValidateNonDataLine;
-        TrackNonDataLines;
-    end;
-
-    local procedure IdentifyLineType()
-    begin
-    end;
-
-    local procedure ValidateNonDataLine()
-    begin
-    end;
-
-    local procedure TrackNonDataLines()
-    begin
-    end;
-
-    local procedure HeaderTagLength(): Integer
-    var
-        DataExchDef: Record "Data Exch. Def";
-    begin
-    end;
-
-    local procedure FooterTagLength(): Integer
-    var
-        DataExchDef: Record "Data Exch. Def";
-    begin
-    end;
-
-    local procedure GetFieldLength(TableNo: Integer; FieldNo: Integer): Integer
-    var
-        RecRef: RecordRef;
-        FieldRef: FieldRef;
-    begin
-    end;
-
-    local procedure InsertColumn(columnNumber: Integer; var columnValue: Text)
-    var
-        savedColumnValue: Text;
-    begin
-    end;
-
     local procedure ValidateHeaderTag()
     begin
 
@@ -311,7 +261,7 @@ XmlPort 50102 "ADAIATRREC"
             NPEDIDO := D5;
             CLIENTE := D6;
             TIPOPEDI := D8;
-            Message('%1 ', NPEDIDO);
+            //Message('%1 ', NPEDIDO);
             DOCLIQ := D9;
             D := Today;
             if TIPOPEDI = 'ENPR' then begin
@@ -340,18 +290,22 @@ XmlPort 50102 "ADAIATRREC"
                     PurchaseLine.Reset;
                     PurchaseLine.SetRange("Document Type", 1);
                     PurchaseLine.SetRange("Document No.", NPEDIDO);
-                    if PurchaseLine.FindFirst then
+                    if PurchaseLine.findset then
                         repeat
-                            PurchaseLine.Validate("Qty. to Receive", 0);
-                            PurchaseLine.Modify;
+                            if PurchaseLine."Qty. to Receive" <> 0 then begin
+                                PurchaseLine.Validate("Qty. to Receive", 0);
+                                PurchaseLine.Modify;
+                            end;
                         until PurchaseLine.Next = 0;
                 end;
                 if ESTRANSF then begin
                     RecTL.SetRange(RecTL."Document No.", NPEDIDO);
-                    if RecTL.Find('-') then
+                    if RecTL.Findset then
                         repeat
-                            RecTL.Validate(RecTL."Qty. to Ship", 0);
-                            RecTL.Modify;
+                            if RecTL."Qty. to Ship" <> 0 then begin
+                                RecTL.Validate(RecTL."Qty. to Ship", 0);
+                                RecTL.Modify;
+                            end;
                         until RecTL.Next = 0;
                 end;
             end;
@@ -388,13 +342,15 @@ XmlPort 50102 "ADAIATRREC"
                     if PurchaseLine.FindFirst then begin
                         Evaluate(DECI, CANTI);
                         DECI := ROUND(DECI / PurchaseLine."Qty. per Unit of Measure", 0.01);
-                        PurchaseLine.Validate("Qty. to Receive", DECI);
-                        if KILOS <> 0 then begin
-                            P.Get(PurchaseLine."No.");
-                            PurchaseLine."Unit of Measure" := P."Base Unit of Measure";
-                            PurchaseLine.Validate(Quantity, KILOS);
+                        if (KILOS <> 0) or (PurchaseLine."Qty. to Receive" <> deci) then begin
+                            PurchaseLine.Validate("Qty. to Receive", DECI);
+                            if KILOS <> 0 then begin
+                                P.Get(PurchaseLine."No.");
+                                PurchaseLine."Unit of Measure" := P."Base Unit of Measure";
+                                PurchaseLine.Validate(Quantity, KILOS);
+                            end;
+                            PurchaseLine.Modify;
                         end;
-                        PurchaseLine.Modify;
                     end;
                 end;
                 if ESPEDIDO and (ESPEPE) then begin
@@ -409,15 +365,16 @@ XmlPort 50102 "ADAIATRREC"
                     if RecTL.Find('-') then begin
                         Evaluate(DECI, CANTI);
                         DECI := ROUND(DECI / RecTL."Qty. per Unit of Measure", 0.01);
-                        RecTL.Validate(RecTL."Qty. to Ship", DECI);
-                        RecTL.Modify;
-                        if KILOS <> 0 then begin
-                            P.Get(RecTL."Item No.");
-                            RecTL."Unit of Measure" := P."Base Unit of Measure";
-                            RecTL.Validate(RecTL.Quantity, KILOS);
+                        if (KILOS <> 0) or (RecTL."Qty. to Receive" <> deci) then begin
+                            RecTL.Validate(RecTL."Qty. to Ship", DECI);
                             RecTL.Modify;
+                            if KILOS <> 0 then begin
+                                P.Get(RecTL."Item No.");
+                                RecTL."Unit of Measure" := P."Base Unit of Measure";
+                                RecTL.Validate(RecTL.Quantity, KILOS);
+                                RecTL.Modify;
+                            end;
                         end;
-                        PurchaseLine.Modify;
                     end;
                 end;
             end;
