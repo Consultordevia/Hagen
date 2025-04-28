@@ -1145,6 +1145,7 @@ codeunit 50002 Eventos
                 (SalesShipmentHeader."Numero segumiento" <> xSalesShipmentHeader."Numero segumiento") or
                 (SalesShipmentHeader."Estado Expedicion" <> xSalesShipmentHeader."Estado Expedicion") or
                 (SalesShipmentHeader."Total bultos" <> xSalesShipmentHeader."Total bultos") or
+                (SalesShipmentHeader."Nº bultos" <> xSalesShipmentHeader."Nº bultos") or
                 (SalesShipmentHeader."Nº Palets" <> xSalesShipmentHeader."Nº Palets") or
                 (SalesShipmentHeader."Total peso" <> xSalesShipmentHeader."Total peso") or
                 (SalesShipmentHeader.ASN <> xSalesShipmentHeader.ASN) or
@@ -1157,7 +1158,9 @@ codeunit 50002 Eventos
     local procedure OnBeforeSalesShptHeaderModify(var SalesShptHeader: Record "Sales Shipment Header"; FromSalesShptHeader: Record "Sales Shipment Header")
     begin
         SalesShptHeader."Numero segumiento" := FromSalesShptHeader."Numero segumiento";
+        SalesShptHeader."Nº expedición" := FromSalesShptHeader."Package Tracking No.";
         SalesShptHeader."Estado Expedicion" := FromSalesShptHeader."Estado Expedicion";
+        SalesShptHeader."Nº bultos" := FromSalesShptHeader."Nº bultos";
         SalesShptHeader."Total bultos" := FromSalesShptHeader."Total bultos";
         SalesShptHeader."Nº Palets" := FromSalesShptHeader."Nº Palets";
         SalesShptHeader."Total peso" := FromSalesShptHeader."Total peso";
