@@ -273,7 +273,6 @@ Codeunit 50072 "Automaticos MIRAVIA"
                     SalesPrice2.Reset;
                     SalesPrice2.SetRange("Item No.", Item."No.");
                     SalesPrice2.SetRange("Sales Code", 'NAV0316');
-                    ///SalesPrice2.SETFILTER("Ending Date",'%1|<%2',0D,TODAY);
                     if SalesPrice2.FindFirst then begin
                         fechaini := SalesPrice2."Starting Date";
 
@@ -465,7 +464,6 @@ Codeunit 50072 "Automaticos MIRAVIA"
                     SalesPrice2.Reset;
                     SalesPrice2.SetRange("Item No.", Item."No.");
                     SalesPrice2.SetRange("Sales Code", 'NAV0317');
-                    ///SalesPrice2.SETFILTER("Ending Date",'%1|<%2',0D,TODAY);
                     if SalesPrice2.FindFirst then begin
                         fechaini := SalesPrice2."Starting Date";
 
@@ -657,7 +655,6 @@ Codeunit 50072 "Automaticos MIRAVIA"
                     SalesPrice2.Reset;
                     SalesPrice2.SetRange("Item No.", Item."No.");
                     SalesPrice2.SetRange("Sales Code", 'NAV0319');
-                    ///SalesPrice2.SETFILTER("Ending Date",'%1|<%2',0D,TODAY);
                     if SalesPrice2.FindFirst then begin
                         fechaini := SalesPrice2."Starting Date";
 
@@ -850,7 +847,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
                     SalesPrice2.Reset;
                     SalesPrice2.SetRange("Item No.", Item."No.");
                     SalesPrice2.SetRange("Sales Code", 'NAV0318');
-                    ///SalesPrice2.SETFILTER("Ending Date",'%1|<%2',0D,TODAY);
+
                     if SalesPrice2.FindFirst then begin
                         fechaini := SalesPrice2."Starting Date";
 
@@ -1045,7 +1042,6 @@ Codeunit 50072 "Automaticos MIRAVIA"
                     SalesPrice2.Reset;
                     SalesPrice2.SetRange("Item No.", Item."No.");
                     SalesPrice2.SetRange("Sales Code", 'NAV0315');
-                    ///SalesPrice2.SETFILTER("Ending Date",'%1|<%2',0D,TODAY);
                     if SalesPrice2.FindFirst then begin
                         fechaini := SalesPrice2."Starting Date";
 
@@ -1242,7 +1238,6 @@ Codeunit 50072 "Automaticos MIRAVIA"
                     SalesPrice2.Reset;
                     SalesPrice2.SetRange("Item No.", Item."No.");
                     SalesPrice2.SetRange("Sales Code", 'NAV0322');
-                    ///SalesPrice2.SETFILTER("Ending Date",'%1|<%2',0D,TODAY);
                     if SalesPrice2.FindFirst then begin
                         fechaini := SalesPrice2."Starting Date";
 
@@ -1436,7 +1431,6 @@ Codeunit 50072 "Automaticos MIRAVIA"
                     SalesPrice2.Reset;
                     SalesPrice2.SetRange("Item No.", Item."No.");
                     SalesPrice2.SetRange("Sales Code", 'NAV0321');
-                    ///SalesPrice2.SETFILTER("Ending Date",'%1|<%2',0D,TODAY);
                     if SalesPrice2.FindFirst then begin
                         fechaini := SalesPrice2."Starting Date";
 
@@ -1626,7 +1620,6 @@ Codeunit 50072 "Automaticos MIRAVIA"
                     SalesPrice2.Reset;
                     SalesPrice2.SetRange("Item No.", Item."No.");
                     SalesPrice2.SetRange("Sales Code", 'NAV0320');
-                    ///SalesPrice2.SETFILTER("Ending Date",'%1|<%2',0D,TODAY);
                     if SalesPrice2.FindFirst then begin
                         fechaini := SalesPrice2."Starting Date";
 
@@ -1816,7 +1809,6 @@ Codeunit 50072 "Automaticos MIRAVIA"
                     SalesPrice2.Reset;
                     SalesPrice2.SetRange("Item No.", Item."No.");
                     SalesPrice2.SetRange("Sales Code", 'NAV0323');
-                    ///SalesPrice2.SETFILTER("Ending Date",'%1|<%2',0D,TODAY);
                     if SalesPrice2.FindFirst then begin
                         fechaini := SalesPrice2."Starting Date";
 
@@ -2005,7 +1997,6 @@ Codeunit 50072 "Automaticos MIRAVIA"
                     SalesPrice2.Reset;
                     SalesPrice2.SetRange("Item No.", Item."No.");
                     SalesPrice2.SetRange("Sales Code", 'NAV0324');
-                    ///SalesPrice2.SETFILTER("Ending Date",'%1|<%2',0D,TODAY);
                     if SalesPrice2.FindFirst then begin
                         fechaini := SalesPrice2."Starting Date";
 

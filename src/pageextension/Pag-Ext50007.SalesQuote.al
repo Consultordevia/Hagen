@@ -9,7 +9,7 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
         {
 
 
-            field("Posting No.";Rec."Posting No.") { ApplicationArea = All; }
+            field("Posting No."; Rec."Posting No.") { ApplicationArea = All; }
 
             field("Customer Disc. Group"; Rec."Customer Disc. Group") { ApplicationArea = All; }
 
@@ -234,7 +234,6 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                         Rec372.SETRANGE(Rec372."Document No.", Rec."No.");
                         IF Rec372.FINDFIRST THEN
                             REPEAT
-                                ///IF Rec372."Estado linea"<>2 THEN BEGIN
                                 IF RecProd.GET(Rec372."No.") THEN BEGIN
                                     pasa := TRUE;
                                     IF RecProd."Prohibido Amazon" THEN BEGIN

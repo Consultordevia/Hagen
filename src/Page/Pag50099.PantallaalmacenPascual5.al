@@ -402,8 +402,10 @@ Page 50099 "Pantalla almacen Pascual5"
                         Reccust: Record customer;
                         v: Dialog;
                         conta: Integer;
+                        XmlPort50101: XmlPort 50006;
                     begin
                         v.Open('#1######################');
+                        XmlPort50101.run;
                         /*
                                                 Reccust.Reset();
                                                 ;
@@ -452,7 +454,7 @@ Page 50099 "Pantalla almacen Pascual5"
 
                                                       rec112.Reset();
                                                 */
-
+/*
                         if Rec36.FindSet() then
                             repeat
                                 v.Update(1, Rec36."No.");
@@ -464,7 +466,7 @@ Page 50099 "Pantalla almacen Pascual5"
                                 end;
                             until rec36.next = 0;
 
-
+*/
 
                         /*clear(xmlunitprice);
                         xmlunitprice.Run();                

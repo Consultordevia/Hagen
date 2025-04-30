@@ -17,53 +17,51 @@ XmlPort 50006 "ADAIA_Alta del TRSTOART"
             {
                 AutoSave = false;
                 XmlName = 'DataExchDocument';
-                textelement(UNO1)
+                textelement(UNO1)  //1
                 {
-                    Width = 255;
+                    //Width = 255;
                 }
-                textelement(DOS2)
-                {
-
-                    trigger OnAfterAssignVariable()
-                    begin
-                        if DOS2='' then begin
-                               currXMLport.Skip;
-                        end;
-                    end;
+                textelement(DOS2) //2
+                {                    
                 }
-                textelement(UBICA)
+                textelement(UBICA) //3
                 {
                 }
-                textelement(PROD)
+                textelement(PROD) //4
                 {
                 }
-                textelement(CANTI)
+                textelement(CANTI) //5
                 {
                 }
-                textelement(UNO3)
+                textelement(UNO3) //6
                 {
                 }
-                textelement(UNO4)
+                textelement(UNO4) //7
                 {
                 }
-                textelement(kilos)
+                textelement(kilos) //8
                 {
                 }
-                textelement(UNO5)
+                textelement(UNO5) //9
                 {
-                }
-                textelement(UNO6)
-                {
-
                     trigger OnAfterAssignVariable()
                     begin
 
                         ValidateHeaderTag;
                     end;
+                
                 }
-                textelement(UNO7)
+                textelement(UNO6) //10
+                {
+                
+                }
+                textelement(UNO7) //11
                 {
                 }
+                textelement(UNO8) //12
+                {
+                }
+            
             }
         }
     }
@@ -83,6 +81,7 @@ XmlPort 50006 "ADAIA_Alta del TRSTOART"
     trigger OnPreXmlPort()
     begin
         
+        v.open('#1#######################');
         WORKDATED:=WorkDate;
         FechaFichero:= Format(WORKDATED);
         RecSDP.Reset;
@@ -106,7 +105,7 @@ XmlPort 50006 "ADAIA_Alta del TRSTOART"
         end;
         
         
-        /*
+        
         
         RecItem.RESET;
         RecItem.SETRANGE(RecItem.Blocked,FALSE);
@@ -146,7 +145,7 @@ XmlPort 50006 "ADAIA_Alta del TRSTOART"
         
         
         UNTIL RecItem.NEXT=0;
-        */
+        
 
     end;
 
@@ -217,6 +216,7 @@ XmlPort 50006 "ADAIA_Alta del TRSTOART"
         RecPP: Record "Purchase Price";
         Rec32: Record "Item Ledger Entry";
         ItemUnitofMeasure: Record "Item Unit of Measure";
+        v: dialog;
 
     local procedure InitializeGlobals()
     var
@@ -289,6 +289,7 @@ XmlPort 50006 "ADAIA_Alta del TRSTOART"
              Rec83.SetRange(Rec83."Journal Batch Name",FechaFichero);
              Rec83.SetRange(Rec83."Item No.",REF);
              if Rec83.FindLast then begin
+                v.Update(1,PROD);
                   Evaluate(CANTIDECI,CANTI);
                   Rec83.Validate(Rec83."Qty. (Phys. Inventory)",Rec83."Qty. (Phys. Inventory)"+CAN);
                   Rec83.Modify;

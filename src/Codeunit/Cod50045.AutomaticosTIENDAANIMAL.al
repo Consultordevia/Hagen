@@ -230,7 +230,7 @@ Codeunit 50045 "Automaticos TIENDA ANIMAL"
 
 
         OutTxt := 'category;shopSku;name [es];description [es];summary [es];ean;brand;primary-image;secondary-image_1;secondary-image_2;secondary-image_3;secondary-image_4;sales-height;';
-///        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        ///        OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
         OutTxt := 'sales-width;sales-length;variant-group-code;commentary;105;105_MAG;103;103_MAG;100;100_MAG;101;108;106;107;110;113;113_MAG;104;104_MAG;109;102;sku;product-id;product-id-type;';
         ///OutTxt += Format(CarriageReturn) + Format(LineFeed);
@@ -268,7 +268,6 @@ Codeunit 50045 "Automaticos TIENDA ANIMAL"
                     SalesPrice2.Reset;
                     SalesPrice2.SetRange("Item No.", Item."No.");
                     SalesPrice2.SetRange("Sales Code", '12496');
-                    ///SalesPrice2.SETFILTER("Ending Date",'%1|<%2',0D,TODAY);
                     if SalesPrice2.FindFirst then begin
                         fechaini := SalesPrice2."Starting Date";
 

@@ -1489,7 +1489,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                         end;
                                     until SalesLineDiscount.Next = 0;
 
-                                ItemtempR.Insert
+                                ItemtempR.Insert;
 
                                 TextoSalida1 := Format(ItemTempR."No. 2") + ';' +
                                                 Format(ItemTempR."No.") + ';' +

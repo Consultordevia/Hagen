@@ -321,7 +321,7 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
                 Rec83."Document No." := 'AJUSTES';
                 Rec83.VALIDATE(Rec83."Qty. (Phys. Inventory)", Rec83."Qty. (Phys. Inventory)" + DCanti);
                 IF Rec83.Quantity <> 0 THEN begin
-                    Rec83.INSERT;
+                    ///Rec83.INSERT;
                 END;
             END;
         END;

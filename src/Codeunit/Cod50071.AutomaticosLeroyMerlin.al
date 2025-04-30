@@ -127,8 +127,7 @@ Codeunit 50071 "Automaticos Leroy Merlin"
                     precio2 := 0;
                     SalesPrice2.Reset;
                     SalesPrice2.SetRange("Item No.", Item."No.");
-                    SalesPrice2.SetRange("Sales Code", 'LER');
-                    ///SalesPrice2.SETFILTER("Ending Date",'%1|<%2',0D,TODAY);
+                    SalesPrice2.SetRange("Sales Code", 'LER');                     
                     if SalesPrice2.FindFirst then begin
                         fechaini := SalesPrice2."Starting Date";
                         if fechaini=0D THEN begin

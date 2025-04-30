@@ -15916,11 +15916,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         end;
         ///IF Rec110."Envio a-Nº Telefono"<>'' THEN BEGIN
         ///     NTEL2:=FORMAT(Rec110."Envio a-Nº Telefono");
-        ///END;
-
-
-
-
+        ///END
         REEMBOLSO := '';
 
 

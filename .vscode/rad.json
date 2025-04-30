@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-﻿{"Added":[],"Modified":[{"Id":50051,"Kind":16,"Name":"Posted SalesShipmentUpdate","Namespace":""},{"Id":50002,"Kind":11,"Name":"Eventos","Namespace":""}],"Removed":[]}
-=======
-﻿{"Added":[],"Modified":[{"Kind":106,"Name":"RequestOptionsPage","Namespace":""},{"Id":50103,"Kind":15,"Name":"ADAIATREXP","Namespace":""},{"Id":50102,"Kind":15,"Name":"ADAIATRREC","Namespace":""}],"Removed":[]}
->>>>>>> 10d7197daa451c1c225310721029ab3b7b1ea684
+﻿{"Added":[],"Modified":[{"Id":50099,"Kind":12,"Name":"Pantalla almacen Pascual5","Namespace":""},{"Id":50067,"Kind":11,"Name":"Automaticos Carrefour","Namespace":""},{"Id":50006,"Kind":15,"Name":"ADAIA_Alta del TRSTOART","Namespace":""},{"Id":50071,"Kind":11,"Name":"Automaticos Leroy Merlin","Namespace":""},{"Id":50007,"Kind":16,"Name":"Sales Quote","Namespace":""},{"Id":50055,"Kind":11,"Name":"Fichero Stock.csv","Namespace":""},{"Id":50999,"Kind":11,"Name":"FicherosHagen","Namespace":""},{"Id":50101,"Kind":15,"Name":"ADAIA_Alta del TRSTO","Namespace":""},{"Id":50010,"Kind":11,"Name":"Automaticos Cartas","Namespace":""},{"Id":50045,"Kind":11,"Name":"Automaticos TIENDA ANIMAL","Namespace":""},{"Id":50072,"Kind":11,"Name":"Automaticos MIRAVIA","Namespace":""},{"Kind":106,"Name":"RequestOptionsPage","Namespace":""}],"Removed":[]}

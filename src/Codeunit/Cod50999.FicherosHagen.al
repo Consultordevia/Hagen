@@ -361,6 +361,9 @@ codeunit 50999 FicherosHagen
                         if CopyStr(FileText, 1, 4) = 'STSI' then begin
                             Xmlport.Import(Xmlport::"ADAIA_Alta del TRSTO", InStream);
                         end;
+                        if CopyStr(FileText, 1, 4) = 'STAR' then begin
+                            Xmlport.Import(Xmlport::"ADAIA_Alta del TRSTOART", InStream);
+                        end;
                         if CopyStr(FileText, 1, 4) = 'CRCA' then begin
                             Xmlport.Import(Xmlport::"ADAIATRREC", InStream);
                         end;
