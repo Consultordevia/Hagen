@@ -1,5 +1,29 @@
 pageextension 50056 "SII History" extends "SII History"
 {
+
+    layout
+    {
+        addafter("Posting Date")
+        {
+            field(TipoDocumento; Rec.TipoDocumento)
+            {
+                ApplicationArea = All;
+            }
+            field(NDocumento; Rec.NDocumento)
+            {
+                ApplicationArea = All;
+            }
+            field(ClienteProveedor; Rec.ClienteProveedor)
+            {
+                ApplicationArea = All;
+            }
+            field(FechaReg; Rec.FechaReg)
+            {
+                ApplicationArea = All;
+            }
+        }
+    }
+
     actions
     {
         addafter(Retry)
