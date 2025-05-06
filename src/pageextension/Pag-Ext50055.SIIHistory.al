@@ -1,4 +1,4 @@
-pageextension 50055 "SII History" extends "SII History"
+pageextension 50056 "SII History" extends "SII History"
 {
     actions
     {
