@@ -416,8 +416,8 @@ tableextension 50113 Item extends Item
             CalcFormula = sum("Sales Invoice Line".Quantity where("No." = field("No."),
                                                                    "Posting Date" = field("Date Filter"),
                                                                    "Sell-to Country/Region Code" = field("Filtro Pais"),
-                                                                   "Sell-to Customer No." = field("Filtro Cliente")/*,
-                                                                   "Grupo clientes" = field("Filtro Grupo clientes")*/));
+                                                                   "Sell-to Customer No." = field("Filtro Cliente"),
+                                                                   "Grupo clientes" = field("Filtro Grupo clientes")));
             Editable = false;
             FieldClass = FlowField;
         }
@@ -436,8 +436,8 @@ tableextension 50113 Item extends Item
             CalcFormula = sum("Sales Invoice Line".Amount where("No." = field("No."),
                                                                  "Posting Date" = field("Date Filter"),
                                                                  "Sell-to Country/Region Code" = field("Filtro Pais"),
-                                                                 "Sell-to Customer No." = field("Filtro Cliente")/*,
-                                                                 "Grupo clientes" = field("Filtro Grupo clientes")*/));
+                                                                 "Sell-to Customer No." = field("Filtro Cliente"),
+                                                                 "Grupo clientes" = field("Filtro Grupo clientes")));
             Editable = false;
             FieldClass = FlowField;
         }
@@ -624,7 +624,7 @@ tableextension 50113 Item extends Item
             Editable = false;
             FieldClass = FlowField;
         }
-        
+
         field(50088; "No permite pedido"; Boolean)
         {
 
@@ -1247,11 +1247,11 @@ tableextension 50113 Item extends Item
         field(50327; "PVP-Web"; Decimal)
         {
             ///CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
-                                                                           ///"Sales Code" = const('2022-2')));
+            ///"Sales Code" = const('2022-2')));
             Caption = 'PVP-Web';
             ///FieldClass = FlowField;
         }
-          field(50347; "PVP-Web2"; Decimal)
+        field(50347; "PVP-Web2"; Decimal)
         {
             CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
                                                                            "Sales Code" = const('2022-2')));

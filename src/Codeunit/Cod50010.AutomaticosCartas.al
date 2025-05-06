@@ -3906,6 +3906,182 @@ OutStream.Write('Tercera línea después del salto');
     end;
 
 
+//
+
+    procedure REGISTRASOLOEXPE(var Rec36: Record "Sales Header")
+    var
+        Rec362: Record "Sales Header";
+        RecBom: Record "BOM Component";
+        User: Record user;
+    begin
+
+
+
+
+        RecCV.Get(Rec36."Document Type", Rec36."No.");
+        PORTES := 0;
+
+        if Rec36."No incluir portes" = false then begin
+            Rec36.CalcFields(Rec36.Base);
+            if not Rec91.Get(Rec36."Usuario alta") then
+                if User.get(rec36.SystemCreatedBy) then
+                    rec91.get(User."User Name");
+
+            if Rec91.Comercial <> '' then begin
+                if Rec36.Base >= 190 then begin
+                    PORTES := 0;
+                end;
+                if Rec36.Base < 190 then begin
+                    PORTES := ROUND(Rec36.Base * 12 / 100, 0.01);
+                end;
+            end;
+            if Rec91.Comercial = '' then begin
+                if Rec36.Base >= 190 then begin
+                    PORTES := 0;
+                end;
+                if Rec36.Base < 190 then begin
+                    PORTES := ROUND(Rec36.Base * 12 / 100, 0.01);
+                end;
+            end;
+            RecCVC.Get;
+            if PORTES <> 0 then begin
+                if PORTES < RecCVC."Porte minimo" then begin
+                    PORTES := RecCVC."Porte minimo";
+                end;
+            end;
+            if Rec91."Es el cliente nº" <> '' then begin
+                if Rec36.Base >= Rec91."Porte minimo" then begin
+                    PORTES := 0;
+                end;
+                if Rec36.Base < Rec91."Porte minimo" then begin
+                    PORTES := Rec91."Porte por usuario";
+                end;
+            end;
+
+
+            RecBom.Reset;
+            RecBom.SetRange(RecBom."Parent Item No.", Rec36."No.");
+            RecBom.SetRange(RecBom.Optimo, true);
+            if RecBom.FindFirst then begin
+                PORTES := RecBom.Euros;
+            end;
+            if Rec36.Base > RecCVC."Importe para cobrar porte" then begin
+                PORTES := 0;
+            end;
+
+
+            if PORTES <> 0 then begin
+                ReleaseSalesDoc.Reopen(RecCV);
+                RecLV.Reset;
+                RecLV.SetRange(RecLV."Document Type", Rec36."Document Type");
+                RecLV.SetRange(RecLV."Document No.", Rec36."No.");
+                RecLV.SetRange(RecLV."No.", '62400000');
+                if not RecLV.FindFirst then begin
+                    RecLV.Reset;
+                    RecLV.SetRange(RecLV."Document Type", Rec36."Document Type");
+                    RecLV.SetRange(RecLV."Document No.", Rec36."No.");
+                    if RecLV.FindLast then begin
+                        g := RecLV."VAT Prod. Posting Group";
+                        g2 := RecLV."Gen. Prod. Posting Group";
+                        RecLV2 := RecLV;
+                        RecLV2."Line No." := RecLV."Line No." + 10000;
+                        RecLV2.Type := 1;
+                        RecLV2.Validate(RecLV2."No.", '62400000');
+                        RecLV2.Validate(RecLV2.Quantity, 1);
+                        RecLV2.Validate(RecLV2."Unit Price", PORTES);
+                        RecLV2.Validate(RecLV2."VAT Prod. Posting Group", g);
+                        RecLV2."VAT Identifier" := g;
+                        RecLV2."Gen. Prod. Posting Group" := g2;
+                        RecLV2.Insert;
+                    end;
+                end;
+            end;
+
+        end;
+
+
+
+
+        RecCusto.Get(Rec36."Sell-to Customer No.");
+
+
+        ENVIAR := true;
+        if Rec36.Dropshipping = false then begin
+            if Rec36."Albaran sin detalle" = true then begin
+                ENVIAR := false;
+            end;
+        end;
+
+
+
+
+
+        if RecCusto."Tipo facturación" = 0 then begin
+            Codeunit.Run(Codeunit::"Albaranar + imprimir", Rec36);
+            NCLIE := Rec36."Sell-to Customer No.";
+            NFACT := Rec36."Last Posting No.";
+            IMPRIMEFAC;
+        end;
+        if RecCusto."Tipo facturación" <> 0 then begin
+            Codeunit.Run(Codeunit::"Albaranar + imprimir", Rec36);
+        end;
+
+
+
+        pendi := 0;
+        RecLV.Reset;
+        RecLV.SetRange(RecLV."Document Type", Rec36."Document Type");
+        RecLV.SetRange(RecLV."Document No.", Rec36."No.");
+        if RecLV.FindSet then
+            repeat
+                if RecItem2.Get(RecLV."No.") then begin
+                    if (RecLV."Outstanding Quantity" <> 0) then begin
+                        if (not RecItem2."No permite pedido") then begin
+                            pendi := pendi + RecLV."Outstanding Quantity";
+                        end;
+                    end;
+                end;
+            until RecLV.Next = 0;
+
+        if pendi <> 0 then begin
+            ///Rec36."Anula restos":=TRUE;
+            ///Rec36.MODIFY;
+        end;
+        if RecCV.Get(Rec36."Document Type", Rec36."No.") then begin
+
+
+        end;
+
+        if RecCV.Get(Rec36."Document Type", Rec36."No.") then begin
+            Clear(ReleaseSalesDoc);
+            ReleaseSalesDoc.Run(RecCV);
+
+            pdte := 0;
+            Rec37.Reset;
+            Rec37.SetRange(Rec37."Document Type", RecCV."Document Type");
+            Rec37.SetRange(Rec37."Document No.", RecCV."No.");
+            if Rec37.FindSet then
+                repeat
+                    if (Rec37."Nº expedición" = '') and (RecCV."Fecha envio pendiente stock" <> 0D) then begin
+                        pdte := pdte + Rec37."Outstanding Quantity";
+                        stock := 0;
+                    end;
+                until Rec37.Next = 0;
+            if pdte = 0 then begin
+                RecCV."Estado pedido" := 3;
+                RecCV.Modify;
+            end;
+            if pdte <> 0 then begin
+                RecCV."Estado pedido" := 4;
+                RecCV."Nº expedición" := '';
+                RecCV.Modify;
+            end;
+
+
+        end;
+
+    end;
+
     procedure REGISTRAEXPETRANF(var RecTC: Record "Transfer Header")
     begin
 
