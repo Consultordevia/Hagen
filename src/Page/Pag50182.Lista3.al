@@ -291,15 +291,15 @@ page 50182 Lista3
                     ToolTip = 'Specifies the sum of payments received from the customer.';
                 }
 #if not CLEAN23
-                field("Coupled to CRM"; Rec."Coupled to CRM")
-                {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies that the customer is coupled to an account in Dataverse.';
-                    Visible = false;
-                    ObsoleteState = Pending;
-                    ObsoleteReason = 'Replaced by flow field Coupled to Dataverse';
-                    ObsoleteTag = '23.0';
-                }
+                // field("Coupled to CRM"; Rec."Coupled to CRM")
+                // {
+                //     ApplicationArea = All;
+                //     ToolTip = 'Specifies that the customer is coupled to an account in Dataverse.';
+                //     Visible = false;
+                //     ObsoleteState = Pending;
+                //     ObsoleteReason = 'Replaced by flow field Coupled to Dataverse';
+                //     ObsoleteTag = '23.0';
+                // }
 #endif
                 field("Coupled to Dataverse"; Rec."Coupled to Dataverse")
                 {

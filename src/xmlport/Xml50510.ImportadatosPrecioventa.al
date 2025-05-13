@@ -5,7 +5,7 @@ XmlPort 50510 "Importa datos precio venta"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -20,7 +20,7 @@ XmlPort 50510 "Importa datos precio venta"
                 {
                 }
                 textelement(D2)
-                
+
                 {
 
                     trigger OnAfterAssignVariable()
@@ -76,7 +76,7 @@ XmlPort 50510 "Importa datos precio venta"
         GLBudgetName: Record "G/L Budget Name";
         GLBudgetEntry3: Record "G/L Budget Entry";
         AnalysisView: Record "Analysis View";
-        FileName: Text[250];
+
         SheetName: Text[250];
         ToGLBudgetName: Code[10];
         DimCode: array[8] of Code[20];
@@ -297,12 +297,12 @@ XmlPort 50510 "Importa datos precio venta"
 
     local procedure ValidateHeaderTag()
     var
-    dd2: Decimal;
+        dd2: Decimal;
     begin
         v.Open('#1#######################################');
         if RecItem.get(d1) then begin
-            Evaluate(dd2,D2);
-            RecItem."Unit Price":=dd2;
+            Evaluate(dd2, D2);
+            RecItem."Unit Price" := dd2;
             RecItem.Modify;
             v.Update(1, RecItem."No.");
             v.Close();

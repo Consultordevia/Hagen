@@ -5,7 +5,7 @@ XmlPort 50501 "Importa datos nav2018-3"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -75,7 +75,7 @@ XmlPort 50501 "Importa datos nav2018-3"
         GLBudgetName: Record "G/L Budget Name";
         GLBudgetEntry3: Record "G/L Budget Entry";
         AnalysisView: Record "Analysis View";
-        FileName: Text[250];
+
         SheetName: Text[250];
         ToGLBudgetName: Code[10];
         DimCode: array[8] of Code[20];

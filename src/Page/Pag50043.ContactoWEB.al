@@ -68,10 +68,10 @@ page 50043 ContactoWEB
                 {
                     ToolTip = 'Specifies the county of the address.';
                 }
-                field("Coupled to CRM"; Rec."Coupled to CRM")
-                {
-                    ToolTip = 'Specifies that the contact is coupled to a contact in Dataverse.';
-                }
+                // field("Coupled to CRM"; Rec."Coupled to CRM")
+                // {
+                //     ToolTip = 'Specifies that the contact is coupled to a contact in Dataverse.';
+                // }
                 field("Coupled to Dataverse"; Rec."Coupled to Dataverse")
                 {
                     ToolTip = 'Specifies that the contact is coupled to a contact in Dataverse.';

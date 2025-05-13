@@ -920,7 +920,7 @@ Page 50032 "Pantalla Almacen"
 
     var
         ApplicationAreaSetup: Record "Application Area Setup";
-        PowerBIUserConfiguration: Record "Power BI User Configuration";
+        // PowerBIUserConfiguration: Record "Power BI User Configuration";
         /////-SetPowerBIUserConfig: Codeunit UnknownCodeunit6305;
         DocPrint: Codeunit "Document-Print";
         ReportPrint: Codeunit "Test Report-Print";

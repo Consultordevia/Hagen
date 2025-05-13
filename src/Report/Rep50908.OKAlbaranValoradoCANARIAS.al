@@ -881,7 +881,7 @@ Report 50908 "OK Albaran Valorado CANARIAS"
         SalesSetup: Record "Sales & Receivables Setup";
         DimSetEntry1: Record "Dimension Set Entry";
         DimSetEntry2: Record "Dimension Set Entry";
-        Language: Record Language;
+
         TrackingSpecBuffer: Record "Tracking Specification" temporary;
         PostedAsmHeader: Record "Posted Assembly Header";
         PostedAsmLine: Record "Posted Assembly Line";

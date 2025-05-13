@@ -156,10 +156,10 @@ page 50009 CabFacturas
                 {
                     ToolTip = 'Specifies if the posted sales invoice is a corrective document.';
                 }
-                field("Coupled to CRM"; Rec."Coupled to CRM")
-                {
-                    ToolTip = 'Specifies that the posted sales order is coupled to a sales order in Dynamics 365 Sales.';
-                }
+                // field("Coupled to CRM"; Rec."Coupled to CRM")
+                // {
+                //     ToolTip = 'Specifies that the posted sales order is coupled to a sales order in Dynamics 365 Sales.';
+                // }
                 field("Coupled to Dataverse"; Rec."Coupled to Dataverse")
                 {
                     ToolTip = 'Specifies that the posted sales order is coupled to a sales order in Dynamics 365 Sales.';

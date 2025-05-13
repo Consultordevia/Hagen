@@ -5,7 +5,7 @@ XmlPort 50502 "Importa datos nav2018-CLIE"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -83,7 +83,7 @@ XmlPort 50502 "Importa datos nav2018-CLIE"
         GLBudgetName: Record "G/L Budget Name";
         GLBudgetEntry3: Record "G/L Budget Entry";
         AnalysisView: Record "Analysis View";
-        FileName: Text[250];
+
         SheetName: Text[250];
         ToGLBudgetName: Code[10];
         DimCode: array[8] of Code[20];

@@ -1119,7 +1119,7 @@ tableextension 50113 Item extends Item
         }
         field(50311; "CUANTOS UDS EANS"; Integer)
         {
-            CalcFormula = count("Item Cross Reference" where("Item No." = field("No."),
+            CalcFormula = count("Item Reference" where("Item No." = field("No."),
                                                               "Unit of Measure" = const('UDS')));
             FieldClass = FlowField;
         }
