@@ -63,19 +63,22 @@ pageextension 50051 "Posted SalesShipmentUpdate" extends "Posted Sales Shipment 
                                 case ShipToOptions of
                                     ShipToOptions::"Default (Sell-to Address)":
                                         begin
-                                            // Order.SetRange("No.", rec."Order No.");
-                                            // Order.FindFirst();       // TODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-                                            // Order.Validate("Ship-to Code", '');
+                                            rec.Validate("Ship-to Code", '');
                                             // Rec.CopySellToAddressToShipToAddress();
                                             //TODO Ir a customer y coger los campos de la tabla ship to.
-                                            //                                             "Ship-to Address" := "Sell-to Address";
-                                            // "Ship-to Address 2" := "Sell-to Address 2";
-                                            // "Ship-to City" := "Sell-to City";
-                                            // "Ship-to Contact" := "Sell-to Contact";
-                                            // "Ship-to Country/Region Code" := "Sell-to Country/Region Code";
-                                            // "Ship-to County" := "Sell-to County";
-                                            // "Ship-to Post Code" := "Sell-to Post Code";
-                                            // "Ship-to Phone No." := "Sell-to Phone No.";
+                                            Customer.Get(rec."Sell-to Customer No.");
+                                            rec."Ship-to Code" := Customer."Ship-to Code";
+                                            rec."Ship-to Name" := Customer.Name;
+                                            rec."Ship-to Name 2" := Customer."Name 2";
+                                            rec."Ship-to Address" := Customer.Address;
+                                            rec."Ship-to Address 2" := Customer."Address 2";
+                                            rec."Ship-to City" := Customer.City;
+                                            rec."Ship-to Contact" := Customer.Contact;
+                                            rec."Ship-to Country/Region Code" := Customer."Country/Region Code";
+                                            rec."Ship-to County" := Customer."County";
+                                            rec."Ship-to Post Code" := Customer."Post Code";
+                                            rec."Ship-to Phone No." := Customer."Phone No.";
+                                            IsShipToCountyVisible := FormatAddress.UseCounty(ShipToAddress."Country/Region Code");
 
                                         end;
                                     ShipToOptions::"Alternate Shipping Address":
@@ -237,8 +240,49 @@ pageextension 50051 "Posted SalesShipmentUpdate" extends "Posted Sales Shipment 
     actions
     {
     }
+    procedure CalculateShipBillToOptions(var ShipToOptions: Enum "Sales Ship-to Options"; var SalesHeader: Record "Sales Shipment Header")
+    var
+        ShipToNameEqualsSellToName: Boolean;
+    begin
+        ShipToNameEqualsSellToName :=
+            (SalesHeader."Ship-to Name" = SalesHeader."Sell-to Customer Name") and (SalesHeader."Ship-to Name 2" = SalesHeader."Sell-to Customer Name 2");
 
+        case true of
+            (SalesHeader."Ship-to Code" = '') and ShipToNameEqualsSellToName and ShipToAddressEqualsSellToAddress():
+                ShipToOptions := ShipToOptions::"Default (Sell-to Address)";
+            (SalesHeader."Ship-to Code" = '') and (not ShipToNameEqualsSellToName or not ShipToAddressEqualsSellToAddress()):
+                ShipToOptions := ShipToOptions::"Custom Address";
+            SalesHeader."Ship-to Code" <> '':
+                ShipToOptions := ShipToOptions::"Alternate Shipping Address";
+        end;
 
+    end;
+
+    procedure ShipToAddressEqualsSellToAddress(): Boolean
+    begin
+        exit(IsShipToAddressEqualToSellToAddress(Rec, Rec));
+    end;
+
+    local procedure IsShipToAddressEqualToSellToAddress(SalesHeaderWithSellTo: Record "Sales Shipment Header"; SalesHeaderWithShipTo: Record "Sales Shipment Header"): Boolean
+    var
+        Result: Boolean;
+    begin
+        Result :=
+          (SalesHeaderWithSellTo."Sell-to Address" = SalesHeaderWithShipTo."Ship-to Address") and
+          (SalesHeaderWithSellTo."Sell-to Address 2" = SalesHeaderWithShipTo."Ship-to Address 2") and
+          (SalesHeaderWithSellTo."Sell-to City" = SalesHeaderWithShipTo."Ship-to City") and
+          (SalesHeaderWithSellTo."Sell-to County" = SalesHeaderWithShipTo."Ship-to County") and
+          (SalesHeaderWithSellTo."Sell-to Post Code" = SalesHeaderWithShipTo."Ship-to Post Code") and
+          (SalesHeaderWithSellTo."Sell-to Country/Region Code" = SalesHeaderWithShipTo."Ship-to Country/Region Code") and
+          (SalesHeaderWithSellTo."Sell-to Phone No." = SalesHeaderWithShipTo."Ship-to Phone No.") and
+          (SalesHeaderWithSellTo."Sell-to Contact" = SalesHeaderWithShipTo."Ship-to Contact");
+        exit(Result);
+    end;
+
+    trigger OnOpenPage()
+    begin
+        CalculateShipBillToOptions(ShipToOptions, rec);
+    end;
 
     protected var
         ShipToOptions: Enum "Sales Ship-to Options";
