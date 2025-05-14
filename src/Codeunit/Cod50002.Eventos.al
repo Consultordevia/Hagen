@@ -1149,7 +1149,18 @@ codeunit 50002 Eventos
                 (SalesShipmentHeader."Nº Palets" <> xSalesShipmentHeader."Nº Palets") or
                 (SalesShipmentHeader."Total peso" <> xSalesShipmentHeader."Total peso") or
                 (SalesShipmentHeader.ASN <> xSalesShipmentHeader.ASN) or
-                (SalesShipmentHeader."Observación para transporte" <> xSalesShipmentHeader."Observación para transporte");
+                (SalesShipmentHeader."Nº expedición" <> xSalesShipmentHeader."Nº expedición") or
+                (SalesShipmentHeader."Ship-to Address" <> xSalesShipmentHeader."Ship-to Address") or
+                (SalesShipmentHeader."Ship-to Address 2" <> xSalesShipmentHeader."Ship-to Address 2") or
+                (SalesShipmentHeader."Ship-to Name" <> xSalesShipmentHeader."Ship-to Name") or
+                (SalesShipmentHeader."Ship-to Name 2" <> xSalesShipmentHeader."Ship-to Name 2") or
+                (SalesShipmentHeader."Ship-to City" <> xSalesShipmentHeader."Ship-to City") or
+                (SalesShipmentHeader."Ship-to County" <> xSalesShipmentHeader."Ship-to County") or
+                (SalesShipmentHeader."Ship-to Post Code" <> xSalesShipmentHeader."Ship-to Post Code") or
+                (SalesShipmentHeader."Ship-to Country/Region Code" <> xSalesShipmentHeader."Ship-to Country/Region Code") or
+                (SalesShipmentHeader."Ship-to Phone No." <> xSalesShipmentHeader."Ship-to Phone No.") or
+                (SalesShipmentHeader."Ship-to Code" <> xSalesShipmentHeader."Ship-to Code") or
+                (SalesShipmentHeader."Ship-to Contact" <> xSalesShipmentHeader."Ship-to Contact");
         end;
     end;
 
@@ -1158,7 +1169,7 @@ codeunit 50002 Eventos
     local procedure OnBeforeSalesShptHeaderModify(var SalesShptHeader: Record "Sales Shipment Header"; FromSalesShptHeader: Record "Sales Shipment Header")
     begin
         SalesShptHeader."Numero segumiento" := FromSalesShptHeader."Numero segumiento";
-        SalesShptHeader."Nº expedición" := FromSalesShptHeader."Package Tracking No.";
+        // SalesShptHeader."Nº expedición" := FromSalesShptHeader."Package Tracking No.";
         SalesShptHeader."Estado Expedicion" := FromSalesShptHeader."Estado Expedicion";
         SalesShptHeader."Nº bultos" := FromSalesShptHeader."Nº bultos";
         SalesShptHeader."Total bultos" := FromSalesShptHeader."Total bultos";
@@ -1166,6 +1177,18 @@ codeunit 50002 Eventos
         SalesShptHeader."Total peso" := FromSalesShptHeader."Total peso";
         SalesShptHeader.ASN := FromSalesShptHeader.ASN;
         SalesShptHeader."Observación para transporte" := FromSalesShptHeader."Observación para transporte";
+        SalesShptHeader."Nº expedición" := FromSalesShptHeader."Nº expedición";
+        SalesShptHeader."Ship-to Address" := FromSalesShptHeader."Ship-to Address";
+        SalesShptHeader."Ship-to Address 2" := FromSalesShptHeader."Ship-to Address 2";
+        SalesShptHeader."Ship-to Name" := FromSalesShptHeader."Ship-to Name";
+        SalesShptHeader."Ship-to Name 2" := FromSalesShptHeader."Ship-to Name 2";
+        SalesShptHeader."Ship-to City" := FromSalesShptHeader."Ship-to City";
+        SalesShptHeader."Ship-to County" := FromSalesShptHeader."Ship-to County";
+        SalesShptHeader."Ship-to Post Code" := FromSalesShptHeader."Ship-to Post Code";
+        SalesShptHeader."Ship-to Country/Region Code" := FromSalesShptHeader."Ship-to Country/Region Code";
+        SalesShptHeader."Ship-to Phone No." := FromSalesShptHeader."Ship-to Phone No.";
+        SalesShptHeader."Ship-to Contact" := FromSalesShptHeader."Ship-to Contact";
+        SalesShptHeader."Ship-to Code" := FromSalesShptHeader."Ship-to Code";
     end;
 
 }

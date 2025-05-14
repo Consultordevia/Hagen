@@ -6,8 +6,8 @@ Report 50902 "OK Albaran NO valorado"
     Caption = 'OK Albaran NO valorado';
     Permissions = TableData "Sales Shipment Line" = rimd;
     PreviewMode = PrintLayout;
- 
-     
+
+
     ApplicationArea = all;
     UsageCategory = ReportsAndAnalysis;
     AdditionalSearchTerms = 'OK Albaran NO valorado';
@@ -781,7 +781,7 @@ Report 50902 "OK Albaran NO valorado"
         SalesSetup: Record "Sales & Receivables Setup";
         DimSetEntry1: Record "Dimension Set Entry";
         DimSetEntry2: Record "Dimension Set Entry";
-        Language: Record Language;
+
         TrackingSpecBuffer: Record "Tracking Specification" temporary;
         PostedAsmHeader: Record "Posted Assembly Header";
         PostedAsmLine: Record "Posted Assembly Line";

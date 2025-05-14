@@ -1274,7 +1274,7 @@ Report 50063 "OK Nueva Factura Venta"
         DimSetEntry1: Record "Dimension Set Entry";
         DimSetEntry2: Record "Dimension Set Entry";
         RespCenter: Record "Responsibility Center";
-        Language: Record Language;
+
         CurrExchRate: Record "Currency Exchange Rate";
         TempPostedAsmLine: Record "Posted Assembly Line" temporary;
         VATClause: Record "VAT Clause";

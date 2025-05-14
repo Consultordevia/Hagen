@@ -5,7 +5,7 @@ XmlPort 50511 "Importa datos PVP WEB"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;    
+    TextEncoding = UTF16;
 
 
     schema
@@ -21,7 +21,7 @@ XmlPort 50511 "Importa datos PVP WEB"
                 {
                 }
                 textelement(D2)
-                
+
                 {
 
                     trigger OnAfterAssignVariable()
@@ -77,7 +77,7 @@ XmlPort 50511 "Importa datos PVP WEB"
         GLBudgetName: Record "G/L Budget Name";
         GLBudgetEntry3: Record "G/L Budget Entry";
         AnalysisView: Record "Analysis View";
-        FileName: Text[250];
+
         SheetName: Text[250];
         ToGLBudgetName: Code[10];
         DimCode: array[8] of Code[20];
@@ -298,12 +298,12 @@ XmlPort 50511 "Importa datos PVP WEB"
 
     local procedure ValidateHeaderTag()
     var
-    dd2: Decimal;
+        dd2: Decimal;
     begin
         v.Open('#1#######################################');
         if RecItem.get(d1) then begin
-            Evaluate(dd2,D2);
-            RecItem."PVP-Web":=dd2;
+            Evaluate(dd2, D2);
+            RecItem."PVP-Web" := dd2;
             RecItem.Modify;
             v.Update(1, RecItem."No.");
             v.Close();

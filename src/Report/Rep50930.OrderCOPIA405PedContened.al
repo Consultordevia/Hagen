@@ -1192,7 +1192,7 @@ Report 50930 "Order COPIA 405 - Ped Contened"
         PrepmtDimSetEntry: Record "Dimension Set Entry";
         PrepmtInvBuf: Record "Prepayment Inv. Line Buffer" temporary;
         RespCenter: Record "Responsibility Center";
-        Language: Record Language;
+
         CurrExchRate: Record "Currency Exchange Rate";
         PurchSetup: Record "Purchases & Payables Setup";
         FormatAddr: Codeunit "Format Address";

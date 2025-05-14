@@ -271,15 +271,15 @@ page 50064 ClientesWS
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Specifies the sum of payments received from the customer.';
                 }
-                field("CoupledtoCRM"; Rec."Coupled to CRM")
-                {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies that the customer is coupled to an account in Dataverse.';
-                    Visible = false;
-                    ObsoleteState = Pending;
-                    ObsoleteReason = 'Replaced by flow field Coupled to Dataverse';
-                    ObsoleteTag = '23.0';
-                }
+                // field("CoupledtoCRM"; Rec."Coupled to CRM")
+                // {
+                //     ApplicationArea = All;
+                //     ToolTip = 'Specifies that the customer is coupled to an account in Dataverse.';
+                //     Visible = false;
+                //     ObsoleteState = Pending;
+                //     ObsoleteReason = 'Replaced by flow field Coupled to Dataverse';
+                //     ObsoleteTag = '23.0';
+                // }
                 field("CoupledtoDataverse"; Rec."Coupled to Dataverse")
                 {
                     ApplicationArea = All;
