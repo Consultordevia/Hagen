@@ -98,7 +98,7 @@ XmlPort 50002 "Importa Descuentos"
         GLBudgetName: Record "G/L Budget Name";
         GLBudgetEntry3: Record "G/L Budget Entry";
         AnalysisView: Record "Analysis View";
-        FileName: Text[250];
+
         SheetName: Text[250];
         ToGLBudgetName: Code[10];
         DimCode: array[8] of Code[20];

@@ -689,8 +689,10 @@ Report 50035 "Albaran de venta Canarias"
 
             }
             trigger OnAfterGetRecord();
+            var
+                LanguageLocal: Codeunit "Language";
             begin
-                CurrReport.Language := Language.GetLanguageID("Language Code");
+                CurrReport.LANGUAGE := LanguageLocal.GetLanguageIdOrDefault("Language Code");
                 ///NALBA:=COPYSTR("Sales Shipment Header"."Order No.",2,3)+COPYSTR("Sales Shipment Header"."Order No.",6,4);
                 NALBA := CopyStr("Sales Shipment Header"."Order No.", 3, 2) + CopyStr("Sales Shipment Header"."Order No.", 6, 5);
                 ///50058
@@ -960,7 +962,7 @@ Report 50035 "Albaran de venta Canarias"
         PostedDocDim1: Record "Dimension Set Entry";
         PostedDocDim2: Record "Dimension Set Entry";
         RespCenter: Record "Responsibility Center";
-        Language: Codeunit Language;
+        // Language: Codeunit Language;
         CurrExchRate: Record "Currency Exchange Rate";
         SalesInvCountPrinted: Codeunit "Sales Inv.-Printed";
         FormatAddr: Codeunit "Format Address";

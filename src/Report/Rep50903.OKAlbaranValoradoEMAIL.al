@@ -662,7 +662,7 @@ Report 50903 "OK Albaran Valorado EMAIL"
 
             trigger OnAfterGetRecord()
             begin
-                CurrReport.Language := Language.GetLanguageID("Language Code");
+                // CurrReport.Language := Language.GetLanguageID("Language Code");
 
                 FormatAddressFields("Sales Shipment Header");
                 FormatDocumentFields("Sales Shipment Header");
@@ -785,7 +785,7 @@ Report 50903 "OK Albaran Valorado EMAIL"
         SalesSetup: Record "Sales & Receivables Setup";
         DimSetEntry1: Record "Dimension Set Entry";
         DimSetEntry2: Record "Dimension Set Entry";
-        Language: Codeunit Language;
+        // Language: Codeunit Language;
         TrackingSpecBuffer: Record "Tracking Specification" temporary;
         PostedAsmHeader: Record "Posted Assembly Header";
         PostedAsmLine: Record "Posted Assembly Line";

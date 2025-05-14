@@ -26,8 +26,8 @@ Codeunit 50033 "ColaCanarias"
         RecSLDC: Record "Sales Line Discount";
         RecUMPE: Record "Item Unit of Measure";
         RecUMPC: Record "Item Unit of Measure";
-        Rec83: Record "Item Journal Line";         
-        Rec32: Record "Item Ledger Entry";         
+        Rec83: Record "Item Journal Line";
+        Rec32: Record "Item Ledger Entry";
         ITEM: Record Item;
         Existencia: Decimal;
         atraspasar: Decimal;
@@ -51,7 +51,7 @@ Codeunit 50033 "ColaCanarias"
         RecUMPE.ChangeCompany('ROLF C HAGEN ESPAÑA S.A.');
         if RecUMPE.FindFirst then
             repeat
-                VENTANA.Update(1, FORMAT('UMP')+'-'+FORMAT(RecUMPE."Item No."));
+                VENTANA.Update(1, FORMAT('UMP') + '-' + FORMAT(RecUMPE."Item No."));
                 RecUMPC.ChangeCompany('HAGEN CANARIAS S.C.');
                 RecUMPC.SetRange("Item No.", RecUMPE."Item No.");
                 RecUMPC.SetRange(Code, RecUMPE.Code);
@@ -89,7 +89,7 @@ Codeunit 50033 "ColaCanarias"
         RecItemE.ChangeCompany('ROLF C HAGEN ESPAÑA S.A.');
         if RecItemE.FindFirst then
             repeat
-                VENTANA.Update(1, FORMAT('PROD')+'-'+FORMAT(RecItemE."No."));
+                VENTANA.Update(1, FORMAT('PROD') + '-' + FORMAT(RecItemE."No."));
                 RecItemC.ChangeCompany('HAGEN CANARIAS S.C.');
                 RecItemC.SetRange("No.", RecItemE."No.");
                 IF RecItemC.FindFirst() THEN begin
@@ -163,7 +163,7 @@ Codeunit 50033 "ColaCanarias"
                     RecItemC."Variant Mandatory if Exists" := RecItemE."Variant Mandatory if Exists";
                     RecItemC."Cost of Open Production Orders" := RecItemE."Cost of Open Production Orders";
                     RecItemC."Application Wksh. User ID" := RecItemE."Application Wksh. User ID";
-                    RecItemC."Coupled to CRM" := RecItemE."Coupled to CRM";
+                    // RecItemC."Coupled to CRM" := RecItemE."Coupled to CRM";
                     RecItemC."Coupled to Dataverse" := RecItemE."Coupled to Dataverse";
                     RecItemC."Assembly Policy" := RecItemE."Assembly Policy";
                     RecItemC.GTIN := RecItemE.GTIN;
@@ -458,7 +458,7 @@ Codeunit 50033 "ColaCanarias"
             UNTIL RecItemE.NEXT = 0;
 
 
-            VENTANA.CLOSE;
+        VENTANA.CLOSE;
     end;
 
     local procedure PreciosVenta()
@@ -468,7 +468,7 @@ Codeunit 50033 "ColaCanarias"
         RecSPE.ChangeCompany('ROLF C HAGEN ESPAÑA S.A.');
         if RecSPE.FindFirst then
             repeat
-                VENTANA.Update(1, FORMAT('SP')+'-'+FORMAT(RecSPE."Item No."));
+                VENTANA.Update(1, FORMAT('SP') + '-' + FORMAT(RecSPE."Item No."));
                 RecSPC.ChangeCompany('HAGEN CANARIAS S.C.');
                 RecSPC.SetRange("Item No.", RecSPE."Item No.");
                 RecSPC.SetRange("Sales Code", RecSPE."Sales Code");
@@ -484,7 +484,7 @@ Codeunit 50033 "ColaCanarias"
                     RecSPC."Allow Invoice Disc." := RecSPE."Allow Invoice Disc.";
                     RecSPC."VAT Bus. Posting Gr. (Price)" := RecSPE."VAT Bus. Posting Gr. (Price)";
                     RecSPC."Ending Date" := RecSPE."Ending Date";
-                    RecSPC."Coupled to CRM" := RecSPE."Coupled to CRM";
+                    // RecSPC."Coupled to CRM" := RecSPE."Coupled to CRM";
                     RecSPC."Coupled to Dataverse" := RecSPE."Coupled to Dataverse";
                     RecSPC."Allow Line Disc." := RecSPE."Allow Line Disc.";
                     RecSPC."Precio recomendado" := RecSPE."Precio recomendado";
@@ -534,7 +534,7 @@ Codeunit 50033 "ColaCanarias"
         RecSLDE.ChangeCompany('ROLF C HAGEN ESPAÑA S.A.');
         if RecSLDE.FindFirst then
             repeat
-                VENTANA.Update(1, FORMAT('SLD')+'-'+FORMAT(RecSLDE.Code));
+                VENTANA.Update(1, FORMAT('SLD') + '-' + FORMAT(RecSLDE.Code));
                 RecSLDC.ChangeCompany('HAGEN CANARIAS S.C.');
                 RecSLDC.SetRange(Code, RecSLDE.Code);
                 RecSLDC.SetRange("Sales Code", RecSLDE."Sales Code");
@@ -576,7 +576,7 @@ Codeunit 50033 "ColaCanarias"
     local procedure StockTenerife()
     begin
 
-    
+
         RecSDP.Reset;
         RecSDP.SetRange(RecSDP."Journal Template Name", 'PRODUCTO');
         RecSDP.SetRange(RecSDP.Name, 'TENERIFE');
@@ -600,25 +600,26 @@ Codeunit 50033 "ColaCanarias"
 
         RecItem2C.RESET;
         RecItem2C.ChangeCompany('HAGEN CANARIAS S.C.');
-        RecItem2C.SetFilter("Location Filter",'CAN','CAN');
-        if RecItem2C.FindSet then repeat
+        RecItem2C.SetFilter("Location Filter", 'CAN', 'CAN');
+        if RecItem2C.FindSet then
+            repeat
                 RecItem2C.CalcFields(Inventory);
                 ExistenciaC := RecItem2C.Inventory;
 
                 ExistenciaE := 0;
                 RecItem1E.RESET;
                 RecItem1E.ChangeCompany('ROLF C HAGEN ESPAÑA S.A.');
-                RecItem1E.SetFilter("Location Filter",'TENERIFE','TENERIFE');
-                RecItem1E.SetFilter("No.",RecItem2C."No."); 
+                RecItem1E.SetFilter("Location Filter", 'TENERIFE', 'TENERIFE');
+                RecItem1E.SetFilter("No.", RecItem2C."No.");
                 if RecItem1E.FindSet then BEGIN
                     RecItem1E.CalcFields(Inventory);
-                    ExistenciaE := RecItem1E.Inventory 
+                    ExistenciaE := RecItem1E.Inventory
                 END;
 
-                 
-                atraspasar := ExistenciaC-ExistenciaE;
-                if atraspasar > 0 then begin                    
-                    Rec83.ChangeCompany('ROLF C HAGEN ESPAÑA S.A.');                     
+
+                atraspasar := ExistenciaC - ExistenciaE;
+                if atraspasar > 0 then begin
+                    Rec83.ChangeCompany('ROLF C HAGEN ESPAÑA S.A.');
                     Rec83.Init;
                     Rec83."Journal Template Name" := 'PRODUCTO';
                     Rec83."Journal Batch Name" := 'TENERIFE';
@@ -644,8 +645,8 @@ Codeunit 50033 "ColaCanarias"
                     Rec83."Location Code" := 'TENERIFE';
                     Rec83.Insert;
                 end;
-            
-                    
+
+
             until RecItem2C.next = 0;
 
 
@@ -653,11 +654,11 @@ Codeunit 50033 "ColaCanarias"
         Rec83.SetRange(Rec83."Journal Template Name", 'PRODUCTO');
         Rec83.SetRange(Rec83."Journal Batch Name", 'TENERIFE');
         if Rec83.FindFirst then begin
-                CURegMov.Run(Rec83);
-        end;                        
+            CURegMov.Run(Rec83);
+        end;
 
     END;
 
-    
+
 }
 

@@ -774,7 +774,7 @@ Report 50904 "OK Albaran NO valorado EMAIL"
         SalesSetup: Record "Sales & Receivables Setup";
         DimSetEntry1: Record "Dimension Set Entry";
         DimSetEntry2: Record "Dimension Set Entry";
-        Language: Record Language;
+
         TrackingSpecBuffer: Record "Tracking Specification" temporary;
         PostedAsmHeader: Record "Posted Assembly Header";
         PostedAsmLine: Record "Posted Assembly Line";
