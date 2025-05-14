@@ -62,10 +62,20 @@ pageextension 50042 PostedSalesInvoices extends "Posted Sales Invoices"
                 trigger OnAction()
                 var
                     AutomaticosEDICOM: Codeunit "Automaticos EDICOM facturas";
+                    RecHFV: Record "Sales Invoice Header";
 
                 begin
 
-                    AutomaticosEDICOM.GrabaEDICOM(Rec."No.");
+                    RecHFV.CopyFilters(Rec);
+                    if RecHFV.FindSet() then
+                        repeat
+
+                            
+                            AutomaticosEDICOM.GrabaEDICOM(RecHFV."No.");
+
+                        until RecHFV.Next() = 0;
+
+                    //AutomaticosEDICOM.GrabaEDICOM(Rec."No.");
 
 
                 end;
