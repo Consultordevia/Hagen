@@ -56,6 +56,38 @@ pageextension 50056 "SII History" extends "SII History"
                 end;
 
             }
+            action(ActualizarDocumento)
+            {
+                ApplicationArea = All;
+                Caption = 'Actualizar Documento', comment = 'NLB="YourLanguageCaption"';
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                Image = Image;
+
+                trigger OnAction()
+                var
+                    SalesInvoiceHeader: Record "Sales Invoice Header";
+                    SalesCreditMemo: Record "Sales Cr.Memo Header";
+                    PostedSalesInvoiceUpdate: Page "Posted Sales Invoice - Update";
+                    PostedSalesCRupdate: page "Pstd. Sales Cr. Memo - Update";
+                begin
+                    rec.CalcFields(NDocumento);
+                    if SalesInvoiceHeader.get(rec.NDocumento) then begin
+                        Clear(PostedSalesInvoiceUpdate);
+                        PostedSalesInvoiceUpdate.LookupMode := true;
+                        PostedSalesInvoiceUpdate.SetRecord(SalesInvoiceHeader);
+                        PostedSalesInvoiceUpdate.RunModal();
+                    end;
+                    if SalesCreditMemo.get(rec.NDocumento) then begin
+                        Clear(PostedSalesCRupdate);
+                        PostedSalesCRupdate.LookupMode := true;
+                        PostedSalesCRupdate.SetRecord(SalesInvoiceHeader);
+                        PostedSalesCRupdate.RunModal();
+                    end;
+
+                end;
+            }
         }
     }
 
