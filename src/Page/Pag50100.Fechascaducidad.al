@@ -4,6 +4,10 @@ Page 50100 "Fechas caducidad"
     PageType = List;
     SourceTable = Multitabla;
     SourceTableTemporary = true;
+    ApplicationArea = All;
+    Caption = 'Fechas caducidad';
+    UsageCategory = Lists;
+
 
     layout
     {
