@@ -4350,11 +4350,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q351; Rec.Q361)
+                field(Q351; LineasAMAZON2.Q361)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G3512; LineasAMAZONfechas.fQ361)
+                field(G3512; LineasAMAZONfechas2.fQ361)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4362,11 +4362,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G3524; Rec.Q362)
+                field(G3524; LineasAMAZON2.Q362)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H3525; LineasAMAZONfechas.fQ362)
+                field(H3525; LineasAMAZONfechas2.fQ362)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4374,11 +4374,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H3537; Rec.Q363)
+                field(H3537; LineasAMAZON2.Q363)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G3538; LineasAMAZONfechas.fQ363)
+                field(G3538; LineasAMAZONfechas2.fQ363)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4386,11 +4386,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35410; Rec.Q364)
+                field(G35410; LineasAMAZON2.Q364)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35411; LineasAMAZONfechas.fQ364)
+                field(H35411; LineasAMAZONfechas2.fQ364)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4398,11 +4398,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35513; Rec.Q365)
+                field(H35513; LineasAMAZON2.Q365)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35514; LineasAMAZONfechas.fQ365)
+                field(G35514; LineasAMAZONfechas2.fQ365)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4410,11 +4410,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35616; Rec.Q366)
+                field(G35616; LineasAMAZON2.Q366)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35617; LineasAMAZONfechas.fQ366)
+                field(H35617; LineasAMAZONfechas2.fQ366)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4422,11 +4422,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35719; Rec.Q367)
+                field(H35719; LineasAMAZON2.Q367)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35720; LineasAMAZONfechas.fQ367)
+                field(G35720; LineasAMAZONfechas2.fQ367)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4434,11 +4434,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35822; Rec.Q368)
+                field(G35822; LineasAMAZON2.Q368)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35823; LineasAMAZONfechas.fQ368)
+                field(H35823; LineasAMAZONfechas2.fQ368)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4446,11 +4446,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35925; Rec.Q369)
+                field(H35925; LineasAMAZON2.Q369)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35926; LineasAMAZONfechas.fQ369)
+                field(G35926; LineasAMAZONfechas2.fQ369)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4458,11 +4458,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G36028; Rec.Q370)
+                field(G36028; LineasAMAZON2.Q370)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H36029; LineasAMAZONfechas.fQ370)
+                field(H36029; LineasAMAZONfechas2.fQ370)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4470,11 +4470,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H361; Rec.Q371)
+                field(H361; LineasAMAZON2.Q371)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35131; LineasAMAZONfechas.fQ371)
+                field(G35131; LineasAMAZONfechas2.fQ371)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4482,11 +4482,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35233; Rec.Q372)
+                field(G35233; LineasAMAZON2.Q372)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35234; LineasAMAZONfechas.fQ372)
+                field(H35234; LineasAMAZONfechas2.fQ372)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4494,11 +4494,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35336; Rec.Q373)
+                field(H35336; LineasAMAZON2.Q373)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35337; LineasAMAZONfechas.fQ373)
+                field(G35337; LineasAMAZONfechas2.fQ373)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4506,11 +4506,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35439; Rec.Q374)
+                field(G35439; LineasAMAZON2.Q374)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35440; LineasAMAZONfechas.fQ374)
+                field(H35440; LineasAMAZONfechas2.fQ374)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4518,11 +4518,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35542; Rec.Q375)
+                field(H35542; LineasAMAZON2.Q375)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35543; LineasAMAZONfechas.fQ375)
+                field(G35543; LineasAMAZONfechas2.fQ375)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4530,11 +4530,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35645; Rec.Q376)
+                field(G35645; LineasAMAZON2.Q376)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35646; LineasAMAZONfechas.fQ376)
+                field(H35646; LineasAMAZONfechas2.fQ376)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4542,11 +4542,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35748; Rec.Q377)
+                field(H35748; LineasAMAZON2.Q377)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35749; LineasAMAZONfechas.fQ377)
+                field(G35749; LineasAMAZONfechas2.fQ377)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4554,11 +4554,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35851; Rec.Q378)
+                field(G35851; LineasAMAZON2.Q378)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35852; LineasAMAZONfechas.fQ378)
+                field(H35852; LineasAMAZONfechas2.fQ378)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4566,11 +4566,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35964; Rec.Q379)
+                field(H35964; LineasAMAZON2.Q379)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35964; LineasAMAZONfechas.fQ379)
+                field(G35964; LineasAMAZONfechas2.fQ379)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4578,11 +4578,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G360571; Rec.Q380)
+                field(G360571; LineasAMAZON2.Q380)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H36057; LineasAMAZONfechas.fQ380)
+                field(H36057; LineasAMAZONfechas2.fQ380)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4590,11 +4590,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35157; Rec.Q381)
+                field(H35157; LineasAMAZON2.Q381)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35157; LineasAMAZONfechas.fQ381)
+                field(G35157; LineasAMAZONfechas2.fQ381)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4602,11 +4602,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35257; Rec.Q382)
+                field(G35257; LineasAMAZON2.Q382)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35233; LineasAMAZONfechas.fQ382)
+                field(H35233; LineasAMAZONfechas2.fQ382)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4614,11 +4614,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35335; Rec.Q383)
+                field(H35335; LineasAMAZON2.Q383)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G353; LineasAMAZONfechas.fQ383)
+                field(G353; LineasAMAZONfechas2.fQ383)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4626,11 +4626,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35411; Rec.Q384)
+                field(G35411; LineasAMAZON2.Q384)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35412; LineasAMAZONfechas.fQ384)
+                field(H35412; LineasAMAZONfechas2.fQ384)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4638,11 +4638,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35514; Rec.Q385)
+                field(H35514; LineasAMAZON2.Q385)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35515; LineasAMAZONfechas.fQ385)
+                field(G35515; LineasAMAZONfechas2.fQ385)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4650,11 +4650,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35617; Rec.Q386)
+                field(G35617; LineasAMAZON2.Q386)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35618; LineasAMAZONfechas.fQ386)
+                field(H35618; LineasAMAZONfechas2.fQ386)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4662,11 +4662,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H357212; Rec.Q387)
+                field(H357212; LineasAMAZON2.Q387)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35722; LineasAMAZONfechas.fQ387)
+                field(G35722; LineasAMAZONfechas2.fQ387)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4674,11 +4674,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G358241; Rec.Q388)
+                field(G358241; LineasAMAZON2.Q388)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35825; LineasAMAZONfechas.fQ388)
+                field(H35825; LineasAMAZONfechas2.fQ388)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4686,11 +4686,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35933; Rec.Q389)
+                field(H35933; LineasAMAZON2.Q389)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35934; LineasAMAZONfechas.fQ389)
+                field(G35934; LineasAMAZONfechas2.fQ389)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4698,11 +4698,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G36036; Rec.Q390)
+                field(G36036; LineasAMAZON2.Q390)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H36037; LineasAMAZONfechas.fQ390)
+                field(H36037; LineasAMAZONfechas2.fQ390)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4710,11 +4710,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35139; Rec.Q391)
+                field(H35139; LineasAMAZON2.Q391)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G351; LineasAMAZONfechas.fQ391)
+                field(G351; LineasAMAZONfechas2.fQ391)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4722,11 +4722,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35222; Rec.Q392)
+                field(G35222; LineasAMAZON2.Q392)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H352; LineasAMAZONfechas.fQ392)
+                field(H352; LineasAMAZONfechas2.fQ392)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4734,11 +4734,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35333; Rec.Q393)
+                field(H35333; LineasAMAZON2.Q393)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G3; LineasAMAZONfechas.fQ393)
+                field(G3; LineasAMAZONfechas2.fQ393)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4746,11 +4746,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35444; Rec.Q394)
+                field(G35444; LineasAMAZON2.Q394)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H354; LineasAMAZONfechas.fQ394)
+                field(H354; LineasAMAZONfechas2.fQ394)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4758,11 +4758,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H5; Rec.Q395)
+                field(H5; LineasAMAZON2.Q395)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G355; LineasAMAZONfechas.fQ395)
+                field(G355; LineasAMAZONfechas2.fQ395)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4770,11 +4770,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35612; Rec.Q396)
+                field(G35612; LineasAMAZON2.Q396)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H356; LineasAMAZONfechas.fQ396)
+                field(H356; LineasAMAZONfechas2.fQ396)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4782,11 +4782,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35713; Rec.Q397)
+                field(H35713; LineasAMAZON2.Q397)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G357; LineasAMAZONfechas.fQ397)
+                field(G357; LineasAMAZONfechas2.fQ397)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4794,11 +4794,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G35814; Rec.Q398)
+                field(G35814; LineasAMAZON2.Q398)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H358; LineasAMAZONfechas.fQ398)
+                field(H358; LineasAMAZONfechas2.fQ398)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4806,11 +4806,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(H35915; Rec.Q399)
+                field(H35915; LineasAMAZON2.Q399)
                 {
                     ApplicationArea = Basic;
                 }
-                field(G359; LineasAMAZONfechas.fQ399)
+                field(G359; LineasAMAZONfechas2.fQ399)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4818,11 +4818,11 @@ Page 50152 "Excel Lineas amazon"
                 {
                     ApplicationArea = Basic;
                 }
-                field(G36016; Rec.Q400)
+                field(G36016; LineasAMAZON2.Q400)
                 {
                     ApplicationArea = Basic;
                 }
-                field(H360; LineasAMAZONfechas.fQ400)
+                field(H360; LineasAMAZONfechas2.fQ400)
                 {
                     ApplicationArea = Basic;
                 }
@@ -4845,6 +4845,7 @@ Page 50152 "Excel Lineas amazon"
 
 
         LineasAMAZONfechas.Init;
+        LineasAMAZON2.get(Rec.nexpe, Rec.your, rec.lin);
         /////- if LineasAMAZONfechas.Get(nexpe,your,lin) then begin
         /////- end;
     end;
@@ -4852,5 +4853,8 @@ Page 50152 "Excel Lineas amazon"
     var
         F: array[400] of Code[10];
         L: array[400] of Code[10];
+
         LineasAMAZONfechas: Record "Lineas AMAZON fechas";
+        LineasAMAZONfechas2: Record "Lineas AMAZON fechas2";
+        LineasAMAZON2: Record "Lineas AMAZON2";
 }
