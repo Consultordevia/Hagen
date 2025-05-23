@@ -1592,6 +1592,32 @@ Codeunit 50001 Automaticos
 
     end;
 
+ procedure MarcarcomonoexcelAMAZONSINMENSAJE(var Rec111: Record "Sales Shipment Line");
+
+    var
+        SalesShipmentLine: Record "Sales Shipment Line";
+
+    begin
+
+        SalesShipmentLine.get(rec111."Document No.", rec111."Line No.");
+        SalesShipmentLine."Excluir del exel amazon" := TRUE;
+        SalesShipmentLine.MODIFY;         
+
+    end;
+
+    procedure DesmarcarcomonoexcelAMAZONSINMENSAJE(var Rec111: Record "Sales Shipment Line");
+
+    var
+        SalesShipmentLine: Record "Sales Shipment Line";
+
+    begin
+
+        SalesShipmentLine.get(rec111."Document No.", rec111."Line No.");
+        SalesShipmentLine."Excluir del exel amazon" := false;
+        SalesShipmentLine.MODIFY;
+         
+
+    end;
 
 
     /*

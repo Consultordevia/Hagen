@@ -1,5 +1,6 @@
 pageextension 50057 PostedSalesShipmentLines extends "Posted Sales Shipment Lines"
 {
+    
     layout
     {
         addafter("Sell-to Customer No.")
@@ -19,12 +20,12 @@ pageextension 50057 PostedSalesShipmentLines extends "Posted Sales Shipment Line
                 trigger OnAction()
                 var
                     Rec111: Record "Sales Shipment Line";
+                    CodeAuto: Codeunit Automaticos;
                 begin
                         Rec111.CopyFilters(Rec);
                         if Rec111.FindSet() then
                         repeat
-                            Rec111."Excluir del exel amazon":=true;
-                            Rec111.Modify;                            
+                            CodeAuto.MarcarcomonoexcelAMAZONSINMENSAJE(Rec111);                             
                         until Rec111.Next() = 0;
                 end;
             }
@@ -35,12 +36,12 @@ pageextension 50057 PostedSalesShipmentLines extends "Posted Sales Shipment Line
                 trigger OnAction()
                 var
                     Rec111: Record "Sales Shipment Line";
+                    CodeAuto: Codeunit Automaticos;
                 begin
                         Rec111.CopyFilters(Rec);
                         if Rec111.FindSet() then
                         repeat
-                            Rec111."Excluir del exel amazon":=false;
-                            Rec111.Modify;
+                            CodeAuto.DesmarcarcomonoexcelAMAZONSINMENSAJE(Rec111);                                                          
                         until Rec111.Next() = 0;
                 end;
             }
