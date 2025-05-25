@@ -2599,8 +2599,7 @@ Codeunit 50010 "Automaticos Cartas"
             ///UBIREF:=RecI."Ubicacion ref.";
             ///END;
 
-
-
+            UBIPICDIN:='N';
             ///      ARUB|AG|62600|01|||N||E150|||||||||
             TextoSalida5 := 'ARUB' + '|' +
                                   'AG' + '|' +
@@ -3177,6 +3176,7 @@ Codeunit 50010 "Automaticos Cartas"
             ///UBIREF:=RecI."Ubicacion ref.";
             ///END;
 
+            UBIPICDIN:='N';
 
             ///      ARUB|AG|62600|01|||N||E150|||||||||
             OutTxt := 'ARUB' + '|' +
