@@ -70,7 +70,7 @@ tableextension 50115 SalesLine extends "Sales Line"
         }
 
         modify(Quantity)
-        
+
         {
             trigger OnAfterValidate()
             var
@@ -90,9 +90,9 @@ tableextension 50115 SalesLine extends "Sales Line"
                     exit;
                 if not SalesHeader.Get("Document Type", "Document No.") then
                     exit;
-                         
-                if CopyStr(SalesHeader."No.", 3, 3) <> 'B2B' then begin          
-                    if ("Document Type" = 1) or ("Document Type" = 0) then begin                        
+
+                if CopyStr(SalesHeader."No.", 3, 3) <> 'B2B' then begin
+                    if ("Document Type" = 1) or ("Document Type" = 0) then begin
                         /// VER MULTIPO
                         IF Item.get(Rec."No.") then begin
                             if (Item."Unidades venta" > 1) and (Item."Permite fraccionar venta" = false) and
@@ -108,8 +108,8 @@ tableextension 50115 SalesLine extends "Sales Line"
                     end;
                 end;
 
-               
-                if CopyStr(SalesHeader."No.", 3, 3) <> 'B2B' then begin                              
+
+                if CopyStr(SalesHeader."No.", 3, 3) <> 'B2B' then begin
                     if ("Document Type" = 1) or ("Document Type" = 0) then begin
                         if Rec.Quantity <> 0 then begin
                             Rec."Precio final" := ROUND("Line Amount" / Rec.Quantity, 0.001);
@@ -212,7 +212,7 @@ tableextension 50115 SalesLine extends "Sales Line"
                             end;
                         end;
                     end;
-                end;                 
+                end;
                 /*
                 if CopyStr(SalesHeader."No.", 3, 3) <> 'B2B' then begin                              
                     if ("Document Type" = 1) or ("Document Type" = 0) then begin
@@ -334,8 +334,8 @@ tableextension 50115 SalesLine extends "Sales Line"
                 UNTIL RecLV2.NEXT = 0;
                 */
 
-                
-                if CopyStr(SalesHeader."No.", 3, 3) <> 'B2B' then begin                              
+
+                if CopyStr(SalesHeader."No.", 3, 3) <> 'B2B' then begin
                     if ("Document Type" = 1) or ("Document Type" = 0) then begin
                         if COMPANYNAME <> 'PEPE' then begin
                             if Rec."No." <> 'TRAN' then begin

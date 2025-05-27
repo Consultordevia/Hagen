@@ -2039,6 +2039,7 @@ Codeunit 50010 "Automaticos Cartas"
                         ///END;
 
                         UBIPICDIN:='N';
+                        PICCOMPAR:='S';
                         TextoSalida5 := 'ARUB' + '|' +
                                   'MO' + '|' +
                                  RecI."No." + '|' +
@@ -2600,6 +2601,7 @@ Codeunit 50010 "Automaticos Cartas"
             ///END;
 
             UBIPICDIN:='N';
+            PICCOMPAR:='S';
             ///      ARUB|AG|62600|01|||N||E150|||||||||
             TextoSalida5 := 'ARUB' + '|' +
                                   'AG' + '|' +
@@ -3177,6 +3179,7 @@ Codeunit 50010 "Automaticos Cartas"
             ///END;
 
             UBIPICDIN:='N';
+            PICCOMPAR:='S';
 
             ///      ARUB|AG|62600|01|||N||E150|||||||||
             OutTxt := 'ARUB' + '|' +
