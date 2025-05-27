@@ -10,4346 +10,4828 @@ Page 50152 "Excel Lineas amazon"
         {
             repeater(Group)
             {
-                field(nexpe;Rec.nexpe)
+                field(nexpe; Rec.nexpe)
                 {
                     ApplicationArea = Basic;
                 }
-                field(your;Rec.your)
+                field(your; Rec.your)
                 {
                     ApplicationArea = Basic;
                 }
-                field(lin;Rec.lin)
+                field(lin; Rec.lin)
                 {
                     ApplicationArea = Basic;
                 }
-                field(prod;Rec.prod)
+                field(prod; Rec.prod)
                 {
                     ApplicationArea = Basic;
                 }
-                field(descrip;Rec.descrip)
+                field(descrip; Rec.descrip)
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q1;Rec.Q1)
+                field(Q1; Rec.Q1)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F1;LineasAMAZONfechas.fQ1)
+                field(F1; LineasAMAZONfechas.fQ1)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L1;L[1])
+                field(L1; L[1])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q2;Rec.Q2)
+                field(Q2; Rec.Q2)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F2;LineasAMAZONfechas.fQ2)
+                field(F2; LineasAMAZONfechas.fQ2)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L2;L[2])
+                field(L2; L[2])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q3;Rec.Q3)
+                field(Q3; Rec.Q3)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F3;LineasAMAZONfechas.fQ3)
+                field(F3; LineasAMAZONfechas.fQ3)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L3;L[3])
+                field(L3; L[3])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q4;Rec.Q4)
+                field(Q4; Rec.Q4)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F4;LineasAMAZONfechas.fQ4)
+                field(F4; LineasAMAZONfechas.fQ4)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L4;L[4])
+                field(L4; L[4])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q5;Rec.Q5)
+                field(Q5; Rec.Q5)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F5;LineasAMAZONfechas.fQ5)
+                field(F5; LineasAMAZONfechas.fQ5)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L5;L[5])
+                field(L5; L[5])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q6;Rec.Q6)
+                field(Q6; Rec.Q6)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F6;LineasAMAZONfechas.fQ6)
+                field(F6; LineasAMAZONfechas.fQ6)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L6;L[6])
+                field(L6; L[6])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q7;Rec.Q7)
+                field(Q7; Rec.Q7)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F7;LineasAMAZONfechas.fQ7)
+                field(F7; LineasAMAZONfechas.fQ7)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L7;L[7])
+                field(L7; L[7])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q8;Rec.Q8)
+                field(Q8; Rec.Q8)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F8;LineasAMAZONfechas.fQ8)
+                field(F8; LineasAMAZONfechas.fQ8)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L8;L[8])
+                field(L8; L[8])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q9;Rec.Q9)
+                field(Q9; Rec.Q9)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F9;LineasAMAZONfechas.fQ9)
+                field(F9; LineasAMAZONfechas.fQ9)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L9;L[9])
+                field(L9; L[9])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q10;Rec.Q10)
+                field(Q10; Rec.Q10)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F10;LineasAMAZONfechas.fQ10)
+                field(F10; LineasAMAZONfechas.fQ10)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L10;L[10])
+                field(L10; L[10])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q11;Rec.Q11)
+                field(Q11; Rec.Q11)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F11;LineasAMAZONfechas.fQ11)
+                field(F11; LineasAMAZONfechas.fQ11)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L11;L[11])
+                field(L11; L[11])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q12;Rec.Q12)
+                field(Q12; Rec.Q12)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F12;LineasAMAZONfechas.fQ12)
+                field(F12; LineasAMAZONfechas.fQ12)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L12;L[12])
+                field(L12; L[12])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q13;Rec.Q13)
+                field(Q13; Rec.Q13)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F13;LineasAMAZONfechas.fQ13)
+                field(F13; LineasAMAZONfechas.fQ13)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L13;L[13])
+                field(L13; L[13])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q14;Rec.Q14)
+                field(Q14; Rec.Q14)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F14;LineasAMAZONfechas.fQ14)
+                field(F14; LineasAMAZONfechas.fQ14)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L14;L[14])
+                field(L14; L[14])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q15;Rec.Q15)
+                field(Q15; Rec.Q15)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F15;LineasAMAZONfechas.fQ15)
+                field(F15; LineasAMAZONfechas.fQ15)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L15;L[15])
+                field(L15; L[15])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q16;Rec.Q16)
+                field(Q16; Rec.Q16)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F16;LineasAMAZONfechas.fQ16)
+                field(F16; LineasAMAZONfechas.fQ16)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L16;L[16])
+                field(L16; L[16])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q17;Rec.Q17)
+                field(Q17; Rec.Q17)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F17;LineasAMAZONfechas.fQ17)
+                field(F17; LineasAMAZONfechas.fQ17)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L17;L[17])
+                field(L17; L[17])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q18;Rec.Q18)
+                field(Q18; Rec.Q18)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F18;LineasAMAZONfechas.fQ18)
+                field(F18; LineasAMAZONfechas.fQ18)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L18;L[18])
+                field(L18; L[18])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q19;Rec.Q19)
+                field(Q19; Rec.Q19)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F19;LineasAMAZONfechas.fQ19)
+                field(F19; LineasAMAZONfechas.fQ19)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L19;L[19])
+                field(L19; L[19])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q20;Rec.Q20)
+                field(Q20; Rec.Q20)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F20;LineasAMAZONfechas.fQ20)
+                field(F20; LineasAMAZONfechas.fQ20)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L20;L[20])
+                field(L20; L[20])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q21;Rec.Q21)
+                field(Q21; Rec.Q21)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F21;LineasAMAZONfechas.fQ21)
+                field(F21; LineasAMAZONfechas.fQ21)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L21;L[21])
+                field(L21; L[21])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q22;Rec.Q22)
+                field(Q22; Rec.Q22)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F22;LineasAMAZONfechas.fQ22)
+                field(F22; LineasAMAZONfechas.fQ22)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L22;L[22])
+                field(L22; L[22])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q23;Rec.Q23)
+                field(Q23; Rec.Q23)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F23;LineasAMAZONfechas.fQ23)
+                field(F23; LineasAMAZONfechas.fQ23)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L23;L[23])
+                field(L23; L[23])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q24;Rec.Q24)
+                field(Q24; Rec.Q24)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F24;LineasAMAZONfechas.fQ24)
+                field(F24; LineasAMAZONfechas.fQ24)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L24;L[24])
+                field(L24; L[24])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q25;Rec.Q25)
+                field(Q25; Rec.Q25)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F25;LineasAMAZONfechas.fQ25)
+                field(F25; LineasAMAZONfechas.fQ25)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L25;L[25])
+                field(L25; L[25])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q26;Rec.Q26)
+                field(Q26; Rec.Q26)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F26;LineasAMAZONfechas.fQ26)
+                field(F26; LineasAMAZONfechas.fQ26)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L26;L[26])
+                field(L26; L[26])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q27;Rec.Q27)
+                field(Q27; Rec.Q27)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F27;LineasAMAZONfechas.fQ27)
+                field(F27; LineasAMAZONfechas.fQ27)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L27;L[27])
+                field(L27; L[27])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q28;Rec.Q28)
+                field(Q28; Rec.Q28)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F28;LineasAMAZONfechas.fQ28)
+                field(F28; LineasAMAZONfechas.fQ28)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L28;L[28])
+                field(L28; L[28])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q29;Rec.Q29)
+                field(Q29; Rec.Q29)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F29;LineasAMAZONfechas.fQ29)
+                field(F29; LineasAMAZONfechas.fQ29)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L29;L[29])
+                field(L29; L[29])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q30;Rec.Q30)
+                field(Q30; Rec.Q30)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F30;LineasAMAZONfechas.fQ30)
+                field(F30; LineasAMAZONfechas.fQ30)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L30;L[30])
+                field(L30; L[30])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q31;Rec.Q31)
+                field(Q31; Rec.Q31)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F31;LineasAMAZONfechas.fQ31)
+                field(F31; LineasAMAZONfechas.fQ31)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L31;L[31])
+                field(L31; L[31])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q32;Rec.Q32)
+                field(Q32; Rec.Q32)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F32;LineasAMAZONfechas.fQ32)
+                field(F32; LineasAMAZONfechas.fQ32)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L32;L[32])
+                field(L32; L[32])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q33;Rec.Q33)
+                field(Q33; Rec.Q33)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F33;LineasAMAZONfechas.fQ33)
+                field(F33; LineasAMAZONfechas.fQ33)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L33;L[33])
+                field(L33; L[33])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q34;Rec.Q34)
+                field(Q34; Rec.Q34)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F34;LineasAMAZONfechas.fQ34)
+                field(F34; LineasAMAZONfechas.fQ34)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L34;L[34])
+                field(L34; L[34])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q35;Rec.Q35)
+                field(Q35; Rec.Q35)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F35;LineasAMAZONfechas.fQ35)
+                field(F35; LineasAMAZONfechas.fQ35)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L35;L[35])
+                field(L35; L[35])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q36;Rec.Q36)
+                field(Q36; Rec.Q36)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F36;LineasAMAZONfechas.fQ36)
+                field(F36; LineasAMAZONfechas.fQ36)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L36;L[36])
+                field(L36; L[36])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q37;Rec.Q37)
+                field(Q37; Rec.Q37)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F37;LineasAMAZONfechas.fQ37)
+                field(F37; LineasAMAZONfechas.fQ37)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L37;L[37])
+                field(L37; L[37])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q38;Rec.Q38)
+                field(Q38; Rec.Q38)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F38;LineasAMAZONfechas.fQ38)
+                field(F38; LineasAMAZONfechas.fQ38)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L38;L[38])
+                field(L38; L[38])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q39;Rec.Q39)
+                field(Q39; Rec.Q39)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F39;LineasAMAZONfechas.fQ39)
+                field(F39; LineasAMAZONfechas.fQ39)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L39;L[39])
+                field(L39; L[39])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q40;Rec.Q40)
+                field(Q40; Rec.Q40)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F40;LineasAMAZONfechas.fQ40)
+                field(F40; LineasAMAZONfechas.fQ40)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L40;L[40])
+                field(L40; L[40])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q41;Rec.Q41)
+                field(Q41; Rec.Q41)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F41;LineasAMAZONfechas.fQ41)
+                field(F41; LineasAMAZONfechas.fQ41)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L41;L[41])
+                field(L41; L[41])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q42;Rec.Q42)
+                field(Q42; Rec.Q42)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F42;LineasAMAZONfechas.fQ42)
+                field(F42; LineasAMAZONfechas.fQ42)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L42;L[42])
+                field(L42; L[42])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q43;Rec.Q43)
+                field(Q43; Rec.Q43)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F43;LineasAMAZONfechas.fQ43)
+                field(F43; LineasAMAZONfechas.fQ43)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L43;L[43])
+                field(L43; L[43])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q44;Rec.Q44)
+                field(Q44; Rec.Q44)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F44;LineasAMAZONfechas.fQ44)
+                field(F44; LineasAMAZONfechas.fQ44)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L44;L[44])
+                field(L44; L[44])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q45;Rec.Q45)
+                field(Q45; Rec.Q45)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F45;LineasAMAZONfechas.fQ45)
+                field(F45; LineasAMAZONfechas.fQ45)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L45;L[45])
+                field(L45; L[45])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q46;Rec.Q46)
+                field(Q46; Rec.Q46)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F46;LineasAMAZONfechas.fQ46)
+                field(F46; LineasAMAZONfechas.fQ46)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L46;L[46])
+                field(L46; L[46])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q47;Rec.Q47)
+                field(Q47; Rec.Q47)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F47;LineasAMAZONfechas.fQ47)
+                field(F47; LineasAMAZONfechas.fQ47)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L47;L[47])
+                field(L47; L[47])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q48;Rec.Q48)
+                field(Q48; Rec.Q48)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F48;LineasAMAZONfechas.fQ48)
+                field(F48; LineasAMAZONfechas.fQ48)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L48;L[48])
+                field(L48; L[48])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q49;Rec.Q49)
+                field(Q49; Rec.Q49)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F49;LineasAMAZONfechas.fQ49)
+                field(F49; LineasAMAZONfechas.fQ49)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L49;L[49])
+                field(L49; L[49])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q50;Rec.Q50)
+                field(Q50; Rec.Q50)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F50;LineasAMAZONfechas.fQ50)
+                field(F50; LineasAMAZONfechas.fQ50)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L50;L[50])
+                field(L50; L[50])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q51;Rec.Q51)
+                field(Q51; Rec.Q51)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F51;LineasAMAZONfechas.fQ51)
+                field(F51; LineasAMAZONfechas.fQ51)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L51;L[51])
+                field(L51; L[51])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q52;Rec.Q52)
+                field(Q52; Rec.Q52)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F52;LineasAMAZONfechas.fQ52)
+                field(F52; LineasAMAZONfechas.fQ52)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L52;L[52])
+                field(L52; L[52])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q53;Rec.Q53)
+                field(Q53; Rec.Q53)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F53;LineasAMAZONfechas.fQ53)
+                field(F53; LineasAMAZONfechas.fQ53)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L53;L[53])
+                field(L53; L[53])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q54;Rec.Q54)
+                field(Q54; Rec.Q54)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F54;LineasAMAZONfechas.fQ54)
+                field(F54; LineasAMAZONfechas.fQ54)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L54;L[54])
+                field(L54; L[54])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q55;Rec.Q55)
+                field(Q55; Rec.Q55)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F55;LineasAMAZONfechas.fQ55)
+                field(F55; LineasAMAZONfechas.fQ55)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L55;L[55])
+                field(L55; L[55])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q56;Rec.Q56)
+                field(Q56; Rec.Q56)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F56;LineasAMAZONfechas.fQ56)
+                field(F56; LineasAMAZONfechas.fQ56)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L56;L[56])
+                field(L56; L[56])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q57;Rec.Q57)
+                field(Q57; Rec.Q57)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F57;LineasAMAZONfechas.fQ57)
+                field(F57; LineasAMAZONfechas.fQ57)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L57;L[57])
+                field(L57; L[57])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q58;Rec.Q58)
+                field(Q58; Rec.Q58)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F58;LineasAMAZONfechas.fQ58)
+                field(F58; LineasAMAZONfechas.fQ58)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L58;L[58])
+                field(L58; L[58])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q59;Rec.Q59)
+                field(Q59; Rec.Q59)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F59;LineasAMAZONfechas.fQ59)
+                field(F59; LineasAMAZONfechas.fQ59)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L59;L[59])
+                field(L59; L[59])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q60;Rec.Q60)
+                field(Q60; Rec.Q60)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F60;LineasAMAZONfechas.fQ60)
+                field(F60; LineasAMAZONfechas.fQ60)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L60;L[60])
+                field(L60; L[60])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q61;Rec.Q61)
+                field(Q61; Rec.Q61)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F61;LineasAMAZONfechas.fQ61)
+                field(F61; LineasAMAZONfechas.fQ61)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L61;L[61])
+                field(L61; L[61])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q62;Rec.Q62)
+                field(Q62; Rec.Q62)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F62;LineasAMAZONfechas.fQ62)
+                field(F62; LineasAMAZONfechas.fQ62)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L62;L[62])
+                field(L62; L[62])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q63;Rec.Q63)
+                field(Q63; Rec.Q63)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F63;LineasAMAZONfechas.fQ63)
+                field(F63; LineasAMAZONfechas.fQ63)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L63;L[63])
+                field(L63; L[63])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q64;Rec.Q64)
+                field(Q64; Rec.Q64)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F64;LineasAMAZONfechas.fQ64)
+                field(F64; LineasAMAZONfechas.fQ64)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L64;L[64])
+                field(L64; L[64])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q65;Rec.Q65)
+                field(Q65; Rec.Q65)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F65;LineasAMAZONfechas.fQ65)
+                field(F65; LineasAMAZONfechas.fQ65)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L65;L[65])
+                field(L65; L[65])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q66;Rec.Q66)
+                field(Q66; Rec.Q66)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F66;LineasAMAZONfechas.fQ66)
+                field(F66; LineasAMAZONfechas.fQ66)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L66;L[66])
+                field(L66; L[66])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q67;Rec.Q67)
+                field(Q67; Rec.Q67)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F67;LineasAMAZONfechas.fQ67)
+                field(F67; LineasAMAZONfechas.fQ67)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L67;L[67])
+                field(L67; L[67])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q68;Rec.Q68)
+                field(Q68; Rec.Q68)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F68;LineasAMAZONfechas.fQ68)
+                field(F68; LineasAMAZONfechas.fQ68)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L68;L[68])
+                field(L68; L[68])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q69;Rec.Q69)
+                field(Q69; Rec.Q69)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F69;LineasAMAZONfechas.fQ69)
+                field(F69; LineasAMAZONfechas.fQ69)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L69;L[69])
+                field(L69; L[69])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q70;Rec.Q70)
+                field(Q70; Rec.Q70)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F70;LineasAMAZONfechas.fQ70)
+                field(F70; LineasAMAZONfechas.fQ70)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L70;L[70])
+                field(L70; L[70])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q71;Rec.Q71)
+                field(Q71; Rec.Q71)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F71;LineasAMAZONfechas.fQ71)
+                field(F71; LineasAMAZONfechas.fQ71)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L71;L[71])
+                field(L71; L[71])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q72;Rec.Q72)
+                field(Q72; Rec.Q72)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F72;LineasAMAZONfechas.fQ72)
+                field(F72; LineasAMAZONfechas.fQ72)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L72;L[72])
+                field(L72; L[72])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q73;Rec.Q73)
+                field(Q73; Rec.Q73)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F73;LineasAMAZONfechas.fQ73)
+                field(F73; LineasAMAZONfechas.fQ73)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L73;L[73])
+                field(L73; L[73])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q74;Rec.Q74)
+                field(Q74; Rec.Q74)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F74;LineasAMAZONfechas.fQ74)
+                field(F74; LineasAMAZONfechas.fQ74)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L74;L[74])
+                field(L74; L[74])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q75;Rec.Q75)
+                field(Q75; Rec.Q75)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F75;LineasAMAZONfechas.fQ75)
+                field(F75; LineasAMAZONfechas.fQ75)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L75;L[75])
+                field(L75; L[75])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q76;Rec.Q76)
+                field(Q76; Rec.Q76)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F76;LineasAMAZONfechas.fQ76)
+                field(F76; LineasAMAZONfechas.fQ76)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L76;L[76])
+                field(L76; L[76])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q77;Rec.Q77)
+                field(Q77; Rec.Q77)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F77;LineasAMAZONfechas.fQ77)
+                field(F77; LineasAMAZONfechas.fQ77)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L77;L[77])
+                field(L77; L[77])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q78;Rec.Q78)
+                field(Q78; Rec.Q78)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F78;LineasAMAZONfechas.fQ78)
+                field(F78; LineasAMAZONfechas.fQ78)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L78;L[78])
+                field(L78; L[78])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q79;Rec.Q79)
+                field(Q79; Rec.Q79)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F79;LineasAMAZONfechas.fQ79)
+                field(F79; LineasAMAZONfechas.fQ79)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L79;L[79])
+                field(L79; L[79])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q80;Rec.Q80)
+                field(Q80; Rec.Q80)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F80;LineasAMAZONfechas.fQ80)
+                field(F80; LineasAMAZONfechas.fQ80)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L80;L[80])
+                field(L80; L[80])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q81;Rec.Q81)
+                field(Q81; Rec.Q81)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F81;LineasAMAZONfechas.fQ81)
+                field(F81; LineasAMAZONfechas.fQ81)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L81;L[81])
+                field(L81; L[81])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q82;Rec.Q82)
+                field(Q82; Rec.Q82)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F82;LineasAMAZONfechas.fQ82)
+                field(F82; LineasAMAZONfechas.fQ82)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L82;L[82])
+                field(L82; L[82])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q83;Rec.Q83)
+                field(Q83; Rec.Q83)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F83;LineasAMAZONfechas.fQ83)
+                field(F83; LineasAMAZONfechas.fQ83)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L83;L[83])
+                field(L83; L[83])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q84;Rec.Q84)
+                field(Q84; Rec.Q84)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F84;LineasAMAZONfechas.fQ84)
+                field(F84; LineasAMAZONfechas.fQ84)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L84;L[84])
+                field(L84; L[84])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q85;Rec.Q85)
+                field(Q85; Rec.Q85)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F85;LineasAMAZONfechas.fQ85)
+                field(F85; LineasAMAZONfechas.fQ85)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L85;L[85])
+                field(L85; L[85])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q86;Rec.Q86)
+                field(Q86; Rec.Q86)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F86;LineasAMAZONfechas.fQ86)
+                field(F86; LineasAMAZONfechas.fQ86)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L86;L[86])
+                field(L86; L[86])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q87;Rec.Q87)
+                field(Q87; Rec.Q87)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F87;LineasAMAZONfechas.fQ87)
+                field(F87; LineasAMAZONfechas.fQ87)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L87;L[87])
+                field(L87; L[87])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q88;Rec.Q88)
+                field(Q88; Rec.Q88)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F88;LineasAMAZONfechas.fQ88)
+                field(F88; LineasAMAZONfechas.fQ88)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L88;L[88])
+                field(L88; L[88])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q89;Rec.Q89)
+                field(Q89; Rec.Q89)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F89;LineasAMAZONfechas.fQ89)
+                field(F89; LineasAMAZONfechas.fQ89)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L89;L[89])
+                field(L89; L[89])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q90;Rec.Q90)
+                field(Q90; Rec.Q90)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F90;LineasAMAZONfechas.fQ90)
+                field(F90; LineasAMAZONfechas.fQ90)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L90;L[90])
+                field(L90; L[90])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q91;Rec.Q91)
+                field(Q91; Rec.Q91)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F91;LineasAMAZONfechas.fQ91)
+                field(F91; LineasAMAZONfechas.fQ91)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L91;L[91])
+                field(L91; L[91])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q92;Rec.Q92)
+                field(Q92; Rec.Q92)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F92;LineasAMAZONfechas.fQ92)
+                field(F92; LineasAMAZONfechas.fQ92)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L92;L[92])
+                field(L92; L[92])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q93;Rec.Q93)
+                field(Q93; Rec.Q93)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F93;LineasAMAZONfechas.fQ93)
+                field(F93; LineasAMAZONfechas.fQ93)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L93;L[93])
+                field(L93; L[93])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q94;Rec.Q94)
+                field(Q94; Rec.Q94)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F94;LineasAMAZONfechas.fQ94)
+                field(F94; LineasAMAZONfechas.fQ94)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L94;L[94])
+                field(L94; L[94])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q95;Rec.Q95)
+                field(Q95; Rec.Q95)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F95;LineasAMAZONfechas.fQ95)
+                field(F95; LineasAMAZONfechas.fQ95)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L95;L[95])
+                field(L95; L[95])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q96;Rec.Q96)
+                field(Q96; Rec.Q96)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F96;LineasAMAZONfechas.fQ96)
+                field(F96; LineasAMAZONfechas.fQ96)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L96;L[96])
+                field(L96; L[96])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q97;Rec.Q97)
+                field(Q97; Rec.Q97)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F97;LineasAMAZONfechas.fQ97)
+                field(F97; LineasAMAZONfechas.fQ97)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L97;L[97])
+                field(L97; L[97])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q98;Rec.Q98)
+                field(Q98; Rec.Q98)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F98;LineasAMAZONfechas.fQ98)
+                field(F98; LineasAMAZONfechas.fQ98)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L98;L[98])
+                field(L98; L[98])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q99;Rec.Q99)
+                field(Q99; Rec.Q99)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F99;LineasAMAZONfechas.fQ99)
+                field(F99; LineasAMAZONfechas.fQ99)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L99;L[99])
+                field(L99; L[99])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q100;Rec.Q100)
+                field(Q100; Rec.Q100)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F100;LineasAMAZONfechas.fQ100)
+                field(F100; LineasAMAZONfechas.fQ100)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L100;L[100])
+                field(L100; L[100])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q101;Rec.Q101)
+                field(Q101; Rec.Q101)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F101;LineasAMAZONfechas.fQ101)
+                field(F101; LineasAMAZONfechas.fQ101)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L101;L[100])
+                field(L101; L[100])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q102;Rec.Q102)
+                field(Q102; Rec.Q102)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F102;LineasAMAZONfechas.fQ102)
+                field(F102; LineasAMAZONfechas.fQ102)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L102;L[100])
+                field(L102; L[100])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q103;Rec.Q103)
+                field(Q103; Rec.Q103)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F103;LineasAMAZONfechas.fQ103)
+                field(F103; LineasAMAZONfechas.fQ103)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L103;L[103])
+                field(L103; L[103])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q104;Rec.Q104)
+                field(Q104; Rec.Q104)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F104;LineasAMAZONfechas.fQ104)
+                field(F104; LineasAMAZONfechas.fQ104)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L104;L[104])
+                field(L104; L[104])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q105;Rec.Q105)
+                field(Q105; Rec.Q105)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F105;LineasAMAZONfechas.fQ105)
+                field(F105; LineasAMAZONfechas.fQ105)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L105;L[105])
+                field(L105; L[105])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q106;Rec.Q106)
+                field(Q106; Rec.Q106)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F106;LineasAMAZONfechas.fQ106)
+                field(F106; LineasAMAZONfechas.fQ106)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L106;L[106])
+                field(L106; L[106])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q107;Rec.Q107)
+                field(Q107; Rec.Q107)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F107;LineasAMAZONfechas.fQ107)
+                field(F107; LineasAMAZONfechas.fQ107)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L107;L[107])
+                field(L107; L[107])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q108;Rec.Q108)
+                field(Q108; Rec.Q108)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F108;LineasAMAZONfechas.fQ108)
+                field(F108; LineasAMAZONfechas.fQ108)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L108;L[108])
+                field(L108; L[108])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q109;Rec.Q109)
+                field(Q109; Rec.Q109)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F109;LineasAMAZONfechas.fQ109)
+                field(F109; LineasAMAZONfechas.fQ109)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L109;L[109])
+                field(L109; L[109])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q110;Rec.Q110)
+                field(Q110; Rec.Q110)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F110;LineasAMAZONfechas.fQ110)
+                field(F110; LineasAMAZONfechas.fQ110)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L110;L[110])
+                field(L110; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q111;Rec.Q111)
+                field(Q111; Rec.Q111)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F111;LineasAMAZONfechas.fQ111)
+                field(F111; LineasAMAZONfechas.fQ111)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L111;L[110])
+                field(L111; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q112;Rec.Q112)
+                field(Q112; Rec.Q112)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F112;LineasAMAZONfechas.fQ112)
+                field(F112; LineasAMAZONfechas.fQ112)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L112;L[110])
+                field(L112; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q113;Rec.Q113)
+                field(Q113; Rec.Q113)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F113;LineasAMAZONfechas.fQ113)
+                field(F113; LineasAMAZONfechas.fQ113)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L113;L[110])
+                field(L113; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q114;Rec.Q114)
+                field(Q114; Rec.Q114)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F114;LineasAMAZONfechas.fQ114)
+                field(F114; LineasAMAZONfechas.fQ114)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L114;L[110])
+                field(L114; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q115;Rec.Q115)
+                field(Q115; Rec.Q115)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F115;LineasAMAZONfechas.fQ115)
+                field(F115; LineasAMAZONfechas.fQ115)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L115;L[110])
+                field(L115; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q116;Rec.Q116)
+                field(Q116; Rec.Q116)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F116;LineasAMAZONfechas.fQ116)
+                field(F116; LineasAMAZONfechas.fQ116)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L116;L[110])
+                field(L116; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q117;Rec.Q117)
+                field(Q117; Rec.Q117)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F117;LineasAMAZONfechas.fQ117)
+                field(F117; LineasAMAZONfechas.fQ117)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L117;L[110])
+                field(L117; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q118;Rec.Q118)
+                field(Q118; Rec.Q118)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F118;LineasAMAZONfechas.fQ118)
+                field(F118; LineasAMAZONfechas.fQ118)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L118;L[110])
+                field(L118; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q119;Rec.Q119)
+                field(Q119; Rec.Q119)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F119;LineasAMAZONfechas.fQ119)
+                field(F119; LineasAMAZONfechas.fQ119)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L119;L[110])
+                field(L119; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q120;Rec.Q120)
+                field(Q120; Rec.Q120)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F120;LineasAMAZONfechas.fQ120)
+                field(F120; LineasAMAZONfechas.fQ120)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L120;L[110])
+                field(L120; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q121;Rec.Q121)
+                field(Q121; Rec.Q121)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F121;LineasAMAZONfechas.fQ121)
+                field(F121; LineasAMAZONfechas.fQ121)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L121;L[110])
+                field(L121; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q122;Rec.Q122)
+                field(Q122; Rec.Q122)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F122;LineasAMAZONfechas.fQ122)
+                field(F122; LineasAMAZONfechas.fQ122)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L122;L[110])
+                field(L122; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q123;Rec.Q123)
+                field(Q123; Rec.Q123)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F123;LineasAMAZONfechas.fQ123)
+                field(F123; LineasAMAZONfechas.fQ123)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L123;L[110])
+                field(L123; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q124;Rec.Q124)
+                field(Q124; Rec.Q124)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F124;LineasAMAZONfechas.fQ124)
+                field(F124; LineasAMAZONfechas.fQ124)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L124;L[110])
+                field(L124; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q125;Rec.Q125)
+                field(Q125; Rec.Q125)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F125;LineasAMAZONfechas.fQ125)
+                field(F125; LineasAMAZONfechas.fQ125)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L125;L[110])
+                field(L125; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q126;Rec.Q126)
+                field(Q126; Rec.Q126)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F126;LineasAMAZONfechas.fQ126)
+                field(F126; LineasAMAZONfechas.fQ126)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L126;L[110])
+                field(L126; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q127;Rec.Q127)
+                field(Q127; Rec.Q127)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F127;LineasAMAZONfechas.fQ127)
+                field(F127; LineasAMAZONfechas.fQ127)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L127;L[110])
+                field(L127; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q128;Rec.Q128)
+                field(Q128; Rec.Q128)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F128;LineasAMAZONfechas.fQ128)
+                field(F128; LineasAMAZONfechas.fQ128)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L128;L[110])
+                field(L128; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q129;Rec.Q129)
+                field(Q129; Rec.Q129)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F129;LineasAMAZONfechas.fQ129)
+                field(F129; LineasAMAZONfechas.fQ129)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L129;L[110])
+                field(L129; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q130;Rec.Q130)
+                field(Q130; Rec.Q130)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F130;LineasAMAZONfechas.fQ130)
+                field(F130; LineasAMAZONfechas.fQ130)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L130;L[110])
+                field(L130; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q131;Rec.Q131)
+                field(Q131; Rec.Q131)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F131;LineasAMAZONfechas.fQ131)
+                field(F131; LineasAMAZONfechas.fQ131)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L131;L[110])
+                field(L131; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q132;Rec.Q132)
+                field(Q132; Rec.Q132)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F132;LineasAMAZONfechas.fQ132)
+                field(F132; LineasAMAZONfechas.fQ132)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L132;L[110])
+                field(L132; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q133;Rec.Q133)
+                field(Q133; Rec.Q133)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F133;LineasAMAZONfechas.fQ133)
+                field(F133; LineasAMAZONfechas.fQ133)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L133;L[110])
+                field(L133; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q134;Rec.Q134)
+                field(Q134; Rec.Q134)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F134;LineasAMAZONfechas.fQ134)
+                field(F134; LineasAMAZONfechas.fQ134)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L134;L[110])
+                field(L134; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q135;Rec.Q135)
+                field(Q135; Rec.Q135)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F135;LineasAMAZONfechas.fQ135)
+                field(F135; LineasAMAZONfechas.fQ135)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L135;L[110])
+                field(L135; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q136;Rec.Q136)
+                field(Q136; Rec.Q136)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F136;LineasAMAZONfechas.fQ136)
+                field(F136; LineasAMAZONfechas.fQ136)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L136;L[110])
+                field(L136; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q137;Rec.Q137)
+                field(Q137; Rec.Q137)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F137;LineasAMAZONfechas.fQ137)
+                field(F137; LineasAMAZONfechas.fQ137)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L137;L[110])
+                field(L137; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q138;Rec.Q138)
+                field(Q138; Rec.Q138)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F138;LineasAMAZONfechas.fQ138)
+                field(F138; LineasAMAZONfechas.fQ138)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L138;L[110])
+                field(L138; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q139;Rec.Q139)
+                field(Q139; Rec.Q139)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F139;LineasAMAZONfechas.fQ139)
+                field(F139; LineasAMAZONfechas.fQ139)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L139;L[110])
+                field(L139; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q140;Rec.Q140)
+                field(Q140; Rec.Q140)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F140;LineasAMAZONfechas.fQ140)
+                field(F140; LineasAMAZONfechas.fQ140)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L140;L[110])
+                field(L140; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q141;Rec.Q141)
+                field(Q141; Rec.Q141)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F141;LineasAMAZONfechas.fQ141)
+                field(F141; LineasAMAZONfechas.fQ141)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L141;L[110])
+                field(L141; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q142;Rec.Q142)
+                field(Q142; Rec.Q142)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F142;LineasAMAZONfechas.fQ142)
+                field(F142; LineasAMAZONfechas.fQ142)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L142;L[110])
+                field(L142; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q143;Rec.Q143)
+                field(Q143; Rec.Q143)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F143;LineasAMAZONfechas.fQ143)
+                field(F143; LineasAMAZONfechas.fQ143)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L143;L[110])
+                field(L143; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q144;Rec.Q144)
+                field(Q144; Rec.Q144)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F144;LineasAMAZONfechas.fQ144)
+                field(F144; LineasAMAZONfechas.fQ144)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L144;L[110])
+                field(L144; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q145;Rec.Q145)
+                field(Q145; Rec.Q145)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F145;LineasAMAZONfechas.fQ145)
+                field(F145; LineasAMAZONfechas.fQ145)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L145;L[110])
+                field(L145; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q146;Rec.Q146)
+                field(Q146; Rec.Q146)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F146;LineasAMAZONfechas.fQ146)
+                field(F146; LineasAMAZONfechas.fQ146)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L146;L[110])
+                field(L146; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q147;Rec.Q147)
+                field(Q147; Rec.Q147)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F147;LineasAMAZONfechas.fQ147)
+                field(F147; LineasAMAZONfechas.fQ147)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L147;L[110])
+                field(L147; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q148;Rec.Q148)
+                field(Q148; Rec.Q148)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F148;LineasAMAZONfechas.fQ148)
+                field(F148; LineasAMAZONfechas.fQ148)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L148;L[110])
+                field(L148; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q149;Rec.Q149)
+                field(Q149; Rec.Q149)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F149;LineasAMAZONfechas.fQ149)
+                field(F149; LineasAMAZONfechas.fQ149)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L149;L[110])
+                field(L149; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q150;Rec.Q150)
+                field(Q150; Rec.Q150)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F150;LineasAMAZONfechas.fQ150)
+                field(F150; LineasAMAZONfechas.fQ150)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L150;L[110])
+                field(L150; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q151;Rec.Q151)
+                field(Q151; Rec.Q151)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F151;LineasAMAZONfechas.fQ151)
+                field(F151; LineasAMAZONfechas.fQ151)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L151;L[110])
+                field(L151; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q152;Rec.Q152)
+                field(Q152; Rec.Q152)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F152;LineasAMAZONfechas.fQ152)
+                field(F152; LineasAMAZONfechas.fQ152)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L152;L[110])
+                field(L152; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q153;Rec.Q153)
+                field(Q153; Rec.Q153)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F153;LineasAMAZONfechas.fQ153)
+                field(F153; LineasAMAZONfechas.fQ153)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L153;L[110])
+                field(L153; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q154;Rec.Q154)
+                field(Q154; Rec.Q154)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F154;LineasAMAZONfechas.fQ154)
+                field(F154; LineasAMAZONfechas.fQ154)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L154;L[110])
+                field(L154; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q155;Rec.Q155)
+                field(Q155; Rec.Q155)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F155;LineasAMAZONfechas.fQ155)
+                field(F155; LineasAMAZONfechas.fQ155)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L155;L[110])
+                field(L155; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q156;Rec.Q156)
+                field(Q156; Rec.Q156)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F156;LineasAMAZONfechas.fQ156)
+                field(F156; LineasAMAZONfechas.fQ156)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L156;L[110])
+                field(L156; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q157;Rec.Q157)
+                field(Q157; Rec.Q157)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F157;LineasAMAZONfechas.fQ157)
+                field(F157; LineasAMAZONfechas.fQ157)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L157;L[110])
+                field(L157; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q158;Rec.Q158)
+                field(Q158; Rec.Q158)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F158;LineasAMAZONfechas.fQ158)
+                field(F158; LineasAMAZONfechas.fQ158)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L158;L[110])
+                field(L158; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q159;Rec.Q159)
+                field(Q159; Rec.Q159)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F159;LineasAMAZONfechas.fQ159)
+                field(F159; LineasAMAZONfechas.fQ159)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L159;L[110])
+                field(L159; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q160;Rec.Q160)
+                field(Q160; Rec.Q160)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F160;LineasAMAZONfechas.fQ160)
+                field(F160; LineasAMAZONfechas.fQ160)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L160;L[110])
+                field(L160; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q161;Rec.Q161)
+                field(Q161; Rec.Q161)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F161;LineasAMAZONfechas.fQ161)
+                field(F161; LineasAMAZONfechas.fQ161)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L161;L[110])
+                field(L161; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q162;Rec.Q162)
+                field(Q162; Rec.Q162)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F162;LineasAMAZONfechas.fQ162)
+                field(F162; LineasAMAZONfechas.fQ162)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L162;L[110])
+                field(L162; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q163;Rec.Q163)
+                field(Q163; Rec.Q163)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F163;LineasAMAZONfechas.fQ163)
+                field(F163; LineasAMAZONfechas.fQ163)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L163;L[110])
+                field(L163; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q164;Rec.Q164)
+                field(Q164; Rec.Q164)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F164;LineasAMAZONfechas.fQ164)
+                field(F164; LineasAMAZONfechas.fQ164)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L164;L[110])
+                field(L164; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q165;Rec.Q165)
+                field(Q165; Rec.Q165)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F165;LineasAMAZONfechas.fQ165)
+                field(F165; LineasAMAZONfechas.fQ165)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L165;L[110])
+                field(L165; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q166;Rec.Q166)
+                field(Q166; Rec.Q166)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F166;LineasAMAZONfechas.fQ166)
+                field(F166; LineasAMAZONfechas.fQ166)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L166;L[110])
+                field(L166; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q167;Rec.Q167)
+                field(Q167; Rec.Q167)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F167;LineasAMAZONfechas.fQ167)
+                field(F167; LineasAMAZONfechas.fQ167)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L167;L[110])
+                field(L167; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q168;Rec.Q168)
+                field(Q168; Rec.Q168)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F168;LineasAMAZONfechas.fQ168)
+                field(F168; LineasAMAZONfechas.fQ168)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L168;L[110])
+                field(L168; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q169;Rec.Q169)
+                field(Q169; Rec.Q169)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F169;LineasAMAZONfechas.fQ169)
+                field(F169; LineasAMAZONfechas.fQ169)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L169;L[110])
+                field(L169; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q170;Rec.Q170)
+                field(Q170; Rec.Q170)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F170;LineasAMAZONfechas.fQ170)
+                field(F170; LineasAMAZONfechas.fQ170)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L170;L[110])
+                field(L170; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q171;Rec.Q171)
+                field(Q171; Rec.Q171)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F171;LineasAMAZONfechas.fQ171)
+                field(F171; LineasAMAZONfechas.fQ171)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L171;L[110])
+                field(L171; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q172;Rec.Q172)
+                field(Q172; Rec.Q172)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F172;LineasAMAZONfechas.fQ172)
+                field(F172; LineasAMAZONfechas.fQ172)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L172;L[110])
+                field(L172; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q173;Rec.Q173)
+                field(Q173; Rec.Q173)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F173;LineasAMAZONfechas.fQ173)
+                field(F173; LineasAMAZONfechas.fQ173)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L173;L[110])
+                field(L173; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q174;Rec.Q174)
+                field(Q174; Rec.Q174)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F174;LineasAMAZONfechas.fQ174)
+                field(F174; LineasAMAZONfechas.fQ174)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L174;L[110])
+                field(L174; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q175;Rec.Q175)
+                field(Q175; Rec.Q175)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F175;LineasAMAZONfechas.fQ175)
+                field(F175; LineasAMAZONfechas.fQ175)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L175;L[110])
+                field(L175; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q176;Rec.Q176)
+                field(Q176; Rec.Q176)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F176;LineasAMAZONfechas.fQ176)
+                field(F176; LineasAMAZONfechas.fQ176)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L176;L[110])
+                field(L176; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q177;Rec.Q177)
+                field(Q177; Rec.Q177)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F177;LineasAMAZONfechas.fQ177)
+                field(F177; LineasAMAZONfechas.fQ177)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L177;L[110])
+                field(L177; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q178;Rec.Q178)
+                field(Q178; Rec.Q178)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F178;LineasAMAZONfechas.fQ178)
+                field(F178; LineasAMAZONfechas.fQ178)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L178;L[110])
+                field(L178; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q179;Rec.Q179)
+                field(Q179; Rec.Q179)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F179;LineasAMAZONfechas.fQ179)
+                field(F179; LineasAMAZONfechas.fQ179)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L179;L[110])
+                field(L179; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q180;Rec.Q180)
+                field(Q180; Rec.Q180)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F180;LineasAMAZONfechas.fQ180)
+                field(F180; LineasAMAZONfechas.fQ180)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L180;L[110])
+                field(L180; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q181;Rec.Q181)
+                field(Q181; Rec.Q181)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F181;LineasAMAZONfechas.fQ181)
+                field(F181; LineasAMAZONfechas.fQ181)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L181;L[110])
+                field(L181; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q182;Rec.Q182)
+                field(Q182; Rec.Q182)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F182;LineasAMAZONfechas.fQ182)
+                field(F182; LineasAMAZONfechas.fQ182)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L182;L[110])
+                field(L182; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q183;Rec.Q183)
+                field(Q183; Rec.Q183)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F183;LineasAMAZONfechas.fQ183)
+                field(F183; LineasAMAZONfechas.fQ183)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L183;L[110])
+                field(L183; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q184;Rec.Q184)
+                field(Q184; Rec.Q184)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F184;LineasAMAZONfechas.fQ184)
+                field(F184; LineasAMAZONfechas.fQ184)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L184;L[110])
+                field(L184; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q185;Rec.Q185)
+                field(Q185; Rec.Q185)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F185;LineasAMAZONfechas.fQ185)
+                field(F185; LineasAMAZONfechas.fQ185)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L185;L[110])
+                field(L185; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q186;Rec.Q186)
+                field(Q186; Rec.Q186)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F186;LineasAMAZONfechas.fQ186)
+                field(F186; LineasAMAZONfechas.fQ186)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L186;L[110])
+                field(L186; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q187;Rec.Q187)
+                field(Q187; Rec.Q187)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F187;LineasAMAZONfechas.fQ187)
+                field(F187; LineasAMAZONfechas.fQ187)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L187;L[110])
+                field(L187; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q188;Rec.Q188)
+                field(Q188; Rec.Q188)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F188;LineasAMAZONfechas.fQ188)
+                field(F188; LineasAMAZONfechas.fQ188)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L188;L[110])
+                field(L188; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q189;Rec.Q189)
+                field(Q189; Rec.Q189)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F189;LineasAMAZONfechas.fQ189)
+                field(F189; LineasAMAZONfechas.fQ189)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L189;L[110])
+                field(L189; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q190;Rec.Q190)
+                field(Q190; Rec.Q190)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F190;LineasAMAZONfechas.fQ190)
+                field(F190; LineasAMAZONfechas.fQ190)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L190;L[110])
+                field(L190; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q191;Rec.Q191)
+                field(Q191; Rec.Q191)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F191;LineasAMAZONfechas.fQ191)
+                field(F191; LineasAMAZONfechas.fQ191)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L191;L[110])
+                field(L191; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q192;Rec.Q192)
+                field(Q192; Rec.Q192)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F192;LineasAMAZONfechas.fQ192)
+                field(F192; LineasAMAZONfechas.fQ192)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L192;L[110])
+                field(L192; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q193;Rec.Q193)
+                field(Q193; Rec.Q193)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F193;LineasAMAZONfechas.fQ193)
+                field(F193; LineasAMAZONfechas.fQ193)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L193;L[110])
+                field(L193; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q194;Rec.Q194)
+                field(Q194; Rec.Q194)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F194;LineasAMAZONfechas.fQ194)
+                field(F194; LineasAMAZONfechas.fQ194)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L194;L[110])
+                field(L194; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q195;Rec.Q195)
+                field(Q195; Rec.Q195)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F195;LineasAMAZONfechas.fQ195)
+                field(F195; LineasAMAZONfechas.fQ195)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L195;L[110])
+                field(L195; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q196;Rec.Q196)
+                field(Q196; Rec.Q196)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F196;LineasAMAZONfechas.fQ196)
+                field(F196; LineasAMAZONfechas.fQ196)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L196;L[110])
+                field(L196; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q197;Rec.Q197)
+                field(Q197; Rec.Q197)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F197;LineasAMAZONfechas.fQ197)
+                field(F197; LineasAMAZONfechas.fQ197)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L197;L[110])
+                field(L197; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q198;Rec.Q198)
+                field(Q198; Rec.Q198)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F198;LineasAMAZONfechas.fQ198)
+                field(F198; LineasAMAZONfechas.fQ198)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L198;L[110])
+                field(L198; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q199;Rec.Q199)
+                field(Q199; Rec.Q199)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F199;LineasAMAZONfechas.fQ199)
+                field(F199; LineasAMAZONfechas.fQ199)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L199;L[110])
+                field(L199; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q200;Rec.Q200)
+                field(Q200; Rec.Q200)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F200;LineasAMAZONfechas.fQ200)
+                field(F200; LineasAMAZONfechas.fQ200)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L200;L[110])
+                field(L200; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q201;Rec.Q201)
+                field(Q201; Rec.Q201)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F201;LineasAMAZONfechas.fQ201)
+                field(F201; LineasAMAZONfechas.fQ201)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L201;L[110])
+                field(L201; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q202;Rec.Q202)
+                field(Q202; Rec.Q202)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F202;LineasAMAZONfechas.fQ202)
+                field(F202; LineasAMAZONfechas.fQ202)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L202;L[110])
+                field(L202; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q203;Rec.Q203)
+                field(Q203; Rec.Q203)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F203;LineasAMAZONfechas.fQ203)
+                field(F203; LineasAMAZONfechas.fQ203)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L203;L[110])
+                field(L203; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q204;Rec.Q204)
+                field(Q204; Rec.Q204)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F204;LineasAMAZONfechas.fQ204)
+                field(F204; LineasAMAZONfechas.fQ204)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L204;L[110])
+                field(L204; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q205;Rec.Q205)
+                field(Q205; Rec.Q205)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F205;LineasAMAZONfechas.fQ205)
+                field(F205; LineasAMAZONfechas.fQ205)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L205;L[110])
+                field(L205; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q206;Rec.Q206)
+                field(Q206; Rec.Q206)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F206;LineasAMAZONfechas.fQ206)
+                field(F206; LineasAMAZONfechas.fQ206)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L206;L[110])
+                field(L206; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q207;Rec.Q207)
+                field(Q207; Rec.Q207)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F207;LineasAMAZONfechas.fQ207)
+                field(F207; LineasAMAZONfechas.fQ207)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L207;L[110])
+                field(L207; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q208;Rec.Q208)
+                field(Q208; Rec.Q208)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F208;LineasAMAZONfechas.fQ208)
+                field(F208; LineasAMAZONfechas.fQ208)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L208;L[110])
+                field(L208; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q209;Rec.Q209)
+                field(Q209; Rec.Q209)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F209;LineasAMAZONfechas.fQ209)
+                field(F209; LineasAMAZONfechas.fQ209)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L209;L[110])
+                field(L209; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q210;Rec.Q210)
+                field(Q210; Rec.Q210)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F210;LineasAMAZONfechas.fQ210)
+                field(F210; LineasAMAZONfechas.fQ210)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L210;L[110])
+                field(L210; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q211;Rec.Q211)
+                field(Q211; Rec.Q211)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F211;LineasAMAZONfechas.fQ211)
+                field(F211; LineasAMAZONfechas.fQ211)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L211;L[110])
+                field(L211; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q212;Rec.Q212)
+                field(Q212; Rec.Q212)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F212;LineasAMAZONfechas.fQ212)
+                field(F212; LineasAMAZONfechas.fQ212)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L212;L[110])
+                field(L212; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q213;Rec.Q213)
+                field(Q213; Rec.Q213)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F213;LineasAMAZONfechas.fQ213)
+                field(F213; LineasAMAZONfechas.fQ213)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L213;L[110])
+                field(L213; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q214;Rec.Q214)
+                field(Q214; Rec.Q214)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F214;LineasAMAZONfechas.fQ214)
+                field(F214; LineasAMAZONfechas.fQ214)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L214;L[110])
+                field(L214; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q215;Rec.Q215)
+                field(Q215; Rec.Q215)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F215;LineasAMAZONfechas.fQ215)
+                field(F215; LineasAMAZONfechas.fQ215)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L215;L[110])
+                field(L215; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q216;Rec.Q216)
+                field(Q216; Rec.Q216)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F216;LineasAMAZONfechas.fQ216)
+                field(F216; LineasAMAZONfechas.fQ216)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L216;L[110])
+                field(L216; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q217;Rec.Q217)
+                field(Q217; Rec.Q217)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F217;LineasAMAZONfechas.fQ217)
+                field(F217; LineasAMAZONfechas.fQ217)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L217;L[110])
+                field(L217; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q218;Rec.Q218)
+                field(Q218; Rec.Q218)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F218;LineasAMAZONfechas.fQ218)
+                field(F218; LineasAMAZONfechas.fQ218)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L218;L[110])
+                field(L218; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q219;Rec.Q219)
+                field(Q219; Rec.Q219)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F219;LineasAMAZONfechas.fQ219)
+                field(F219; LineasAMAZONfechas.fQ219)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L219;L[110])
+                field(L219; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q220;Rec.Q220)
+                field(Q220; Rec.Q220)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F220;LineasAMAZONfechas.fQ220)
+                field(F220; LineasAMAZONfechas.fQ220)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L220;L[110])
+                field(L220; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q221;Rec.Q221)
+                field(Q221; Rec.Q221)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F221;LineasAMAZONfechas.fQ221)
+                field(F221; LineasAMAZONfechas.fQ221)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L221;L[110])
+                field(L221; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q222;Rec.Q222)
+                field(Q222; Rec.Q222)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F222;LineasAMAZONfechas.fQ222)
+                field(F222; LineasAMAZONfechas.fQ222)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L222;L[110])
+                field(L222; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q223;Rec.Q223)
+                field(Q223; Rec.Q223)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F223;LineasAMAZONfechas.fQ223)
+                field(F223; LineasAMAZONfechas.fQ223)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L223;L[110])
+                field(L223; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q224;Rec.Q224)
+                field(Q224; Rec.Q224)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F224;LineasAMAZONfechas.fQ224)
+                field(F224; LineasAMAZONfechas.fQ224)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L224;L[110])
+                field(L224; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q225;Rec.Q225)
+                field(Q225; Rec.Q225)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F225;LineasAMAZONfechas.fQ225)
+                field(F225; LineasAMAZONfechas.fQ225)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L225;L[110])
+                field(L225; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q226;Rec.Q226)
+                field(Q226; Rec.Q226)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F226;LineasAMAZONfechas.fQ226)
+                field(F226; LineasAMAZONfechas.fQ226)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L226;L[110])
+                field(L226; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q227;Rec.Q227)
+                field(Q227; Rec.Q227)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F227;LineasAMAZONfechas.fQ227)
+                field(F227; LineasAMAZONfechas.fQ227)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L227;L[110])
+                field(L227; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q228;Rec.Q228)
+                field(Q228; Rec.Q228)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F228;LineasAMAZONfechas.fQ228)
+                field(F228; LineasAMAZONfechas.fQ228)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L228;L[110])
+                field(L228; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q229;Rec.Q229)
+                field(Q229; Rec.Q229)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F229;LineasAMAZONfechas.fQ229)
+                field(F229; LineasAMAZONfechas.fQ229)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L229;L[110])
+                field(L229; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q230;Rec.Q230)
+                field(Q230; Rec.Q230)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F230;LineasAMAZONfechas.fQ230)
+                field(F230; LineasAMAZONfechas.fQ230)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L230;L[110])
+                field(L230; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q231;Rec.Q231)
+                field(Q231; Rec.Q231)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F231;LineasAMAZONfechas.fQ231)
+                field(F231; LineasAMAZONfechas.fQ231)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L231;L[110])
+                field(L231; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q232;Rec.Q232)
+                field(Q232; Rec.Q232)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F232;LineasAMAZONfechas.fQ232)
+                field(F232; LineasAMAZONfechas.fQ232)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L232;L[110])
+                field(L232; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q233;Rec.Q233)
+                field(Q233; Rec.Q233)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F233;LineasAMAZONfechas.fQ233)
+                field(F233; LineasAMAZONfechas.fQ233)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L233;L[110])
+                field(L233; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q234;Rec.Q234)
+                field(Q234; Rec.Q234)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F234;LineasAMAZONfechas.fQ234)
+                field(F234; LineasAMAZONfechas.fQ234)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L234;L[110])
+                field(L234; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q235;Rec.Q235)
+                field(Q235; Rec.Q235)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F235;LineasAMAZONfechas.fQ235)
+                field(F235; LineasAMAZONfechas.fQ235)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L235;L[110])
+                field(L235; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q236;Rec.Q236)
+                field(Q236; Rec.Q236)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F236;LineasAMAZONfechas.fQ236)
+                field(F236; LineasAMAZONfechas.fQ236)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L236;L[110])
+                field(L236; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q237;Rec.Q237)
+                field(Q237; Rec.Q237)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F237;LineasAMAZONfechas.fQ237)
+                field(F237; LineasAMAZONfechas.fQ237)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L237;L[110])
+                field(L237; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q238;Rec.Q238)
+                field(Q238; Rec.Q238)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F238;LineasAMAZONfechas.fQ238)
+                field(F238; LineasAMAZONfechas.fQ238)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L238;L[110])
+                field(L238; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q239;Rec.Q239)
+                field(Q239; Rec.Q239)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F239;LineasAMAZONfechas.fQ239)
+                field(F239; LineasAMAZONfechas.fQ239)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L239;L[110])
+                field(L239; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q240;Rec.Q240)
+                field(Q240; Rec.Q240)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F240;LineasAMAZONfechas.fQ240)
+                field(F240; LineasAMAZONfechas.fQ240)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L240;L[110])
+                field(L240; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q241;Rec.Q241)
+                field(Q241; Rec.Q241)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F241;LineasAMAZONfechas.fQ241)
+                field(F241; LineasAMAZONfechas.fQ241)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L241;L[110])
+                field(L241; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q242;Rec.Q242)
+                field(Q242; Rec.Q242)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F242;LineasAMAZONfechas.fQ242)
+                field(F242; LineasAMAZONfechas.fQ242)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L242;L[110])
+                field(L242; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q243;Rec.Q243)
+                field(Q243; Rec.Q243)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F243;LineasAMAZONfechas.fQ243)
+                field(F243; LineasAMAZONfechas.fQ243)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L243;L[110])
+                field(L243; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q244;Rec.Q244)
+                field(Q244; Rec.Q244)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F244;LineasAMAZONfechas.fQ244)
+                field(F244; LineasAMAZONfechas.fQ244)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L244;L[110])
+                field(L244; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q245;Rec.Q245)
+                field(Q245; Rec.Q245)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F245;LineasAMAZONfechas.fQ245)
+                field(F245; LineasAMAZONfechas.fQ245)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L245;L[110])
+                field(L245; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q246;Rec.Q246)
+                field(Q246; Rec.Q246)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F246;LineasAMAZONfechas.fQ246)
+                field(F246; LineasAMAZONfechas.fQ246)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L246;L[110])
+                field(L246; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q247;Rec.Q247)
+                field(Q247; Rec.Q247)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F247;LineasAMAZONfechas.fQ247)
+                field(F247; LineasAMAZONfechas.fQ247)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L247;L[110])
+                field(L247; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q248;Rec.Q248)
+                field(Q248; Rec.Q248)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F248;LineasAMAZONfechas.fQ248)
+                field(F248; LineasAMAZONfechas.fQ248)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L248;L[110])
+                field(L248; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q249;Rec.Q249)
+                field(Q249; Rec.Q249)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F249;LineasAMAZONfechas.fQ249)
+                field(F249; LineasAMAZONfechas.fQ249)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L249;L[110])
+                field(L249; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q250;Rec.Q250)
+                field(Q250; Rec.Q250)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F250;LineasAMAZONfechas.fQ250)
+                field(F250; LineasAMAZONfechas.fQ250)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L250;L[110])
+                field(L250; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q251;Rec.Q251)
+                field(Q251; Rec.Q251)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F251;LineasAMAZONfechas.fQ251)
+                field(F251; LineasAMAZONfechas.fQ251)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L251;L[110])
+                field(L251; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q252;Rec.Q252)
+                field(Q252; Rec.Q252)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F252;LineasAMAZONfechas.fQ252)
+                field(F252; LineasAMAZONfechas.fQ252)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L252;L[110])
+                field(L252; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q253;Rec.Q253)
+                field(Q253; Rec.Q253)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F253;LineasAMAZONfechas.fQ253)
+                field(F253; LineasAMAZONfechas.fQ253)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L253;L[110])
+                field(L253; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q254;Rec.Q254)
+                field(Q254; Rec.Q254)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F254;LineasAMAZONfechas.fQ254)
+                field(F254; LineasAMAZONfechas.fQ254)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L254;L[110])
+                field(L254; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q255;Rec.Q255)
+                field(Q255; Rec.Q255)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F255;LineasAMAZONfechas.fQ255)
+                field(F255; LineasAMAZONfechas.fQ255)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L255;L[110])
+                field(L255; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q256;Rec.Q256)
+                field(Q256; Rec.Q256)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F256;LineasAMAZONfechas.fQ256)
+                field(F256; LineasAMAZONfechas.fQ256)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L256;L[110])
+                field(L256; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q257;Rec.Q257)
+                field(Q257; Rec.Q257)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F257;LineasAMAZONfechas.fQ257)
+                field(F257; LineasAMAZONfechas.fQ257)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L257;L[110])
+                field(L257; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q258;Rec.Q258)
+                field(Q258; Rec.Q258)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F258;LineasAMAZONfechas.fQ258)
+                field(F258; LineasAMAZONfechas.fQ258)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L258;L[110])
+                field(L258; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q259;Rec.Q259)
+                field(Q259; Rec.Q259)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F259;LineasAMAZONfechas.fQ259)
+                field(F259; LineasAMAZONfechas.fQ259)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L259;L[110])
+                field(L259; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q260;Rec.Q260)
+                field(Q260; Rec.Q260)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F260;LineasAMAZONfechas.fQ260)
+                field(F260; LineasAMAZONfechas.fQ260)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L260;L[110])
+                field(L260; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q261;Rec.Q261)
+                field(Q261; Rec.Q261)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F261;LineasAMAZONfechas.fQ261)
+                field(F261; LineasAMAZONfechas.fQ261)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L261;L[110])
+                field(L261; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q262;Rec.Q262)
+                field(Q262; Rec.Q262)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F262;LineasAMAZONfechas.fQ262)
+                field(F262; LineasAMAZONfechas.fQ262)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L262;L[110])
+                field(L262; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q263;Rec.Q263)
+                field(Q263; Rec.Q263)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F263;LineasAMAZONfechas.fQ263)
+                field(F263; LineasAMAZONfechas.fQ263)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L263;L[110])
+                field(L263; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q264;Rec.Q264)
+                field(Q264; Rec.Q264)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F264;LineasAMAZONfechas.fQ264)
+                field(F264; LineasAMAZONfechas.fQ264)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L264;L[110])
+                field(L264; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q265;Rec.Q265)
+                field(Q265; Rec.Q265)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F265;LineasAMAZONfechas.fQ265)
+                field(F265; LineasAMAZONfechas.fQ265)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L265;L[110])
+                field(L265; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q266;Rec.Q266)
+                field(Q266; Rec.Q266)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F266;LineasAMAZONfechas.fQ266)
+                field(F266; LineasAMAZONfechas.fQ266)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L266;L[110])
+                field(L266; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q267;Rec.Q267)
+                field(Q267; Rec.Q267)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F267;LineasAMAZONfechas.fQ267)
+                field(F267; LineasAMAZONfechas.fQ267)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L267;L[110])
+                field(L267; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q268;Rec.Q268)
+                field(Q268; Rec.Q268)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F268;LineasAMAZONfechas.fQ268)
+                field(F268; LineasAMAZONfechas.fQ268)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L268;L[110])
+                field(L268; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q269;Rec.Q269)
+                field(Q269; Rec.Q269)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F269;LineasAMAZONfechas.fQ269)
+                field(F269; LineasAMAZONfechas.fQ269)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L269;L[110])
+                field(L269; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q270;Rec.Q270)
+                field(Q270; Rec.Q270)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F270;LineasAMAZONfechas.fQ270)
+                field(F270; LineasAMAZONfechas.fQ270)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L270;L[110])
+                field(L270; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q271;Rec.Q271)
+                field(Q271; Rec.Q271)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F271;LineasAMAZONfechas.fQ271)
+                field(F271; LineasAMAZONfechas.fQ271)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L271;L[110])
+                field(L271; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q272;Rec.Q272)
+                field(Q272; Rec.Q272)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F272;LineasAMAZONfechas.fQ272)
+                field(F272; LineasAMAZONfechas.fQ272)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L272;L[110])
+                field(L272; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q273;Rec.Q273)
+                field(Q273; Rec.Q273)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F273;LineasAMAZONfechas.fQ273)
+                field(F273; LineasAMAZONfechas.fQ273)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L273;L[110])
+                field(L273; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q274;Rec.Q274)
+                field(Q274; Rec.Q274)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F274;LineasAMAZONfechas.fQ274)
+                field(F274; LineasAMAZONfechas.fQ274)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L274;L[110])
+                field(L274; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q275;Rec.Q275)
+                field(Q275; Rec.Q275)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F275;LineasAMAZONfechas.fQ275)
+                field(F275; LineasAMAZONfechas.fQ275)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L275;L[110])
+                field(L275; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q276;Rec.Q276)
+                field(Q276; Rec.Q276)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F276;LineasAMAZONfechas.fQ276)
+                field(F276; LineasAMAZONfechas.fQ276)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L276;L[110])
+                field(L276; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q277;Rec.Q277)
+                field(Q277; Rec.Q277)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F277;LineasAMAZONfechas.fQ277)
+                field(F277; LineasAMAZONfechas.fQ277)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L277;L[110])
+                field(L277; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q278;Rec.Q278)
+                field(Q278; Rec.Q278)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F278;LineasAMAZONfechas.fQ278)
+                field(F278; LineasAMAZONfechas.fQ278)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L278;L[110])
+                field(L278; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q279;Rec.Q279)
+                field(Q279; Rec.Q279)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F279;LineasAMAZONfechas.fQ279)
+                field(F279; LineasAMAZONfechas.fQ279)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L279;L[110])
+                field(L279; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q280;Rec.Q280)
+                field(Q280; Rec.Q280)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F280;LineasAMAZONfechas.fQ280)
+                field(F280; LineasAMAZONfechas.fQ280)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L280;L[110])
+                field(L280; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q281;Rec.Q281)
+                field(Q281; Rec.Q281)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F281;LineasAMAZONfechas.fQ281)
+                field(F281; LineasAMAZONfechas.fQ281)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L281;L[110])
+                field(L281; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q282;Rec.Q282)
+                field(Q282; Rec.Q282)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F282;LineasAMAZONfechas.fQ282)
+                field(F282; LineasAMAZONfechas.fQ282)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L282;L[110])
+                field(L282; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q283;Rec.Q283)
+                field(Q283; Rec.Q283)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F283;LineasAMAZONfechas.fQ283)
+                field(F283; LineasAMAZONfechas.fQ283)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L283;L[110])
+                field(L283; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q284;Rec.Q284)
+                field(Q284; Rec.Q284)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F284;LineasAMAZONfechas.fQ284)
+                field(F284; LineasAMAZONfechas.fQ284)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L284;L[110])
+                field(L284; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q285;Rec.Q285)
+                field(Q285; Rec.Q285)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F285;LineasAMAZONfechas.fQ285)
+                field(F285; LineasAMAZONfechas.fQ285)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L285;L[110])
+                field(L285; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q286;Rec.Q286)
+                field(Q286; Rec.Q286)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F286;LineasAMAZONfechas.fQ286)
+                field(F286; LineasAMAZONfechas.fQ286)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L286;L[110])
+                field(L286; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q287;Rec.Q287)
+                field(Q287; Rec.Q287)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F287;LineasAMAZONfechas.fQ287)
+                field(F287; LineasAMAZONfechas.fQ287)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L287;L[110])
+                field(L287; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q288;Rec.Q288)
+                field(Q288; Rec.Q288)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F288;LineasAMAZONfechas.fQ288)
+                field(F288; LineasAMAZONfechas.fQ288)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L288;L[110])
+                field(L288; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q289;Rec.Q289)
+                field(Q289; Rec.Q289)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F289;LineasAMAZONfechas.fQ289)
+                field(F289; LineasAMAZONfechas.fQ289)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L289;L[110])
+                field(L289; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q290;Rec.Q290)
+                field(Q290; Rec.Q290)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F290;LineasAMAZONfechas.fQ290)
+                field(F290; LineasAMAZONfechas.fQ290)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L290;L[110])
+                field(L290; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q291;Rec.Q291)
+                field(Q291; Rec.Q291)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F291;LineasAMAZONfechas.fQ291)
+                field(F291; LineasAMAZONfechas.fQ291)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L291;L[110])
+                field(L291; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q292;Rec.Q292)
+                field(Q292; Rec.Q292)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F292;LineasAMAZONfechas.fQ292)
+                field(F292; LineasAMAZONfechas.fQ292)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L292;L[110])
+                field(L292; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q293;Rec.Q293)
+                field(Q293; Rec.Q293)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F293;LineasAMAZONfechas.fQ293)
+                field(F293; LineasAMAZONfechas.fQ293)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L293;L[110])
+                field(L293; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q294;Rec.Q294)
+                field(Q294; Rec.Q294)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F294;LineasAMAZONfechas.fQ294)
+                field(F294; LineasAMAZONfechas.fQ294)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L294;L[110])
+                field(L294; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q295;Rec.Q295)
+                field(Q295; Rec.Q295)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F295;LineasAMAZONfechas.fQ295)
+                field(F295; LineasAMAZONfechas.fQ295)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L295;L[110])
+                field(L295; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q296;Rec.Q296)
+                field(Q296; Rec.Q296)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F296;LineasAMAZONfechas.fQ296)
+                field(F296; LineasAMAZONfechas.fQ296)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L296;L[110])
+                field(L296; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q297;Rec.Q297)
+                field(Q297; Rec.Q297)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F297;LineasAMAZONfechas.fQ297)
+                field(F297; LineasAMAZONfechas.fQ297)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L297;L[110])
+                field(L297; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q298;Rec.Q298)
+                field(Q298; Rec.Q298)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F298;LineasAMAZONfechas.fQ298)
+                field(F298; LineasAMAZONfechas.fQ298)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L298;L[110])
+                field(L298; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q299;Rec.Q299)
+                field(Q299; Rec.Q299)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F299;LineasAMAZONfechas.fQ299)
+                field(F299; LineasAMAZONfechas.fQ299)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L299;L[110])
+                field(L299; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q300;Rec.Q300)
+                field(Q300; Rec.Q300)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F300;LineasAMAZONfechas.fQ300)
+                field(F300; LineasAMAZONfechas.fQ300)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L300;L[110])
+                field(L300; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q301;Rec.Q301)
+                field(Q301; Rec.Q301)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F301;LineasAMAZONfechas.fQ301)
+                field(F301; LineasAMAZONfechas.fQ301)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L301;L[110])
+                field(L301; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q302;Rec.Q302)
+                field(Q302; Rec.Q302)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F302;LineasAMAZONfechas.fQ302)
+                field(F302; LineasAMAZONfechas.fQ302)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L302;L[110])
+                field(L302; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q303;Rec.Q303)
+                field(Q303; Rec.Q303)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F303;LineasAMAZONfechas.fQ303)
+                field(F303; LineasAMAZONfechas.fQ303)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L303;L[110])
+                field(L303; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q304;Rec.Q304)
+                field(Q304; Rec.Q304)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F304;LineasAMAZONfechas.fQ304)
+                field(F304; LineasAMAZONfechas.fQ304)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L304;L[110])
+                field(L304; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q305;Rec.Q305)
+                field(Q305; Rec.Q305)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F305;LineasAMAZONfechas.fQ305)
+                field(F305; LineasAMAZONfechas.fQ305)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L305;L[110])
+                field(L305; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q306;Rec.Q306)
+                field(Q306; Rec.Q306)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F306;LineasAMAZONfechas.fQ306)
+                field(F306; LineasAMAZONfechas.fQ306)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L306;L[110])
+                field(L306; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q307;Rec.Q307)
+                field(Q307; Rec.Q307)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F307;LineasAMAZONfechas.fQ307)
+                field(F307; LineasAMAZONfechas.fQ307)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L307;L[110])
+                field(L307; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q308;Rec.Q308)
+                field(Q308; Rec.Q308)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F308;LineasAMAZONfechas.fQ308)
+                field(F308; LineasAMAZONfechas.fQ308)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L308;L[110])
+                field(L308; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q309;Rec.Q309)
+                field(Q309; Rec.Q309)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F309;LineasAMAZONfechas.fQ309)
+                field(F309; LineasAMAZONfechas.fQ309)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L309;F[110])
+                field(L309; F[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q310;Rec.Q310)
+                field(Q310; Rec.Q310)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F310;LineasAMAZONfechas.fQ310)
+                field(F310; LineasAMAZONfechas.fQ310)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L310;L[110])
+                field(L310; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q311;Rec.Q311)
+                field(Q311; Rec.Q311)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F311;LineasAMAZONfechas.fQ311)
+                field(F311; LineasAMAZONfechas.fQ311)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L311;L[110])
+                field(L311; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q312;Rec.Q312)
+                field(Q312; Rec.Q312)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F312;LineasAMAZONfechas.fQ312)
+                field(F312; LineasAMAZONfechas.fQ312)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L312;L[110])
+                field(L312; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q313;Rec.Q313)
+                field(Q313; Rec.Q313)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F313;LineasAMAZONfechas.fQ313)
+                field(F313; LineasAMAZONfechas.fQ313)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L313;L[110])
+                field(L313; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q314;Rec.Q314)
+                field(Q314; Rec.Q314)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F314;LineasAMAZONfechas.fQ314)
+                field(F314; LineasAMAZONfechas.fQ314)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L314;L[110])
+                field(L314; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q315;Rec.Q315)
+                field(Q315; Rec.Q315)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F315;LineasAMAZONfechas.fQ315)
+                field(F315; LineasAMAZONfechas.fQ315)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L315;L[110])
+                field(L315; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q316;Rec.Q316)
+                field(Q316; Rec.Q316)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F316;LineasAMAZONfechas.fQ316)
+                field(F316; LineasAMAZONfechas.fQ316)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L316;L[110])
+                field(L316; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q317;Rec.Q317)
+                field(Q317; Rec.Q317)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F317;LineasAMAZONfechas.fQ317)
+                field(F317; LineasAMAZONfechas.fQ317)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L317;L[110])
+                field(L317; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q318;Rec.Q318)
+                field(Q318; Rec.Q318)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F318;LineasAMAZONfechas.fQ318)
+                field(F318; LineasAMAZONfechas.fQ318)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L318;L[110])
+                field(L318; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q319;Rec.Q319)
+                field(Q319; Rec.Q319)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F319;LineasAMAZONfechas.fQ319)
+                field(F319; LineasAMAZONfechas.fQ319)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L319;L[110])
+                field(L319; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q320;Rec.Q320)
+                field(Q320; Rec.Q320)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F320;LineasAMAZONfechas.fQ320)
+                field(F320; LineasAMAZONfechas.fQ320)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L320;L[110])
+                field(L320; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q321;Rec.Q321)
+                field(Q321; Rec.Q321)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F321;LineasAMAZONfechas.fQ321)
+                field(F321; LineasAMAZONfechas.fQ321)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L321;L[110])
+                field(L321; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q322;Rec.Q322)
+                field(Q322; Rec.Q322)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F322;LineasAMAZONfechas.fQ322)
+                field(F322; LineasAMAZONfechas.fQ322)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L322;L[110])
+                field(L322; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q323;Rec.Q323)
+                field(Q323; Rec.Q323)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F323;LineasAMAZONfechas.fQ323)
+                field(F323; LineasAMAZONfechas.fQ323)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L323;L[110])
+                field(L323; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q324;Rec.Q324)
+                field(Q324; Rec.Q324)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F324;LineasAMAZONfechas.fQ324)
+                field(F324; LineasAMAZONfechas.fQ324)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L324;L[110])
+                field(L324; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q325;Rec.Q325)
+                field(Q325; Rec.Q325)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F325;LineasAMAZONfechas.fQ325)
+                field(F325; LineasAMAZONfechas.fQ325)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L325;L[110])
+                field(L325; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q326;Rec.Q326)
+                field(Q326; Rec.Q326)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F326;LineasAMAZONfechas.fQ326)
+                field(F326; LineasAMAZONfechas.fQ326)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L326;L[110])
+                field(L326; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q327;Rec.Q327)
+                field(Q327; Rec.Q327)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F327;LineasAMAZONfechas.fQ327)
+                field(F327; LineasAMAZONfechas.fQ327)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L327;L[110])
+                field(L327; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q328;Rec.Q328)
+                field(Q328; Rec.Q328)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F328;LineasAMAZONfechas.fQ328)
+                field(F328; LineasAMAZONfechas.fQ328)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L328;L[110])
+                field(L328; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q329;Rec.Q329)
+                field(Q329; Rec.Q329)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F329;LineasAMAZONfechas.fQ329)
+                field(F329; LineasAMAZONfechas.fQ329)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L329;L[110])
+                field(L329; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q330;Rec.Q330)
+                field(Q330; Rec.Q330)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F330;LineasAMAZONfechas.fQ330)
+                field(F330; LineasAMAZONfechas.fQ330)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L330;L[110])
+                field(L330; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q331;Rec.Q331)
+                field(Q331; Rec.Q331)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F331;LineasAMAZONfechas.fQ331)
+                field(F331; LineasAMAZONfechas.fQ331)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L331;L[110])
+                field(L331; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q332;Rec.Q332)
+                field(Q332; Rec.Q332)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F332;LineasAMAZONfechas.fQ332)
+                field(F332; LineasAMAZONfechas.fQ332)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L332;L[110])
+                field(L332; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q333;Rec.Q333)
+                field(Q333; Rec.Q333)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F333;LineasAMAZONfechas.fQ333)
+                field(F333; LineasAMAZONfechas.fQ333)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L333;L[110])
+                field(L333; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q334;Rec.Q334)
+                field(Q334; Rec.Q334)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F334;LineasAMAZONfechas.fQ334)
+                field(F334; LineasAMAZONfechas.fQ334)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L334;L[110])
+                field(L334; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q335;Rec.Q335)
+                field(Q335; Rec.Q335)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F335;LineasAMAZONfechas.fQ335)
+                field(F335; LineasAMAZONfechas.fQ335)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L335;L[110])
+                field(L335; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q336;Rec.Q336)
+                field(Q336; Rec.Q336)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F336;LineasAMAZONfechas.fQ336)
+                field(F336; LineasAMAZONfechas.fQ336)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L336;L[110])
+                field(L336; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q337;Rec.Q337)
+                field(Q337; Rec.Q337)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F337;LineasAMAZONfechas.fQ337)
+                field(F337; LineasAMAZONfechas.fQ337)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L337;L[110])
+                field(L337; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q338;Rec.Q338)
+                field(Q338; Rec.Q338)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F338;LineasAMAZONfechas.fQ338)
+                field(F338; LineasAMAZONfechas.fQ338)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L338;L[110])
+                field(L338; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q339;Rec.Q339)
+                field(Q339; Rec.Q339)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F339;LineasAMAZONfechas.fQ339)
+                field(F339; LineasAMAZONfechas.fQ339)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L339;L[110])
+                field(L339; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q340;Rec.Q340)
+                field(Q340; Rec.Q340)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F340;LineasAMAZONfechas.fQ340)
+                field(F340; LineasAMAZONfechas.fQ340)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L340;L[110])
+                field(L340; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q341;Rec.Q341)
+                field(Q341; Rec.Q341)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F341;LineasAMAZONfechas.fQ341)
+                field(F341; LineasAMAZONfechas.fQ341)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L341;L[110])
+                field(L341; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q342;Rec.Q342)
+                field(Q342; Rec.Q342)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F342;LineasAMAZONfechas.fQ342)
+                field(F342; LineasAMAZONfechas.fQ342)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L342;L[110])
+                field(L342; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q343;Rec.Q343)
+                field(Q343; Rec.Q343)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F343;LineasAMAZONfechas.fQ343)
+                field(F343; LineasAMAZONfechas.fQ343)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L343;L[110])
+                field(L343; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q344;Rec.Q344)
+                field(Q344; Rec.Q344)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F344;LineasAMAZONfechas.fQ344)
+                field(F344; LineasAMAZONfechas.fQ344)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L344;L[110])
+                field(L344; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q345;Rec.Q345)
+                field(Q345; Rec.Q345)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F345;LineasAMAZONfechas.fQ345)
+                field(F345; LineasAMAZONfechas.fQ345)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L345;L[110])
+                field(L345; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q346;Rec.Q346)
+                field(Q346; Rec.Q346)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F346;LineasAMAZONfechas.fQ346)
+                field(F346; LineasAMAZONfechas.fQ346)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L346;L[110])
+                field(L346; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q347;Rec.Q347)
+                field(Q347; Rec.Q347)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F347;LineasAMAZONfechas.fQ347)
+                field(F347; LineasAMAZONfechas.fQ347)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L347;L[110])
+                field(L347; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q348;Rec.Q348)
+                field(Q348; Rec.Q348)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F348;LineasAMAZONfechas.fQ348)
+                field(F348; LineasAMAZONfechas.fQ348)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L348;L[110])
+                field(L348; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q349;Rec.Q349)
+                field(Q349; Rec.Q349)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F349;LineasAMAZONfechas.fQ349)
+                field(F349; LineasAMAZONfechas.fQ349)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L349;L[110])
+                field(L349; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q350;Rec.Q350)
+                field(Q350; Rec.Q350)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F350;LineasAMAZONfechas.fQ350)
+                field(F350; LineasAMAZONfechas.fQ350)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L350;L[110])
+                field(L350; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q351;Rec.Q351)
+                field(Q3521; Rec.Q351)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F351;LineasAMAZONfechas.fQ351)
+                field(F351; LineasAMAZONfechas.fQ351)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L351;L[110])
+                field(L351; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q352;Rec.Q352)
+                field(Q352; Rec.Q352)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F352;LineasAMAZONfechas.fQ352)
+                field(F352; LineasAMAZONfechas.fQ352)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L352;L[110])
+                field(L352; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q353;Rec.Q353)
+                field(Q353; Rec.Q353)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F353;LineasAMAZONfechas.fQ353)
+                field(F353; LineasAMAZONfechas.fQ353)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L353;L[110])
+                field(L353; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q354;Rec.Q354)
+                field(Q354; Rec.Q354)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F354;LineasAMAZONfechas.fQ354)
+                field(F354; LineasAMAZONfechas.fQ354)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L354;L[110])
+                field(L354; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q355;Rec.Q355)
+                field(Q355; Rec.Q355)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F355;LineasAMAZONfechas.fQ355)
+                field(F355; LineasAMAZONfechas.fQ355)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L355;L[110])
+                field(L355; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q356;Rec.Q356)
+                field(Q356; Rec.Q356)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F356;LineasAMAZONfechas.fQ356)
+                field(F356; LineasAMAZONfechas.fQ356)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L356;L[110])
+                field(L356; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q357;Rec.Q357)
+                field(Q357; Rec.Q357)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F357;LineasAMAZONfechas.fQ357)
+                field(F357; LineasAMAZONfechas.fQ357)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L357;L[110])
+                field(L357; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q358;Rec.Q358)
+                field(Q358; Rec.Q358)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F358;LineasAMAZONfechas.fQ358)
+                field(F358; LineasAMAZONfechas.fQ358)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L358;L[110])
+                field(L358; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q359;Rec.Q359)
+                field(Q359; Rec.Q359)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F359;LineasAMAZONfechas.fQ359)
+                field(F359; LineasAMAZONfechas.fQ359)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L359;L[110])
+                field(L359; L[110])
                 {
                     ApplicationArea = Basic;
                 }
-                field(Q360;Rec.Q360)
+                field(Q360; Rec.Q360)
                 {
                     ApplicationArea = Basic;
                 }
-                field(F360;LineasAMAZONfechas.fQ360)
+                field(F360; LineasAMAZONfechas.fQ360)
                 {
                     ApplicationArea = Basic;
                 }
-                field(L360;L[110])
+                field(L360; L[110])
                 {
                     ApplicationArea = Basic;
                 }
+                field(Q361; LineasAMAZON2.Q361)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F361; LineasAMAZONfechas2.fQ361)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L361; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q362; LineasAMAZON2.Q362)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F362; LineasAMAZONfechas2.fQ362)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L362; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q363; LineasAMAZON2.Q363)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F363; LineasAMAZONfechas2.fQ363)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L363; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q364; LineasAMAZON2.Q364)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F364; LineasAMAZONfechas2.fQ364)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L364; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q365; LineasAMAZON2.Q365)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F365; LineasAMAZONfechas2.fQ365)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L365; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q366; LineasAMAZON2.Q366)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F366; LineasAMAZONfechas2.fQ366)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L366; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q367; LineasAMAZON2.Q367)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F367; LineasAMAZONfechas2.fQ367)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L367; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q368; LineasAMAZON2.Q368)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F368; LineasAMAZONfechas2.fQ368)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L368; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q369; LineasAMAZON2.Q369)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F369; LineasAMAZONfechas2.fQ369)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L369; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q370; LineasAMAZON2.Q370)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F370; LineasAMAZONfechas2.fQ370)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L370; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q371; LineasAMAZON2.Q371)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F371; LineasAMAZONfechas2.fQ371)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L371; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q372; LineasAMAZON2.Q372)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F372; LineasAMAZONfechas2.fQ372)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L372; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q373; LineasAMAZON2.Q373)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F373; LineasAMAZONfechas2.fQ373)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L373; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q374; LineasAMAZON2.Q374)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F374; LineasAMAZONfechas2.fQ374)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L374; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q375; LineasAMAZON2.Q375)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F375; LineasAMAZONfechas2.fQ375)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L375; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q376; LineasAMAZON2.Q376)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F376; LineasAMAZONfechas2.fQ376)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L376; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q377; LineasAMAZON2.Q377)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F377; LineasAMAZONfechas2.fQ377)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L377; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q378; LineasAMAZON2.Q378)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F378; LineasAMAZONfechas2.fQ378)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L378; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q379; LineasAMAZON2.Q379)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F379; LineasAMAZONfechas2.fQ379)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L379; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q380; LineasAMAZON2.Q380)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F380; LineasAMAZONfechas2.fQ380)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L380; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q381; LineasAMAZON2.Q381)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F381; LineasAMAZONfechas2.fQ381)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L381; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q382; LineasAMAZON2.Q382)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F382; LineasAMAZONfechas2.fQ382)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L382; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q383; LineasAMAZON2.Q383)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F383; LineasAMAZONfechas2.fQ383)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L383; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q384; LineasAMAZON2.Q384)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F384; LineasAMAZONfechas2.fQ384)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L384; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q385; LineasAMAZON2.Q385)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F385; LineasAMAZONfechas2.fQ385)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L385; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q386; LineasAMAZON2.Q386)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F386; LineasAMAZONfechas2.fQ386)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L386; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q387; LineasAMAZON2.Q387)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F387; LineasAMAZONfechas2.fQ387)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L387; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q388; LineasAMAZON2.Q388)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F388; LineasAMAZONfechas2.fQ388)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L388; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q389; LineasAMAZON2.Q389)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F389; LineasAMAZONfechas2.fQ389)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L389; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q390; LineasAMAZON2.Q390)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F390; LineasAMAZONfechas2.fQ390)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L390; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q391; LineasAMAZON2.Q391)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F391; LineasAMAZONfechas2.fQ391)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L391; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q392; LineasAMAZON2.Q392)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F392; LineasAMAZONfechas2.fQ392)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L392; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q393; LineasAMAZON2.Q393)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F393; LineasAMAZONfechas2.fQ393)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L393; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q394; LineasAMAZON2.Q394)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F394; LineasAMAZONfechas2.fQ394)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L394; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q395; LineasAMAZON2.Q395)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F395; LineasAMAZONfechas2.fQ395)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L395; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q396; LineasAMAZON2.Q396)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F396; LineasAMAZONfechas2.fQ396)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L396; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q397; LineasAMAZON2.Q397)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F397; LineasAMAZONfechas2.fQ397)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L397; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q398; LineasAMAZON2.Q398)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F398; LineasAMAZONfechas2.fQ398)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L398; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q399; LineasAMAZON2.Q399)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F399; LineasAMAZONfechas2.fQ399)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L399; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+                field(Q400; LineasAMAZON2.Q400)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(F400; LineasAMAZONfechas2.fQ400)
+                {
+                    ApplicationArea = Basic;
+                }
+                field(L400; L[110])
+                {
+                    ApplicationArea = Basic;
+                }
+
+
             }
         }
     }
@@ -4363,13 +4845,16 @@ Page 50152 "Excel Lineas amazon"
 
 
         LineasAMAZONfechas.Init;
+        LineasAMAZON2.get(Rec.nexpe, Rec.your, rec.lin);
         /////- if LineasAMAZONfechas.Get(nexpe,your,lin) then begin
         /////- end;
     end;
 
     var
-        F: array [370] of Code[10];
-        L: array [370] of Code[10];
-        LineasAMAZONfechas: Record "Lineas AMAZON fechas";
-}
+        F: array[400] of Code[10];
+        L: array[400] of Code[10];
 
+        LineasAMAZONfechas: Record "Lineas AMAZON fechas";
+        LineasAMAZONfechas2: Record "Lineas AMAZON fechas2";
+        LineasAMAZON2: Record "Lineas AMAZON2";
+}

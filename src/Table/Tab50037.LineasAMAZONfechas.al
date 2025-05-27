@@ -1099,6 +1099,8 @@ Table 50037 "Lineas AMAZON fechas"
         field(764;fQ360;Date)
         {
         }
+        
+        
     }
 
     keys

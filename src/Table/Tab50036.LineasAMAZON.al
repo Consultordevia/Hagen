@@ -1099,6 +1099,7 @@ Table 50036 "Lineas AMAZON"
         field(764;Q360;Decimal)
         {
         }
+        
     }
 
     keys

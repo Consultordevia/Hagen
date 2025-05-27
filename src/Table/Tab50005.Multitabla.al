@@ -404,32 +404,33 @@ Table 50005 Multitabla
     local procedure CalculaFechaCaducidad()
     begin
 
+        if "Fecha caducidad" <> 0D THEN BEGIN
+            DIFDIAS := "Fecha caducidad" - Today;
+            if DIFDIAS <> 0 then begin
+                if (DIFDIAS / 30) < 6 then begin
+                    "<6 meses" := "<6 meses" + Cantidad;
+                end;
+                if ((DIFDIAS / 30) >= 6) and ((DIFDIAS / 30) < 7) then begin
+                    ">6 meses" := ">6 meses" + Cantidad;
+                end;
+                if ((DIFDIAS / 30) >= 7) and ((DIFDIAS / 30) < 8) then begin
+                    ">7 meses" := ">7 meses" + Cantidad;
+                end;
+                if ((DIFDIAS / 30) >= 8) and ((DIFDIAS / 30) < 9) then begin
+                    ">8 meses a 9 meses" := ">8 meses a 9 meses" + Cantidad;
+                end;
+                if ((DIFDIAS / 30) >= 9) and ((DIFDIAS / 30) < 12) then begin
+                    "9 a 12 meses" := "9 a 12 meses" + Cantidad;
+                end;
+                if ((DIFDIAS / 30) >= 12) and ((DIFDIAS / 30) < 18) then begin
+                    "12 a 18 meses" := "12 a 18 meses" + Cantidad;
+                end;
+                if (DIFDIAS / 30) >= 18 then begin
+                    "mas de 18 meses" := "mas de 18 meses" + Cantidad;
+                end;
 
-        DIFDIAS := "Fecha caducidad" - Today;
-        if DIFDIAS <> 0 then begin
-            if (DIFDIAS / 30) < 6 then begin
-                "<6 meses" := "<6 meses" + Cantidad;
             end;
-            if ((DIFDIAS / 30) >= 6) and ((DIFDIAS / 30) < 7) then begin
-                ">6 meses" := ">6 meses" + Cantidad;
-            end;
-            if ((DIFDIAS / 30) >= 7) and ((DIFDIAS / 30) < 8) then begin
-                ">7 meses" := ">7 meses" + Cantidad;
-            end;
-            if ((DIFDIAS / 30) >= 8) and ((DIFDIAS / 30) < 9) then begin
-                ">8 meses a 9 meses" := ">8 meses a 9 meses" + Cantidad;
-            end;
-            if ((DIFDIAS / 30) >= 9) and ((DIFDIAS / 30) < 12) then begin
-                "9 a 12 meses" := "9 a 12 meses" + Cantidad;
-            end;
-            if ((DIFDIAS / 30) >= 12) and ((DIFDIAS / 30) < 18) then begin
-                "12 a 18 meses" := "12 a 18 meses" + Cantidad;
-            end;
-            if (DIFDIAS / 30) >= 18 then begin
-                "mas de 18 meses" := "mas de 18 meses" + Cantidad;
-            end;
-
-        end;
+        END;
     end;
 }
 

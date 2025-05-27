@@ -2014,12 +2014,12 @@ Codeunit 50010 "Automaticos Cartas"
                     if RecI."Producto almacenable" then begin
 
 
-
+                        
                         UBIPICDIN := 'N';
                         PICCOMPAR := 'S';
                         //IF RecI."Tipo de Picking"=1 THEN BEGIN
-                        UBIPICDIN := 'S';
-                        PICCOMPAR := 'N';
+                        ///UBIPICDIN := 'S';
+                        ///PICCOMPAR := 'N';
                         ///END;
 
                         if COMPANYNAME = 'PEPE' then begin
@@ -2038,7 +2038,8 @@ Codeunit 50010 "Automaticos Cartas"
                         //  UBIREF:=RecI."Ubicacion ref.";
                         ///END;
 
-
+                        UBIPICDIN:='N';
+                        PICCOMPAR:='S';
                         TextoSalida5 := 'ARUB' + '|' +
                                   'MO' + '|' +
                                  RecI."No." + '|' +
@@ -2599,8 +2600,8 @@ Codeunit 50010 "Automaticos Cartas"
             ///UBIREF:=RecI."Ubicacion ref.";
             ///END;
 
-
-
+            UBIPICDIN:='N';
+            PICCOMPAR:='S';
             ///      ARUB|AG|62600|01|||N||E150|||||||||
             TextoSalida5 := 'ARUB' + '|' +
                                   'AG' + '|' +
@@ -3177,6 +3178,8 @@ Codeunit 50010 "Automaticos Cartas"
             ///UBIREF:=RecI."Ubicacion ref.";
             ///END;
 
+            UBIPICDIN:='N';
+            PICCOMPAR:='S';
 
             ///      ARUB|AG|62600|01|||N||E150|||||||||
             OutTxt := 'ARUB' + '|' +

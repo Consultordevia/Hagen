@@ -44,6 +44,7 @@ pageextension 50014 "Purchase Order" extends "Purchase Order"
                 field("Oferta para permite pedido"; Rec."Oferta para permite pedido") { ApplicationArea = All; }
                 field("Base imponible"; Rec."Base imponible") { ApplicationArea = All; }
                 field("No cuenta gasto"; Rec."No cuenta gasto") { ApplicationArea = All; }
+                
 
             }
         }

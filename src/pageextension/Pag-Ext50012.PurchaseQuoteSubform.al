@@ -12,6 +12,10 @@ pageextension 50012 "Purchase Quote Subform" extends "Purchase Quote Subform"
                         
 
         }
+         addbefore(Quantity)
+        {
+              field("Fecha Lanzamiento";Rec."Fecha Lanzamiento" ) { ApplicationArea = All; }
+        }
     }
 
 }
