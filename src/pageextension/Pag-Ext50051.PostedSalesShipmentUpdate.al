@@ -56,7 +56,6 @@ pageextension 50051 "Posted SalesShipmentUpdate" extends "Posted Sales Shipment 
 
                             begin
                                 IsHandled := false;
-                                // OnBeforeValidateShipToOptions(Rec, ShipToOptions.AsInteger(), IsHandled);
                                 if IsHandled then
                                     exit;
 
@@ -64,8 +63,6 @@ pageextension 50051 "Posted SalesShipmentUpdate" extends "Posted Sales Shipment 
                                     ShipToOptions::"Default (Sell-to Address)":
                                         begin
                                             rec.Validate("Ship-to Code", '');
-                                            // Rec.CopySellToAddressToShipToAddress();
-                                            //TODO Ir a customer y coger los campos de la tabla ship to.
                                             Customer.Get(rec."Sell-to Customer No.");
                                             rec."Ship-to Code" := Customer."Ship-to Code";
                                             rec."Ship-to Name" := Customer.Name;
@@ -112,8 +109,6 @@ pageextension 50051 "Posted SalesShipmentUpdate" extends "Posted Sales Shipment 
                                             IsShipToCountyVisible := FormatAddress.UseCounty(Rec."Ship-to Country/Region Code");
                                         end;
                                 end;
-
-                                // OnAfterValidateShippingOptions(Rec, ShipToOptions.AsInteger());
                             end;
                         }
                         group(Control4)
