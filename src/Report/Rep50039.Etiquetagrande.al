@@ -60,13 +60,13 @@ Report 50039 "Etiqueta grande"
                 column(SalesHeaderShip_toName; "Sales Shipment Header"."Ship-to Name")
                 {
                 }
-                column(SalesHeaderShip_toContacto; "Sales Shipment Header"."Ship-to Contact")
+                column(SShip_toContacto; "Sales Shipment Header"."Ship-to Contact")
                 {
                 }
-                column(SalesHeaderShip_toPhone; "Sales Shipment Header"."Ship-to Phone No.")
+                column(SShip_toPhone; "Sales Shipment Header"."Ship-to Phone No.")
                 {
                 }
-                column(SalesHeaderShip_toEmail; "Sales Shipment Header"."E-MAIL")
+                column(SShip_toEmail; "Sales Shipment Header"."E-MAIL")
                 {
                 }
 
@@ -85,7 +85,7 @@ Report 50039 "Etiqueta grande"
                 column(SalesHeaderNoexpedicion; "Sales Shipment Header"."Nº expedición")
                 {
                 }
-                column(Observaciónparatransporte; "Sales Shipment Header"."Observación para transporte")
+                column(Observatrans; "Sales Shipment Header"."Observación para transporte")
                 {
                 }
                 trigger OnAfterGetRecord();
