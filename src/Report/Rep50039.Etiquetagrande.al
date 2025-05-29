@@ -38,7 +38,7 @@ Report 50039 "Etiqueta grande"
                 column(Noexpedicion__SalesShipmentHeaderNoexpedicion; 'Nº expedicion: ' + "Sales Shipment Header"."Nº expedición")
                 {
                 }
-                 column(SalesHeaderTotalbultos; "Sales Shipment Header"."Total bultos")
+                column(SalesHeaderTotalbultos; "Sales Shipment Header"."Total bultos")
                 {
                     DecimalPlaces = 0 : 0;
                 }
@@ -60,6 +60,16 @@ Report 50039 "Etiqueta grande"
                 column(SalesHeaderShip_toName; "Sales Shipment Header"."Ship-to Name")
                 {
                 }
+                column(SalesHeaderShip_toContacto; "Sales Shipment Header"."Ship-to Contact")
+                {
+                }
+                column(SalesHeaderShip_toPhone; "Sales Shipment Header"."Ship-to Phone No.")
+                {
+                }
+                column(SalesHeaderShip_toEmail; "Sales Shipment Header"."E-MAIL")
+                {
+                }
+
                 column(ESPANA_Tel_961200945; 'ESPAÑA - Tel: 961 20 09 45')
                 {
                 }
@@ -73,6 +83,9 @@ Report 50039 "Etiqueta grande"
                 {
                 }
                 column(SalesHeaderNoexpedicion; "Sales Shipment Header"."Nº expedición")
+                {
+                }
+                column(Observaciónparatransporte; "Sales Shipment Header"."Observación para transporte")
                 {
                 }
                 trigger OnAfterGetRecord();
@@ -95,8 +108,8 @@ Report 50039 "Etiqueta grande"
                 FormatAddr.SalesShptShipTo(CustAddr, "Sales Shipment Header");
                 FormatAddr.Company(InfoEmpresa, CompanyInfo);
                 cuantas := "Sales Shipment Header"."Total bultos";
-                if cuantas=0 then begin
-                    cuantas:=1;
+                if cuantas = 0 then begin
+                    cuantas := 1;
                 end;
                 nombreprepara := '';
                 TELEFONO := '';

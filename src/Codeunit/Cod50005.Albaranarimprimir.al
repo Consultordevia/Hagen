@@ -328,14 +328,14 @@ Codeunit 50005 "Albaranar + imprimir"
                                 if SalesShptHeader."No imprimir albaran valorado" = false then begin
                                     if RecClie."Albaran valorado" = true then begin
                                         if SalesShptHeader.Dropshipping = true then begin
-                                            if Preparadores.Get(SalesShptHeader.Preparador) then begin
-                                                if UpperCase(CopyStr(Preparadores."Printer Name", 1, 13)) <> 'RICOH DERECHA' then begin
-                                                    Report.Run(50901, false, false, SalesShptHeader);
-                                                end;
-                                                if UpperCase(CopyStr(Preparadores."Printer Name", 1, 13)) = 'RICOH DERECHA' then begin
-                                                    Report.Run(50915, false, false, SalesShptHeader);
-                                                end;
-                                            end;
+                                            ///if Preparadores.Get(SalesShptHeader.Preparador) then begin
+                                                ///if UpperCase(CopyStr(Preparadores."Printer Name", 1, 13)) <> 'RICOH DERECHA' then begin
+                                                Report.Run(50901, false, false, SalesShptHeader);
+                                                ///end;
+                                                ///if UpperCase(CopyStr(Preparadores."Printer Name", 1, 13)) = 'RICOH DERECHA' then begin
+                                                ///Report.Run(50915, false, false, SalesShptHeader);
+                                                ///end;
+                                            ///end;
                                         end;
                                     end;
                                 end;
@@ -343,12 +343,12 @@ Codeunit 50005 "Albaranar + imprimir"
                             if SalesShptHeader."Albaran sin detalle" = true then begin
                                 if SalesShptHeader.Dropshipping = true then begin
                                     if Preparadores.Get(SalesShptHeader.Preparador) then begin
-                                        if UpperCase(CopyStr(Preparadores."Printer Name", 1, 13)) <> 'RICOH DERECHA' then begin
-                                            Report.Run(50902, false, false, SalesShptHeader);
-                                        end;
-                                        if UpperCase(CopyStr(Preparadores."Printer Name", 1, 13)) = 'RICOH DERECHA' then begin
-                                            Report.Run(50916, false, false, SalesShptHeader);
-                                        end;
+                                        ///if UpperCase(CopyStr(Preparadores."Printer Name", 1, 13)) <> 'RICOH DERECHA' then begin
+                                        Report.Run(50902, false, false, SalesShptHeader);
+                                        ///end;
+                                        ///if UpperCase(CopyStr(Preparadores."Printer Name", 1, 13)) = 'RICOH DERECHA' then begin
+                                        /// Report.Run(50916, false, false, SalesShptHeader);
+                                        ///end;
                                     end;
                                 end;
                             end;
