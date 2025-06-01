@@ -11,6 +11,7 @@ Codeunit 50017 "ImprimirAlbaranes"
         RecClie: Record Customer;
         StoA: Record "Ship-to Address";
         RepEtiquetaEnvio: Report "Etiqueta grande envio";
+        RepEtiquetaKiwoko: Report "Etiqueta Kiwoko";
     begin
 
         /*V.Open('#1###########################');
@@ -69,6 +70,11 @@ Codeunit 50017 "ImprimirAlbaranes"
                         RepEtiquetaEnvio.RunModal();
                     END;
 
+                end;
+                IF RecClie."Etiqueta Kiwoko" THEN begin
+                    Clear(RepEtiquetaKiwoko);
+                    RepEtiquetaKiwoko.SetTableView(SHH2);
+                    RepEtiquetaKiwoko.RunModal();
                 end;
             UNTIL SHH.NEXT = 0;
 
