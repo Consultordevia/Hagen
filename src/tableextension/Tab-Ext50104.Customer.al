@@ -786,8 +786,12 @@ tableextension 50104 Customer extends "Customer"
                     CustomerTemplMgt.ApplyCustomerTemplate(Rec, RecCT);
                 END;
             end;
-
         }
+        field(50726; "Etiqueta Kiwoko"; Boolean)
+        {
+            Caption = 'Etiqueta Kiwoko';
+        }
+
 
 
 

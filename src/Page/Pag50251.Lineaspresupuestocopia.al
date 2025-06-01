@@ -223,7 +223,7 @@ Page 50251 "Lineas presupuesto copia"
                     trigger OnValidate()
                     begin
                         /////-if TempOptionLookupBuffer.AutoCompleteOption(TypeAsText, TempOptionLookupBuffer."lookup type"::Sales) then
-                            /////-Rec.Validate(Type, TempOptionLookupBuffer.ID);
+                        /////-Rec.Validate(Type, TempOptionLookupBuffer.ID);
                         /////-TempOptionLookupBuffer.ValidateOption(TypeAsText);
                         /////-UpdateEditableOnRow;
                         /////-UpdateTypeText;
@@ -651,8 +651,8 @@ Page 50251 "Lineas presupuesto copia"
     begin
         Rec.InitType;
         /////-if ApplicationAreaSetup.IsFoundationEnabled then
-            if xRec."Document No." = '' then
-                Rec.Type := Rec.Type::Item;
+        if xRec."Document No." = '' then
+            Rec.Type := Rec.Type::Item;
 
         Rec.Type := Rec.Type::Item;
 
