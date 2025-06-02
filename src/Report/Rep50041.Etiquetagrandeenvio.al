@@ -1,4 +1,4 @@
-Report 50042 "Etiqueta grande envio"
+Report 50041 "Etiqueta grande envio"
 {
     Caption = 'Etiqueta grande envio';
     RDLCLayout = './Layouts/Etiquetagrande.rdlc';

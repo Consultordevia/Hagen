@@ -940,15 +940,43 @@ Page 50008 Modifica
                         Rec1102.SetCurrentkey(Rec1102."Nº expedición");
                         Rec1102.SetRange(Rec1102."Nº expedición", nexpediexp);
                         if Rec1102.FindSet then begin
-                            rec110.Reset();                             
+                            rec110.Reset();
                             Rec110.SetRange("No.", rec1102."No.");
-                            if Rec110.FindSet then begin                        
+                            if Rec110.FindSet then begin
                                 REPORT.RUNMODAL(50039, TRUE, TRUE, REC110);
                             end;
                         END;
 
                     end;
                 }
+                action(EtiquetaKiwoko)
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'EtiquetaKiwoko';
+                    Ellipsis = true;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+
+
+                    trigger OnAction()
+                    var
+                        rec1102: Record "Sales Shipment Header";
+                    begin
+                        rec1102.Reset();
+                        Rec1102.SetCurrentkey(Rec1102."Nº expedición");
+                        Rec1102.SetRange(Rec1102."Nº expedición", nexpediexp);
+                        if Rec1102.FindSet then begin
+                            rec110.Reset();
+                            Rec110.SetRange("No.", rec1102."No.");
+                            if Rec110.FindSet then begin
+                                REPORT.RUNMODAL(50042, TRUE, TRUE, REC110);
+                            end;
+                        END;
+
+                    end;
+                }
+
 
 
             }

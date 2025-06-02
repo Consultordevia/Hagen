@@ -37,7 +37,7 @@ Codeunit 50017 "ImprimirAlbaranes"
             REPEAT
                 RecClie.Get(SHH."Sell-to Customer No.");
                 if SHH."Shipping Agent Code" <> 'ECI' then begin
-                    if SHH."No Enviar albaran en exp." = false then begin
+                    /*if SHH."No Enviar albaran en exp." = false then begin
                         if SHH."No imprimir albaran valorado" = false then begin
                             if RecClie."Albaran valorado" = true then begin
                                 if SHH.Dropshipping = true then begin
@@ -47,9 +47,9 @@ Codeunit 50017 "ImprimirAlbaranes"
                             end;
                         end;
                     end;
+                    */
                     if SHH."Albaran sin detalle" = true then begin
-                        if SHH.Dropshipping = true then begin
-                            ///Error('2- %1 ', SHH."No.");
+                        if SHH.Dropshipping = false then begin
                             Report.Run(50902, false, false, SHH);
                         end;
                     end;
@@ -76,6 +76,9 @@ Codeunit 50017 "ImprimirAlbaranes"
                     RepEtiquetaKiwoko.SetTableView(SHH2);
                     RepEtiquetaKiwoko.RunModal();
                 end;
+                SHH2.GET(SHH."No.");
+                SHH2.ImpresoporImporesora := TRUE;
+                SHH2.Modify();
             UNTIL SHH.NEXT = 0;
 
 

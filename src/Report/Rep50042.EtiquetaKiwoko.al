@@ -1,4 +1,4 @@
-Report 50041 "Etiqueta Kiwoko"
+Report 50042 "Etiqueta Kiwoko"
 {
     Caption = 'Etiqueta Kiwoko';
     RDLCLayout = './Layouts/EtiquetaKiwoko.rdlc';
@@ -57,7 +57,7 @@ Report 50041 "Etiqueta Kiwoko"
                 column(SalesHeaderShip_toAddress; SToA."Address")
                 {
                 }
-                column(SalesHeaderShip_toName; SToA."Name")
+                column(SalesHeaderShip_toName; "Sales Shipment Header"."Ship-to Name"+"Sales Shipment Header"."Ship-to Name 2")
                 {
                 }
                 column(SShip_toContacto; SToA."Contact")
@@ -110,7 +110,7 @@ Report 50041 "Etiqueta Kiwoko"
             trigger OnAfterGetRecord();
             begin
                 NTIENDA := '';
-                NPEDIDO := "Sales Shipment Header"."Order No.";
+                NPEDIDO := "Sales Shipment Header"."Your Reference";
                 IF RecCusto.get("Sales Shipment Header"."Sell-to Customer No.") THEN begin
                     NTIENDA := RecCusto."Codigo cliente externo";
                 end;
