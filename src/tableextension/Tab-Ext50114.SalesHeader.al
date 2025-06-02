@@ -13,11 +13,11 @@ tableextension 50114 SalesHeader extends "Sales Header"
                 if Reccust.get("Sell-to Customer No.") then begin
                     Rec."Permite fraccionar uni. venta" := Reccust."Permite fraccionar unidad de venta";
                     if SalesHeader."Document Type" <> SalesHeader."Document Type"::"Credit Memo" then begin
-                        
+
                         Rec."Invoice Type" := Reccust."Invoice Type";
                     end;
                     if SalesHeader."Document Type" = SalesHeader."Document Type"::"Credit Memo" then begin
-                        
+
                         Rec."Cr. Memo Type" := Reccust."Cr. Memo Type";
                     end;
                     Rec."Special Scheme Code" := Reccust."Special Scheme Code";
@@ -1007,6 +1007,9 @@ tableextension 50114 SalesHeader extends "Sales Header"
             FieldClass = FlowField;
         }
         field(50669; "Etq.Adaia"; Code[30])
+        {
+        }
+        field(50670; ImpresoporImporesora; Boolean)
         {
         }
 

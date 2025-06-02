@@ -7,6 +7,7 @@ pageextension 50026 ClientesLista extends "Customer List"
 
         addafter("Salesperson Code")
         {
+            field("Etiqueta Kiwoko";Rec."Etiqueta Kiwoko") { ApplicationArea = All; }
             field("Fecha alta";Rec."Fecha alta") { ApplicationArea = All; }
             field("Invoice Type"; Rec."Invoice Type") { ApplicationArea = All; }
             field("Cr. Memo Type"; Rec."Cr. Memo Type") { ApplicationArea = All; }

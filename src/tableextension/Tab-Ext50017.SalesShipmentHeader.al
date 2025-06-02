@@ -389,6 +389,9 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
         field(50669; "Etq.Adaia"; Code[30])
         {
         }
+        field(50670; ImpresoporImporesora; Boolean)
+        {
+        }
     }
 
     keys
@@ -403,6 +406,9 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
         //{
         //}
         key(Key50008; "Aviso falta stock")
+        {
+        }
+        key(Key50009; ImpresoporImporesora)
         {
         }
 

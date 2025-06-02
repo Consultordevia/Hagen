@@ -21,6 +21,7 @@ pageextension 50025 "Direcciones envio" extends "Ship-to Address List"
             field("E-Mail"; Rec."E-Mail") { ApplicationArea = All; }
             field(Latitud; Rec.Latitud) { ApplicationArea = All; }
             field(Longitud; Rec.Longitud) { ApplicationArea = All; }
+            field("Imprime Etiqueta envio"; Rec."Imprime Etiqueta envio") { ApplicationArea = All; }
 
 
         }

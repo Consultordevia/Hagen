@@ -79,12 +79,15 @@ tableextension 50027 ShiptoAddress extends "Ship-to Address"
             CalcFormula = lookup(Customer."Grupo clientes" where("No." = field("Customer No.")));
             FieldClass = FlowField;
         }
-        
+
 
         field(50144; "VAT Registration No."; Text[20])
         {
             CalcFormula = lookup(Customer."VAT Registration No." where("No." = field("Customer No.")));
             FieldClass = FlowField;
+        }
+        field(50145; "Imprime Etiqueta envio"; Boolean)
+        {
         }
 
 

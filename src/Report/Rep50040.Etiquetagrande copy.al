@@ -1,4 +1,4 @@
-Report 50040 "Etiqueta grande copia"
+/*Report 50040 "Etiqueta grande copia"
 {
     Caption = 'Etiqueta grande';
     RDLCLayout = './Layouts/Etiquetagrande.rdlc';
@@ -264,4 +264,4 @@ Report 50040 "Etiqueta grande copia"
         ReportForNavOpenDesigner: Boolean;
         ReportForNavAllowDesign: Boolean;
 
-}
+}*/

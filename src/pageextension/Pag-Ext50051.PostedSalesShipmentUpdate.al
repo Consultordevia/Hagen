@@ -4,6 +4,53 @@ pageextension 50051 "Posted SalesShipmentUpdate" extends "Posted Sales Shipment 
     layout
     {
 
+        modify("Shipping Agent Code")
+        {
+            trigger OnAfterValidate();
+            var
+                RecPc: Record "Post Code";
+                RecArea: Record "Area";
+                PAGINAWEB: Text;
+                nexpefinal: code[20];
+            begin
+
+                nexpefinal := Rec."Nº expedición";
+                if Rec."Nº expedición dropshp" <> '' then begin
+                    nexpefinal := Rec."Nº expedición dropshp";
+                end;
+                
+                if Rec."Shipping Agent Code" = 'DHL' then begin
+                    PAGINAWEB := 'http://www.dhl.es/services_es/seg_3dd/integra/SeguimientoDocumentos.aspx?codigo=' +
+                                 Format(nexpefinal) + '&anno=2013&lang=sp&refCli=1 , a partir de hoy a las 22:00.';
+                end;
+                if Rec."Shipping Agent Code" = 'CRON' then begin
+                    PAGINAWEB := 'https://www.correosexpress.com/url/v?s=' +
+                                Format(nexpefinal) + '&cp=' + Format(Rec."Ship-to Post Code");
+                end;
+                if Rec."Shipping Agent Code" = 'CORR' then begin
+                    PAGINAWEB := 'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
+                                Format(nexpefinal);
+                end;
+                if Rec."Shipping Agent Code" = 'TNT' then begin
+                    PAGINAWEB := 'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=' +
+                                'REF&respLang=ES&respCountry=ES&sourceID=1&sourceCountry=' +
+                                'ES&sourceID=1&sourceCountry=ww&cons=' +
+                                Format(nexpefinal);
+                end;
+                if Rec."Shipping Agent Code" = 'TIPSA' then begin
+                    PAGINAWEB := 'http://www.tip-sa.com/cliente/datos.php?id=04600400393' +
+                                Format(nexpefinal) +
+                                Format(Rec."Ship-to Post Code");
+                end;
+                Rec."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
+                Rec."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
+                Rec."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
+                Rec.Modify;
+            end;
+        }
+
+
+
         addafter("Package Tracking No.")
         {
             field("Numero segumiento"; Rec."Numero segumiento") { ApplicationArea = All; }
