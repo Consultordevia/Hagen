@@ -887,9 +887,13 @@ page 50004 CabAlbaran
     var
         ShippingAgent: Record "Shipping Agent";
     begin
-        ShippingAgent.Get(rec."Shipping Agent Code");
-        if ShippingAgent.NombreCarrier <> '' then
-            NombreCarrier := ShippingAgent.NombreCarrier;
+        if ShippingAgent.Get(rec."Shipping Agent Code") then begin
+            if ShippingAgent.NombreCarrier <> '' then begin
+                NombreCarrier := ShippingAgent.NombreCarrier;
+            end else begin
+                NombreCarrier := '';
+            end;
+        end;
     end;
 
     var
