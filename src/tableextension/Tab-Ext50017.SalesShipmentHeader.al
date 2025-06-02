@@ -67,7 +67,7 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
 
             trigger OnValidate()
             begin
-                /////"Total bultos":="Nº bultos"+"Nº Palets";
+                "Total bultos" := "Nº bultos" + "Nº Palets";
             end;
         }
         field(50015; "Nº Palets"; Decimal)
@@ -75,7 +75,7 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
 
             trigger OnValidate()
             begin
-                /////"Total bultos":="Nº bultos"+"Nº Palets";
+                "Total bultos" := "Nº bultos" + "Nº Palets";
             end;
         }
         field(50016; "Total bultos"; Decimal)

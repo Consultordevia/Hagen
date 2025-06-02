@@ -90,5 +90,9 @@ tableextension 50035 ShippingAgent extends "Shipping Agent"
         field(50030; "Carta Tamaño A4"; Boolean)
         {
         }
+        field(50031; NombreCarrier; Code[50])
+        {
+
+        }
     }
 }
