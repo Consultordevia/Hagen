@@ -736,7 +736,7 @@ page 50004 CabAlbaran
                 {
                     ToolTip = 'Specifies the shipment method for the shipment.';
                 }
-                field("Shipping Agent Code"; Rec."Shipping Agent Code")
+                field("Shipping Agent Code"; NombreCarrier)
                 {
                     ToolTip = 'Specifies which shipping agent is used to transport the items on the sales document to the customer.';
                 }
@@ -883,4 +883,15 @@ page 50004 CabAlbaran
             }
         }
     }
+    trigger OnAfterGetRecord()
+    var
+        ShippingAgent: Record "Shipping Agent";
+    begin
+        ShippingAgent.Get(rec."Shipping Agent Code");
+        if ShippingAgent.NombreCarrier <> '' then
+            NombreCarrier := ShippingAgent.NombreCarrier;
+    end;
+
+    var
+        NombreCarrier: Text;
 }
