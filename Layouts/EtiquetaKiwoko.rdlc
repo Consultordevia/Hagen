@@ -60,7 +60,7 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>2.98181cm</Height>
+                  <Height>3.54429cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -127,7 +127,7 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.6cm</Height>
+                  <Height>1.16248cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -192,7 +192,7 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>2.16987cm</Height>
+                  <Height>2.73235cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -253,13 +253,12 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.6cm</Height>
+                  <Height>1.16248cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -324,7 +323,7 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>2.02903cm</Height>
+                  <Height>2.59151cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -391,7 +390,7 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.6cm</Height>
+                  <Height>1.16248cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -456,7 +455,7 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>3.72264cm</Height>
+                  <Height>4.28512cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -523,7 +522,7 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.6cm</Height>
+                  <Height>6.2954cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -588,7 +587,7 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>2.02875cm</Height>
+                  <Height>2.59123cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -629,7 +628,7 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!SalesHeaderTotalbultos.Value</Value>
+                                  <Value>=Fields!Totalbultos.Value</Value>
                                   <Style>
                                     <FontSize>36pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -682,8 +681,11 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
+            <PageBreak>
+              <BreakLocation>End</BreakLocation>
+            </PageBreak>
             <Left>0.48189cm</Left>
-            <Height>15.33209cm</Height>
+            <Height>25.52734cm</Height>
             <Width>16.18306cm</Width>
             <Style>
               <Border>
@@ -692,7 +694,7 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>15.33209cm</Height>
+        <Height>25.52734cm</Height>
         <Style />
       </Body>
       <Width>16.66495cm</Width>
@@ -734,8 +736,8 @@ JPt8eq2aHgD5A6Fa8F/F0/8A
         <Field Name="SalesShipmentHeaderShip_toCountry_RegionCode__SalesShipmentH">
           <DataField>SalesShipmentHeaderShip_toCountry_RegionCode__SalesShipmentH</DataField>
         </Field>
-        <Field Name="Totalbultos__FORMAT_SalesShipmentHeaderTotalbultos__FORMAT_c">
-          <DataField>Totalbultos__FORMAT_SalesShipmentHeaderTotalbultos__FORMAT_c</DataField>
+        <Field Name="Totalbultos">
+          <DataField>Totalbultos</DataField>
         </Field>
         <Field Name="Noexpedicion__SalesShipmentHeaderNoexpedicion">
           <DataField>Noexpedicion__SalesShipmentHeaderNoexpedicion</DataField>

@@ -7,6 +7,7 @@ Codeunit 50017 "ImprimirAlbaranes"
     var
         SHH: Record "Sales Shipment Header";
         SHH2: Record "Sales Shipment Header";
+        SHH3: Record "Sales Shipment Header";
         V: Dialog;
         RecClie: Record Customer;
         StoA: Record "Ship-to Address";
@@ -50,7 +51,11 @@ Codeunit 50017 "ImprimirAlbaranes"
                     */
                     if SHH."Albaran sin detalle" = true then begin
                         if SHH.Dropshipping = false then begin
-                            Report.Run(50902, false, false, SHH);
+                            SHH3.Reset();
+                            SHH3.SetRange("No.",SHH."No.");
+                            IF SHH.FindFirst() THEN BEGIN
+                                Report.Run(50902, false, false, SHH3);
+                            END;
                         end;
                     end;
                 END;
