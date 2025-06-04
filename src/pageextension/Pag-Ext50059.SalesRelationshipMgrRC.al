@@ -1,4 +1,4 @@
-pageextension 50059 "Sales&RelationshipMgr.RC" extends "Sales & Relationship Mgr. RC"
+pageextension 50060 "Sales&RelationshipMgr.RC" extends "Sales & Relationship Mgr. RC"
 {
     layout
     {
