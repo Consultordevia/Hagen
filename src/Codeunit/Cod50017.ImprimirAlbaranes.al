@@ -54,7 +54,7 @@ Codeunit 50017 "ImprimirAlbaranes"
                             SHH3.Reset();
                             SHH3.SetRange("No.",SHH."No.");
                             IF SHH.FindFirst() THEN BEGIN
-                                Report.Run(50902, false, false, SHH3);
+                                Report.Run(1308, false, false, SHH3);
                             END;
                         end;
                     end;
