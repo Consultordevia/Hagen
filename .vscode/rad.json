@@ -1,1 +1,5 @@
+<<<<<<< HEAD
+﻿{"Added":[],"Modified":[{"Id":50017,"Kind":11,"Name":"ImprimirAlbaranes","Namespace":""}],"Removed":[]}
+=======
 ﻿{"Added":[{"Id":50060,"Kind":16,"Name":"Sales&RelationshipMgr.RC","Namespace":""}],"Modified":[{"Id":50001,"Kind":11,"Name":"Automaticos","Namespace":""},{"Id":50030,"Kind":16,"Name":"ShippingAgents","Namespace":""}],"Removed":[{"Id":50059,"Kind":16,"Name":"Sales&RelationshipMgr.RC","Namespace":""}]}
+>>>>>>> d5df32219b3cc5565e8323e19fd268c0f868f202
