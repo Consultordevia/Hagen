@@ -32,7 +32,7 @@ Report 50041 "Etiqueta grande envio"
                 column(SalesShipmentHeaderShip_toCountry_RegionCode__SalesShipmentH; SToA."Country/Region Code" + '  ' + SToA."County")
                 {
                 }
-                column(Totalbultos__FORMAT_SalesShipmentHeaderTotalbultos__FORMAT_c; 'Total bultos: ' + Format("Sales Shipment Header"."Total bultos") + '	 ' + Format(cobtablu) + '/' + Format("Sales Shipment Header"."Total bultos"))
+                column(Totalbultos; 'Bulto: ' + Format(cobtablu) + '/' + Format("Sales Shipment Header"."Nº bultos"))
                 {
                 }
                 column(Noexpedicion__SalesShipmentHeaderNoexpedicion; 'Nº expedicion: ' + "Sales Shipment Header"."Nº expedición")
@@ -114,7 +114,7 @@ Report 50041 "Etiqueta grande envio"
                 CompanyInfo.Get;
                 FormatAddr.SalesShptShipTo(CustAddr, "Sales Shipment Header");
                 FormatAddr.Company(InfoEmpresa, CompanyInfo);
-                cuantas := "Sales Shipment Header"."Total bultos";
+                cuantas := "Sales Shipment Header"."Nº bultos";
                 if cuantas = 0 then begin
                     cuantas := 1;
                 end;

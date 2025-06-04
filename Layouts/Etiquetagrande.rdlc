@@ -108,7 +108,6 @@ fgeHVghbha6tAwrCcq/ZW5QDmejFgaqSRuUmecSMjv7zb5Srfv9XuD2pqrRT3m2KtspvTrKdQeb5
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -1157,7 +1156,7 @@ fgeHVghbha6tAwrCcq/ZW5QDmejFgaqSRuUmecSMjv7zb5Srfv9XuD2pqrRT3m2KtspvTrKdQeb5
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!SalesHeaderTotalbultos.Value</Value>
+                                  <Value>=Fields!Totalbultos.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1176,6 +1175,7 @@ fgeHVghbha6tAwrCcq/ZW5QDmejFgaqSRuUmecSMjv7zb5Srfv9XuD2pqrRT3m2KtspvTrKdQeb5
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -1331,8 +1331,8 @@ fgeHVghbha6tAwrCcq/ZW5QDmejFgaqSRuUmecSMjv7zb5Srfv9XuD2pqrRT3m2KtspvTrKdQeb5
         <Field Name="SalesShipmentHeaderShip_toCountry_RegionCode__SalesShipmentH">
           <DataField>SalesShipmentHeaderShip_toCountry_RegionCode__SalesShipmentH</DataField>
         </Field>
-        <Field Name="Totalbultos__FORMAT_SalesShipmentHeaderTotalbultos__FORMAT_c">
-          <DataField>Totalbultos__FORMAT_SalesShipmentHeaderTotalbultos__FORMAT_c</DataField>
+        <Field Name="Totalbultos">
+          <DataField>Totalbultos</DataField>
         </Field>
         <Field Name="Noexpedicion__SalesShipmentHeaderNoexpedicion">
           <DataField>Noexpedicion__SalesShipmentHeaderNoexpedicion</DataField>
