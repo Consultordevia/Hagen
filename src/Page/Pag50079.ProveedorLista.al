@@ -26,7 +26,7 @@ Page 50079 "Proveedor Lista"
                 {
                     ApplicationArea = Basic;
                 }
-                field("Exit Point";Rec."Exit Point")
+                field("Entry Point";Rec."Entry Point")
                 {
                     ApplicationArea = Basic;
                 }

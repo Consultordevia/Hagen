@@ -179,9 +179,9 @@ tableextension 50112 Vendor extends "Vendor"
 
             end;
         }
-        field(50170; "Exit Point"; Code[10])
+        field(50170; "Entry Point"; Code[10])
         {
-            Caption = 'Exit Point';
+            Caption = 'Entry Point';
             TableRelation = "Entry/Exit Point";
         }
         field(50171; "Area"; Code[10])

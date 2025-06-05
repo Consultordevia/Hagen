@@ -34,7 +34,7 @@ pageextension 50006 "Vendor Card" extends "Vendor Card"
                 field("Importe minimo pedido compra"; Rec."Importe minimo pedido compra") { ApplicationArea = All; }
                 //field("Tiene refencias asignadas"; Rec."Tiene refencias asignadas") { ApplicationArea = All; }
                 field("Tipo proveedor"; Rec."Tipo proveedor") { ApplicationArea = All; }
-                field("Exit Point"; Rec."Exit Point") { ApplicationArea = All; }
+                field("Entry Point"; Rec."Entry Point") { ApplicationArea = All; }
                 field("Area"; Rec."Area") { ApplicationArea = All; }
                 field("Transaction Specification"; Rec."Transaction Specification") { ApplicationArea = All; }
                 field("Transaction Type"; Rec."Transaction Type") { ApplicationArea = All; }

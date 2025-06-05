@@ -23,6 +23,7 @@ tableextension 50005 PurchaseHeader extends "Purchase Header"
                     Rec."Special Scheme Code" := RecVendor."Special Scheme Code";
                     Rec."Correction Type" := RecVendor."Correction Type";
                     Rec."Do Not Send To SII" := RecVendor."Do Not Send To SII";
+                    Rec."Entry Point":=RecVendor."Entry Point";
 
 
 

@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-﻿{"Added":[],"Modified":[{"Id":50017,"Kind":11,"Name":"ImprimirAlbaranes","Namespace":""}],"Removed":[]}
-=======
-﻿{"Added":[{"Id":50060,"Kind":16,"Name":"Sales&RelationshipMgr.RC","Namespace":""}],"Modified":[{"Id":50001,"Kind":11,"Name":"Automaticos","Namespace":""},{"Id":50030,"Kind":16,"Name":"ShippingAgents","Namespace":""}],"Removed":[{"Id":50059,"Kind":16,"Name":"Sales&RelationshipMgr.RC","Namespace":""}]}
->>>>>>> d5df32219b3cc5565e8323e19fd268c0f868f202
+﻿{"Added":[],"Modified":[{"Id":50006,"Kind":16,"Name":"Vendor Card","Namespace":""},{"Id":50005,"Kind":17,"Name":"PurchaseHeader","Namespace":""},{"Id":50100,"Kind":27,"Name":"StandardSalesInvoice","Namespace":""},{"Id":50079,"Kind":12,"Name":"Proveedor Lista","Namespace":""},{"Id":50112,"Kind":17,"Name":"Vendor","Namespace":""}],"Removed":[]}

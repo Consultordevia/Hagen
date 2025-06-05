@@ -19,6 +19,10 @@ reportextension 50100 StandardSalesInvoice extends "Standard Sales - Invoice"
         {
             trigger OnAfterAfterGetRecord()
             begin
+                dtofac := '';
+                if Line."Inv. Discount Amount" <> 0 then begin
+                    dtofac := '+dto.fac.';
+                end;
                 dif := 0;
                 if "Line"."Precio base" <> "Line"."Unit Price" then begin
                     IF "Line"."Precio base" <> 0 THEN BEGIN
@@ -31,7 +35,7 @@ reportextension 50100 StandardSalesInvoice extends "Standard Sales - Invoice"
 
                 //NETO := 0;
                 if "Line".Quantity <> 0 then begin
-                    "Precio final" := round("Line".Amount / "Line".Quantity,0.01);
+                    "Precio final" := round("Line".Amount / "Line".Quantity, 0.01);
                 end;
 
                 if not Line.HasTypeToFillMandatoryFields() then begin
@@ -40,7 +44,7 @@ reportextension 50100 StandardSalesInvoice extends "Standard Sales - Invoice"
                     FormattedPrecio_final := '';
                 end else begin
                     FormattedPrecioBase := Format("Precio base");
-                    FormattedDto_2009 := Format("Line Discount %");
+                    FormattedDto_2009 := Format("Line Discount %") + dtofac;
                     FormattedPrecio_final := Format("Precio final");
                 end;
 
@@ -55,4 +59,5 @@ reportextension 50100 StandardSalesInvoice extends "Standard Sales - Invoice"
         FormattedDto_2009: text;
         FormattedPrecio_final: text;
         dif: Decimal;
+        dtofac: code[20];
 }
