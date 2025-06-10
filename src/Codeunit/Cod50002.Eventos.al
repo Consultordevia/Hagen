@@ -1191,4 +1191,10 @@ codeunit 50002 Eventos
         SalesShptHeader."Ship-to Code" := FromSalesShptHeader."Ship-to Code";
     end;
 
+    [EventSubscriber(ObjectType::report, report::"Standard Sales - Invoice", 'OnBeforeLineOnAfterGetRecord', '', false, false)]
+    local procedure OnBeforeLineOnAfterGetRecordStandardSalesInvoice(var SalesInvoiceHeader: Record "Sales Invoice Header"; var SalesInvoiceLine: Record "Sales Invoice Line")
+    begin
+        SalesInvoiceLine."Line Amount" := 0;
+        SalesInvoiceLine."Inv. Discount Amount" := 0;
+    end;
 }
