@@ -268,8 +268,8 @@ Report 50042 "Etiqueta Kiwoko"
         REC1112: Record "Sales Shipment Line";
         decre: Decimal;
         SToA: Record "Ship-to Address";
-        NTIENDA: Code[20];
-        NPEDIDO: Code[20];
+        NTIENDA: Code[40];
+        NPEDIDO: Code[40];
         RecClie: Record Customer;
 
 

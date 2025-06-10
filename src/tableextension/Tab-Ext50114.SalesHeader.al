@@ -180,11 +180,17 @@ tableextension 50114 SalesHeader extends "Sales Header"
                             end;
                         end;
                     end;
+
                 end;
 
                 if "Estado pedido" = 1 then begin
 
                     Cust.Get("Sell-to Customer No.");
+                    if Cust."Nº pedido obligatorio" = false then begin
+                        if "Your Reference" = '' then begin
+                            Error('Falta poner su/ntra referencia.');
+                        end;
+                    end;
                     if Cust."Permite seguir adelante" = false then begin
                         ChequeoFechaVtos;
                     end;

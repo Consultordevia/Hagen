@@ -52,7 +52,7 @@ Codeunit 50017 "ImprimirAlbaranes"
                     if SHH."Albaran sin detalle" = true then begin
                         if SHH.Dropshipping = false then begin
                             SHH3.Reset();
-                            SHH3.SetRange("No.",SHH."No.");
+                            SHH3.SetRange("No.", SHH."No.");
                             IF SHH.FindFirst() THEN BEGIN
                                 Report.Run(1308, false, false, SHH3);
                             END;
@@ -68,18 +68,25 @@ Codeunit 50017 "ImprimirAlbaranes"
                 if StoA.FindFirst() then begin
                     SHH2.reset;
                     SHH2.SetRange("No.", SHH."No.");
-                    ;
                     IF SHH2.FindFirst() THEN begin
-                        Clear(RepEtiquetaEnvio);
-                        RepEtiquetaEnvio.SetTableView(SHH2);
-                        RepEtiquetaEnvio.RunModal();
+                        SHH3.Reset();
+                        SHH3.SetRange("No.", SHH."No.");
+                        IF SHH.FindFirst() THEN BEGIN
+                            Clear(RepEtiquetaEnvio);
+                            RepEtiquetaEnvio.SetTableView(SHH3);
+                            RepEtiquetaEnvio.RunModal();
+                        end;
                     END;
 
                 end;
                 IF RecClie."Etiqueta Kiwoko" THEN begin
-                    Clear(RepEtiquetaKiwoko);
-                    RepEtiquetaKiwoko.SetTableView(SHH2);
-                    RepEtiquetaKiwoko.RunModal();
+                    SHH3.Reset();
+                    SHH3.SetRange("No.", SHH."No.");
+                    IF SHH.FindFirst() THEN BEGIN
+                        Clear(RepEtiquetaKiwoko);
+                        RepEtiquetaKiwoko.SetTableView(SHH3);
+                        RepEtiquetaKiwoko.RunModal();
+                    end;
                 end;
                 SHH2.GET(SHH."No.");
                 SHH2.ImpresoporImporesora := TRUE;

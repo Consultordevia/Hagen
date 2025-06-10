@@ -9,7 +9,7 @@ Page 50070 "Pendiente en presupuesto"
     MultipleNewLines = true;
     PageType = Worksheet;
     SourceTable = "Sales Line";
-    SourceTableView = where("Document Type"=filter(Quote));
+    SourceTableView = where("Document Type" = filter(Quote));
 
     layout
     {
@@ -17,51 +17,51 @@ Page 50070 "Pendiente en presupuesto"
         {
             repeater(Control1)
             {
-                field(Presupuesto;SalesHeader."No.")
+                field(Presupuesto; SalesHeader."No.")
                 {
                     ApplicationArea = Basic;
                     Caption = 'Presupuesto';
                     Editable = false;
                 }
-                field(Cliente;SalesHeader."Sell-to Customer No.")
+                field(Cliente; SalesHeader."Sell-to Customer No.")
                 {
                     ApplicationArea = Basic;
                     Caption = 'Cliente';
                     Editable = false;
                 }
-                field(Nombre;SalesHeader."Sell-to Customer Name")
+                field(Nombre; SalesHeader."Sell-to Customer Name")
                 {
                     ApplicationArea = Basic;
                     Caption = 'Nombre';
                     Editable = false;
                 }
-                field("Estado presupuesto";SalesHeader."Estado presupuesto")
+                field("Estado presupuesto"; SalesHeader."Estado presupuesto")
                 {
                     ApplicationArea = Basic;
                     Caption = 'Estado presupuesto';
                     Editable = false;
                 }
-                field("SalesHeader.""Your Reference""";SalesHeader."Your Reference")
+                field("SalesHeader.""Your Reference"""; SalesHeader."Your Reference")
                 {
                     ApplicationArea = Basic;
                     Caption = 'Su referencia';
                     Editable = false;
                 }
-                field("Fecha alta";Rec."Fecha cabecera ofer/ped")
+                field("Fecha alta"; Rec."Fecha cabecera ofer/ped")
                 {
                     ApplicationArea = Basic;
                     Caption = 'Fecha alta';
                     Editable = false;
                 }
-                field("Grupo cliente";Rec."Grupo clientes")
+                field("Grupo cliente"; Rec."Grupo clientes")
                 {
                     ApplicationArea = Basic;
                     Caption = 'Grupo cliente';
                     Editable = false;
                 }
-                field("No.";Rec."No.")
+                field("No."; Rec."No.")
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     QuickEntry = false;
                     ShowMandatory = not IsCommentLine;
                     StyleExpr = Color;
@@ -73,15 +73,15 @@ Page 50070 "Pendiente en presupuesto"
                         NoOnAfterValidate;
 
                         if xRec."No." <> '' then
-                          RedistributeTotalsOnAfterValidate;
+                            RedistributeTotalsOnAfterValidate;
 
                         UpdateEditableOnRow;
                         UpdateTypeText;
                     end;
                 }
-                field(Description;Rec.Description)
+                field(Description; Rec.Description)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     QuickEntry = false;
                     ShowMandatory = not IsCommentLine;
                     StyleExpr = Color;
@@ -92,18 +92,18 @@ Page 50070 "Pendiente en presupuesto"
                         UpdateEditableOnRow;
 
                         if Rec."No." = xRec."No." then
-                          exit;
+                            exit;
 
                         Rec.ShowShortcutDimCode(ShortcutDimCode);
                         NoOnAfterValidate;
 
                         if xRec."No." <> '' then
-                          RedistributeTotalsOnAfterValidate;
+                            RedistributeTotalsOnAfterValidate;
 
                         UpdateTypeText;
                     end;
                 }
-                field("Location Code";Rec."Location Code")
+                field("Location Code"; Rec."Location Code")
                 {
                     ApplicationArea = Location;
                     Editable = not IsCommentLine;
@@ -117,9 +117,9 @@ Page 50070 "Pendiente en presupuesto"
                         LocationCodeOnAfterValidate;
                     end;
                 }
-                field(Quantity;Rec.Quantity)
+                field(Quantity; Rec.Quantity)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     BlankZero = true;
                     Editable = not IsCommentLine;
                     Enabled = not IsCommentLine;
@@ -133,9 +133,9 @@ Page 50070 "Pendiente en presupuesto"
                         RedistributeTotalsOnAfterValidate;
                     end;
                 }
-                field("Unit of Measure Code";Rec."Unit of Measure Code")
+                field("Unit of Measure Code"; Rec."Unit of Measure Code")
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Editable = UnitofMeasureCodeIsChangeable;
                     Enabled = UnitofMeasureCodeIsChangeable;
                     QuickEntry = false;
@@ -148,7 +148,7 @@ Page 50070 "Pendiente en presupuesto"
                         RedistributeTotalsOnAfterValidate;
                     end;
                 }
-                field("Unit of Measure";Rec."Unit of Measure")
+                field("Unit of Measure"; Rec."Unit of Measure")
                 {
                     ApplicationArea = Advanced;
                     QuickEntry = false;
@@ -156,15 +156,15 @@ Page 50070 "Pendiente en presupuesto"
                     ToolTip = 'Specifies the unit of measure for the item or resource on the sales line.';
                     Visible = false;
                 }
-                field("Unit Cost (LCY)";Rec."Unit Cost (LCY)")
+                field("Unit Cost (LCY)"; Rec."Unit Cost (LCY)")
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     QuickEntry = false;
                     StyleExpr = Color;
                     ToolTip = 'Specifies the unit cost of the item on the line.';
                     Visible = false;
                 }
-                field(PriceExists;Rec.PriceExists)
+                field(PriceExists; Rec.PriceExists)
                 {
                     ApplicationArea = Advanced;
                     Caption = 'Sales Price Exists';
@@ -174,9 +174,9 @@ Page 50070 "Pendiente en presupuesto"
                     ToolTip = 'Specifies that there is a specific price for this customer.';
                     Visible = false;
                 }
-                field("Unit Price";Rec."Unit Price")
+                field("Unit Price"; Rec."Unit Price")
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     BlankZero = true;
                     Editable = not IsCommentLine;
                     Enabled = not IsCommentLine;
@@ -190,9 +190,9 @@ Page 50070 "Pendiente en presupuesto"
                         RedistributeTotalsOnAfterValidate;
                     end;
                 }
-                field("Line Discount %";Rec."Line Discount %")
+                field("Line Discount %"; Rec."Line Discount %")
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     BlankZero = true;
                     Editable = not IsCommentLine;
                     Enabled = not IsCommentLine;
@@ -205,15 +205,15 @@ Page 50070 "Pendiente en presupuesto"
                         RedistributeTotalsOnAfterValidate;
                     end;
                 }
-                field("% Dto. vendedor";Rec."% Dto. vendedor")
+                field("% Dto. vendedor"; Rec."% Dto. vendedor")
                 {
                     ApplicationArea = Basic;
                     QuickEntry = false;
                     StyleExpr = COLORDTOVENDE;
                 }
-                field("Line Amount";Rec."Line Amount")
+                field("Line Amount"; Rec."Line Amount")
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     BlankZero = true;
                     Editable = not IsCommentLine;
                     Enabled = not IsCommentLine;
@@ -227,7 +227,7 @@ Page 50070 "Pendiente en presupuesto"
                         RedistributeTotalsOnAfterValidate;
                     end;
                 }
-                field(FECHA1;FECHA1)
+                field(FECHA1; FECHA1)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Contenedor 95%';
@@ -235,7 +235,7 @@ Page 50070 "Pendiente en presupuesto"
                     QuickEntry = false;
                     StyleExpr = Color1;
                 }
-                field(FECHA2;FECHA2)
+                field(FECHA2; FECHA2)
                 {
                     ApplicationArea = Basic;
                     Caption = 'Fecha prox.';
@@ -243,7 +243,7 @@ Page 50070 "Pendiente en presupuesto"
                     QuickEntry = false;
                     StyleExpr = Color2;
                 }
-                field(LineDiscExists;Rec.LineDiscExists)
+                field(LineDiscExists; Rec.LineDiscExists)
                 {
                     ApplicationArea = Advanced;
                     Caption = 'Sales Line Disc. Exists';
@@ -253,9 +253,9 @@ Page 50070 "Pendiente en presupuesto"
                     ToolTip = 'Specifies that there is a specific discount for this customer.';
                     Visible = false;
                 }
-                field("Line Discount Amount";Rec."Line Discount Amount")
+                field("Line Discount Amount"; Rec."Line Discount Amount")
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     QuickEntry = false;
                     StyleExpr = Color;
                     ToolTip = 'Specifies the discount amount that is granted for the item on the line.';
@@ -266,13 +266,13 @@ Page 50070 "Pendiente en presupuesto"
                         RedistributeTotalsOnAfterValidate;
                     end;
                 }
-                field("Precio importado";Rec."Precio importado")
+                field("Precio importado"; Rec."Precio importado")
                 {
                     ApplicationArea = Basic;
                     Editable = false;
                     StyleExpr = COLORPRECIO;
                 }
-                field(Type;Rec.Type)
+                field(Type; Rec.Type)
                 {
                     ApplicationArea = Advanced;
                     QuickEntry = false;
@@ -284,18 +284,18 @@ Page 50070 "Pendiente en presupuesto"
                         NoOnAfterValidate;
 
                         if xRec."No." <> '' then
-                          RedistributeTotalsOnAfterValidate;
+                            RedistributeTotalsOnAfterValidate;
                         UpdateEditableOnRow;
                         UpdateTypeText;
                     end;
                 }
-                field(FilteredTypeField;TypeAsText)
+                field(FilteredTypeField; TypeAsText)
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Type';
                     LookupPageID = "Option Lookup List";
                     StyleExpr = Color;
-                    TableRelation = "Option Lookup Buffer"."Option Caption" where ("Lookup Type"=const(Sales));
+                    TableRelation = "Option Lookup Buffer"."Option Caption" where("Lookup Type" = const(Sales));
                     ToolTip = 'Specifies the type of entity that will be posted for this sales line, such as Item,, or G/L Account.';
                     Visible = IsFoundation;
 
@@ -308,7 +308,7 @@ Page 50070 "Pendiente en presupuesto"
                         UpdateTypeText;
                     end;
                 }
-                field("Allow Invoice Disc.";Rec."Allow Invoice Disc.")
+                field("Allow Invoice Disc."; Rec."Allow Invoice Disc.")
                 {
                     ApplicationArea = Advanced;
                     QuickEntry = false;
@@ -316,9 +316,9 @@ Page 50070 "Pendiente en presupuesto"
                     ToolTip = 'Specifies if the invoice line is included when the invoice discount is calculated.';
                     Visible = false;
                 }
-                field("Inv. Discount Amount";Rec."Inv. Discount Amount")
+                field("Inv. Discount Amount"; Rec."Inv. Discount Amount")
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     Editable = false;
                     QuickEntry = false;
                     StyleExpr = Color;
@@ -330,7 +330,7 @@ Page 50070 "Pendiente en presupuesto"
                         UpdatePage;
                     end;
                 }
-                field("Allow Item Charge Assignment";Rec."Allow Item Charge Assignment")
+                field("Allow Item Charge Assignment"; Rec."Allow Item Charge Assignment")
                 {
                     ApplicationArea = ItemCharges;
                     QuickEntry = false;
@@ -338,7 +338,7 @@ Page 50070 "Pendiente en presupuesto"
                     ToolTip = 'Specifies that you can assign item charges to this line.';
                     Visible = false;
                 }
-                field("Qty. to Assign";Rec."Qty. to Assign")
+                field("Qty. to Assign"; Rec."Qty. to Assign")
                 {
                     ApplicationArea = ItemCharges;
                     QuickEntry = false;
@@ -352,7 +352,7 @@ Page 50070 "Pendiente en presupuesto"
                         UpdateForm(false);
                     end;
                 }
-                field("Qty. Assigned";Rec."Qty. Assigned")
+                field("Qty. Assigned"; Rec."Qty. Assigned")
                 {
                     ApplicationArea = ItemCharges;
                     BlankZero = true;
@@ -367,7 +367,7 @@ Page 50070 "Pendiente en presupuesto"
                         UpdateForm(false);
                     end;
                 }
-                field("Shipping Agent Code";Rec."Shipping Agent Code")
+                field("Shipping Agent Code"; Rec."Shipping Agent Code")
                 {
                     ApplicationArea = Suite;
                     QuickEntry = false;
@@ -375,7 +375,7 @@ Page 50070 "Pendiente en presupuesto"
                     ToolTip = 'Specifies the code for the shipping agent who is transporting the items.';
                     Visible = false;
                 }
-                field("Shipping Agent Service Code";Rec."Shipping Agent Service Code")
+                field("Shipping Agent Service Code"; Rec."Shipping Agent Service Code")
                 {
                     ApplicationArea = Suite;
                     QuickEntry = false;
@@ -383,7 +383,7 @@ Page 50070 "Pendiente en presupuesto"
                     ToolTip = 'Specifies the code for the service, such as a one-day delivery, that is offered by the shipping agent.';
                     Visible = false;
                 }
-                field("Work Type Code";Rec."Work Type Code")
+                field("Work Type Code"; Rec."Work Type Code")
                 {
                     ApplicationArea = Manufacturing;
                     QuickEntry = false;
@@ -391,7 +391,7 @@ Page 50070 "Pendiente en presupuesto"
                     ToolTip = 'Specifies which work type the resource applies to when the sale is related to a job.';
                     Visible = false;
                 }
-                field("Blanket Order No.";Rec."Blanket Order No.")
+                field("Blanket Order No."; Rec."Blanket Order No.")
                 {
                     ApplicationArea = Advanced;
                     QuickEntry = false;
@@ -399,7 +399,7 @@ Page 50070 "Pendiente en presupuesto"
                     ToolTip = 'Specifies the number of the blanket order that the record originates from.';
                     Visible = false;
                 }
-                field("Blanket Order Line No.";Rec."Blanket Order Line No.")
+                field("Blanket Order Line No."; Rec."Blanket Order Line No.")
                 {
                     ApplicationArea = Advanced;
                     QuickEntry = false;
@@ -407,38 +407,38 @@ Page 50070 "Pendiente en presupuesto"
                     ToolTip = 'Specifies the number of the blanket order line that the record originates from.';
                     Visible = false;
                 }
-                field("Appl.-to Item Entry";Rec."Appl.-to Item Entry")
+                field("Appl.-to Item Entry"; Rec."Appl.-to Item Entry")
                 {
-                    ApplicationArea = Basic,Suite;
+                    ApplicationArea = Basic, Suite;
                     QuickEntry = false;
                     ToolTip = 'Specifies the number of the item ledger entry that the document or journal line is applied -to.';
                     Visible = false;
                 }
-                field("Item.""Existencia SILLA""";Item."Existencia SILLA")
+                field("Item.""Existencia SILLA"""; Item."Existencia SILLA")
                 {
                     ApplicationArea = Basic;
                     Caption = 'Existencia SILLA';
                     Editable = false;
                 }
-                field("Clasificación A,B,C";Item."Clasificación A,B,C")
+                field("Clasificación A,B,C"; Item."Clasificación A,B,C")
                 {
                     ApplicationArea = Basic;
                     Caption = 'Clasificación A,B,C';
                     Editable = false;
                 }
-                field("Estado Producto";Item."Estado Producto")
+                field("Estado Producto"; Item."Estado Producto")
                 {
                     ApplicationArea = Basic;
                     Caption = 'Estado Producto';
                     Editable = false;
                 }
-                field("Producto con reserva";Item."Producto con reserva")
+                field("Producto con reserva"; Item."Producto con reserva")
                 {
                     ApplicationArea = Basic;
                     Caption = 'Producto con reserva';
                     Editable = false;
                 }
-                field("Item.""Vendor No.""";Item."Vendor No.")
+                field("Item.""Vendor No."""; Item."Vendor No.")
                 {
                     ApplicationArea = Basic;
                 }
@@ -452,7 +452,7 @@ Page 50070 "Pendiente en presupuesto"
         {
             action(InsertExtTexts)
             {
-                AccessByPermission = TableData "Extended Text Header"=R;
+                AccessByPermission = TableData "Extended Text Header" = R;
                 ApplicationArea = Suite;
                 Caption = 'Insert &Ext. Texts';
                 Image = Text;
@@ -465,7 +465,7 @@ Page 50070 "Pendiente en presupuesto"
             }
             action(Dimensions)
             {
-                AccessByPermission = TableData Dimension=R;
+                AccessByPermission = TableData Dimension = R;
                 ApplicationArea = Suite;
                 Caption = 'Dimensions';
                 Image = Dimensions;
@@ -487,26 +487,26 @@ Page 50070 "Pendiente en presupuesto"
                     Image = ItemAvailability;
                     action("Event")
                     {
-                        ApplicationArea = Basic,Suite;
+                        ApplicationArea = Basic, Suite;
                         Caption = 'Event';
                         Image = "Event";
                         ToolTip = 'View how the actual and the projected available balance of an item will develop over time according to supply and demand events.';
 
                         trigger OnAction()
                         begin
-                            ItemAvailFormsMgt.ShowItemAvailFromSalesLine(Rec,ItemAvailFormsMgt.ByEvent)
+                            ItemAvailFormsMgt.ShowItemAvailFromSalesLine(Rec, ItemAvailFormsMgt.ByEvent)
                         end;
                     }
                     action(Period)
                     {
-                        ApplicationArea = Basic,Suite;
+                        ApplicationArea = Basic, Suite;
                         Caption = 'Period';
                         Image = Period;
                         ToolTip = 'Show the projected quantity of the item over time according to time periods, such as day, week, or month.';
 
                         trigger OnAction()
                         begin
-                            ItemAvailFormsMgt.ShowItemAvailFromSalesLine(Rec,ItemAvailFormsMgt.ByPeriod)
+                            ItemAvailFormsMgt.ShowItemAvailFromSalesLine(Rec, ItemAvailFormsMgt.ByPeriod)
                         end;
                     }
                     action(Variant)
@@ -518,12 +518,12 @@ Page 50070 "Pendiente en presupuesto"
 
                         trigger OnAction()
                         begin
-                            ItemAvailFormsMgt.ShowItemAvailFromSalesLine(Rec,ItemAvailFormsMgt.ByVariant)
+                            ItemAvailFormsMgt.ShowItemAvailFromSalesLine(Rec, ItemAvailFormsMgt.ByVariant)
                         end;
                     }
                     action(Location)
                     {
-                        AccessByPermission = TableData Location=R;
+                        AccessByPermission = TableData Location = R;
                         ApplicationArea = Location;
                         Caption = 'Location';
                         Image = Warehouse;
@@ -531,12 +531,12 @@ Page 50070 "Pendiente en presupuesto"
 
                         trigger OnAction()
                         begin
-                            ItemAvailFormsMgt.ShowItemAvailFromSalesLine(Rec,ItemAvailFormsMgt.ByLocation)
+                            ItemAvailFormsMgt.ShowItemAvailFromSalesLine(Rec, ItemAvailFormsMgt.ByLocation)
                         end;
                     }
                     action("BOM Level")
                     {
-                        AccessByPermission = TableData "BOM Buffer"=R;
+                        AccessByPermission = TableData "BOM Buffer" = R;
                         ApplicationArea = Assembly;
                         Caption = 'BOM Level';
                         Image = BOMLevel;
@@ -544,7 +544,7 @@ Page 50070 "Pendiente en presupuesto"
 
                         trigger OnAction()
                         begin
-                            ItemAvailFormsMgt.ShowItemAvailFromSalesLine(Rec,ItemAvailFormsMgt.ByBOM)
+                            ItemAvailFormsMgt.ShowItemAvailFromSalesLine(Rec, ItemAvailFormsMgt.ByBOM)
                         end;
                     }
                 }
@@ -574,7 +574,7 @@ Page 50070 "Pendiente en presupuesto"
                 }
                 action("Item Charge &Assignment")
                 {
-                    AccessByPermission = TableData "Item Charge"=R;
+                    AccessByPermission = TableData "Item Charge" = R;
                     ApplicationArea = ItemCharges;
                     Caption = 'Item Charge &Assignment';
                     Image = ItemCosts;
@@ -599,15 +599,15 @@ Page 50070 "Pendiente en presupuesto"
                         Item: Record Item;
                     begin
                         Item.Get(Rec."No.");
-                        Item.TestField("Assembly Policy",Item."assembly policy"::"Assemble-to-Stock");
-                        Rec.TestField(Rec."Qty. to Asm. to Order (Base)",0);
+                        Item.TestField("Assembly Policy", Item."assembly policy"::"Assemble-to-Stock");
+                        Rec.TestField(Rec."Qty. to Asm. to Order (Base)", 0);
                         Rec.OpenItemTrackingLines;
                     end;
                 }
                 action("Select Nonstoc&k Items")
                 {
-                    AccessByPermission = TableData "Nonstock Item"=R;
-                    ApplicationArea = Basic,Suite;
+                    AccessByPermission = TableData "Nonstock Item" = R;
+                    ApplicationArea = Basic, Suite;
                     Caption = 'Select Nonstoc&k Items';
                     Image = NonStockItem;
                     ToolTip = 'View the list of nonstock items that exist in the system. ';
@@ -623,7 +623,7 @@ Page 50070 "Pendiente en presupuesto"
                     Image = AssemblyBOM;
                     action("Assemble-to-Order Lines")
                     {
-                        AccessByPermission = TableData "BOM Component"=R;
+                        AccessByPermission = TableData "BOM Component" = R;
                         ApplicationArea = Assembly;
                         Caption = 'Assemble-to-Order Lines';
                         ToolTip = 'View any linked assembly order lines if the documents represents an assemble-to-order sale.';
@@ -635,7 +635,7 @@ Page 50070 "Pendiente en presupuesto"
                     }
                     action("Roll Up &Price")
                     {
-                        AccessByPermission = TableData "BOM Component"=R;
+                        AccessByPermission = TableData "BOM Component" = R;
                         ApplicationArea = Assembly;
                         Caption = 'Roll Up &Price';
                         Ellipsis = true;
@@ -648,7 +648,7 @@ Page 50070 "Pendiente en presupuesto"
                     }
                     action("Roll Up &Cost")
                     {
-                        AccessByPermission = TableData "BOM Component"=R;
+                        AccessByPermission = TableData "BOM Component" = R;
                         ApplicationArea = Assembly;
                         Caption = 'Roll Up &Cost';
                         Ellipsis = true;
@@ -667,7 +667,7 @@ Page 50070 "Pendiente en presupuesto"
                 Image = "Action";
                 action("Get &Price")
                 {
-                    AccessByPermission = TableData "Sales Price"=R;
+                    AccessByPermission = TableData "Sales Price" = R;
                     ApplicationArea = Advanced;
                     Caption = 'Get &Price';
                     Ellipsis = true;
@@ -681,7 +681,7 @@ Page 50070 "Pendiente en presupuesto"
                 }
                 action("Get Li&ne Discount")
                 {
-                    AccessByPermission = TableData "Sales Line Discount"=R;
+                    AccessByPermission = TableData "Sales Line Discount" = R;
                     ApplicationArea = Advanced;
                     Caption = 'Get Li&ne Discount';
                     Ellipsis = true;
@@ -695,7 +695,7 @@ Page 50070 "Pendiente en presupuesto"
                 }
                 action("E&xplode BOM")
                 {
-                    AccessByPermission = TableData "BOM Component"=R;
+                    AccessByPermission = TableData "BOM Component" = R;
                     ApplicationArea = Suite;
                     Caption = 'E&xplode BOM';
                     Image = ExplodeBOM;
@@ -722,109 +722,111 @@ Page 50070 "Pendiente en presupuesto"
     begin
 
         SalesHeader.Init;
-        if SalesHeader.Get(Rec."Document Type",Rec."Document No.") then  begin
+        if SalesHeader.Get(Rec."Document Type", Rec."Document No.") then begin
         end;
         Rec.ShowShortcutDimCode(ShortcutDimCode);
         UpdateTypeText;
         SetItemChargeFieldsStyle;
 
-        COLORPRECIO:='';
-        if Rec."Precio importado"<>Rec."Unit Price" then begin
-             COLORPRECIO:='Unfavorable';
+        COLORPRECIO := '';
+        if Rec."Precio importado" <> Rec."Unit Price" then begin
+            COLORPRECIO := 'Unfavorable';
         end;
 
-        Color:='';
+        Color := '';
         if Item.Get(Rec."No.") then begin
-             if (Item."No permite pedido") then begin
-                  Color:='Unfavorable';
-             end;
-                  if (Item."Producto con reserva") then begin
-                  Color:='Attention';
-             end;
-             if Item."Estado Producto"<>Item."estado producto"::Activo then begin
-                 Color:='Ambiguous';
-             end;
+            if (Item."No permite pedido") then begin
+                Color := 'Unfavorable';
+            end;
+            if (Item."Producto con reserva") then begin
+                Color := 'Attention';
+            end;
+            if Item."Estado Producto" <> Item."estado producto"::Activo then begin
+                Color := 'Ambiguous';
+            end;
 
         end;
 
 
 
 
-        FECHA1:=0D;
-        FECHA2:=0D;
+        FECHA1 := 0D;
+        FECHA2 := 0D;
 
-        if (Rec."Document Type"=0) and (Rec.Type=2) then begin
-             if RecItem.Get(Rec."No.") then begin
-             /////EstadoPRod:=RecItem."Estado Producto";
-             RecItem.CalcFields(RecItem."Qty. on Sales Order",RecItem."Fecha proxima recepción conten",
-             RecItem."Fecha proxima recepción pedido");
-             FECHA1:=RecItem."Fecha proxima recepción conten";
-             FECHA2:=RecItem."Fecha proxima recepción pedido";
-             Rec39.Reset;
-             Rec39.SetCurrentkey(Type,"No.","Expected Receipt Date");
-             Rec39.SetRange(Rec39."Document Type",0);
-             Rec39.SetRange(Rec39."No.",Rec."No.");
-             Rec39.SetFilter(Rec39."Outstanding Quantity",'<>0');
-             if Rec39.FindFirst then begin
-                  FECHA2:=Rec39."Expected Receipt Date";
-             end;
-             Rec39.Reset;
-             Rec39.SetCurrentkey(Type,"No.","Expected Receipt Date");
-             Rec39.SetRange(Rec39."Document Type",1);
-             Rec39.SetRange(Rec39."No.",Rec."No.");
-             Rec39.SetFilter(Rec39."Outstanding Quantity",'<>0');
-             if Rec39.FindFirst then begin
-                  FECHA1:=Rec39."Expected Receipt Date";
-             end;
+        if (Rec."Document Type" = 0) and (Rec.Type = 2) then begin
+            if RecItem.Get(Rec."No.") then begin
+                /////EstadoPRod:=RecItem."Estado Producto";
+                RecItem.CalcFields(RecItem."Qty. on Sales Order", RecItem."Fecha proxima recepción conten",
+                RecItem."Fecha proxima recepción pedido");
+                FECHA1 := RecItem."Fecha proxima recepción conten";
+                FECHA2 := RecItem."Fecha proxima recepción pedido";
+                Rec39.Reset;
+                Rec39.SetCurrentkey(Type, "No.", "Expected Receipt Date");
+                Rec39.SetRange(Rec39."Document Type", 0);
+                Rec39.SetRange(Rec39."No.", Rec."No.");
+                Rec39.SetFilter(Rec39."Outstanding Quantity", '<>0');
+                if Rec39.FindFirst then begin
+                    FECHA2 := Rec39."Expected Receipt Date";
+                end;
+                Rec39.Reset;
+                Rec39.SetCurrentkey(Type, "No.", "Expected Receipt Date");
+                Rec39.SetRange(Rec39."Document Type", 1);
+                Rec39.SetRange(Rec39."No.", Rec."No.");
+                Rec39.SetFilter(Rec39."Outstanding Quantity", '<>0');
+                if Rec39.FindFirst then begin
+                    FECHA1 := Rec39."Expected Receipt Date";
+                end;
 
-             end;
+            end;
         end;
 
 
-        Color1:='';
-        Color2:='';
+        Color1 := '';
+        Color2 := '';
 
-        if FECHA1<>0D then begin
-             Color1:='Unfavorable';
+        if FECHA1 <> 0D then begin
+            Color1 := 'Unfavorable';
         end;
-        if FECHA2<>0D then begin
-             Color2:='StrongAccent';
+        if FECHA2 <> 0D then begin
+            Color2 := 'StrongAccent';
         end;
 
 
-        ImporteTarifa:=0;
-        ImporteAServir:=0;
+        ImporteTarifa := 0;
+        ImporteAServir := 0;
         SalesLine.Reset;
-        SalesLine.SetRange(SalesLine."Document Type",Rec."Document Type");
-        SalesLine.SetRange("Document No.",Rec."Document No.");
-        if SalesLine.FindSet then repeat
-             if Item2.Get(SalesLine."No.") then begin
-                  if (Item2."No permite pedido"=false) and (Item2."Producto con reserva"=false) then begin
-                         ImporteAServir:=ImporteAServir+SalesLine.Amount;
-                         if SalesLine."Producto asociado"=0 then begin
-                               ImporteTarifa:=ImporteTarifa+(SalesLine.Quantity*SalesLine."Unit Price");
-                         end;
-                  end;
-             end;
-        until SalesLine.Next=0;
+        SalesLine.SetRange(SalesLine."Document Type", Rec."Document Type");
+        SalesLine.SetRange("Document No.", Rec."Document No.");
+        if SalesLine.FindSet then
+            repeat
+                if Item2.Get(SalesLine."No.") then begin
+                    if (Item2."No permite pedido" = false) and (Item2."Producto con reserva" = false) then begin
+                        ImporteAServir := ImporteAServir + SalesLine.Amount;
+                        if SalesLine."Producto asociado" = 0 then begin
+                            ImporteTarifa := ImporteTarifa + (SalesLine.Quantity * SalesLine."Unit Price");
+                        end;
+                    end;
+                end;
+            until SalesLine.Next = 0;
 
 
-        ImporteSupraOferta:=0;
-        ImpBase:=ImporteTarifa;
+        ImporteSupraOferta := 0;
+        ImpBase := ImporteTarifa;
         CustInvoiceDisc.Reset;
-        CustInvoiceDisc.SetRange(CustInvoiceDisc.Code,'SUPRAOFERTA');
-        if CustInvoiceDisc.FindSet then repeat
-             if ImpBase>CustInvoiceDisc."Minimum Amount" then begin
-                  Conseguido:=Format(CustInvoiceDisc."Discount %")+'%';
-                  ImporteSupraOferta:=ImporteTarifa-ROUND(ImporteTarifa*CustInvoiceDisc."Discount %"/100,0.01);
-             end;
-        until CustInvoiceDisc.Next=0;
+        CustInvoiceDisc.SetRange(CustInvoiceDisc.Code, 'SUPRAOFERTA');
+        if CustInvoiceDisc.FindSet then
+            repeat
+                if ImpBase > CustInvoiceDisc."Minimum Amount" then begin
+                    Conseguido := Format(CustInvoiceDisc."Discount %") + '%';
+                    ImporteSupraOferta := ImporteTarifa - ROUND(ImporteTarifa * CustInvoiceDisc."Discount %" / 100, 0.01);
+                end;
+            until CustInvoiceDisc.Next = 0;
 
-        COLORDIF:='Unfavorable';
-        if ImporteSupraOferta>0 then begin
-             if (ImporteAServir-ImporteSupraOferta)>0 then begin
-                  COLORDIF:='Favorable';
-             end;
+        COLORDIF := 'Unfavorable';
+        if ImporteSupraOferta > 0 then begin
+            if (ImporteAServir - ImporteSupraOferta) > 0 then begin
+                COLORDIF := 'Favorable';
+            end;
         end;
 
 
@@ -835,7 +837,7 @@ Page 50070 "Pendiente en presupuesto"
 
 
         if Item.Get(Rec."No.") then begin
-          Item.CalcFields("Existencia SILLA");
+            Item.CalcFields("Existencia SILLA");
         end;
     end;
 
@@ -844,10 +846,10 @@ Page 50070 "Pendiente en presupuesto"
         ReserveSalesLine: Codeunit "Sales Line-Reserve";
     begin
         if (Rec.Quantity <> 0) and Rec.ItemExists(Rec."No.") then begin
-          Commit;
-          if not ReserveSalesLine.DeleteLineConfirm(Rec) then
-            exit(false);
-          ReserveSalesLine.DeleteLine(Rec);
+            Commit;
+            if not ReserveSalesLine.DeleteLineConfirm(Rec) then
+                exit(false);
+            ReserveSalesLine.DeleteLine(Rec);
         end;
     end;
 
@@ -867,10 +869,10 @@ Page 50070 "Pendiente en presupuesto"
     begin
         Rec.InitType;
         /////- if ApplicationAreaSetup.IsFoundationEnabled then
-          if xRec."Document No." = '' then
+        if xRec."Document No." = '' then
             Rec.Type := Rec.Type::Item;
 
-        Rec.Type:=Rec.Type::Item;
+        Rec.Type := Rec.Type::Item;
 
         Clear(ShortcutDimCode);
         UpdateTypeText;
@@ -880,7 +882,7 @@ Page 50070 "Pendiente en presupuesto"
     begin
 
 
-        COLORDTOVENDE:='StandardAccent';
+        COLORDTOVENDE := 'StandardAccent';
     end;
 
     var
@@ -896,7 +898,7 @@ Page 50070 "Pendiente en presupuesto"
         SalesCalcDiscByType: Codeunit "Sales - Calc Discount By Type";
         DocumentTotals: Codeunit "Document Totals";
         VATAmount: Decimal;
-        ShortcutDimCode: array [8] of Code[20];
+        ShortcutDimCode: array[8] of Code[20];
         IsCommentLine: Boolean;
         UnitofMeasureCodeIsChangeable: Boolean;
         IsFoundation: Boolean;
@@ -936,37 +938,37 @@ Page 50070 "Pendiente en presupuesto"
 
     procedure ApproveCalcInvDisc()
     begin
-        Codeunit.Run(Codeunit::"Sales-Disc. (Yes/No)",Rec);
+        Codeunit.Run(Codeunit::"Sales-Disc. (Yes/No)", Rec);
     end;
 
     local procedure ValidateInvoiceDiscountAmount()
     var
         SalesHeader: Record "Sales Header";
     begin
-        SalesHeader.Get(Rec."Document Type",Rec."Document No.");
-        SalesCalcDiscByType.ApplyInvDiscBasedOnAmt(InvoiceDiscountAmount,SalesHeader);
+        SalesHeader.Get(Rec."Document Type", Rec."Document No.");
+        SalesCalcDiscByType.ApplyInvDiscBasedOnAmt(InvoiceDiscountAmount, SalesHeader);
         CurrPage.Update(false);
     end;
 
     procedure CalcInvDisc()
     begin
-        Codeunit.Run(Codeunit::"Sales-Calc. Discount",Rec);
+        Codeunit.Run(Codeunit::"Sales-Calc. Discount", Rec);
     end;
 
     local procedure ExplodeBOM()
     begin
-        Codeunit.Run(Codeunit::"Sales-Explode BOM",Rec);
+        Codeunit.Run(Codeunit::"Sales-Explode BOM", Rec);
     end;
 
     local procedure InsertExtendedText(Unconditionally: Boolean)
     begin
-        if TransferExtendedText.SalesCheckIfAnyExtText(Rec,Unconditionally) then begin
-          CurrPage.SaveRecord;
-          Commit;
-          TransferExtendedText.InsertSalesExtText(Rec);
+        if TransferExtendedText.SalesCheckIfAnyExtText(Rec, Unconditionally) then begin
+            CurrPage.SaveRecord;
+            Commit;
+            TransferExtendedText.InsertSalesExtText(Rec);
         end;
         if TransferExtendedText.MakeUpdate then
-          UpdateForm(true);
+            UpdateForm(true);
     end;
 
     local procedure ShowItemSub()
@@ -991,16 +993,16 @@ Page 50070 "Pendiente en presupuesto"
 
     local procedure ShowPrices()
     begin
-        SalesHeader.Get(Rec."Document Type",Rec."Document No.");
+        SalesHeader.Get(Rec."Document Type", Rec."Document No.");
         Clear(SalesPriceCalcMgt);
-        SalesPriceCalcMgt.GetSalesLinePrice(SalesHeader,Rec);
+        SalesPriceCalcMgt.GetSalesLinePrice(SalesHeader, Rec);
     end;
 
     local procedure ShowLineDisc()
     begin
-        SalesHeader.Get(Rec."Document Type",Rec."Document No.");
+        SalesHeader.Get(Rec."Document Type", Rec."Document No.");
         Clear(SalesPriceCalcMgt);
-        SalesPriceCalcMgt.GetSalesLineLineDisc(SalesHeader,Rec);
+        SalesPriceCalcMgt.GetSalesLineLineDisc(SalesHeader, Rec);
     end;
 
     local procedure ShowLineComments()
@@ -1014,7 +1016,7 @@ Page 50070 "Pendiente en presupuesto"
         if (Rec.Type = Rec.Type::"Charge (Item)") and (Rec."No." <> xRec."No.") and
            (xRec."No." <> '')
         then
-          CurrPage.SaveRecord;
+            CurrPage.SaveRecord;
 
         SaveAndAutoAsmToOrder;
     end;
@@ -1037,30 +1039,30 @@ Page 50070 "Pendiente en presupuesto"
     local procedure QuantityOnAfterValidate()
     begin
         if Rec.Reserve = Rec.Reserve::Always then begin
-          CurrPage.SaveRecord;
-          Rec.AutoReserve;
+            CurrPage.SaveRecord;
+            Rec.AutoReserve;
         end;
 
         if (Rec.Type = Rec.Type::Item) and
            (Rec.Quantity <> xRec.Quantity)
         then
-          CurrPage.Update(true);
+            CurrPage.Update(true);
     end;
 
     local procedure UnitofMeasureCodeOnAfterValida()
     begin
-        if Rec.Reserve =Rec. Reserve::Always then begin
-          CurrPage.SaveRecord;
-          Rec.AutoReserve;
+        if Rec.Reserve = Rec.Reserve::Always then begin
+            CurrPage.SaveRecord;
+            Rec.AutoReserve;
         end;
     end;
 
     local procedure SaveAndAutoAsmToOrder()
     begin
         if (Rec.Type = Rec.Type::Item) and Rec.IsAsmToOrderRequired then begin
-          CurrPage.SaveRecord;
-          Rec.AutoAsmToOrder;
-          CurrPage.Update(false);
+            CurrPage.SaveRecord;
+            Rec.AutoAsmToOrder;
+            CurrPage.Update(false);
         end;
     end;
 
@@ -1068,14 +1070,14 @@ Page 50070 "Pendiente en presupuesto"
     begin
         CurrPage.SaveRecord;
 
-        SalesHeader.Get(Rec."Document Type",Rec."Document No.");
-        DocumentTotals.SalesRedistributeInvoiceDiscountAmounts(Rec,VATAmount,TotalSalesLine);
+        SalesHeader.Get(Rec."Document Type", Rec."Document No.");
+        DocumentTotals.SalesRedistributeInvoiceDiscountAmounts(Rec, VATAmount, TotalSalesLine);
         CurrPage.Update;
     end;
 
-    local procedure ValidateSaveShortcutDimCode(FieldNumber: Integer;var ShortcutDimCode: Code[20])
+    local procedure ValidateSaveShortcutDimCode(FieldNumber: Integer; var ShortcutDimCode: Code[20])
     begin
-        Rec.ValidateShortcutDimCode(FieldNumber,ShortcutDimCode);
+        Rec.ValidateShortcutDimCode(FieldNumber, ShortcutDimCode);
         CurrPage.SaveRecord;
     end;
 
@@ -1085,16 +1087,16 @@ Page 50070 "Pendiente en presupuesto"
     begin
         IsCommentLine := not Rec.HasTypeToFillMandatoryFields;
         if not IsCommentLine then
-          UnitofMeasureCodeIsChangeable := Rec.CanEditUnitOfMeasureCode
+            UnitofMeasureCodeIsChangeable := Rec.CanEditUnitOfMeasureCode
         else
-          UnitofMeasureCodeIsChangeable := false;
+            UnitofMeasureCodeIsChangeable := false;
 
         if TotalSalesHeader."No." <> '' then begin
-          SalesLine.SetRange("Document No.",TotalSalesHeader."No.");
-          SalesLine.SetRange("Document Type",TotalSalesHeader."Document Type");
-          if not SalesLine.IsEmpty then
-            InvDiscAmountEditable :=
-              SalesCalcDiscByType.InvoiceDiscIsAllowed(TotalSalesHeader."Invoice Disc. Code") and CurrPage.Editable;
+            SalesLine.SetRange("Document No.", TotalSalesHeader."No.");
+            SalesLine.SetRange("Document Type", TotalSalesHeader."Document Type");
+            if not SalesLine.IsEmpty then
+                InvDiscAmountEditable :=
+                  SalesCalcDiscByType.InvoiceDiscIsAllowed(TotalSalesHeader."Invoice Disc. Code") and CurrPage.Editable;
         end;
     end;
 
@@ -1103,19 +1105,19 @@ Page 50070 "Pendiente en presupuesto"
         SalesHeader: Record "Sales Header";
     begin
         CurrPage.Update;
-        SalesHeader.Get(Rec."Document Type",Rec."Document No.");
-        SalesCalcDiscByType.ApplyDefaultInvoiceDiscount(TotalSalesHeader."Invoice Discount Amount",SalesHeader);
+        SalesHeader.Get(Rec."Document Type", Rec."Document No.");
+        SalesCalcDiscByType.ApplyDefaultInvoiceDiscount(TotalSalesHeader."Invoice Discount Amount", SalesHeader);
     end;
 
     local procedure GetTotalSalesHeader()
     begin
-        if not TotalSalesHeader.Get(Rec."Document Type",Rec."Document No.") then
-          Clear(TotalSalesHeader);
+        if not TotalSalesHeader.Get(Rec."Document Type", Rec."Document No.") then
+            Clear(TotalSalesHeader);
         if Currency.Code <> TotalSalesHeader."Currency Code" then
-          if not Currency.Get(TotalSalesHeader."Currency Code") then begin
-            Clear(Currency);
-            Currency.InitRoundingPrecision;
-          end
+            if not Currency.Get(TotalSalesHeader."Currency Code") then begin
+                Clear(Currency);
+                Currency.InitRoundingPrecision;
+            end
     end;
 
     local procedure CalculateTotals()
@@ -1126,10 +1128,10 @@ Page 50070 "Pendiente en presupuesto"
         if SalesSetup."Calc. Inv. Discount" and (Rec."Document No." <> '') and (TotalSalesHeader."Customer Posting Group" <> '') and
            TotalSalesHeader."Recalculate Invoice Disc."
         then
-          if Rec.Find then
-            CalcInvDisc;
+            if Rec.Find then
+                CalcInvDisc;
 
-        DocumentTotals.CalculateSalesTotals(TotalSalesLine,VATAmount,Rec);
+        DocumentTotals.CalculateSalesTotals(TotalSalesLine, VATAmount, Rec);
         InvoiceDiscountAmount := TotalSalesLine."Inv. Discount Amount";
         InvoiceDiscountPct := SalesCalcDiscByType.GetCustInvoiceDiscountPct(Rec);
     end;
@@ -1146,7 +1148,7 @@ Page 50070 "Pendiente en presupuesto"
     begin
         ItemChargeStyleExpression := '';
         if Rec.AssignedItemCharge then
-          ItemChargeStyleExpression := 'Unfavorable';
+            ItemChargeStyleExpression := 'Unfavorable';
     end;
 }
 
