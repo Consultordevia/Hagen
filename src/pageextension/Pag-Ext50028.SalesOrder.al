@@ -809,7 +809,15 @@ pageextension 50028 SalesOrder extends "Sales Order"
 
     begin
 
-        Commit;
+        SalesLine5.Reset;
+        SalesLine5.SetRange(SalesLine5."Document Type", Rec."Document Type");
+        SalesLine5.SetRange(SalesLine5."Document No.", Rec."No.");
+        if SalesLine5.FindSet then
+            repeat
+                SalesLine5.Validate("Qty. to Ship", SalesLine5.Quantity);
+                SalesLine5.Modify;
+            until SalesLine5.Next = 0;
+
 
         contadordeagrup := '0';
 
