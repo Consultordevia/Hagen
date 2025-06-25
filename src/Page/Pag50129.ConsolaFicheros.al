@@ -5,6 +5,12 @@ page 50129 ConsolaFicheros
     PageType = List;
     SourceTable = ConsolaFicheros;
     UsageCategory = Administration;
+    InsertAllowed = false;
+    DelayedInsert = false;
+    ModifyAllowed = true;
+    DeleteAllowed = false;
+    Editable = true;
+
 
     layout
     {
@@ -23,6 +29,21 @@ page 50129 ConsolaFicheros
                     Editable = false;
                 }
                 field(DesdeDondeSeGuarda; rec.DesdeDondeSeGuarda)
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                }
+                field(Error; Rec.Error)
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                }
+                field(DescripcionError; Rec.DescripcionError)
+                {
+                    ApplicationArea = All;
+                    Editable = false;
+                }
+                field(SystemCreatedAt; Rec.SystemCreatedAt)
                 {
                     ApplicationArea = All;
                     Editable = false;
