@@ -368,7 +368,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRAQ.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRAQ.csv', InStream, '50072 - Miravia_MRAQ');
 
 
 
@@ -564,7 +564,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRCAIT.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRCAIT.csv', InStream, '50072 - Miravia_CATIT');
 
 
 
@@ -754,7 +754,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRDG.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRDG.csv', InStream, '50072 - Miravia_MRDG');
 
 
 
@@ -946,7 +946,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MREXO.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MREXO.csv', InStream, '50072 - Miravia_MREXO');
 
 
     end;
@@ -1141,7 +1141,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRFLU.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRFLU.csv', InStream, '50072 - Miravia_MRFLU');
 
 
 
@@ -1335,7 +1335,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRLAG.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRLAG.csv', InStream, '50072 - Miravia_MRLAG');
 
 
 
@@ -1529,7 +1529,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRMAR.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRMAR.csv', InStream, '50072 - Miravia_MRMAR');
 
 
 
@@ -1718,7 +1718,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRTRO.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRTRO.csv', InStream, '50072 - Miravia_MRTRO');
 
 
     end;
@@ -1905,7 +1905,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
         ///FicherosHagen.CrearFichero(NOMDIR, 'UpdatePriceAndStock_Basic_MRHAR.csv', InStream);
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRHAR.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRHAR.csv', InStream, '50072 - Miravia_MRHAR');
 
 
     end;
@@ -2093,7 +2093,7 @@ Codeunit 50072 "Automaticos MIRAVIA"
 
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRLIV.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'UpdatePriceAndStock_Basic_MRLIV.csv', InStream, '50072 - Miravia_MRLIV');
 
 
     end;

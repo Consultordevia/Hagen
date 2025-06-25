@@ -419,7 +419,7 @@ Codeunit 50101 "Automaticos Cartas1"
 
         TempBlob.CreateInStream(InStream);
         //Message('%1 %2', RecCE."Ruta salida de_gestion", DAT2);        
-        FicherosHagen.CrearFichero(RecCE."Ruta salida de_gestion", DAT2, InStream);
+        FicherosHagen.CrearFichero(RecCE."Ruta salida de_gestion", DAT2, InStream, '50101 - MODIFCLIENTES');
 
 
 

@@ -154,7 +154,7 @@ Codeunit 50082 "Automaticos TRADE INN"
         OutTxt: Text;
 
     begin
-        
+
         CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
         LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
 
@@ -376,7 +376,7 @@ Codeunit 50082 "Automaticos TRADE INN"
 
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'INN.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'INN.csv', InStream, '50082 - GrabaStockCATIT');
 
 
     end;

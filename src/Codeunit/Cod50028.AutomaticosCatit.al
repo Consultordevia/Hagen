@@ -136,14 +136,14 @@ Codeunit 50028 "Automaticos Catit"
         Clear(TempBlob);
         TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
 
-        
+
 
 
         OutTxt := 'sku;price;Stock;status;pvpr;coste';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
 
-         
+
 
 
 
@@ -347,7 +347,7 @@ Codeunit 50028 "Automaticos Catit"
                                                Format(DISPONI) + ';' +
                                                Format(estatus) + ';' +
                                                Format(pvpr) + ';' +
-                                               Format(pmp);                                         
+                                               Format(pmp);
                                         OutTxt += Format(CarriageReturn) + Format(LineFeed);
                                         data.AddText(OutTxt);
 
@@ -370,7 +370,7 @@ Codeunit 50028 "Automaticos Catit"
                                         Format(ROUND(DISPONI / RecUMP."Qty. per Unit of Measure", 1)) + ';' +
                                         Format(estatus) + ';' +
                                         Format(pvpr) + ';' +
-                                        Format(pmp);                                 
+                                        Format(pmp);
                                         OutTxt += Format(CarriageReturn) + Format(LineFeed);
                                         data.AddText(OutTxt);
 
@@ -392,11 +392,11 @@ Codeunit 50028 "Automaticos Catit"
         IF ADAIA.FindSet() THEN begin
             nomdir := ADAIA.Ruta;
         end;
-        
+
         Data.Write(OutStream);
 
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'catit.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'catit.csv', InStream, '50028 - GrabaStockCATIT');
 
 
     end;

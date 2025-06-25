@@ -151,7 +151,7 @@ Codeunit 50067 "Automaticos Carrefour"
         OutTxt: Text;
 
     begin
-        
+
         CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
         LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
 
@@ -159,7 +159,7 @@ Codeunit 50067 "Automaticos Carrefour"
         TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
 
 
-///        TempBlob.CreateOutStream(OutStream);
+        ///        TempBlob.CreateOutStream(OutStream);
 
 
 
@@ -217,7 +217,7 @@ Codeunit 50067 "Automaticos Carrefour"
                     precio2 := 0;
                     SalesPrice2.Reset;
                     SalesPrice2.SetRange("Item No.", Item."No.");
-                    SalesPrice2.SetRange("Sales Code", 'CARRE');                     
+                    SalesPrice2.SetRange("Sales Code", 'CARRE');
                     if SalesPrice2.FindFirst then begin
                         fechaini := SalesPrice2."Starting Date";
                         precio2 := SalesPrice2."Unit Price";
@@ -409,7 +409,7 @@ Codeunit 50067 "Automaticos Carrefour"
 
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'carrefour.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'carrefour.csv', InStream, '50067 - TiendaAnimal');
 
 
 

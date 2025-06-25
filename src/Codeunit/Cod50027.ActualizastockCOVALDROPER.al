@@ -243,7 +243,7 @@ Codeunit 50027 "Actualiza stock COVALDROPER"
             nomdir := ADAIA.Ruta;
         end;
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(nomdir, 'actptosexternos_' + CODEXTERNO + '.txt', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'actptosexternos_' + CODEXTERNO + '.txt', InStream, '50027 - GrabaStockCOVAL');
 
 
     end;
