@@ -16,12 +16,7 @@ pageextension 50061 ShpfyActivitiesExt extends "Shpfy Activities"
                         pSales: Page "Pantalla almacen Pascual5";
                     begin
                         SalesHeader.SetRange("Grupo clientes", 'G52');
-                        SalesHeader.SetFilter("Estado pedido", '%1|%2|%3|%4',
-                                SalesHeader."Estado pedido"::"Para preparar",
-                                SalesHeader."Estado pedido"::"Pdte. comercial",
-                                SalesHeader."Estado pedido"::"Pendiente stock",
-                                SalesHeader."Estado pedido"::Retenido);
-                        // SalesHeader.SetRange("Estado pedido", SalesHeader."Estado pedido"::"Para preparar", SalesHeader."Estado pedido"::"Pdte. comercial", SalesHeader."Estado pedido"::"Pendiente stock", SalesHeader."Estado pedido"::Retenido);
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."Estado pedido"::"Para preparar");
                         pSales.SetTableView(SalesHeader);
                         pSales.Run();
                     end;
@@ -36,6 +31,7 @@ pageextension 50061 ShpfyActivitiesExt extends "Shpfy Activities"
                         pSales: Page "Pantalla almacen Pascual5";
                     begin
                         SalesHeader.SetRange("Grupo clientes", 'G52');
+                        SalesHeader.SetRange("Estado pedido", SalesHeader."Estado pedido"::"Para preparar");
                         SalesHeader.SetRange("Nº expedición", '');
                         pSales.SetTableView(SalesHeader);
                         pSales.Run();
@@ -62,16 +58,12 @@ pageextension 50061 ShpfyActivitiesExt extends "Shpfy Activities"
         SalesHeader: Record "Sales Header";
     begin
         SalesHeader.SetRange("Grupo clientes", 'G52');
-        SalesHeader.SetFilter("Estado pedido", '%1|%2|%3|%4',
-            SalesHeader."Estado pedido"::"Para preparar",
-            SalesHeader."Estado pedido"::"Pdte. comercial",
-            SalesHeader."Estado pedido"::"Pendiente stock",
-            SalesHeader."Estado pedido"::Retenido);
-        // SalesHeader.SetFilter("Estado pedido", '<>%1', SalesHeader."Estado pedido"::Servido);
+        SalesHeader.SetRange("Estado pedido", SalesHeader."Estado pedido"::"Para preparar");
         TotalPedidosNoServidos := SalesHeader.Count();
 
         SalesHeader.Reset();
         SalesHeader.SetRange("Grupo clientes", 'G52');
+        SalesHeader.SetRange("Estado pedido", SalesHeader."Estado pedido"::"Para preparar");
         SalesHeader.SetRange("Nº expedición", '');
         TotalPedidosPtAsignarAdaia := SalesHeader.Count();
     end;
