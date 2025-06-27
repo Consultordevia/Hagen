@@ -15,7 +15,7 @@ pageextension 50061 ShpfyActivitiesExt extends "Shpfy Activities"
                         SalesHeader: Record "Sales Header";
                         pSales: Page "Pantalla almacen Pascual5";
                     begin
-                        SalesHeader.SetRange("Grupo clientes", 'G23');
+                        SalesHeader.SetRange("Grupo clientes", 'G52');
                         SalesHeader.SetFilter("Estado pedido", '%1|%2|%3|%4',
                                 SalesHeader."Estado pedido"::"Para preparar",
                                 SalesHeader."Estado pedido"::"Pdte. comercial",
@@ -35,7 +35,7 @@ pageextension 50061 ShpfyActivitiesExt extends "Shpfy Activities"
                         SalesHeader: Record "Sales Header";
                         pSales: Page "Pantalla almacen Pascual5";
                     begin
-                        SalesHeader.SetRange("Grupo clientes", 'G23');
+                        SalesHeader.SetRange("Grupo clientes", 'G52');
                         SalesHeader.SetRange("Nº expedición", '');
                         pSales.SetTableView(SalesHeader);
                         pSales.Run();
@@ -61,7 +61,7 @@ pageextension 50061 ShpfyActivitiesExt extends "Shpfy Activities"
     var
         SalesHeader: Record "Sales Header";
     begin
-        SalesHeader.SetRange("Grupo clientes", 'G23');
+        SalesHeader.SetRange("Grupo clientes", 'G52');
         SalesHeader.SetFilter("Estado pedido", '%1|%2|%3|%4',
             SalesHeader."Estado pedido"::"Para preparar",
             SalesHeader."Estado pedido"::"Pdte. comercial",
@@ -71,7 +71,7 @@ pageextension 50061 ShpfyActivitiesExt extends "Shpfy Activities"
         TotalPedidosNoServidos := SalesHeader.Count();
 
         SalesHeader.Reset();
-        SalesHeader.SetRange("Grupo clientes", 'G23');
+        SalesHeader.SetRange("Grupo clientes", 'G52');
         SalesHeader.SetRange("Nº expedición", '');
         TotalPedidosPtAsignarAdaia := SalesHeader.Count();
     end;
