@@ -1018,6 +1018,10 @@ tableextension 50114 SalesHeader extends "Sales Header"
         field(50670; ImpresoporImporesora; Boolean)
         {
         }
+        field(50671; FechaReenvioAdaia; DateTime)
+        {
+            Editable = false;
+        }
 
     }
 

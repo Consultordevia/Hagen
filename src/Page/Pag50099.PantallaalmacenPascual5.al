@@ -303,6 +303,10 @@ Page 50099 "Pantalla almacen Pascual5"
                 {
                     ApplicationArea = Basic;
                 }
+                field(FechaReenvioAdaia; Rec.FechaReenvioAdaia)
+                {
+                    ApplicationArea = Basic;
+                }
             }
         }
     }
@@ -330,6 +334,23 @@ Page 50099 "Pantalla almacen Pascual5"
                     begin
                         cu14.Run();
                         EnviaraADAIA;
+                    end;
+                }
+                action("Reenviar a ADAIA")
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'Reenviar a ADAIA';
+                    Ellipsis = true;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+
+                    trigger OnAction()
+                    var
+                        Cu14: Codeunit 50014;
+                    begin
+                        cu14.Run();
+                        ReenviaFicheroaADAIA();
                     end;
                 }
                 action("Crear EXPEDICION")
@@ -49102,6 +49123,83 @@ Page 50099 "Pantalla almacen Pascual5"
             //       ImprimeEtiPortugal;
         end;
     end;
+
+
+    local procedure ReenviaFicheroaADAIA()
+    var
+        AutomaticosAdaia: Codeunit "Automaticos Cartas";
+        SalesHeader: Record "Sales Header";
+        LogAdaiaPedidos: Record LogAdaiaPedidos;
+        LogAdaiaFicheros: Record LogFicherosAdaia;
+    begin
+
+        Commit;
+
+        contadordeagrup := '0';
+
+        LogAdaiaFicheros.Init();
+        LogAdaiaFicheros.Expedicion := NPEDIDO;
+        LogAdaiaFicheros.Error := true;
+        LogAdaiaFicheros.Insert();
+
+
+
+        SalesReceivablesSetup.Get;
+
+        NPEDIDO := Rec."Nº expedición";
+
+
+        if CopyStr(Rec."No.", 3, 4) = 'CATW' then begin
+            NPEDIDO := Rec."Your Reference";
+        end;
+
+
+
+
+
+
+        Sleep(3000);
+        SalesHeader3.Reset;
+        SalesHeader3.SetCurrentkey("Document Type", "Nº expedición");
+        SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
+        SalesHeader3.SetRange(SalesHeader3."Nº expedición", NPEDIDO);
+        if SalesHeader3.FindFirst then begin
+            Clear(AutomaticosAdaia);
+            AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);
+            SalesHeader3.FechaReenvioAdaia := CreateDateTime(today, time);
+            SalesHeader3.Modify();
+
+            if LogAdaiaFicheros.get(NPEDIDO) then begin
+                LogAdaiaFicheros.Error := false;
+                LogAdaiaFicheros.Subido := true;
+                LogAdaiaFicheros.Modify();
+            end;
+
+        end;
+
+        Commit;
+
+        SalesHeader35.Reset;
+        SalesHeader35.SetRange(SalesHeader35."Document Type", Rec."Document Type");
+        SalesHeader35.SetRange(SalesHeader35."No.", Rec."No.");
+        if SalesHeader35.FindFirst then begin
+            if CopyStr(SalesHeader35."No.", 3, 3) <> 'WEB' then begin
+                AutomaticosAdaia.ENVIAREMAILPARAPREPARAR(SalesHeader35);
+            end;
+        end;
+
+
+
+        Commit;
+
+        ///// ImprimeEtiAdaia;
+
+
+        if Rec."VAT Country/Region Code" = 'PT' then begin
+            //       ImprimeEtiPortugal;
+        end;
+    end;
+
 
 
 
