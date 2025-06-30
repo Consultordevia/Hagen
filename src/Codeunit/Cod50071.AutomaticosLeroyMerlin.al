@@ -127,11 +127,11 @@ Codeunit 50071 "Automaticos Leroy Merlin"
                     precio2 := 0;
                     SalesPrice2.Reset;
                     SalesPrice2.SetRange("Item No.", Item."No.");
-                    SalesPrice2.SetRange("Sales Code", 'LER');                     
+                    SalesPrice2.SetRange("Sales Code", 'LER');
                     if SalesPrice2.FindFirst then begin
                         fechaini := SalesPrice2."Starting Date";
-                        if fechaini=0D THEN begin
-                            fechaini:=20000101D;
+                        if fechaini = 0D THEN begin
+                            fechaini := 20000101D;
                         end;
                         precio2 := SalesPrice2."Unit Price";
 
@@ -169,10 +169,10 @@ Codeunit 50071 "Automaticos Leroy Merlin"
 
 
                         fechafin := SalesPrice2."Ending Date";
-                        if fechafin=0D THEN begin
-                            fechafin:=20501231D;
+                        if fechafin = 0D THEN begin
+                            fechafin := 20501231D;
                         end;
-                        
+
                         mm := Date2dmy(fechafin, 2);
                         dd := Date2dmy(fechafin, 1);
                         mm1 := Format(mm);
@@ -230,11 +230,11 @@ Codeunit 50071 "Automaticos Leroy Merlin"
                             tprecio3 := '';
                         end;
 
-                        fechaini:=SalesLineDiscount."Starting Date";
-                        if fechaini=0D THEN begin
-                            fechaini:=20000101D;
+                        fechaini := SalesLineDiscount."Starting Date";
+                        if fechaini = 0D THEN begin
+                            fechaini := 20000101D;
                         end;
-                        
+
 
                         mm := Date2dmy(fechaini, 2);
                         dd := Date2dmy(fechaini, 1);
@@ -271,11 +271,11 @@ Codeunit 50071 "Automaticos Leroy Merlin"
 
 
 
-                        fechafin:=SalesLineDiscount."Starting Date";
-                        if fechafin=0D THEN begin
-                            fechafin:=20501231D;
+                        fechafin := SalesLineDiscount."Starting Date";
+                        if fechafin = 0D THEN begin
+                            fechafin := 20501231D;
                         end;
-                        
+
 
                         mm := Date2dmy(fechafin, 2);
                         dd := Date2dmy(fechafin, 1);
@@ -412,12 +412,12 @@ Codeunit 50071 "Automaticos Leroy Merlin"
             nomdir := ADAIA.Ruta;
         end;
 
-///        TempBlob.CreateInStream(InStream);
-///        FicherosHagen.CrearFichero(nomdir, 'LeroyMerlin.csv', InStream);
+        ///        TempBlob.CreateInStream(InStream);
+        ///        FicherosHagen.CrearFichero(nomdir, 'LeroyMerlin.csv', InStream);
 
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'LeroyMerlin.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'LeroyMerlin.csv', InStream, '50071 - TiendaAnimal');
 
 
 

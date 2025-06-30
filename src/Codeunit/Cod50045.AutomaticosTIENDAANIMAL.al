@@ -420,7 +420,7 @@ Codeunit 50045 "Automaticos TIENDA ANIMAL"
         Data.Write(OutStream);
 
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'Tanimal-stock.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'Tanimal-stock.csv', InStream, '50045 - TiendaAnimal');
 
 
 

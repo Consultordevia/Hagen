@@ -409,7 +409,7 @@ Codeunit 50055 "Fichero Stock.csv"
 
 
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'stock1.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'stock1.csv', InStream, '50055 - GrabaStock');
 
 
 
@@ -1549,7 +1549,7 @@ Codeunit 50055 "Fichero Stock.csv"
 
 
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'stock.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'stock.csv', InStream, '50055 - GrabaStock5');
 
 
 
@@ -1570,7 +1570,7 @@ Codeunit 50055 "Fichero Stock.csv"
             Error('ERROR');
 
         tempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(nomdir, 'Tarifa.xlsx', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'Tarifa.xlsx', InStream, '50055 - GrabaStock5');
 
 
 

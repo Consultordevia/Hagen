@@ -146,7 +146,7 @@ Codeunit 50062 "Automaticos MANOMANO"
 
     begin
 
-        
+
         CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
         LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
 
@@ -233,7 +233,7 @@ Codeunit 50062 "Automaticos MANOMANO"
 
                     OutTxt += Format(CarriageReturn) + Format(LineFeed);
                     data.AddText(OutTxt);
-              ///      OutStream.Write(TextoSalida1);
+                    ///      OutStream.Write(TextoSalida1);
 
 
                 end;
@@ -247,12 +247,12 @@ Codeunit 50062 "Automaticos MANOMANO"
         IF ADAIA.FindSet() THEN begin
             nomdir := ADAIA.Ruta;
         end;
-       
-        
+
+
         Data.Write(OutStream);
 
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(nomdir, 'MANOMANO-stock.csv', InStream);
+        FicherosHagen.CrearFichero(nomdir, 'MANOMANO-stock.csv', InStream, '50062 - MANOMANO');
 
     end;
 }

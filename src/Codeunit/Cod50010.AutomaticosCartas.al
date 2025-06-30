@@ -646,7 +646,7 @@ Codeunit 50010 "Automaticos Cartas"
         BUSCAEXTENSION;
         DAT2 := 'TRTER.' + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EnviaTerceros');
 
         ///VENTANA.Close;
     end;
@@ -667,16 +667,16 @@ Codeunit 50010 "Automaticos Cartas"
         BUSCAEXTENSION;
         DAT2 := 'TRART.' + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EnviaArticulos');
 
         DAT2 := 'TRARPR.' + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EnviaArticulos');
 
 
         DAT2 := 'TRAREA.' + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EnviaArticulos');
 
     end;
 
@@ -1292,7 +1292,7 @@ Codeunit 50010 "Automaticos Cartas"
         BUSCAEXTENSION;
         DAT2 := 'TRRECORD.' + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EnviaRecep');
 
     end;
 
@@ -1313,7 +1313,7 @@ Codeunit 50010 "Automaticos Cartas"
 
         DAT2 := 'TREXPORD.' + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EnviarExpe');
 
     end;
 
@@ -1333,7 +1333,7 @@ Codeunit 50010 "Automaticos Cartas"
         BUSCAEXTENSION;
         DAT2 := 'TRRUTA.' + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EnviaRutas');
 
     end;
 
@@ -1420,18 +1420,18 @@ Codeunit 50010 "Automaticos Cartas"
         BUSCAEXTENSION;
         DAT2 := 'TRART.' + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EnviaArticulosModif');
 
 
         DAT2 := 'TRARPR.' + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EnviaArticulosModif');
 
 
 
         DAT2 := 'TRAREA.' + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EnviaArticulosModif');
 
     end;
 
@@ -1682,7 +1682,7 @@ Codeunit 50010 "Automaticos Cartas"
         BUSCAEXTENSION;
         DAT2 := 'TRTER.' + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - TercerosModif');
     end;
 
 
@@ -1905,7 +1905,7 @@ Codeunit 50010 "Automaticos Cartas"
         BUSCAEXTENSION;
         DAT2 := 'TRTER.' + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - AltaClientes');
 
     end;
 
@@ -1991,7 +1991,7 @@ Codeunit 50010 "Automaticos Cartas"
         BUSCAEXTENSION;
         DAT2 := 'TRTER.' + EXTEN + Format(ALEA) + Format(RecCust."No.") + Format(LOGCAMBIOA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - ModifClientes');
 
     end;
 
@@ -2014,7 +2014,7 @@ Codeunit 50010 "Automaticos Cartas"
                     if RecI."Producto almacenable" then begin
 
 
-                        
+
                         UBIPICDIN := 'N';
                         PICCOMPAR := 'S';
                         //IF RecI."Tipo de Picking"=1 THEN BEGIN
@@ -2038,8 +2038,8 @@ Codeunit 50010 "Automaticos Cartas"
                         //  UBIREF:=RecI."Ubicacion ref.";
                         ///END;
 
-                        UBIPICDIN:='N';
-                        PICCOMPAR:='S';
+                        UBIPICDIN := 'N';
+                        PICCOMPAR := 'S';
                         TextoSalida5 := 'ARUB' + '|' +
                                   'MO' + '|' +
                                  RecI."No." + '|' +
@@ -2084,7 +2084,7 @@ Codeunit 50010 "Automaticos Cartas"
         BUSCAEXTENSION;
         DAT2 := 'TRARUB.' + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - Trarub');
 
     end;
 
@@ -2139,7 +2139,7 @@ Codeunit 50010 "Automaticos Cartas"
         BUSCAEXTENSION;
         DAT2 := 'TRTER.' + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - AltaProvee');
 
     end;
 
@@ -2224,7 +2224,7 @@ Codeunit 50010 "Automaticos Cartas"
         DAT2 := 'TRTER.' + EXTEN + Format(ALEA) + Format(Rec1."No.") + Format(LOGCAMBIOA);
 
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - ModifProvee');
 
 
 
@@ -2600,8 +2600,8 @@ Codeunit 50010 "Automaticos Cartas"
             ///UBIREF:=RecI."Ubicacion ref.";
             ///END;
 
-            UBIPICDIN:='N';
-            PICCOMPAR:='S';
+            UBIPICDIN := 'N';
+            PICCOMPAR := 'S';
             ///      ARUB|AG|62600|01|||N||E150|||||||||
             TextoSalida5 := 'ARUB' + '|' +
                                   'AG' + '|' +
@@ -2627,23 +2627,23 @@ Codeunit 50010 "Automaticos Cartas"
         BUSCAEXTENSION;
         DAT2 := 'TRART.' + contaser + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - AltaProd');
 
 
 
         DAT2 := 'TRARPR.' + contaser + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - AltaProd');
 
         DAT2 := 'TRAREA.' + contaser + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - AltaProd');
 
 
 
         DAT2 := 'TRARUB.' + contaser + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - AltaProd');
 
 
     end;
@@ -3178,8 +3178,8 @@ Codeunit 50010 "Automaticos Cartas"
             ///UBIREF:=RecI."Ubicacion ref.";
             ///END;
 
-            UBIPICDIN:='N';
-            PICCOMPAR:='S';
+            UBIPICDIN := 'N';
+            PICCOMPAR := 'S';
 
             ///      ARUB|AG|62600|01|||N||E150|||||||||
             OutTxt := 'ARUB' + '|' +
@@ -3227,23 +3227,23 @@ Codeunit 50010 "Automaticos Cartas"
         BUSCAEXTENSION;
         DAT2 := 'TRART.' + contaser + EXTEN + Format(ALEA) + Format(RecI."No.") + Format(LOGCAMBIOA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - ModifProd');
 
 
         Data2.Write(OutStream);
         DAT2 := 'TRARPR.' + contaser + EXTEN + Format(ALEA) + Format(RecI."No.") + Format(LOGCAMBIOA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - ModifProd');
 
         Data3.Write(OutStream);
         DAT2 := 'TRAREA.' + contaser + EXTEN + Format(ALEA) + Format(RecI."No.") + Format(LOGCAMBIOA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - ModifProd');
 
         Data4.Write(OutStream);
         DAT2 := 'TRARUB.' + contaser + EXTEN + Format(ALEA) + Format(RecI."No.") + Format(LOGCAMBIOA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - ModifProd');
 
 
     end;
@@ -3407,7 +3407,7 @@ OutStream.Write('Tercera línea después del salto');
         DAT2 := 'TRRECORD.' + contaser + EXTEN + Format(ALEA) + Format(RecI."No.") + Format(LOGCAMBIOA);
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EnviarRecepciones');
     end;
 
 
@@ -3710,7 +3710,7 @@ OutStream.Write('Tercera línea después del salto');
             // Guardas los cambios en el registro
             logficheroadaia.Modify();
         end;
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EnviaExpediciones');
 
     end;
 
@@ -3909,7 +3909,7 @@ OutStream.Write('Tercera línea después del salto');
     end;
 
 
-//
+    //
 
     procedure REGISTRASOLOEXPE(var Rec36: Record "Sales Header")
     var
@@ -4229,7 +4229,7 @@ OutStream.Write('Tercera línea después del salto');
 
         DAT2 := 'TRAREA.' + contaser + EXTEN + Format(ALEA) + Format(RecI."No.") + Format(LOGCAMBIOA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EnviaEANs');
 
     end;
 
@@ -4376,7 +4376,7 @@ OutStream.Write('Tercera línea después del salto');
         if Rec110."Total bultos" <> 0 then begin
             DAT2 := 'ETIDHL' + EXTEN + Format(ALEA) + '.TXT';
             TempBlob.CreateInStream(InStream);
-            FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+            FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiDHL');
         end;
         /////- VER DHL
 
@@ -4742,7 +4742,7 @@ OutStream.Write('Tercera línea después del salto');
 
         DAT2 := 'ETISTD' + EXTEN + Format(ALEA) + '.TXT';
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiSTD');
 
 
 
@@ -4907,7 +4907,7 @@ OutStream.Write('Tercera línea después del salto');
 
         DAT2 := 'ETITIPSA' + EXTEN + Format(ALEA) + '.TXT';
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiTIPSA');
 
 
     end;
@@ -5070,7 +5070,7 @@ OutStream.Write('Tercera línea después del salto');
 
         DAT2 := 'ETICORR' + EXTEN + Format(ALEA) + '.TXT';
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiCORR');
 
 
     end;
@@ -5277,7 +5277,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         DAT2 := 'ETIDHL' + EXTEN + Format(ALEA) + '.txt';
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiDHL2');
 
 
     end;
@@ -5457,7 +5457,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec."Total bultos" <> 0 then begin
             DAT2 := 'ETITIPSA' + EXTEN + Format(ALEA) + '.txt';
             TempBlob.CreateInStream(InStream);
-            FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+            FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiTIPSA2');
         END;
 
 
@@ -5650,7 +5650,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         DAT2 := 'ETICORR' + EXTEN + Format(ALEA) + '.txt';
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiCORR2');
 
     end;
 
@@ -5819,7 +5819,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec."Total bultos" <> 0 then begin
             DAT2 := 'ETIDHL' + EXTEN + Format(ALEA) + '.txt';
             TempBlob.CreateInStream(InStream);
-            FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+            FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiCrono2');
         END;
 
 
@@ -5985,7 +5985,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec."Total bultos" <> 0 then begin
             DAT2 := 'ETIDHL' + EXTEN + Format(ALEA) + '.txt';
             TempBlob.CreateInStream(InStream);
-            FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+            FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiBUYTRAGO');
         END;
 
     end;
@@ -6173,7 +6173,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         DAT2 := 'hagenseur.txt';
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiSEUR');
 
     end;
 
@@ -6405,7 +6405,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         DAT2 := 'ETIDHL' + EXTEN + Format(ALEA) + '.TXT';
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiDHLDesdeFAC');
 
     end;
 
@@ -6630,7 +6630,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec."Total bultos" <> 0 then begin
             DAT2 := 'ETITIPSA.' + EXTEN + Format(ALEA) + '.TXT';
             TempBlob.CreateInStream(InStream);
-            FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+            FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiTIPSADesdeFAC');
         END;
 
     end;
@@ -6851,7 +6851,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec."Total bultos" <> 0 then begin
             DAT2 := 'ETICORR.' + EXTEN + Format(ALEA) + '.TXT';
             TempBlob.CreateInStream(InStream);
-            FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+            FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiCORRDesdeFAC');
         END;
 
     end;
@@ -7046,7 +7046,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if Rec."Total bultos" <> 0 then begin
             DAT2 := 'hagenseur.txt';
             TempBlob.CreateInStream(InStream);
-            FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+            FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiSEURdesdeFAC');
         END;
 
     end;
@@ -7343,7 +7343,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         DAT2 := 'hagenseur.txt';
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiSEURNueva');
 
     end;
 
@@ -7562,7 +7562,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
             DAT2 := 'ETIDHL' + EXTEN + Format(ALEA) + '.txt';
             TempBlob.CreateInStream(InStream);
-            FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+            FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiDHL2Nueva');
         END;
 
 
@@ -7783,7 +7783,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if (Rec."Total bultos" <> 0) and (ESREEMBOLSO = false) then begin
             DAT2 := 'ETITIPSA' + EXTEN + Format(ALEA) + '.TXT';
             TempBlob.CreateInStream(InStream);
-            FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+            FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiTIPSA2Nueva');
         END;
 
     end;
@@ -8007,7 +8007,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if (Rec."Total bultos" <> 0) and (ESREEMBOLSO = false) then begin
             DAT2 := 'ETICORR' + EXTEN + Format(ALEA) + '.TXT';
             TempBlob.CreateInStream(InStream);
-            FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+            FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiCORR2Nueva');
         END;
 
     end;
@@ -8243,7 +8243,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if (Rec."Total bultos" <> 0) and (ESREEMBOLSO = false) then begin
             DAT2 := 'ETIDHL' + EXTEN + Format(ALEA) + '.txt';
             TempBlob.CreateInStream(InStream);
-            FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+            FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiCRON2Nueva');
         END;
 
 
@@ -8417,7 +8417,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         DAT2 := 'hagenseur.txt';
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiSEURCliente');
 
     end;
 
@@ -8722,7 +8722,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         DAT2 := 'ETITIPSA' + EXTEN + Format(ALEA) + '.TXT';
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiTIPSACliente');
 
     end;
 
@@ -8889,7 +8889,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         DAT2 := 'ETICORR' + EXTEN + Format(ALEA) + '.TXT';
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiCORRCliente');
 
     end;
 
@@ -12408,7 +12408,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if (Rec."Total bultos" <> 0) and (ESREEMBOLSO = false) then begin
             DAT2 := 'ETIDHL' + EXTEN + Format(ALEA) + '.TXT';
             TempBlob.CreateInStream(InStream);
-            FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+            FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiTNT2');
         END;
 
     end;
@@ -14111,7 +14111,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         DAT2 := 'ETISTD' + EXTEN + Format(ALEA) + '.TXT';
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiSTDPedido');
 
     end;
 
@@ -15680,7 +15680,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         BUSCAEXTENSION;
         DAT2 := 'TREXPORD.' + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - ReEnviaExpediciones');
 
     end;
 
@@ -16262,7 +16262,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         DAT2 := 'ETISTD' + EXTEN + Format(ALEA) + '.TXT';
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiSTDServiceItem');
 
 
     end;
@@ -16438,7 +16438,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         BUSCAEXTENSION;
         DAT2 := 'TRTER.' + EXTEN + Format(ALEA);
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - TercerosModifCliente');
     end;
 
 

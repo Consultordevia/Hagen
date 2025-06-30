@@ -1,16 +1,19 @@
 codeunit 50999 FicherosHagen
 {
-    procedure CrearFichero(URL: TEXT; NombreFichero: text; fichero: InStream)
+    procedure CrearFichero(URL: TEXT; NombreFichero: text; fichero: InStream; Desde: Text)
     var
         Base64Text: Text;
         Base64Convert: Codeunit "Base64 Convert";
-        Body: Text;
+        Body, ResponseText : Text;
         Content: HttpContent;
         gheaders: HttpHeaders;
         Client: HttpClient;
+        Id: Integer;
         ResponseMessage: HttpResponseMessage;
     begin
         Base64Text := Base64Convert.ToBase64(fichero);
+
+        Id := CrearRegistroFichero(URL, NombreFichero, fichero, Desde);
 
         Body := '{';
         Body += '"path": "' + URL.replace('\', '\\') + '",';
@@ -33,16 +36,57 @@ codeunit 50999 FicherosHagen
 
 
         if not Client.Post(URL, Content, ResponseMessage) then begin
+            ResponseMessage.Content().ReadAs(ResponseText);
+            GuardarErrorRegistroFicheros(Id, ResponseText);
+
             if GuiAllowed then
                 Error('No se ha podido crear el fichero en el servidor');
         end;
         if ResponseMessage.IsSuccessStatusCode then begin
             //exit(true);
         end else begin
-            Error(ResponseMessage.ReasonPhrase);
+            ResponseMessage.Content().ReadAs(ResponseText);
+            GuardarErrorRegistroFicheros(Id, ResponseText);
+
+            if GuiAllowed then
+                Error(ResponseMessage.ReasonPhrase);
             //exit(false);
         end;
     end;
+
+    procedure CrearRegistroFichero(URL: TEXT; NombreFichero: text; fichero: InStream; Desde: Text): Integer
+    var
+        Consola: Record ConsolaFicheros;
+        OutStream: OutStream;
+
+    begin
+        Clear(Consola);
+        Consola.Init();
+        Consola.Id := 0;
+        Consola.Insert(true);
+        Consola.NombreFichero := NombreFichero;
+        Consola.URL := URL;
+        Consola.DesdeDondeSeGuarda := Desde;
+        Clear(Consola.Fichero);
+        Consola.Fichero.CreateOutStream(OutStream);
+        CopyStream(OutStream, fichero);
+        Consola.Modify();
+        exit(Consola.Id);
+    end;
+
+
+    procedure GuardarErrorRegistroFicheros(ID: Integer; Error: Text)
+    var
+        Consola: Record ConsolaFicheros;
+
+    begin
+        if Consola.Get(id) then begin
+            Consola.Error := true;
+            Consola.DescripcionError := Error;
+            Consola.Modify();
+        end;
+    end;
+
 
     procedure CrearFicheroFTP(URL: TEXT; NombreFichero: text; fichero: InStream)
     var

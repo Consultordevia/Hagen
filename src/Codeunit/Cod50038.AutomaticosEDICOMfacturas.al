@@ -30,7 +30,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                 Customer.Get(SalesInvoiceHeader3."Sell-to Customer No.");
                 v.Update(1, '1-' + format(SalesInvoiceHeader3."No."));
                 if Customer."No enviar a EDICOM" = false then begin
-                    v.Update(1, '2-' + format(SalesInvoiceHeader3."No."));                     
+                    v.Update(1, '2-' + format(SalesInvoiceHeader3."No."));
                     GrabaEDICOM(SalesInvoiceHeader3."No.");
                 end;
                 SalesInvoiceHeader2.Get(SalesInvoiceHeader3."No.");
@@ -410,7 +410,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     ///X 17 Número de pedido del destinatario de la factura. ///-10
 
                     FFECHA := SalesInvoiceHeader."Posting Date";
-                    CALCULOFECHA;                    
+                    CALCULOFECHA;
                     FECHAEFE := FECHA;
                     NODO := '380';
                     RSOCIAL := CopyStr(SalesInvoiceHeader."Bill-to Name", 1, 70);
@@ -801,10 +801,10 @@ Codeunit 50038 "Automaticos EDICOM facturas"
                     CAPITALSOCIAL := '';
                     if Multitabla."EDICON Grupo Sonae" then begin
                         FFECHA := SalesInvoiceHeader."Fecha enviado";
-                        if FFECHA =0D then begin
+                        if FFECHA = 0D then begin
                             FFECHA := SalesInvoiceHeader."Posting Date";
                         end;
-                        CALCULOFECHA;                         
+                        CALCULOFECHA;
                         FEMBARQUE := FECHA;
                         FENTRGA := FEMBARQUE;
                         CAPITALSOCIAL := '500000';
@@ -887,7 +887,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(NOMDIR, 'CABFAC' + Format(codefac) + '.TXT', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'CABFAC' + Format(codefac) + '.TXT', InStream, '50038 - GrabaEDICOM');
 
 
 
@@ -1142,7 +1142,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(NOMDIR, 'LINFAC' + Format(SalesInvoiceHeader."No.") + '.TXT', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'LINFAC' + Format(SalesInvoiceHeader."No.") + '.TXT', InStream, '50038 - GrabaEDICOM');
 
 
 
@@ -1701,7 +1701,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(NOMDIR, 'CABFAC' + Format(codefac) + '.TXT', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'CABFAC' + Format(codefac) + '.TXT', InStream, '50038 - GrabaEDICOM');
 
 
 
@@ -1941,7 +1941,7 @@ Codeunit 50038 "Automaticos EDICOM facturas"
 
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
-        FicherosHagen.CrearFichero(NOMDIR, 'LINFAC' + Format(SalesCrMemoHeader."No.") + '.TXT', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'LINFAC' + Format(SalesCrMemoHeader."No.") + '.TXT', InStream, '50038 - GrabaEDICOM');
 
 
     end;

@@ -380,7 +380,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                     if (nlineas <= SalesSetup."Multi-picking lineas") and (nkilos <= SalesSetup."Multi-picking kilos") then begin
                         Rec."Multi-picking" := true;
                     end;
-                    Rec.Modify;
+                    //Rec.Modify;
 
                 end;
 

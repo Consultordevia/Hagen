@@ -192,7 +192,7 @@ Codeunit 50083 "AutomaticosBC"
             nomdir := ADAIA.Ruta;
         end;
         TempBlob.CreateInStream(InStream);
-        FicherosHagen.CrearFichero(NOMDIR, 'INN.csv', InStream);
+        FicherosHagen.CrearFichero(NOMDIR, 'INN.csv', InStream, '50083 - GrabaStockCATIT');
 
     end;
 
