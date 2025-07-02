@@ -17,6 +17,7 @@ pageextension 50061 ShpfyActivitiesExt extends "Shpfy Activities"
                     begin
                         SalesHeader.SetRange("Grupo clientes", 'G52');
                         SalesHeader.SetRange("Estado pedido", SalesHeader."Estado pedido"::"Para preparar");
+                        SalesHeader.SetRange("Payment Method Code", 'S_TRANSF');
                         pSales.SetTableView(SalesHeader);
                         pSales.Run();
                     end;
@@ -59,6 +60,7 @@ pageextension 50061 ShpfyActivitiesExt extends "Shpfy Activities"
     begin
         SalesHeader.SetRange("Grupo clientes", 'G52');
         SalesHeader.SetRange("Estado pedido", SalesHeader."Estado pedido"::"Para preparar");
+        SalesHeader.SetRange("Payment Method Code", 'S_TRANSF');
         TotalPedidosNoServidos := SalesHeader.Count();
 
         SalesHeader.Reset();
