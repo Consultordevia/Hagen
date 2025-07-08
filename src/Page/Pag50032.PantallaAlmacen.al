@@ -1055,7 +1055,7 @@ Page 50032 "Pantalla Almacen"
         LogAdaiaFicheros.Init();
         LogAdaiaFicheros.Expedicion := NPEDIDO;
         LogAdaiaFicheros.Error := true;
-        LogAdaiaFicheros.Insert();
+        if LogAdaiaFicheros.Insert() then;
 
         if Rec."No agrupar en ADAIA" = false then begin
 

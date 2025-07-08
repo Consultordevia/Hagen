@@ -48827,7 +48827,7 @@ Page 50099 "Pantalla almacen Pascual5"
         LogAdaiaFicheros.Init();
         LogAdaiaFicheros.Expedicion := NPEDIDO;
         LogAdaiaFicheros.Error := true;
-        LogAdaiaFicheros.Insert();
+        if LogAdaiaFicheros.Insert() then;
 
 
 
@@ -49140,7 +49140,7 @@ Page 50099 "Pantalla almacen Pascual5"
         LogAdaiaFicheros.Init();
         LogAdaiaFicheros.Expedicion := NPEDIDO;
         LogAdaiaFicheros.Error := true;
-        LogAdaiaFicheros.Insert();
+        if LogAdaiaFicheros.Insert() then;
 
 
 
@@ -49165,7 +49165,7 @@ Page 50099 "Pantalla almacen Pascual5"
         SalesHeader3.SetRange(SalesHeader3."Nº expedición", NPEDIDO);
         if SalesHeader3.FindFirst then begin
             Clear(AutomaticosAdaia);
-            AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);
+            AutomaticosAdaia.ENVIAEXPEDICIONES2(SalesHeader3);
             SalesHeader3.FechaReenvioAdaia := CreateDateTime(today, time);
             SalesHeader3.Modify();
 
