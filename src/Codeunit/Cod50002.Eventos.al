@@ -1197,4 +1197,53 @@ codeunit 50002 Eventos
         SalesInvoiceLine."Line Amount" := 0;
         SalesInvoiceLine."Inv. Discount Amount" := 0;
     end;
+
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::Pedidos, 'OnBeforeCreateCuerpoJson', '', false, false)]
+    local procedure OnBeforeCreateCuerpoJsonSubscriber(var SalesShipmHeader: Record "Sales Shipment Header"; var ShippingAgent: Record "Shipping Agent"; var IsHandled: Boolean; var CuerpoJson: Text)
+    var
+        CarrierCode, CarrierName, CarrierStandardCode, CarrierUrl, TrackingNumber : Text;
+    begin
+        CarrierCode := ShippingAgent.NombreCarrier;
+        CarrierName := ShippingAgent.NombreCarrier;
+        CarrierStandardCode := ShippingAgent.NombreCarrier;
+        CarrierUrl := SalesShipmHeader."Enlace transporte";
+        TrackingNumber := GetReferencia(SalesShipmHeader."No.");
+
+        CuerpoJson := '{' +
+                        '"carrier_code": "' + CarrierCode + '",' +
+                        '"carrier_name": "' + CarrierName + '",' +
+                        '"carrier_standard_code": "' + CarrierStandardCode + '",' +
+                        '"carrier_url": "' + CarrierUrl + '",' +
+                        '"tracking_number": "' + TrackingNumber + '"' +
+                    '}';
+        IsHandled := true;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::Pedidos, 'OnBeforeCrearPedido', '', false, false)]
+    local procedure OnBeforeCrearPedido(var SalesHeader: Record "Sales Header"; var IsHandled: Boolean; JsonResponse: Text)
+    begin
+        SalesHeader."No incluir portes" := true;
+        SalesHeader."Dropshipping" := true;
+        SalesHeader."Permite fraccionar uni. venta" := true;
+        SalesHeader."Estado pedido" := SalesHeader."Estado pedido"::"Para preparar";
+    end;
+
+    procedure GetReferencia(NumeroAlbaran: Code[20]): Code[20]
+    var
+        SalesShipmentHeader: Record "Sales Shipment Header";
+        Referencia: Text;
+    begin
+        SalesShipmentHeader.Get(NumeroAlbaran);
+        If SalesShipmentHeader.ASN = '' then begin
+            If SalesShipmentHeader."Nº expedición dropshp" = '' then begin
+                Referencia := SalesShipmentHeader."Nº expedición";
+            end else begin
+                Referencia := SalesShipmentHeader."Nº expedición dropshp";
+            end;
+        end else begin
+            Referencia := SalesShipmentHeader.ASN;
+        end;
+        exit(Referencia);
+    end;
 }
