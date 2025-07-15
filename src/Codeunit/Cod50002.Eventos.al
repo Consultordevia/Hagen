@@ -1204,9 +1204,9 @@ codeunit 50002 Eventos
     var
         CarrierCode, CarrierName, CarrierStandardCode, CarrierUrl, TrackingNumber : Text;
     begin
-        CarrierCode := ShippingAgent.NombreCarrier;
+        CarrierCode := ShippingAgent."Codigo Mirakl";
         CarrierName := ShippingAgent.NombreCarrier;
-        CarrierStandardCode := ShippingAgent.NombreCarrier;
+        CarrierStandardCode := ShippingAgent."Codigo standard Mirakl";
         CarrierUrl := SalesShipmHeader."Enlace transporte";
         TrackingNumber := GetReferencia(SalesShipmHeader."No.");
 
