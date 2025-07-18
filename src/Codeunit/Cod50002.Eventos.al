@@ -1223,8 +1223,8 @@ codeunit 50002 Eventos
     [EventSubscriber(ObjectType::Codeunit, Codeunit::Pedidos, 'OnBeforeCrearPedido', '', false, false)]
     local procedure OnBeforeCrearPedido(var SalesHeader: Record "Sales Header"; var IsHandled: Boolean; JsonResponse: Text)
     var
-        JsonPedidoObj: Codeunit "JSON Management";
-        JsonLineaObj: Codeunit "JSON Management";
+        JsonRoot: JsonObject;
+        JsonToken: JsonToken;
         Email: Text;
     begin
         SalesHeader."No incluir portes" := true;
@@ -1232,10 +1232,18 @@ codeunit 50002 Eventos
         SalesHeader."Permite fraccionar uni. venta" := true;
         SalesHeader."Estado pedido" := SalesHeader."Estado pedido"::"Para preparar";
 
-        JsonPedidoObj.InitializeObject(JSONResponse);
-        JsonLineaObj.GetStringPropertyValueByName('customer_notification_email', Email);
+        // JsonPedidoObj.InitializeObject(JSONResponse);
+        // JsonLineaObj.GetStringPropertyValueByName('customer_notification_email', Email);
+        // SalesHeader."E-MAIL" := Email;
+        if not JsonRoot.ReadFrom(JsonResponse) then begin
+            Email := '';
+        end else begin
+            if JsonRoot.Get('customer_notification_email', JsonToken) then
+                Email := JsonToken.AsValue().AsText()
+            else
+                Email := '';
+        end;
         SalesHeader."E-MAIL" := Email;
-
     end;
 
     procedure GetReferencia(NumeroAlbaran: Code[20]): Code[20]
