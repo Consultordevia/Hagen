@@ -1197,4 +1197,91 @@ codeunit 50002 Eventos
         SalesInvoiceLine."Line Amount" := 0;
         SalesInvoiceLine."Inv. Discount Amount" := 0;
     end;
+
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::Pedidos, 'OnBeforeCreateCuerpoJson', '', false, false)]
+    local procedure OnBeforeCreateCuerpoJsonSubscriber(var SalesShipmHeader: Record "Sales Shipment Header"; var ShippingAgent: Record "Shipping Agent"; var IsHandled: Boolean; var CuerpoJson: Text)
+    var
+        CarrierCode, CarrierName, CarrierStandardCode, CarrierUrl, TrackingNumber : Text;
+    begin
+        CarrierCode := ShippingAgent."Codigo Mirakl";
+        CarrierName := ShippingAgent.NombreCarrier;
+        CarrierStandardCode := ShippingAgent."Codigo standard Mirakl";
+        CarrierUrl := ShippingAgent."URL Mirakl";
+        TrackingNumber := GetReferencia(SalesShipmHeader."No.");
+
+        CuerpoJson := '{' +
+                        '"carrier_code": "' + CarrierCode + '",' +
+                        '"carrier_name": "' + CarrierName + '",' +
+                        '"carrier_standard_code": "' + CarrierStandardCode + '",' +
+                        '"carrier_url": "' + CarrierUrl + '",' +
+                        '"tracking_number": "' + TrackingNumber + '"' +
+                    '}';
+        IsHandled := true;
+    end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::Pedidos, 'OnBeforeCrearPedido', '', false, false)]
+    local procedure OnBeforeCrearPedido(var SalesHeader: Record "Sales Header"; var IsHandled: Boolean; JsonResponse: Text)
+    var
+        JsonRoot: JsonObject;
+        JsonToken: JsonToken;
+        Email: Text;
+    begin
+        SalesHeader."No incluir portes" := true;
+        SalesHeader."Dropshipping" := true;
+        SalesHeader."Permite fraccionar uni. venta" := true;
+        SalesHeader."Estado pedido" := SalesHeader."Estado pedido"::"Para preparar";
+
+        // JsonPedidoObj.InitializeObject(JSONResponse);
+        // JsonLineaObj.GetStringPropertyValueByName('customer_notification_email', Email);
+        // SalesHeader."E-MAIL" := Email;
+        if not JsonRoot.ReadFrom(JsonResponse) then begin
+            Email := '';
+        end else begin
+            if JsonRoot.Get('customer_notification_email', JsonToken) then
+                Email := JsonToken.AsValue().AsText()
+            else
+                Email := '';
+        end;
+        SalesHeader."E-MAIL" := Email;
+    end;
+
+    procedure GetReferencia(NumeroAlbaran: Code[20]): Code[20]
+    var
+        SalesShipmentHeader: Record "Sales Shipment Header";
+        Referencia: Text;
+    begin
+        SalesShipmentHeader.Get(NumeroAlbaran);
+        If SalesShipmentHeader.ASN = '' then begin
+            If SalesShipmentHeader."Nº expedición dropshp" = '' then begin
+                Referencia := SalesShipmentHeader."Nº expedición";
+            end else begin
+                Referencia := SalesShipmentHeader."Nº expedición dropshp";
+            end;
+        end else begin
+            Referencia := SalesShipmentHeader.ASN;
+        end;
+        exit(Referencia);
+    end;
+
+    [EventSubscriber(ObjectType::Page, Page::KPIStatusMirakl, 'OnBeforeCalcularKPI', '', false, false)]
+    local procedure OnBeforeCalcularKPI(var Pedidos: Integer; var SalesHeader: Record "Sales Header"; var IsHandled: Boolean)
+    var
+    begin
+        SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::Order);
+        SalesHeader.SetRange(PedidoIntegracionMirakl, true);
+        SalesHeader.SetFilter("Estado pedido", '%1|%2|%3', SalesHeader."Estado pedido"::Retenido, SalesHeader."Estado pedido"::"Para preparar", SalesHeader."Estado pedido"::"Pdte. comercial");
+        Pedidos := SalesHeader.Count();
+        IsHandled := true;
+    end;
+
+    [EventSubscriber(ObjectType::Page, Page::KPIStatusMirakl, 'OnFilterPedidosKPI', '', false, false)]
+    local procedure ShowPedidosKPI(var SalesHeader: Record "Sales Header"; var IsHandled: Boolean)
+    var
+    begin
+        SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::Order);
+        SalesHeader.SetRange(PedidoIntegracionMirakl, true);
+        SalesHeader.SetFilter("Estado pedido", '%1|%2|%3', SalesHeader."Estado pedido"::Retenido, SalesHeader."Estado pedido"::"Para preparar", SalesHeader."Estado pedido"::"Pdte. comercial");
+        IsHandled := true;
+    end;
 }

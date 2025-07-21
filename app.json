@@ -2,6 +2,7 @@
   "id": "4c82943b-44ff-4cd2-9606-25a7de64c606",
   "name": "Hagen",
   "publisher": "DevConsultIA",
+
   "version": "1.0.0.1278",
     "brief": "",
   "description": "",
@@ -22,6 +23,12 @@
       "name": "Shopify Connector",
       "publisher": "Microsoft",
       "version": "25.0.23364.25481"
+    },
+    {
+      "appId": "1db6d111-5289-4831-93e7-bcd57680015b",
+      "name": "Mirakl",
+      "publisher": "DevConsultIA",
+      "version": "1.0.0.2"
     }
   ],
   "screenshots": [],

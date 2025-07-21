@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ﻿{"Added":[],"Modified":[{"Id":50001,"Kind":17,"Name":"SalesInvoiceLine","Namespace":""},{"Id":50099,"Kind":12,"Name":"Pantalla almacen Pascual5","Namespace":""},{"Id":50010,"Kind":11,"Name":"Automaticos Cartas","Namespace":""},{"Id":50053,"Kind":16,"Name":"Posted Sales Invoice Lines","Namespace":""},{"Id":50044,"Kind":16,"Name":"LisatFActurasVenta","Namespace":""},{"Id":50032,"Kind":12,"Name":"Pantalla Almacen","Namespace":""},{"Id":50042,"Kind":16,"Name":"PostedSalesInvoices","Namespace":""}],"Removed":[]}
+=======
+﻿{"Added":[],"Modified":[{"Id":50002,"Kind":11,"Name":"Eventos","Namespace":""}],"Removed":[]}
+>>>>>>> b0fa8cb0821db269082b6f8d02b83934021a3fdb
