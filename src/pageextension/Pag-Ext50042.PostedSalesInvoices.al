@@ -12,6 +12,7 @@ pageextension 50042 PostedSalesInvoices extends "Posted Sales Invoices"
 
         addafter("Posting Date")
         {
+
             field("Your Reference"; Rec."Your Reference") { ApplicationArea = All; }
             field("Nº expedición"; Rec."Nº expedición") { ApplicationArea = All; }
             field("Nº expedición dropshp"; Rec."Nº expedición dropshp") { ApplicationArea = All; }
@@ -70,7 +71,7 @@ pageextension 50042 PostedSalesInvoices extends "Posted Sales Invoices"
                     if RecHFV.FindSet() then
                         repeat
 
-                            
+
                             AutomaticosEDICOM.GrabaEDICOM(RecHFV."No.");
 
                         until RecHFV.Next() = 0;
