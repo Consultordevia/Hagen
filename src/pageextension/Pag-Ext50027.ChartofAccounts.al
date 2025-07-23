@@ -58,6 +58,23 @@ pageextension 50027 "Chart of Accounts" extends "Chart of Accounts"
                     LFE.run;
                 END;
             }
+            action(DIARIOCONTABILIDAD)
+            {
+                ApplicationArea = All;
+                Caption = 'DIARIO CONTABILIDAD';
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                Image = Order;
+
+                trigger OnAction()
+                var
+                    LFE: Report diariocontabilidad;
+                begin
+                    clear(LFE);
+                    LFE.run;
+                END;
+            }
             action(ANALISISMARGENES)
             {
                 ApplicationArea = All;
@@ -69,7 +86,7 @@ pageextension 50027 "Chart of Accounts" extends "Chart of Accounts"
 
                 trigger OnAction()
                 var
-                    PPA: Page"Parrilas Analisis";
+                    PPA: Page "Parrilas Analisis";
                 begin
                     clear(PPA);
                     PPA.run;
@@ -92,9 +109,9 @@ pageextension 50027 "Chart of Accounts" extends "Chart of Accounts"
                     DP.run;
                 END;
             }
-        
-        
-        
+
+
+
         }
     }
 }
