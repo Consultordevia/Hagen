@@ -182,6 +182,11 @@ tableextension 50001 SalesInvoiceLine extends "Sales Invoice Line"
         field(50686; "Num expedicion grabado"; Code[10])
         {
         }
+        field(50687; "Cód. arancelario"; Code[20])
+        {
+            CalcFormula = lookup(Item."Tariff No." where("No." = field("No.")));
+            FieldClass = FlowField;
+        }
     }
 
     keys

@@ -9,6 +9,17 @@ pageextension 50053 "Posted Sales Invoice Lines" extends "Posted Sales Invoice L
                 ApplicationArea = All;
             }
 
+
+        }
+
+
+        addafter(Description)
+        {
+
+            field("Cód. arancelario"; Rec."Cód. arancelario")
+            { ApplicationArea = All; }
+
         }
     }
 }
+
