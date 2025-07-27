@@ -184,6 +184,7 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                     SalesReceivablesSetup: Record "Sales & Receivables Setup";
                     NoSeriesManagement: Codeunit NoSeriesManagement;
                     ImportacionPEDIDOSMASKOcome: XMLport "Importacion PEDIDOS MASKO-come";
+
                 begin
 
 
@@ -502,6 +503,27 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                     CLEAR(ImportacionPEDIDOSOTROS3);
                     ImportacionPEDIDOSOTROS3.PasoClie(Rec."No.");
                     ImportacionPEDIDOSOTROS3.RUN;
+
+
+
+                end;
+            }
+            action(Importalineas43)
+            {
+                ApplicationArea = All;
+                Caption = 'Importar lineas';
+                Image = Order;
+
+
+                trigger OnAction()
+                var
+                    ImportaXmlPort50097: XmlPort Importacionconcilia;
+
+                begin
+
+
+                    CLEAR(ImportaXmlPort50097);
+                    ImportaXmlPort50097.RUN;
 
 
 

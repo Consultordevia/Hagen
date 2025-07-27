@@ -6,6 +6,7 @@ pageextension 50009 "Posted Sales Shipment" extends "Posted Sales Shipments"
         addafter("Location Code")
         {
 
+            field(Preparador; Rec.Preparador) { ApplicationArea = All; }
             field("Nº expedición"; Rec."Nº expedición") { ApplicationArea = All; }
             field("Nº expedición agrupada"; Rec."Nº expedición agrupada") { ApplicationArea = All; }
             field("Nº expedición dropshp"; Rec."Nº expedición dropshp") { ApplicationArea = All; }
@@ -22,7 +23,7 @@ pageextension 50009 "Posted Sales Shipment" extends "Posted Sales Shipments"
 
             field("Importe albaran"; Rec."Importe albaran") { ApplicationArea = All; }
             field("Importe Coste"; ImporteCoste) { ApplicationArea = All; }
-            field(Peso;Peso) { ApplicationArea = All; }
+            field(Peso; Peso) { ApplicationArea = All; }
             field("Importe transporte"; Rec."Importe transporte") { ApplicationArea = All; }
             field("Enlace transporte"; Rec."Enlace transporte") { ApplicationArea = All; }
             field("Enlace transporte 2"; Rec."Enlace transporte 2") { ApplicationArea = All; }
@@ -190,7 +191,7 @@ pageextension 50009 "Posted Sales Shipment" extends "Posted Sales Shipments"
 
         Peso := 0;
         cajas0 := 0;
-        cajas6 := 0;        
+        cajas6 := 0;
         ImporteCoste := 0;
         SalesShipmentLine.RESET;
         SalesShipmentLine.SETRANGE(SalesShipmentLine."Document No.", Rec."No.");

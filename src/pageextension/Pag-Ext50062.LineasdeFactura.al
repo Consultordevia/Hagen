@@ -5,10 +5,18 @@ pageextension 50062 LineasdeFactura extends "Posted Sales Invoice Subform"
         addafter(Description)
         {
 
+
+
             field("Allow Line Disc."; Rec."Allow Line Disc.")
             { ApplicationArea = All; }
             field("Cód. arancelario"; Rec."Cód. arancelario")
             { ApplicationArea = All; }
+            field("IVA IGIC"; Rec."IVA IGIC")
+            { ApplicationArea = All; }
+            field("IVA IGIC2"; Rec."IVA IGIC2")
+            { ApplicationArea = All; }
+
+
 
         }
     }
