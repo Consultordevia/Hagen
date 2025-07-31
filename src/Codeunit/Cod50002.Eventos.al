@@ -866,55 +866,34 @@ codeunit 50002 Eventos
 
 
             if RecTransp."Link transporte" = '' then begin
-                if COMPANYNAME = 'PEPE' then begin
-                    if SalesShptHeader."Shipping Agent Code" = 'TIPSA' then begin
-                        PAGINAWEB := 'http://www.tip-sa.com/cliente/datos.php?id=04601100112' + Format(nexpefinal) + ' - ' +
-                                   Format(SalesShptHeader."Your Reference") + ' - ' +
-                                   Format(SalesShptHeader."Order No.") +
-                                   Format(SalesShptHeader."Ship-to Post Code");
-                    end;
-                    if SalesShptHeader."Shipping Agent Code" = 'CORR' then begin
-                        PAGINAWEB := 'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
-                                   Format(nexpefinal);
-                    end;
-                    if SalesShptHeader."Shipping Agent Code" = 'TNT' then begin
-                        PAGINAWEB := 'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=REF&respLang=' +
-                                   'ES&respCountry=ES&sourceID=1&sourceCountry=' +
-                                   'ES&sourceID=1&sourceCountry=ww&cons=' + Format(nexpefinal);
-                    end;
-                    SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
-                    SalesShptHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
-                    SalesShptHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
+                if SalesShptHeader."Shipping Agent Code" = 'DHL' then begin
+                    PAGINAWEB := 'http://www.dhl.es/services_es/seg_3dd/integra/SeguimientoDocumentos.aspx?codigo=' +
+                               Format(nexpefinal) + '&anno=2013&lang=sp&refCli=1 , a partir de hoy a las 22:00.';
                 end;
-                if COMPANYNAME <> 'PEPE' then begin
-                    if SalesShptHeader."Shipping Agent Code" = 'DHL' then begin
-                        PAGINAWEB := 'http://www.dhl.es/services_es/seg_3dd/integra/SeguimientoDocumentos.aspx?codigo=' +
-                                   Format(nexpefinal) + '&anno=2013&lang=sp&refCli=1 , a partir de hoy a las 22:00.';
-                    end;
-                    if SalesShptHeader."Shipping Agent Code" = 'CRON' then begin
-                        PAGINAWEB := 'https://www.correosexpress.com/url/v?s=' +
-                                   Format(nexpefinal) + '&cp=' + Format(SalesShptHeader."Ship-to Post Code");
-                    end;
-                    if SalesShptHeader."Shipping Agent Code" = 'CORR' then begin
-                        PAGINAWEB := 'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
-                                   Format(nexpefinal);
-                    end;
-                    if SalesShptHeader."Shipping Agent Code" = 'TNT' then begin
-                        PAGINAWEB := 'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=' +
-                                   'REF&respLang=ES&respCountry=ES&sourceID=1&sourceCountry=' +
-                                   'ES&sourceID=1&sourceCountry=ww&cons=' +
-                                    Format(nexpefinal);
-                    end;
-                    if SalesShptHeader."Shipping Agent Code" = 'TIPSA' then begin
-                        PAGINAWEB := 'http://www.tip-sa.com/cliente/datos.php?id=04600400393' +
-                                    Format(nexpefinal) +
-                                    Format(SalesShptHeader."Ship-to Post Code");
-                    end;
-                    SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
-                    SalesShptHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
-                    SalesShptHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
+                if SalesShptHeader."Shipping Agent Code" = 'CRON' then begin
+                    PAGINAWEB := 'https://www.correosexpress.com/url/v?s=' +
+                               Format(nexpefinal) + '&cp=' + Format(SalesShptHeader."Ship-to Post Code");
                 end;
+                if SalesShptHeader."Shipping Agent Code" = 'CORR' then begin
+                    PAGINAWEB := 'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
+                               Format(nexpefinal);
+                end;
+                if SalesShptHeader."Shipping Agent Code" = 'TNT' then begin
+                    PAGINAWEB := 'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=' +
+                               'REF&respLang=ES&respCountry=ES&sourceID=1&sourceCountry=' +
+                               'ES&sourceID=1&sourceCountry=ww&cons=' +
+                                Format(nexpefinal);
+                end;
+                if SalesShptHeader."Shipping Agent Code" = 'TIPSA' then begin
+                    PAGINAWEB := 'http://www.tip-sa.com/cliente/datos.php?id=04600400393' +
+                                Format(nexpefinal) +
+                                Format(SalesShptHeader."Ship-to Post Code");
+                end;
+                SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
+                SalesShptHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
+                SalesShptHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
             end;
+
             if RecTransp."Link transporte" <> '' then begin
                 PAGINAWEB := RecTransp."Link transporte";
                 if RecTransp.Añadir = 0 then PAGINAWEB := PAGINAWEB + Format(nexpefinal);
@@ -927,6 +906,9 @@ codeunit 50002 Eventos
                 if RecTransp.Añadir = 3 then
                     PAGINAWEB := PAGINAWEB + Format(nexpefinal) +
                         Format(Date2DMY(SalesShptHeader."Posting Date", 3));
+                if RecTransp.Añadir = RecTransp.Añadir::"Nº Seguimiento" then begin
+                    PAGINAWEB := PAGINAWEB + SalesShptHeader."Numero segumiento";
+                end;
 
                 SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
                 SalesShptHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
@@ -981,54 +963,32 @@ codeunit 50002 Eventos
 
         if RecTransp.Get(SalesInvHeader."Shipping Agent Code") then begin
             if RecTransp."Link transporte" = '' then begin
-                if COMPANYNAME = 'PEPE' then begin
-                    if SalesInvHeader."Shipping Agent Code" = 'TIPSA' then begin
-                        PAGINAWEB := 'http://www.tip-sa.com/cliente/datos.php?id=04601100112' + Format(nexpefinal) + ' - ' +
-                                   Format(SalesInvHeader."Your Reference") + ' - ' +
-                                   Format(SalesInvHeader."Order No.") +
-                                   Format(SalesInvHeader."Ship-to Post Code");
-                    end;
-                    if SalesInvHeader."Shipping Agent Code" = 'CORR' then begin
-                        PAGINAWEB := 'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
-                                   Format(nexpefinal);
-                    end;
-                    if SalesInvHeader."Shipping Agent Code" = 'TNT' then begin
-                        PAGINAWEB := 'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=REF&respLang=' +
-                                   'ES&respCountry=ES&sourceID=1&sourceCountry=' +
-                                   'ES&sourceID=1&sourceCountry=ww&cons=' + Format(nexpefinal);
-                    end;
-                    SalesInvHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
-                    SalesInvHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
-                    SalesInvHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
+                if SalesInvHeader."Shipping Agent Code" = 'DHL' then begin
+                    PAGINAWEB := 'http://www.dhl.es/services_es/seg_3dd/integra/SeguimientoDocumentos.aspx?codigo=' +
+                               Format(nexpefinal) + '&anno=2013&lang=sp&refCli=1 , a partir de hoy a las 22:00.';
                 end;
-                if COMPANYNAME <> 'PEPE' then begin
-                    if SalesInvHeader."Shipping Agent Code" = 'DHL' then begin
-                        PAGINAWEB := 'http://www.dhl.es/services_es/seg_3dd/integra/SeguimientoDocumentos.aspx?codigo=' +
-                                   Format(nexpefinal) + '&anno=2013&lang=sp&refCli=1 , a partir de hoy a las 22:00.';
-                    end;
-                    if SalesInvHeader."Shipping Agent Code" = 'CRON' then begin
-                        PAGINAWEB := 'https://www.correosexpress.com/url/v?s=' +
-                                   Format(nexpefinal) + '&cp=' + Format(SalesInvHeader."Ship-to Post Code");
-                    end;
-                    if SalesInvHeader."Shipping Agent Code" = 'CORR' then begin
-                        PAGINAWEB := 'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
-                                   Format(nexpefinal);
-                    end;
-                    if SalesInvHeader."Shipping Agent Code" = 'TNT' then begin
-                        PAGINAWEB := 'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=' +
-                                   'REF&respLang=ES&respCountry=ES&sourceID=1&sourceCountry=' +
-                                   'ES&sourceID=1&sourceCountry=ww&cons=' +
-                                    Format(nexpefinal);
-                    end;
-                    if SalesInvHeader."Shipping Agent Code" = 'TIPSA' then begin
-                        PAGINAWEB := 'http://www.tip-sa.com/cliente/datos.php?id=04600400393' +
-                                    Format(nexpefinal) +
-                                    Format(SalesInvHeader."Ship-to Post Code");
-                    end;
-                    SalesInvHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
-                    SalesInvHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
-                    SalesInvHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
+                if SalesInvHeader."Shipping Agent Code" = 'CRON' then begin
+                    PAGINAWEB := 'https://www.correosexpress.com/url/v?s=' +
+                               Format(nexpefinal) + '&cp=' + Format(SalesInvHeader."Ship-to Post Code");
                 end;
+                if SalesInvHeader."Shipping Agent Code" = 'CORR' then begin
+                    PAGINAWEB := 'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
+                               Format(nexpefinal);
+                end;
+                if SalesInvHeader."Shipping Agent Code" = 'TNT' then begin
+                    PAGINAWEB := 'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=' +
+                               'REF&respLang=ES&respCountry=ES&sourceID=1&sourceCountry=' +
+                               'ES&sourceID=1&sourceCountry=ww&cons=' +
+                                Format(nexpefinal);
+                end;
+                if SalesInvHeader."Shipping Agent Code" = 'TIPSA' then begin
+                    PAGINAWEB := 'http://www.tip-sa.com/cliente/datos.php?id=04600400393' +
+                                Format(nexpefinal) +
+                                Format(SalesInvHeader."Ship-to Post Code");
+                end;
+                SalesInvHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
+                SalesInvHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
+                SalesInvHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
             end;
             if RecTransp."Link transporte" <> '' then begin
                 PAGINAWEB := RecTransp."Link transporte";
@@ -1039,12 +999,7 @@ codeunit 50002 Eventos
                 SalesInvHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
                 SalesInvHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
                 SalesInvHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
-
-
-
             end;
-
-
         end;
 
         if SalesInvHeader."Bill-to Customer No." = '6445' then begin
@@ -1167,6 +1122,10 @@ codeunit 50002 Eventos
 
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Shipment Header - Edit", 'OnBeforeSalesShptHeaderModify', '', false, false)]
     local procedure OnBeforeSalesShptHeaderModify(var SalesShptHeader: Record "Sales Shipment Header"; FromSalesShptHeader: Record "Sales Shipment Header")
+    var
+        RecTransp: Record "Shipping Agent";
+        PAGINAWEB: Text[1000];
+        nexpefinal: code[20];
     begin
         SalesShptHeader."Numero segumiento" := FromSalesShptHeader."Numero segumiento";
         // SalesShptHeader."Nº expedición" := FromSalesShptHeader."Package Tracking No.";
@@ -1189,6 +1148,59 @@ codeunit 50002 Eventos
         SalesShptHeader."Ship-to Phone No." := FromSalesShptHeader."Ship-to Phone No.";
         SalesShptHeader."Ship-to Contact" := FromSalesShptHeader."Ship-to Contact";
         SalesShptHeader."Ship-to Code" := FromSalesShptHeader."Ship-to Code";
+
+        RecTransp.Get(SalesShptHeader."Shipping Agent Code");
+
+        if RecTransp."Link transporte" = '' then begin
+            if SalesShptHeader."Shipping Agent Code" = 'DHL' then begin
+                PAGINAWEB := 'http://www.dhl.es/services_es/seg_3dd/integra/SeguimientoDocumentos.aspx?codigo=' +
+                           Format(nexpefinal) + '&anno=2013&lang=sp&refCli=1 , a partir de hoy a las 22:00.';
+            end;
+            if SalesShptHeader."Shipping Agent Code" = 'CRON' then begin
+                PAGINAWEB := 'https://www.correosexpress.com/url/v?s=' +
+                           Format(nexpefinal) + '&cp=' + Format(SalesShptHeader."Ship-to Post Code");
+            end;
+            if SalesShptHeader."Shipping Agent Code" = 'CORR' then begin
+                PAGINAWEB := 'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
+                           Format(nexpefinal);
+            end;
+            if SalesShptHeader."Shipping Agent Code" = 'TNT' then begin
+                PAGINAWEB := 'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=' +
+                           'REF&respLang=ES&respCountry=ES&sourceID=1&sourceCountry=' +
+                           'ES&sourceID=1&sourceCountry=ww&cons=' +
+                            Format(nexpefinal);
+            end;
+            if SalesShptHeader."Shipping Agent Code" = 'TIPSA' then begin
+                PAGINAWEB := 'http://www.tip-sa.com/cliente/datos.php?id=04600400393' +
+                            Format(nexpefinal) +
+                            Format(SalesShptHeader."Ship-to Post Code");
+            end;
+            SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
+            SalesShptHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
+            SalesShptHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
+        end;
+
+        if RecTransp."Link transporte" <> '' then begin
+            PAGINAWEB := RecTransp."Link transporte";
+            if RecTransp.Añadir = 0 then PAGINAWEB := PAGINAWEB + Format(nexpefinal);
+            if RecTransp.Añadir = 1 then
+                PAGINAWEB := PAGINAWEB + Format(nexpefinal) +
+                    Format(SalesShptHeader."Ship-to Post Code");
+            if RecTransp.Añadir = 2 then
+                PAGINAWEB := PAGINAWEB + Format(nexpefinal) + '/' +
+                    Format(SalesShptHeader."Ship-to Post Code");
+            if RecTransp.Añadir = 3 then
+                PAGINAWEB := PAGINAWEB + Format(nexpefinal) +
+                    Format(Date2DMY(SalesShptHeader."Posting Date", 3));
+            if RecTransp.Añadir = RecTransp.Añadir::"Nº Seguimiento" then begin
+                PAGINAWEB := PAGINAWEB + SalesShptHeader."Numero segumiento";
+            end;
+
+            SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
+            SalesShptHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
+            SalesShptHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
+
+        end;
     end;
 
     [EventSubscriber(ObjectType::report, report::"Standard Sales - Invoice", 'OnBeforeLineOnAfterGetRecord', '', false, false)]
