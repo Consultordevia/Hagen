@@ -278,7 +278,7 @@ XmlPort 50097 "Importacionconcilia"
 
 
             RecConci.Init();
-            RecConci."Bank Account No." := '0049-CTO3';
+            RecConci."Bank Account No." := '3058-CTE';
             RecConci."Statement Type" := RecConci."Statement Type"::"Bank Reconciliation";
             RecConci."Statement No." := '1';
             conta := conta + 1;
@@ -291,19 +291,19 @@ XmlPort 50097 "Importacionconcilia"
         end;
         if CopyStr(D1, 1, 4) = '2301' THEN begin
             des1 := CopyStr(d1, 5, 100);
-            RecConci.get(RecConci."Statement Type"::"Bank Reconciliation", '0049-CTO3', '1', conta);
+            RecConci.get(RecConci."Statement Type"::"Bank Reconciliation", '3058-CTE', '1', conta);
             RecConci.Description := CopyStr(ndoc + des1, 1, 100);
             RecConci.Modify();
         end;
         if CopyStr(D1, 1, 4) = '2302' THEN begin
             des2 := CopyStr(d1, 5, 100);
-            RecConci.get(RecConci."Statement Type"::"Bank Reconciliation", '0049-CTO3', '1', conta);
+            RecConci.get(RecConci."Statement Type"::"Bank Reconciliation", '3058-CTE', '1', conta);
             RecConci."Related-Party Name" := des2;
             RecConci.Modify();
         end;
         if CopyStr(D1, 1, 4) = '2303' THEN begin
             des3 := CopyStr(d1, 5, 100);
-            RecConci.get(RecConci."Statement Type"::"Bank Reconciliation", '0049-CTO3', '1', conta);
+            RecConci.get(RecConci."Statement Type"::"Bank Reconciliation", '3058-CTE', '1', conta);
             RecConci."Additional Transaction Info" := des3;
             RecConci.Modify();
         end;
