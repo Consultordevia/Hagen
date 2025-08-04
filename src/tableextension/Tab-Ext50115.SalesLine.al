@@ -433,7 +433,36 @@ tableextension 50115 SalesLine extends "Sales Line"
             end;
         }
 
-
+        modify("Line Amount")
+        {
+            trigger OnAfterValidate()
+            var
+            begin
+                if Rec.Quantity <> 0 then begin
+                    Rec."Precio final" := ROUND("Line Amount" / Rec.Quantity, 0.001);
+                end;
+            end;
+        }
+        modify("Unit Price")
+        {
+            trigger OnAfterValidate()
+            var
+            begin
+                if Rec.Quantity <> 0 then begin
+                    Rec."Precio final" := ROUND("Line Amount" / Rec.Quantity, 0.001);
+                end;
+            end;
+        }
+        modify("Line Discount %")
+        {
+            trigger OnAfterValidate()
+            var
+            begin
+                if Rec.Quantity <> 0 then begin
+                    Rec."Precio final" := ROUND("Line Amount" / Rec.Quantity, 0.001);
+                end;
+            end;
+        }
         field(50003; "Precio base"; Decimal)
         {
             Editable = false;

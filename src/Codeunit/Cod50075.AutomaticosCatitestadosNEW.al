@@ -516,6 +516,9 @@ Codeunit 50075 "Automaticos Catit estados NEW"
                         if ShippingAgent.Añadir = ShippingAgent.Añadir::"Nº expedicion+Cod. postal " then begin
                             urltex := urltex + nexpe + SalesShipmentHeader."Sell-to Post Code";
                         end;
+                        if ShippingAgent.Añadir = ShippingAgent.Añadir::"Nº Seguimiento" then begin
+                            urltex := urltex + SalesShipmentHeader."Numero segumiento";
+                        end;
 
                         if ShippingAgent.Añadir = 3 then begin
                             urltex := 'https://clientesparcel.dhl.es/seguimientoenvios/integra/SeguimientoDocumentos.aspx?codigo=' +

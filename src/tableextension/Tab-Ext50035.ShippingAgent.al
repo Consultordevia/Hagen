@@ -34,8 +34,8 @@ tableextension 50035 ShippingAgent extends "Shipping Agent"
         }
         field(50010; "Añadir"; Option)
         {
-            OptionCaption = 'Nº expedicion,Nº expedicion+Cod. postal ,Nº expedicion/Cod. postal,Nº expedicion+Año';
-            OptionMembers = "Nº expedicion","Nº expedicion+Cod. postal ","Nº expedicion/Cod. postal","Nº expedicion+Año";
+            OptionCaption = 'Nº expedicion,Nº expedicion+Cod. postal ,Nº expedicion/Cod. postal,Nº expedicion+Año,Nº Seguimiento,CodBarras';
+            OptionMembers = "Nº expedicion","Nº expedicion+Cod. postal ","Nº expedicion/Cod. postal","Nº expedicion+Año","Nº Seguimiento","CodBarras";
         }
         field(50011; "Texto final fichero"; Text[30])
         {
