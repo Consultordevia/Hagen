@@ -5,7 +5,7 @@ XmlPort 50008 "ADAIA_Conf. Expediciones"
     Direction = Import;
     FieldSeparator = '|';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
     UseRequestPage = false;
 
     schema
@@ -316,10 +316,11 @@ XmlPort 50008 "ADAIA_Conf. Expediciones"
                                         RecCV2.SetCurrentkey(RecCV2."Document Type", RecCV2."Nº expedición");
                                         RecCV2.SetRange(RecCV2."Document Type", 1);
                                         RecCV2.SetRange(RecCV2."Nº expedición", NPEDIDO);
-                                        if RecCV2.FindSet then begin
-                                            RecCV2.Preparador := CANTI;
-                                            RecCV2.Modify;
-                                        end;
+                                        if RecCV2.FindSet then
+                                            repeat
+                                                RecCV2.Preparador := CANTI;
+                                                RecCV2.Modify;
+                                            until RecCV2.next = 0;
                                     end;
 
 

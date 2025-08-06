@@ -3418,6 +3418,9 @@ ABBEAAAACCIAAABBBAAAIIgAAAAEEQAAgCACAABAEAEAAAgiAAAAQQQAACCIAAAABBEAAIAgAgAAQBAB
         <Field Name="ExternalDocumentNo_SalesShptHeader">
           <DataField>ExternalDocumentNo_SalesShptHeader</DataField>
         </Field>
+        <Field Name="Preparador">
+          <DataField>Preparador</DataField>
+        </Field>
         <Field Name="ReportForNavId_7574">
           <DataField>ReportForNavId_7574</DataField>
         </Field>

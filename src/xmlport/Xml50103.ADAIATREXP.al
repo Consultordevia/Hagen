@@ -622,10 +622,11 @@ XmlPort 50103 "ADAIATREXP"
                     RecCV2.SETCURRENTKEY(RecCV2."Document Type", RecCV2."Nº expedición");
                     RecCV2.SETRANGE(RecCV2."Document Type", 1);
                     RecCV2.SETRANGE(RecCV2."Nº expedición", NPEDIDO);
-                    IF RecCV2.FINDSET THEN BEGIN
-                        RecCV2.Preparador := D7;
-                        RecCV2.MODIFY;
-                    END;
+                    IF RecCV2.FINDSET THEN
+                        repeat
+                            RecCV2.Preparador := D7;
+                            RecCV2.MODIFY;
+                        until RecCV2.Next = 0;
                 END;
 
 

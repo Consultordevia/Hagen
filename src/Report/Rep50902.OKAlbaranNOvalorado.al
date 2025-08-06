@@ -116,7 +116,8 @@ Report 50902 "OK Albaran NO valorado"
                     column(SalesPersonText; SalesPersonText)
                     {
                     }
-                    column(SalesPurchPersonName; SalesPurchPerson.Name)
+                    ///column(SalesPurchPersonName; SalesPurchPerson.Name)
+                    column(SalesPurchPersonName; "Sales Shipment Header".Preparador)
                     {
                     }
                     column(ReferenceText; ReferenceText)
@@ -189,6 +190,9 @@ Report 50902 "OK Albaran NO valorado"
                     {
                     }
                     column(ExternalDocumentNo_SalesShptHeader; "Sales Shipment Header"."Nº expedición")
+                    {
+                    }
+                    column(Preparador; "Sales Shipment Header".Preparador)
                     {
                     }
                     dataitem(DimensionLoop1; "Integer")
@@ -876,6 +880,7 @@ Report 50902 "OK Albaran NO valorado"
         with SalesShipmentHeader do begin
             FormatDocument.SetSalesPerson(SalesPurchPerson, "Salesperson Code", SalesPersonText);
             ReferenceText := FormatDocument.SetText("Your Reference" <> '', FieldCaption("Your Reference"));
+            SalesPersonText := 'Preparador';
         end;
     end;
 
