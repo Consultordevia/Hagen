@@ -170,6 +170,13 @@ tableextension 50012 UserSetup extends "User Setup"
         field(50051; "Permite modif. Grupo dto en OFERTA"; Boolean)
         {
         }
+        field(50052; Concilia; code[20])
+        {
+        }
+        field(50053; extracto; code[20])
+        {
+        }
+
 
     }
 }

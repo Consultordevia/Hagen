@@ -7,6 +7,9 @@ reportextension 50101 StandardSalesShipment extends "Standard Sales - Shipment"
         add(Header)
         {
             column("N_expedición"; "Nº expedición") { }
+            column(CodPreparador; Preparador) { }
+
+
         }
         add(Line)
         {
