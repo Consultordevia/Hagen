@@ -380,7 +380,34 @@ Page 50099 "Pantalla almacen Pascual5"
                                 EnviaraADAIASelccionado(RecSH);
                             until RecSH.next = 0;
                     end;
+
                 }
+                action("Incrementa")
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'Incrementa';
+                    Ellipsis = true;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+
+                    trigger OnAction()
+                    var
+                        RecSH: Record "Sales Header";
+                        RecSH2: Record "Sales Header";
+
+                    begin
+                        RecSH.Reset();
+                        RecSH.SetRange("Document Type", Rec."Document Type");
+                        RecSH.SetRange("No.", Rec."No.");
+                        if RecSH.FindFirst() then
+                            repeat
+                                Incrementos(RecSH);
+                            until RecSH.next = 0;
+
+                    end;
+                }
+
 
 
                 action("Crear EXPEDICION")
@@ -50197,6 +50224,248 @@ Page 50099 "Pantalla almacen Pascual5"
     end;
 
 
+    local procedure Incrementos(RecSH2: Record "Sales Header")
+    var
+        SalesHeader: Record "Sales Header";
+        RecItem: Record Item;
+        RecLV: Record "Sales Line";
+        VASOLO: Boolean;
+        TIENEINCREMENTO: Boolean;
+        INCREMENTO: INTEGER;
+        AINCREMENTO: INTEGER;
+        tienecombina: Boolean;
+        difcombina: Integer;
+        INCREMENTOcombina: INTEGER;
+    begin
+
+        VASOLO := true;
+        TIENEINCREMENTO := false;
+        tienecombina := false;
+        INCREMENTOcombina := 0;
+        INCREMENTO := 0;
+        RecLV.reset;
+        RecLV.SetRange("Document Type", RecSH2."Document Type");
+        RecLV.SetRange("Document No.", RecSH2."No.");
+        RecLV.SetRange(RecLV.Type, RecLV.Type::Item);
+        IF RecLV.FindFirst() THEN
+            repeat
+                IF RecItem.GET(RecLV."No.") THEN begin
+                    IF RecItem."Incrementa bulto" THEN begin
+                        TIENEINCREMENTO := TRUE;
+                        INCREMENTO := INCREMENTO + RecLV."Outstanding Qty. (Base)";
+                    end;
+                    IF RecItem."Incrementa si combina" THEN begin
+                        tienecombina := TRUE;
+                        difcombina := difcombina + 1;
+                        INCREMENTOcombina := INCREMENTOcombina + RecLV."Outstanding Qty. (Base)";
+                    end;
+                end;
+            UNTIL RecLV.NEXT = 0;
+        RecLV.reset;
+        RecLV.SetRange("Document Type", RecSH2."Document Type");
+        RecLV.SetRange("Document No.", RecSH2."No.");
+        RecLV.SetRange(RecLV.Type, RecLV.Type::Item);
+        IF RecLV.FindFirst() THEN
+            repeat
+                IF RecItem.GET(RecLV."No.") THEN begin
+                    IF NOT RecItem."Incrementa bulto" THEN begin
+                        VASOLO := false;
+                    end;
+                end;
+            UNTIL RecLV.NEXT = 0;
+        IF VASOLO THEN begin
+            if INCREMENTO = 1 then begin AINCREMENTO := 0; end;
+            if INCREMENTO = 2 then begin AINCREMENTO := 0; end;
+            if INCREMENTO = 3 then begin AINCREMENTO := 1; end;
+            if INCREMENTO = 4 then begin AINCREMENTO := 1; end;
+            if INCREMENTO = 5 then begin AINCREMENTO := 2; end;
+            if INCREMENTO = 6 then begin AINCREMENTO := 2; end;
+            if INCREMENTO = 7 then begin AINCREMENTO := 3; end;
+            if INCREMENTO = 8 then begin AINCREMENTO := 3; end;
+            if INCREMENTO = 9 then begin AINCREMENTO := 4; end;
+            if INCREMENTO = 10 then begin AINCREMENTO := 4; end;
+            if INCREMENTO = 11 then begin AINCREMENTO := 5; end;
+            if INCREMENTO = 12 then begin AINCREMENTO := 5; end;
+            if INCREMENTO = 13 then begin AINCREMENTO := 6; end;
+            if INCREMENTO = 14 then begin AINCREMENTO := 6; end;
+            if INCREMENTO = 15 then begin AINCREMENTO := 7; end;
+            if INCREMENTO = 16 then begin AINCREMENTO := 7; end;
+            if INCREMENTO = 17 then begin AINCREMENTO := 8; end;
+            if INCREMENTO = 18 then begin AINCREMENTO := 8; end;
+            if INCREMENTO = 19 then begin AINCREMENTO := 9; end;
+            if INCREMENTO = 20 then begin AINCREMENTO := 9; end;
+            if INCREMENTO = 21 then begin AINCREMENTO := 10; end;
+            if INCREMENTO = 22 then begin AINCREMENTO := 10; end;
+            if INCREMENTO = 23 then begin AINCREMENTO := 11; end;
+            if INCREMENTO = 24 then begin AINCREMENTO := 11; end;
+            if INCREMENTO = 25 then begin AINCREMENTO := 12; end;
+            if INCREMENTO = 26 then begin AINCREMENTO := 12; end;
+            if INCREMENTO = 27 then begin AINCREMENTO := 13; end;
+            if INCREMENTO = 28 then begin AINCREMENTO := 13; end;
+            if INCREMENTO = 29 then begin AINCREMENTO := 14; end;
+            if INCREMENTO = 30 then begin AINCREMENTO := 14; end;
+            if INCREMENTO = 31 then begin AINCREMENTO := 15; end;
+            if INCREMENTO = 32 then begin AINCREMENTO := 15; end;
+            if INCREMENTO = 33 then begin AINCREMENTO := 16; end;
+            if INCREMENTO = 34 then begin AINCREMENTO := 16; end;
+            if INCREMENTO = 35 then begin AINCREMENTO := 17; end;
+            if INCREMENTO = 36 then begin AINCREMENTO := 17; end;
+            if INCREMENTO = 37 then begin AINCREMENTO := 18; end;
+            if INCREMENTO = 38 then begin AINCREMENTO := 18; end;
+            if INCREMENTO = 39 then begin AINCREMENTO := 19; end;
+            if INCREMENTO = 40 then begin AINCREMENTO := 19; end;
+            if INCREMENTO = 41 then begin AINCREMENTO := 20; end;
+            if INCREMENTO = 42 then begin AINCREMENTO := 20; end;
+            if INCREMENTO = 43 then begin AINCREMENTO := 21; end;
+            if INCREMENTO = 44 then begin AINCREMENTO := 21; end;
+            if INCREMENTO = 45 then begin AINCREMENTO := 22; end;
+            if INCREMENTO = 46 then begin AINCREMENTO := 22; end;
+            if INCREMENTO = 47 then begin AINCREMENTO := 23; end;
+            if INCREMENTO = 48 then begin AINCREMENTO := 23; end;
+            if INCREMENTO = 49 then begin AINCREMENTO := 24; end;
+            if INCREMENTO = 50 then begin AINCREMENTO := 24; end;
+
+            RecSH2."Incrementa bultos" := AINCREMENTO;
+            RecSH2.Modify();
+        end;
+        IF NOT VASOLO THEN begin
+            if INCREMENTO = 1 then begin AINCREMENTO := 1; end;
+            if INCREMENTO = 2 then begin AINCREMENTO := 1; end;
+            if INCREMENTO = 3 then begin AINCREMENTO := 2; end;
+            if INCREMENTO = 4 then begin AINCREMENTO := 2; end;
+            if INCREMENTO = 5 then begin AINCREMENTO := 3; end;
+            if INCREMENTO = 6 then begin AINCREMENTO := 3; end;
+            if INCREMENTO = 7 then begin AINCREMENTO := 4; end;
+            if INCREMENTO = 8 then begin AINCREMENTO := 4; end;
+            if INCREMENTO = 9 then begin AINCREMENTO := 5; end;
+            if INCREMENTO = 10 then begin AINCREMENTO := 5; end;
+            if INCREMENTO = 11 then begin AINCREMENTO := 6; end;
+            if INCREMENTO = 12 then begin AINCREMENTO := 6; end;
+            if INCREMENTO = 13 then begin AINCREMENTO := 7; end;
+            if INCREMENTO = 14 then begin AINCREMENTO := 7; end;
+            if INCREMENTO = 15 then begin AINCREMENTO := 8; end;
+            if INCREMENTO = 16 then begin AINCREMENTO := 8; end;
+            if INCREMENTO = 17 then begin AINCREMENTO := 9; end;
+            if INCREMENTO = 18 then begin AINCREMENTO := 9; end;
+            if INCREMENTO = 19 then begin AINCREMENTO := 10; end;
+            if INCREMENTO = 20 then begin AINCREMENTO := 10; end;
+            if INCREMENTO = 21 then begin AINCREMENTO := 11; end;
+            if INCREMENTO = 22 then begin AINCREMENTO := 11; end;
+            if INCREMENTO = 23 then begin AINCREMENTO := 12; end;
+            if INCREMENTO = 24 then begin AINCREMENTO := 12; end;
+            if INCREMENTO = 25 then begin AINCREMENTO := 13; end;
+            if INCREMENTO = 26 then begin AINCREMENTO := 13; end;
+            if INCREMENTO = 27 then begin AINCREMENTO := 14; end;
+            if INCREMENTO = 28 then begin AINCREMENTO := 14; end;
+            if INCREMENTO = 29 then begin AINCREMENTO := 15; end;
+            if INCREMENTO = 30 then begin AINCREMENTO := 15; end;
+            if INCREMENTO = 31 then begin AINCREMENTO := 16; end;
+            if INCREMENTO = 32 then begin AINCREMENTO := 16; end;
+            if INCREMENTO = 33 then begin AINCREMENTO := 17; end;
+            if INCREMENTO = 34 then begin AINCREMENTO := 17; end;
+            if INCREMENTO = 35 then begin AINCREMENTO := 18; end;
+            if INCREMENTO = 36 then begin AINCREMENTO := 18; end;
+            if INCREMENTO = 37 then begin AINCREMENTO := 19; end;
+            if INCREMENTO = 38 then begin AINCREMENTO := 19; end;
+            if INCREMENTO = 39 then begin AINCREMENTO := 20; end;
+            if INCREMENTO = 40 then begin AINCREMENTO := 20; end;
+            if INCREMENTO = 41 then begin AINCREMENTO := 21; end;
+            if INCREMENTO = 42 then begin AINCREMENTO := 21; end;
+            if INCREMENTO = 43 then begin AINCREMENTO := 22; end;
+            if INCREMENTO = 44 then begin AINCREMENTO := 22; end;
+            if INCREMENTO = 45 then begin AINCREMENTO := 23; end;
+            if INCREMENTO = 46 then begin AINCREMENTO := 23; end;
+            if INCREMENTO = 47 then begin AINCREMENTO := 24; end;
+            if INCREMENTO = 48 then begin AINCREMENTO := 24; end;
+            if INCREMENTO = 49 then begin AINCREMENTO := 25; end;
+            if INCREMENTO = 50 then begin AINCREMENTO := 25; end;
+
+            RecSH2."Incrementa bultos" := AINCREMENTO;
+            RecSH2.Modify();
+        end;
+        if tienecombina then begin
+            if INCREMENTOcombina = 1 then begin AINCREMENTO := 0; end;
+            if INCREMENTOcombina = 2 then begin AINCREMENTO := 0; end;
+            if INCREMENTOcombina = 3 then begin AINCREMENTO := 1; end;
+            if INCREMENTOcombina = 4 then begin AINCREMENTO := 1; end;
+            if INCREMENTOcombina = 5 then begin AINCREMENTO := 2; end;
+            if INCREMENTOcombina = 6 then begin AINCREMENTO := 2; end;
+            if INCREMENTOcombina = 7 then begin AINCREMENTO := 3; end;
+            if INCREMENTOcombina = 8 then begin AINCREMENTO := 3; end;
+            if INCREMENTOcombina = 9 then begin AINCREMENTO := 4; end;
+            if INCREMENTOcombina = 10 then begin AINCREMENTO := 4; end;
+            if INCREMENTOcombina = 11 then begin AINCREMENTO := 5; end;
+            if INCREMENTOcombina = 12 then begin AINCREMENTO := 5; end;
+            if INCREMENTOcombina = 13 then begin AINCREMENTO := 6; end;
+            if INCREMENTOcombina = 14 then begin AINCREMENTO := 6; end;
+            if INCREMENTOcombina = 15 then begin AINCREMENTO := 7; end;
+            if INCREMENTOcombina = 16 then begin AINCREMENTO := 7; end;
+            if INCREMENTOcombina = 17 then begin AINCREMENTO := 8; end;
+            if INCREMENTOcombina = 18 then begin AINCREMENTO := 8; end;
+            if INCREMENTOcombina = 19 then begin AINCREMENTO := 9; end;
+            if INCREMENTOcombina = 20 then begin AINCREMENTO := 9; end;
+            if INCREMENTOcombina = 21 then begin AINCREMENTO := 10; end;
+            if INCREMENTOcombina = 22 then begin AINCREMENTO := 10; end;
+            if INCREMENTOcombina = 23 then begin AINCREMENTO := 11; end;
+            if INCREMENTOcombina = 24 then begin AINCREMENTO := 11; end;
+            if INCREMENTOcombina = 25 then begin AINCREMENTO := 12; end;
+            if INCREMENTOcombina = 26 then begin AINCREMENTO := 12; end;
+            if INCREMENTOcombina = 27 then begin AINCREMENTO := 13; end;
+            if INCREMENTOcombina = 28 then begin AINCREMENTO := 13; end;
+            if INCREMENTOcombina = 29 then begin AINCREMENTO := 14; end;
+            if INCREMENTOcombina = 30 then begin AINCREMENTO := 14; end;
+            if INCREMENTOcombina = 31 then begin AINCREMENTO := 15; end;
+            if INCREMENTOcombina = 32 then begin AINCREMENTO := 15; end;
+            if INCREMENTOcombina = 33 then begin AINCREMENTO := 16; end;
+            if INCREMENTOcombina = 34 then begin AINCREMENTO := 16; end;
+            if INCREMENTOcombina = 35 then begin AINCREMENTO := 17; end;
+            if INCREMENTOcombina = 36 then begin AINCREMENTO := 17; end;
+            if INCREMENTOcombina = 37 then begin AINCREMENTO := 18; end;
+            if INCREMENTOcombina = 38 then begin AINCREMENTO := 18; end;
+            if INCREMENTOcombina = 39 then begin AINCREMENTO := 19; end;
+            if INCREMENTOcombina = 40 then begin AINCREMENTO := 19; end;
+            if INCREMENTOcombina = 41 then begin AINCREMENTO := 20; end;
+            if INCREMENTOcombina = 42 then begin AINCREMENTO := 20; end;
+            if INCREMENTOcombina = 43 then begin AINCREMENTO := 21; end;
+            if INCREMENTOcombina = 44 then begin AINCREMENTO := 21; end;
+            if INCREMENTOcombina = 45 then begin AINCREMENTO := 22; end;
+            if INCREMENTOcombina = 46 then begin AINCREMENTO := 22; end;
+            if INCREMENTOcombina = 47 then begin AINCREMENTO := 23; end;
+            if INCREMENTOcombina = 48 then begin AINCREMENTO := 23; end;
+            if INCREMENTOcombina = 49 then begin AINCREMENTO := 24; end;
+            if INCREMENTOcombina = 50 then begin AINCREMENTO := 24; end;
+            if INCREMENTOcombina = 51 then begin AINCREMENTO := 25; end;
+            if INCREMENTOcombina = 52 then begin AINCREMENTO := 25; end;
+            if INCREMENTOcombina = 53 then begin AINCREMENTO := 26; end;
+            if INCREMENTOcombina = 54 then begin AINCREMENTO := 26; end;
+            if INCREMENTOcombina = 55 then begin AINCREMENTO := 27; end;
+            if INCREMENTOcombina = 56 then begin AINCREMENTO := 27; end;
+            if INCREMENTOcombina = 57 then begin AINCREMENTO := 28; end;
+            if INCREMENTOcombina = 58 then begin AINCREMENTO := 28; end;
+            if INCREMENTOcombina = 59 then begin AINCREMENTO := 29; end;
+            if INCREMENTOcombina = 60 then begin AINCREMENTO := 29; end;
+
+
+            RecSH2."Incrementa bultos" := AINCREMENTO;
+            RecSH2.Modify();
+
+
+
+
+
+
+        end;
+
+        ///Message('%1', RecSH2."Nº bultos");
+
+
+
+
+
+
+
+
+    end;
 
 
 
