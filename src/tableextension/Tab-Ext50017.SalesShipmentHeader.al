@@ -392,6 +392,14 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
         field(50670; ImpresoporImporesora; Boolean)
         {
         }
+        field(50038; "Fecha Retenido"; Date)
+        {
+            Editable = false;
+        }
+        field(50039; "Hora Retenido"; Time)
+        {
+            Editable = false;
+        }
     }
 
     keys
