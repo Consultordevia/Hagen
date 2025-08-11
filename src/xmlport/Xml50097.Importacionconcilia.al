@@ -78,9 +78,16 @@ XmlPort 50097 "Importacionconcilia"
 
 
         SalesSetup.Get;
+
+        Rec91.get(UserId);
+        bankacount := Rec91.Concilia;
+        StatementNo := Rec91.extracto;
+
     end;
 
     var
+        StatementNo: code[20];
+        bankacount: code[20];
         DataExchField: Record "Data Exch. Field";
         DataExchEntryNo: Integer;
         ImportedLineNo: Integer;
@@ -192,6 +199,8 @@ XmlPort 50097 "Importacionconcilia"
         des1: Text;
         des2: Text;
         des3: Text;
+        RecBanck: Record "Bank Account";
+        Rec91: Record "User Setup";
 
 
     local procedure InitializeGlobals()
@@ -278,32 +287,34 @@ XmlPort 50097 "Importacionconcilia"
 
 
             RecConci.Init();
-            RecConci."Bank Account No." := '3058-CTO';
+            RecConci."Bank Account No." := bankacount;
             RecConci."Statement Type" := RecConci."Statement Type"::"Bank Reconciliation";
-            RecConci."Statement No." := '1';
+            RecConci."Statement No." := StatementNo;
             conta := conta + 1;
             RecConci."Statement Line No." := conta;
             RecConci."Statement Amount" := IMPORTE;
+            RecConci.Difference := IMPORTE;
             RecConci."Transaction Date" := fecha2;
-            RecConci."Value Date" := fecha2;
+            ///RecConci."Value Date" := fecha2;
             RecConci.Description := ndoc;
+            RecConci."Transaction Text" := ndoc;
             RecConci.Insert();
         end;
         if CopyStr(D1, 1, 4) = '2301' THEN begin
             des1 := CopyStr(d1, 5, 100);
-            RecConci.get(RecConci."Statement Type"::"Bank Reconciliation", '3058-CTO', '1', conta);
+            RecConci.get(RecConci."Statement Type"::"Bank Reconciliation", bankacount, StatementNo, conta);
             RecConci.Description := CopyStr(ndoc + des1, 1, 100);
             RecConci.Modify();
         end;
         if CopyStr(D1, 1, 4) = '2302' THEN begin
             des2 := CopyStr(d1, 5, 100);
-            RecConci.get(RecConci."Statement Type"::"Bank Reconciliation", '3058-CTO', '1', conta);
+            RecConci.get(RecConci."Statement Type"::"Bank Reconciliation", bankacount, StatementNo, conta);
             RecConci."Related-Party Name" := des2;
             RecConci.Modify();
         end;
         if CopyStr(D1, 1, 4) = '2303' THEN begin
             des3 := CopyStr(d1, 5, 100);
-            RecConci.get(RecConci."Statement Type"::"Bank Reconciliation", '3058-CTO', '1', conta);
+            RecConci.get(RecConci."Statement Type"::"Bank Reconciliation", bankacount, StatementNo, conta);
             RecConci."Additional Transaction Info" := des3;
             RecConci.Modify();
         end;

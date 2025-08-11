@@ -353,6 +353,63 @@ Page 50099 "Pantalla almacen Pascual5"
                         ReenviaFicheroaADAIA();
                     end;
                 }
+
+                /*
+                  CurrPage.SetSelectionFilter(Customer);
+                        Customer.Next();
+                */
+                action("Enviar Seleccionados")
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'Enviar Seleccionados';
+                    Ellipsis = true;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+
+                    trigger OnAction()
+                    var
+                        Cu14: Codeunit 50014;
+                        RecSH: Record "Sales Header";
+                    begin
+                        cu14.Run();
+                        CurrPage.SetSelectionFilter(RecSH);
+                        if RecSH.FindFirst() then
+                            repeat
+                                ///message('%1', RecSH."No.");
+                                EnviaraADAIASelccionado(RecSH);
+                            until RecSH.next = 0;
+                    end;
+
+                }
+                action("Incrementa")
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'Incrementa';
+                    Ellipsis = true;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+
+                    trigger OnAction()
+                    var
+                        RecSH: Record "Sales Header";
+                        RecSH2: Record "Sales Header";
+
+                    begin
+                        RecSH.Reset();
+                        RecSH.SetRange("Document Type", Rec."Document Type");
+                        RecSH.SetRange("No.", Rec."No.");
+                        if RecSH.FindFirst() then
+                            repeat
+                                Incrementos(RecSH);
+                            until RecSH.next = 0;
+
+                    end;
+                }
+
+
+
                 action("Crear EXPEDICION")
                 {
                     ApplicationArea = Basic;
@@ -48751,6 +48808,7 @@ Page 50099 "Pantalla almacen Pascual5"
         NoSeriesManagement: Codeunit NoSeriesManagement;
         ETIenvioagrupadoresumen: Report "ETI. envio agrupado resumen";
         ETIenvioagrupadod: Report "ETI. envio agrupado d";
+        ETIenvioagrupadoArena: Report "ETIenvioagrupadoArena";
         ETIenvioagrupadod2: Report "ETI. envio agrupado d2";
         cajas7: Integer;
         cajas8: Integer;
@@ -49827,6 +49885,587 @@ Page 50099 "Pantalla almacen Pascual5"
         Clear(Rec1.Picture);
         Rec1.Picture.ImportStream(InStr, Format(Rec1."No."));
         Message('%1', rec1."No.");
+
+
+
+    end;
+
+    local procedure EnviaraADAIASelccionado(RecSH2: Record "Sales Header")
+    var
+        AutomaticosAdaia: Codeunit "Automaticos Cartas";
+        SalesHeader: Record "Sales Header";
+        LogAdaiaPedidos: Record LogAdaiaPedidos;
+        LogAdaiaFicheros: Record LogFicherosAdaia;
+    begin
+
+
+        ///Message('%1', RecSH2."No.");
+
+
+
+
+        Commit;
+
+        contadordeagrup := '0';
+
+        if RecSH2."Nº expedición" <> '' then begin
+            /////Error('Ya se ha enviado a Adaia.');
+        end;
+        NoSeriesLine.Reset;
+        if RecSH2."VAT Country/Region Code" <> 'PT' then begin
+            NoSeriesLine.SetRange(NoSeriesLine."Series Code", 'ADAIAP');
+            if RecSH2."Nº exped. pequeña" then begin
+                NoSeriesLine.SetRange(NoSeriesLine."Series Code", 'ADAIAPP');
+            end;
+        end;
+        if RecSH2."VAT Country/Region Code" = 'PT' then begin
+            NoSeriesLine.SetRange(NoSeriesLine."Series Code", 'ADAIAPT');
+        end;
+        if NoSeriesLine.FindFirst then begin
+            NPEDIDO := NoSeriesLine."Last No. Used";
+            NoSeriesLine."Last No. Used" := IncStr(NPEDIDO);
+            NoSeriesLine.Modify;
+        end;
+
+        LogAdaiaFicheros.Init();
+        LogAdaiaFicheros.Expedicion := NPEDIDO;
+        LogAdaiaFicheros.Error := true;
+        if LogAdaiaFicheros.Insert() then;
+
+
+
+        SalesReceivablesSetup.Get;
+        ItemJournalLine.Reset;
+        ItemJournalLine.SetRange(ItemJournalLine."Journal Template Name", 'PRODUCTO');
+        ItemJournalLine.SetRange(ItemJournalLine."Journal Batch Name", 'ABC');
+        ItemJournalLine.SetRange(ItemJournalLine."Line No.", SalesReceivablesSetup."Ultima letra" + 1);
+        if ItemJournalLine.FindFirst then begin
+            LETRA := ItemJournalLine."Document No.";
+            if SalesReceivablesSetup."Ultima letra" + 1 = 26 then begin
+                SalesReceivablesSetup."Ultima letra" := 1;
+                SalesReceivablesSetup.Modify;
+            end;
+            if SalesReceivablesSetup."Ultima letra" + 1 <> 26 then begin
+                SalesReceivablesSetup."Ultima letra" := SalesReceivablesSetup."Ultima letra" + 1;
+                SalesReceivablesSetup.Modify;
+            end;
+        end;
+
+        NPEDIDO := NPEDIDO + LETRA;
+
+
+        if CopyStr(RecSH2."No.", 3, 4) = 'CATW' then begin
+            NPEDIDO := RecSH2."Your Reference";
+        end;
+
+
+
+        if RecSH2."No agrupar en ADAIA" = false then begin
+            CODTRANS := '';
+            npedidos := 0;
+            npedi := '';
+            SalesHeader4.Reset;
+            SalesHeader4.SetCurrentkey("Document Type", "Sell-to Customer No.", "Estado pedido");
+            SalesHeader4.SetRange(SalesHeader4."Document Type", 1);
+            if RecSH2."Marcar para agrupar" = false then begin
+                SalesHeader4.SetRange(SalesHeader4."Sell-to Customer No.", RecSH2."Sell-to Customer No.");
+            end;
+            SalesHeader4.SetRange(SalesHeader4."Estado pedido", 1);
+            if RecSH2."Marcar para agrupar" = false then begin
+                SalesHeader4.SetRange(SalesHeader4."Ship-to Address", RecSH2."Ship-to Address");
+            end;
+            SalesHeader4.SetRange(SalesHeader4."Nº expedición", '');
+            SalesHeader4.SetRange(SalesHeader4."No agrupar en ADAIA", false);
+            if RecSH2."Marcar para agrupar" then begin
+                SalesHeader4.SetRange(SalesHeader4."Marcar para agrupar", true);
+            end;
+            SalesHeader4.SetRange("Shipping Agent Code", RecSH2."Shipping Agent Code");
+            if SalesHeader4.FindSet then
+                repeat
+                    ///IF CODTRANS='' THEN BEGIN
+                    CODTRANS := SalesHeader4."Shipping Agent Code";
+                    npedi := SalesHeader4."No.";
+                    ///END;
+                    if CODTRANS <> SalesHeader4."Shipping Agent Code" then begin
+                        Error('Tienen distinto transportista. %1 %2 %3', SalesHeader4."No.", CODTRANS, npedi);
+                    end;
+                    if not SalesHeader4."Respeta Tipo facturacion" then begin
+                        npedidos := npedidos + 1;
+                    end;
+                until SalesHeader4.Next = 0;
+
+
+
+
+            SalesHeader3.Reset;
+            SalesHeader3.SetCurrentkey("Document Type", "Sell-to Customer No.", "Estado pedido");
+            SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
+            if RecSH2."Marcar para agrupar" = false then begin
+                SalesHeader3.SetRange(SalesHeader3."Sell-to Customer No.", RecSH2."Sell-to Customer No.");
+            end;
+            SalesHeader3.SetRange(SalesHeader3."Estado pedido", 1);
+            if RecSH2."Marcar para agrupar" = false then begin
+                SalesHeader3.SetRange(SalesHeader3."Ship-to Address", RecSH2."Ship-to Address");
+            end;
+            SalesHeader3.SetRange(SalesHeader3."Nº expedición", '');
+            SalesHeader3.SetRange(SalesHeader3."No agrupar en ADAIA", false);
+            if RecSH2."Marcar para agrupar" then begin
+                SalesHeader3.SetRange(SalesHeader3."Marcar para agrupar", true);
+            end;
+            if SalesHeader3.FindSet then
+                repeat
+                    SalesHeader33.Get(SalesHeader3."Document Type", SalesHeader3."No.");
+                    SalesHeader33."Nº expedición" := NPEDIDO;
+                    SalesHeader33."Package Tracking No." := NPEDIDO;
+                    SalesLine3.Reset;
+                    SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
+                    SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");
+                    if SalesLine3.FindSet then
+                        repeat
+                            if SalesLine3.Type = 2 then begin
+                                SalesLine3."Nº expedición" := NPEDIDO;
+                                SalesLine3.Modify;
+                                LogAdaiaPedidos.Init();
+                                LogAdaiaPedidos.Expedicion := NPEDIDO;
+                                LogAdaiaPedidos.Pedido := SalesLine3."Document No.";
+                                LogAdaiaPedidos.Producto := SalesLine3."No.";
+                                LogAdaiaPedidos.Linea := SalesLine3."Line No.";
+                                LogAdaiaPedidos.Cantidad := SalesLine3.Quantity;
+                                if LogAdaiaPedidos.Insert() then;
+                            end;
+
+                        until SalesLine3.Next = 0;
+
+                    if npedidos > 1 then begin
+                        if SalesHeader3."Tipo facturación" <> 2 then begin
+                            if SalesHeader3."Multi-picking" = false then begin
+                                SalesHeader33."Tipo facturación" := 1;
+                            end;
+                        end;
+                    end;
+                    SalesHeader33.Modify;
+                    SalesLine3.Reset;
+                    SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
+                    SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");
+                    if SalesLine3.FindSet then
+                        repeat
+                            if SalesLine3.Type = 2 then begin
+                                if SalesLine3."Location Code" = '' then begin
+                                    Error('Falta el almacen en la lineas %1 %2', SalesLine3."No.", SalesLine3.Description)
+                                end;
+                            end;
+                        until SalesLine3.Next = 0;
+                    if SalesHeader3."Marcar para agrupar" = true then begin
+                        if SalesHeader3."Shipping Agent Code" <> 'ECI' then begin
+                            SalesHeader22.Get(SalesHeader3."Document Type", SalesHeader3."No.");
+                            contadordeagrup := IncStr(contadordeagrup);
+                            SalesHeader22."Nº expedición agrupada" := contadordeagrup;
+                            EXPEDROP := '';
+                            if (RecSH2.Dropshipping = true) and (RecSH2."Marcar para agrupar" = true) then begin
+                                EXPEDROP := NoSeriesManagement.GetNextNo('ADAIADROP', Today, true);
+                            end;
+                            SalesHeader3.CalcFields("Grupo clientes");
+                            if (SalesHeader3."Grupo clientes" = 'G52') and (SalesHeader3."Customer Disc. Group" = 'DCCA') then begin
+                                EXPEDROP := CopyStr(SalesHeader3."Your Reference", 1, 10);
+                                ////SalesHeader22.Validate("Bill-to Customer No.", '11010');
+                            end;
+                            SalesHeader22."Nº expedición dropshp" := EXPEDROP;
+                            SalesHeader22."Package Tracking No." := EXPEDROP;
+                            SalesHeader22.Modify;
+                        end;
+                    end;
+                until SalesHeader3.Next = 0;
+        end;
+
+
+        if RecSH2."No agrupar en ADAIA" = true then begin
+
+            CODTRANS := '';
+            npedidos := 0;
+            SalesHeader4.Reset;
+            SalesHeader4.SetCurrentkey("Document Type", "Sell-to Customer No.", "Estado pedido");
+            SalesHeader4.SetRange(SalesHeader4."Document Type", 1);
+            if RecSH2."Marcar para agrupar" = false then begin
+                SalesHeader4.SetRange(SalesHeader4."Sell-to Customer No.", RecSH2."Sell-to Customer No.");
+            end;
+            SalesHeader4.SetRange(SalesHeader4."Estado pedido", 1);
+            if RecSH2."Marcar para agrupar" = false then begin
+                SalesHeader4.SetRange(SalesHeader4."Ship-to Address", RecSH2."Ship-to Address");
+            end;
+            SalesHeader4.SetRange(SalesHeader4."Nº expedición", '');
+            SalesHeader4.SetRange(SalesHeader4."No.", RecSH2."No.");
+            if RecSH2."Marcar para agrupar" then begin
+                SalesHeader4.SetRange(SalesHeader4."Marcar para agrupar", true);
+            end;
+            if SalesHeader4.FindSet then
+                repeat
+                    if not SalesHeader4."Respeta Tipo facturacion" then begin
+                        npedidos := npedidos + 1;
+                    end;
+                until SalesHeader4.Next = 0;
+
+            SalesHeader3.Reset;
+            SalesHeader3.SetCurrentkey("Document Type", "Nº expedición");
+            SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
+            if RecSH2."Marcar para agrupar" = false then begin
+                SalesHeader3.SetRange(SalesHeader3."Sell-to Customer No.", RecSH2."Sell-to Customer No.");
+            end;
+            SalesHeader3.SetRange(SalesHeader3."Estado pedido", 1);
+            if RecSH2."Marcar para agrupar" = false then begin
+                SalesHeader3.SetRange(SalesHeader3."Ship-to Address", RecSH2."Ship-to Address");
+            end;
+            SalesHeader3.SetRange(SalesHeader3."Nº expedición", '');
+            SalesHeader3.SetRange(SalesHeader3."No.", RecSH2."No.");
+            if RecSH2."Marcar para agrupar" then begin
+                SalesHeader3.SetRange(SalesHeader3."Marcar para agrupar", true);
+            end;
+            if SalesHeader3.FindSet then
+                repeat
+                    SalesHeader33.Get(SalesHeader3."Document Type", SalesHeader3."No.");
+                    SalesHeader33."Nº expedición" := NPEDIDO;
+                    SalesHeader33."Nº expedición dropshp" := EXPEDROP;
+                    SalesHeader33."Package Tracking No." := EXPEDROP;
+                    SalesLine3.Reset;
+                    SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
+                    SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");
+                    if SalesLine3.FindSet then
+                        repeat
+                            if SalesLine3.Type = 2 then begin
+                                SalesLine3."Nº expedición" := NPEDIDO;
+                                SalesLine3.Modify;
+                                LogAdaiaPedidos.Init();
+                                LogAdaiaPedidos.Expedicion := NPEDIDO;
+                                LogAdaiaPedidos.Pedido := SalesLine3."Document No.";
+                                LogAdaiaPedidos.Producto := SalesLine3."No.";
+                                LogAdaiaPedidos.Linea := SalesLine3."Line No.";
+                                LogAdaiaPedidos.Cantidad := SalesLine3.Quantity;
+                                if LogAdaiaPedidos.Insert() then;
+                            end;
+                        until SalesLine3.Next = 0;
+                    if npedidos > 1 then begin
+                        if SalesHeader3."Tipo facturación" <> 2 then begin
+                            if SalesHeader3."Multi-picking" = false then begin
+                                SalesHeader33."Tipo facturación" := 1;
+                            end;
+                        end;
+                    end;
+                    SalesHeader33.Modify;
+                    SalesLine3.Reset;
+                    SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
+                    SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");
+                    if SalesLine3.FindSet then
+                        repeat
+                            if SalesLine3.Type = 2 then begin
+                                if SalesLine3."Location Code" = '' then begin
+                                    Error('Falta el almacen en la lineas %1 %2', SalesLine3."No.", SalesLine3.Description)
+                                end;
+                            end;
+                        until SalesLine3.Next = 0;
+                until SalesHeader3.Next = 0;
+        end;
+
+
+
+
+
+        Sleep(3000);
+        SalesHeader3.Reset;
+        SalesHeader3.SetCurrentkey("Document Type", "Nº expedición");
+        SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
+        SalesHeader3.SetRange(SalesHeader3."Nº expedición", NPEDIDO);
+        if SalesHeader3.FindFirst then begin
+            Clear(AutomaticosAdaia);
+            AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);
+
+
+            if LogAdaiaFicheros.get(NPEDIDO) then begin
+                LogAdaiaFicheros.Error := false;
+                LogAdaiaFicheros.Subido := true;
+                LogAdaiaFicheros.Modify();
+            end;
+
+        end;
+
+        Commit;
+
+        SalesHeader35.Reset;
+        SalesHeader35.SetRange(SalesHeader35."Document Type", RecSH2."Document Type");
+        SalesHeader35.SetRange(SalesHeader35."No.", RecSH2."No.");
+        if SalesHeader35.FindFirst then begin
+            if CopyStr(SalesHeader35."No.", 3, 3) <> 'WEB' then begin
+                AutomaticosAdaia.ENVIAREMAILPARAPREPARAR(SalesHeader35);
+            end;
+        end;
+
+        SalesHeader3.Reset;
+        SalesHeader3.SetCurrentkey("Document Type", "Nº expedición");
+        SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
+        SalesHeader3.SetRange(SalesHeader3."Nº expedición", NPEDIDO);
+        if SalesHeader3.FindSet then
+            repeat
+                if CopyStr(SalesHeader3."No.", 3, 3) = 'WEB' then begin
+                    SalesLine5.Reset;
+                    SalesLine5.SetRange(SalesLine5."Document Type", SalesHeader3."Document Type");
+                    SalesLine5.SetRange(SalesLine5."Document No.", SalesHeader3."No.");
+                    if SalesLine5.FindSet then
+                        repeat
+                            SalesLine5."Usuario alta" := 'HAGEN\OSCAR';
+                            SalesLine5.Modify;
+                        until SalesLine5.Next = 0;
+                end;
+
+            until SalesHeader3.Next = 0;
+
+
+        Commit;
+
+
+
+
+    end;
+
+
+    local procedure Incrementos(RecSH2: Record "Sales Header")
+    var
+        SalesHeader: Record "Sales Header";
+        RecItem: Record Item;
+        RecLV: Record "Sales Line";
+        VASOLO: Boolean;
+        TIENEINCREMENTO: Boolean;
+        INCREMENTO: INTEGER;
+        AINCREMENTO: INTEGER;
+        tienecombina: Boolean;
+        difcombina: Integer;
+        INCREMENTOcombina: INTEGER;
+    begin
+
+        VASOLO := true;
+        TIENEINCREMENTO := false;
+        tienecombina := false;
+        INCREMENTOcombina := 0;
+        INCREMENTO := 0;
+        RecSH2."Incrementa bultos" := 0;
+        RecSH2.Modify();
+
+        RecLV.reset;
+        RecLV.SetRange("Document Type", RecSH2."Document Type");
+        RecLV.SetRange("Document No.", RecSH2."No.");
+        RecLV.SetRange(RecLV.Type, RecLV.Type::Item);
+        IF RecLV.FindFirst() THEN
+            repeat
+                IF RecItem.GET(RecLV."No.") THEN begin
+                    IF RecItem."Incrementa bulto" THEN begin
+                        TIENEINCREMENTO := TRUE;
+                        INCREMENTO := INCREMENTO + RecLV."Outstanding Qty. (Base)";
+                    end;
+                    IF RecItem."Incrementa si combina" THEN begin
+                        tienecombina := TRUE;
+                        difcombina := difcombina + 1;
+                        INCREMENTOcombina := INCREMENTOcombina + RecLV."Outstanding Qty. (Base)";
+                    end;
+                end;
+            UNTIL RecLV.NEXT = 0;
+        RecLV.reset;
+        RecLV.SetRange("Document Type", RecSH2."Document Type");
+        RecLV.SetRange("Document No.", RecSH2."No.");
+        RecLV.SetRange(RecLV.Type, RecLV.Type::Item);
+        IF RecLV.FindFirst() THEN
+            repeat
+                IF RecItem.GET(RecLV."No.") THEN begin
+                    IF NOT RecItem."Incrementa bulto" THEN begin
+                        VASOLO := false;
+                    end;
+                end;
+            UNTIL RecLV.NEXT = 0;
+        IF VASOLO THEN begin
+            if INCREMENTO = 1 then begin AINCREMENTO := 0; end;
+            if INCREMENTO = 2 then begin AINCREMENTO := 0; end;
+            if INCREMENTO = 3 then begin AINCREMENTO := 1; end;
+            if INCREMENTO = 4 then begin AINCREMENTO := 1; end;
+            if INCREMENTO = 5 then begin AINCREMENTO := 2; end;
+            if INCREMENTO = 6 then begin AINCREMENTO := 2; end;
+            if INCREMENTO = 7 then begin AINCREMENTO := 3; end;
+            if INCREMENTO = 8 then begin AINCREMENTO := 3; end;
+            if INCREMENTO = 9 then begin AINCREMENTO := 4; end;
+            if INCREMENTO = 10 then begin AINCREMENTO := 4; end;
+            if INCREMENTO = 11 then begin AINCREMENTO := 5; end;
+            if INCREMENTO = 12 then begin AINCREMENTO := 5; end;
+            if INCREMENTO = 13 then begin AINCREMENTO := 6; end;
+            if INCREMENTO = 14 then begin AINCREMENTO := 6; end;
+            if INCREMENTO = 15 then begin AINCREMENTO := 7; end;
+            if INCREMENTO = 16 then begin AINCREMENTO := 7; end;
+            if INCREMENTO = 17 then begin AINCREMENTO := 8; end;
+            if INCREMENTO = 18 then begin AINCREMENTO := 8; end;
+            if INCREMENTO = 19 then begin AINCREMENTO := 9; end;
+            if INCREMENTO = 20 then begin AINCREMENTO := 9; end;
+            if INCREMENTO = 21 then begin AINCREMENTO := 10; end;
+            if INCREMENTO = 22 then begin AINCREMENTO := 10; end;
+            if INCREMENTO = 23 then begin AINCREMENTO := 11; end;
+            if INCREMENTO = 24 then begin AINCREMENTO := 11; end;
+            if INCREMENTO = 25 then begin AINCREMENTO := 12; end;
+            if INCREMENTO = 26 then begin AINCREMENTO := 12; end;
+            if INCREMENTO = 27 then begin AINCREMENTO := 13; end;
+            if INCREMENTO = 28 then begin AINCREMENTO := 13; end;
+            if INCREMENTO = 29 then begin AINCREMENTO := 14; end;
+            if INCREMENTO = 30 then begin AINCREMENTO := 14; end;
+            if INCREMENTO = 31 then begin AINCREMENTO := 15; end;
+            if INCREMENTO = 32 then begin AINCREMENTO := 15; end;
+            if INCREMENTO = 33 then begin AINCREMENTO := 16; end;
+            if INCREMENTO = 34 then begin AINCREMENTO := 16; end;
+            if INCREMENTO = 35 then begin AINCREMENTO := 17; end;
+            if INCREMENTO = 36 then begin AINCREMENTO := 17; end;
+            if INCREMENTO = 37 then begin AINCREMENTO := 18; end;
+            if INCREMENTO = 38 then begin AINCREMENTO := 18; end;
+            if INCREMENTO = 39 then begin AINCREMENTO := 19; end;
+            if INCREMENTO = 40 then begin AINCREMENTO := 19; end;
+            if INCREMENTO = 41 then begin AINCREMENTO := 20; end;
+            if INCREMENTO = 42 then begin AINCREMENTO := 20; end;
+            if INCREMENTO = 43 then begin AINCREMENTO := 21; end;
+            if INCREMENTO = 44 then begin AINCREMENTO := 21; end;
+            if INCREMENTO = 45 then begin AINCREMENTO := 22; end;
+            if INCREMENTO = 46 then begin AINCREMENTO := 22; end;
+            if INCREMENTO = 47 then begin AINCREMENTO := 23; end;
+            if INCREMENTO = 48 then begin AINCREMENTO := 23; end;
+            if INCREMENTO = 49 then begin AINCREMENTO := 24; end;
+            if INCREMENTO = 50 then begin AINCREMENTO := 24; end;
+
+            RecSH2."Incrementa bultos" := RecSH2."Incrementa bultos" + AINCREMENTO;
+            RecSH2.Modify();
+        end;
+        IF NOT VASOLO THEN begin
+            if INCREMENTO = 1 then begin AINCREMENTO := 1; end;
+            if INCREMENTO = 2 then begin AINCREMENTO := 1; end;
+            if INCREMENTO = 3 then begin AINCREMENTO := 2; end;
+            if INCREMENTO = 4 then begin AINCREMENTO := 2; end;
+            if INCREMENTO = 5 then begin AINCREMENTO := 3; end;
+            if INCREMENTO = 6 then begin AINCREMENTO := 3; end;
+            if INCREMENTO = 7 then begin AINCREMENTO := 4; end;
+            if INCREMENTO = 8 then begin AINCREMENTO := 4; end;
+            if INCREMENTO = 9 then begin AINCREMENTO := 5; end;
+            if INCREMENTO = 10 then begin AINCREMENTO := 5; end;
+            if INCREMENTO = 11 then begin AINCREMENTO := 6; end;
+            if INCREMENTO = 12 then begin AINCREMENTO := 6; end;
+            if INCREMENTO = 13 then begin AINCREMENTO := 7; end;
+            if INCREMENTO = 14 then begin AINCREMENTO := 7; end;
+            if INCREMENTO = 15 then begin AINCREMENTO := 8; end;
+            if INCREMENTO = 16 then begin AINCREMENTO := 8; end;
+            if INCREMENTO = 17 then begin AINCREMENTO := 9; end;
+            if INCREMENTO = 18 then begin AINCREMENTO := 9; end;
+            if INCREMENTO = 19 then begin AINCREMENTO := 10; end;
+            if INCREMENTO = 20 then begin AINCREMENTO := 10; end;
+            if INCREMENTO = 21 then begin AINCREMENTO := 11; end;
+            if INCREMENTO = 22 then begin AINCREMENTO := 11; end;
+            if INCREMENTO = 23 then begin AINCREMENTO := 12; end;
+            if INCREMENTO = 24 then begin AINCREMENTO := 12; end;
+            if INCREMENTO = 25 then begin AINCREMENTO := 13; end;
+            if INCREMENTO = 26 then begin AINCREMENTO := 13; end;
+            if INCREMENTO = 27 then begin AINCREMENTO := 14; end;
+            if INCREMENTO = 28 then begin AINCREMENTO := 14; end;
+            if INCREMENTO = 29 then begin AINCREMENTO := 15; end;
+            if INCREMENTO = 30 then begin AINCREMENTO := 15; end;
+            if INCREMENTO = 31 then begin AINCREMENTO := 16; end;
+            if INCREMENTO = 32 then begin AINCREMENTO := 16; end;
+            if INCREMENTO = 33 then begin AINCREMENTO := 17; end;
+            if INCREMENTO = 34 then begin AINCREMENTO := 17; end;
+            if INCREMENTO = 35 then begin AINCREMENTO := 18; end;
+            if INCREMENTO = 36 then begin AINCREMENTO := 18; end;
+            if INCREMENTO = 37 then begin AINCREMENTO := 19; end;
+            if INCREMENTO = 38 then begin AINCREMENTO := 19; end;
+            if INCREMENTO = 39 then begin AINCREMENTO := 20; end;
+            if INCREMENTO = 40 then begin AINCREMENTO := 20; end;
+            if INCREMENTO = 41 then begin AINCREMENTO := 21; end;
+            if INCREMENTO = 42 then begin AINCREMENTO := 21; end;
+            if INCREMENTO = 43 then begin AINCREMENTO := 22; end;
+            if INCREMENTO = 44 then begin AINCREMENTO := 22; end;
+            if INCREMENTO = 45 then begin AINCREMENTO := 23; end;
+            if INCREMENTO = 46 then begin AINCREMENTO := 23; end;
+            if INCREMENTO = 47 then begin AINCREMENTO := 24; end;
+            if INCREMENTO = 48 then begin AINCREMENTO := 24; end;
+            if INCREMENTO = 49 then begin AINCREMENTO := 25; end;
+            if INCREMENTO = 50 then begin AINCREMENTO := 25; end;
+
+            RecSH2."Incrementa bultos" := RecSH2."Incrementa bultos" + AINCREMENTO;
+            RecSH2.Modify();
+        end;
+        if tienecombina then begin
+            if INCREMENTOcombina = 1 then begin AINCREMENTO := 1; end;
+            if INCREMENTOcombina = 2 then begin AINCREMENTO := 1; end;
+            if INCREMENTOcombina = 3 then begin AINCREMENTO := 2; end;
+            if INCREMENTOcombina = 4 then begin AINCREMENTO := 2; end;
+            if INCREMENTOcombina = 5 then begin AINCREMENTO := 3; end;
+            if INCREMENTOcombina = 6 then begin AINCREMENTO := 3; end;
+            if INCREMENTOcombina = 7 then begin AINCREMENTO := 4; end;
+            if INCREMENTOcombina = 8 then begin AINCREMENTO := 4; end;
+            if INCREMENTOcombina = 9 then begin AINCREMENTO := 5; end;
+            if INCREMENTOcombina = 10 then begin AINCREMENTO := 5; end;
+            if INCREMENTOcombina = 11 then begin AINCREMENTO := 6; end;
+            if INCREMENTOcombina = 12 then begin AINCREMENTO := 6; end;
+            if INCREMENTOcombina = 13 then begin AINCREMENTO := 7; end;
+            if INCREMENTOcombina = 14 then begin AINCREMENTO := 7; end;
+            if INCREMENTOcombina = 15 then begin AINCREMENTO := 8; end;
+            if INCREMENTOcombina = 16 then begin AINCREMENTO := 8; end;
+            if INCREMENTOcombina = 17 then begin AINCREMENTO := 9; end;
+            if INCREMENTOcombina = 18 then begin AINCREMENTO := 9; end;
+            if INCREMENTOcombina = 19 then begin AINCREMENTO := 10; end;
+            if INCREMENTOcombina = 20 then begin AINCREMENTO := 10; end;
+            if INCREMENTOcombina = 21 then begin AINCREMENTO := 11; end;
+            if INCREMENTOcombina = 22 then begin AINCREMENTO := 11; end;
+            if INCREMENTOcombina = 23 then begin AINCREMENTO := 12; end;
+            if INCREMENTOcombina = 24 then begin AINCREMENTO := 12; end;
+            if INCREMENTOcombina = 25 then begin AINCREMENTO := 13; end;
+            if INCREMENTOcombina = 26 then begin AINCREMENTO := 13; end;
+            if INCREMENTOcombina = 27 then begin AINCREMENTO := 14; end;
+            if INCREMENTOcombina = 28 then begin AINCREMENTO := 14; end;
+            if INCREMENTOcombina = 29 then begin AINCREMENTO := 15; end;
+            if INCREMENTOcombina = 30 then begin AINCREMENTO := 15; end;
+            if INCREMENTOcombina = 31 then begin AINCREMENTO := 16; end;
+            if INCREMENTOcombina = 32 then begin AINCREMENTO := 16; end;
+            if INCREMENTOcombina = 33 then begin AINCREMENTO := 17; end;
+            if INCREMENTOcombina = 34 then begin AINCREMENTO := 17; end;
+            if INCREMENTOcombina = 35 then begin AINCREMENTO := 18; end;
+            if INCREMENTOcombina = 36 then begin AINCREMENTO := 18; end;
+            if INCREMENTOcombina = 37 then begin AINCREMENTO := 19; end;
+            if INCREMENTOcombina = 38 then begin AINCREMENTO := 19; end;
+            if INCREMENTOcombina = 39 then begin AINCREMENTO := 20; end;
+            if INCREMENTOcombina = 40 then begin AINCREMENTO := 20; end;
+            if INCREMENTOcombina = 41 then begin AINCREMENTO := 21; end;
+            if INCREMENTOcombina = 42 then begin AINCREMENTO := 21; end;
+            if INCREMENTOcombina = 43 then begin AINCREMENTO := 22; end;
+            if INCREMENTOcombina = 44 then begin AINCREMENTO := 22; end;
+            if INCREMENTOcombina = 45 then begin AINCREMENTO := 23; end;
+            if INCREMENTOcombina = 46 then begin AINCREMENTO := 23; end;
+            if INCREMENTOcombina = 47 then begin AINCREMENTO := 24; end;
+            if INCREMENTOcombina = 48 then begin AINCREMENTO := 24; end;
+            if INCREMENTOcombina = 49 then begin AINCREMENTO := 25; end;
+            if INCREMENTOcombina = 50 then begin AINCREMENTO := 25; end;
+            if INCREMENTOcombina = 51 then begin AINCREMENTO := 26; end;
+            if INCREMENTOcombina = 52 then begin AINCREMENTO := 26; end;
+            if INCREMENTOcombina = 53 then begin AINCREMENTO := 27; end;
+            if INCREMENTOcombina = 54 then begin AINCREMENTO := 27; end;
+            if INCREMENTOcombina = 55 then begin AINCREMENTO := 28; end;
+            if INCREMENTOcombina = 56 then begin AINCREMENTO := 28; end;
+            if INCREMENTOcombina = 57 then begin AINCREMENTO := 29; end;
+            if INCREMENTOcombina = 58 then begin AINCREMENTO := 29; end;
+            if INCREMENTOcombina = 59 then begin AINCREMENTO := 30; end;
+            if INCREMENTOcombina = 60 then begin AINCREMENTO := 30; end;
+
+
+            RecSH2."Incrementa bultos" := RecSH2."Incrementa bultos" + AINCREMENTO;
+            RecSH2.Modify();
+
+
+
+
+
+
+        end;
+
+        ///Message('%1', RecSH2."Nº bultos");
+
+
+
+
+
 
 
 
