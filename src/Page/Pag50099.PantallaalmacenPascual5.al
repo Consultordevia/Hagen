@@ -50240,6 +50240,7 @@ Page 50099 "Pantalla almacen Pascual5"
         tienecombina: Boolean;
         difcombina: Integer;
         INCREMENTOcombina: INTEGER;
+        RecCV2: Record "Sales Header";
     begin
 
         VASOLO := true;
@@ -50247,8 +50248,9 @@ Page 50099 "Pantalla almacen Pascual5"
         tienecombina := false;
         INCREMENTOcombina := 0;
         INCREMENTO := 0;
-        RecSH2."Incrementa bultos" := 0;
-        RecSH2.Modify();
+        RecCV2.get(RecSH2."Document Type", RecSH2."No.");
+        RecCV2."Incrementa bultos" := 0;
+        RecCV2.Modify();
 
         RecLV.reset;
         RecLV.SetRange("Document Type", RecSH2."Document Type");
@@ -50332,8 +50334,8 @@ Page 50099 "Pantalla almacen Pascual5"
             if INCREMENTO = 49 then begin AINCREMENTO := 24; end;
             if INCREMENTO = 50 then begin AINCREMENTO := 24; end;
 
-            RecSH2."Incrementa bultos" := RecSH2."Incrementa bultos" + AINCREMENTO;
-            RecSH2.Modify();
+            RecCV2."Incrementa bultos" := RecCV2."Incrementa bultos" + AINCREMENTO;
+            RecCV2.Modify();
         end;
         IF NOT VASOLO THEN begin
             if INCREMENTO = 1 then begin AINCREMENTO := 1; end;
@@ -50387,8 +50389,8 @@ Page 50099 "Pantalla almacen Pascual5"
             if INCREMENTO = 49 then begin AINCREMENTO := 25; end;
             if INCREMENTO = 50 then begin AINCREMENTO := 25; end;
 
-            RecSH2."Incrementa bultos" := RecSH2."Incrementa bultos" + AINCREMENTO;
-            RecSH2.Modify();
+            RecCV2."Incrementa bultos" := RecCV2."Incrementa bultos" + AINCREMENTO;
+            RecCV2.Modify();
         end;
         if tienecombina then begin
             if INCREMENTOcombina = 1 then begin AINCREMENTO := 0; end;
@@ -50452,8 +50454,8 @@ Page 50099 "Pantalla almacen Pascual5"
             if INCREMENTOcombina = 59 then begin AINCREMENTO := 58; end;
             if INCREMENTOcombina = 60 then begin AINCREMENTO := 59; end;
 
-            RecSH2."Incrementa bultos" := RecSH2."Incrementa bultos" + AINCREMENTO;
-            RecSH2.Modify();
+            RecCV2."Incrementa bultos" := RecCV2."Incrementa bultos" + AINCREMENTO;
+            RecCV2.Modify();
 
 
 
