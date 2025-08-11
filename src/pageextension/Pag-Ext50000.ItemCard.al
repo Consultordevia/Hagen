@@ -16,8 +16,8 @@ pageextension 50000 "Item Card" extends "Item Card"
             group(Hagen_)
             {
 
-                field("Incrementa bulto"; Rec."Incrementa bulto") { ApplicationArea = ALL; }
-                field("Incrementa si combina"; Rec."Incrementa si combina") { ApplicationArea = ALL; }
+                field("Bultos en caja"; Rec."Bultos en caja") { ApplicationArea = ALL; }
+                field("Bultos solos"; Rec."Bultos solos") { ApplicationArea = ALL; }
                 field("No permite pedido"; Rec."No permite pedido") { ApplicationArea = ALL; }
                 field(Level1; Rec.Level1) { ApplicationArea = ALL; }
                 field(Level2; Rec.Level2) { ApplicationArea = ALL; }
