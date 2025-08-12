@@ -197,7 +197,7 @@ XmlPort 50103 "ADAIATREXP"
                                     REPORT.RUNMODAL(50039, FALSE, FALSE, REC110);
                                 END;
                             END;
-                            IF Rec110."Shipping Agent Code" = 'DEVOL' THEN BEGIN
+                            IF Rec110."Shipping Agent Code" = 'DEVOLUCION' THEN BEGIN
                                 REPORT.RUNMODAL(50038, FALSE, FALSE, REC110);
                             END;
                         UNTIL REC110.NEXT = 0;

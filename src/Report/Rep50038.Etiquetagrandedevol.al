@@ -1,6 +1,6 @@
 Report 50038 "EtiquetagrandeDevol"
 {
-    Caption = 'Etiqueta grande';
+    Caption = 'Etiqueta grande Devol';
     RDLCLayout = './Layouts/EtiquetagrandeDevol.rdlc';
 
     DefaultLayout = RDLC;
@@ -108,9 +108,10 @@ Report 50038 "EtiquetagrandeDevol"
                 FormatAddr.SalesShptShipTo(CustAddr, "Sales Shipment Header");
                 FormatAddr.Company(InfoEmpresa, CompanyInfo);
                 cuantas := "Sales Shipment Header"."Total bultos";
-                if cuantas = 0 then begin
-                    cuantas := 1;
-                end;
+                //if cuantas = 0 then begin
+                //  cuantas := 1;
+                //end;
+                cuantas := 1;
                 nombreprepara := '';
                 TELEFONO := '';
                 if RecCusto.Get("Sales Shipment Header"."Sell-to Customer No.") then begin

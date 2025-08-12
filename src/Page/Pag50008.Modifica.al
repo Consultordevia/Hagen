@@ -976,6 +976,35 @@ Page 50008 Modifica
 
                     end;
                 }
+                action(EtiquetaDevol)
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'Etiqueta Devol';
+                    Ellipsis = true;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+
+
+                    trigger OnAction()
+                    var
+                        rec1102: Record "Sales Shipment Header";
+                    begin
+                        rec1102.Reset();
+                        Rec1102.SetCurrentkey(Rec1102."Nº expedición");
+                        Rec1102.SetRange(Rec1102."Nº expedición", nexpediexp);
+                        if Rec1102.FindSet then begin
+                            rec110.Reset();
+                            Rec110.SetRange("No.", rec1102."No.");
+                            if Rec110.FindSet then begin
+                                REPORT.RUNMODAL(50038, TRUE, TRUE, REC110);
+                            end;
+                        END;
+
+                    end;
+                }
+
+
 
 
 
