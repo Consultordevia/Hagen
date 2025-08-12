@@ -2,7 +2,7 @@
 Report 50055 "ETIenvioagrupadoArena"
 {
     UseRequestPage = false;
-    RDLCLayout = './Layouts/ETI.envioagrupadod.rdlc';
+    RDLCLayout = './Layouts/ETI.envioagrupadodarena.rdlc';
     DefaultLayout = RDLC;
     Permissions = TableData "Multitabla 2" = rim;
 
@@ -16,7 +16,7 @@ Report 50055 "ETIenvioagrupadoArena"
             column(obs2; obs2)
             {
             }
-            column(dropship___RectraName; RecCust."Search Name" + '   -   ' + Rectra.Code)
+            column(dropship___RectraName; RecCust."Search Name" + '   -   ' + Rectra.Code + ' *** ARENA ***')
             {
             }
             column(obs1; obs1)
@@ -85,33 +85,35 @@ Report 50055 "ETIenvioagrupadoArena"
                             if SalesLineTC.FindFirst then
                                 repeat
                                     if Item.Get(SalesLineTC."No.") then begin
-                                        Item.CalcFields("Assembly BOM");
-                                        if (Item."Producto almacenable") and (not Item."Assembly BOM") then begin
+                                        if Item."Bultos en caja" then begin
+                                            Item.CalcFields("Assembly BOM");
+                                            if (Item."Producto almacenable") and (not Item."Assembly BOM") then begin
 
-                                            if Item."Tipo preparacion" = Item."tipo preparacion"::"0-Sin Caja" then begin
-                                                cajas0 := cajas0 + SalesLineTC."Quantity (Base)";
-                                            end;
-                                            if Item."Tipo preparacion" = Item."tipo preparacion"::"6-Tubo" then begin
-                                                cajas6 := cajas6 + SalesLineTC."Quantity (Base)";
-                                            end;
-                                            if Item."Tipo preparacion" = Item."tipo preparacion"::"7-Alargado" then begin
-                                                cajas7 := cajas7 + SalesLineTC."Quantity (Base)";
-                                            end;
-                                            if Item."Tipo preparacion" = Item."tipo preparacion"::"8-Cuadrado" then begin
-                                                cajas8 := cajas8 + SalesLineTC."Quantity (Base)";
-                                            end;
-                                            if Item."Tipo preparacion" = Item."tipo preparacion"::"9-Gateras" then begin
-                                                cajas9 := cajas9 + SalesLineTC."Quantity (Base)";
-                                            end;
-                                            if Item."Tipo preparacion" = Item."tipo preparacion"::"10-Arena" then begin
-                                                cajas10 := cajas10 + SalesLineTC."Quantity (Base)";
-                                            end;
-                                            if (Item."Tipo preparacion" = Item."tipo preparacion"::"1-Muy pequeño") or
-                                              (Item."Tipo preparacion" = Item."tipo preparacion"::"2-Pequeño") or
-                                              (Item."Tipo preparacion" = Item."tipo preparacion"::"3-Mediano") or
-                                              (Item."Tipo preparacion" = Item."tipo preparacion"::"4-Grande") or
-                                              (Item."Tipo preparacion" = Item."tipo preparacion"::"5- Extra Grande") then begin
-                                                pesopedido := pesopedido + (SalesLineTC."Quantity (Base)" * SalesLineTC."Net Weight");
+                                                if Item."Tipo preparacion" = Item."tipo preparacion"::"0-Sin Caja" then begin
+                                                    cajas0 := cajas0 + SalesLineTC."Quantity (Base)";
+                                                end;
+                                                if Item."Tipo preparacion" = Item."tipo preparacion"::"6-Tubo" then begin
+                                                    cajas6 := cajas6 + SalesLineTC."Quantity (Base)";
+                                                end;
+                                                if Item."Tipo preparacion" = Item."tipo preparacion"::"7-Alargado" then begin
+                                                    cajas7 := cajas7 + SalesLineTC."Quantity (Base)";
+                                                end;
+                                                if Item."Tipo preparacion" = Item."tipo preparacion"::"8-Cuadrado" then begin
+                                                    cajas8 := cajas8 + SalesLineTC."Quantity (Base)";
+                                                end;
+                                                if Item."Tipo preparacion" = Item."tipo preparacion"::"9-Gateras" then begin
+                                                    cajas9 := cajas9 + SalesLineTC."Quantity (Base)";
+                                                end;
+                                                if Item."Tipo preparacion" = Item."tipo preparacion"::"10-Arena" then begin
+                                                    cajas10 := cajas10 + SalesLineTC."Quantity (Base)";
+                                                end;
+                                                if (Item."Tipo preparacion" = Item."tipo preparacion"::"1-Muy pequeño") or
+                                                  (Item."Tipo preparacion" = Item."tipo preparacion"::"2-Pequeño") or
+                                                  (Item."Tipo preparacion" = Item."tipo preparacion"::"3-Mediano") or
+                                                  (Item."Tipo preparacion" = Item."tipo preparacion"::"4-Grande") or
+                                                  (Item."Tipo preparacion" = Item."tipo preparacion"::"5- Extra Grande") then begin
+                                                    pesopedido := pesopedido + (SalesLineTC."Quantity (Base)" * SalesLineTC."Net Weight");
+                                                end;
                                             end;
                                         end;
                                     end;
@@ -250,33 +252,35 @@ Report 50055 "ETIenvioagrupadoArena"
                                     if Rec37."Outstanding Qty. (Base)" <> 0 then begin
                                         if RecItem2.Get(Rec37."No.") then begin
                                         end;
-                                        RecItem2.CalcFields("Assembly BOM");
-                                        /////Message('2 - %1 %2 %3 ', Rec37."No.",RecItem2."Producto almacenable",RecItem2."Assembly BOM");
-                                        if (RecItem2."Producto almacenable") and (not RecItem2."Assembly BOM") then begin
-                                            NLIN := NLIN + 1;
+                                        if RecItem2."Bultos en caja" then begin
+                                            RecItem2.CalcFields("Assembly BOM");
+                                            /////Message('2 - %1 %2 %3 ', Rec37."No.",RecItem2."Producto almacenable",RecItem2."Assembly BOM");
+                                            if (RecItem2."Producto almacenable") and (not RecItem2."Assembly BOM") then begin
+                                                NLIN := NLIN + 1;
 
-                                            if NLIN = 1 then obs1 := obs1 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
-                                            if NLIN = 2 then obs1 := obs1 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
-                                            if NLIN = 3 then obs1 := obs1 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
-                                            if NLIN = 4 then obs1 := obs1 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)");
-                                            if NLIN = 5 then obs2 := obs2 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
-                                            if NLIN = 6 then obs2 := obs2 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
-                                            if NLIN = 7 then obs2 := obs2 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
-                                            if NLIN = 8 then obs2 := obs2 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)");
-                                            if NLIN = 9 then obs3 := obs3 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
-                                            if NLIN = 10 then obs3 := obs3 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
-                                            if NLIN = 11 then obs3 := obs3 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
-                                            if NLIN = 12 then obs3 := obs3 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)");
-                                            TOTALCANT := TOTALCANT + Rec37."Outstanding Qty. (Base)";
-                                            peso := peso + Rec37."Gross Weight" * Rec37."Quantity (Base)";
-                                            X := X + 1;
-                                            if RecItem2.Get(Rec37."No.") then begin
-                                                if Rec37."Enviar a ADAIA" then begin
-                                                    RecItem2."No permite pedido" := false;
-                                                end;
-                                                if (RecItem2."Producto almacenable") and (not RecItem2."No permite pedido") then begin
-                                                    if RecItem2."NO MULTIPEDIDO" then begin
-                                                        NOMULTIPEDIDO := true;
+                                                if NLIN = 1 then obs1 := obs1 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
+                                                if NLIN = 2 then obs1 := obs1 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
+                                                if NLIN = 3 then obs1 := obs1 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
+                                                if NLIN = 4 then obs1 := obs1 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)");
+                                                if NLIN = 5 then obs2 := obs2 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
+                                                if NLIN = 6 then obs2 := obs2 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
+                                                if NLIN = 7 then obs2 := obs2 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
+                                                if NLIN = 8 then obs2 := obs2 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)");
+                                                if NLIN = 9 then obs3 := obs3 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
+                                                if NLIN = 10 then obs3 := obs3 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
+                                                if NLIN = 11 then obs3 := obs3 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
+                                                if NLIN = 12 then obs3 := obs3 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)");
+                                                TOTALCANT := TOTALCANT + Rec37."Outstanding Qty. (Base)";
+                                                peso := peso + Rec37."Gross Weight" * Rec37."Quantity (Base)";
+                                                X := X + 1;
+                                                if RecItem2.Get(Rec37."No.") then begin
+                                                    if Rec37."Enviar a ADAIA" then begin
+                                                        RecItem2."No permite pedido" := false;
+                                                    end;
+                                                    if (RecItem2."Producto almacenable") and (not RecItem2."No permite pedido") then begin
+                                                        if RecItem2."NO MULTIPEDIDO" then begin
+                                                            NOMULTIPEDIDO := true;
+                                                        end;
                                                     end;
                                                 end;
                                             end;
