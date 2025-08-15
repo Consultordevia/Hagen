@@ -1454,6 +1454,7 @@ tableextension 50113 Item extends Item
         field(50564; "Gama"; Text[100]) { }
         field(50565; "Bultos en caja"; Boolean) { }
         field(50566; "Bultos solos"; Boolean) { }
+        field(50567; "Ubicacion picking"; code[20]) { }
         field(50900; FechaHoraModificacionWeb; DateTime) { }
 
     }

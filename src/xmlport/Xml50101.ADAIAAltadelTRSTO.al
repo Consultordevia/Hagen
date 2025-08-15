@@ -130,43 +130,45 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
             END;
         end;
 
-        /*Item.RESET;
-        Item.SETRANGE(Blocked, FALSE);
-        Item.SETRANGE(Item."Producto almacenable", TRUE);
+        Item.RESET;
         IF Item.FINDSET THEN
             REPEAT
-                
-                IF NOT ItemUnitofMeasure.get(item."No.",'UDS') THEN BEGIN
-                    ItemUnitofMeasure.INIT;
-                    ItemUnitofMeasure."Item No." := Item."No.";
-                    ItemUnitofMeasure.Code := 'UDS';
-                    ItemUnitofMeasure."Qty. per Unit of Measure" := 1;
-                    ItemUnitofMeasure.INSERT;
-                END;
+                ITEM."Ubicacion picking" := '';
+                ITEM.Modify();
+            until ITEM.next = 0;
+        /*
 
-                RecItem2.GET(Item."No.");
-                RecItem2.SETRANGE(RecItem2."Location Filter", 'SILLA');
-                RecItem2.CALCFIELDS(RecItem2.Inventory);
-                STOCCAL := RecItem2.Inventory;
-                
-                Rec83.INIT;
-                Rec83."Journal Template Name" := 'INVENT. FÍ';
-                Rec83."Journal Batch Name" := FechaFichero;
-                lin := lin + 10000;
-                Rec83."Line No." := lin;
-                Rec83."Phys. Inventory" := FALSE;
-                Rec83.VALIDATE(Rec83."Item No.", Item."No.");
-                Rec83."Phys. Inventory" := TRUE;
-                Rec83."Location Code" := 'SILLA';
-                Rec83."Posting Date" := TODAY;
-                Rec83."Unit of Measure Code" := Item."Base Unit of Measure";
-                Rec83.VALIDATE(Rec83."Qty. (Calculated)", STOCCAL);
-                Rec83."Document No." := 'AJUSTES';
-                IF Rec83.Quantity <> 0 THEN begin
-                    Rec83.INSERT;
-                END;
+            IF NOT ItemUnitofMeasure.get(item."No.",'UDS') THEN BEGIN
+                ItemUnitofMeasure.INIT;
+                ItemUnitofMeasure."Item No." := Item."No.";
+                ItemUnitofMeasure.Code := 'UDS';
+                ItemUnitofMeasure."Qty. per Unit of Measure" := 1;
+                ItemUnitofMeasure.INSERT;
+            END;
 
-            UNTIL Item.NEXT = 0;*/
+            RecItem2.GET(Item."No.");
+            RecItem2.SETRANGE(RecItem2."Location Filter", 'SILLA');
+            RecItem2.CALCFIELDS(RecItem2.Inventory);
+            STOCCAL := RecItem2.Inventory;
+
+            Rec83.INIT;
+            Rec83."Journal Template Name" := 'INVENT. FÍ';
+            Rec83."Journal Batch Name" := FechaFichero;
+            lin := lin + 10000;
+            Rec83."Line No." := lin;
+            Rec83."Phys. Inventory" := FALSE;
+            Rec83.VALIDATE(Rec83."Item No.", Item."No.");
+            Rec83."Phys. Inventory" := TRUE;
+            Rec83."Location Code" := 'SILLA';
+            Rec83."Posting Date" := TODAY;
+            Rec83."Unit of Measure Code" := Item."Base Unit of Measure";
+            Rec83.VALIDATE(Rec83."Qty. (Calculated)", STOCCAL);
+            Rec83."Document No." := 'AJUSTES';
+            IF Rec83.Quantity <> 0 THEN begin
+                Rec83.INSERT;
+            END;
+
+        UNTIL Item.NEXT = 0;*/
 
     end;
 
@@ -254,6 +256,10 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
         conta: Integer;
         codlote: CODE[20];
 
+        ll: Integer;
+
+        ulimoscc: Code[2];
+
 
     local procedure ValidateHeaderTag()
     begin
@@ -290,6 +296,15 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
             RecMT."Fecha caducidad" := fechacadu;
             RecMT.Lote := codlote;
             RecMT.INSERT;
+            if (CopyStr(UBICA, 1, 3) = '010') then begin
+                LL := STRLEN(UBICA);
+
+                ulimoscc := UPPERCASE(COPYSTR(UBICA, LL - 1, 2));
+                IF (ulimoscc = '01') OR (ulimoscc = '02') then begin
+                    RecItem2."Ubicacion picking" := ubica;
+                    RecItem2.Modify();
+                end;
+            end;
         END;
         IF Item.GET(REF) THEN BEGIN
             IF Item.Blocked = FALSE THEN BEGIN

@@ -10339,9 +10339,9 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         RecCus.Get(Rec."Sell-to Customer No.");
         if RecCus."No enviar emial de preparacion" = false then begin
-            if RecCus."Email pedido 1" = '' then begin
-                Error('Este cliente no tiene email.');
-            end;
+            ///if RecCus."Email pedido 1" = '' then begin
+            ///Error('Este cliente no tiene email.');
+            ///end;
 
             FileDirectory := 'F:\NavisionPdfs\' + Rec."No." + '.pdf';
 
