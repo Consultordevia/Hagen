@@ -116,7 +116,7 @@ page 50131 "50059"
                             end;
                         UNTIL RecOC.Next = 0;
 
-                    Message('HECHO');
+                    Message('Oferta creada %1', npedido);
 
 
                 end;
