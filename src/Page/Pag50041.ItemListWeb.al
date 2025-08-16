@@ -253,7 +253,11 @@ page 50041 ItemListWeb
             DescripMarca := RecMulti."Descripcion";
         end;
         rec.CalcFields("Existencia SILLA", "Qty. on Sales Order");
+
         dispo := rec."Existencia SILLA" - rec."Qty. on Sales Order" - rec."Stock para Catit";
+        Rec.SetFilter("Location Filter", 'FOB', 'FOB');
+        rec.CalcFields("Qty. on Sales Order");
+        dispo := dispo + rec."Qty. on Sales Order";
 
         NombreItemCategoria := '';
         if itemcat.get(Rec."Item Category Code") then begin
