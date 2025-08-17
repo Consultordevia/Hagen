@@ -172,6 +172,22 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
 
     end;
 
+    trigger OnPostXmlPort()
+    begin
+
+        Rec83.Reset;
+        Rec83.SetRange(Rec83."Journal Template Name", 'INVENT. FÍ');
+        Rec83.SetRange(Rec83."Journal Batch Name", FechaFichero);
+        if Rec83.FindLast then
+            repeat
+                IF REC83.Quantity = 0 THEN BEGIN
+                    REC83.Delete;
+                END
+            UNTIL REC83.NEXT = 0;
+
+
+    end;
+
     var
         LastLineIsHeaderErr: label 'The imported file contains unexpected formatting. One or more lines may be missing in the file.';
         WrongHeaderErr: label 'The imported file contains unexpected formatting. One or more headers are incorrect.';

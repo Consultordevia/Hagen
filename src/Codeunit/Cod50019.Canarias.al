@@ -9,7 +9,7 @@ Codeunit 50019 Canarias
     begin
 
 
-
+        CUCanarias.run;
 
 
         RecVYC.Get;
@@ -27,7 +27,7 @@ Codeunit 50019 Canarias
                     Rec36.Init;
                     Rec36."Document Type" := 2;
                     Rec36."No." := Rec110."No.";
-                    Rec36."Posting No." := 'F'+Rec110."No.";
+                    Rec36."Posting No." := 'F' + Rec110."No.";
                     Rec36."Order Date" := Rec110."Posting Date";
                     Rec36."Posting Date" := Rec110."Posting Date";
                     Rec36."Document Date" := Rec110."Posting Date";
@@ -49,8 +49,9 @@ Codeunit 50019 Canarias
                                 Rec37."Document Type" := 2;
                                 Rec37."Document No." := Rec110."No.";
                                 Rec37."Line No." := Rec111."Line No.";
-                                Rec37.Validate(Rec37.Type, 1);
-                                Rec37.Validate(Rec37."No.", '70000000');
+                                Rec37.Validate(Rec37.Type, 2);
+                                ///Rec37.Validate(Rec37."No.", '70000000');
+                                Rec37.Validate(Rec37."No.", Rec111."No.");
                                 Rec37.Description := Rec111.Description;
                                 Rec37.Validate(Rec37.Quantity, Rec111.Quantity);
                                 Rec37.Validate(Rec37."Unit Price", Rec111."Unit Price");
@@ -133,8 +134,9 @@ Codeunit 50019 Canarias
                             Rec39."Document Type" := 2;
                             Rec39."Document No." := contadorfac;
                             Rec39."Line No." := Rec113."Line No.";
-                            Rec39.Validate(Rec39.Type, 1);
-                            Rec39.Validate(Rec39."No.", '60000000');
+                            Rec39.Validate(Rec39.Type, 2);
+                            ///Rec39.Validate(Rec39."No.", '60000000');
+                            Rec39.Validate(Rec39."No.", Rec113."No.");
                             Rec39.Description := Rec113.Description;
                             Rec39.Validate(Rec39.Quantity, Rec113.Quantity);
                             Rec39.Validate(Rec39."Direct Unit Cost", ROUND(Rec113.Amount / Rec113.Quantity, 0.001));
@@ -254,5 +256,6 @@ Codeunit 50019 Canarias
         item: Record Item;
         SalesInvoiceHeader: Record "Sales Invoice Header";
         Codeunit50010: Codeunit "Automaticos Cartas";
+        CUCanarias: Codeunit ColaCanarias;
 }
 
