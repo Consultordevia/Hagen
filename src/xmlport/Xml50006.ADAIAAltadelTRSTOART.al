@@ -148,8 +148,8 @@ XmlPort 50006 "ADAIA_Alta del TRSTOART"
 
         Rec83.Reset;
         Rec83.SetRange(Rec83."Journal Template Name", 'INVENT. FÍ');
-        Rec83.SetRange(Rec83."Journal Batch Name", FechaFichero);        
-        if Rec83.FindLast then
+        Rec83.SetRange(Rec83."Journal Batch Name", FechaFichero);
+        if Rec83.FindFirst then
             repeat
                 IF REC83.Quantity = 0 THEN BEGIN
                     REC83.Delete;

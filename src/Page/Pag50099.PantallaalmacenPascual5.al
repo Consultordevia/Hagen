@@ -81,6 +81,11 @@ Page 50099 "Pantalla almacen Pascual5"
                     Editable = false;
                     StyleExpr = ESTILOLINEA;
                 }
+                field("Ship-to County"; Rec."Ship-to County")
+                {
+                    ApplicationArea = Basic;
+                    StyleExpr = ESTILOLINEA;
+                }
                 field("Shipping Agent Code"; Rec."Shipping Agent Code")
                 {
                     ApplicationArea = Basic;
