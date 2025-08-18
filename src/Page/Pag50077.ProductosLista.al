@@ -4,7 +4,7 @@ Page 50077 "Productos Lista"
     PageType = List;
     SourceTable = Item;
     ApplicationArea = All;
-    Caption = 'Productos Lista';     
+    Caption = 'Productos Lista';
     UsageCategory = Lists;
 
 
@@ -22,7 +22,11 @@ Page 50077 "Productos Lista"
                 {
                     ApplicationArea = Basic;
                 }
-                field("Ref. AMAZON";Rec."Ref. AMAZON")
+                field("Ref. AMAZON"; Rec."Ref. AMAZON")
+                {
+                    ApplicationArea = Basic;
+                }
+                field("Cantidad palets"; Rec."Cantidad palets")
                 {
                     ApplicationArea = Basic;
                 }
@@ -984,7 +988,7 @@ Page 50077 "Productos Lista"
                 field("Criterio rotacion"; Rec."Criterio rotacion") { ApplicationArea = All; }
                 field("Fecha en picking"; Rec."Fecha en picking") { ApplicationArea = All; }
                 field("Producto FRAGIL"; Rec."Producto FRAGIL") { ApplicationArea = All; }
-                field(Level1;Rec.Level1) { ApplicationArea = All; }
+                field(Level1; Rec.Level1) { ApplicationArea = All; }
 
 
 
@@ -1514,7 +1518,7 @@ Page 50077 "Productos Lista"
                     ApplicationArea = Basic;
                 }
                 */
-                  field(CodVariante1; Rec.CodVariante1)
+                field(CodVariante1; Rec.CodVariante1)
                 {
                     ToolTip = 'Specifies the value of the CodVariante1 field.', Comment = '%';
                 }
@@ -1530,7 +1534,7 @@ Page 50077 "Productos Lista"
                 {
                     ToolTip = 'Specifies the value of the Dato Variante2 field.', Comment = '%';
                 }
-                
+
                 field("Descripcion web"; Rec."Descripcion web")
                 {
                     ApplicationArea = All;
@@ -1571,12 +1575,12 @@ Page 50077 "Productos Lista"
                 {
                     ApplicationArea = All;
                 }
-                
-                field("Producto web";Rec."Producto web")
+
+                field("Producto web"; Rec."Producto web")
                 {
                     ApplicationArea = All;
                 }
-                field("Umbral stock";Rec."Umbral stock")
+                field("Umbral stock"; Rec."Umbral stock")
                 {
                     ApplicationArea = All;
                 }

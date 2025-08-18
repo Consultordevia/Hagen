@@ -3,6 +3,12 @@ Page 50083 "Productos Lista ubicaciones"
 {
     PageType = List;
     SourceTable = Item;
+    ApplicationArea = All;
+    Caption = 'Productos Lista ubicaciones';
+    UsageCategory = Lists;
+    Editable = true;
+
+
 
 
 
@@ -160,7 +166,9 @@ Page 50083 "Productos Lista ubicaciones"
     local procedure EnviaAadaia()
     begin
         if CopyStr(COMPANYNAME, 1, 4) = 'ROLF' then begin
+            Commit();
             CUADAIA.MODIFPROD(Rec);
+            Commit();
         end;
     end;
 }
