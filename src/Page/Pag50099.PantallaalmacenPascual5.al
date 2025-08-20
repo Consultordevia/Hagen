@@ -1565,7 +1565,9 @@ Page 50099 "Pantalla almacen Pascual5"
                         end;
                     end;
                     SalesHeader33.Modify;
-                    Incrementos(SalesHeader33);
+                    if SalesHeader33."Marcar para agrupar" then begin
+                        Incrementos(SalesHeader33);
+                    end;
                     SalesLine3.Reset;
                     SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
                     SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");
@@ -1594,7 +1596,9 @@ Page 50099 "Pantalla almacen Pascual5"
                             SalesHeader22."Nº expedición dropshp" := EXPEDROP;
                             SalesHeader22."Package Tracking No." := EXPEDROP;
                             SalesHeader22.Modify;
-                            Incrementos(SalesHeader22);
+                            if SalesHeader22."Marcar para agrupar" then begin
+                                Incrementos(SalesHeader22);
+                            end;
                         end;
                     end;
                 until SalesHeader3.Next = 0;
@@ -1673,7 +1677,9 @@ Page 50099 "Pantalla almacen Pascual5"
                         end;
                     end;
                     SalesHeader33.Modify;
-                    Incrementos(SalesHeader33);
+                    if SalesHeader33."Marcar para agrupar" then begin
+                        Incrementos(SalesHeader33);
+                    end;
                     SalesLine3.Reset;
                     SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
                     SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");
@@ -2614,7 +2620,9 @@ Page 50099 "Pantalla almacen Pascual5"
                         end;
                     end;
                     SalesHeader33.Modify;
-                    Incrementos(SalesHeader33);
+                    if SalesHeader33."Marcar para agrupar" then begin
+                        Incrementos(SalesHeader33);
+                    end;
                     SalesLine3.Reset;
                     SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
                     SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");
@@ -2643,7 +2651,9 @@ Page 50099 "Pantalla almacen Pascual5"
                             SalesHeader22."Nº expedición dropshp" := EXPEDROP;
                             SalesHeader22."Package Tracking No." := EXPEDROP;
                             SalesHeader22.Modify;
-                            Incrementos(SalesHeader22);
+                            if SalesHeader22."Marcar para agrupar" then begin
+                                Incrementos(SalesHeader22);
+                            end;
                         end;
                     end;
                 until SalesHeader3.Next = 0;
@@ -2722,7 +2732,9 @@ Page 50099 "Pantalla almacen Pascual5"
                         end;
                     end;
                     SalesHeader33.Modify;
-                    Incrementos(SalesHeader33);
+                    if SalesHeader33."Marcar para agrupar" then begin
+                        Incrementos(SalesHeader33);
+                    end;
                     SalesLine3.Reset;
                     SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
                     SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");

@@ -28,7 +28,7 @@ Page 50030 "Menu Almacen"
             action("Lista Ubicaciones")
             {
                 ApplicationArea = Basic;
-                RunObject = Page "Productos Lista ubicaciones";
+                RunObject = Page "Productos Lista ubica";
             }
             action("Etiquetas ECI")
             {
