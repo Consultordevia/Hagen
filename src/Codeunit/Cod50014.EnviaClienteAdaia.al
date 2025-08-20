@@ -16,12 +16,12 @@ codeunit 50014 EnviaClienteAdaia
         RecSH.SetCurrentKey(ClienteEnviadoAdaia);
         RecSH.SetRange("Document Type", RecSH."Document Type"::Order);
         RecSH.SetRange("Order Date", 20250101D, TODAY);
-        ///RecSH.SetRange(ClienteEnviadoAdaia, false);
+        RecSH.SetRange(ClienteEnviadoAdaia, false);
         if RecSH.FindFirst then
             repeat
                 IF RecSH2.get(RecSH."Document Type", RecSH."No.") THEN begin
-                    //RecSH2.ClienteEnviadoAdaia := TRUE;
-                    //RecSH2.Modify;
+                    RecSH2.ClienteEnviadoAdaia := TRUE;
+                    RecSH2.Modify;
                     CU_Auto.TERCEROSMODIFcliente(RecSH."Sell-to Customer No.");
                 END;
             until RecSH.next = 0;

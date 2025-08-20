@@ -3509,20 +3509,39 @@ OutStream.Write('Tercera línea después del salto');
 
 
 
-        OutTxt := 'OECA' + '|' +
-                       'AG' + '|' +
-                       NPEDIDO + '|' +
-                       '01' + '|' +
-                       RecCVE."Sell-to Customer No." + '|' +
-                       '|' +
-                       'PED|' +
-                       '|' +
-                       '|' +
-                       FECORD1 + '|' +
-                       FECORD1 + '|' +
-                       HH + MI + '|' +
-                       'N|' +
-                       Format(OBS, 40) + '|||||';
+        if RecCVE."Bill-to Customer No." <> '' then begin
+            OutTxt := 'OECA' + '|' +
+                           'AG' + '|' +
+                           NPEDIDO + '|' +
+                           '01' + '|' +
+                           RecCVE."Bill-to Customer No." + '|' +
+                           '|' +
+                           'PED|' +
+                           '|' +
+                           '|' +
+                           FECORD1 + '|' +
+                           FECORD1 + '|' +
+                           HH + MI + '|' +
+                           'N|' +
+                           Format(OBS, 40) + '|||||';
+        end;
+        if RecCVE."Bill-to Customer No." = '' then begin
+            OutTxt := 'OECA' + '|' +
+                           'AG' + '|' +
+                           NPEDIDO + '|' +
+                           '01' + '|' +
+                           RecCVE."Sell-to Customer No." + '|' +
+                           '|' +
+                           'PED|' +
+                           '|' +
+                           '|' +
+                           FECORD1 + '|' +
+                           FECORD1 + '|' +
+                           HH + MI + '|' +
+                           'N|' +
+                           Format(OBS, 40) + '|||||';
+        end;
+
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
 

@@ -807,55 +807,8 @@ Page 50177 "Productos Lista Ubica"
                 {
                     ApplicationArea = Basic;
                 }
-                field("Manufacturing Policy"; Rec."Manufacturing Policy")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Rescheduling Period"; Rec."Rescheduling Period")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Lot Accumulation Period"; Rec."Lot Accumulation Period")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Dampener Period"; Rec."Dampener Period")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Dampener Quantity"; Rec."Dampener Quantity")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Overflow Level"; Rec."Overflow Level")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Planning Transfer Ship. (Qty)."; Rec."Planning Transfer Ship. (Qty).")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Planning Worksheet (Qty.)"; Rec."Planning Worksheet (Qty.)")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Stockkeeping Unit Exists"; Rec."Stockkeeping Unit Exists")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Manufacturer Code"; Rec."Manufacturer Code")
-                {
-                    ApplicationArea = Basic;
-                }
+
                 field("Item Category Code"; Rec."Item Category Code")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Created From Nonstock Item"; Rec."Created From Nonstock Item")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Substitutes Exist"; Rec."Substitutes Exist")
                 {
                     ApplicationArea = Basic;
                 }
@@ -876,10 +829,6 @@ Page 50177 "Productos Lista Ubica"
                     ApplicationArea = Basic;
                 }
                 field("Qty. Picked"; Rec."Qty. Picked")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Service Item Group"; Rec."Service Item Group")
                 {
                     ApplicationArea = Basic;
                 }
@@ -916,58 +865,6 @@ Page 50177 "Productos Lista Ubica"
                     ApplicationArea = Basic;
                 }
                 field("Qty. on Sales Return"; Rec."Qty. on Sales Return")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("No. of Substitutes"; Rec."No. of Substitutes")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Warehouse Class Code"; Rec."Warehouse Class Code")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Special Equipment Code"; Rec."Special Equipment Code")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Put-away Template Code"; Rec."Put-away Template Code")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Put-away Unit of Measure Code"; Rec."Put-away Unit of Measure Code")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Phys Invt Counting Period Code"; Rec."Phys Invt Counting Period Code")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Last Counting Period Update"; Rec."Last Counting Period Update")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Last Phys. Invt. Date"; Rec."Last Phys. Invt. Date")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Use Cross-Docking"; Rec."Use Cross-Docking")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Next Counting Start Date"; Rec."Next Counting Start Date")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Next Counting End Date"; Rec."Next Counting End Date")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Identifier Code"; Rec."Identifier Code")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("Cost Regulation %"; Rec."Cost Regulation %")
                 {
                     ApplicationArea = Basic;
                 }
@@ -1607,178 +1504,34 @@ Page 50177 "Productos Lista Ubica"
     {
         area(processing)
         {
-            action("Importa textos adic. PT")
+
+
+            action("Inners/Masters especiales")
             {
                 ApplicationArea = Basic;
+                Caption = 'Inner/Masters especiales';
                 Ellipsis = true;
-                Image = Import;
-                Promoted = true;
-                PromotedIsBig = true;
-                PromotedOnly = true;
-                /////- RunObject = XMLport UnknownXMLport50039;
-            }
-            action("Alta Ref. Amazon")
-            {
-                ApplicationArea = Basic;
-                Caption = 'Alta Ref. Amazon';
-                Ellipsis = true;
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
-                /////- RunObject = XMLport UnknownXMLport50013;
-            }
-            action("Precios ESPECIALES")
-            {
-                ApplicationArea = Basic;
-                Ellipsis = true;
-                Image = Price;
-                Promoted = true;
-                PromotedIsBig = true;
-                PromotedOnly = true;
-                RunObject = Page "Precios especiales";
-            }
-            action("Recalcula Stock compuesto")
-            {
-                ApplicationArea = Basic;
-                Ellipsis = true;
+                Image = UnitOfMeasure;
                 Promoted = true;
                 PromotedIsBig = true;
                 PromotedOnly = true;
 
                 trigger OnAction()
+                var
+                    PageAmazonmasterinner: Page "Amazon master_inner";
+
                 begin
-
-
-
-                    Item.Reset;
-                    if Item.FindSet then
-                        repeat
-                        /////- Recalculanopermitirpedido.RecalculaStockCompuesto(Item."No.");
-                        until Item.Next = 0;
-                    Message('hecho');
-
-
-                    ///"Lead Time Calculation":=FORMAT(asd);
-
-                    /*
-                    ventana.OPEN('#1############');
-                    
-                    IF Item.FINDFIRST THEN REPEAT
-                    
-                    TariffNumber."No.":=Item."Tariff No.";
-                    TariffNumber.Description:=Item."Tariff No.";
-                    IF TariffNumber.INSERT THEN;
-                    
-                    ///Item."Tariff No.":=CONVERTSTR(Item."Tariff No.",'.',' ');
-                    ///Item.MODIFY;
-                    ventana.UPDATE(1,Item."No.");
-                    UNTIL Item.NEXT=0;
-                    
-                    ventana.CLOSE;
-                    */
-
+                    CLEAR(PageAmazonmasterinner);
+                    PageAmazonmasterinner.RUN;
                 end;
             }
-            action("Importar URL")
-            {
-                ApplicationArea = Basic;
-                /////-                 RunObject = XMLport UnknownXMLport50004;
-            }
-            action("Importar Clase logistica")
-            {
-                ApplicationArea = Basic;
-                /////- RunObject = XMLport UnknownXMLport50033;
-            }
-            action(modif)
-            {
-                ApplicationArea = Basic;
-                Ellipsis = true;
-                Image = Add;
-                Promoted = true;
-                PromotedIsBig = true;
-                PromotedOnly = true;
-
-                trigger OnAction()
-                begin
 
 
 
 
-                    if Item.FindFirst then
-                        repeat
-
-                            ///  IF Item."IVA IGIC"='IGIC7' THEN BEGIN
-                            ///Item."IVA IGIC":='IGIC65';
-                            Item.Modify(true);
-
-                        until Item.Next = 0;
-
-
-                    Message('HECHO');
-                end;
-            }
-            action(asd)
-            {
-                ApplicationArea = Basic;
-                Visible = false;
-
-                trigger OnAction()
-                begin
-                    Rec."Ref. Catit" := CopyStr(Rec."No.", StrLen(Rec."No.") - 1);
-                    Rec.Modify;
-                end;
-            }
-            action(dd)
-            {
-                ApplicationArea = Basic;
-                Visible = false;
-
-                trigger OnAction()
-                begin
-
-                    Rec."Ref. Catit" := Rec."No.";
-                    Rec.Modify;
-                end;
-            }
-            action(ASASDASDAS)
-            {
-                ApplicationArea = Basic;
-                ShortCutKey = 'F9';
-
-                trigger OnAction()
-                begin
-
-                    Rec.Modify(true);
-
-                    ///Item.SETRANGE("IVA IGIC",'IGIC65');
-                    ///IF Item.FINDFIRST THEN REPEAT
-                    ///Item."IVA IGIC":='IGIC7';
-                    ///Item.MODIFY;
-                    ///UNTIL Item.NEXT=0;
-
-                    ////MESSAGE('asd2');
-                end;
-            }
-            action("Importa Objetivos")
-            {
-                ApplicationArea = Basic;
-                /////- RunObject = XMLport UnknownXMLport50045;
-            }
-            action("Importa gramos plastico")
-            {
-                ApplicationArea = Basic;
-
-                trigger OnAction()
-                begin
-
-
-                    /////- Clear(gramosplastico);
-                    /////- gramosplastico.Run;
-                end;
-            }
         }
     }
+
 
     trigger OnAfterGetRecord()
     begin
@@ -1804,6 +1557,7 @@ Page 50177 "Productos Lista Ubica"
         LonguiUds: Decimal;
         ItemUnitofMeasure: Record "Item Unit of Measure";
     /////- gramosplastico: XmlPort UnknownXmlPort50052;
+
 
     trigger OnModifyRecord(): Boolean
     begin
