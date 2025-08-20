@@ -86,12 +86,12 @@ codeunit 50002 Eventos
                     if RecA.Get(Rec."No.") then begin
                         RecA := Rec;
                         RecA."VAT Prod. Posting Group" := Rec."IVA IGIC";
-                        if RecA.Modify(false) then;
+                        //if RecA.Modify(false) then;
                     end;
                     if not RecA.Get(Rec."No.") then begin
                         RecA := Rec;
                         RecA."VAT Prod. Posting Group" := Rec."IVA IGIC";
-                        if RecA.Insert(false) then;
+                        //if RecA.Insert(false) then;
                     end;
                 end;
             end;
