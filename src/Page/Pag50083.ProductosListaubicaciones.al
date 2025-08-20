@@ -7,6 +7,9 @@ Page 50083 "Productos Lista ubicaciones"
     Caption = 'Productos Lista ubicaciones';
     UsageCategory = Lists;
     Editable = true;
+    ModifyAllowed = true;
+    InsertAllowed = false;
+    DeleteAllowed = false;
 
 
 
@@ -52,6 +55,7 @@ Page 50083 "Productos Lista ubicaciones"
                 field("Cantidad palets"; Rec."Cantidad palets")
                 {
                     ApplicationArea = Basic;
+                    Editable = true;
 
                     trigger OnValidate()
                     begin
