@@ -16,6 +16,7 @@ pageextension 50000 "Item Card" extends "Item Card"
             group(Hagen_)
             {
 
+                field("Producto NO automatico"; Rec."Producto NO automatico") { ApplicationArea = ALL; }
                 field("Ubicacion picking"; Rec."Ubicacion picking") { ApplicationArea = ALL; }
                 field("Bultos en caja"; Rec."Bultos en caja") { ApplicationArea = ALL; }
                 field("Bultos solos"; Rec."Bultos solos") { ApplicationArea = ALL; }
