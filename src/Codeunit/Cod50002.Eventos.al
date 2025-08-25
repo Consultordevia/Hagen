@@ -1296,4 +1296,18 @@ codeunit 50002 Eventos
         SalesHeader.SetFilter("Estado pedido", '%1|%2|%3', SalesHeader."Estado pedido"::Retenido, SalesHeader."Estado pedido"::"Para preparar", SalesHeader."Estado pedido"::"Pdte. comercial");
         IsHandled := true;
     end;
+
+
+    [EventSubscriber(ObjectType::Page, Page::PrecioOfertaMiraklListPart, 'OnInsertPrecios', '', false, false)]
+    local procedure OnInsertPrecios(var OfertaMirakl: Record PrecioOfertaMirakl; var SalesPrice: Record "Sales Price"; var IsHandled: Boolean)
+    var
+    begin
+        OfertaMirakl.Descuento := SalesPrice.Dto1;
+        if OfertaMirakl.Descuento <> 0 then begin
+            OfertaMirakl."Precio con Descuento" := SalesPrice."Unit Price" - (SalesPrice."Unit Price" * SalesPrice.Dto1 / 100);
+        end else begin
+            OfertaMirakl."Precio con Descuento" := SalesPrice."Unit Price";
+        end;
+        IsHandled := true;
+    end;
 }
