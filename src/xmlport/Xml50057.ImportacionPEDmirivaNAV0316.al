@@ -87,7 +87,7 @@ XmlPort 50057 "Importacion PED miriva NAV0316"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -364,7 +364,7 @@ XmlPort 50057 "Importacion PED miriva NAV0316"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecUser: Record "User Setup";
@@ -400,7 +400,7 @@ XmlPort 50057 "Importacion PED miriva NAV0316"
         PurchaseLine: Record "Purchase Line";
         PurchasesPayablesSetup: Record "Purchases & Payables Setup";
         SalesLineDiscount: Record "Sales Line Discount";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
         PRECIOLIN: Decimal;
 
     local procedure InitializeGlobals()
@@ -503,7 +503,7 @@ XmlPort 50057 "Importacion PED miriva NAV0316"
                     RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                     RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
                     RecCV."Permite fraccionar uni. venta" := true;
-                    RecCV.Validate("Your Reference" , D1);
+                    RecCV.Validate("Your Reference", D1);
                     RecCV."Shipment Date" := Today;
                     RecCV."Requested Delivery Date" := Today;
                     RecCV.Validate(RecCV."Ship-to Code", CODDIRENVIO);
@@ -513,14 +513,14 @@ XmlPort 50057 "Importacion PED miriva NAV0316"
                     RecCV."Super urgente" := true;
                     ///TempBlob.WriteAsText(D2,TEXTENCODING::Windows);
                     ///RecCV."Work Description":=TempBlob.Blob;
-                    RecCV.Validate("Your Reference" , D1);
+                    RecCV.Validate("Your Reference", D1);
                     RecCV."Ship-to Name" := CopyStr(D16, 1, 50);
                     RecCV."Ship-to Name 2" := CopyStr(D16, 51, 50);
                     RecCV."Ship-to Address" := CopyStr(D17 + D18, 1, 50);
                     RecCV."Ship-to Address 2" := CopyStr(D17 + D18, 51, 50);
                     RecCV."Ship-to Contact" := '';
-                    RecCV.Validate(RecCV."Ship-to Post Code", CopyStr(D21,1,20));
-                    RecCV.Validate(RecCV."Ship-to City", CopyStr(D19,1,30));
+                    RecCV.Validate(RecCV."Ship-to Post Code", CopyStr(D21, 1, 20));
+                    RecCV.Validate(RecCV."Ship-to City", CopyStr(D19, 1, 30));
                     RecCV."Envio a-Nº Telefono" := D27;
                     RecCV."Observación para transporte" := '';
                     RecCV."Prices Including VAT" := true;
@@ -570,23 +570,23 @@ XmlPort 50057 "Importacion PED miriva NAV0316"
                     end;
                     if not SALE then begin
                         ///if RecProd."No permite pedido"=false then begin
-                            LINEAS := LINEAS + 10000;
-                            RecLV."Document Type" := 1;
-                            RecLV."Document No." := RecCV."No.";
-                            RecLV."Line No." := LINEAS;
-                            RecLV.Type := 2;
-                            RecLV.Validate(RecLV."No.", D6);
-                            ///EVALUATE(CANTIDE,D3);
-                            CANTIDE := 1;
-                            RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            RecLV.Insert(true);
-                            RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            RecLV.Modify(true);
-                            Evaluate(PRECIOLIN, D32);
-                            PRECIOLIN := PRECIOLIN / 100;
-                            PRECIOLIN := PRECIOLIN / (1 + (RecLV."VAT %") / 100);
-                            RecLV.Validate("Unit Price", PRECIOLIN);
-                            RecLV.Modify(true);
+                        LINEAS := LINEAS + 10000;
+                        RecLV."Document Type" := 1;
+                        RecLV."Document No." := RecCV."No.";
+                        RecLV."Line No." := LINEAS;
+                        RecLV.Type := 2;
+                        RecLV.Validate(RecLV."No.", D6);
+                        ///EVALUATE(CANTIDE,D3);
+                        CANTIDE := 1;
+                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        RecLV.Insert(true);
+                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        RecLV.Modify(true);
+                        Evaluate(PRECIOLIN, D32);
+                        PRECIOLIN := PRECIOLIN / 100;
+                        PRECIOLIN := PRECIOLIN / (1 + (RecLV."VAT %") / 100);
+                        RecLV.Validate("Unit Price", PRECIOLIN);
+                        RecLV.Modify(true);
                         ///end;
                     end else begin
                         RecRefCruz.Reset;
@@ -601,56 +601,56 @@ XmlPort 50057 "Importacion PED miriva NAV0316"
                                 end;
                                 if not SALE then begin
                                     ///if RecProd."No permite pedido"=false then begin
-                                        LINEAS := LINEAS + 10000;
-                                        RecLV."Document Type" := 1;
-                                        RecLV."Document No." := RecCV."No.";
-                                        RecLV."Line No." := LINEAS;
-                                        RecLV.Type := 2;
-                                        RecLV.Validate(RecLV."No.", ref);
-                                        CANTIDE := 1;
-                                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                        RecLV.Insert(true);
-                                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                        RecLV.Modify(true);
-                                        Evaluate(PRECIOLIN, D32);
-                                        PRECIOLIN := PRECIOLIN / 100;
-                                        PRECIOLIN := PRECIOLIN / (1 + (RecLV."VAT %") / 100);
-                                        RecLV.Validate("Unit Price", PRECIOLIN);
-                                        RecLV.Modify(true);
-                                /*
-                                EVALUATE(CANTitrans,D18);
-                                IF CANTitrans<>0 THEN BEGIN
-                                    RecLV."Document Type":=1;
-                                    RecLV."Document No.":=codacti;
-                                    LINEAS:=LINEAS+10000;
-                                    RecLV."Line No.":=LINEAS;
-                                    RecLV.Type:=2;
-                                    RecLV.VALIDATE(RecLV."No.",'TRAN');
-                                    RecLV."Customer Price Group":='';
-                                    RecLV.VALIDATE(RecLV.Quantity,1);
-                                    CANTitrans:=CANTitrans/(1+(RecLV."VAT %")/100);
-                                    CANTitrans:=ROUND(CANTitrans,0.01);
-                                    RecLV.VALIDATE("Unit Price",CANTitrans);
-                                    RecLV.INSERT(TRUE);
-                                END;
-                                */
-                                /*PurchaseLine.INIT;
-                                PurchaseLine."Document Type":=1;
-                                PurchaseLine."Document No.":=PurchaseHeader."No.";
-                                PurchaseLine."Line No.":=LINEAS;
-                                PurchaseLine.Type:=1;
-                                PurchaseLine.VALIDATE("No.",'70600001');
-                                PurchaseLine.Description:=COPYSTR(D4,1,50);
-                                PurchaseLine."Description 2":=COPYSTR(D4,51,50);
-                                CANTIDE:=1;
-                                PurchaseLine.VALIDATE(Quantity,CANTIDE);
-                                PurchaseLine.INSERT(TRUE);
-                                PurchaseLine.VALIDATE(Quantity,CANTIDE);
-                                EVALUATE(CANTIDE,D21);
-                                PurchaseLine.VALIDATE("Direct Unit Cost",CANTIDE);
-                                PurchaseLine.MODIFY(TRUE);
-                                PurchaseLine.VALIDATE("Direct Unit Cost",CANTIDE);
-                                PurchaseLine.MODIFY(TRUE);*/
+                                    LINEAS := LINEAS + 10000;
+                                    RecLV."Document Type" := 1;
+                                    RecLV."Document No." := RecCV."No.";
+                                    RecLV."Line No." := LINEAS;
+                                    RecLV.Type := 2;
+                                    RecLV.Validate(RecLV."No.", ref);
+                                    CANTIDE := 1;
+                                    RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                    RecLV.Insert(true);
+                                    RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                    RecLV.Modify(true);
+                                    Evaluate(PRECIOLIN, D32);
+                                    PRECIOLIN := PRECIOLIN / 100;
+                                    PRECIOLIN := PRECIOLIN / (1 + (RecLV."VAT %") / 100);
+                                    RecLV.Validate("Unit Price", PRECIOLIN);
+                                    RecLV.Modify(true);
+                                    /*
+                                    EVALUATE(CANTitrans,D18);
+                                    IF CANTitrans<>0 THEN BEGIN
+                                        RecLV."Document Type":=1;
+                                        RecLV."Document No.":=codacti;
+                                        LINEAS:=LINEAS+10000;
+                                        RecLV."Line No.":=LINEAS;
+                                        RecLV.Type:=2;
+                                        RecLV.VALIDATE(RecLV."No.",'TRAN');
+                                        RecLV."Customer Price Group":='';
+                                        RecLV.VALIDATE(RecLV.Quantity,1);
+                                        CANTitrans:=CANTitrans/(1+(RecLV."VAT %")/100);
+                                        CANTitrans:=ROUND(CANTitrans,0.01);
+                                        RecLV.VALIDATE("Unit Price",CANTitrans);
+                                        RecLV.INSERT(TRUE);
+                                    END;
+                                    */
+                                    /*PurchaseLine.INIT;
+                                    PurchaseLine."Document Type":=1;
+                                    PurchaseLine."Document No.":=PurchaseHeader."No.";
+                                    PurchaseLine."Line No.":=LINEAS;
+                                    PurchaseLine.Type:=1;
+                                    PurchaseLine.VALIDATE("No.",'70600001');
+                                    PurchaseLine.Description:=COPYSTR(D4,1,50);
+                                    PurchaseLine."Description 2":=COPYSTR(D4,51,50);
+                                    CANTIDE:=1;
+                                    PurchaseLine.VALIDATE(Quantity,CANTIDE);
+                                    PurchaseLine.INSERT(TRUE);
+                                    PurchaseLine.VALIDATE(Quantity,CANTIDE);
+                                    EVALUATE(CANTIDE,D21);
+                                    PurchaseLine.VALIDATE("Direct Unit Cost",CANTIDE);
+                                    PurchaseLine.MODIFY(TRUE);
+                                    PurchaseLine.VALIDATE("Direct Unit Cost",CANTIDE);
+                                    PurchaseLine.MODIFY(TRUE);*/
                                     ///end;
 
                                 end;

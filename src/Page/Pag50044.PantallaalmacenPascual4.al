@@ -705,7 +705,7 @@ Page 50044 "Pantalla almacen Pascual4"
         Multitabla2: Record "Cajas por pedido";
         Tipocajaporpedido: Page "Tipo caja por pedido";
         EXPEDROP: Code[10];
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series"; //v27
         ETIenvioagrupadoresumen: Report "ETI. envio agrupado resumen";
         ETIenvioagrupadod: Report "ETI. envio agrupado d";
         cajas7: Integer;

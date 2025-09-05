@@ -3,7 +3,7 @@ pageextension 50040 CustomerList extends "Customer List"
     layout
     {
 
-    
+
     }
 
     actions
@@ -22,7 +22,7 @@ pageextension 50040 CustomerList extends "Customer List"
 
                     RecCusto: Record Customer;
                     SalesSetup: Record "Sales & Receivables Setup";
-                    NoSeriesManagement: Codeunit NoSeriesManagement;
+                    NoSeriesManagement: Codeunit "No. Series"; // v27
                     codclie: Code[20];
                     SalesInvoiceLine: Record "Sales Invoice Line";
                     ShiptoAddress: Record "Ship-to Address";
@@ -73,12 +73,12 @@ pageextension 50040 CustomerList extends "Customer List"
                 var
 
                     CU_adaia: Codeunit "Automaticos Cartas";
-                    
+
 
                 begin
 
 
-                    
+
                     CU_adaia.ENVIATERCEROSMODIF;
                     MESSAGE('hecho');
 

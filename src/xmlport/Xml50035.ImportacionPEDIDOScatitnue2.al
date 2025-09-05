@@ -6,7 +6,7 @@ XmlPort 50035 "Importacion PEDIDOS catit nue2"
     FieldDelimiter = '<*>';
     FieldSeparator = '&';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -208,7 +208,7 @@ XmlPort 50035 "Importacion PEDIDOS catit nue2"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecUser: Record "User Setup";
@@ -233,7 +233,7 @@ XmlPort 50035 "Importacion PEDIDOS catit nue2"
         Customer: Record Customer;
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
         NUMCLIE: Code[10];
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
         CODCLIE: Code[10];
         PPRECIO: Decimal;
         ShiptoAddress: Record "Ship-to Address";
@@ -358,7 +358,7 @@ XmlPort 50035 "Importacion PEDIDOS catit nue2"
                     RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                     RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
                     RecCV."Permite fraccionar uni. venta" := true;
-                    RecCV.Validate("Your Reference" , D1);
+                    RecCV.Validate("Your Reference", D1);
                     RecCV.Validate(RecCV."Ship-to Code", CODDIRENVIO);
                     RecCV."Shipment Date" := Today;
                     RecCV."Requested Delivery Date" := Today;
@@ -418,18 +418,18 @@ XmlPort 50035 "Importacion PEDIDOS catit nue2"
                 end;
                 if RecProd.Get(CODPROD) then begin
                     ///if RecProd."No permite pedido"=false then begin
-                        LINEAS := LINEAS + 10000;
-                        RecLV."Document Type" := 1;
-                        RecLV."Document No." := codacti;
-                        RecLV."Line No." := LINEAS;
-                        RecLV.Type := 2;
-                        RecLV.Validate(RecLV."No.", CODPROD);
-                        Evaluate(CANTIDE, D11);
-                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                        if UpperCase(CopyStr(D16, 1, 1)) = 'Y' then begin
-                            RecLV.Validate(RecLV."Line Discount %", 100);
-                        end;
-                        RecLV.Insert(true);
+                    LINEAS := LINEAS + 10000;
+                    RecLV."Document Type" := 1;
+                    RecLV."Document No." := codacti;
+                    RecLV."Line No." := LINEAS;
+                    RecLV.Type := 2;
+                    RecLV.Validate(RecLV."No.", CODPROD);
+                    Evaluate(CANTIDE, D11);
+                    RecLV.Validate(RecLV.Quantity, CANTIDE);
+                    if UpperCase(CopyStr(D16, 1, 1)) = 'Y' then begin
+                        RecLV.Validate(RecLV."Line Discount %", 100);
+                    end;
+                    RecLV.Insert(true);
                     ///end;
                 end;
                 Evaluate(CANTitrans, D12);

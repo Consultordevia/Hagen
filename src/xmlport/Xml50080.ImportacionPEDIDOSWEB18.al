@@ -34,7 +34,7 @@ XmlPort 50080 "Importacion PEDIDOS WEB18"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -217,7 +217,7 @@ XmlPort 50080 "Importacion PEDIDOS WEB18"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecUser: Record "User Setup";
@@ -233,7 +233,7 @@ XmlPort 50080 "Importacion PEDIDOS WEB18"
         UserSetup: Record "User Setup";
         /////- smtp: Codeunit UnknownCodeunit400;
         RelacionproductogrupoMetros: Record "Relacion producto-grupo Metros";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
         CompanyInformation: Record "Company Information";
         GeneralLedgerSetup: Record "General Ledger Setup";
         RecCust: Record Customer;
@@ -534,13 +534,13 @@ XmlPort 50080 "Importacion PEDIDOS WEB18"
     begin
 
 
-         
 
 
 
 
-        if codacti<>D1 then begin
-            codacti:=D1;
+
+        if codacti <> D1 then begin
+            codacti := D1;
             RecCV.Init;
             RecCV."Document Type" := 1;
             RecCV."No." := D1;
@@ -563,23 +563,23 @@ XmlPort 50080 "Importacion PEDIDOS WEB18"
             RecCV."Your Reference" := D4;
 
             ///RecCV."Ship-to Code" := D5;
-            RecCV."Ship-to Name" := CopyStr(D6,1,100);
-            RecCV."Ship-to Name 2" := CopyStr(D7,1,100);
-            RecCV."Ship-to Address" := CopyStr(D8,1,100);
-            RecCV."Ship-to Address 2" := CopyStr(D9,1,100);
-            RecCV."Ship-to City" := CopyStr(D10,1,30);
-            RecCV."Ship-to Post Code" := CopyStr(D11,1,20);
-            RecCV."Ship-to County" := CopyStr(D12,1,30);
-            RecCV."Ship-to Country/Region Code" := CopyStr(D13,1,30);
-            RecCV."Envio a-Nº Telefono":=D18;                 
-            RecCV."E-MAIL":=D19;                 
-            RecCV.Dropshipping:=FALSE;          
-            if CopyStr(D20,1,1)='S' THEN begin                
-                RecCV.Dropshipping:=TRUE;          
-            END;       
-            RecCV."Estado pedido":=RecCV."Estado pedido"::Retenido;
-            RecCV."No incluir portes":=true;
-                        
+            RecCV."Ship-to Name" := CopyStr(D6, 1, 100);
+            RecCV."Ship-to Name 2" := CopyStr(D7, 1, 100);
+            RecCV."Ship-to Address" := CopyStr(D8, 1, 100);
+            RecCV."Ship-to Address 2" := CopyStr(D9, 1, 100);
+            RecCV."Ship-to City" := CopyStr(D10, 1, 30);
+            RecCV."Ship-to Post Code" := CopyStr(D11, 1, 20);
+            RecCV."Ship-to County" := CopyStr(D12, 1, 30);
+            RecCV."Ship-to Country/Region Code" := CopyStr(D13, 1, 30);
+            RecCV."Envio a-Nº Telefono" := D18;
+            RecCV."E-MAIL" := D19;
+            RecCV.Dropshipping := FALSE;
+            if CopyStr(D20, 1, 1) = 'S' THEN begin
+                RecCV.Dropshipping := TRUE;
+            END;
+            RecCV."Estado pedido" := RecCV."Estado pedido"::Retenido;
+            RecCV."No incluir portes" := true;
+
 
 
 
@@ -591,21 +591,21 @@ XmlPort 50080 "Importacion PEDIDOS WEB18"
         if D14 <> '' then begin
             if RecProd.Get(D14) then begin
                 ///if RecProd."No permite pedido"=false then begin
-                    LINEAS := LINEAS + 10000;
-                    RecLV."Document Type" := 1;
-                    RecLV."Document No." := D1;
-                    RecLV."Line No." := LINEAS;
-                    RecLV.Type := 2;
-                    RecLV.Validate(RecLV."No.", D14);
-                    Evaluate(CANTIDE, D15);
-                    RecLV.Validate(RecLV.Quantity, CANTIDE);
-                    RecLV.Insert(true);
-                    Evaluate(DPRECIO, D17);                 
-                    RecLV.Validate(RecLV."Unit Price", DPRECIO);
-                    RecLV.Validate(RecLV.Quantity, CANTIDE);
-                    Evaluate(DPRECIO, D16);
-                    RecLV.Validate(RecLV."Line Discount %", DPRECIO);
-                    RecLV.Modify(true);                
+                LINEAS := LINEAS + 10000;
+                RecLV."Document Type" := 1;
+                RecLV."Document No." := D1;
+                RecLV."Line No." := LINEAS;
+                RecLV.Type := 2;
+                RecLV.Validate(RecLV."No.", D14);
+                Evaluate(CANTIDE, D15);
+                RecLV.Validate(RecLV.Quantity, CANTIDE);
+                RecLV.Insert(true);
+                Evaluate(DPRECIO, D17);
+                RecLV.Validate(RecLV."Unit Price", DPRECIO);
+                RecLV.Validate(RecLV.Quantity, CANTIDE);
+                Evaluate(DPRECIO, D16);
+                RecLV.Validate(RecLV."Line Discount %", DPRECIO);
+                RecLV.Modify(true);
                 ///end;
             end;
         end;

@@ -13,7 +13,7 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
 
             field("Customer Disc. Group"; Rec."Customer Disc. Group") { ApplicationArea = All; }
 
-            field("Sell-to Customer Name 2"; Rec."Sell-to Customer Name 2") { ApplicationArea = All; }
+            // field("Sell-to Customer Name 2"; Rec."Sell-to Customer Name 2") { ApplicationArea = All; } // is already defined in Page 'Sales Quote'  by the extension 'Base Application by Microsoft
             field("Observación para ALMACEN"; Rec."Observación para ALMACEN") { ApplicationArea = All; }
             field("Observación PDA"; Rec."Observación PDA") { ApplicationArea = All; }
             field("Observación para transporte"; Rec."Observación para transporte") { ApplicationArea = All; }
@@ -182,7 +182,7 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                     SalesLineDiscount: Record "Sales Line Discount";
                     RecLV: Record "Sales Line";
                     SalesReceivablesSetup: Record "Sales & Receivables Setup";
-                    NoSeriesManagement: Codeunit NoSeriesManagement;
+                    NoSeriesManagement: Codeunit "No. Series"; // v27
                     ImportacionPEDIDOSMASKOcome: XMLport "Importacion PEDIDOS MASKO-come";
 
                 begin

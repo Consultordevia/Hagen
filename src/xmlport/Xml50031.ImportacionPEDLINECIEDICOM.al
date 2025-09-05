@@ -5,7 +5,7 @@ XmlPort 50031 "Importacion PEDLIN ECI EDICOM"
     Direction = Import;
     FieldSeparator = '|';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -440,7 +440,7 @@ XmlPort 50031 "Importacion PEDLIN ECI EDICOM"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecUser: Record "User Setup";
@@ -559,7 +559,7 @@ XmlPort 50031 "Importacion PEDLIN ECI EDICOM"
                             RecLV."Document No." := RecCV."No.";
                             RecLV."Line No." := LINEAS;
                             RecLV.Type := 2;
-                            RecLV."Shipment Date":=today;
+                            RecLV."Shipment Date" := today;
                             RecLV.Validate(RecLV."No.", ref);
                             Evaluate(CANTIDE, D12);
                             CANTIDE := CANTIDE / 1000;

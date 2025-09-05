@@ -5,7 +5,7 @@ XmlPort 50048 "Importacion PEDIDOS V-12833"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -165,7 +165,7 @@ XmlPort 50048 "Importacion PEDIDOS V-12833"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecUser: Record "User Setup";
@@ -192,7 +192,7 @@ XmlPort 50048 "Importacion PEDIDOS V-12833"
         UserSetup: Record "User Setup";
         /////- smtp: Codeunit UnknownCodeunit400;
         multiplo: Decimal;
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
 
     local procedure InitializeGlobals()
     var
@@ -292,7 +292,7 @@ XmlPort 50048 "Importacion PEDIDOS V-12833"
                 RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                 RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
 
-                RecCV.Validate("Your Reference" , D3);
+                RecCV.Validate("Your Reference", D3);
 
                 RecCV.Insert(true);
 

@@ -7,8 +7,8 @@ pageextension 50026 ClientesLista extends "Customer List"
 
         addafter("Salesperson Code")
         {
-            field("Etiqueta Kiwoko";Rec."Etiqueta Kiwoko") { ApplicationArea = All; }
-            field("Fecha alta";Rec."Fecha alta") { ApplicationArea = All; }
+            field("Etiqueta Kiwoko"; Rec."Etiqueta Kiwoko") { ApplicationArea = All; }
+            field("Fecha alta"; Rec."Fecha alta") { ApplicationArea = All; }
             field("Invoice Type"; Rec."Invoice Type") { ApplicationArea = All; }
             field("Cr. Memo Type"; Rec."Cr. Memo Type") { ApplicationArea = All; }
             field("Special Scheme Code"; Rec."Special Scheme Code") { ApplicationArea = All; }
@@ -66,7 +66,7 @@ pageextension 50026 ClientesLista extends "Customer List"
                     RecCusto: Record Customer;
                     SalesSetup: Record "Sales & Receivables Setup";
                     codclie: code[20];
-                    NoSeriesManagement: Codeunit NoSeriesManagement;
+                    NoSeriesManagement: Codeunit "No. Series"; //v27
                     ShiptoAddress: Record "Ship-to Address";
                     ShiptoAddress2: Record "Ship-to Address";
                 begin

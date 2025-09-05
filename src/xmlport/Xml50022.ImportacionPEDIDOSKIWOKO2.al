@@ -5,7 +5,7 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -199,7 +199,7 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series"; //V27
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecUser: Record "User Setup";
@@ -327,7 +327,7 @@ XmlPort 50022 "Importacion PEDIDOS KIWOKO2"
                 RecCV."Shipping No. Series" := SalesSetup."Posted Shipment Nos.";
                 RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                 RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
-                RecCV.Validate("Your Reference",D5);
+                RecCV.Validate("Your Reference", D5);
 
                 RecCV.Insert(true);
 

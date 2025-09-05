@@ -322,7 +322,7 @@ Codeunit 50010 "Automaticos Cartas"
         RecTra: Record "Shipping Agent";
         TOTALPALE: Integer;
         RecDEC: Record "Ship-to Address";
-        GetSig: Codeunit NoSeriesManagement;
+        GetSig: Codeunit "No. Series";
         expedi: Code[10];
         SalesInvHeader: Record "Sales Invoice Header";
         ChangeExchangeRate: Page "Change Exchange Rate";
@@ -367,7 +367,7 @@ Codeunit 50010 "Automaticos Cartas"
         pesoini: Decimal;
         importeree: Decimal;
         nprod: Integer;
-        CUNext: Codeunit NoSeriesManagement;
+        CUNext: Codeunit "No. Series"; //V27
         contaser: Code[20];
         NOMULTIPEDIDO: Boolean;
         "5DIGITOS": Code[5];

@@ -1149,7 +1149,7 @@ Page 50250 "Nuevo presupuesto copia"
         Cestacompra: Record "Cesta compra";
         Rec91: Record "User Setup";
         /////-ImportacionPEDIDOSMASKOcome: XmlPort UnknownXmlPort50072;
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
 
     local procedure ActivateFields()
     begin
@@ -1214,7 +1214,8 @@ Page 50250 "Nuevo presupuesto copia"
 
     local procedure UpdateShipToBillToGroupVisibility()
     begin
-        CustomerMgt.CalculateShipToBillToOptions(ShipToOptions, BillToOptions, Rec);
+        // CustomerMgt.CalculateShipToBillToOptions(ShipToOptions, BillToOptions, Rec); //v27 eliminan el procedure
+        CustomerMgt.CalculateShipBillToOptions(ShipToOptions, BillToOptions, Rec);
     end;
 
     [IntegrationEvent(false, false)]
