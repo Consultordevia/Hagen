@@ -229,7 +229,7 @@ Codeunit 50019 Canarias
         Rec112: Record "Sales Invoice Header";
         Rec113: Record "Sales Invoice Line";
         Rec1122: Record "Sales Invoice Header";
-        CU_NEXT: Codeunit NoSeriesManagement;
+        CU_NEXT: Codeunit "No. Series"; //V27
         RecCCP: Record "Purchases & Payables Setup";
         contadorfac: Code[20];
         Rec382: Record "Purchase Header";

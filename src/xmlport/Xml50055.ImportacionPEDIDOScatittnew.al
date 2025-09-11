@@ -9,7 +9,7 @@ XmlPort 50055 "Importacion PEDIDOS catitt new"
     // [14:53, 5/8/2023] Hagen Oscar: T=Agencia transporte
 
 
-    
+
 
     Caption = 'Importacion PEDIDOS catitt new';
     Direction = Import;
@@ -238,7 +238,7 @@ XmlPort 50055 "Importacion PEDIDOS catitt new"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecUser: Record "User Setup";
@@ -264,7 +264,7 @@ XmlPort 50055 "Importacion PEDIDOS catitt new"
         Customer: Record Customer;
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
         NUMCLIE: Code[10];
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
         CODCLIE: Code[10];
         PPRECIO: Decimal;
         ShiptoAddress: Record "Ship-to Address";
@@ -493,7 +493,7 @@ XmlPort 50055 "Importacion PEDIDOS catitt new"
                     end;
                     if PaymentMethod.Code = 'S_TRANSF' then begin
                         RecCV."Estado pedido" := RecCV."estado pedido"::Retenido;
-                    end;                    
+                    end;
                 end;
                 /*
                 ShippingAgent.RESET;
@@ -564,19 +564,19 @@ XmlPort 50055 "Importacion PEDIDOS catitt new"
                 ///           D14:=CONVERTSTR(D14,'.',',');
                 ///           EVALUATE(CANTitrans,D14);
                 CANTitrans := CANTitrans / 100;
-                if CANTitrans <> 0 then begin                     
-                        RecLV."Document Type" := 1;
-                        RecLV."Document No." := codacti;
-                        LINEAS := LINEAS + 10000;
-                        RecLV."Line No." := LINEAS;
-                        RecLV.Type := 2;
-                        RecLV.Validate(RecLV."No.", 'TRAN');
-                        RecLV."Customer Price Group" := '';
-                        RecLV.Validate(RecLV.Quantity, 1);
-                        CANTitrans := CANTitrans / (1 + (RecLV."VAT %") / 100);
-                        CANTitrans := ROUND(CANTitrans, 0.01);
-                        RecLV.Validate("Unit Price", CANTitrans);
-                        RecLV.Insert(true);                 
+                if CANTitrans <> 0 then begin
+                    RecLV."Document Type" := 1;
+                    RecLV."Document No." := codacti;
+                    LINEAS := LINEAS + 10000;
+                    RecLV."Line No." := LINEAS;
+                    RecLV.Type := 2;
+                    RecLV.Validate(RecLV."No.", 'TRAN');
+                    RecLV."Customer Price Group" := '';
+                    RecLV.Validate(RecLV.Quantity, 1);
+                    CANTitrans := CANTitrans / (1 + (RecLV."VAT %") / 100);
+                    CANTitrans := ROUND(CANTitrans, 0.01);
+                    RecLV.Validate("Unit Price", CANTitrans);
+                    RecLV.Insert(true);
                 end;
 
 
@@ -611,33 +611,33 @@ XmlPort 50055 "Importacion PEDIDOS catitt new"
 
             if RecProd.Get(CODPROD) then begin
                 ///if RecProd."No permite pedido"=false then begin
-                    LINEAS := LINEAS + 10000;
-                    RecLV."Document Type" := 1;
-                    RecLV."Document No." := codacti;
-                    RecLV."Line No." := LINEAS;
-                    RecLV.Type := 2;
-                    RecLV.Validate(RecLV."No.", CODPROD);
-                    ///// RecLV.INSERT(TRUE);
-                    RecLV.Validate(RecLV."Unit of Measure Code", univenta);
-                    RecLV."Usuario alta" := UserId;
-                    RecLV."Fecha alta" := Today;
-                    RecLV."Hora alta" := Time;
-                    RecLV."Shortcut Dimension 1 Code" := RecCV."Salesperson Code";
-                    RecLV.Vendedor := RecCV."Salesperson Code";
-                    RecLV.Insert;
-                    D13 := ConvertStr(D13, '.', ',');
-                    Evaluate(CANTIDE, D13);
-                    RecLV.Validate(RecLV.Quantity, CANTIDE);
-                    RecLV."Customer Price Group" := '';
-                    D5 := ConvertStr(D5, '.', ',');
-                    Evaluate(CANTIDE, D5);
-                    CANTIDE := CANTIDE / (1 + (RecLV."VAT %") / 100);
-                    RecLV.Validate(RecLV."Unit Price", CANTIDE);
-                    D6 := ConvertStr(D6, '.', ',');
-                    Evaluate(CANTIDE, D6);
-                    CANTIDE := CANTIDE / (1 + (RecLV."VAT %") / 100);
-                    RecLV.Validate(RecLV."Line Discount Amount", CANTIDE);
-                    RecLV.Modify(true);
+                LINEAS := LINEAS + 10000;
+                RecLV."Document Type" := 1;
+                RecLV."Document No." := codacti;
+                RecLV."Line No." := LINEAS;
+                RecLV.Type := 2;
+                RecLV.Validate(RecLV."No.", CODPROD);
+                ///// RecLV.INSERT(TRUE);
+                RecLV.Validate(RecLV."Unit of Measure Code", univenta);
+                RecLV."Usuario alta" := UserId;
+                RecLV."Fecha alta" := Today;
+                RecLV."Hora alta" := Time;
+                RecLV."Shortcut Dimension 1 Code" := RecCV."Salesperson Code";
+                RecLV.Vendedor := RecCV."Salesperson Code";
+                RecLV.Insert;
+                D13 := ConvertStr(D13, '.', ',');
+                Evaluate(CANTIDE, D13);
+                RecLV.Validate(RecLV.Quantity, CANTIDE);
+                RecLV."Customer Price Group" := '';
+                D5 := ConvertStr(D5, '.', ',');
+                Evaluate(CANTIDE, D5);
+                CANTIDE := CANTIDE / (1 + (RecLV."VAT %") / 100);
+                RecLV.Validate(RecLV."Unit Price", CANTIDE);
+                D6 := ConvertStr(D6, '.', ',');
+                Evaluate(CANTIDE, D6);
+                CANTIDE := CANTIDE / (1 + (RecLV."VAT %") / 100);
+                RecLV.Validate(RecLV."Line Discount Amount", CANTIDE);
+                RecLV.Modify(true);
                 ///end;
             end;
 

@@ -6,7 +6,7 @@ XmlPort 50032 "Importacion PEDIDOS AMAZON2"
     FieldDelimiter = '<>';
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -176,7 +176,7 @@ XmlPort 50032 "Importacion PEDIDOS AMAZON2"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecClie: Record Customer;
@@ -199,7 +199,7 @@ XmlPort 50032 "Importacion PEDIDOS AMAZON2"
         DD7: Code[20];
         SALTA: Boolean;
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
 
     local procedure InitializeGlobals()
     var
@@ -294,7 +294,7 @@ XmlPort 50032 "Importacion PEDIDOS AMAZON2"
                     RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                     RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
                     RecCV."Permite fraccionar uni. venta" := true;
-                    RecCV.Validate("Your Reference" , D1);
+                    RecCV.Validate("Your Reference", D1);
                     RecCV."Observación para ALMACEN" := 'Entregar:' + Format(CopyStr(D11, 1, 6) + CopyStr(D11, 9, 2)) + ' - ' + Format(CopyStr(D12, 1, 6) + CopyStr(D12, 9, 2));
                     RecCV."Observación para transporte" := 'Entregar:' + Format(CopyStr(D11, 1, 6) + CopyStr(D11, 9, 2)) + ' - ' + Format(CopyStr(D12, 1, 6) + CopyStr(D12, 9, 2));
                     X := 0;

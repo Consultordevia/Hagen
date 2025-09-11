@@ -547,7 +547,7 @@ XmlPort 50030 "Importacion PEDIDOS ECI EDICOM"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecUser: Record "User Setup";
@@ -575,7 +575,7 @@ XmlPort 50030 "Importacion PEDIDOS ECI EDICOM"
         UserSetup: Record "User Setup";
         /////- smtp: Codeunit UnknownCodeunit400;
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
         cd1: Code[10];
         cd2: Code[10];
         cd3: Code[10];
@@ -693,7 +693,7 @@ XmlPort 50030 "Importacion PEDIDOS ECI EDICOM"
             RecCV.validate("Your Reference", D4);
             RecCV."Dpto.ECI" := D18;
             RecCV."External Document No." := D1;
-            RecCV."Permite fraccionar uni. venta":=true;
+            RecCV."Permite fraccionar uni. venta" := true;
             RecCV."No agrupar en ADAIA" := true;
             /*
             if (D7 <> '') then begin

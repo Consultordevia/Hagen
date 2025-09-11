@@ -467,7 +467,7 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecUser: Record "User Setup";
@@ -502,7 +502,7 @@ XmlPort 50067 "Importacion PEDIDOS tienda an"
         PurchaseLine: Record "Purchase Line";
         PurchasesPayablesSetup: Record "Purchases & Payables Setup";
         SalesLineDiscount: Record "Sales Line Discount";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
         CASCII: Codeunit "ANSI <-> ASCII converter2";
 
     local procedure InitializeGlobals()

@@ -5,7 +5,7 @@ XmlPort 50053 "Importacion PEDIDOS WEB"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -214,7 +214,7 @@ XmlPort 50053 "Importacion PEDIDOS WEB"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecUser: Record "User Setup";
@@ -230,7 +230,7 @@ XmlPort 50053 "Importacion PEDIDOS WEB"
         UserSetup: Record "User Setup";
         /////- smtp: Codeunit UnknownCodeunit400;
         RelacionproductogrupoMetros: Record "Relacion producto-grupo Metros";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
         CompanyInformation: Record "Company Information";
         GeneralLedgerSetup: Record "General Ledger Setup";
         RecCust: Record Customer;
@@ -582,9 +582,9 @@ XmlPort 50053 "Importacion PEDIDOS WEB"
             RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
             RecCV."Customer Price Group" := CompanyInformation."Tarifa WEB";
             RecCV."Your Reference" := D1;
-            RecCV."Estado pedido":=RecCV."Estado pedido"::Retenido;
+            RecCV."Estado pedido" := RecCV."Estado pedido"::Retenido;
             RecCV.Insert(true);
-            RecCV."Estado pedido":=RecCV."Estado pedido"::Retenido;
+            RecCV."Estado pedido" := RecCV."Estado pedido"::Retenido;
             RecCV.Modify;
             ///Message('%1', RecCV."No.");
         end;
@@ -593,20 +593,20 @@ XmlPort 50053 "Importacion PEDIDOS WEB"
         if D14 <> '' then begin
             if RecProd.Get(D14) then begin
                 ///if RecProd."No permite pedido"=false then begin
-                    LINEAS := LINEAS + 10000;
-                    RecLV."Document Type" := 1;
-                    RecLV."Document No." := RecCV."No.";
-                    RecLV."Line No." := LINEAS;
-                    RecLV.Type := 2;
-                    RecLV.Validate(RecLV."No.", D14);
-                    Evaluate(CANTIDE, D15);
-                    RecLV.Validate(RecLV.Quantity, CANTIDE);
-                    RecLV.Insert(true);
-                    Evaluate(DPRECIO, D16);
-                    DPRECIO := DPRECIO / 100;
-                    RecLV.Validate(RecLV."Unit Price", DPRECIO);
-                    RecLV.Validate(RecLV.Quantity, CANTIDE);
-                    RecLV.Modify(true);
+                LINEAS := LINEAS + 10000;
+                RecLV."Document Type" := 1;
+                RecLV."Document No." := RecCV."No.";
+                RecLV."Line No." := LINEAS;
+                RecLV.Type := 2;
+                RecLV.Validate(RecLV."No.", D14);
+                Evaluate(CANTIDE, D15);
+                RecLV.Validate(RecLV.Quantity, CANTIDE);
+                RecLV.Insert(true);
+                Evaluate(DPRECIO, D16);
+                DPRECIO := DPRECIO / 100;
+                RecLV.Validate(RecLV."Unit Price", DPRECIO);
+                RecLV.Validate(RecLV.Quantity, CANTIDE);
+                RecLV.Modify(true);
                 ///end;
             end;
         end;

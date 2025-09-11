@@ -15,7 +15,7 @@ XmlPort 50072 "Importacion PEDIDOS MASKO-come"
     FieldDelimiter = '<>';
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -172,7 +172,7 @@ XmlPort 50072 "Importacion PEDIDOS MASKO-come"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecUser: Record "User Setup";
@@ -197,7 +197,7 @@ XmlPort 50072 "Importacion PEDIDOS MASKO-come"
         DD7: Code[20];
         SALTA: Boolean;
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
         PostCode: Record "Post Code";
         "Area": Record "Area";
         OutS: OutStream;
@@ -289,7 +289,7 @@ XmlPort 50072 "Importacion PEDIDOS MASKO-come"
                     RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                     RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
                     RecCV."Permite fraccionar uni. venta" := true;
-                    RecCV.Validate("Your Reference" , D2);
+                    RecCV.Validate("Your Reference", D2);
                     X := 0;
                     SALE := false;
                     FECHAENVIO := Today;
@@ -343,17 +343,17 @@ XmlPort 50072 "Importacion PEDIDOS MASKO-come"
                     DD7 := RecProd."No.";
                     if SALTA = false then begin
                         ///if RecProd."No permite pedido"=false then begin
-                            LINEAS := LINEAS + 10000;
-                            RecLV."Document Type" := 0;
-                            RecLV."Document No." := RecCV."No.";
-                            RecLV."Line No." := LINEAS;
-                            RecLV.Type := 2;
-                            RecLV.Validate(RecLV."No.", D3);
-                            Evaluate(CANTIDE, D4);
-                            RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            RecLV.Insert(true);
-                            RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            RecLV.Modify(true);
+                        LINEAS := LINEAS + 10000;
+                        RecLV."Document Type" := 0;
+                        RecLV."Document No." := RecCV."No.";
+                        RecLV."Line No." := LINEAS;
+                        RecLV.Type := 2;
+                        RecLV.Validate(RecLV."No.", D3);
+                        Evaluate(CANTIDE, D4);
+                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        RecLV.Insert(true);
+                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        RecLV.Modify(true);
                         ///end;
                     end;
                 end;

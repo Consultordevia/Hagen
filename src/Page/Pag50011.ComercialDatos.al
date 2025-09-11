@@ -873,7 +873,7 @@ Page 50011 "Comercial Datos"
         CuantosProductos: Integer;
         PagProductos: Page Productos;
         /////-NuevoPresu: Page "Nuevo presupuesto copia";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
         codpedido: Code[10];
         Nuevop: Integer;

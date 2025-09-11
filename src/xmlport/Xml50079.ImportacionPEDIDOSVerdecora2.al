@@ -5,7 +5,7 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -55,7 +55,7 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
                 textelement(D13)
                 {
                 }
-                
+
                 textelement(D14)
                 {
 
@@ -169,7 +169,7 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecUser: Record "User Setup";
@@ -196,7 +196,7 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
         UserSetup: Record "User Setup";
         /////- smtp: Codeunit UnknownCodeunit400;
         RelacionproductogrupoMetros: Record "Relacion producto-grupo Metros";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
         codpedido: code[20];
 
     local procedure InitializeGlobals()
@@ -262,7 +262,7 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
 
 
         if linea > 1 then begin
-            if linea = 2 then begin                
+            if linea = 2 then begin
                 if obser <> '' then begin
                     if not RecLCV.Get(1, RecCV."No.", 100) then begin
                         RecLCV."Document Type" := 0;
@@ -276,8 +276,8 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
             end;
             SALE := false;
 
-            RecCV.get(0,codpedido);
-            RecCV."Your Reference":=D3;
+            RecCV.get(0, codpedido);
+            RecCV."Your Reference" := D3;
             RecCV.Modify;
             ///// D[10]:=COPYSTR(D[10],2);
             ///D10:=COPYSTR(D10,2);
@@ -290,23 +290,23 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
                     end;
                     if not SALE then begin
                         ///if RecProd."No permite pedido"=false then begin
-                            LINEAS := LINEAS + 10000;
-                            RecLV."Document Type" := 0;
-                            RecLV."Document No." := codpedido;
-                            RecLV."Line No." := LINEAS;
-                            RecLV.Type := 2;
-                            RecLV.Validate(RecLV."No.", D4);
-                            Evaluate(CANTIDE, D7);
-                            RelacionproductogrupoMetros.Reset;
-                            RelacionproductogrupoMetros.SetRange(RelacionproductogrupoMetros.Producto, D4);
-                            /////RelacionproductogrupoMetros.SETRANGE(RelacionproductogrupoMetros."Grupo Cliente",RecCV."Grupo clientes");
-                            if RelacionproductogrupoMetros.FindSet then begin
-                                CANTIDE := ROUND(CANTIDE / RelacionproductogrupoMetros.Metros, 0.01);
-                            end;
-                            RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            RecLV.Insert(true);
-                            RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            RecLV.Modify(true);
+                        LINEAS := LINEAS + 10000;
+                        RecLV."Document Type" := 0;
+                        RecLV."Document No." := codpedido;
+                        RecLV."Line No." := LINEAS;
+                        RecLV.Type := 2;
+                        RecLV.Validate(RecLV."No.", D4);
+                        Evaluate(CANTIDE, D7);
+                        RelacionproductogrupoMetros.Reset;
+                        RelacionproductogrupoMetros.SetRange(RelacionproductogrupoMetros.Producto, D4);
+                        /////RelacionproductogrupoMetros.SETRANGE(RelacionproductogrupoMetros."Grupo Cliente",RecCV."Grupo clientes");
+                        if RelacionproductogrupoMetros.FindSet then begin
+                            CANTIDE := ROUND(CANTIDE / RelacionproductogrupoMetros.Metros, 0.01);
+                        end;
+                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        RecLV.Insert(true);
+                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        RecLV.Modify(true);
                         ///end;
 
                     end;
@@ -323,23 +323,23 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
                             end;
                             if not SALE then begin
                                 ///if RecProd."No permite pedido"=false then begin
-                                    LINEAS := LINEAS + 10000;
-                                    RecLV."Document Type" := 0;
-                                    RecLV."Document No." := codpedido;
-                                    RecLV."Line No." := LINEAS;
-                                    RecLV.Type := 2;
-                                    RecLV.Validate(RecLV."No.", ref);
-                                    Evaluate(CANTIDE, D7);
-                                    RelacionproductogrupoMetros.Reset;
-                                    RelacionproductogrupoMetros.SetRange(RelacionproductogrupoMetros.Producto, ref);
-                                    ////RelacionproductogrupoMetros.SETRANGE(RelacionproductogrupoMetros."Grupo Cliente",RecCV."Grupo clientes");
-                                    if RelacionproductogrupoMetros.FindSet then begin
-                                        CANTIDE := ROUND(CANTIDE / RelacionproductogrupoMetros.Metros, 0.01);
-                                    end;
-                                    RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                    RecLV.Insert(true);
-                                    RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                    RecLV.Modify(true);
+                                LINEAS := LINEAS + 10000;
+                                RecLV."Document Type" := 0;
+                                RecLV."Document No." := codpedido;
+                                RecLV."Line No." := LINEAS;
+                                RecLV.Type := 2;
+                                RecLV.Validate(RecLV."No.", ref);
+                                Evaluate(CANTIDE, D7);
+                                RelacionproductogrupoMetros.Reset;
+                                RelacionproductogrupoMetros.SetRange(RelacionproductogrupoMetros.Producto, ref);
+                                ////RelacionproductogrupoMetros.SETRANGE(RelacionproductogrupoMetros."Grupo Cliente",RecCV."Grupo clientes");
+                                if RelacionproductogrupoMetros.FindSet then begin
+                                    CANTIDE := ROUND(CANTIDE / RelacionproductogrupoMetros.Metros, 0.01);
+                                end;
+                                RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                RecLV.Insert(true);
+                                RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                RecLV.Modify(true);
                                 ///end;
 
                             end;
@@ -353,24 +353,25 @@ XmlPort 50079 "Importacion PEDIDOS Verdecora2"
 
     local procedure Enviaemail()
     begin
-/*
-        UserSetup.Get(UserId);
+        /*
+                UserSetup.Get(UserId);
 
-        SenderName := 'HAGEN';
-        Subject := 'Este relacion no existe en kiwoko: ' + D22;
-        Recipient := 'oscarraea@hotmail.com;martinjesus241@gmail.com';
-        /////- Clear(smtp);
-        /////- smtp.Run;
-        /////- smtp.CreateMessage(SenderName,SenderAddress,Recipient,Subject,Body,true);
+                SenderName := 'HAGEN';
+                Subject := 'Este relacion no existe en kiwoko: ' + D22;
+                Recipient := 'oscarraea@hotmail.com;martinjesus241@gmail.com';
+                /////- Clear(smtp);
+                /////- smtp.Run;
+                /////- smtp.CreateMessage(SenderName,SenderAddress,Recipient,Subject,Body,true);
 
-        /////- /////- smtp.AppendBody('Este relacion no existe en kiwoko: '+D22+' <BR>');
-        /////- smtp.AppendBody('<HR>');
+                /////- /////- smtp.AppendBody('Este relacion no existe en kiwoko: '+D22+' <BR>');
+                /////- smtp.AppendBody('<HR>');
 
 
-        /////- smtp.Send;
-        /////- Clear(smtp);
-        */
+                /////- smtp.Send;
+                /////- Clear(smtp);
+                */
     end;
+
     procedure PasoClie(var npedido: Code[20])
     begin
 

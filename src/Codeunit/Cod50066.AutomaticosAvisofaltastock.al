@@ -224,7 +224,7 @@ Codeunit 50066 "Automaticos Aviso falta stock"
         RecTra: Record "Shipping Agent";
         TOTALPALE: Integer;
         RecDEC: Record "Ship-to Address";
-        GetSig: Codeunit NoSeriesManagement;
+        GetSig: Codeunit "No. Series"; //V27
         expedi: Code[10];
         SalesInvHeader: Record "Sales Invoice Header";
         ChangeExchangeRate: Page "Change Exchange Rate";
@@ -269,7 +269,7 @@ Codeunit 50066 "Automaticos Aviso falta stock"
         pesoini: Decimal;
         importeree: Decimal;
         nprod: Integer;
-        CUNext: Codeunit NoSeriesManagement;
+        CUNext: Codeunit "No. Series";
         contaser: Code[20];
         NOMULTIPEDIDO: Boolean;
         "5DIGITOS": Code[5];

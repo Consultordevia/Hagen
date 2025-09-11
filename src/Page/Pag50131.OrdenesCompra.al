@@ -83,7 +83,7 @@ page 50131 "50059"
                                 IF RecItem.FindFirst() THEN BEGIN
                                     if Primero then begin
                                         Primero := false;
-                                        npedido := CuNext.DoGetNextNo(PurchasesPayablesSetup."Quote Nos.", today, true, false);
+                                        npedido := CuNext.GetNextNo(PurchasesPayablesSetup."Quote Nos.", Today, true);
                                         RecCC.INIT;
                                         RecCC."Document Type" := RecCC."Document Type"::Quote;
                                         RecCC."No." := npedido;
@@ -135,7 +135,7 @@ page 50131 "50059"
         LINEAS: Integer;
         CANTIDE: Decimal;
 
-        CuNext: Codeunit NoSeriesManagement;
+        CuNext: Codeunit "No. Series"; // v27
         npedido: Code[20];
 
 

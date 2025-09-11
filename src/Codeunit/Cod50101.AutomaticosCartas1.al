@@ -220,7 +220,7 @@ Codeunit 50101 "Automaticos Cartas1"
         RecTra: Record "Shipping Agent";
         TOTALPALE: Integer;
         RecDEC: Record "Ship-to Address";
-        GetSig: Codeunit NoSeriesManagement;
+        GetSig: Codeunit "No. Series";
         expedi: Code[10];
         SalesInvHeader: Record "Sales Invoice Header";
         ChangeExchangeRate: Page "Change Exchange Rate";
@@ -264,7 +264,7 @@ Codeunit 50101 "Automaticos Cartas1"
         pesoini: Decimal;
         importeree: Decimal;
         nprod: Integer;
-        CUNext: Codeunit NoSeriesManagement;
+        CUNext: Codeunit "No. Series";
         contaser: Code[20];
         NOMULTIPEDIDO: Boolean;
         "5DIGITOS": Code[5];
@@ -636,7 +636,7 @@ Codeunit 50101 "Automaticos Cartas1"
         RecTra: Record "Shipping Agent";
         TOTALPALE: Integer;
         RecDEC: Record "Ship-to Address";
-        GetSig: Codeunit NoSeriesManagement;
+        GetSig: Codeunit "No. Series";
         expedi: Code[10];
         SalesInvHeader: Record "Sales Invoice Header";
         ChangeExchangeRate: Page "Change Exchange Rate";
@@ -680,7 +680,7 @@ Codeunit 50101 "Automaticos Cartas1"
         pesoini: Decimal;
         importeree: Decimal;
         nprod: Integer;
-        CUNext: Codeunit NoSeriesManagement;
+        CUNext: Codeunit "No. Series";
         contaser: Code[20];
         NOMULTIPEDIDO: Boolean;
         "5DIGITOS": Code[5];

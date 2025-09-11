@@ -5,7 +5,7 @@ XmlPort 50070 "Importacion PEDIDOS KIWOKO3"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -176,7 +176,7 @@ XmlPort 50070 "Importacion PEDIDOS KIWOKO3"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecUser: Record "User Setup";
@@ -202,7 +202,7 @@ XmlPort 50070 "Importacion PEDIDOS KIWOKO3"
         codcli: Code[10];
         UserSetup: Record "User Setup";
         RelacionproductogrupoMetros: Record "Relacion producto-grupo Metros";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
 
     local procedure InitializeGlobals()
     var
@@ -303,7 +303,7 @@ XmlPort 50070 "Importacion PEDIDOS KIWOKO3"
                 RecCV."Shipping No. Series" := SalesSetup."Posted Shipment Nos.";
                 RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                 RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
-                RecCV.Validate("Your Reference" , D5);
+                RecCV.Validate("Your Reference", D5);
                 RecCV.Insert(true);
                 if obser <> '' then begin
                     if not RecLCV.Get(1, RecCV."No.", 100) then begin
@@ -320,7 +320,7 @@ XmlPort 50070 "Importacion PEDIDOS KIWOKO3"
 
             ///// D[10]:=COPYSTR(D[10],2);
             /////D10:=COPYSTR(D10,2);
-            
+
             if D10 <> '' then begin
                 if RecProd.Get(D10) then begin
                     RecProd.SetRange(RecProd."Location Filter", 'SILLA', 'SILLA');
@@ -329,7 +329,7 @@ XmlPort 50070 "Importacion PEDIDOS KIWOKO3"
                         SALE := true;
                     end;
                     if not SALE then begin
-                        if RecProd."No permite pedido"=false then begin
+                        if RecProd."No permite pedido" = false then begin
                             LINEAS := LINEAS + 10000;
                             RecLV."Document Type" := 0;
                             RecLV."Document No." := RecCV."No.";
@@ -348,38 +348,38 @@ XmlPort 50070 "Importacion PEDIDOS KIWOKO3"
                             RecLV.Validate(RecLV.Quantity, CANTIDE);
                             RecLV.Modify(true);
                         end;
-                        end;
-                    end else begin
-                        RecRefCruz.Reset;
-                        RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
-                        RecRefCruz.SetRange(RecRefCruz."Reference No.", D10);
-                        if RecRefCruz.FindFirst then begin
-                            ref := RecRefCruz."Item No.";
-                            if RecProd.Get(ref) then begin
-                                RecProd.CalcFields(RecProd.Inventory);
-                                if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
-                                    SALE := true;
+                    end;
+                end else begin
+                    RecRefCruz.Reset;
+                    RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
+                    RecRefCruz.SetRange(RecRefCruz."Reference No.", D10);
+                    if RecRefCruz.FindFirst then begin
+                        ref := RecRefCruz."Item No.";
+                        if RecProd.Get(ref) then begin
+                            RecProd.CalcFields(RecProd.Inventory);
+                            if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
+                                SALE := true;
+                            end;
+                            if not SALE then begin
+                                ///if RecProd."No permite pedido"=false then begin
+                                LINEAS := LINEAS + 10000;
+                                RecLV."Document Type" := 0;
+                                RecLV."Document No." := RecCV."No.";
+                                RecLV."Line No." := LINEAS;
+                                RecLV.Type := 2;
+                                RecLV.Validate(RecLV."No.", ref);
+                                Evaluate(CANTIDE, D14);
+                                RelacionproductogrupoMetros.Reset;
+                                RelacionproductogrupoMetros.SetRange(RelacionproductogrupoMetros.Producto, ref);
+                                ////RelacionproductogrupoMetros.SETRANGE(RelacionproductogrupoMetros."Grupo Cliente",RecCV."Grupo clientes");
+                                if RelacionproductogrupoMetros.FindSet then begin
+                                    CANTIDE := ROUND(CANTIDE / RelacionproductogrupoMetros.Metros, 0.01);
                                 end;
-                                if not SALE then begin
-                                    ///if RecProd."No permite pedido"=false then begin
-                                        LINEAS := LINEAS + 10000;
-                                        RecLV."Document Type" := 0;
-                                        RecLV."Document No." := RecCV."No.";
-                                        RecLV."Line No." := LINEAS;
-                                        RecLV.Type := 2;
-                                        RecLV.Validate(RecLV."No.", ref);
-                                        Evaluate(CANTIDE, D14);
-                                        RelacionproductogrupoMetros.Reset;
-                                        RelacionproductogrupoMetros.SetRange(RelacionproductogrupoMetros.Producto, ref);
-                                        ////RelacionproductogrupoMetros.SETRANGE(RelacionproductogrupoMetros."Grupo Cliente",RecCV."Grupo clientes");
-                                        if RelacionproductogrupoMetros.FindSet then begin
-                                            CANTIDE := ROUND(CANTIDE / RelacionproductogrupoMetros.Metros, 0.01);
-                                        end;
-                                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                        RecLV.Insert(true);
-                                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                        RecLV.Modify(true);
-                                    ///end;
+                                RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                RecLV.Insert(true);
+                                RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                RecLV.Modify(true);
+                                ///end;
 
                             end;
                         end;

@@ -137,7 +137,7 @@ XmlPort 50082 "Importacion PEDIDOS AVILA"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecUser: Record "User Setup";
@@ -163,7 +163,7 @@ XmlPort 50082 "Importacion PEDIDOS AVILA"
         codcli: Code[10];
         UserSetup: Record "User Setup";
         RelacionproductogrupoMetros: Record "Relacion producto-grupo Metros";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
         rec222: Record 222;
         Dtos: Decimal;
         NPEDIDO: Text;
@@ -251,7 +251,7 @@ XmlPort 50082 "Importacion PEDIDOS AVILA"
                 RecCV.Validate(RecCV."Shipment Date", Today);
                 RecCV."Posting Description" := 'Pedido nº ' + codacti;
                 RecCV.Validate(RecCV."Sell-to Customer No.", clie);
-                RecCV.Validate("Ship-to Code",rec222.Code);
+                RecCV.Validate("Ship-to Code", rec222.Code);
                 RecCV."Estado pedido" := 2;
                 RecCV."Usuario alta" := UserId;
                 RecCV."Fecha alta" := Today;
@@ -262,7 +262,7 @@ XmlPort 50082 "Importacion PEDIDOS AVILA"
                 RecCV."Shipping No. Series" := SalesSetup."Posted Shipment Nos.";
                 RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                 RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
-                RecCV."Permite fraccionar uni. venta":=true;
+                RecCV."Permite fraccionar uni. venta" := true;
                 RecCV.Validate("Your Reference", D1);
                 RecCV.Insert(true);
 
@@ -279,61 +279,61 @@ XmlPort 50082 "Importacion PEDIDOS AVILA"
                     end;
                     if not SALE then begin
                         ///if RecProd."No permite pedido" = false then begin
-                            LINEAS := LINEAS + 10000;
-                            RecLV."Document Type" := 0;
-                            RecLV."Document No." := codacti;
-                            RecLV."Line No." := LINEAS;
-                            RecLV.Type := 2;
-                            RecLV.Validate(RecLV."No.", D3);
-                            Evaluate(CANTIDE, D4);
-                            if CANTIDE<>0 then begin
-                                RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                RecLV.Insert(true);
-                            end;
-                            ///RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            ///RecLV.Validate(RecLV."Unit Price", Dprecio);
-                            ///RecLV.Validate(RecLV."Line Discount %", Dtos);
-                            ///RecLV.Modify(true);
+                        LINEAS := LINEAS + 10000;
+                        RecLV."Document Type" := 0;
+                        RecLV."Document No." := codacti;
+                        RecLV."Line No." := LINEAS;
+                        RecLV.Type := 2;
+                        RecLV.Validate(RecLV."No.", D3);
+                        Evaluate(CANTIDE, D4);
+                        if CANTIDE <> 0 then begin
+                            RecLV.Validate(RecLV.Quantity, CANTIDE);
+                            RecLV.Insert(true);
+                        end;
+                        ///RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        ///RecLV.Validate(RecLV."Unit Price", Dprecio);
+                        ///RecLV.Validate(RecLV."Line Discount %", Dtos);
+                        ///RecLV.Modify(true);
                         ///end;
                     end;
                 end;
-                if NOT RecProd.Get(D3) then begin                  
-                     RecRefCruz.Reset;
-                     RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
-                     RecRefCruz.SetRange(RecRefCruz."Reference No.", D3);
-                     if RecRefCruz.FindFirst then begin
-                         ref := RecRefCruz."Item No.";
-                         if RecProd.Get(ref) then begin
-                             RecProd.CalcFields(RecProd.Inventory);
-                             SALE := false;
-                             if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
-                                 SALE := true;
-                             end;
-                             if not SALE then begin
-                                 ///if RecProd."No permite pedido"=false then begin
-                                 LINEAS := LINEAS + 10000;
-                                 RecLV."Document Type" := 0;
-                                 RecLV."Document No." := codacti;
-                                 RecLV."Line No." := LINEAS;
-                                 RecLV.Type := 2;
-                                 RecLV.Validate(RecLV."No.", ref);
-                                 Evaluate(CANTIDE, D4);
-                                 ///RecLV."Customer Price Group" := '';
-                                 if CANTIDE<>0 then begin
+                if NOT RecProd.Get(D3) then begin
+                    RecRefCruz.Reset;
+                    RecRefCruz.SetCurrentkey(RecRefCruz."Reference No.");
+                    RecRefCruz.SetRange(RecRefCruz."Reference No.", D3);
+                    if RecRefCruz.FindFirst then begin
+                        ref := RecRefCruz."Item No.";
+                        if RecProd.Get(ref) then begin
+                            RecProd.CalcFields(RecProd.Inventory);
+                            SALE := false;
+                            if (RecProd."Estado Producto" <> 0) and (RecProd.Inventory = 0) then begin
+                                SALE := true;
+                            end;
+                            if not SALE then begin
+                                ///if RecProd."No permite pedido"=false then begin
+                                LINEAS := LINEAS + 10000;
+                                RecLV."Document Type" := 0;
+                                RecLV."Document No." := codacti;
+                                RecLV."Line No." := LINEAS;
+                                RecLV.Type := 2;
+                                RecLV.Validate(RecLV."No.", ref);
+                                Evaluate(CANTIDE, D4);
+                                ///RecLV."Customer Price Group" := '';
+                                if CANTIDE <> 0 then begin
                                     RecLV.Validate(RecLV.Quantity, CANTIDE);
                                     RecLV.Insert(true);
-                                 END;
-                                 ///RecLV.Validate(RecLV.Quantity, CANTIDE);
-                                 ///RecLV.Validate(RecLV."Unit Price", Dprecio);
-                                 ///RecLV.Validate(RecLV."Line Discount %", Dtos);
-                                 ///RecLV.Modify(true);
-                                 ///end;
+                                END;
+                                ///RecLV.Validate(RecLV.Quantity, CANTIDE);
+                                ///RecLV.Validate(RecLV."Unit Price", Dprecio);
+                                ///RecLV.Validate(RecLV."Line Discount %", Dtos);
+                                ///RecLV.Modify(true);
+                                ///end;
 
-                             end;
-                         end;                    
-                 end;               
-                 END;
-                 
+                            end;
+                        end;
+                    end;
+                END;
+
             end;
 
         end;

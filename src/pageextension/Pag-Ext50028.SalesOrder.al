@@ -21,7 +21,7 @@ pageextension 50028 SalesOrder extends "Sales Order"
             field(TextoWebApi; Rec.TextoWebApi) { ApplicationArea = All; }
             field("Fecha alta"; Rec."Fecha alta") { ApplicationArea = All; }
             field("Customer Disc. Group"; Rec."Customer Disc. Group") { ApplicationArea = All; }
-            field("Sell-to Customer Name 2"; Rec."Sell-to Customer Name 2") { ApplicationArea = All; }
+            // field("Sell-to Customer Name 2"; Rec."Sell-to Customer Name 2") { ApplicationArea = All; } //  already defined in Page 'Sales Order' by the extension 'Base Application by Microsoft 
             field("Observación para ALMACEN"; Rec."Observación para ALMACEN") { ApplicationArea = All; }
             field("Observación PDA"; Rec."Observación PDA") { ApplicationArea = All; }
             field("Observación para transporte"; Rec."Observación para transporte") { ApplicationArea = All; }
@@ -112,7 +112,7 @@ pageextension 50028 SalesOrder extends "Sales Order"
                     Cestacompra: Record "Cesta compra";
                     Rec91: Record "User Setup";
                     ImportacionPEDIDOSMASKOcome: XMLport "Importacion PEDIDOS MASKO-come";
-                    NoSeriesManagement: Codeunit NoSeriesManagement;
+                    NoSeriesManagement: Codeunit "No. Series"; //v27
 
 
                 begin

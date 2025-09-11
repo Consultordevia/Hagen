@@ -5,7 +5,7 @@ XmlPort 50003 "Importacion PEDIDOS catit nulo"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -222,7 +222,7 @@ XmlPort 50003 "Importacion PEDIDOS catit nulo"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series"; //v27
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecUser: Record "User Setup";
@@ -247,7 +247,7 @@ XmlPort 50003 "Importacion PEDIDOS catit nulo"
         Customer: Record Customer;
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
         NUMCLIE: Code[10];
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series"; //v27
         CODCLIE: Code[10];
         PPRECIO: Decimal;
         ShiptoAddress: Record "Ship-to Address";
@@ -445,20 +445,20 @@ XmlPort 50003 "Importacion PEDIDOS catit nulo"
                 end;
                 if RecProd.Get(CODPROD) then begin
                     ///if RecProd."No permite pedido"=false then begin
-                        LINEAS := LINEAS + 10000;
-                        RecLV."Document Type" := 1;
-                        RecLV."Document No." := RecCV."No.";
-                        RecLV."Line No." := LINEAS;
-                        RecLV.Type := 2;
-                        RecLV.Validate(RecLV."No.", CODPROD);
-                        Evaluate(CANTIDE, D26);
-                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                        RecLV.Insert(true);
-                        RecLV.Validate(RecLV.Quantity, CANTIDE);
-                        RecLV.Validate(RecLV."Customer Price Group", '');
-                        Evaluate(PPRECIO, D27);
-                        RecLV.Validate(RecLV."Unit Price", PPRECIO);
-                        RecLV.Modify(true);
+                    LINEAS := LINEAS + 10000;
+                    RecLV."Document Type" := 1;
+                    RecLV."Document No." := RecCV."No.";
+                    RecLV."Line No." := LINEAS;
+                    RecLV.Type := 2;
+                    RecLV.Validate(RecLV."No.", CODPROD);
+                    Evaluate(CANTIDE, D26);
+                    RecLV.Validate(RecLV.Quantity, CANTIDE);
+                    RecLV.Insert(true);
+                    RecLV.Validate(RecLV.Quantity, CANTIDE);
+                    RecLV.Validate(RecLV."Customer Price Group", '');
+                    Evaluate(PPRECIO, D27);
+                    RecLV.Validate(RecLV."Unit Price", PPRECIO);
+                    RecLV.Modify(true);
                     ///end;
                 end;
             end;

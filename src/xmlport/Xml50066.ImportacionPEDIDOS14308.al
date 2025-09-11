@@ -173,7 +173,7 @@ XmlPort 50066 "Importacion PEDIDOS 14308"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecUser: Record "User Setup";
@@ -198,7 +198,7 @@ XmlPort 50066 "Importacion PEDIDOS 14308"
         DD7: Code[20];
         SALTA: Boolean;
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
 
     local procedure InitializeGlobals()
     var
@@ -314,17 +314,17 @@ XmlPort 50066 "Importacion PEDIDOS 14308"
                 if RecProd.FindFirst then begin
                     if SALTA = false then begin
                         ///if RecProd."No permite pedido"=false then begin
-                            LINEAS := LINEAS + 10000;
-                            RecLV."Document Type" := 1;
-                            RecLV."Document No." := RecCV."No.";
-                            RecLV."Line No." := LINEAS;
-                            RecLV.Type := 2;
-                            RecLV.Validate(RecLV."No.", D2);
-                            Evaluate(CANTIDE, D4);
-                            RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            RecLV.Insert(true);
-                            RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            RecLV.Modify(true);
+                        LINEAS := LINEAS + 10000;
+                        RecLV."Document Type" := 1;
+                        RecLV."Document No." := RecCV."No.";
+                        RecLV."Line No." := LINEAS;
+                        RecLV.Type := 2;
+                        RecLV.Validate(RecLV."No.", D2);
+                        Evaluate(CANTIDE, D4);
+                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        RecLV.Insert(true);
+                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        RecLV.Modify(true);
                         ///end;
                     end;
                 end;

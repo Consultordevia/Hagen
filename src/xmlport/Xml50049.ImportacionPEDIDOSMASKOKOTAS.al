@@ -15,7 +15,7 @@ XmlPort 50049 "Importacion PEDIDOS MASKOKOTAS"
     FieldDelimiter = '<>';
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -150,7 +150,7 @@ XmlPort 50049 "Importacion PEDIDOS MASKOKOTAS"
         FormClie: Page "Customer Card";
         RecCVC: Record "Sales & Receivables Setup";
         NoSerie: Code[10];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         codacti: Code[10];
         RecLNS: Record "No. Series Line";
         RecUser: Record "User Setup";
@@ -176,7 +176,7 @@ XmlPort 50049 "Importacion PEDIDOS MASKOKOTAS"
         DD7: Code[20];
         SALTA: Boolean;
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
-        NoSeriesManagement: Codeunit NoSeriesManagement;
+        NoSeriesManagement: Codeunit "No. Series";
 
     local procedure InitializeGlobals()
     var
@@ -267,7 +267,7 @@ XmlPort 50049 "Importacion PEDIDOS MASKOKOTAS"
                     RecCV."Prepayment No. Series" := SalesSetup."Posted Prepmt. Inv. Nos.";
                     RecCV."Prepmt. Cr. Memo No." := SalesSetup."Posted Prepmt. Cr. Memo Nos.";
                     RecCV."Permite fraccionar uni. venta" := true;
-                    RecCV.Validate("Your Reference" , D1);
+                    RecCV.Validate("Your Reference", D1);
                     X := 0;
                     SALE := false;
                     FECHAENVIO := Today;
@@ -300,20 +300,20 @@ XmlPort 50049 "Importacion PEDIDOS MASKOKOTAS"
                 RecProd.SetFilter(ean, '*' + CopyStr(D3, 2) + '*');
                 if RecProd.FindFirst then begin
                     ///if RecProd."No permite pedido"=false then begin
-                        DD7 := RecProd."No.";
-                        if SALTA = false then begin
-                            LINEAS := LINEAS + 10000;
-                            RecLV."Document Type" := 1;
-                            RecLV."Document No." := RecCV."No.";
-                            RecLV."Line No." := LINEAS;
-                            RecLV.Type := 2;
-                            RecLV.Validate(RecLV."No.", DD7);
-                            Evaluate(CANTIDE, D4);
-                            RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            RecLV.Insert(true);
-                            RecLV.Validate(RecLV.Quantity, CANTIDE);
-                            RecLV.Modify(true);
-                        end;
+                    DD7 := RecProd."No.";
+                    if SALTA = false then begin
+                        LINEAS := LINEAS + 10000;
+                        RecLV."Document Type" := 1;
+                        RecLV."Document No." := RecCV."No.";
+                        RecLV."Line No." := LINEAS;
+                        RecLV.Type := 2;
+                        RecLV.Validate(RecLV."No.", DD7);
+                        Evaluate(CANTIDE, D4);
+                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        RecLV.Insert(true);
+                        RecLV.Validate(RecLV.Quantity, CANTIDE);
+                        RecLV.Modify(true);
+                    end;
                     ///end;
                 end;
             end;
