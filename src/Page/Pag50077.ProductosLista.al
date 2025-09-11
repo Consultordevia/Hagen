@@ -26,6 +26,10 @@ Page 50077 "Productos Lista"
                 {
                     ApplicationArea = Basic;
                 }
+                field("IVA IGIC"; Rec."IVA IGIC")
+                {
+                    ApplicationArea = Basic;
+                }
                 field("Cantidad palets"; Rec."Cantidad palets")
                 {
                     ApplicationArea = Basic;
