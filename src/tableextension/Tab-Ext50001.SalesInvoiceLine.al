@@ -198,8 +198,8 @@ tableextension 50001 SalesInvoiceLine extends "Sales Invoice Line"
         field(50316; "IVA IGIC2"; Code[10])
         {
             Caption = 'IVA IGIC2';
-            CalcFormula = lookup(Item."IVA IGIC" where("No." = field("Description 2")));
-            FieldClass = FlowField;
+            ///CalcFormula = lookup(Item."IVA IGIC" where("No." = field("Description 2")));
+            ///FieldClass = FlowField;
 
 
         }

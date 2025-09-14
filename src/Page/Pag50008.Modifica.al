@@ -1178,6 +1178,20 @@ Page 50008 Modifica
             repeat
                 Rec110."Nº bultos" := 0;
                 Rec110."Nº Palets" := 0;
+                Rec110.Tipopalet1 := tipopalet;
+                Rec110.Tipopalet2 := tipopalet2;
+                Rec110.Tipopalet3 := tipopalet3;
+                Rec110.Tipopalet4 := tipopalet4;
+                Rec110.Tipopalet5 := tipopalet5;
+                Rec110.Tipopalet6 := tipopalet6;
+                Rec110.Tipopalet7 := tipopalet7;
+                Rec110.Tipopalet8 := tipopalet8;
+                Rec110.Tipopalet9 := tipopalet9;
+                Rec110.Tipopalet10 := tipopalet10;
+
+
+
+
                 Rec110.Modify;
             until Rec110.Next = 0;
 
@@ -1261,6 +1275,13 @@ Page 50008 Modifica
                             CU50001.EtiTCORR2(Rec1102);
                         end;
                     end;
+                    if Rec110."Shipping Agent Code" = 'SCHENKER' then begin
+                        Rec1102.Reset;
+                        Rec1102.SetRange(Rec1102."No.", Rec110."No.");
+                        if Rec1102.FindSet then begin
+                            CU50001.EtiSchenker(Rec1102);
+                        end;
+                    end;
                 end;
             end;
         end;
@@ -1330,6 +1351,14 @@ Page 50008 Modifica
                             CU50001.EtiTCORR2(Rec1102);
                         end;
                     end;
+                    if Rec110."Shipping Agent Code" = 'SCHENKER' then begin
+                        Rec1102.Reset;
+                        Rec1102.SetRange(Rec1102."No.", Rec110."No.");
+                        if Rec1102.FindSet then begin
+                            CU50001.EtiSchenker(Rec1102);
+                        end;
+                    end;
+
                 end;
             end;
         end;

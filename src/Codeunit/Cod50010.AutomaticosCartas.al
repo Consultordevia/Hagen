@@ -4650,6 +4650,14 @@ OutStream.Write('Tercera línea después del salto');
         OutStream.Writetext(TextoSalida4);
         TextoSalida4 := '';
         OutStream.Writetext(TextoSalida4);
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida4 := RecTransp."Codigo Hagen";
+                OutStream.Writetext(TextoSalida4);
+
+            end;
+        END;
+
 
         /*
 01.INTRO
@@ -5181,6 +5189,13 @@ OutStream.Write('Tercera línea después del salto');
         end;
         TextoSalida4 := TEMAIL;
         OutStream.Writetext(TextoSalida4);
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida4 := RecTransp."Codigo Hagen";
+                OutStream.Writetext(TextoSalida4);
+
+            end;
+        END;
 
         /*
 1.INTRO
@@ -5346,6 +5361,14 @@ OutStream.Write('Tercera línea después del salto');
         end;
         TextoSalida4 := TEMAIL;
         OutStream.Writetext(TextoSalida4);
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida4 := RecTransp."Codigo Hagen";
+                OutStream.Writetext(TextoSalida4);
+
+            end;
+        END;
+
 
         /*
 1.INTRO
@@ -5584,6 +5607,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                   '' + ';' +
                                   '0';
 
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida5 := TextoSalida5 + ';' + RecTransp."Codigo Hagen";
+            end;
+        END;
+
 
         OutStream.Writetext(TextoSalida4 + TextoSalida5);
 
@@ -5753,6 +5782,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                '102' +
                                Format(Rec110."Ship-to Post Code", 5) +
                                TEMAIL;
+
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+            end;
+        END;
 
         OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
@@ -5947,6 +5982,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                Format(Rec110."Ship-to Post Code", 5) +
                                Format('', 5) +
                                Format(TEMAIL);
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+            end;
+        END;
+
 
         OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
@@ -6118,6 +6159,13 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                'CPT' +
                                '102' +
                                Format(Rec110."Ship-to Post Code", 5);
+
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+            end;
+        END;
+
 
         OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
@@ -6481,6 +6529,13 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                '102' +
                                Format(Format(DESNOM2) + ' ' + Format(DESNOM3), 50);
 
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+            end;
+        END;
+
+
         OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
@@ -6714,6 +6769,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                '102' +
                                Format(Rec112."Ship-to Post Code", 5);
 
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+            end;
+        END;
+
         OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
@@ -6927,6 +6988,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                Format(Rec112."Ship-to Post Code", 5) +
                                TEMAIL;
 
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida3 := TextoSalida3 + ';' + RecTransp."Codigo Hagen";
+            end;
+        END;
 
         OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
@@ -7153,6 +7219,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                Format('', 5) +
                                Format(TEMAIL);
 
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+            end;
+        END;
+
 
         OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
@@ -7350,6 +7422,13 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                'CPT' +
                                '102' +
                                Format(Format(DESNOM2) + ' ' + Format(DESNOM3), 50);
+
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+            end;
+        END;
+
 
         OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
@@ -7651,6 +7730,13 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                '102' +
                                Format(Format(DESNOM2) + ' ' + Format(DESNOM3), 50);
 
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+            end;
+        END;
+
+
         OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
@@ -7830,6 +7916,13 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                   '' + ';' +
                                   '' + ';' +
                                   '0';
+
+
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida5 := TextoSalida5 + ';' + RecTransp."Codigo Hagen";
+            end;
+        END;
 
 
         OutStream.Writetext(TextoSalida4 + TextoSalida5);
@@ -8082,6 +8175,13 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                '102' +
                                Format(Rec110."Ship-to Post Code", 5) +
                                TEMAIL;
+
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+            end;
+        END;
+
         OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
@@ -8311,6 +8411,13 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                Format(Rec110."Ship-to Post Code", 5) +
                                Format('', 5) +
                                Format(TEMAIL);
+
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+            end;
+        END;
+
         OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
@@ -8543,6 +8650,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                   '' + ';' +
                                   '0';
 
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida5 := TextoSalida5 + ';' + RecTransp."Codigo Hagen";
+            end;
+        END;
+
 
 
         OutStream.Writetext(TextoSalida4 + TextoSalida5);
@@ -8725,6 +8838,13 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                'CPT' +
                                '102' +
                                Format(Format(DESNOM2) + ' ' + Format(DESNOM3), 50);
+
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+            end;
+        END;
+
         OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
@@ -8875,6 +8995,13 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                'CPT' +
                                '102' +
                                Format(RecDEC."Post Code");
+
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+            end;
+        END;
+
         OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
@@ -9027,6 +9154,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                '102' +
                                Format(RecDEC."Post Code", 9) +
                                TEMAIL;
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+            end;
+        END;
+
         OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
@@ -9194,6 +9327,13 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                Format(RecDEC."Post Code", 5) +
                                Format('', 5) +
                                Format(TEMAIL);
+
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida3 := TextoSalida3 + ';' + RecTransp."Codigo Hagen";
+            end;
+        END;
+
         OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
 
@@ -12716,6 +12856,13 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                '102' +
                                Format(Rec110."Ship-to Post Code", 9) +
                                emailde;
+
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida3 := TextoSalida3 + ';' + RecTransp."Codigo Hagen";
+            end;
+        END;
+
         OutStream.Writetext(TextoSalida4 + TextoSalida5 + TextoSalida3);
 
         /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -14410,6 +14557,13 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                       Format(codpais, 2) +
                       Format(CODPAIES2, 2) +
                       Format(cospostat, 6);
+
+
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida4 := TextoSalida4 + RecTransp."Codigo Hagen";
+            end;
+        END;
 
 
         OutStream.Writetext(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4);
@@ -16542,6 +16696,12 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
             TextoSalida5 := Format(ShippingAgentServices."Codigo Servicio", 10) +
                       Format(ShippingAgentServices.Horario, 10);
         end;
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida5 := TextoSalida5 + RecTransp."Codigo Hagen";
+            end;
+        END;
+
 
         /*
         
@@ -16657,6 +16817,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
 
 
+
+
         ////////VENTANA.Update(1, 'TERCEROS');
         Clie.Init;
         Clie.Reset;
@@ -16764,5 +16926,758 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     end;
 
 
+    procedure EtiSchenker(var Rec: Record "Sales Shipment Header")
+    var
+        TempBlob: Codeunit "Temp Blob";
+        OutStream: OutStream;
+        FileName: Text;
+        InStream: InStream;
+        FicherosHagen: Codeunit FicherosHagen;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+        Data1: BigText;
+        Data2: BigText;
+        Data3: BigText;
+        Data4: BigText;
+        Data5: BigText;
+        OutTxt: Text;
+        RecMtU: Record Multitabla;
+        eslargo: decimal;
+        esancho: decimal;
+        esalto: decimal;
+
+    begin
+
+
+        TempBlob.CreateOutStream(OutStream);
+
+        /// Schenker
+
+        Rec110.Get(Rec."No.");
+
+
+        OutTxt := Format('NOMBRE_RECOGIDA;') +       ///1
+Format('NOMBRE_RECOGIDA_AMPLIADO;') +   ///2
+Format('DIRECCION_RECOGIDA;') + ///3
+Format('DIRECCION_RECOGIDA_AMPLIADA;') +    ///4
+Format('CODIGO_POSTAL_RECOGIDA;') + ///5
+Format('CIUDAD_RECOGIDA;') +    ///6
+Format('PAIS_RECOGIDA;') +  ///7
+Format('TELEFONO_RECOGIDA;') +  ///8
+Format('MAIL_REMITENTE;') + ///9
+Format('NOMBRE_DESTINATARIO;') +    ///10
+Format('NOMBRE_DESTINATARIO_AMPLIADO;') +   ///11
+Format('DIRECCION_DESTINATARIO;');///12
+        OutTxt := OutTxt + Format('DIRECCION_DESTINATARIO_AMPLIADA;') +    ///13
+Format('CODIGO_POSTAL_DESTINATARIO;') + ///14
+Format('CIUDAD_DESTINATARIO;') +    ///15
+Format('PAIS_DESTINATARIO;');   ///16
+        OutTxt := OutTxt + Format('TELEFONO_DESTINATARIO;') +///17
+Format('MAIL_DESTINATARIO;') +  ///18
+Format('INCOTERMS;') +  ///19
+Format('LOCALIDAD_INCOTERMS;') +    ///20
+Format('UNIDADES;') +   ///21
+Format('TIPO_BULTO;') + ///22
+Format('PESO_TOTAL;') + ///23
+Format('LARGO;') +  ///24
+Format('ANCHO;') +  ///25
+Format('ALTO;') +   ///26
+Format('VOLUMEN_TOTAL;') +  ///27
+Format('DESCRIPCION_MERCANCIA;') +  ///28
+Format('REFERENCIA_PRODUCTO;') +    ///29
+Format('REMONTABLE;') + ///30
+Format('OBSERVACIONES;');   ///31
+        OutTxt := OutTxt + Format('REFERENCIA_GENERAL;') + ///32
+Format('PRODUCTO;') +   ///33
+Format('FECHA_RECOGIDA_DESDE;') +   ///34
+Format('FECHA_RECOGIDA_HASTA;') +   ///35
+Format('FIXDAY;') + ///36
+Format('FECHA;') +  ///37
+Format('PRENOTICE_CONTACT_NAME;') + ///38
+Format('PRENOTICE_MAIL;') + ///39
+Format('CONTACT_FDTBA_NAME;') + ///40
+Format('TELEFONO_FDTBA;') + ///41
+Format('FIXDAY_TO_BE_AGREED_AUTOMATED;') +  ///42
+Format('ADUANAS;') +    ///43
+Format('VALOR_MERCANCIA;') +    ///44
+Format('VALOR_SEGURO;');    ///45
+        OutTxt := OutTxt + Format('VALOR_CONTRAREMBOLSO;') +   ///46
+Format('ADR;') +    ///47
+Format('N_BULTOS;') +   ///48
+Format('TIPO_BULTO;') + ///49
+Format('PESO;') +   ///50
+Format('UNIDAD_MEDIDA;') +  ///51
+Format('BASE_PONDERAL;') +  ///52
+Format('UN_ID;') +  ///53
+Format('N_ETIQUETA;') + ///54
+Format('GRUPO_BULTOS;') +   ///55
+Format('NOMBRE_ENVIO_ADECUADO;') +  ///56
+Format('NOMBRE_TECNICO;') + ///57
+Format('DISPOSICION_ESPECIAL;') +   ///58
+Format('CODIGO_TUNEL;') +   ///59
+Format('NEM;');///60
+        OutTxt := OutTxt + Format('TRANSPORT_CATEGORY;') + ///61
+Format('RESIDUOS;') +   ///62
+Format('CODIGO_EUROPEO_RESIDUOS;') +    ///63
+Format('CANTIDAD_EXENTA;') +    ///64
+Format('CANTIDAD_LIMITADA;') +  ///65
+Format('PELIGROSIDAD_ENTORNO;') +   ///66
+Format('EXTRA_1;') +    ///67
+Format('EXTRA_2;') +    ///68
+Format('EXTRA_3;') +    ///69
+Format('EXTRA_4;') +    ///70
+Format('EXTRA_5;') +    ///71
+Format('EXTRA_6;') +    ///72
+Format('EXTRA_7;') +    ///73
+Format('EXTRA_8;');///74
+        OutTxt := OutTxt + Format('EXTRA_9;') +    ///75
+Format('EXTRA_10;') +   ///76
+Format('EXTRA_11;') +    ///77
+Format('EXTRA_12;') +   ///78
+Format('EXTRA_13;') +   ///79
+Format('EXTRA_14;') +   ///80
+Format('EXTRA_15;') +   ///81
+Format('EXTRA_16;') +   ///82
+Format('EXTRA_17;') +   ///83
+Format('EXTRA_18;') +   ///84
+Format('EXTRA_19;') +   ///85
+Format('EXTRA_20');///86
+
+
+
+
+        OutTxt += Format(CarriageReturn) + Format(LineFeed);
+        data.AddText(OutTxt);
+
+
+
+
+        TIPO := 3;
+        BUSCAEXTENSION;
+        if Rec110."Nº expedición dropshp" = '' then begin
+            EXTEN := EXTEN + Format(Rec110."Nº expedición");
+        end;
+        if Rec110."Nº expedición dropshp" <> '' then begin
+            EXTEN := EXTEN + Format(Rec110."Nº expedición dropshp");
+        end;
+
+
+        RecCusto.Get(Rec110."Sell-to Customer No.");
+
+        DESNOMa1 := ConvertStr(CopyStr(RecCusto."Search Name", 1, 30), 'ª', '.');
+        DESNOMa1 := ConvertStr(DESNOMa1, 'º', '.');
+        DESNOMa1 := CASCII.Ascii2Ansi(DESNOMa1);
+        if Rec110."Ship-to Name" <> '' then begin
+            DESNOMa1 := ConvertStr(CopyStr(Rec110."Ship-to Name", 1, 50), 'ª', '.');
+            DESNOMa1 := ConvertStr(DESNOMa1, 'º', '.');
+            DESNOMa1 := CASCII.Ascii2Ansi(DESNOMa1);
+        end;
+        if Rec110."Ship-to Name 2" <> '' then begin
+            DESNOMa2 := ConvertStr(CopyStr(Rec110."Ship-to Name 2", 1, 50), 'ª', '.');
+            DESNOMa2 := ConvertStr(DESNOMa2, 'º', '.');
+            DESNOMa2 := CASCII.Ascii2Ansi(DESNOMa2);
+        end;
+
+
+        DESNOMa33 := CopyStr(Rec110."Ship-to Address", 1, STRLEN(Rec110."Ship-to Address")) +
+                    CopyStr(Rec110."Ship-to Address 2", 1, STRLEN(Rec110."Ship-to Address 2"));
+
+        DESNOMa3 := ConvertStr(CopyStr(DESNOMa33, 1, 100), 'ª', '.');
+        DESNOMa3 := ConvertStr(DESNOMa3, 'º', '.');
+        DESNOMa3 := CASCII.Ascii2Ansi(DESNOMa3);
+        DESNOMa4 := ConvertStr(CopyStr(Rec110."Ship-to Address 2", 1, 50), 'ª', '.');
+        DESNOMa4 := ConvertStr(DESNOMa4, 'º', '.');
+        DESNOMa4 := CASCII.Ascii2Ansi(DESNOMa4);
+
+
+        RecIE.Get;
+
+
+        NEXPE := '00000000';
+        ANO2 := '8';
+        PAISDES := 'ES';
+        PAISDES := Rec110."Ship-to Country/Region Code";
+        if Rec110."Ship-to Country/Region Code" = '' then begin
+            PAISDES := Rec110."Sell-to Country/Region Code";
+        end;
+        if PAISDES = '' then begin
+            PAISDES := 'ES';
+        end;
+
+        AA := Date2dmy(WorkDate, 3);
+        MM := Date2dmy(WorkDate, 2);
+        DD := Date2dmy(WorkDate, 1);
+        AA1 := CopyStr(Format(AA), 1, 4);
+        MM1 := Format(MM);
+        DD1 := Format(DD);
+
+        if DD1 = '0' then DD1 := '00';
+        if DD1 = '1' then DD1 := '01';
+        if DD1 = '2' then DD1 := '02';
+        if DD1 = '3' then DD1 := '03';
+        if DD1 = '4' then DD1 := '04';
+        if DD1 = '5' then DD1 := '05';
+        if DD1 = '6' then DD1 := '06';
+        if DD1 = '7' then DD1 := '07';
+        if DD1 = '8' then DD1 := '08';
+        if DD1 = '9' then DD1 := '09';
+
+        if MM1 = '0' then MM1 := '00';
+        if MM1 = '1' then MM1 := '01';
+        if MM1 = '2' then MM1 := '02';
+        if MM1 = '3' then MM1 := '03';
+        if MM1 = '4' then MM1 := '04';
+        if MM1 = '5' then MM1 := '05';
+        if MM1 = '6' then MM1 := '06';
+        if MM1 = '7' then MM1 := '07';
+        if MM1 = '8' then MM1 := '08';
+        if MM1 = '9' then MM1 := '09';
+        if MM1 = '10' then MM1 := '10';
+        if MM1 = '11' then MM1 := '11';
+        if MM1 = '12' then MM1 := '12';
+
+        TIPOSER := ' ';
+        OBSERV1 := '';
+        if Rec110."Nº expedición agrupada" <> '' then begin
+            OBSERV1 := Rec110."Nº expedición agrupada" + ' ';
+        end;
+        OBSERV1 := CopyStr(OBSERV1 + Rec110."Observación para transporte", 1, 40);
+        OBSERV1 := CopyStr(OBSERV1, 1, 40);
+
+        OBSERV2 := '';
+        if Rec110."Nº Palets" <> 0 then begin
+            OBSERV2 := 'Palets:' + Format(Rec110."Nº Palets") + '. NO DESPALETIZAR';
+        end;
+
+        NTEL2 := Format(RecCusto."Phone No.");
+        if RecCusto."Mobile Phone No." <> '' then begin
+            NTEL2 := Format(RecCusto."Mobile Phone No.");
+        end;
+        if Rec110."Envio a-Nº Telefono" <> '' then begin
+            NTEL2 := Format(Rec110."Envio a-Nº Telefono");
+        end;
+
+
+
+
+        REEMBOLSO := '';
+
+
+
+
+        TEMAIL := RecCusto."E-Mail";
+        if Rec110."E-MAIL" <> '' then begin
+            TEMAIL := Rec110."E-MAIL";
+        end;
+        SERVIRDABADO := 'N';
+        if Rec110."Servir sabado" then begin
+            SERVIRDABADO := 'S';
+        end;
+
+        RecTra.Get(Rec110."Shipping Agent Code");
+
+
+        if RecTra.Potyugal then begin
+            NTEL2 := ConvertStr(NTEL2, '+', ' ');
+        end;
+
+
+        xx := 0;
+
+        ntel3 := '';
+        repeat
+            xx := xx + 1;
+            if (CopyStr(NTEL2, xx, 1) = '0') or
+               (CopyStr(NTEL2, xx, 1) = '1') or
+               (CopyStr(NTEL2, xx, 1) = '2') or
+               (CopyStr(NTEL2, xx, 1) = '3') or
+               (CopyStr(NTEL2, xx, 1) = '4') or
+               (CopyStr(NTEL2, xx, 1) = '5') or
+               (CopyStr(NTEL2, xx, 1) = '6') or
+               (CopyStr(NTEL2, xx, 1) = '7') or
+               (CopyStr(NTEL2, xx, 1) = '8') or
+               (CopyStr(NTEL2, xx, 1) = '9') then begin
+                ntel3 := ntel3 + (CopyStr(NTEL2, xx, 1));
+            end;
+
+        until xx > StrLen(NTEL2);
+
+        NTEL2 := ntel3;
+
+
+
+        elpeso := Rec110."Total peso";
+
+        if Rec110."Total peso" = 0 then begin
+            elpeso := 0;
+            TOTALPALE := 0;
+            Rec1102.Reset;
+            Rec1102.SetCurrentkey(Rec1102."Nº expedición");
+            Rec1102.SetRange(Rec1102."Nº expedición", Rec110."Nº expedición");
+            if Rec1102.FindSet then
+                repeat
+                    TOTALPALE := TOTALPALE + Rec1102."Nº Palets";
+                    REC1112.Reset;
+                    REC1112.SetRange(REC1112."Document No.", Rec1102."No.");
+                    if REC1112.FindSet then
+                        repeat
+                            elpeso := elpeso + REC1112.Quantity * REC1112."Gross Weight";
+                        until REC1112.Next = 0;
+                until Rec1102.Next = 0;
+            if TOTALPALE <> 0 then begin
+                elpeso := elpeso + 10 * TOTALPALE;
+            end;
+        end;
+
+
+        elpeso := BuscaPesoEtiquetaEnvio(elpeso, Rec110."Shipping Agent Code", Rec110."Ship-to Post Code");
+
+
+        decre := 1;
+        if RecTra.Get(Rec110."Shipping Agent Code") then begin
+            if RecTra."Decremento kilo" <> 0 then begin
+                decre := (100 - RecTra."Decremento kilo") / 100;
+            end;
+        end;
+        elpeso := ROUND(elpeso * decre, 1);
+
+        if elpeso < 1 then begin
+            elpeso := 1;
+        end;
+
+        CODPAIES2 := '';
+        codpais := '';
+        cospostat := '';
+        /////IF Rec110."Ship-to Country/Region Code"<>'ES' THEN BEGIN
+        codpais := Rec110."Ship-to Country/Region Code";
+        CODPAIES2 := '0';
+        cospostat := Rec110."Ship-to Post Code";
+        /////END;
+        if Rec110."Ship-to Country/Region Code" = 'PT' then begin
+            codpais := 'PT';
+            ///// Rec110."Ship-to Country/Region Code";
+            CODPAIES2 := '6';
+            cospostat := CopyStr(Rec110."Ship-to Post Code", 1, 4) + CopyStr(Rec110."Ship-to Post Code", 6, 3);
+            cospostat := CopyStr(Rec110."Ship-to Post Code", 1, 4) + '-' + CopyStr(Rec110."Ship-to Post Code", 6, 3);
+        end;
+
+        RecTra.Get(Rec110."Shipping Agent Code");
+
+        totalbultos := Rec110."Nº bultos" + Rec110."Nº Palets";
+        ///MESSAGE('%1',totalbultos);
+
+
+        NEXPEDICION := Rec110."Nº expedición";
+        if Rec110."Nº expedición dropshp" <> '' then begin
+            NEXPEDICION := Rec110."Nº expedición dropshp";
+        end;
+        if Rec110.ASN <> '' then begin
+            NEXPEDICION := Rec110.ASN;
+        end;
+
+
+        TextoSalida1 := Format(DESNOMa1, 50) +
+                      Format(DESNOMa2, 50) +
+                      Format(DESNOMa3, 100);
+        /// Format(DESNOMa4, 50);
+        TextoSalida2 := Format(Rec110."Ship-to Post Code", 5) +
+                      Format(Rec110."Ship-to City", 30) +
+                      Format(Rec110."Ship-to County", 30) +
+                      Format(Rec110."Ship-to Contact", 50);
+        TextoSalida3 := Format(NTEL2, 30) +
+                      Format(NEXPEDICION + ' ' + Rec110."Your Reference", 60) +
+                      Format(NEXPEDICION, 30) +
+                      Format(Rec110."Your Reference", 30) +
+                      Format(totalbultos, 10) +
+                      Format(elpeso, 10) +
+                      Format(Rec110.Reembolso, 10);
+        if not RecTra.Potyugal then begin
+            TextoSalida4 := Format(OBSERV1, 40) +
+                          Format(OBSERV2, 40) +
+                          Format(DD1 + MM1 + AA1, 8) +
+                          Format(TEMAIL, 80) +
+                          Format(SERVIRDABADO, 1) +
+                          Format(Rec110."Importe seguro envio", 10) +
+                          Format(RecTra."Texto final fichero", 30) +
+                          Format(codpais, 2) +
+                          Format(CODPAIES2, 2) +
+                          Format(cospostat, 6);
+            TextoSalida5 := '';
+            if ShippingAgentServices.Get(Rec110."Shipping Agent Code", Rec110."Shipping Agent Service Code") then begin
+
+                TextoSalida5 := Format(ShippingAgentServices."Codigo Servicio", 10) +
+                          Format(ShippingAgentServices.Horario, 10);
+
+            end;
+
+        end;
+        if RecTra.Potyugal then begin
+            TextoSalida4 := Format(OBSERV1, 40) +
+                          Format(OBSERV2, 40) +
+                          Format(DD1 + MM1 + AA1, 8) +
+                          Format(TEMAIL, 80) +
+                          Format(SERVIRDABADO, 1) +
+                          Format(Rec110."Importe seguro envio", 10) +
+                          Format(RecTra."Texto final fichero", 30) +
+                          Format(codpais, 2) +
+                          Format(cospostat, 8);
+            TextoSalida5 := '';
+            if ShippingAgentServices.Get(Rec110."Shipping Agent Code", Rec110."Shipping Agent Service Code") then begin
+
+                TextoSalida5 := Format(' ', 1) + Format(ShippingAgentServices."Codigo Servicio", 9) +
+                          Format(ShippingAgentServices.Horario, 10);
+            end;
+
+        end;
+
+
+
+
+
+        /// 46000135-01 -> ROILF C HAGEN ESPAÑA S.A.
+        /// 46000135-02 -> CATIT.ES
+
+
+        TextoSalida6 := '';
+        TextoSalida7 := '';
+        if RecTra."Grupo clientes" <> '' then begin
+            Rec110.CalcFields("Grupo clientes");
+            if RecTra."Grupo clientes" = Rec110."Grupo clientes" then begin
+                TextoSalida6 := Format('CATIT.ES Av Beniparrel 11 Silla 46460 Valencia España');
+            end;
+        end;
+        if Rec110."Shipping Agent Code" = 'SENDING' then begin
+            if RecTra."Grupo clientes" <> '' then begin
+                TextoSalida6 := Format('46000135-01');
+                Rec110.CalcFields("Grupo clientes");
+                if RecTra."Grupo clientes" = Rec110."Grupo clientes" then begin
+                    TextoSalida6 := Format('46000135-02');
+                end;
+            end;
+
+        end;
+        /*
+        
+        Posición
+        
+        pais destino=2
+        2
+        715
+        postal destino=7
+        7
+        717
+        
+        Los codigos postales como los de Portugal hay que quitarles el espacio que tienen deben de ser numero seguidos
+        
+        */
+
+        IF REC110.Tipopalet1 <> '' THEN BEGIN
+            RecMtU.Reset;
+            RecMtU.SetRange(RecMtU.Tabla, 29);
+            RecMtU.SetRange(RecMtU.Codigo, REC110.Tipopalet1);
+            if not RecMtU.FindSet then begin
+                Error('Este tipo palet no existe');
+            end;
+            if RecMtU.FindSet then begin
+                if RecMtU.Largo <> 0 then begin
+                    eslargo := RecMtU.Largo;
+                end;
+                if RecMtU.Ancho <> 0 then begin
+                    esancho := RecMtU.Ancho;
+                end;
+                if RecMtU.Alto <> 0 then begin
+                    esalto := RecMtU.Alto;
+                end;
+            end;
+            OutTxt := OutTxt + Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 5) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
+            OutTxt := OutTxt + Format(';') + Format(';') + Format('DDP;') + Format(';') + Format(';') + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format(';') + Format(rec110."Nº expedición") + ';' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format('');
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+        end;
+        IF REC110.Tipopalet2 <> '' THEN BEGIN
+            RecMtU.Reset;
+            RecMtU.SetRange(RecMtU.Tabla, 29);
+            RecMtU.SetRange(RecMtU.Codigo, REC110.Tipopalet2);
+            if not RecMtU.FindSet then begin
+                Error('Este tipo palet no existe');
+            end;
+            if RecMtU.FindSet then begin
+                if RecMtU.Largo <> 0 then begin
+                    eslargo := RecMtU.Largo;
+                end;
+                if RecMtU.Ancho <> 0 then begin
+                    esancho := RecMtU.Ancho;
+                end;
+                if RecMtU.Alto <> 0 then begin
+                    esalto := RecMtU.Alto;
+                end;
+            end;
+            OutTxt := OutTxt + Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 5) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
+            OutTxt := OutTxt + Format(';') + Format(';') + Format('DDP;') + Format(';') + Format(';') + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format(';') + Format(rec110."Nº expedición") + ';' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format('');
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+        end;
+        IF REC110.Tipopalet3 <> '' THEN BEGIN
+            RecMtU.Reset;
+            RecMtU.SetRange(RecMtU.Tabla, 29);
+            RecMtU.SetRange(RecMtU.Codigo, REC110.Tipopalet3);
+            if not RecMtU.FindSet then begin
+                Error('Este tipo palet no existe');
+            end;
+            if RecMtU.FindSet then begin
+                if RecMtU.Largo <> 0 then begin
+                    eslargo := RecMtU.Largo;
+                end;
+                if RecMtU.Ancho <> 0 then begin
+                    esancho := RecMtU.Ancho;
+                end;
+                if RecMtU.Alto <> 0 then begin
+                    esalto := RecMtU.Alto;
+                end;
+            end;
+            OutTxt := OutTxt + Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 5) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
+            OutTxt := OutTxt + Format(';') + Format(';') + Format('DDP;') + Format(';') + Format(';') + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format(';') + Format(rec110."Nº expedición") + ';' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format('');
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+        end;
+        IF REC110.Tipopalet4 <> '' THEN BEGIN
+            RecMtU.Reset;
+            RecMtU.SetRange(RecMtU.Tabla, 29);
+            RecMtU.SetRange(RecMtU.Codigo, REC110.Tipopalet4);
+            if not RecMtU.FindSet then begin
+                Error('Este tipo palet no existe');
+            end;
+            if RecMtU.FindSet then begin
+                if RecMtU.Largo <> 0 then begin
+                    eslargo := RecMtU.Largo;
+                end;
+                if RecMtU.Ancho <> 0 then begin
+                    esancho := RecMtU.Ancho;
+                end;
+                if RecMtU.Alto <> 0 then begin
+                    esalto := RecMtU.Alto;
+                end;
+            end;
+            OutTxt := OutTxt + Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 5) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
+            OutTxt := OutTxt + Format(';') + Format(';') + Format('DDP;') + Format(';') + Format(';') + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format(';') + Format(rec110."Nº expedición") + ';' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format('');
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+        end;
+        IF REC110.Tipopalet5 <> '' THEN BEGIN
+            RecMtU.Reset;
+            RecMtU.SetRange(RecMtU.Tabla, 29);
+            RecMtU.SetRange(RecMtU.Codigo, REC110.Tipopalet5);
+            if not RecMtU.FindSet then begin
+                Error('Este tipo palet no existe');
+            end;
+            if RecMtU.FindSet then begin
+                if RecMtU.Largo <> 0 then begin
+                    eslargo := RecMtU.Largo;
+                end;
+                if RecMtU.Ancho <> 0 then begin
+                    esancho := RecMtU.Ancho;
+                end;
+                if RecMtU.Alto <> 0 then begin
+                    esalto := RecMtU.Alto;
+                end;
+            end;
+            OutTxt := OutTxt + Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 5) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
+            OutTxt := OutTxt + Format(';') + Format(';') + Format('DDP;') + Format(';') + Format(';') + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format(';') + Format(rec110."Nº expedición") + ';' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format('');
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+        end;
+        IF REC110.Tipopalet6 <> '' THEN BEGIN
+            RecMtU.Reset;
+            RecMtU.SetRange(RecMtU.Tabla, 29);
+            RecMtU.SetRange(RecMtU.Codigo, REC110.Tipopalet6);
+            if not RecMtU.FindSet then begin
+                Error('Este tipo palet no existe');
+            end;
+            if RecMtU.FindSet then begin
+                if RecMtU.Largo <> 0 then begin
+                    eslargo := RecMtU.Largo;
+                end;
+                if RecMtU.Ancho <> 0 then begin
+                    esancho := RecMtU.Ancho;
+                end;
+                if RecMtU.Alto <> 0 then begin
+                    esalto := RecMtU.Alto;
+                end;
+            end;
+            OutTxt := OutTxt + Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 5) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
+            OutTxt := OutTxt + Format(';') + Format(';') + Format('DDP;') + Format(';') + Format(';') + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format(';') + Format(rec110."Nº expedición") + ';' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format('');
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+        end;
+        IF REC110.Tipopalet7 <> '' THEN BEGIN
+            RecMtU.Reset;
+            RecMtU.SetRange(RecMtU.Tabla, 29);
+            RecMtU.SetRange(RecMtU.Codigo, REC110.Tipopalet7);
+            if not RecMtU.FindSet then begin
+                Error('Este tipo palet no existe');
+            end;
+            if RecMtU.FindSet then begin
+                if RecMtU.Largo <> 0 then begin
+                    eslargo := RecMtU.Largo;
+                end;
+                if RecMtU.Ancho <> 0 then begin
+                    esancho := RecMtU.Ancho;
+                end;
+                if RecMtU.Alto <> 0 then begin
+                    esalto := RecMtU.Alto;
+                end;
+            end;
+            OutTxt := OutTxt + Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 5) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
+            OutTxt := OutTxt + Format(';') + Format(';') + Format('DDP;') + Format(';') + Format(';') + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format(';') + Format(rec110."Nº expedición") + ';' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format('');
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+        end;
+        IF REC110.Tipopalet8 <> '' THEN BEGIN
+            RecMtU.Reset;
+            RecMtU.SetRange(RecMtU.Tabla, 29);
+            RecMtU.SetRange(RecMtU.Codigo, REC110.Tipopalet8);
+            if not RecMtU.FindSet then begin
+                Error('Este tipo palet no existe');
+            end;
+            if RecMtU.FindSet then begin
+                if RecMtU.Largo <> 0 then begin
+                    eslargo := RecMtU.Largo;
+                end;
+                if RecMtU.Ancho <> 0 then begin
+                    esancho := RecMtU.Ancho;
+                end;
+                if RecMtU.Alto <> 0 then begin
+                    esalto := RecMtU.Alto;
+                end;
+            end;
+            OutTxt := OutTxt + Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 5) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
+            OutTxt := OutTxt + Format(';') + Format(';') + Format('DDP;') + Format(';') + Format(';') + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format(';') + Format(rec110."Nº expedición") + ';' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format('');
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+        end;
+        IF REC110.Tipopalet9 <> '' THEN BEGIN
+            RecMtU.Reset;
+            RecMtU.SetRange(RecMtU.Tabla, 29);
+            RecMtU.SetRange(RecMtU.Codigo, REC110.Tipopalet9);
+            if not RecMtU.FindSet then begin
+                Error('Este tipo palet no existe');
+            end;
+            if RecMtU.FindSet then begin
+                if RecMtU.Largo <> 0 then begin
+                    eslargo := RecMtU.Largo;
+                end;
+                if RecMtU.Ancho <> 0 then begin
+                    esancho := RecMtU.Ancho;
+                end;
+                if RecMtU.Alto <> 0 then begin
+                    esalto := RecMtU.Alto;
+                end;
+            end;
+            OutTxt := OutTxt + Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 5) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
+            OutTxt := OutTxt + Format(';') + Format(';') + Format('DDP;') + Format(';') + Format(';') + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format(';') + Format(rec110."Nº expedición") + ';' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format('');
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+        end;
+        IF REC110.Tipopalet10 <> '' THEN BEGIN
+            RecMtU.Reset;
+            RecMtU.SetRange(RecMtU.Tabla, 29);
+            RecMtU.SetRange(RecMtU.Codigo, REC110.Tipopalet10);
+            if not RecMtU.FindSet then begin
+                Error('Este tipo palet no existe');
+            end;
+            if RecMtU.FindSet then begin
+                if RecMtU.Largo <> 0 then begin
+                    eslargo := RecMtU.Largo;
+                end;
+                if RecMtU.Ancho <> 0 then begin
+                    esancho := RecMtU.Ancho;
+                end;
+                if RecMtU.Alto <> 0 then begin
+                    esalto := RecMtU.Alto;
+                end;
+            end;
+            OutTxt := OutTxt + Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 5) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
+            OutTxt := OutTxt + Format(';') + Format(';') + Format('DDP;') + Format(';') + Format(';') + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format(';') + Format(rec110."Nº expedición") + ';' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format('');
+            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+            data.AddText(OutTxt);
+        end;
+
+
+
+        Sleep(3000);
+
+
+        /// Exportación a dhl
+
+        RecCE.Get;
+        /////RUTA:='\\192.168.0.225\agencias\TIPSA\';
+
+
+        RecTra.Get(Rec110."Shipping Agent Code");
+        RUTA := RecTra."Ruta fichero";
+
+
+
+
+        DAT2 := 'ETISchenker' + EXTEN + Format(ALEA) + '.CSV';
+        TempBlob.CreateInStream(InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - EtiSchenker');
+
+
+
+    end;
+
+    //"Codigo Hagen
 }
 

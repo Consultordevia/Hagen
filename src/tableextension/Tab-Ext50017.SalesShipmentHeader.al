@@ -400,6 +400,36 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
         {
             Editable = false;
         }
+        field(50801; Tipopalet1; Code[20])
+        {
+        }
+        field(50802; Tipopalet2; Code[20])
+        {
+        }
+        field(50803; Tipopalet3; Code[20])
+        {
+        }
+        field(50804; Tipopalet4; Code[20])
+        {
+        }
+        field(50805; Tipopalet5; Code[20])
+        {
+        }
+        field(50806; Tipopalet6; Code[20])
+        {
+        }
+        field(50807; Tipopalet7; Code[20])
+        {
+        }
+        field(50808; Tipopalet8; Code[20])
+        {
+        }
+        field(50809; Tipopalet9; Code[20])
+        {
+        }
+        field(50810; Tipopalet10; Code[20])
+        {
+        }
     }
 
     keys
