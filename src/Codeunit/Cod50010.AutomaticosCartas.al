@@ -5030,6 +5030,12 @@ OutStream.Write('Tercera línea después del salto');
             end;
 
         end;
+        IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
+            IF RecTransp."Codigo Hagen" <> '' THEN begin
+                TextoSalida7 := TextoSalida7 + RecTransp."Codigo Hagen";
+            end;
+        END;
+
         /*
         
         Posición
