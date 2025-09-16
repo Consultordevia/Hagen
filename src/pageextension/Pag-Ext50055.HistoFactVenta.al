@@ -101,15 +101,18 @@ pageextension 50055 HistoFactVenta extends "Posted Sales Invoices"
                 trigger OnAction()
                 var
 
-                    cu: Codeunit rellenaprepa;
+                    Rec112: Record "Sales Invoice Header";
+                    cu: Codeunit "Automaticos Cartas";
 
 
 
                 begin
 
-                    Clear(Rec."Work Description");
-                    Rec.Modify();
-
+                    Rec112.reset;
+                    Rec112.SetRange("No.", Rec."No.");
+                    IF Rec112.FindFirst() THEN begin
+                        cu.modiffact(Rec112);
+                    end;
 
 
 

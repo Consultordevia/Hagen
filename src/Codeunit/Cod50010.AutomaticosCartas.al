@@ -17675,6 +17675,8 @@ Format('EXTRA_20');///86
         RUTA := RecTra."Ruta fichero";
 
 
+        Data.Write(OutStream);
+
 
 
         DAT2 := 'ETISchenker' + EXTEN + Format(ALEA) + '.CSV';
@@ -17686,5 +17688,21 @@ Format('EXTRA_20');///86
     end;
 
     //"Codigo Hagen
+
+
+    procedure modiffact(var Rec: Record "Sales Invoice Header")
+    var
+
+
+    begin
+
+        Clear(Rec."Work Description");
+        Rec.Modify();
+
+
+
+    end;
+
+
 }
 
