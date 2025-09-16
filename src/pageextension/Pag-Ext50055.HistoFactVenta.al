@@ -89,8 +89,39 @@ pageextension 50055 HistoFactVenta extends "Posted Sales Invoices"
 
 
                 end;
+
             }
 
+            action(ModifComentario)
+            {
+
+                ApplicationArea = Suite;
+                Caption = 'ModifComentario';
+
+                trigger OnAction()
+                var
+
+                    cu: Codeunit rellenaprepa;
+
+
+
+                begin
+
+                    Clear(Rec."Work Description");
+                    Rec.Modify();
+
+
+
+
+                    Message('hecho');
+
+
+
+
+
+
+                end;
+            }
 
 
         }
