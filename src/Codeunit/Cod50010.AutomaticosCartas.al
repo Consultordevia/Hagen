@@ -4652,7 +4652,7 @@ OutStream.Write('Tercera línea después del salto');
         OutStream.Writetext(TextoSalida4);
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida4 := RecTransp."Codigo Hagen";
+                TextoSalida4 := CopyStr(RecTransp."Codigo Hagen", 1, 20);
                 OutStream.Writetext(TextoSalida4);
 
             end;
@@ -5032,7 +5032,7 @@ OutStream.Write('Tercera línea después del salto');
         end;
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida7 := TextoSalida7 + RecTransp."Codigo Hagen";
+                TextoSalida7 := TextoSalida7 + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -5197,7 +5197,7 @@ OutStream.Write('Tercera línea después del salto');
         OutStream.Writetext(TextoSalida4);
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida4 := RecTransp."Codigo Hagen";
+                TextoSalida4 := CopyStr(RecTransp."Codigo Hagen", 1, 20);
                 OutStream.Writetext(TextoSalida4);
 
             end;
@@ -5369,7 +5369,7 @@ OutStream.Write('Tercera línea después del salto');
         OutStream.Writetext(TextoSalida4);
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida4 := RecTransp."Codigo Hagen";
+                TextoSalida4 := CopyStr(RecTransp."Codigo Hagen", 1, 20);
                 OutStream.Writetext(TextoSalida4);
 
             end;
@@ -5615,7 +5615,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida5 := TextoSalida5 + ';' + RecTransp."Codigo Hagen";
+                TextoSalida5 := TextoSalida5 + ';' + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -5791,7 +5791,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+                TextoSalida3 := TextoSalida3 + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -5990,7 +5990,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                Format(TEMAIL);
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+                TextoSalida3 := TextoSalida3 + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -6168,7 +6168,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+                TextoSalida3 := TextoSalida3 + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -6537,7 +6537,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+                TextoSalida3 := TextoSalida3 + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -6777,7 +6777,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+                TextoSalida3 := TextoSalida3 + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -6996,7 +6996,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida3 := TextoSalida3 + ';' + RecTransp."Codigo Hagen";
+                TextoSalida3 := TextoSalida3 + ';' + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -7227,7 +7227,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+                TextoSalida3 := TextoSalida3 + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -7431,7 +7431,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+                TextoSalida3 := TextoSalida3 + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -7738,7 +7738,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+                TextoSalida3 := TextoSalida3 + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -7926,7 +7926,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida5 := TextoSalida5 + ';' + RecTransp."Codigo Hagen";
+                TextoSalida5 := TextoSalida5 + ';' + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -8184,7 +8184,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+                TextoSalida3 := TextoSalida3 + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -8420,7 +8420,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+                TextoSalida3 := TextoSalida3 + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -8658,7 +8658,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida5 := TextoSalida5 + ';' + RecTransp."Codigo Hagen";
+                TextoSalida5 := TextoSalida5 + ';' + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -8847,7 +8847,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+                TextoSalida3 := TextoSalida3 + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -9004,7 +9004,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+                TextoSalida3 := TextoSalida3 + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -9162,7 +9162,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                TEMAIL;
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida3 := TextoSalida3 + RecTransp."Codigo Hagen";
+                TextoSalida3 := TextoSalida3 + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -9336,7 +9336,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida3 := TextoSalida3 + ';' + RecTransp."Codigo Hagen";
+                TextoSalida3 := TextoSalida3 + ';' + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -12865,7 +12865,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida3 := TextoSalida3 + ';' + RecTransp."Codigo Hagen";
+                TextoSalida3 := TextoSalida3 + ';' + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -14567,7 +14567,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
 
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida4 := TextoSalida4 + RecTransp."Codigo Hagen";
+                TextoSalida4 := TextoSalida4 + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
@@ -16704,7 +16704,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         end;
         IF RecTransp.get(rec110."Shipping Agent Code") THEN begin
             IF RecTransp."Codigo Hagen" <> '' THEN begin
-                TextoSalida5 := TextoSalida5 + RecTransp."Codigo Hagen";
+                TextoSalida5 := TextoSalida5 + CopyStr(RecTransp."Codigo Hagen", 1, 20);
             end;
         END;
 
