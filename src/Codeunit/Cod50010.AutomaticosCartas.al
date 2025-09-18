@@ -16956,6 +16956,9 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
     begin
 
 
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
         TempBlob.CreateOutStream(OutStream);
 
         /// Schenker
@@ -17055,7 +17058,7 @@ Format('EXTRA_20');///86
 
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
-        Message('%1', OutTxt);
+        ///Message('%1', OutTxt);
 
 
 
@@ -17405,7 +17408,7 @@ Format('EXTRA_20');///86
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format('');
             OutTxt += Format(CarriageReturn) + Format(LineFeed);
             data.AddText(OutTxt);
-            Message('2 - %1', OutTxt);
+            ///    Message('2 - %1', OutTxt);
         end;
         IF REC110.Tipopalet2 <> '' THEN BEGIN
             RecMtU.Reset;
