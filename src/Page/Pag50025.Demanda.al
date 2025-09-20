@@ -807,7 +807,7 @@ Page 50025 Demanda
         if Item.FindSet then
             repeat
                 VENTANA.Update(1, '1-' + Format(Item."No."));
-                
+
                 Cdadpedcompra := 0;
                 TTOTAL := 0;
                 TTsumaofertas := 0;
@@ -830,6 +830,7 @@ Page 50025 Demanda
                     SalesLine22.SetRange("Document Type", SalesLine22."document type"::Quote);
                     SalesLine22.SetRange("No.", Item."No.");
                     SalesLine22.SetRange("Fecha alta", INTERVALOD[I], INTERVALOH[I]);
+                    SalesLine22.SetRange("Location Code", 'SILLA');
                     if SalesLine22.FindSet then
                         repeat
                             SalesLine22.CalcFields("Estado presupuesto");
@@ -849,7 +850,7 @@ Page 50025 Demanda
 
 
                 until I = 12;
-                
+
                 VENTANA.Update(2, '2-' + Format(Item."No."));
 
                 SUMACPV := 0;
@@ -858,6 +859,7 @@ Page 50025 Demanda
                 SalesLine22.SetRange("Document Type", SalesLine22."document type"::Order);
                 SalesLine22.SetRange("No.", Item."No.");
                 SalesLine22.SetFilter("Outstanding Quantity", '<>0');
+                SalesLine22.SetRange("Location Code", 'SILLA');
                 if SalesLine22.FindSet then
                     repeat
                         if SalesHeader22.Get(SalesLine22."Document Type", SalesLine22."Document No.") then begin
@@ -867,7 +869,7 @@ Page 50025 Demanda
                             end;
                         end;
                     until SalesLine22.Next = 0;
-                    
+
                 VENTANA.Update(3, '3-' + Format(Item."No."));
                 TTOTAL := TTOTAL + SUMACPV;
 
