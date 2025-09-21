@@ -1188,6 +1188,16 @@ Page 50008 Modifica
                 Rec110.Tipopalet8 := tipopalet8;
                 Rec110.Tipopalet9 := tipopalet9;
                 Rec110.Tipopalet10 := tipopalet10;
+                Rec110.Tipopaletalto1 := esalto;
+                Rec110.Tipopaletalto2 := esalto2;
+                Rec110.Tipopaletalto3 := esalto3;
+                Rec110.Tipopaletalto4 := esalto4;
+                Rec110.Tipopaletalto5 := esalto5;
+                Rec110.Tipopaletalto6 := esalto6;
+                Rec110.Tipopaletalto7 := esalto7;
+                Rec110.Tipopaletalto8 := esalto8;
+                Rec110.Tipopaletalto9 := esalto9;
+                Rec110.Tipopaletalto10 := esalto10;
 
 
 

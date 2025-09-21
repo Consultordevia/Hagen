@@ -430,6 +430,36 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
         field(50810; Tipopalet10; Code[20])
         {
         }
+        field(50811; Tipopaletalto1; Decimal)
+        {
+        }
+        field(50812; Tipopaletalto2; Decimal)
+        {
+        }
+        field(50813; Tipopaletalto3; Decimal)
+        {
+        }
+        field(50814; Tipopaletalto4; Decimal)
+        {
+        }
+        field(50815; Tipopaletalto5; Decimal)
+        {
+        }
+        field(50816; Tipopaletalto6; Decimal)
+        {
+        }
+        field(50817; Tipopaletalto7; Decimal)
+        {
+        }
+        field(50818; Tipopaletalto8; Decimal)
+        {
+        }
+        field(50819; Tipopaletalto9; Decimal)
+        {
+        }
+        field(50820; Tipopaletalto10; Decimal)
+        {
+        }
     }
 
     keys
