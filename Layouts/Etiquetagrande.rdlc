@@ -1331,8 +1331,8 @@ fgeHVghbha6tAwrCcq/ZW5QDmejFgaqSRuUmecSMjv7zb5Srfv9XuD2pqrRT3m2KtspvTrKdQeb5
         <Field Name="SalesShipmentHeaderShip_toCountry_RegionCode__SalesShipmentH">
           <DataField>SalesShipmentHeaderShip_toCountry_RegionCode__SalesShipmentH</DataField>
         </Field>
-        <Field Name="Totalbultos">
-          <DataField>Totalbultos</DataField>
+        <Field Name="Totalbultos__FORMAT_SalesShipmentHeaderTotalbultos__FORMAT_c">
+          <DataField>Totalbultos__FORMAT_SalesShipmentHeaderTotalbultos__FORMAT_c</DataField>
         </Field>
         <Field Name="Noexpedicion__SalesShipmentHeaderNoexpedicion">
           <DataField>Noexpedicion__SalesShipmentHeaderNoexpedicion</DataField>

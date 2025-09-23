@@ -14,13 +14,13 @@ tableextension 50115 SalesLine extends "Sales Line"
                 PrecioPROD: Decimal;
                 RecItemPadre: Record Item;
             begin
-                if ("Document Type" = "document type"::Order) then begin
-                    if Rec."Customer Disc. Group" = '' then begin
-                        if Type = Type::Item then begin
-                            Error('No se pueden añadir mas referencias a este pedido, devuelvalo a Presupuesto.');
-                        end;
-                    end;
-                end;
+                // if ("Document Type" = "document type"::Order) then begin
+                //     if Rec."Customer Disc. Group" = '' then begin
+                //         if Type = Type::Item then begin
+                //             Error('No se pueden añadir mas referencias a este pedido, devuelvalo a Presupuesto.');
+                //         end;
+                //     end;
+                // end;
 
                 /*SalesCommentLine.Reset;
                 SalesCommentLine.SetRange("Document Type", SalesCommentLine."document type"::DetalleProd);
