@@ -19,6 +19,7 @@ pageextension 50030 ShippingAgents extends "Shipping Agents"
             field("Cobrar portes entre empresas"; Rec."Cobrar portes entre empresas") { ApplicationArea = All; }
             field("Fichero estandar"; Rec."Fichero estandar") { ApplicationArea = All; }
             field("Link transporte"; Rec."Link transporte") { ApplicationArea = All; }
+            field("Link transporte2"; Rec."Link transporte2") { ApplicationArea = All; }
             field("Añadir"; Rec."Añadir") { ApplicationArea = All; }
             field("Texto final fichero"; Rec."Texto final fichero") { ApplicationArea = All; }
             field("Super Urgente"; Rec."Super Urgente") { ApplicationArea = All; }

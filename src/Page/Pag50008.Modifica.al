@@ -1212,6 +1212,27 @@ Page 50008 Modifica
             repeat
                 Rec110."Nº bultos" := 0;
                 Rec110."Nº Palets" := 0;
+                Rec110.Tipopalet1 := tipopalet;
+                Rec110.Tipopalet2 := tipopalet2;
+                Rec110.Tipopalet3 := tipopalet3;
+                Rec110.Tipopalet4 := tipopalet4;
+                Rec110.Tipopalet5 := tipopalet5;
+                Rec110.Tipopalet6 := tipopalet6;
+                Rec110.Tipopalet7 := tipopalet7;
+                Rec110.Tipopalet8 := tipopalet8;
+                Rec110.Tipopalet9 := tipopalet9;
+                Rec110.Tipopalet10 := tipopalet10;
+                Rec110.Tipopaletalto1 := esalto;
+                Rec110.Tipopaletalto2 := esalto2;
+                Rec110.Tipopaletalto3 := esalto3;
+                Rec110.Tipopaletalto4 := esalto4;
+                Rec110.Tipopaletalto5 := esalto5;
+                Rec110.Tipopaletalto6 := esalto6;
+                Rec110.Tipopaletalto7 := esalto7;
+                Rec110.Tipopaletalto8 := esalto8;
+                Rec110.Tipopaletalto9 := esalto9;
+                Rec110.Tipopaletalto10 := esalto10;
+
                 Rec110.Modify;
             until Rec110.Next = 0;
 
@@ -1232,6 +1253,27 @@ Page 50008 Modifica
             Rec110.Volumen := sumavolT;
             Rec110."Observación para transporte" := Observacion;
             Rec110.ASN := CASN;
+            Rec110.Tipopalet1 := tipopalet;
+            Rec110.Tipopalet2 := tipopalet2;
+            Rec110.Tipopalet3 := tipopalet3;
+            Rec110.Tipopalet4 := tipopalet4;
+            Rec110.Tipopalet5 := tipopalet5;
+            Rec110.Tipopalet6 := tipopalet6;
+            Rec110.Tipopalet7 := tipopalet7;
+            Rec110.Tipopalet8 := tipopalet8;
+            Rec110.Tipopalet9 := tipopalet9;
+            Rec110.Tipopalet10 := tipopalet10;
+            Rec110.Tipopaletalto1 := esalto;
+            Rec110.Tipopaletalto2 := esalto2;
+            Rec110.Tipopaletalto3 := esalto3;
+            Rec110.Tipopaletalto4 := esalto4;
+            Rec110.Tipopaletalto5 := esalto5;
+            Rec110.Tipopaletalto6 := esalto6;
+            Rec110.Tipopaletalto7 := esalto7;
+            Rec110.Tipopaletalto8 := esalto8;
+            Rec110.Tipopaletalto9 := esalto9;
+            Rec110.Tipopaletalto10 := esalto10;
+
             Rec110.Modify;
             commit;
             if RecTra.Get(CODTRAS) then begin
@@ -1309,6 +1351,27 @@ Page 50008 Modifica
             Rec110.Volumen := sumavolT;
             Rec110."Observación para transporte" := Observacion;
             Rec110.ASN := CASN;
+            Rec110.Tipopalet1 := tipopalet;
+            Rec110.Tipopalet2 := tipopalet2;
+            Rec110.Tipopalet3 := tipopalet3;
+            Rec110.Tipopalet4 := tipopalet4;
+            Rec110.Tipopalet5 := tipopalet5;
+            Rec110.Tipopalet6 := tipopalet6;
+            Rec110.Tipopalet7 := tipopalet7;
+            Rec110.Tipopalet8 := tipopalet8;
+            Rec110.Tipopalet9 := tipopalet9;
+            Rec110.Tipopalet10 := tipopalet10;
+            Rec110.Tipopaletalto1 := esalto;
+            Rec110.Tipopaletalto2 := esalto2;
+            Rec110.Tipopaletalto3 := esalto3;
+            Rec110.Tipopaletalto4 := esalto4;
+            Rec110.Tipopaletalto5 := esalto5;
+            Rec110.Tipopaletalto6 := esalto6;
+            Rec110.Tipopaletalto7 := esalto7;
+            Rec110.Tipopaletalto8 := esalto8;
+            Rec110.Tipopaletalto9 := esalto9;
+            Rec110.Tipopaletalto10 := esalto10;
+
             Rec110.Modify;
             if RecTra.Get(CODTRAS) then begin
                 if RecTra."Fichero estandar" = true then begin

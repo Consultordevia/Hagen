@@ -17167,7 +17167,9 @@ Format('EXTRA_20');///86
             NTEL2 := Format(Rec110."Envio a-Nº Telefono");
         end;
 
-
+        if CopyStr(NTEL2, 1, 1) = '+' then begin
+            NTEL2 := CopyStr(NTEL2, 4);
+        end;
 
 
         REEMBOLSO := '';
@@ -17346,6 +17348,7 @@ Format('EXTRA_20');///86
 
         /// 46000135-01 -> ROILF C HAGEN ESPAÑA S.A.
         /// 46000135-02 -> CATIT.ES
+        elpeso := Rec110."Total peso";
 
 
         TextoSalida6 := '';
@@ -17381,6 +17384,7 @@ Format('EXTRA_20');///86
         
         */
 
+
         IF REC110.Tipopalet1 <> '' THEN BEGIN
             eslargo := 0;
             esancho := 0;
@@ -17402,9 +17406,9 @@ Format('EXTRA_20');///86
                     esalto := Rec110.Tipopaletalto1;
                 end;
             end;
-            OutTxt := Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := Format('Hagen Espana;') + Format('Rolf C hagen Espana SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
             OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 10) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
-            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to City", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to County", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
             OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
@@ -17434,9 +17438,9 @@ Format('EXTRA_20');///86
                     esalto := Rec110.Tipopaletalto2;
                 end;
             end;
-            OutTxt := Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := Format('Hagen Espana;') + Format('Rolf C hagen Espana SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
             OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 10) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
-            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to City", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to County", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
             OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
@@ -17465,9 +17469,9 @@ Format('EXTRA_20');///86
                     esalto := Rec110.Tipopaletalto3;
                 end;
             end;
-            OutTxt := Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := Format('Hagen Espana;') + Format('Rolf C hagen Espana SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
             OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 10) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
-            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to City", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to County", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
             OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
@@ -17496,9 +17500,9 @@ Format('EXTRA_20');///86
                     esalto := Rec110.Tipopaletalto4;
                 end;
             end;
-            OutTxt := Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := Format('Hagen Espana;') + Format('Rolf C hagen Espana SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
             OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 10) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
-            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to City", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to County", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
             OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
@@ -17527,9 +17531,9 @@ Format('EXTRA_20');///86
                     esalto := Rec110.Tipopaletalto5;
                 end;
             end;
-            OutTxt := Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := Format('Hagen Espana;') + Format('Rolf C hagen Espana SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
             OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 10) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
-            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to City", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to County", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
             OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
@@ -17558,9 +17562,9 @@ Format('EXTRA_20');///86
                     esalto := Rec110.Tipopaletalto6;
                 end;
             end;
-            OutTxt := Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := Format('Hagen Espana;') + Format('Rolf C hagen Espana SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
             OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 10) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
-            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to City", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to County", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
             OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
@@ -17589,9 +17593,9 @@ Format('EXTRA_20');///86
                     esalto := Rec110.Tipopaletalto7;
                 end;
             end;
-            OutTxt := Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := Format('Hagen Espana;') + Format('Rolf C hagen Espana SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
             OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 10) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
-            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to City", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to County", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
             OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
@@ -17620,9 +17624,9 @@ Format('EXTRA_20');///86
                     esalto := Rec110.Tipopaletalto8;
                 end;
             end;
-            OutTxt := Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := Format('Hagen Espana;') + Format('Rolf C hagen Espana SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
             OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 10) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
-            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to City", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to County", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
             OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
@@ -17651,9 +17655,9 @@ Format('EXTRA_20');///86
                     esalto := Rec110.Tipopaletalto9;
                 end;
             end;
-            OutTxt := Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := Format('Hagen Espana;') + Format('Rolf C hagen Espana SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
             OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 10) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
-            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to City", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to County", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
             OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
@@ -17682,9 +17686,9 @@ Format('EXTRA_20');///86
                     esalto := Rec110.Tipopaletalto10;
                 end;
             end;
-            OutTxt := Format('Hagen España;') + Format('Rolf C hagen España SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
+            OutTxt := Format('Hagen Espana;') + Format('Rolf C hagen Espana SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
             OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 10) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
-            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to City", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to County", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
             OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');

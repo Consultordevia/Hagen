@@ -558,6 +558,8 @@ Page 50102 "Albaranes dia-3"
                                 if RecTra.Añadir = 2 then
                                     paginaweb := paginaweb + Format(codexpe) + '/' +
             Format(codigopostal);
+                                if RecTra.Añadir = RecTra."Añadir"::"En Medio" then
+                                    paginaweb := paginaweb + Format(codexpe) + RecTra."Link transporte2";
 
                                 Hyperlink(paginaweb);
                             end;
@@ -715,8 +717,8 @@ Page 50102 "Albaranes dia-3"
                 begin
 
                     Clear(Lineasalbaranexpedicion);
-                    Lineasalbaranexpedicion.Run;                     
-                      
+                    Lineasalbaranexpedicion.Run;
+
                 end;
             }
         }

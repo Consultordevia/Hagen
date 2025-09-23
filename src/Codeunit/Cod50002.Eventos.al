@@ -889,11 +889,7 @@ codeunit 50002 Eventos
                                 Format(nexpefinal) +
                                 Format(SalesShptHeader."Ship-to Post Code");
                 end;
-                if SalesShptHeader."Shipping Agent Code" = 'SCHENKER' then begin
-                    PAGINAWEB := 'https://www.dbschenker.com/app/tracking-public/?refNumber=' +
-                                Format(nexpefinal) +
-                                '&language_region=es-ES_ES';
-                end;
+
                 SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
                 SalesShptHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
                 SalesShptHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
@@ -911,15 +907,20 @@ codeunit 50002 Eventos
                 if RecTransp.Añadir = 3 then
                     PAGINAWEB := PAGINAWEB + Format(nexpefinal) +
                         Format(Date2DMY(SalesShptHeader."Posting Date", 3));
+                if RecTransp.Añadir = RecTransp."Añadir"::"En Medio" then
+                    PAGINAWEB := PAGINAWEB + Format(nexpefinal) + RecTransp."Link transporte2";
+
+
+
+
                 if RecTransp.Añadir = RecTransp.Añadir::"Nº Seguimiento" then begin
                     PAGINAWEB := PAGINAWEB + SalesShptHeader."Numero segumiento";
                 end;
 
-                if SalesShptHeader."Shipping Agent Code" = 'SCHENKER' then begin
-                    PAGINAWEB := 'https://www.dbschenker.com/app/tracking-public/?refNumber=' +
-                                Format(nexpefinal) +
-                                '&language_region=es-ES_ES';
-                end;
+                if RecTransp.Añadir = RecTransp."Añadir"::"En Medio" then
+                    PAGINAWEB := PAGINAWEB + Format(nexpefinal) + RecTransp."Link transporte2";
+
+
 
 
                 SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);

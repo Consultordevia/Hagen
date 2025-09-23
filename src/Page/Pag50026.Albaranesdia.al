@@ -410,6 +410,9 @@ Page 50026 "Albaranes dia"
                             if RecTra.Añadir = 2 then
                                 paginaweb := paginaweb + Format(Rec."Nº expedición") + '/' +
         Format(Rec."Ship-to Post Code");
+                            if RecTra.Añadir = RecTra."Añadir"::"En Medio" then
+                                paginaweb := paginaweb + Format(Rec."Nº expedición") + RecTra."Link transporte2";
+
 
                             Hyperlink(paginaweb);
 

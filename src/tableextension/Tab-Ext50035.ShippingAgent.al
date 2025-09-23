@@ -34,8 +34,8 @@ tableextension 50035 ShippingAgent extends "Shipping Agent"
         }
         field(50010; "Añadir"; Option)
         {
-            OptionCaption = 'Nº expedicion,Nº expedicion+Cod. postal ,Nº expedicion/Cod. postal,Nº expedicion+Año,Nº Seguimiento,CodBarras';
-            OptionMembers = "Nº expedicion","Nº expedicion+Cod. postal ","Nº expedicion/Cod. postal","Nº expedicion+Año","Nº Seguimiento","CodBarras";
+            OptionCaption = 'Nº expedicion,Nº expedicion+Cod. postal ,Nº expedicion/Cod. postal,Nº expedicion+Año,Nº Seguimiento,CodBarras,En Medio';
+            OptionMembers = "Nº expedicion","Nº expedicion+Cod. postal ","Nº expedicion/Cod. postal","Nº expedicion+Año","Nº Seguimiento","CodBarras","En Medio";
         }
         field(50011; "Texto final fichero"; Text[30])
         {
@@ -92,7 +92,10 @@ tableextension 50035 ShippingAgent extends "Shipping Agent"
         }
         field(50031; NombreCarrier; Code[50])
         {
-
         }
+        field(50032; "Link transporte2"; Text[250])
+        {
+        }
+
     }
 }
