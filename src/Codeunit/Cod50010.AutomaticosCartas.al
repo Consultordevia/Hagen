@@ -17389,6 +17389,7 @@ Format('EXTRA_20');///86
             eslargo := 0;
             esancho := 0;
             esalto := 0;
+            esalto := Rec110.Tipopaletalto1;
             RecMtU.Reset;
             RecMtU.SetRange(RecMtU.Tabla, 29);
             RecMtU.SetRange(RecMtU.Codigo, REC110.Tipopalet1);
@@ -17402,13 +17403,10 @@ Format('EXTRA_20');///86
                 if RecMtU.Ancho <> 0 then begin
                     esancho := RecMtU.Ancho;
                 end;
-                if RecMtU.Alto <> 0 then begin
-                    esalto := Rec110.Tipopaletalto1;
-                end;
             end;
             OutTxt := Format('Hagen Espana;') + Format('Rolf C hagen Espana SA;') + Format('Av. Beniparrel 11 y 13 ;') + Format(';') + Format('46460;Silla;') + Format('ES;') + Format('961200945;') + Format('ventas@hagen.es;') + Format(DESNOMa1) + Format(DESNOMa2) + ';' + Format(';') + Format(DESNOMa3) + ';';
             OutTxt := OutTxt + format(';') + Format(Rec110."Ship-to Post Code", 10) + ';' + Format(Rec110."Ship-to City", 30) + ';' + Format(rec110."Ship-to Country/Region Code") + ';';
-            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to County", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + 'NO;' + Format(';') + Format(';');
+            OutTxt := OutTxt + Format(NTEL2) + Format(';') + Format(TEMAIL) + Format(';') + Format('DDP;') + Format(Rec110."Ship-to County", 30) + Format(';') + Format('1;') + Format('Palet;') + format(elpeso) + Format(';') + Format(eslargo) + ';' + Format(esancho) + ';' + Format(esalto) + ';' + Format(';') + Format('Producto para Mascotas;') + Format(rec110."Nº expedición") + ';NO;' + Format(';');/// + Format(';');
             OutTxt := OutTxt + Format(Rec110."Your Reference") + ';' + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
             OutTxt := OutTxt + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';') + Format(';');
