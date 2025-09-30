@@ -14,7 +14,7 @@ Table 50005 Multitabla
         field(2; "Codigo"; Code[10])
         {
         }
-        field(3; "Descripcion"; Text[50])
+        field(3; "Descripcion"; Text[100])
         {
         }
         field(4; Ok; Boolean)
