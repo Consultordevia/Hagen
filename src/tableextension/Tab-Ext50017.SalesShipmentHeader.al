@@ -307,7 +307,7 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
         field(50254; "Hora entrega"; Code[20])
         {
         }
-        field(50255; "Numero segumiento"; Code[20])
+        field(50255; "Numero segumiento"; Code[40])
         {
         }
         field(50256; "Total horas"; Decimal)
