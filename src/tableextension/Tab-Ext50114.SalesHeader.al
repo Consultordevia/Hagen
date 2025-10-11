@@ -290,24 +290,23 @@ tableextension 50114 SalesHeader extends "Sales Header"
                 end;
 
                 if "Estado pedido" = 1 then begin
-                    /*
-                                        if Rec."Respeta agencia transporte" = false then begin
-                                            BuscaOptimo;
-                                        end;
-                                        if Rec."Respeta agencia transporte" = true then begin
-                                            CODAGENRESPE := "Shipping Agent Code";
-                                            BuscaOptimo;
-                                            Rec89.Reset;
-                                            Rec89.SetRange(Rec89."Parent Item No.", "No.");
-                                            Rec89.SetRange(Rec89."Cod. transportista", CODAGENRESPE);
-                                            if Rec89.FindFirst then begin
-                                                "Importe optimo transporte" := Rec89.Euros;
-                                                Validate("Shipping Agent Code", CODAGENRESPE);
-                                                Modify;
-                                                Commit;
-                                            end;
-                                        end;
-                                        */
+
+                    if Rec."Respeta agencia transporte" = false then begin
+                        BuscaOptimo;
+                    end;
+                    if Rec."Respeta agencia transporte" = true then begin
+                        CODAGENRESPE := "Shipping Agent Code";
+                        BuscaOptimo;
+                        Rec89.Reset;
+                        Rec89.SetRange(Rec89."Parent Item No.", "No.");
+                        Rec89.SetRange(Rec89."Cod. transportista", CODAGENRESPE);
+                        if Rec89.FindFirst then begin
+                            "Importe optimo transporte" := Rec89.Euros;
+                            Validate("Shipping Agent Code", CODAGENRESPE);
+                            Modify;
+                            Commit;
+                        end;
+                    end;
 
                 end;
 
@@ -1111,111 +1110,6 @@ tableextension 50114 SalesHeader extends "Sales Header"
         Rec89: Record "BOM Component";
     begin
 
-
-        /*
-        codpedido:="No.";
-        
-        
-             Rec89.RESET;
-             Rec89.SETRANGE(Rec89."Parent Item No.",codpedido);
-             IF Rec89.FINDFIRST THEN REPEAT
-                  Rec89.DELETE;
-             UNTIL Rec89.NEXT=0;
-        
-        
-             PESO:=0;
-             VOL:=0;
-        
-             CLEAR(PORVOL);
-             RecLV3.RESET;
-             RecLV3.SETRANGE(RecLV3."Document Type",1);
-             RecLV3.SETRANGE(RecLV3."Document No.",codpedido);
-             IF RecLV3.FINDFIRST THEN REPEAT
-                  PESO:=PESO+RecLV3."Gross Weight"*RecLV3.Quantity;
-                  VOL:=VOL+RecLV3."Unit Volume"*RecLV3.Quantity;
-             UNTIL RecLV3.NEXT=0;
-             pesoini:=PESO;
-             codtrasopti:='';
-             IMPOP:=999999;
-        
-        
-        
-             RecTrans.RESET;
-             IF RecTrans.FINDFIRST THEN REPEAT
-                  IMPORTEPORTE:=0;
-                  RecCP.RESET;
-                  RecCP.SETRANGE(RecCP.Code,Rec."Ship-to Post Code");
-                  IF RecCP.FINDFIRST THEN BEGIN
-                       CODPROV:=RecCP."County Code";
-                       PORVOL[1]:=VOL*RecTrans."Conversion Volumen/kilos";
-                       pesol:=PESO;
-                       IF PORVOL[1]>PESO THEN BEGIN
-                            pesol:=PORVOL[1];
-                       END;
-                       PESCAL[1]:=0;
-                       PRECIOOPTIO:=0;
-                       RecMT3.RESET;
-                       RecMT3.SETRANGE(RecMT3.Tabla,2);
-                       RecMT3.SETRANGE(RecMT3."Transportista-Cliente",RecTrans.Code);
-                       RecMT3.SETRANGE(RecMT3.Provincia,CODPROV);
-                       IF RecMT3.FINDFIRST THEN BEGIN
-                            RecMT3.RESET;
-                            RecMT4.SETRANGE(RecMT4.Tabla,3);
-                            RecMT4.SETRANGE(RecMT4."Transportista tarifa",RecTrans.Code);
-                            RecMT4.SETRANGE(RecMT4."Zona tarifa",RecMT3."Zona transportistas-Cliente");
-                            RecMT4.SETRANGE(RecMT4."Hasta Kilos",pesol,99999999);
-                            IF RecMT4.FINDFIRST THEN BEGIN
-                                PRECIOOPTIO:=RecMT4.Precio;
-                                PESCAL[1]:=RecMT4."Hasta Kilos";
-                            END;
-                       END;
-                       IF PORVOL[1]>0 THEN BEGIN
-                            Rec89.INIT;
-                            Rec89."Parent Item No.":=codpedido;
-                            LIN:=LIN+10000;
-                            Rec89."Line No.":=LIN;
-                            Rec89."Cod. transportista":=RecTrans.Code;
-                            Rec89.Pesos:=pesoini;
-                            Rec89."Kilos/vol":=PORVOL[1];
-                            Rec89."Kilos/tarifa":=PESCAL[1];
-                            Rec89.Euros:=PRECIOOPTIO;
-                            IF PRECIOOPTIO>0 THEN BEGIN
-                                 IF IMPOP>PRECIOOPTIO THEN BEGIN
-                                      codtrasopti:=RecTrans.Code;
-                                      IMPOP:=PRECIOOPTIO;
-                                 END;
-                            END;
-                            Rec89.INSERT;
-                       END;
-                  END;
-             UNTIL RecTrans.NEXT=0;
-             Rec89.RESET;
-             Rec89.SETRANGE(Rec89."Parent Item No.",codpedido);
-             IF Rec89.FINDFIRST THEN REPEAT
-                  IF Rec89."Cod. transportista"=codtrasopti THEN BEGIN
-                       Rec89.Optimo:=TRUE;
-                       Rec89.MODIFY;
-                  END;
-             UNTIL Rec89.NEXT=0;
-        
-        
-        
-        
-        
-             IF Rec."Respeta agencia transporte"=FALSE THEN BEGIN
-                  Rec89.RESET;
-                  Rec89.SETRANGE(Rec89."Parent Item No.",codpedido);
-                  Rec89.SETRANGE(Rec89.Optimo,TRUE);
-                  IF Rec89.FINDFIRST THEN BEGIN
-                       "Importe optimo transporte":=Rec89.Euros;
-                       VALIDATE("Shipping Agent Code",Rec89."Cod. transportista");
-                       MODIFY;
-                  END;
-             END;
-        
-        
-        
-        */
 
 
 
