@@ -17,6 +17,9 @@ page 50114 CamposLevel
                 field("No."; Rec."No.")
                 {
                 }
+                field("Item Disc. Group"; Rec."Item Disc. Group")
+                {
+                }
                 field(Level1; Rec.Level1)
                 {
                 }
@@ -35,44 +38,45 @@ page 50114 CamposLevel
                 field("Descripcion web"; Rec."Descripcion web")
                 {
                 }
-                field(Etiquetas1;Rec.Etiquetas1)
+                field(Etiquetas1; Rec.Etiquetas1)
                 {
                 }
-                field(Etiquetas2;Rec.Etiquetas2)
-                {                                   
+                field(Etiquetas2; Rec.Etiquetas2)
+                {
                 }
-                field(Etiquetas3;Rec.Etiquetas3)
-                {                       
+                field(Etiquetas3; Rec.Etiquetas3)
+                {
                 }
-                field(Etiquetas4;Rec.Etiquetas4)
-                {                                  
+                field(Etiquetas4; Rec.Etiquetas4)
+                {
                 }
-                field(Etiquetas5;Rec.Etiquetas5)
-                {                                   
+                field(Etiquetas5; Rec.Etiquetas5)
+                {
                 }
-                field(Etiquetas6;Rec.Etiquetas6)
-                {                                   
+                field(Etiquetas6; Rec.Etiquetas6)
+                {
                 }
-                field(Gama;Rec.Gama)
-                {                                   
+                field(Gama; Rec.Gama)
+                {
                 }
                 field("Producto web"; Rec."Producto web")
-                {                                   
+                {
                 }
-                field("Unidades venta";Rec."Unidades venta")
-                {                                   
+                field("Unidades venta"; Rec."Unidades venta")
+                {
                 }
-                field("Stock para Catit";Rec."Stock para Catit")
-                {                                   
+                field("Stock para Catit"; Rec."Stock para Catit")
+                {
                 }
-                field(ean;Rec.ean)
-                {                                   
+                field(ean; Rec.ean)
+                {
                 }
-                field(GTIN;Rec.GTIN)
-                {                                   
+                field(GTIN; Rec.GTIN)
+                {
                 }
-                
-                
+
+
+
 
 
 
