@@ -3,6 +3,23 @@ pageextension 50028 SalesOrder extends "Sales Order"
     layout
     {
 
+        addafter(SalesLines)
+        {
+
+
+            part(Optimo; "Detalle transoportista pedido")
+            {
+                ApplicationArea = Basic, Suite;
+                Editable = false;
+                Enabled = true;
+                SubPageLink = "Parent Item No." = field("No.");
+                UpdatePropagation = Both;
+            }
+        }
+
+
+
+
         addafter("Ship-to Address 2")
         {
 

@@ -1,5 +1,13 @@
 tableextension 50114 SalesHeader extends "Sales Header"
 {
+
+
+
+
+
+
+
+
     // VER  cesta compra
     fields
     {
@@ -1021,6 +1029,8 @@ tableextension 50114 SalesHeader extends "Sales Header"
         {
             Editable = false;
         }
+
+
 
     }
 
