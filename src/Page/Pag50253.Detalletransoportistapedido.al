@@ -171,6 +171,8 @@ Page 50253 "Detalle transoportista pedido"
         pesol: Decimal;
         RecLST: Record "Shipping Agent Services";
         textoser: Text[30];
+        ProductoFRAGIL: Boolean;
+        SuperUrgente: Boolean;
 
 
     procedure ACTUALIZA()
@@ -192,6 +194,7 @@ Page 50253 "Detalle transoportista pedido"
         VOL := 0;
 
         Clear(PORVOL);
+        ProductoFRAGIL := false;
         RecLV3.Reset;
         RecLV3.SetRange(RecLV3."Document Type", 1);
         RecLV3.SetRange(RecLV3."Document No.", codpedido);
@@ -199,6 +202,11 @@ Page 50253 "Detalle transoportista pedido"
             repeat
                 PESO := PESO + RecLV3."Gross Weight" * RecLV3.Quantity;
                 VOL := VOL + RecLV3."Unit Volume" * RecLV3.Quantity;
+                IF RecProd.GET(RecLV3."No.") THEN begin
+                    IF RecProd."Producto FRAGIL" THEN begin
+                        ProductoFRAGIL := TRUE;
+                    end;
+                end;
             until RecLV3.Next = 0;
         pesoini := PESO;
         codtrasopti := '';
@@ -206,7 +214,20 @@ Page 50253 "Detalle transoportista pedido"
 
 
         RecCV.Get(1, codpedido);
+        SuperUrgente := false;
+        IF RecCV."Super urgente" THEN begin
+            IF ProductoFRAGIL = false THEN begin
+                SuperUrgente := true;
+            end;
+        end;
         RecTrans.Reset;
+        IF ProductoFRAGIL THEN begin
+            RecTrans.SetRange(TipoTransporte, RecTrans.TipoTransporte::Pallets);
+        end;
+        IF SuperUrgente THEN begin
+            RecTrans.SetRange(TipoTransporte, RecTrans.TipoTransporte::Urgente);
+        end;
+
         if RecTrans.FindFirst then
             repeat
                 IMPORTEPORTE := 0;

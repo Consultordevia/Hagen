@@ -4,6 +4,8 @@ pageextension 50030 ShippingAgents extends "Shipping Agents"
     {
         addafter("Name")
         {
+
+            field(TipoTransporte; Rec.TipoTransporte) { ApplicationArea = All; }
             field(NombreCarrier; Rec.NombreCarrier) { ApplicationArea = All; }
             field("IDTRANS SCAC. EDICOM"; Rec."IDTRANS SCAC. EDICOM") { ApplicationArea = All; }
             field("ETAPATRANS EDICON"; Rec."ETAPATRANS EDICON") { ApplicationArea = All; }

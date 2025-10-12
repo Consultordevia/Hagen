@@ -96,6 +96,11 @@ tableextension 50035 ShippingAgent extends "Shipping Agent"
         field(50032; "Link transporte2"; Text[250])
         {
         }
+        field(50033; TipoTransporte; Option)
+        {
+            OptionCaption = 'Urgente,No urgente,Pallets';
+            OptionMembers = "Urgente","No urgente","Pallets";
+        }
 
     }
 }

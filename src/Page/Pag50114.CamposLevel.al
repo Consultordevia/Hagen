@@ -20,6 +20,10 @@ page 50114 CamposLevel
                 field("Item Disc. Group"; Rec."Item Disc. Group")
                 {
                 }
+                field("Producto FRAGIL"; Rec."Producto FRAGIL")
+                {
+                }
+
                 field(Level1; Rec.Level1)
                 {
                 }
