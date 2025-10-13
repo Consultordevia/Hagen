@@ -1413,13 +1413,335 @@ Page 50099 "Pantalla almacen Pascual5"
         RecItem2: Record Item;
 
 
+    /*
+        local procedure EnviaraADAIA()    
+        var
+            AutomaticosAdaia: Codeunit "Automaticos Cartas";
+            SalesHeader: Record "Sales Header";
+            LogAdaiaPedidos: Record LogAdaiaPedidos;
+            LogAdaiaFicheros: Record LogFicherosAdaia;
+        begin
+            // Commit;  -- ELIMINADO (commit intermedio)
+
+            contadordeagrup := '0';
+
+            if Rec."Nº expedición" <> '' then begin
+                /////Error('Ya se ha enviado a Adaia.');
+            end;
+            NoSeriesLine.Reset;
+            if Rec."VAT Country/Region Code" <> 'PT' then begin
+                NoSeriesLine.SetRange(NoSeriesLine."Series Code", 'ADAIAP');
+                if Rec."Nº exped. pequeña" then begin
+                    NoSeriesLine.SetRange(NoSeriesLine."Series Code", 'ADAIAPP');
+                end;
+            end;
+            if Rec."VAT Country/Region Code" = 'PT' then begin
+                NoSeriesLine.SetRange(NoSeriesLine."Series Code", 'ADAIAPT');
+            end;
+            if NoSeriesLine.FindFirst then begin
+                NPEDIDO := NoSeriesLine."Last No. Used";
+                NoSeriesLine."Last No. Used" := IncStr(NPEDIDO);
+                NoSeriesLine.Modify;
+            end;
+
+            LogAdaiaFicheros.Init();
+            LogAdaiaFicheros.Expedicion := NPEDIDO;
+            LogAdaiaFicheros.Error := true;
+            if LogAdaiaFicheros.Insert() then;
+
+            SalesReceivablesSetup.Get;
+            ItemJournalLine.Reset;
+            ItemJournalLine.SetRange(ItemJournalLine."Journal Template Name", 'PRODUCTO');
+            ItemJournalLine.SetRange(ItemJournalLine."Journal Batch Name", 'ABC');
+            ItemJournalLine.SetRange(ItemJournalLine."Line No.", SalesReceivablesSetup."Ultima letra" + 1);
+            if ItemJournalLine.FindFirst then begin
+                LETRA := ItemJournalLine."Document No.";
+                if SalesReceivablesSetup."Ultima letra" + 1 = 26 then begin
+                    SalesReceivablesSetup."Ultima letra" := 1;
+                    SalesReceivablesSetup.Modify;
+                end;
+                if SalesReceivablesSetup."Ultima letra" + 1 <> 26 then begin
+                    SalesReceivablesSetup."Ultima letra" := SalesReceivablesSetup."Ultima letra" + 1;
+                    SalesReceivablesSetup.Modify;
+                end;
+            end;
+
+            NPEDIDO := NPEDIDO + LETRA;
+
+            if CopyStr(Rec."No.", 3, 4) = 'CATW' then begin
+                NPEDIDO := Rec."Your Reference";
+            end;
+
+            if Rec."No agrupar en ADAIA" = false then begin
+                CODTRANS := '';
+                npedidos := 0;
+                npedi := '';
+                SalesHeader4.Reset;
+                SalesHeader4.SetCurrentkey("Document Type", "Sell-to Customer No.", "Estado pedido");
+                SalesHeader4.SetRange(SalesHeader4."Document Type", 1);
+                if Rec."Marcar para agrupar" = false then begin
+                    SalesHeader4.SetRange(SalesHeader4."Sell-to Customer No.", Rec."Sell-to Customer No.");
+                end;
+                SalesHeader4.SetRange(SalesHeader4."Estado pedido", 1);
+                if Rec."Marcar para agrupar" = false then begin
+                    SalesHeader4.SetRange(SalesHeader4."Ship-to Address", Rec."Ship-to Address");
+                end;
+                SalesHeader4.SetRange(SalesHeader4."Nº expedición", '');
+                SalesHeader4.SetRange(SalesHeader4."No agrupar en ADAIA", false);
+                if Rec."Marcar para agrupar" then begin
+                    SalesHeader4.SetRange(SalesHeader4."Marcar para agrupar", true);
+                end;
+                SalesHeader4.SetRange("Shipping Agent Code", Rec."Shipping Agent Code");
+                if SalesHeader4.FindSet then
+                    repeat
+                        CODTRANS := SalesHeader4."Shipping Agent Code";
+                        npedi := SalesHeader4."No.";
+                        if CODTRANS <> SalesHeader4."Shipping Agent Code" then begin
+                            Error('Tienen distinto transportista. %1 %2 %3', SalesHeader4."No.", CODTRANS, npedi);
+                        end;
+                        if not SalesHeader4."Respeta Tipo facturacion" then begin
+                            npedidos := npedidos + 1;
+                        end;
+                    until SalesHeader4.Next = 0;
+
+                SalesHeader3.Reset;
+                SalesHeader3.SetCurrentkey("Document Type", "Sell-to Customer No.", "Estado pedido");
+                SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
+                if Rec."Marcar para agrupar" = false then begin
+                    SalesHeader3.SetRange(SalesHeader3."Sell-to Customer No.", Rec."Sell-to Customer No.");
+                end;
+                SalesHeader3.SetRange(SalesHeader3."Estado pedido", 1);
+                if Rec."Marcar para agrupar" = false then begin
+                    SalesHeader3.SetRange(SalesHeader3."Ship-to Address", Rec."Ship-to Address");
+                end;
+                SalesHeader3.SetRange(SalesHeader3."Nº expedición", '');
+                SalesHeader3.SetRange(SalesHeader3."No agrupar en ADAIA", false);
+                if Rec."Marcar para agrupar" then begin
+                    SalesHeader3.SetRange(SalesHeader3."Marcar para agrupar", true);
+                end;
+                if SalesHeader3.FindSet then
+                    repeat
+                        SalesHeader33.Get(SalesHeader3."Document Type", SalesHeader3."No.");
+                        SalesHeader33."Nº expedición" := NPEDIDO;
+                        SalesHeader33."Package Tracking No." := NPEDIDO;
+                        SalesLine3.Reset;
+                        SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
+                        SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");
+                        if SalesLine3.FindSet then
+                            repeat
+                                if SalesLine3.Type = 2 then begin
+                                    SalesLine3."Nº expedición" := NPEDIDO;
+                                    SalesLine3.Modify;
+
+                                    LogAdaiaPedidos.Init();
+                                    LogAdaiaPedidos.Expedicion := NPEDIDO;
+                                    LogAdaiaPedidos.Pedido := SalesLine3."Document No.";
+                                    LogAdaiaPedidos.Producto := SalesLine3."No.";
+                                    LogAdaiaPedidos.Linea := SalesLine3."Line No.";
+                                    LogAdaiaPedidos.Cantidad := SalesLine3.Quantity;
+                                    if LogAdaiaPedidos.Insert() then;
+                                end;
+
+                            until SalesLine3.Next = 0;
+
+                        if npedidos > 1 then begin
+                            if SalesHeader3."Tipo facturación" <> 2 then begin
+                                if SalesHeader3."Multi-picking" = false then begin
+                                    SalesHeader33."Tipo facturación" := 1;
+                                end;
+                            end;
+                        end;
+                        SalesHeader33.Modify;
+                        if SalesHeader33."Marcar para agrupar" then begin
+                            Incrementos(SalesHeader33);
+                        end;
+                        SalesLine3.Reset;
+                        SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
+                        SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");
+                        if SalesLine3.FindSet then
+                            repeat
+                                if SalesLine3.Type = 2 then begin
+                                    if SalesLine3."Location Code" = '' then begin
+                                        Error('Falta el almacen en la lineas %1 %2', SalesLine3."No.", SalesLine3.Description)
+                                    end;
+                                end;
+                            until SalesLine3.Next = 0;
+                        if SalesHeader3."Marcar para agrupar" = true then begin
+                            if SalesHeader3."Shipping Agent Code" <> 'ECI' then begin
+                                SalesHeader22.Get(SalesHeader3."Document Type", SalesHeader3."No.");
+                                contadordeagrup := IncStr(contadordeagrup);
+                                SalesHeader22."Nº expedición agrupada" := contadordeagrup;
+                                EXPEDROP := '';
+                                if (Rec.Dropshipping = true) and (Rec."Marcar para agrupar" = true) then begin
+                                    EXPEDROP := NoSeriesManagement.GetNextNo('ADAIADROP', Today, true);
+                                end;
+                                SalesHeader3.CalcFields("Grupo clientes");
+                                if (SalesHeader3."Grupo clientes" = 'G52') and (SalesHeader3."Customer Disc. Group" = 'DCCA') then begin
+                                    EXPEDROP := CopyStr(SalesHeader3."Your Reference", 1, 10);
+                                end;
+                                SalesHeader22."Nº expedición dropshp" := EXPEDROP;
+                                SalesHeader22."Package Tracking No." := EXPEDROP;
+                                SalesHeader22.Modify;
+                                if SalesHeader22."Marcar para agrupar" then begin
+                                    Incrementos(SalesHeader22);
+                                end;
+                            end;
+                        end;
+                    until SalesHeader3.Next = 0;
+            end;
+
+            if Rec."No agrupar en ADAIA" = true then begin
+                CODTRANS := '';
+                npedidos := 0;
+                SalesHeader4.Reset;
+                SalesHeader4.SetCurrentkey("Document Type", "Sell-to Customer No.", "Estado pedido");
+                SalesHeader4.SetRange(SalesHeader4."Document Type", 1);
+                if Rec."Marcar para agrupar" = false then begin
+                    SalesHeader4.SetRange(SalesHeader4."Sell-to Customer No.", Rec."Sell-to Customer No.");
+                end;
+                SalesHeader4.SetRange(SalesHeader4."Estado pedido", 1);
+                if Rec."Marcar para agrupar" = false then begin
+                    SalesHeader4.SetRange(SalesHeader4."Ship-to Address", Rec."Ship-to Address");
+                end;
+                SalesHeader4.SetRange(SalesHeader4."Nº expedición", '');
+                SalesHeader4.SetRange(SalesHeader4."No.", Rec."No.");
+                if Rec."Marcar para agrupar" then begin
+                    SalesHeader4.SetRange(SalesHeader4."Marcar para agrupar", true);
+                end;
+                if SalesHeader4.FindSet then
+                    repeat
+                        if not SalesHeader4."Respeta Tipo facturacion" then begin
+                            npedidos := npedidos + 1;
+                        end;
+                    until SalesHeader4.Next = 0;
+
+                SalesHeader3.Reset;
+                SalesHeader3.SetCurrentkey("Document Type", "Nº expedición");
+                SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
+                if Rec."Marcar para agrupar" = false then begin
+                    SalesHeader3.SetRange(SalesHeader3."Sell-to Customer No.", Rec."Sell-to Customer No.");
+                end;
+                SalesHeader3.SetRange(SalesHeader3."Estado pedido", 1);
+                if Rec."Marcar para agrupar" = false then begin
+                    SalesHeader3.SetRange(SalesHeader3."Ship-to Address", Rec."Ship-to Address");
+                end;
+                SalesHeader3.SetRange(SalesHeader3."Nº expedición", '');
+                SalesHeader3.SetRange(SalesHeader3."No.", Rec."No.");
+                if Rec."Marcar para agrupar" then begin
+                    SalesHeader3.SetRange(SalesHeader3."Marcar para agrupar", true);
+                end;
+                if SalesHeader3.FindSet then
+                    repeat
+                        SalesHeader33.Get(SalesHeader3."Document Type", SalesHeader3."No.");
+                        SalesHeader33."Nº expedición" := NPEDIDO;
+                        SalesHeader33."Nº expedición dropshp" := EXPEDROP;
+                        SalesHeader33."Package Tracking No." := EXPEDROP;
+                        SalesLine3.Reset;
+                        SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
+                        SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");
+                        if SalesLine3.FindSet then
+                            repeat
+                                if SalesLine3.Type = 2 then begin
+                                    SalesLine3."Nº expedición" := NPEDIDO;
+                                    SalesLine3.Modify;
+                                    LogAdaiaPedidos.Init();
+                                    LogAdaiaPedidos.Expedicion := NPEDIDO;
+                                    LogAdaiaPedidos.Pedido := SalesLine3."Document No.";
+                                    LogAdaiaPedidos.Producto := SalesLine3."No.";
+                                    LogAdaiaPedidos.Linea := SalesLine3."Line No.";
+                                    LogAdaiaPedidos.Cantidad := SalesLine3.Quantity;
+                                    if LogAdaiaPedidos.Insert() then;
+                                end;
+                            until SalesLine3.Next = 0;
+                        if npedidos > 1 then begin
+                            if SalesHeader3."Tipo facturación" <> 2 then begin
+                                if SalesHeader3."Multi-picking" = false then begin
+                                    SalesHeader33."Tipo facturación" := 1;
+                                end;
+                            end;
+                        end;
+                        SalesHeader33.Modify;
+                        if SalesHeader33."Marcar para agrupar" then begin
+                            Incrementos(SalesHeader33);
+                        end;
+                        SalesLine3.Reset;
+                        SalesLine3.SetRange(SalesLine3."Document Type", SalesHeader3."Document Type");
+                        SalesLine3.SetRange(SalesLine3."Document No.", SalesHeader3."No.");
+                        if SalesLine3.FindSet then
+                            repeat
+                                if SalesLine3.Type = 2 then begin
+                                    if SalesLine3."Location Code" = '' then begin
+                                        Error('Falta el almacen en la lineas %1 %2', SalesLine3."No.", SalesLine3.Description)
+                                    end;
+                                end;
+                            until SalesLine3.Next = 0;
+                    until SalesHeader3.Next = 0;
+            end;
+
+            // Sleep(3000);  -- ELIMINADO
+
+            SalesHeader3.Reset;
+            SalesHeader3.SetCurrentkey("Document Type", "Nº expedición");
+            SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
+            SalesHeader3.SetRange(SalesHeader3."Nº expedición", NPEDIDO);
+            if SalesHeader3.FindFirst then begin
+                Clear(AutomaticosAdaia);
+
+                // ► NUEVO: ENVÍO CON REINTENTOS (x3) + TELEMETRÍA
+                if not EnviarExpedicionConReintentos(SalesHeader3, NPEDIDO, 3) then
+                    Error('No se pudo exportar la expedición %1 tras varios intentos. Revise telemetría/log.', NPEDIDO);
+            end;
+
+            // Commit;  -- ELIMINADO (deja solo uno al final)
+
+            SalesHeader35.Reset;
+            SalesHeader35.SetRange(SalesHeader35."Document Type", Rec."Document Type");
+            SalesHeader35.SetRange(SalesHeader35."No.", Rec."No.");
+            if SalesHeader35.FindFirst then begin
+                if CopyStr(SalesHeader35."No.", 3, 3) <> 'WEB' then begin
+                    AutomaticosAdaia.ENVIAREMAILPARAPREPARAR(SalesHeader35);
+                end;
+            end;
+
+            SalesHeader3.Reset;
+            SalesHeader3.SetCurrentkey("Document Type", "Nº expedición");
+            SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
+            SalesHeader3.SetRange(SalesHeader3."Nº expedición", NPEDIDO);
+            if SalesHeader3.FindSet then
+                repeat
+                    if CopyStr(SalesHeader3."No.", 3, 3) = 'WEB' then begin
+                        SalesLine5.Reset;
+                        SalesLine5.SetRange(SalesLine5."Document Type", SalesHeader3."Document Type");
+                        SalesLine5.SetRange(SalesLine5."Document No.", SalesHeader3."No.");
+                        if SalesLine5.FindSet then
+                            repeat
+                                SalesLine5."Usuario alta" := 'HAGEN\OSCAR';
+                                SalesLine5.Modify;
+                            until SalesLine5.Next = 0;
+                    end;
+                until SalesHeader3.Next = 0;
+
+            Commit; // ← ÚNICO COMMIT (final)
+
+            ///// ImprimeEtiAdaia;
+
+            if Rec."VAT Country/Region Code" = 'PT' then begin
+                //       ImprimeEtiPortugal;
+            end;
+        end;
+    */
+
+
     local procedure EnviaraADAIA()
     var
         AutomaticosAdaia: Codeunit "Automaticos Cartas";
         SalesHeader: Record "Sales Header";
         LogAdaiaPedidos: Record LogAdaiaPedidos;
         LogAdaiaFicheros: Record LogFicherosAdaia;
+        ErrTxt: Text;           // ← añadido para mostrar el error
+        CRLF: Text[2];          // ← añadido para salto de línea (CRLF)
     begin
+
         // Commit;  -- ELIMINADO (commit intermedio)
 
         contadordeagrup := '0';
@@ -1569,7 +1891,6 @@ Page 50099 "Pantalla almacen Pascual5"
                         if SalesHeader3."Shipping Agent Code" <> 'ECI' then begin
                             SalesHeader22.Get(SalesHeader3."Document Type", SalesHeader3."No.");
                             contadordeagrup := IncStr(contadordeagrup);
-                            SalesHeader22."Nº expedición agrupada" := contadordeagrup;
                             EXPEDROP := '';
                             if (Rec.Dropshipping = true) and (Rec."Marcar para agrupar" = true) then begin
                                 EXPEDROP := NoSeriesManagement.GetNextNo('ADAIADROP', Today, true);
@@ -1577,6 +1898,7 @@ Page 50099 "Pantalla almacen Pascual5"
                             SalesHeader3.CalcFields("Grupo clientes");
                             if (SalesHeader3."Grupo clientes" = 'G52') and (SalesHeader3."Customer Disc. Group" = 'DCCA') then begin
                                 EXPEDROP := CopyStr(SalesHeader3."Your Reference", 1, 10);
+                                ////SalesHeader22.Validate("Bill-to Customer No.", '11010');
                             end;
                             SalesHeader22."Nº expedición dropshp" := EXPEDROP;
                             SalesHeader22."Package Tracking No." := EXPEDROP;
@@ -1677,8 +1999,9 @@ Page 50099 "Pantalla almacen Pascual5"
                 until SalesHeader3.Next = 0;
         end;
 
-        // Sleep(3000);  -- ELIMINADO
+        // Sleep(3000);  -- ELIMINADO (espera artificial)
 
+        // ======= ENVÍO + POPUP DE FALLO =======
         SalesHeader3.Reset;
         SalesHeader3.SetCurrentkey("Document Type", "Nº expedición");
         SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
@@ -1686,10 +2009,36 @@ Page 50099 "Pantalla almacen Pascual5"
         if SalesHeader3.FindFirst then begin
             Clear(AutomaticosAdaia);
 
-            // ► NUEVO: ENVÍO CON REINTENTOS (x3) + TELEMETRÍA
-            if not EnviarExpedicionConReintentos(SalesHeader3, NPEDIDO, 3) then
-                Error('No se pudo exportar la expedición %1 tras varios intentos. Revise telemetría/log.', NPEDIDO);
+            if not TryEnviarExpedicionAdaiaLocal(SalesHeader3) then begin
+                // Marca de fallo en log
+                if LogAdaiaFicheros.Get(NPEDIDO) then begin
+                    LogAdaiaFicheros.Error := true;
+                    LogAdaiaFicheros.Subido := false;
+                    LogAdaiaFicheros.Modify();
+                end;
+
+                // Preparar salto de línea y texto de error
+                CRLF[1] := 13; // CR
+                CRLF[2] := 10; // LF
+                ErrTxt := CopyStr(GetLastErrorText(), 1, 250);
+                ClearLastError;
+
+                // Popup al usuario
+                Message(
+                  'ATENCIÓN: No se ha podido exportar la expedición %1 (pedido %2).%3Error: %4',
+                  NPEDIDO, SalesHeader3."No.", CRLF, ErrTxt);
+
+                exit; // parar para no continuar pasos posteriores
+            end;
+
+            // Éxito: marcar log
+            if LogAdaiaFicheros.Get(NPEDIDO) then begin
+                LogAdaiaFicheros.Error := false;
+                LogAdaiaFicheros.Subido := true;
+                LogAdaiaFicheros.Modify();
+            end;
         end;
+        // ======= FIN ENVÍO =======
 
         // Commit;  -- ELIMINADO (deja solo uno al final)
 
@@ -1728,6 +2077,16 @@ Page 50099 "Pantalla almacen Pascual5"
             //       ImprimeEtiPortugal;
         end;
     end;
+
+    // Helper TryFunction con nombre único para evitar ambigüedad
+    [TryFunction]
+    local procedure TryEnviarExpedicionAdaiaLocal(var SalesHeaderRec: Record "Sales Header")
+    var
+        AutomaticosAdaiaLocal: Codeunit "Automaticos Cartas";
+    begin
+        AutomaticosAdaiaLocal.ENVIAEXPEDICIONES(SalesHeaderRec);
+    end;
+
 
     // -----------------------
     //  Helpers de reintento
