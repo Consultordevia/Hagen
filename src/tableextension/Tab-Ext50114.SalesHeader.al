@@ -1088,7 +1088,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
         LIN: Integer;
         codtrasopti: Code[10];
         RecCV: Record "Sales Header";
-        codpedido: Code[10];
+        codpedido: Code[20];
         PORVOL: array[99] of Decimal;
         IMPORTEPORTE: Decimal;
         RecCP: Record "Post Code";
