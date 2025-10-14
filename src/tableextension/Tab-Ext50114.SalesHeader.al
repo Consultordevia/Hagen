@@ -1128,125 +1128,127 @@ tableextension 50114 SalesHeader extends "Sales Header"
 
         codpedido := "No.";
 
+        IF RecCV.Get(1, codpedido) THEN begin
 
-        Rec89.Reset;
-        Rec89.SetRange("Parent Item No.", codpedido);
-        if Rec89.FindFirst then
-            repeat
-                Rec89.Delete;
-            until Rec89.Next = 0;
+            Rec89.Reset;
+            Rec89.SetRange("Parent Item No.", codpedido);
+            if Rec89.FindFirst then
+                repeat
+                    Rec89.Delete;
+                until Rec89.Next = 0;
 
-        PESO := 0;
-        VOL := 0;
+            PESO := 0;
+            VOL := 0;
 
-        Clear(PORVOL);
-        ProductoFRAGIL := false;
-        RecLV3.Reset;
-        RecLV3.SetRange(RecLV3."Document Type", 1);
-        RecLV3.SetRange(RecLV3."Document No.", codpedido);
-        if RecLV3.FindFirst then
-            repeat
-                PESO := PESO + RecLV3."Gross Weight" * RecLV3.Quantity;
-                VOL := VOL + RecLV3."Unit Volume" * RecLV3.Quantity;
-                IF RecProd.GET(RecLV3."No.") THEN begin
-                    IF RecProd."Producto FRAGIL" THEN begin
-                        ProductoFRAGIL := TRUE;
-                    end;
-                end;
-            until RecLV3.Next = 0;
-        pesoini := PESO;
-        codtrasopti := '';
-        IMPOP := 999999;
-
-
-        RecCV.Get(1, codpedido);
-        SuperUrgente := false;
-        IF RecCV."Super urgente" THEN begin
-            IF ProductoFRAGIL = false THEN begin
-                SuperUrgente := true;
-            end;
-        end;
-        RecTrans.Reset;
-        IF ProductoFRAGIL THEN begin
-            RecTrans.SetRange(TipoTransporte, RecTrans.TipoTransporte::Pallets);
-        end;
-        IF SuperUrgente THEN begin
-            RecTrans.SetRange(TipoTransporte, RecTrans.TipoTransporte::Urgente);
-        end;
-        if RecTrans.FindFirst then
-            repeat
-                IMPORTEPORTE := 0;
-                RecCP.Reset;
-                RecCP.SetRange(RecCP.Code, RecCV."Ship-to Post Code");
-                RecCP.SetRange(RecCP.City, RecCV."Ship-to City");
-                if RecTrans.Paises <> '' then begin
-                    RecCP.SetFilter("Country/Region Code", RecTrans.Paises + '*');
-                end;
-                if RecCP.FindFirst then begin
-                    CODPROV := RecCP."County Code";
-                    PORVOL[1] := VOL * RecTrans."Conversion Volumen/kilos";
-                    pesol := PESO;
-                    if PORVOL[1] > PESO then begin
-                        pesol := PORVOL[1];
-                    end;
-                    PESCAL[1] := 0;
-                    PRECIOOPTIO := 0;
-                    RecMT3.Reset;
-                    RecMT3.SetRange(RecMT3.Tabla, 2);
-                    RecMT3.SetRange(RecMT3."Transportista-Cliente", RecTrans.Code);
-                    RecMT3.SetRange(RecMT3.Provincia, CODPROV);
-                    if RecMT3.FindFirst then begin
-                        RecMT3.Reset;
-                        RecMT4.SetRange(RecMT4.Tabla, 3);
-                        RecMT4.SetRange(RecMT4."Transportista tarifa", RecTrans.Code);
-                        RecMT4.SetRange(RecMT4."Zona tarifa", RecMT3."Zona transportistas-Cliente");
-                        RecMT4.SetRange(RecMT4."Hasta Kilos", pesol, 99999999);
-                        if RecMT4.FindFirst then begin
-                            PRECIOOPTIO := RecMT4.Precio;
-                            PESCAL[1] := RecMT4."Hasta Kilos";
+            Clear(PORVOL);
+            ProductoFRAGIL := false;
+            RecLV3.Reset;
+            RecLV3.SetRange(RecLV3."Document Type", 1);
+            RecLV3.SetRange(RecLV3."Document No.", codpedido);
+            if RecLV3.FindFirst then
+                repeat
+                    PESO := PESO + RecLV3."Gross Weight" * RecLV3.Quantity;
+                    VOL := VOL + RecLV3."Unit Volume" * RecLV3.Quantity;
+                    IF RecProd.GET(RecLV3."No.") THEN begin
+                        IF RecProd."Producto FRAGIL" THEN begin
+                            ProductoFRAGIL := TRUE;
                         end;
                     end;
-                    if PORVOL[1] > 0 then begin
-                        Rec89.Init;
-                        Rec89."Parent Item No." := codpedido;
-                        LIN := LIN + 10000;
-                        Rec89."Line No." := LIN;
-                        Rec89."Cod. transportista" := RecTrans.Code;
-                        Rec89.Pesos := pesoini;
-                        Rec89."Kilos/vol" := PORVOL[1];
-                        Rec89."Kilos/tarifa" := PESCAL[1];
-                        Rec89.Euros := PRECIOOPTIO;
-                        if PRECIOOPTIO > 0 then begin
-                            if IMPOP > PRECIOOPTIO then begin
-                                codtrasopti := RecTrans.Code;
-                                IMPOP := PRECIOOPTIO;
+                until RecLV3.Next = 0;
+            pesoini := PESO;
+            codtrasopti := '';
+            IMPOP := 999999;
+
+
+
+            SuperUrgente := false;
+            IF RecCV."Super urgente" THEN begin
+                IF ProductoFRAGIL = false THEN begin
+                    SuperUrgente := true;
+                end;
+            end;
+            RecTrans.Reset;
+            IF ProductoFRAGIL THEN begin
+                RecTrans.SetRange(TipoTransporte, RecTrans.TipoTransporte::Pallets);
+            end;
+            IF SuperUrgente THEN begin
+                RecTrans.SetRange(TipoTransporte, RecTrans.TipoTransporte::Urgente);
+            end;
+            if RecTrans.FindFirst then
+                repeat
+                    IMPORTEPORTE := 0;
+                    RecCP.Reset;
+                    RecCP.SetRange(RecCP.Code, RecCV."Ship-to Post Code");
+                    RecCP.SetRange(RecCP.City, RecCV."Ship-to City");
+                    if RecTrans.Paises <> '' then begin
+                        RecCP.SetFilter("Country/Region Code", RecTrans.Paises + '*');
+                    end;
+                    if RecCP.FindFirst then begin
+                        CODPROV := RecCP."County Code";
+                        PORVOL[1] := VOL * RecTrans."Conversion Volumen/kilos";
+                        pesol := PESO;
+                        if PORVOL[1] > PESO then begin
+                            pesol := PORVOL[1];
+                        end;
+                        PESCAL[1] := 0;
+                        PRECIOOPTIO := 0;
+                        RecMT3.Reset;
+                        RecMT3.SetRange(RecMT3.Tabla, 2);
+                        RecMT3.SetRange(RecMT3."Transportista-Cliente", RecTrans.Code);
+                        RecMT3.SetRange(RecMT3.Provincia, CODPROV);
+                        if RecMT3.FindFirst then begin
+                            RecMT3.Reset;
+                            RecMT4.SetRange(RecMT4.Tabla, 3);
+                            RecMT4.SetRange(RecMT4."Transportista tarifa", RecTrans.Code);
+                            RecMT4.SetRange(RecMT4."Zona tarifa", RecMT3."Zona transportistas-Cliente");
+                            RecMT4.SetRange(RecMT4."Hasta Kilos", pesol, 99999999);
+                            if RecMT4.FindFirst then begin
+                                PRECIOOPTIO := RecMT4.Precio;
+                                PESCAL[1] := RecMT4."Hasta Kilos";
                             end;
                         end;
-                        Rec89.Insert;
+                        if PORVOL[1] > 0 then begin
+                            Rec89.Init;
+                            Rec89."Parent Item No." := codpedido;
+                            LIN := LIN + 10000;
+                            Rec89."Line No." := LIN;
+                            Rec89."Cod. transportista" := RecTrans.Code;
+                            Rec89.Pesos := pesoini;
+                            Rec89."Kilos/vol" := PORVOL[1];
+                            Rec89."Kilos/tarifa" := PESCAL[1];
+                            Rec89.Euros := PRECIOOPTIO;
+                            if PRECIOOPTIO > 0 then begin
+                                if IMPOP > PRECIOOPTIO then begin
+                                    codtrasopti := RecTrans.Code;
+                                    IMPOP := PRECIOOPTIO;
+                                end;
+                            end;
+                            Rec89.Insert;
+                        end;
                     end;
-                end;
-            until RecTrans.Next = 0;
-        Rec89.Reset;
-        Rec89.SetRange("Parent Item No.", codpedido);
-        if Rec89.FindFirst then
-            repeat
-                if Rec89."Cod. transportista" = codtrasopti then begin
-                    Rec89.Optimo := true;
-                    Rec89.Modify;
-                end;
-            until Rec89.Next = 0;
-
-
-        if Rec."Respeta agencia transporte" = false then begin
+                until RecTrans.Next = 0;
             Rec89.Reset;
-            Rec89.SetRange(Rec89."Parent Item No.", codpedido);
-            Rec89.SetRange(Rec89.Optimo, true);
-            if Rec89.FindFirst then begin
-                "Importe optimo transporte" := Rec89.Euros;
-                Validate("Shipping Agent Code", Rec89."Cod. transportista");
-                Modify;
+            Rec89.SetRange("Parent Item No.", codpedido);
+            if Rec89.FindFirst then
+                repeat
+                    if Rec89."Cod. transportista" = codtrasopti then begin
+                        Rec89.Optimo := true;
+                        Rec89.Modify;
+                    end;
+                until Rec89.Next = 0;
+
+
+            if Rec."Respeta agencia transporte" = false then begin
+                Rec89.Reset;
+                Rec89.SetRange(Rec89."Parent Item No.", codpedido);
+                Rec89.SetRange(Rec89.Optimo, true);
+                if Rec89.FindFirst then begin
+                    "Importe optimo transporte" := Rec89.Euros;
+                    Validate("Shipping Agent Code", Rec89."Cod. transportista");
+                    Modify;
+                end;
             end;
-        end;
+        END;
 
     end;
 
