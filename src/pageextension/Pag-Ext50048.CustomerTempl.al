@@ -10,6 +10,16 @@ pageextension 50048 CustomerTempl extends "Customer Templ. Card"
 
             field("Search Name"; Rec."Search Name") { ApplicationArea = All; }
             field("Name 2"; Rec."Name 2") { ApplicationArea = All; }
+
+
+            field("Enviar a Web"; Rec."Enviar a Web") { ApplicationArea = All; }
+            field(Name; Rec.Name) { ApplicationArea = All; }
+
+            field("Estatus del cliente"; Rec."Estatus del cliente") { ApplicationArea = All; }
+            field(ConfiguracionEDI; Rec.ConfiguracionEDI) { ApplicationArea = All; }
+            field("Pedido minimo EDI"; Rec."Pedido minimo EDI") { ApplicationArea = All; }
+
+
             field("Tipo facturación"; Rec."Tipo facturación") { ApplicationArea = All; }
             field("Grupo clientes"; Rec."Grupo clientes") { ApplicationArea = All; }
             field("Email facturacion 1"; Rec."Email facturacion 1") { ApplicationArea = All; }
@@ -22,15 +32,15 @@ pageextension 50048 CustomerTempl extends "Customer Templ. Card"
             field("Permite fraccionar unidad de venta"; Rec."Permite fraccionar unidad de venta") { ApplicationArea = All; }
             field("No enviar excel"; Rec."No enviar excel") { ApplicationArea = All; }
 
-  field("Invoice Type";Rec."Invoice Type"){ ApplicationArea = All; }
-                field("Cr. Memo Type";Rec."Cr. Memo Type"){ ApplicationArea = All; }
-                 field("Special Scheme Code";Rec."Special Scheme Code"){ ApplicationArea = All; }
-                field("Correction Type";Rec."Correction Type"){ ApplicationArea = All; }
-        
-                field("Do Not Send To SII";Rec."Do Not Send To SII"){ ApplicationArea = All; }        
+            field("Invoice Type"; Rec."Invoice Type") { ApplicationArea = All; }
+            field("Cr. Memo Type"; Rec."Cr. Memo Type") { ApplicationArea = All; }
+            field("Special Scheme Code"; Rec."Special Scheme Code") { ApplicationArea = All; }
+            field("Correction Type"; Rec."Correction Type") { ApplicationArea = All; }
+
+            field("Do Not Send To SII"; Rec."Do Not Send To SII") { ApplicationArea = All; }
 
 
- 
+
 
         }
     }
