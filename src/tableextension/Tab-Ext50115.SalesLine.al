@@ -8,8 +8,7 @@ tableextension 50115 SalesLine extends "Sales Line"
             trigger OnAfterValidate()
             var
                 SalesCommentLine: Record "Sales Comment Line";
-                codpadre: code[20];
-                SalesLineDiscountPadre: Record "Sales Line Discount Padre";
+                codpadre: code[20];                
                 LINL: integer;
                 PrecioPROD: Decimal;
                 RecItemPadre: Record Item;
@@ -33,39 +32,7 @@ tableextension 50115 SalesLine extends "Sales Line"
 
                 codpadre := Rec."Producto Padre";
 
-
-
-                /*SalesLineDiscountPadre.Reset;
-                SalesLineDiscountPadre.SetRange(SalesLineDiscountPadre.Code, codpadre);
-                if SalesLineDiscountPadre.FindFirst then
-                    repeat
-                        SalesCommentLine.Init;
-                        SalesCommentLine."Document Type" := SalesCommentLine."document type"::DetalleProd;
-                        SalesCommentLine."No." := Rec."Document No.";
-                        LINL := LINL + 1000;
-                        SalesCommentLine."Line No." := LINL;
-                        PrecioPROD := Rec."Unit Price" - ROUND((Rec."Unit Price" * SalesLineDiscountPadre."Line Discount %" / 100), 0.01);
-                        SalesCommentLine.Comment := 'Por: ' + Format(SalesLineDiscountPadre."Minimum Quantity") + ' dto%: ' + Format(SalesLineDiscountPadre."Line Discount %") +
-                        ' Precio unitario:' + Format(PrecioPROD);
-                        SalesCommentLine.Insert;
-                    until SalesLineDiscountPadre.Next = 0;
-
-
-                RecItemPadre.Reset;
-                RecItemPadre.SetCurrentkey("Producto PADRE");
-                RecItemPadre.SetRange("Producto PADRE", codpadre);
-                if RecItemPadre.FindFirst then
-                    repeat
-                        if RecItemPadre."No." <> Rec."No." then begin
-                            SalesCommentLine.Init;
-                            SalesCommentLine."Document Type" := SalesCommentLine."document type"::DetalleProd;
-                            SalesCommentLine."No." := Rec."Document No.";
-                            LINL := LINL + 1000;
-                            SalesCommentLine."Line No." := LINL;
-                            SalesCommentLine.Comment := RecItemPadre."No." + ' ' + RecItemPadre.Description;
-                            SalesCommentLine.Insert;
-                        end;
-                    until RecItemPadre.Next = 0;*/
+                
             end;
         }
 

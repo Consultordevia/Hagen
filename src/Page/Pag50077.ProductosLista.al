@@ -22,6 +22,14 @@ Page 50077 "Productos Lista"
                 {
                     ApplicationArea = Basic;
                 }
+                field("Cantidad inner"; Rec."Cantidad inner")
+                {
+                    ApplicationArea = Basic;
+                }
+                field("Cantidad master"; Rec."Cantidad master")
+                {
+                    ApplicationArea = Basic;
+                }
                 field("Ref. AMAZON"; Rec."Ref. AMAZON")
                 {
                     ApplicationArea = Basic;

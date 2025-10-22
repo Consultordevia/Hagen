@@ -112,8 +112,7 @@ Page 50120 "Detalle produto"
         TotalLin: Decimal;
         Impdto: Decimal;
         TotalBase: Decimal;
-        Diferencia: Decimal;
-        SalesLineDiscountPadre: Record "Sales Line Discount Padre";
+        Diferencia: Decimal;        
 
 
     procedure UpdateDocStatistics()

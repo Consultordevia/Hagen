@@ -233,7 +233,6 @@ XmlPort 50502 "Importa datos nav2018-CLIE"
         igicc: Code[20];
         CUADAIA: Codeunit "Automaticos Cartas";
         RecItem22: Record Item;
-        SalesLineDiscountPadre: Record "Sales Line Discount Padre";
         MINIMO: Decimal;
         DESCUENTO: Decimal;
         TIPO: Integer;

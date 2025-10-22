@@ -2047,17 +2047,17 @@ Table 50039 "Item temp"
         }
         field(50309; "Tarifa 2019"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
-                                                                   "Sales Code" = const('2019')));
+            /////CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
+            /////                                                       "Sales Code" = const('2019')));
             Caption = 'Tarifa 2019';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50310; "PVP Recomendado 2019"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
-                                                                           "Sales Code" = const('2019')));
+            /////CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
+            /////                                                               "Sales Code" = const('2019')));
             Caption = 'PVP Recomendado 2019';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50311; "CUANTOS UDS EANS"; Integer)
         {
@@ -2067,17 +2067,17 @@ Table 50039 "Item temp"
         }
         field(50312; "Tarifa 2021"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
-                                                                   "Sales Code" = const('2021')));
+            /////CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
+            /////                                                       "Sales Code" = const('2021')));
             Caption = 'Tarifa 2021';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50313; "PVP Recomendado 2021"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
-                                                                           "Sales Code" = const('2021')));
+            /////CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
+            /////                                                               "Sales Code" = const('2021')));
             Caption = 'PVP Recomendado 2021';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50314; "Voluminoso web"; Boolean)
         {

@@ -227,7 +227,6 @@ XmlPort 50511 "Importa datos PVP WEB"
         igicc: Code[20];
         CUADAIA: Codeunit "Automaticos Cartas";
         RecItem22: Record Item;
-        SalesLineDiscountPadre: Record "Sales Line Discount Padre";
         MINIMO: Decimal;
         DESCUENTO: Decimal;
         TIPO: Integer;

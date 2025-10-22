@@ -236,17 +236,17 @@ Table 50047 "Inventario PMP"
         }
         field(65; "Tarifa 2022-2"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("Item No."),
-                                                                   "Sales Code" = const('2022-2')));
+            /////CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("Item No."),
+            /////                                                       "Sales Code" = const('2022-2')));
             Caption = 'Tarifa 2022-2';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(66; "PVP Recomendado 2022-2"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("Item No."),
-                                                                           "Sales Code" = const('2022-2')));
+            /////CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("Item No."),
+            /////                                                               "Sales Code" = const('2022-2')));
             Caption = 'PVP Recomendado 2022-2';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(67; cuantos; Integer)
         {
@@ -256,10 +256,10 @@ Table 50047 "Inventario PMP"
         }
         field(68; "Tarifa AMZ2023"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("Item No."),
-                                                                   "Sales Code" = const('AMZ2023')));
+            /////CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("Item No."),
+            /////                                                       "Sales Code" = const('AMZ2023')));
             Caption = 'Tarifa AMZ2023';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(69; "Ref. AMAZON"; Code[20])
         {
@@ -270,13 +270,13 @@ Table 50047 "Inventario PMP"
 
     keys
     {
-        key(Key1; "Journal Template Name", "Line No.")        
+        key(Key1; "Journal Template Name", "Line No.")
         {
             Clustered = true;
             MaintainSIFTIndex = false;
         }
-        key(Key2; "Item No.","Posting Date")        
-        {            
+        key(Key2; "Item No.", "Posting Date")
+        {
         }
     }
 

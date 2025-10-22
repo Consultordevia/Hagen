@@ -73,9 +73,9 @@ tableextension 50046 "SalesPrice" extends "Sales Price"
         }
         field(50006; "EXISTE 2012"; Boolean)
         {
-            CalcFormula = exist("Sales Price" where("Item No." = field("Item No."),
-                                                     "Sales Code" = const('2012')));
-            FieldClass = FlowField;
+            /////CalcFormula = exist("Sales Price" where("Item No." = field("Item No."),
+            /////                                         "Sales Code" = const('2012')));
+            /////FieldClass = FlowField;
         }
         field(50007; "Precio incial"; Decimal)
         {
@@ -110,8 +110,8 @@ tableextension 50046 "SalesPrice" extends "Sales Price"
         }
         field(50100; cuantos; Integer)
         {
-            CalcFormula = count("Sales Price" where("Item No." = field("Item No."), "Sales Code" = field("Sales Code")));
-            FieldClass = FlowField;
+            /////CalcFormula = count("Sales Price" where("Item No." = field("Item No."), "Sales Code" = field("Sales Code")));
+            /////FieldClass = FlowField;
         }
         field(50101; "Fecha modif"; Date)
         {

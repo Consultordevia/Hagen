@@ -111,8 +111,7 @@ XmlPort 50011 "Importa pedidos compra"
         RecTP: Record "Item Translation";
         CODIGO: Code[10];
         codprod2: Code[20];
-        x: Integer;
-        RecSP: Record "Sales Price";
+        x: Integer;        
         cantimin: Decimal;
         fechaini: Date;
         fechafin: Date;

@@ -1105,37 +1105,37 @@ tableextension 50113 Item extends Item
         }
         field(50309; "Tarifa 2019"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
-                                                                   "Sales Code" = const('2019')));
+            /////CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
+            /////                                                       "Sales Code" = const('2019')));
             Caption = 'Tarifa 2019';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50310; "PVP Recomendado 2019"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
-                                                                           "Sales Code" = const('2019')));
+            /////CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
+            /////                                                               "Sales Code" = const('2019')));
             Caption = 'PVP Recomendado 2019';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50311; "CUANTOS UDS EANS"; Integer)
         {
-            CalcFormula = count("Item Reference" where("Item No." = field("No."),
-                                                              "Unit of Measure" = const('UDS')));
-            FieldClass = FlowField;
+            //////CalcFormula = count("Item Reference" where("Item No." = field("No."),
+            /////                                                  "Unit of Measure" = const('UDS')));
+            /////FieldClass = FlowField;
         }
         field(50312; "Tarifa 2021"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
-                                                                   "Sales Code" = const('2021')));
+            /////CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
+            /////                                                       "Sales Code" = const('2021')));
             Caption = 'Tarifa 2021';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50313; "PVP Recomendado 2021"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
-                                                                           "Sales Code" = const('2021')));
+            /////CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
+            /////                                                               "Sales Code" = const('2021')));
             Caption = 'PVP Recomendado 2021';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50314; "Voluminoso web"; Boolean)
         {
@@ -1183,66 +1183,66 @@ tableextension 50113 Item extends Item
         }
         field(50318; "Tarifa 2021-2"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
-                                                                   "Sales Code" = const('2021-2')));
+            /////CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
+            /////                                                       "Sales Code" = const('2021-2')));
             Caption = 'Tarifa 2021-2';
-            FieldClass = FlowField;
+            //////FieldClass = FlowField;
         }
         field(50319; "PVP Recomendado 2021-2"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
-                                                                           "Sales Code" = const('2021-2')));
+            /////CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
+            /////                                                               "Sales Code" = const('2021-2')));
             Caption = 'PVP Recomendado 2021-2';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50320; "Tarifa 2021 amazon21"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
-                                                                   "Sales Code" = const('AMZ2021')));
+            /////CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
+            /////                                                       "Sales Code" = const('AMZ2021')));
             Caption = 'Tarifa 2021 amazon21';
-            FieldClass = FlowField;
+            //////FieldClass = FlowField;
         }
         field(50321; "PVP Recomendado 2021 amazon21"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
-                                                                           "Sales Code" = const('AMZ2021')));
+            /////CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
+            /////                                                               "Sales Code" = const('AMZ2021')));
             Caption = 'PVP Recomendado 2021 amazon21';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50322; "Tarifa 2021 AMZ2021-3"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
-                                                                   "Sales Code" = const('AMZ2021-3')));
+            /////CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
+            /////                                                       "Sales Code" = const('AMZ2021-3')));
             Caption = 'Tarifa 2021 AMZ2021-3';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50323; "PVP Recomendado 2021 AMZ2021-3"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
-                                                                           "Sales Code" = const('AMZ2021-3')));
+            /////CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
+            /////                                                               "Sales Code" = const('AMZ2021-3')));
             Caption = 'PVP Recomendado 2021 AMZ2021-3';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50324; "Tarifa 2022"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
-                                                                   "Sales Code" = const('2022')));
+            /////CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
+            /////                                                       "Sales Code" = const('2022')));
             Caption = 'Tarifa 2022';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50325; "PVP Recomendado 2022"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
-                                                                           "Sales Code" = const('2022')));
+            /////CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
+            /////                                                               "Sales Code" = const('2022')));
             Caption = 'PVP Recomendado 2022';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50326; "Tarifa 2022-2"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
-                                                                   "Sales Code" = const('2025')));
+            /////CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
+            /////                                                       "Sales Code" = const('2025')));
             Caption = 'Tarifa 2022-2';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50327; "PVP-Web"; Decimal)
         {
@@ -1253,24 +1253,24 @@ tableextension 50113 Item extends Item
         }
         field(50347; "PVP-Web2"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
-                                                                           "Sales Code" = const('2022-2')));
+            /////CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
+            /////                                                               "Sales Code" = const('2022-2')));
             Caption = 'PVP-Web2';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50328; "Tarifa AMZ2023"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
-                                                                   "Sales Code" = const('AMZ2023')));
+            /////CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
+            /////                                                       "Sales Code" = const('AMZ2023')));
             Caption = 'Tarifa AMZ2023';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50329; "PVP Recomendado AMZ2023"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
-                                                                           "Sales Code" = const('AMZ2023')));
+            /////CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
+            /////                                                               "Sales Code" = const('AMZ2023')));
             Caption = 'PVP Recomendado AMZ2023';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50330; "Precio inv 2009"; Decimal)
         {
@@ -1320,17 +1320,17 @@ tableextension 50113 Item extends Item
         }
         field(50344; "PVP Recomendado 2022-2"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
-                                                                           "Sales Code" = const('2022-2')));
+            /////CalcFormula = lookup("Sales Price"."Precio recomendado" where("Item No." = field("No."),
+            /////                                                               "Sales Code" = const('2022-2')));
             Caption = 'PVP Recomendado 2022-2';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
         field(50345; "PVP 2025DC00"; Decimal)
         {
-            CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
-                                                                           "Sales Code" = const('2025DC00')));
+            /////CalcFormula = lookup("Sales Price"."Unit Price" where("Item No." = field("No."),
+            /////                                                               "Sales Code" = const('2025DC00')));
             Caption = 'PVP 2025DC00';
-            FieldClass = FlowField;
+            /////FieldClass = FlowField;
         }
 
         field(50346; subido; Boolean)
