@@ -185,7 +185,6 @@ Codeunit 50055 "Fichero Stock.csv"
                             if VATPostingSetup.Get('NACIONAL', Item."VAT Prod. Posting Group") then begin
                                 IVA := VATPostingSetup."VAT+EC %";
                             end;
-                            Item.CalcFields(Item."Tarifa 2022-2");
                             Item.CalcFields(Inventory, "Existencia FOB", Item."Existencia SILLA", Item."Qty. on Sales Order");
                             DISPONI := Item.Inventory - Item."Existencia FOB" - Item."Qty. on Sales Order" - Item."Stock para Catit";
                             ENTRA := true;
@@ -440,7 +439,6 @@ Codeunit 50055 "Fichero Stock.csv"
                             if VATPostingSetup.Get('NACIONAL', Item."VAT Prod. Posting Group") then begin
                                 IVA := VATPostingSetup."VAT+EC %";
                             end;
-                            Item.CalcFields(Item."Tarifa 2022-2");
                             Clear(TextoSalida1);
                             Clear(TextoSalida2);
                             Item.CalcFields(Inventory, "Existencia FOB", Item."Existencia SILLA", Item."Qty. on Sales Order");
@@ -734,7 +732,6 @@ Codeunit 50055 "Fichero Stock.csv"
                             if VATPostingSetup.Get('NACIONAL', Item."VAT Prod. Posting Group") then begin
                                 IVA := VATPostingSetup."VAT+EC %";
                             end;
-                            Item.CalcFields(Item."Tarifa 2022-2");
                             Clear(TextoSalida1);
                             Clear(TextoSalida2);
                             Item.CalcFields(Inventory, "Existencia FOB", Item."Existencia SILLA", Item."Qty. on Sales Order");
@@ -1022,7 +1019,6 @@ Codeunit 50055 "Fichero Stock.csv"
                             if VATPostingSetup.Get('NACIONAL', Item."VAT Prod. Posting Group") then begin
                                 IVA := VATPostingSetup."VAT+EC %";
                             end;
-                            Item.CalcFields(Item."Tarifa 2022-2");
                             Clear(TextoSalida1);
                             Clear(TextoSalida2);
                             Item.CalcFields(Inventory, "Existencia FOB", Item."Existencia SILLA", Item."Qty. on Sales Order");
@@ -1329,7 +1325,6 @@ Codeunit 50055 "Fichero Stock.csv"
                             if VATPostingSetup.Get('NACIONAL', Item."VAT Prod. Posting Group") then begin
                                 IVA := VATPostingSetup."VAT+EC %";
                             end;
-                            Item.CalcFields(Item."Tarifa 2022-2");
                             Clear(TextoSalida1);
                             Clear(TextoSalida2);
                             Item.CalcFields(Inventory, "Existencia FOB", Item."Existencia SILLA", Item."Qty. on Sales Order", "Existencia TENERIFE");

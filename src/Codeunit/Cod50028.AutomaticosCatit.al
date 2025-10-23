@@ -155,7 +155,6 @@ Codeunit 50028 "Automaticos Catit"
             repeat
                 if RecGP.Get(Item."Gen. Prod. Posting Group") then begin
                     if RecGP."Es producto" then begin
-                        Item.CalcFields(Item."Tarifa 2019", Item."PVP Recomendado 2019");
                         Clear(TextoSalida1);
                         Clear(TextoSalida2);
                         Item.CalcFields(Inventory, "Existencia FOB", Item."Existencia SILLA", Item."Qty. on Sales Order", Item."Existencia OPER", "Existencia TENERIFE");

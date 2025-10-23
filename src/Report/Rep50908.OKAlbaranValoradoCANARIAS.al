@@ -426,7 +426,6 @@ Report 50908 "OK Albaran Valorado CANARIAS"
                             pvprecomendado := 0;
                             if Item.Get("Sales Shipment Line"."No.") then begin
                                 Ean := Item.ean;
-                                Item.CalcFields("PVP Recomendado 2019");
                                 pvprecomendado := Item."PVP Recomendado 2019";
                             end;
 

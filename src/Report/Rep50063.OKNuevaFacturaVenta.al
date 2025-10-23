@@ -676,7 +676,6 @@ Report 50063 "OK Nueva Factura Venta"
                                 pvprecomendado := Item."PVP Recomendado 2019";
 
                                 if "Sales Invoice Line"."Customer Price Group" = '2019' then begin
-                                    Item.CalcFields(Item."Tarifa 2019");
                                     "Sales Invoice Line"."Precio Tarifa" := Item."Tarifa 2019";
                                 end;
                                 /////"Sales Invoice Line"."Precio base" := "Sales Invoice Line"."Unit Price";
