@@ -672,7 +672,6 @@ Report 50063 "OK Nueva Factura Venta"
                             pvprecomendado := 0;
                             if Item.Get("Sales Invoice Line"."No.") then begin
                                 Ean := Item.ean;
-                                Item.CalcFields("PVP Recomendado 2019");
                                 pvprecomendado := Item."PVP Recomendado 2019";
 
                                 if "Sales Invoice Line"."Customer Price Group" = '2019' then begin
