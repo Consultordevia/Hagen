@@ -750,6 +750,8 @@ codeunit 50002 Eventos
         Item: Record item;
         RecCE: Record "Inventory Setup";
     begin
+        ItemUnitOfMeasure.Cubage := (ItemUnitOfMeasure.Length * ItemUnitOfMeasure.Width * ItemUnitOfMeasure.Height) / 1000000;
+        ItemUnitOfMeasure.Modify;
         if ItemUnitOfMeasure.Code = 'UDS' then begin
             if Item.Get(ItemUnitOfMeasure."Item No.") then begin
                 Item."Unit Volume" := ItemUnitOfMeasure.Cubage;
@@ -1323,4 +1325,7 @@ codeunit 50002 Eventos
         end;
         IsHandled := true;
     end;
+
+
+
 }
