@@ -217,7 +217,7 @@ Report 50052 "ETI. envio agrupado ka"
 
 
                 RecCV2.Get("Sales Header"."Document Type", "Sales Header"."No.");
-                ///RecCV2.Validate(RecCV2."Nº bultos", numcajas);
+                /////RecCV2.Validate(RecCV2."Nº bultos", numcajas);
                 RecCV2.Modify;
 
 
