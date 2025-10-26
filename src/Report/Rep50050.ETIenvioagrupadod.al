@@ -211,7 +211,7 @@ Report 50050 "ETI. envio agrupado d"
 
 
                 RecCV2.Get("Sales Header"."Document Type", "Sales Header"."No.");
-                RecCV2.Validate(RecCV2."Nº bultos", numcajas);
+                ////RecCV2.Validate(RecCV2."Nº bultos", numcajas);
                 RecCV2.Modify;
 
 
@@ -253,7 +253,7 @@ Report 50050 "ETI. envio agrupado d"
                                         RecItem2.CalcFields("Assembly BOM");
                                         /////Message('2 - %1 %2 %3 ', Rec37."No.",RecItem2."Producto almacenable",RecItem2."Assembly BOM");
                                         if (RecItem2."Producto almacenable") and (not RecItem2."Assembly BOM") then begin
-                                            NLIN := NLIN + 1;                                             
+                                            NLIN := NLIN + 1;
 
                                             if NLIN = 1 then obs1 := obs1 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
                                             if NLIN = 2 then obs1 := obs1 + Format(Rec37."No.") + '=' + Format(Rec37."Outstanding Qty. (Base)") + ' / ';
