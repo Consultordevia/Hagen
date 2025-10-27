@@ -30,6 +30,13 @@
       "name": "Mirakl",
       "publisher": "DevConsultIA",
       "version": "1.0.0.2"
+    },
+    {
+      "appId": "a0acd12d-32ec-4dea-9e52-5c77523697b6",
+      "id": "a0acd12d-32ec-4dea-9e52-5c77523697b6",
+      "name": "EDI",
+      "publisher": "DevConsultIA",
+      "version": "1.0.0.0"
     }
   ],
   "screenshots": [],
