@@ -973,6 +973,7 @@ Page 50099 "Pantalla almacen Pascual5"
                             until SalesHeader4.next = 0;
                     end;
                 }
+                /*
                 action("Eti. agrupada Catit ARENA")
                 {
                     ApplicationArea = Basic;
@@ -1055,6 +1056,7 @@ Page 50099 "Pantalla almacen Pascual5"
                             until SalesHeader4.next = 0;
                     end;
                 }
+                */
 
 
                 action("Eti. agrupada")

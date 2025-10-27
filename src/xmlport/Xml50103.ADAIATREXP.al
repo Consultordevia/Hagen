@@ -482,6 +482,9 @@ XmlPort 50103 "ADAIATREXP"
                                 RecCusto.MODIFY;
                             END;
                         END;
+                        if RecCV."Nº bultos" = 0 then begin
+                            RecCV."Nº bultos" := 1;
+                        end;
                         IF RecCV."Incrementa bultos" <> 0 THEN BEGIN
                             RecCV."Nº bultos" := RecCV."Nº bultos" + RecCV."Incrementa bultos";
                         END;
