@@ -42,7 +42,7 @@ tableextension 50055 CustomerTempl extends "Customer Templ."
         }
         field(50005; "No enviar excel"; Boolean)
         {
-        }  
+        }
         field(50707; "Invoice Type"; Enum "SII Sales Invoice Type")
         {
             Caption = 'Invoice Type';
@@ -51,7 +51,7 @@ tableextension 50055 CustomerTempl extends "Customer Templ."
         {
             Caption = 'Cr. Memo Type';
         }
-         field(50709; "Special Scheme Code"; Enum "SII Sales Special Scheme Code")
+        field(50709; "Special Scheme Code"; Enum "SII Sales Special Scheme Code")
         {
             Caption = 'Special Scheme Code';
         }
@@ -60,7 +60,7 @@ tableextension 50055 CustomerTempl extends "Customer Templ."
             Caption = 'Correction Type';
             OptionCaption = ' ,Replacement,Difference,Removal';
             OptionMembers = " ",Replacement,Difference,Removal;
-            
+
         }
         field(50724; "Do Not Send To SII"; Boolean)
         {
@@ -68,32 +68,33 @@ tableextension 50055 CustomerTempl extends "Customer Templ."
         }
         field(50725; "ConfiguracionEDI"; Code[20])
         {
+            TableRelation = ConfiguracionEnviosEDI;
             Caption = 'Configuración EDI';
         }
-        field(50726;  "Pedido minimo EDI"; Decimal)
+        field(50726; "Pedido minimo EDI"; Decimal)
         {
             Caption = 'Pedido minimo EDI';
         }
-        field(50727;  "Cif"; Code[20])
+        field(50727; "Cif"; Code[20])
         {
             Caption = 'Cif';
-        }  
+        }
         field(50728; Name; Text[100])
         {
-            Caption = 'Name';            
-        }                    
+            Caption = 'Name';
+        }
 
         field(50732; "Estatus del cliente"; Option)
         {
             OptionCaption = 'Activo,Posible cliente,Transformado,Cerrado,Posible cliente WEB';
-            OptionMembers = Activo,"Posible cliente",Transformado,Cerrado,"Posible cliente WEB";           
+            OptionMembers = Activo,"Posible cliente",Transformado,Cerrado,"Posible cliente WEB";
         }
         field(50733; "Enviar a Web"; Boolean)
-        {             
+        {
             Caption = 'Enviar a Web';
         }
 
- 
-        
+
+
     }
 }
