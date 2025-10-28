@@ -68,7 +68,7 @@ tableextension 50055 CustomerTempl extends "Customer Templ."
         }
         field(50725; "ConfiguracionEDI"; Code[20])
         {
-            TableRelation = ConfiguracionEnviosEDI;
+            ///TableRelation = ConfiguracionEnviosEDI;
             Caption = 'Configuración EDI';
         }
         field(50726; "Pedido minimo EDI"; Decimal)
