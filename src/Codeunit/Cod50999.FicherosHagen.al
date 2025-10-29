@@ -23,7 +23,8 @@ codeunit 50999 FicherosHagen
         //Body += '"hasta": "' + SalesReceivablesSetup."Path Input Processed Voxel" + '"';
         Body += '}';
         //Flow Moure fitxer únic
-        URL := 'https://prod-183.westeurope.logic.azure.com:443/workflows/40144355390341d987b3d19cfa04905a/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-6-QUvQxsQdwtao0TJbPVBii41Z0rhht-xR37T0FzBo';
+        //URL := 'https://prod-183.westeurope.logic.azure.com:443/workflows/40144355390341d987b3d19cfa04905a/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=-6-QUvQxsQdwtao0TJbPVBii41Z0rhht-xR37T0FzBo';
+        url := 'https://default266e76577e8741009f109293df757a.06.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/40144355390341d987b3d19cfa04905a/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=2nyaQqY-ZTokrhAx8P3uPavlOqVUS6et01bI-gp0Vmc';
 
         Content.WriteFrom(Body);
         Content.GetHeaders(gheaders);
@@ -168,8 +169,8 @@ codeunit 50999 FicherosHagen
                     //Body += '"hasta": "' + SalesReceivablesSetup."Path Input Processed Voxel" + '"';
                     Body += '}';
                     //Flow Moure fitxer únic
-                    URL := 'https://prod-09.westeurope.logic.azure.com:443/workflows/7db12e79978a4b6e94d0af91ab1ce686/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ZmHmE6RxJHyq1OTJWvR1JD06EEv9IuVI9jRa_I-uais';
-
+                    //URL := 'https://prod-09.westeurope.logic.azure.com:443/workflows/7db12e79978a4b6e94d0af91ab1ce686/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ZmHmE6RxJHyq1OTJWvR1JD06EEv9IuVI9jRa_I-uais';
+                    URL := 'https://default266e76577e8741009f109293df757a.06.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/7db12e79978a4b6e94d0af91ab1ce686/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=D3oOufANB1KMgMxBqkkz_63Z8Xhn0X4cuixcGw6a7zQ';
 
                     //if Tipo = tipo::Voxel then begin
                     Content.WriteFrom(Body);
@@ -216,7 +217,9 @@ codeunit 50999 FicherosHagen
         Body += '"name": "' + path.replace('\', '\\') + '"';
         Body += '}';
         //Flow Llegir fitxers
-        URL := 'https://prod-106.westeurope.logic.azure.com:443/workflows/f452b2aec68f48dd8c5dbefe5f1ec5bd/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=8rHvB3mwr6wektoVhmG2CDTJho8GpJpQzitoSqN9LK8';
+        //URL := 'https://prod-106.westeurope.logic.azure.com:443/workflows/f452b2aec68f48dd8c5dbefe5f1ec5bd/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=8rHvB3mwr6wektoVhmG2CDTJho8GpJpQzitoSqN9LK8';
+        URL := 'https://default266e76577e8741009f109293df757a.06.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/f452b2aec68f48dd8c5dbefe5f1ec5bd/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=4Tu1LlZBZtJZwB_5kSVquKXXTkpeMJ1h0merQczUyJI';
+
 
         Content.WriteFrom(Body);
         Content.GetHeaders(gheaders);
@@ -311,7 +314,8 @@ codeunit 50999 FicherosHagen
 
         Body := '{"path": "' + parFilePath.replace('\', '\\') + '"}';
         //Flow Baixar fitxer
-        URL := 'https://prod-141.westeurope.logic.azure.com:443/workflows/1c7bc6b090a74c1ba70a4562e22b93f7/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cJIYk8LFWVWy78hO_XZtDAbW_A8n47MHrZqdVSc8BYE';
+        //URL := 'https://prod-141.westeurope.logic.azure.com:443/workflows/1c7bc6b090a74c1ba70a4562e22b93f7/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=cJIYk8LFWVWy78hO_XZtDAbW_A8n47MHrZqdVSc8BYE';
+        url := 'https://default266e76577e8741009f109293df757a.06.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/1c7bc6b090a74c1ba70a4562e22b93f7/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=21CGrqWQ9GjDUU72YVKkLZ1c5BImJuH692GHlX95dMM';
 
         Content.WriteFrom(Body);
         Content.GetHeaders(gheaders);
