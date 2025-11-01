@@ -4113,6 +4113,7 @@ OutStream.Write('Tercera línea después del salto');
 
 
             if PORTES <> 0 then begin
+                /*
                 ReleaseSalesDoc.Reopen(RecCV);
                 RecLV.Reset;
                 RecLV.SetRange(RecLV."Document Type", Rec36."Document Type");
@@ -4137,6 +4138,7 @@ OutStream.Write('Tercera línea después del salto');
                         RecLV2.Insert;
                     end;
                 end;
+                */
             end;
 
         end;
@@ -4296,6 +4298,7 @@ OutStream.Write('Tercera línea después del salto');
 
 
             if PORTES <> 0 then begin
+                /*
                 ReleaseSalesDoc.Reopen(RecCV);
                 RecLV.Reset;
                 RecLV.SetRange(RecLV."Document Type", Rec36."Document Type");
@@ -4320,6 +4323,7 @@ OutStream.Write('Tercera línea después del salto');
                         RecLV2.Insert;
                     end;
                 end;
+                */
             end;
 
         end;
