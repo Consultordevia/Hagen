@@ -337,7 +337,7 @@ Page 50099 "Pantalla almacen Pascual5"
                     var
                         Cu14: Codeunit 50014;
                     begin
-                        cu14.Run();
+                        //cu14.Run();
                         EnviaraADAIA;
                     end;
                 }

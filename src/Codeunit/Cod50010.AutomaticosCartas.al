@@ -3419,6 +3419,9 @@ OutStream.Write('Tercera línea después del salto');
         OutTxt: Text;
         logficheroadaia: Record LogFicherosAdaia;
         OutStrm: outstream;
+        OutStrm2: outstream;
+        InStream2: InStream;
+        tempBlob2: Codeunit "Temp Blob";
     begin
 
 
@@ -3720,11 +3723,15 @@ OutStream.Write('Tercera línea después del salto');
         DAT2 := 'TREXPORD.' + contaser + EXTEN + Format(ALEA) + Format(RecI."No.") + Format(LOGCAMBIOA);
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+
+        TempBlob2.CreateOutStream(OutStrm2, TextEncoding::Windows);
+        Data.Write(OutStrm2);
+        TempBlob2.CreateInStream(InStream2, TextEncoding::Windows);
         if logficheroadaia.get(NPEDIDO) then begin
-            logficheroadaia.fichero.CreateOutStream(OutStrm);
+            logficheroadaia.fichero.CreateOutStream(OutStrm2);
 
             // Copias el contenido del InStream al OutStream (y por tanto al Blob)
-            CopyStream(OutStrm, InStream);
+            CopyStream(OutStrm2, InStream2);
 
             // Guardas los cambios en el registro
             logficheroadaia.Modify();
@@ -3742,6 +3749,9 @@ OutStream.Write('Tercera línea después del salto');
         OutTxt: Text;
         logficheroadaia: Record LogFicherosAdaia;
         OutStrm: outstream;
+        InStream2: instream;
+        TEMPblob2: Codeunit "Temp Blob";
+        OutStrm2: OutStream;
     begin
 
 
@@ -4024,11 +4034,15 @@ OutStream.Write('Tercera línea después del salto');
         DAT2 := 'TREXPORD.' + contaser + EXTEN + Format(ALEA) + Format(RecI."No.") + Format(LOGCAMBIOA);
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
+
+        TempBlob2.CreateOutStream(OutStrm2);
+        Data.Write(OutStream);
+        TempBlob2.CreateInStream(InStream2, TextEncoding::Windows);
         if logficheroadaia.get(NPEDIDO) then begin
             logficheroadaia.fichero.CreateOutStream(OutStrm);
 
             // Copias el contenido del InStream al OutStream (y por tanto al Blob)
-            CopyStream(OutStrm, InStream);
+            CopyStream(OutStrm, InStream2);
 
             // Guardas los cambios en el registro
             logficheroadaia.Modify();
