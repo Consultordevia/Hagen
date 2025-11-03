@@ -108,7 +108,7 @@ Codeunit 50082 "Automaticos TRADE INN"
         RecLV: Record "Sales Line";
         Rec37: Record "Sales Line";
         PRECIO: Decimal;
-        SalesPrice: Record "Sales Price";
+        //SalesPrice: Record "Sales Price";
         codprovee: Code[20];
         codcategoriacov: Code[10];
         codfamiliacov: Code[10];
@@ -131,8 +131,8 @@ Codeunit 50082 "Automaticos TRADE INN"
         invmanestoc: Text;
         estatus: Text;
         pvpr: Decimal;
-        SalesLineDiscount: Record "Sales Line Discount";
-        DESCUENTO: Decimal;
+        //SalesLineDiscount: Record "Sales Line Discount";
+        //DESCUENTO: Decimal;
         d1: Integer;
         imp: Code[20];
         resto: Decimal;
@@ -282,81 +282,81 @@ Codeunit 50082 "Automaticos TRADE INN"
                             end;
 
                             PRECIO := 0;
-                            DESCUENTO := 0;
-                            SalesPrice.Reset;
-                            SalesPrice.SetRange("Item No.", Item."No.");
-                            SalesPrice.SetRange(SalesPrice."Sales Code", 'INN');
-                            if SalesPrice.FindLast then begin
-                                PRECIO := SalesPrice."Unit Price";
-                                pvpr := SalesPrice."Precio recomendado";
+                            //DESCUENTO := 0;
+                            //SalesPrice.Reset;
+                            //SalesPrice.SetRange("Item No.", Item."No.");
+                            //SalesPrice.SetRange(SalesPrice."Sales Code", 'INN');
+                            //if SalesPrice.FindLast then begin
+                            PRECIO := item."Unit Price";
+                            pvpr := item."Precio recomendado";
 
-                                SalesLineDiscount.Reset;
-                                SalesLineDiscount.SetRange(Code, Item."No.");
-                                SalesLineDiscount.SetRange("Sales Code", 'INN');
-                                SalesLineDiscount.SetRange("Starting Date", 0D, Today);
-                                SalesLineDiscount.SetRange("Ending Date", Today, 20501231D);
-                                if SalesLineDiscount.FindLast then begin
-                                    DESCUENTO := SalesLineDiscount."Line Discount %";
-                                end;
+                            //SalesLineDiscount.Reset;
+                            //SalesLineDiscount.SetRange(Code, Item."No.");
+                            //SalesLineDiscount.SetRange("Sales Code", 'INN');
+                            //SalesLineDiscount.SetRange("Starting Date", 0D, Today);
+                            //SalesLineDiscount.SetRange("Ending Date", Today, 20501231D);
+                            //if SalesLineDiscount.FindLast then begin
+                            //DESCUENTO := SalesLineDiscount."Line Discount %";
+                            //end;
 
-                                IVA := 0;
-                                if VATPostingSetup.Get('NACIONAL', Item."VAT Prod. Posting Group") then begin
-                                    IVA := VATPostingSetup."VAT+EC %";
-                                end;
-                                id2 := 0;
-                                Familiascatit2.Init;
-                                Familiascatit2.Reset;
-                                Familiascatit2.SetRange("Familia Catit", Item."Familia Catit");
-                                Familiascatit2.SetRange("Subfamilia Catit", Item."Subfamilia Catit");
-                                if Familiascatit2.FindFirst then begin
-                                    id2 := Familiascatit2."ID Web";
-                                end;
-                                id1 := 0;
-                                Familiascatit1.Init;
-                                Familiascatit1.Reset;
-                                Familiascatit1.SetRange("Familia Catit", Item."Familia Catit");
-                                if Familiascatit1.FindFirst then begin
-                                    id1 := Familiascatit1."ID Web";
-                                end;
-
-                                refcattit := Item."Ref. Catit";
-                                if refcattit = '' then begin
-                                    refcattit := Item."No.";
-                                end;
-                                TIVA := Format(IVA);
-                                if IVA = 10 then begin
-                                    TIVA := 'Reducido';
-                                end;
-                                invmanestoc := 'no';
-                                if DISPONI > 0 then begin
-                                    invmanestoc := 'yes';
-                                end;
-                                invmanestoc := 'yes';
-
-                                ///PRECIO:=PRECIO+ROUND(SalesPrice."Unit Price"*IVA/100,0.01);
-                                ///PRECIO:=PRECIO+ROUND(SalesPrice."Unit Price",0.01);
-                                PRECIO := ROUND(PRECIO, 0.01);
-
-                                if Item."Estatus Web" = Item."estatus web"::Activo then begin estatus := 'Active'; end;
-                                if Item."Estatus Web" = Item."estatus web"::Inactivo then begin estatus := 'Draft'; end;
-
-
-
-                                OutTxt := Format(Item."No.") + ';' +
-                                              Format(Item.ean) + ';' +
-                                              Format(DISPONI) + ';' +
-                                              ';' +
-                                              Format(DedimalCode(PRECIO)) + ';' +
-                                              Format('30') + ';' +
-                                              Format(DedimalCode(pvpr));
-
-
-                                ///OutStream.Write(TextoSalida4);
-                                OutTxt += Format(CarriageReturn) + Format(LineFeed);
-                                data.AddText(OutTxt);
-
-
+                            IVA := 0;
+                            if VATPostingSetup.Get('NACIONAL', Item."VAT Prod. Posting Group") then begin
+                                IVA := VATPostingSetup."VAT+EC %";
                             end;
+                            id2 := 0;
+                            Familiascatit2.Init;
+                            Familiascatit2.Reset;
+                            Familiascatit2.SetRange("Familia Catit", Item."Familia Catit");
+                            Familiascatit2.SetRange("Subfamilia Catit", Item."Subfamilia Catit");
+                            if Familiascatit2.FindFirst then begin
+                                id2 := Familiascatit2."ID Web";
+                            end;
+                            id1 := 0;
+                            Familiascatit1.Init;
+                            Familiascatit1.Reset;
+                            Familiascatit1.SetRange("Familia Catit", Item."Familia Catit");
+                            if Familiascatit1.FindFirst then begin
+                                id1 := Familiascatit1."ID Web";
+                            end;
+
+                            refcattit := Item."Ref. Catit";
+                            if refcattit = '' then begin
+                                refcattit := Item."No.";
+                            end;
+                            TIVA := Format(IVA);
+                            if IVA = 10 then begin
+                                TIVA := 'Reducido';
+                            end;
+                            invmanestoc := 'no';
+                            if DISPONI > 0 then begin
+                                invmanestoc := 'yes';
+                            end;
+                            invmanestoc := 'yes';
+
+                            ///PRECIO:=PRECIO+ROUND(SalesPrice."Unit Price"*IVA/100,0.01);
+                            ///PRECIO:=PRECIO+ROUND(SalesPrice."Unit Price",0.01);
+                            PRECIO := ROUND(PRECIO, 0.01);
+
+                            if Item."Estatus Web" = Item."estatus web"::Activo then begin estatus := 'Active'; end;
+                            if Item."Estatus Web" = Item."estatus web"::Inactivo then begin estatus := 'Draft'; end;
+
+
+
+                            OutTxt := Format(Item."No.") + ';' +
+                                          Format(Item.ean) + ';' +
+                                          Format(DISPONI) + ';' +
+                                          ';' +
+                                          Format(DedimalCode(PRECIO)) + ';' +
+                                          Format('30') + ';' +
+                                          Format(DedimalCode(pvpr));
+
+
+                            ///OutStream.Write(TextoSalida4);
+                            OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                            data.AddText(OutTxt);
+
+
+                            //end;
                         end;
                     end;
                 end;
