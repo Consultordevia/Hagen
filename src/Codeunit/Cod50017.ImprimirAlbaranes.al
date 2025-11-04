@@ -60,22 +60,25 @@ Codeunit 50017 "ImprimirAlbaranes"
                     end;
                 END;
                 If SHH."Shipping Agent Code" = 'ECI' then begin
-                    Report.Run(50905, false, false, SHH);
+                    SHH3.Reset();
+                    SHH3.SetRange("No.", SHH."No.");
+                    IF SHH3.FindFirst() THEN //BEGIN
+                        Report.Run(50905, false, false, SHH3);
                 end;
                 StoA.Reset();
                 StoA.SetRange("Customer No.", RecClie."No.");
                 StoA.SetRange("Imprime Etiqueta envio", true);
                 if StoA.FindFirst() then begin
-                    SHH2.reset;
-                    SHH2.SetRange("No.", SHH."No.");
-                    IF SHH2.FindFirst() THEN begin
-                        SHH3.Reset();
-                        SHH3.SetRange("No.", SHH."No.");
-                        IF SHH3.FindFirst() THEN BEGIN
-                            Clear(RepEtiquetaEnvio);
-                            RepEtiquetaEnvio.SetTableView(SHH3);
-                            RepEtiquetaEnvio.RunModal();
-                        end;
+                    //SHH2.reset;
+                    //SHH2.SetRange("No.", SHH."No.");
+                    //IF SHH2.FindFirst() THEN begin
+                    SHH3.Reset();
+                    SHH3.SetRange("No.", SHH."No.");
+                    IF SHH3.FindFirst() THEN BEGIN
+                        Clear(RepEtiquetaEnvio);
+                        RepEtiquetaEnvio.SetTableView(SHH3);
+                        RepEtiquetaEnvio.Run();
+                        //  end;
                     END;
 
                 end;
@@ -85,27 +88,13 @@ Codeunit 50017 "ImprimirAlbaranes"
                     IF SHH3.FindFirst() THEN BEGIN
                         Clear(RepEtiquetaKiwoko);
                         RepEtiquetaKiwoko.SetTableView(SHH3);
-                        RepEtiquetaKiwoko.RunModal();
+                        RepEtiquetaKiwoko.Run();
                     end;
                 end;
                 SHH2.GET(SHH."No.");
                 SHH2.ImpresoporImporesora := TRUE;
                 SHH2.Modify();
             UNTIL SHH.NEXT = 0;
-
-
-
-
-
     end;
-
-
-
-
-
-
-
-
-
 }
 
