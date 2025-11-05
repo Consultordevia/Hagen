@@ -7,94 +7,88 @@ Codeunit 50017 "ImprimirAlbaranes"
     var
         SHH: Record "Sales Shipment Header";
         SHH2: Record "Sales Shipment Header";
-        SHH3: Record "Sales Shipment Header";
-        V: Dialog;
-        RecClie: Record Customer;
-        StoA: Record "Ship-to Address";
-        RepEtiquetaEnvio: Report "Etiqueta grande envio";
-        RepEtiquetaKiwoko: Report "Etiqueta Kiwoko";
     begin
-
-        /*V.Open('#1###########################');
-        SHH.Reset();
-        SHH.SetCurrentKey(ImpresoporImporesora);
-        SHH.SetRange(ImpresoporImporesora, FALSE);
-        IF SHH.FindSet() THEN
-            REPEAT
-                V.Update(1, SHH."No.");
-                SHH2.GET(SHH."No.");
-                SHH2.ImpresoporImporesora := TRUE;
-                SHH2.Modify();
-            UNTIL SHH.NEXT = 0;
-        V.Close();
-
-        
-        */
-
         SHH.Reset();
         SHH.SetCurrentKey(ImpresoporImporesora);
         SHH.SetRange(ImpresoporImporesora, false);
         IF SHH.FindSet() THEN
             REPEAT
-                RecClie.Get(SHH."Sell-to Customer No.");
-                if SHH."Shipping Agent Code" <> 'ECI' then begin
-                    /*if SHH."No Enviar albaran en exp." = false then begin
-                        if SHH."No imprimir albaran valorado" = false then begin
-                            if RecClie."Albaran valorado" = true then begin
-                                if SHH.Dropshipping = true then begin
-                                    ///Error('1- %1 ', SHH."No.");
-                                    Report.Run(50901, false, false, SHH);
-                                end;
-                            end;
-                        end;
-                    end;
-                    */
-                    if SHH."Albaran sin detalle" = true then begin
-                        if SHH.Dropshipping = false then begin
-                            SHH3.Reset();
-                            SHH3.SetRange("No.", SHH."No.");
-                            IF SHH3.FindFirst() THEN BEGIN
-                                Report.Run(1308, false, false, SHH3);
-                            END;
-                        end;
-                    end;
-                END;
-                If SHH."Shipping Agent Code" = 'ECI' then begin
-                    SHH3.Reset();
-                    SHH3.SetRange("No.", SHH."No.");
-                    IF SHH3.FindFirst() THEN //BEGIN
-                        Report.Run(50905, false, false, SHH3);
+                if Imprimir(SHH) then begin
+                    SHH2.GET(SHH."No.");
+                    SHH2.ImpresoporImporesora := TRUE;
+                    SHH2.Modify();
+                end else begin
+                    SHH2.GET(SHH."No.");
+                    SHH2.ImpresoporImporesora := TRUE;
+                    SHH2.Modify();
                 end;
-                StoA.Reset();
-                StoA.SetRange("Customer No.", RecClie."No.");
-                StoA.SetRange("Imprime Etiqueta envio", true);
-                if StoA.FindFirst() then begin
-                    //SHH2.reset;
-                    //SHH2.SetRange("No.", SHH."No.");
-                    //IF SHH2.FindFirst() THEN begin
-                    SHH3.Reset();
-                    SHH3.SetRange("No.", SHH."No.");
-                    IF SHH3.FindFirst() THEN BEGIN
-                        Clear(RepEtiquetaEnvio);
-                        RepEtiquetaEnvio.SetTableView(SHH3);
-                        RepEtiquetaEnvio.Run();
-                        //  end;
-                    END;
-
-                end;
-                IF RecClie."Etiqueta Kiwoko" THEN begin
-                    SHH3.Reset();
-                    SHH3.SetRange("No.", SHH."No.");
-                    IF SHH3.FindFirst() THEN BEGIN
-                        Clear(RepEtiquetaKiwoko);
-                        RepEtiquetaKiwoko.SetTableView(SHH3);
-                        RepEtiquetaKiwoko.Run();
-                    end;
-                end;
-                SHH2.GET(SHH."No.");
-                SHH2.ImpresoporImporesora := TRUE;
-                SHH2.Modify();
             UNTIL SHH.NEXT = 0;
+    end;
+
+    [TryFunction]
+    procedure Imprimir(SHH: Record "Sales Shipment Header")
+    var
+        RecClie: Record Customer;
+        StoA: Record "Ship-to Address";
+        RepEtiquetaEnvio: Report "Etiqueta grande envio";
+        RepEtiquetaKiwoko: Report "Etiqueta Kiwoko";
+        SHH3: Record "Sales Shipment Header";
+    begin
+        RecClie.Get(SHH."Sell-to Customer No.");
+        if SHH."Shipping Agent Code" <> 'ECI' then begin
+            /*if SHH."No Enviar albaran en exp." = false then begin
+                if SHH."No imprimir albaran valorado" = false then begin
+                    if RecClie."Albaran valorado" = true then begin
+                        if SHH.Dropshipping = true then begin
+                            ///Error('1- %1 ', SHH."No.");
+                            Report.Run(50901, false, false, SHH);
+                        end;
+                    end;
+                end;
+            end;
+            */
+            if SHH."Albaran sin detalle" = true then begin
+                if SHH.Dropshipping = false then begin
+                    SHH3.Reset();
+                    SHH3.SetRange("No.", SHH."No.");
+                    IF SHH3.FindFirst() THEN BEGIN
+                        Report.Run(1308, false, false, SHH3);
+                    END;
+                end;
+            end;
+        END;
+        If SHH."Shipping Agent Code" = 'ECI' then begin
+            SHH3.Reset();
+            SHH3.SetRange("No.", SHH."No.");
+            IF SHH3.FindFirst() THEN //BEGIN
+                Report.Run(50905, false, false, SHH3);
+        end;
+        StoA.Reset();
+        StoA.SetRange("Customer No.", RecClie."No.");
+        StoA.SetRange("Imprime Etiqueta envio", true);
+        if StoA.FindFirst() then begin
+            //SHH2.reset;
+            //SHH2.SetRange("No.", SHH."No.");
+            //IF SHH2.FindFirst() THEN begin
+            SHH3.Reset();
+            SHH3.SetRange("No.", SHH."No.");
+            IF SHH3.FindFirst() THEN BEGIN
+                Clear(RepEtiquetaEnvio);
+                RepEtiquetaEnvio.SetTableView(SHH3);
+                RepEtiquetaEnvio.Run();
+                //  end;
+            END;
+
+        end;
+        IF RecClie."Etiqueta Kiwoko" THEN begin
+            SHH3.Reset();
+            SHH3.SetRange("No.", SHH."No.");
+            IF SHH3.FindFirst() THEN BEGIN
+                Clear(RepEtiquetaKiwoko);
+                RepEtiquetaKiwoko.SetTableView(SHH3);
+                RepEtiquetaKiwoko.Run();
+            end;
+        end;
     end;
 }
 
