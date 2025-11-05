@@ -150,6 +150,10 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
         }
         field(50060; "Envio a-Nº Telefono"; Text[30])
         {
+            trigger OnValidate()
+            begin
+                rec."Ship-to Phone No." := "Envio a-Nº Telefono";
+            end;
         }
         field(50062; "Tipo facturación"; Option)
         {
