@@ -458,7 +458,7 @@ Page 50099 "Pantalla almacen Pascual5"
                     begin
 
                         NPEDIDO := Rec."Nº expedición";
-                        ImprimeEtiPortugal;
+                        ImprimeEtiPortugal2;
                     end;
                 }
                 action("ImportaDatosPVPWEB")
@@ -3404,6 +3404,51 @@ Page 50099 "Pantalla almacen Pascual5"
             end;
         end;
         */
+
+
+    local procedure ImprimeEtiPortugal2()
+    begin
+
+
+
+        Multitabla.Reset;
+        Multitabla.SetRange(Multitabla.Tabla, 17);
+        Multitabla.SetCurrentkey(Multitabla.Tabla, Multitabla.Ubicacion);
+        Multitabla.Ascending(false);
+        Multitabla.SetFilter(Multitabla.Ubicacion, '010*01|010*02');
+        if Multitabla.FindFirst then
+            repeat
+                SalesLine.Reset;
+                SalesLine.SetRange(SalesLine."Document Type", Rec."Document Type");
+                SalesLine.SetRange(SalesLine."Document No.", Rec."No.");
+                SalesLine.SetRange(SalesLine."No.", Multitabla.Producto);
+                if SalesLine.FindFirst then
+                    repeat
+                        if SalesLine.Type = 2 then begin
+                            if Item.Get(SalesLine."No.") then begin
+                                if Item."Etiqueta portugues" = true then begin
+                                    X := 0;
+                                    repeat
+                                        X := X + 1;
+                                        ExtendedTextHeader.Reset;
+                                        /////-ExtendedTextHeader.SetRange(ExtendedTextHeader."Table Name", ExtendedTextHeader.tablename2::Etiquetas);
+                                        ExtendedTextHeader.SetRange(ExtendedTextHeader."No.", SalesLine."No.");
+                                        if ExtendedTextHeader.FindFirst then begin
+                                            Message('%1 - %2 - %3', SalesLine."No.", X, Multitabla.Producto);
+
+                                            //Clear(RepEti);
+                                            //RepEti.NEXPE(NPEDIDO);
+                                            //RepEti.SetTableview(ExtendedTextHeader);
+                                            //RepEti.RunModal;
+                                        end;
+                                    until X = SalesLine."Outstanding Quantity";
+                                end;
+                            end;
+                        end;
+                    until SalesLine.Next = 0;
+            until Multitabla.Next = 0;
+    end;
+
 
     local procedure ReenviaraADAIA()
     begin
