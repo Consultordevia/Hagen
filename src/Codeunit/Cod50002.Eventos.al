@@ -1326,6 +1326,18 @@ codeunit 50002 Eventos
         IsHandled := true;
     end;
 
+    procedure pasaraservidoa(NumeroAlbaran: Code[20]): Code[20]
+    var
+        SalesHeader: Record "Sales Header";
+    begin
+        SalesHeader.Get(SalesHeader."Document Type"::Order, NumeroAlbaran);
+        Message('Antes %1 %2 a %3', SalesHeader."Document Type", SalesHeader."No.", SalesHeader."Estado pedido");
+        SalesHeader."Estado pedido" := SalesHeader."Estado pedido"::Servido;
+        SalesHeader.Modify(true);
+        commit;
+        Message('Modificado %1 %2 a %3', SalesHeader."Document Type", SalesHeader."No.", SalesHeader."Estado pedido");
 
+
+    end;
 
 }

@@ -20,7 +20,7 @@ Page 50099 "Pantalla almacen Pascual5"
     PageType = List;
     SourceTable = "Sales Header";
     SourceTableView = sorting("Document Type", "Estado pedido", "Super urgente", Urgente, "Fecha para preparar", "Hora para preparar");
-    Permissions = tabledata 110 = rmid, tabledata 112 = rmid, tabledata 114 = rmid, tabledata "Cajas por pedido" = rmid, tabledata 113 = rmid, tabledata 115 = rmid;
+    Permissions = tabledata 110 = rmid, tabledata 112 = rmid, tabledata 114 = rmid, tabledata "Cajas por pedido" = rmid, tabledata 113 = rmid, tabledata 115 = rmid, tabledata 36 = rmid;
 
     layout
     {
@@ -817,10 +817,11 @@ Page 50099 "Pantalla almacen Pascual5"
                     ApplicationArea = Basic;
 
                     trigger OnAction()
-                    begin
+                    var
+                        CU_Eventos: Codeunit Eventos;
 
-                        Rec."Estado pedido" := Rec."estado pedido"::Servido;
-                        Rec.Modify;
+                    begin
+                        CU_Eventos.pasaraservidoa(Rec."No.");
                     end;
                 }
                 action("Eti. ADAIA")
@@ -3434,12 +3435,12 @@ Page 50099 "Pantalla almacen Pascual5"
                                         /////-ExtendedTextHeader.SetRange(ExtendedTextHeader."Table Name", ExtendedTextHeader.tablename2::Etiquetas);
                                         ExtendedTextHeader.SetRange(ExtendedTextHeader."No.", SalesLine."No.");
                                         if ExtendedTextHeader.FindFirst then begin
-                                            Message('%1 - %2 - %3', SalesLine."No.", X, Multitabla.Producto);
+                                            ///Message('%1 - %2 - %3', SalesLine."No.", X, Multitabla.Producto);
 
-                                            //Clear(RepEti);
-                                            //RepEti.NEXPE(NPEDIDO);
-                                            //RepEti.SetTableview(ExtendedTextHeader);
-                                            //RepEti.RunModal;
+                                            Clear(RepEti);
+                                            RepEti.NEXPE(NPEDIDO);
+                                            RepEti.SetTableview(ExtendedTextHeader);
+                                            RepEti.RunModal;
                                         end;
                                     until X = SalesLine."Outstanding Quantity";
                                 end;
