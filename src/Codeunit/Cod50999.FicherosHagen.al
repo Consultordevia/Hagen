@@ -389,6 +389,9 @@ codeunit 50999 FicherosHagen
                     if Tipo = Tipo::TXT then begin
                         Xmlport.Import(Xmlport::"Importacion TXT", InStream);
                     end;
+                    if Tipo = Tipo::NTL then begin
+                        Xmlport.Import(Xmlport::"Importacion NTL", InStream);
+                    end;
                     if Tipo = Tipo::CATITNUEVO then begin
                         Xmlport.Import(Xmlport::"Importacion PEDIDOS catitt new", InStream);
                     end;

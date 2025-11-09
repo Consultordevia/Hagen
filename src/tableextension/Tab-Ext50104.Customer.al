@@ -791,6 +791,11 @@ tableextension 50104 Customer extends "Customer"
         {
             Caption = 'Etiqueta Kiwoko';
         }
+        field(50727; "Tipo de id."; Enum "SII ID Type")
+        {
+            Caption = 'Tipo de id.';
+        }
+
 
 
 

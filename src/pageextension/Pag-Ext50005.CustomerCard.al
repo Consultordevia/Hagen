@@ -34,13 +34,14 @@ pageextension 50005 "Customer Card" extends "Customer Card"
         {
             group(BC_SII)
             {
-                field("Invoice Type";Rec."Invoice Type") { ApplicationArea = All; }
-                field("Cr. Memo Type";Rec."Cr. Memo Type") { ApplicationArea = All; }                                                                               
-                field("Special Scheme Code";Rec."Special Scheme Code") { ApplicationArea = All; }                                   
-                field("Correction Type";Rec."Correction Type"){ ApplicationArea = All; }                                   
-                field("Do Not Send To SII";Rec."Do Not Send To SII"){ ApplicationArea = All; }                                   
-                     
-                    
+                field("Tipo de id."; Rec."Tipo de id.") { ApplicationArea = All; }
+                field("Invoice Type"; Rec."Invoice Type") { ApplicationArea = All; }
+                field("Cr. Memo Type"; Rec."Cr. Memo Type") { ApplicationArea = All; }
+                field("Special Scheme Code"; Rec."Special Scheme Code") { ApplicationArea = All; }
+                field("Correction Type"; Rec."Correction Type") { ApplicationArea = All; }
+                field("Do Not Send To SII"; Rec."Do Not Send To SII") { ApplicationArea = All; }
+
+
 
 
             }

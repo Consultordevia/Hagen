@@ -86,7 +86,7 @@ enum 50000 Ficherets
     value(28; MIRAVIACATIT)
     {
         Caption = 'MIRAVIACATIT';
-    } 
+    }
     value(29; MIRAVIAAQUA)
     {
         Caption = 'MIRAVIAAQUA';
@@ -99,5 +99,9 @@ enum 50000 Ficherets
     {
         Caption = 'MRW';
     }
-    
+    value(32; NTL)
+    {
+        Caption = 'NTL';
+    }
+
 }

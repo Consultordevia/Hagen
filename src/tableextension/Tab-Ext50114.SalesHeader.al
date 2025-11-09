@@ -31,7 +31,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                     Rec."Special Scheme Code" := Reccust."Special Scheme Code";
                     Rec."Correction Type" := Reccust."Correction Type";
                     Rec."Do Not Send To SII" := Reccust."Do Not Send To SII";
-
+                    Rec."ID Type" := Reccust."Tipo de id.";
 
 
                 end;
