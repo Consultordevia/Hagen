@@ -288,7 +288,7 @@ Codeunit 50082 "Automaticos TRADE INN"
                             //SalesPrice.SetRange(SalesPrice."Sales Code", 'INN');
                             //if SalesPrice.FindLast then begin
                             PRECIO := item."Unit Price";
-                            pvpr := item."Precio recomendado";
+                            pvpr := round(item."PVP-Web", 0.01);
 
                             //SalesLineDiscount.Reset;
                             //SalesLineDiscount.SetRange(Code, Item."No.");
