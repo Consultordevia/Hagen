@@ -38,6 +38,9 @@ XmlPort 50076 "Importacion NTL"
                 }
                 textelement(D6)
                 {
+                }
+                textelement(D7)
+                {
 
                     trigger OnAfterAssignVariable()
                     begin
