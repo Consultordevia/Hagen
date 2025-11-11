@@ -16,7 +16,7 @@ Codeunit 50085 "Importacion NTL"
             RUTACOPIA := ADAIA.Ruta + 'copia/';
         end;
         Commit;
-        tipo := Tipo::TXT;
+        tipo := Tipo::NTL;
 
 
         FicherosHagen.LeerArchivosCarpeta(nomdir, RUTACOPIA, Tipo)

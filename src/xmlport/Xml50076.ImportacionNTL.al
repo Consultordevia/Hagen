@@ -7,7 +7,7 @@ XmlPort 50076 "Importacion NTL"
 
     Caption = 'Importacion NTL';
     Direction = Import;
-    FieldSeparator = '|';
+    FieldSeparator = ';';
     Format = VariableText;
     TextEncoding = UTF16;
     Permissions = TableData "Sales Shipment Header" = rim;
@@ -35,12 +35,7 @@ XmlPort 50076 "Importacion NTL"
                 }
                 textelement(D5)
                 {
-                }
-                textelement(D6)
-                {
-                }
-                textelement(D7)
-                {
+
 
                     trigger OnAfterAssignVariable()
                     begin
@@ -234,14 +229,15 @@ XmlPort 50076 "Importacion NTL"
     local procedure ValidateHeaderTag()
     begin
 
+        ///Message('%1 - %2 - %3 - %4 - %5 - %6', d1, d2, d3, d4, d5, d6);
         linea := linea + 1;
         if linea > 1 then begin
 
             fecha2 := 0D;
-            if D4 <> '' then begin
-                DDA := CopyStr(D4, 1, 2);
-                MMA := CopyStr(D4, 4, 2);
-                AAA := CopyStr(D4, 7, 4);
+            if D3 <> '' then begin
+                DDA := CopyStr(D3, 1, 2);
+                MMA := CopyStr(D3, 4, 2);
+                AAA := CopyStr(D3, 7, 4);
                 /*
                   x:=0;
                   SALE:=FALSE;
@@ -278,14 +274,14 @@ XmlPort 50076 "Importacion NTL"
         end;
 
 
-        D2 := CopyStr(D2, 1, 20);
+        D1 := CopyStr(D1, 1, 20);
 
         ///MESSAGE('%1',D3);
 
         if D1 <> '' then begin
             SalesShipmentHeader.Reset;
             SalesShipmentHeader.SetCurrentkey(ASN);
-            SalesShipmentHeader.SetRange(ASN, D2);
+            SalesShipmentHeader.SetRange(ASN, D1);
             if SalesShipmentHeader.FindFirst then
                 repeat
                     fecha2 := SalesShipmentHeader."Posting Date";
@@ -301,7 +297,7 @@ XmlPort 50076 "Importacion NTL"
                     CUANTOSDIAS := CUANTOSDIAS - 1;
                     choras := '';
                     totalhoras := 0;
-                    DDH := CopyStr(D5, 1, 5);
+                    DDH := CopyStr(D4, 1, 5);
 
                     if DDH <> '' then begin
                         if (CopyStr(DDH, 1, 1) = '0') or
@@ -323,18 +319,18 @@ XmlPort 50076 "Importacion NTL"
                         end;
                     end;
 
-                    SalesShipmentHeader."Estado Expedicion" := D6;
+                    SalesShipmentHeader."Estado Expedicion" := D5;
                     SalesShipmentHeader."Fecha envio" := fecha2;
                     SalesShipmentHeader."Fecha entrega" := fecha1;
                     SalesShipmentHeader."Hora entrega" := choras;
                     SalesShipmentHeader."Total horas" := totalhoras;
-                    SalesShipmentHeader."Numero segumiento" := D3;
+                    SalesShipmentHeader."Numero segumiento" := D2;
                     SalesShipmentHeader.Modify;
                 until SalesShipmentHeader.Next = 0;
 
             SalesShipmentHeader.Reset;
             SalesShipmentHeader.SetCurrentkey("Nº expedición");
-            SalesShipmentHeader.SetRange("Nº expedición", D2);
+            SalesShipmentHeader.SetRange("Nº expedición", D1);
             if SalesShipmentHeader.FindFirst then
                 repeat
                     fecha2 := SalesShipmentHeader."Posting Date";
@@ -350,7 +346,7 @@ XmlPort 50076 "Importacion NTL"
                     CUANTOSDIAS := CUANTOSDIAS - 1;
                     choras := '';
                     totalhoras := 0;
-                    DDH := CopyStr(D5, 1, 5);
+                    DDH := CopyStr(D4, 1, 5);
 
                     if DDH <> '' then begin
                         if (CopyStr(DDH, 1, 1) = '0') or
@@ -372,17 +368,17 @@ XmlPort 50076 "Importacion NTL"
                         end;
                     end;
 
-                    SalesShipmentHeader."Estado Expedicion" := D6;
+                    SalesShipmentHeader."Estado Expedicion" := D5;
                     SalesShipmentHeader."Fecha envio" := fecha2;
                     SalesShipmentHeader."Fecha entrega" := fecha1;
                     SalesShipmentHeader."Hora entrega" := choras;
                     SalesShipmentHeader."Total horas" := totalhoras;
-                    SalesShipmentHeader."Numero segumiento" := D3;
+                    SalesShipmentHeader."Numero segumiento" := D2;
                     SalesShipmentHeader.Modify;
                 until SalesShipmentHeader.Next = 0;
             SalesShipmentHeader.Reset;
             SalesShipmentHeader.SetCurrentkey("Nº expedición dropshp");
-            SalesShipmentHeader.SetRange("Nº expedición dropshp", D2);
+            SalesShipmentHeader.SetRange("Nº expedición dropshp", D1);
             if SalesShipmentHeader.FindFirst then
                 repeat
                     fecha2 := SalesShipmentHeader."Posting Date";
@@ -399,7 +395,7 @@ XmlPort 50076 "Importacion NTL"
 
                     choras := '';
                     totalhoras := 0;
-                    DDH := CopyStr(D5, 1, 5);
+                    DDH := CopyStr(D4, 1, 5);
 
                     if DDH <> '' then begin
                         if (CopyStr(DDH, 1, 1) = '0') or
@@ -421,12 +417,12 @@ XmlPort 50076 "Importacion NTL"
                         end;
                     end;
 
-                    SalesShipmentHeader."Estado Expedicion" := D6;
+                    SalesShipmentHeader."Estado Expedicion" := D5;
                     SalesShipmentHeader."Fecha envio" := fecha2;
                     SalesShipmentHeader."Fecha entrega" := fecha1;
                     SalesShipmentHeader."Hora entrega" := choras;
                     SalesShipmentHeader."Total horas" := totalhoras;
-                    SalesShipmentHeader."Numero segumiento" := D3;
+                    SalesShipmentHeader."Numero segumiento" := D2;
                     SalesShipmentHeader.Modify;
                 until SalesShipmentHeader.Next = 0;
             Commit;

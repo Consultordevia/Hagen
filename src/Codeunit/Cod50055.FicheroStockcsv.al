@@ -117,7 +117,7 @@ Codeunit 50055 "Fichero Stock.csv"
         RecLV: Record "Sales Line";
         Rec37: Record "Sales Line";
         PRECIO: Decimal;
-        SalesPrice: Record "Sales Price";
+        SalesPrice: Record "Price List Line";
         codprovee: Code[20];
         codcategoriacov: Code[10];
         codfamiliacov: Code[10];
@@ -306,7 +306,14 @@ Codeunit 50055 "Fichero Stock.csv"
                                 /////ItemTemp.Familia := CopyStr(dtext1, 1, 50);
                                 ItemTemp.Level1 := Item.Etiquetas6;
                                 ItemTemp.Level2 := Item.Level2;
-                                ItemTemp."Unit Price" := Item."Tarifa 2022-2";
+                                PRECIO := 0;
+                                SalesPrice.Reset;
+                                SalesPrice.SetRange("Product No.", Item."No.");
+                                SalesPrice.SetRange("Source No.", '2025');
+                                if SalesPrice.FindLast then begin
+                                    PRECIO := SalesPrice."Unit Price";
+                                end;
+                                ItemTemp."Unit Price" := precio;
                                 ItemTemp."Unit Cost" := Item."PVP-Web";
                                 ItemTemp."Maximum Inventory" := DISPONI;
                                 ItemTemp."Unidad compra" := UNIMEDAD;
@@ -565,7 +572,15 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ///ItemtempR.Familia := CopyStr(dtext1, 1, 50);
                                 ItemtempR.Level1 := Item.Etiquetas6;
                                 ItemtempR.Level2 := Item.Level2;
-                                ItemtempR."Unit Price" := Item."Tarifa 2021";
+                                PRECIO := 0;
+                                SalesPrice.Reset;
+                                SalesPrice.SetRange("Product No.", Item."No.");
+                                SalesPrice.SetRange("Source No.", '2025');
+                                if SalesPrice.FindLast then begin
+                                    PRECIO := SalesPrice."Unit Price";
+                                end;
+
+                                ItemtempR."Unit Price" := precio;
                                 ItemtempR."Unit Cost" := Item."PVP Recomendado 2021";
                                 ItemtempR."Maximum Inventory" := DISPONI;
                                 ItemtempR."Unidad compra" := UNIMEDAD;
@@ -856,7 +871,15 @@ Codeunit 50055 "Fichero Stock.csv"
                                 /////ItemtempR.Familia := dtext1;
                                 ItemtempR.Level1 := Item.Etiquetas6;
                                 ItemtempR.Level2 := Item.Level2;
-                                ItemtempR."Unit Price" := Item."Tarifa 2021-2";
+                                PRECIO := 0;
+                                SalesPrice.Reset;
+                                SalesPrice.SetRange("Product No.", Item."No.");
+                                SalesPrice.SetRange("Source No.", '2025');
+                                if SalesPrice.FindLast then begin
+                                    PRECIO := SalesPrice."Unit Price";
+                                end;
+
+                                ItemtempR."Unit Price" := precio;
                                 ItemtempR."Unit Cost" := Item."PVP Recomendado 2021-2";
                                 ItemtempR."Maximum Inventory" := DISPONI;
                                 ItemtempR."Unidad compra" := UNIMEDAD;
@@ -1143,7 +1166,15 @@ Codeunit 50055 "Fichero Stock.csv"
                                 /////ItemtempR.Familia := dtext1;
                                 ItemtempR.Level1 := Item.Etiquetas6;
                                 ItemtempR.Level2 := Item.Level2;
-                                ItemtempR."Unit Price" := Item."Tarifa 2022-2";
+                                PRECIO := 0;
+                                SalesPrice.Reset;
+                                SalesPrice.SetRange("Product No.", Item."No.");
+                                SalesPrice.SetRange("Source No.", '2025');
+                                if SalesPrice.FindLast then begin
+                                    PRECIO := SalesPrice."Unit Price";
+                                end;
+
+                                ItemtempR."Unit Price" := precio;
                                 ItemtempR."Unit Cost" := Item."PVP-Web";
                                 ItemtempR."Maximum Inventory" := DISPONI;
                                 ItemtempR."Unidad compra" := UNIMEDAD;
@@ -1449,7 +1480,15 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ///ItemtempR.Familia := dtext1;                                
                                 ItemtempR.Level1 := Item.Etiquetas6;
                                 ItemtempR.Level2 := Item.Level2;
-                                ItemtempR."Unit Price" := Item."Unit Price";
+                                PRECIO := 0;
+                                SalesPrice.Reset;
+                                SalesPrice.SetRange("Product No.", Item."No.");
+                                SalesPrice.SetRange("Source No.", '2025');
+                                if SalesPrice.FindLast then begin
+                                    PRECIO := SalesPrice."Unit Price";
+                                end;
+
+                                ItemtempR."Unit Price" := precio;
                                 ItemtempR."Unit Cost" := Item."PVP-Web";
                                 ItemtempR."Maximum Inventory" := DISPONI;
                                 ItemtempR."Unidad compra" := UNIMEDAD;
