@@ -85,7 +85,7 @@ Codeunit 50027 "Actualiza stock COVALDROPER"
         RecLV: Record "Sales Line";
         Rec37: Record "Sales Line";
         PRECIO: Decimal;
-        SalesPrice: Record "Sales Price";
+        SalesPrice: Record "Price List Line";
         codprovee: Code[20];
         codcategoriacov: Code[10];
         codfamiliacov: Code[10];
@@ -218,15 +218,17 @@ Codeunit 50027 "Actualiza stock COVALDROPER"
                             end;
                             PRECIO := 0;
                             SalesPrice.Reset;
-                            SalesPrice.SetRange("Item No.", Item."No.");
-                            SalesPrice.SetRange(SalesPrice."Sales Code", 'COV');
+                            SalesPrice.SetRange("Product No.", Item."No.");
+                            SalesPrice.SetRange("Source No.", 'COV');
                             if SalesPrice.FindLast then begin
                                 PRECIO := SalesPrice."Unit Price";
-                                TextoSalida1 := Format(Item.ean) + ';' +
-                                              Format(PRECIO) + ';' +
-                                              Format(DISPONI);
-                                ///ArchSalida4.Write(TextoSalida1);
-                                OutStream.Write(TextoSalida1);
+                                if PRECIO <> 0 then begin
+                                    TextoSalida1 := Format(Item.ean) + ';' +
+                                                  Format(PRECIO) + ';' +
+                                                  Format(DISPONI);
+                                    ///ArchSalida4.Write(TextoSalida1);
+                                    OutStream.Write(TextoSalida1);
+                                end;
 
                             end;
                         end;

@@ -139,6 +139,7 @@ Codeunit 50082 "Automaticos TRADE INN"
         cresto: Code[2];
         ADAIA: Record adaia;
         NOMDIR: TEXT;
+        PriceListLine: Record "Price List Line";
 
 
     procedure GrabaStockCatit()
@@ -182,7 +183,7 @@ Codeunit 50082 "Automaticos TRADE INN"
 
 
         Item.Reset;
-        Item.SetFilter(Item."Estado Producto", '0|1');
+        ///Item.SetFilter(Item."Estado Producto", '0|1');
         ///// Item.SETRANGE(Item."Excluir de dropbox",FALSE);
         if Item.FindSet then
             repeat
@@ -283,12 +284,13 @@ Codeunit 50082 "Automaticos TRADE INN"
 
                             PRECIO := 0;
                             //DESCUENTO := 0;
-                            //SalesPrice.Reset;
-                            //SalesPrice.SetRange("Item No.", Item."No.");
-                            //SalesPrice.SetRange(SalesPrice."Sales Code", 'INN');
-                            //if SalesPrice.FindLast then begin
-                            PRECIO := item."Unit Price";
-                            pvpr := round(item."PVP-Web", 0.01);
+                            PriceListLine.Reset;
+                            PriceListLine.SetRange("Product No.", Item."No.");
+                            PriceListLine.SetRange("Source No.", 'INN');
+                            if PriceListLine.FindLast then begin
+                                PRECIO := PriceListLine."Unit Price";
+                                pvpr := round(item."PVP-Web", 0.01);
+                            end;
 
                             //SalesLineDiscount.Reset;
                             //SalesLineDiscount.SetRange(Code, Item."No.");
@@ -341,19 +343,20 @@ Codeunit 50082 "Automaticos TRADE INN"
                             if Item."Estatus Web" = Item."estatus web"::Inactivo then begin estatus := 'Draft'; end;
 
 
+                            if PRECIO <> 0 then begin
+                                OutTxt := Format(Item."No.") + ';' +
+                                              Format(Item.ean) + ';' +
+                                              Format(DISPONI) + ';' +
+                                              ';' +
+                                              Format(DedimalCode(PRECIO)) + ';' +
+                                              Format('30') + ';' +
+                                              Format(DedimalCode(pvpr));
 
-                            OutTxt := Format(Item."No.") + ';' +
-                                          Format(Item.ean) + ';' +
-                                          Format(DISPONI) + ';' +
-                                          ';' +
-                                          Format(DedimalCode(PRECIO)) + ';' +
-                                          Format('30') + ';' +
-                                          Format(DedimalCode(pvpr));
 
-
-                            ///OutStream.Write(TextoSalida4);
-                            OutTxt += Format(CarriageReturn) + Format(LineFeed);
-                            data.AddText(OutTxt);
+                                ///OutStream.Write(TextoSalida4);
+                                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                                data.AddText(OutTxt);
+                            end;
 
 
                             //end;
