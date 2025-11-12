@@ -433,6 +433,8 @@ XmlPort 50103 "ADAIATREXP"
 
 
     local procedure ValidateHeaderTag()
+    var
+        Preparador: Record Preparador;
     begin
 
 
@@ -631,6 +633,16 @@ XmlPort 50103 "ADAIATREXP"
                     IF RecCV2.FINDSET THEN
                         repeat
                             RecCV2.Preparador := D7;
+                            Preparador.Reset();
+                            Preparador.SetRange("Codigo preparador", D7);
+                            if not Preparador.FindFirst() then begin
+                                Preparador.Reset();
+                                Preparador.Init();
+                                Preparador."Codigo preparador" := D7;
+                                Preparador.Activo := true;
+                                Preparador.Insert();
+                            end;
+                            RecCV2.PreparadorIncidencia := Preparador."Codigo preparador";
                             RecCV2.MODIFY;
                         until RecCV2.Next = 0;
                 END;
