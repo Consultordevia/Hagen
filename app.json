@@ -30,7 +30,13 @@
       "name": "Mirakl",
       "publisher": "DevConsultIA",
       "version": "1.0.0.2"
-    }    
+    }     ,
+    {
+      "appId": "c447b3f6-2913-4c37-a41a-595c5c980d3e",
+      "name": "IncidenciasPreparacion",
+      "publisher": "DevConsultIA",
+      "version": "1.0.0.0"
+    }  
   ],
   "screenshots": [],
   "platform": "1.0.0.0",
