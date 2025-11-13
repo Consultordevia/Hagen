@@ -1414,6 +1414,7 @@ Page 50099 "Pantalla almacen Pascual5"
         imprimearena: Boolean;
         Rec37: Record "Sales Line";
         RecItem2: Record Item;
+        UltimaL: Integer;
 
 
     /*
@@ -1793,43 +1794,42 @@ Page 50099 "Pantalla almacen Pascual5"
                 */
 
         SalesReceivablesSetup.Get;
-        if SalesReceivablesSetup."Ultima letra" = 1 then BEGIN LETRA := 'A'; END;
-        if SalesReceivablesSetup."Ultima letra" = 2 then BEGIN LETRA := 'B'; END;
-        if SalesReceivablesSetup."Ultima letra" = 3 then BEGIN LETRA := 'C'; END;
-        if SalesReceivablesSetup."Ultima letra" = 4 then BEGIN LETRA := 'D'; END;
-        if SalesReceivablesSetup."Ultima letra" = 5 then BEGIN LETRA := 'E'; END;
-        if SalesReceivablesSetup."Ultima letra" = 6 then BEGIN LETRA := 'F'; END;
-        if SalesReceivablesSetup."Ultima letra" = 7 then BEGIN LETRA := 'G'; END;
-        if SalesReceivablesSetup."Ultima letra" = 8 then BEGIN LETRA := 'H'; END;
-        if SalesReceivablesSetup."Ultima letra" = 9 then BEGIN LETRA := 'I'; END;
-        if SalesReceivablesSetup."Ultima letra" = 10 then BEGIN LETRA := 'J'; END;
-        if SalesReceivablesSetup."Ultima letra" = 11 then BEGIN LETRA := 'K'; END;
-        if SalesReceivablesSetup."Ultima letra" = 12 then BEGIN LETRA := 'L'; END;
-        if SalesReceivablesSetup."Ultima letra" = 13 then BEGIN LETRA := 'M'; END;
-        if SalesReceivablesSetup."Ultima letra" = 14 then BEGIN LETRA := 'N'; END;
-        if SalesReceivablesSetup."Ultima letra" = 15 then BEGIN LETRA := 'O'; END;
-        if SalesReceivablesSetup."Ultima letra" = 16 then BEGIN LETRA := 'P'; END;
-        if SalesReceivablesSetup."Ultima letra" = 17 then BEGIN LETRA := 'Q'; END;
-        if SalesReceivablesSetup."Ultima letra" = 18 then BEGIN LETRA := 'R'; END;
-        if SalesReceivablesSetup."Ultima letra" = 19 then BEGIN LETRA := 'S'; END;
-        if SalesReceivablesSetup."Ultima letra" = 20 then BEGIN LETRA := 'T'; END;
-        if SalesReceivablesSetup."Ultima letra" = 21 then BEGIN LETRA := 'U'; END;
-        if SalesReceivablesSetup."Ultima letra" = 22 then BEGIN LETRA := 'V'; END;
-        if SalesReceivablesSetup."Ultima letra" = 23 then BEGIN LETRA := 'W'; END;
-        if SalesReceivablesSetup."Ultima letra" = 24 then BEGIN LETRA := 'X'; END;
-        if SalesReceivablesSetup."Ultima letra" = 25 then BEGIN LETRA := 'Y'; END;
-        if SalesReceivablesSetup."Ultima letra" = 26 then BEGIN LETRA := 'Z'; END;
+        UltimaL := SalesReceivablesSetup."Ultima letra";
+        UltimaL := UltimaL + 1;
+        if UltimaL = 1 then BEGIN LETRA := 'A'; END;
+        if UltimaL = 2 then BEGIN LETRA := 'B'; END;
+        if UltimaL = 3 then BEGIN LETRA := 'C'; END;
+        if UltimaL = 4 then BEGIN LETRA := 'D'; END;
+        if UltimaL = 5 then BEGIN LETRA := 'E'; END;
+        if UltimaL = 6 then BEGIN LETRA := 'F'; END;
+        if UltimaL = 7 then BEGIN LETRA := 'G'; END;
+        if UltimaL = 8 then BEGIN LETRA := 'H'; END;
+        if UltimaL = 9 then BEGIN LETRA := 'I'; END;
+        if UltimaL = 10 then BEGIN LETRA := 'J'; END;
+        if UltimaL = 11 then BEGIN LETRA := 'K'; END;
+        if UltimaL = 12 then BEGIN LETRA := 'L'; END;
+        if UltimaL = 13 then BEGIN LETRA := 'M'; END;
+        if UltimaL = 14 then BEGIN LETRA := 'N'; END;
+        if UltimaL = 15 then BEGIN LETRA := 'O'; END;
+        if UltimaL = 16 then BEGIN LETRA := 'P'; END;
+        if UltimaL = 17 then BEGIN LETRA := 'Q'; END;
+        if UltimaL = 18 then BEGIN LETRA := 'R'; END;
+        if UltimaL = 19 then BEGIN LETRA := 'S'; END;
+        if UltimaL = 20 then BEGIN LETRA := 'T'; END;
+        if UltimaL = 21 then BEGIN LETRA := 'U'; END;
+        if UltimaL = 22 then BEGIN LETRA := 'V'; END;
+        if UltimaL = 23 then BEGIN LETRA := 'W'; END;
+        if UltimaL = 24 then BEGIN LETRA := 'X'; END;
+        if UltimaL = 25 then BEGIN LETRA := 'Y'; END;
+        if UltimaL = 26 then BEGIN LETRA := 'Z'; END;
 
 
-        if SalesReceivablesSetup."Ultima letra" + 1 = 26 then begin
-            SalesReceivablesSetup."Ultima letra" := 1;
-            SalesReceivablesSetup.Modify;
+        if UltimaL >= 25 then begin
+            UltimaL := 0;
         end;
-        if SalesReceivablesSetup."Ultima letra" + 1 <> 26 then begin
-            SalesReceivablesSetup."Ultima letra" := SalesReceivablesSetup."Ultima letra" + 1;
-            SalesReceivablesSetup.Modify;
-        end;
-
+        SalesReceivablesSetup."Ultima letra" := UltimaL;
+        SalesReceivablesSetup.Modify;
+        ;
 
 
         NPEDIDO := NPEDIDO + LETRA;
