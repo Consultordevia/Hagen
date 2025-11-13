@@ -18,7 +18,7 @@ pageextension 50051 "Posted SalesShipmentUpdate" extends "Posted Sales Shipment 
                 if Rec."Nº expedición dropshp" <> '' then begin
                     nexpefinal := Rec."Nº expedición dropshp";
                 end;
-                
+
                 if Rec."Shipping Agent Code" = 'DHL' then begin
                     PAGINAWEB := 'http://www.dhl.es/services_es/seg_3dd/integra/SeguimientoDocumentos.aspx?codigo=' +
                                  Format(nexpefinal) + '&anno=2013&lang=sp&refCli=1 , a partir de hoy a las 22:00.';
@@ -54,6 +54,7 @@ pageextension 50051 "Posted SalesShipmentUpdate" extends "Posted Sales Shipment 
         addafter("Package Tracking No.")
         {
             field("Numero segumiento"; Rec."Numero segumiento") { ApplicationArea = All; }
+            field("Enlace transporte"; Rec."Enlace transporte") { ApplicationArea = All; }
             field("Nº expedición"; Rec."Nº expedición") { ApplicationArea = All; }
             field("Estado Expedicion"; Rec."Estado Expedicion") { ApplicationArea = All; }
             field("Observación para transporte"; Rec."Observación para transporte") { ApplicationArea = All; }
@@ -76,6 +77,7 @@ pageextension 50051 "Posted SalesShipmentUpdate" extends "Posted Sales Shipment 
             field("Total bultos"; Rec."Total bultos") { ApplicationArea = All; Editable = False; }
             field("Total peso"; Rec."Total peso") { ApplicationArea = All; }
             field(ASN; Rec.ASN) { ApplicationArea = All; }
+            field("Shipment Method Code"; Rec."Shipment Method Code") { ApplicationArea = All; }
         }
         addafter(Shipping)
         {

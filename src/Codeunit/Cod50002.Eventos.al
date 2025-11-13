@@ -1130,6 +1130,8 @@ codeunit 50002 Eventos
                 (SalesShipmentHeader."Ship-to Country/Region Code" <> xSalesShipmentHeader."Ship-to Country/Region Code") or
                 (SalesShipmentHeader."Ship-to Phone No." <> xSalesShipmentHeader."Ship-to Phone No.") or
                 (SalesShipmentHeader."Ship-to Code" <> xSalesShipmentHeader."Ship-to Code") or
+                (SalesShipmentHeader."Enlace transporte" <> xSalesShipmentHeader."Enlace transporte") or
+                (SalesShipmentHeader."Shipment Method Code" <> xSalesShipmentHeader."Shipment Method Code") or
                 (SalesShipmentHeader."Ship-to Contact" <> xSalesShipmentHeader."Ship-to Contact");
         end;
     end;
@@ -1163,59 +1165,63 @@ codeunit 50002 Eventos
         SalesShptHeader."Ship-to Phone No." := FromSalesShptHeader."Ship-to Phone No.";
         SalesShptHeader."Ship-to Contact" := FromSalesShptHeader."Ship-to Contact";
         SalesShptHeader."Ship-to Code" := FromSalesShptHeader."Ship-to Code";
+        SalesShptHeader."Shipment Method Code" := FromSalesShptHeader."Shipment Method Code";
+        SalesShptHeader."Enlace transporte" := CopyStr(FromSalesShptHeader."Enlace transporte", 1, 250);
 
-        RecTransp.Get(SalesShptHeader."Shipping Agent Code");
+        // RecTransp.Get(SalesShptHeader."Shipping Agent Code");
 
-        if RecTransp."Link transporte" = '' then begin
-            if SalesShptHeader."Shipping Agent Code" = 'DHL' then begin
-                PAGINAWEB := 'http://www.dhl.es/services_es/seg_3dd/integra/SeguimientoDocumentos.aspx?codigo=' +
-                           Format(nexpefinal) + '&anno=2013&lang=sp&refCli=1 , a partir de hoy a las 22:00.';
-            end;
-            if SalesShptHeader."Shipping Agent Code" = 'CRON' then begin
-                PAGINAWEB := 'https://www.correosexpress.com/url/v?s=' +
-                           Format(nexpefinal) + '&cp=' + Format(SalesShptHeader."Ship-to Post Code");
-            end;
-            if SalesShptHeader."Shipping Agent Code" = 'CORR' then begin
-                PAGINAWEB := 'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
-                           Format(nexpefinal);
-            end;
-            if SalesShptHeader."Shipping Agent Code" = 'TNT' then begin
-                PAGINAWEB := 'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=' +
-                           'REF&respLang=ES&respCountry=ES&sourceID=1&sourceCountry=' +
-                           'ES&sourceID=1&sourceCountry=ww&cons=' +
-                            Format(nexpefinal);
-            end;
-            if SalesShptHeader."Shipping Agent Code" = 'TIPSA' then begin
-                PAGINAWEB := 'http://www.tip-sa.com/cliente/datos.php?id=04600400393' +
-                            Format(nexpefinal) +
-                            Format(SalesShptHeader."Ship-to Post Code");
-            end;
-            SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
-            SalesShptHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
-            SalesShptHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
-        end;
+        // if RecTransp."Link transporte" = '' then begin
+        //     if SalesShptHeader."Shipping Agent Code" = 'DHL' then begin
+        //         PAGINAWEB := 'http://www.dhl.es/services_es/seg_3dd/integra/SeguimientoDocumentos.aspx?codigo=' +
+        //                    Format(nexpefinal) + '&anno=2013&lang=sp&refCli=1 , a partir de hoy a las 22:00.';
+        //     end;
+        //     if SalesShptHeader."Shipping Agent Code" = 'CRON' then begin
+        //         PAGINAWEB := 'https://www.correosexpress.com/url/v?s=' +
+        //                    Format(nexpefinal) + '&cp=' + Format(SalesShptHeader."Ship-to Post Code");
+        //     end;
+        //     if SalesShptHeader."Shipping Agent Code" = 'CORR' then begin
+        //         PAGINAWEB := 'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
+        //                    Format(nexpefinal);
+        //     end;
+        //     if SalesShptHeader."Shipping Agent Code" = 'TNT' then begin
+        //         PAGINAWEB := 'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=' +
+        //                    'REF&respLang=ES&respCountry=ES&sourceID=1&sourceCountry=' +
+        //                    'ES&sourceID=1&sourceCountry=ww&cons=' +
+        //                     Format(nexpefinal);
+        //     end;
+        //     if SalesShptHeader."Shipping Agent Code" = 'TIPSA' then begin
+        //         PAGINAWEB := 'http://www.tip-sa.com/cliente/datos.php?id=04600400393' +
+        //                     Format(nexpefinal) +
+        //                     Format(SalesShptHeader."Ship-to Post Code");
+        //     end;
+        //     if PAGINAWEB <> '' then begin
+        //         SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
+        //         SalesShptHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
+        //         SalesShptHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
+        //     end;
+        // end;
 
-        if RecTransp."Link transporte" <> '' then begin
-            PAGINAWEB := RecTransp."Link transporte";
-            if RecTransp.Añadir = 0 then PAGINAWEB := PAGINAWEB + Format(nexpefinal);
-            if RecTransp.Añadir = 1 then
-                PAGINAWEB := PAGINAWEB + Format(nexpefinal) +
-                    Format(SalesShptHeader."Ship-to Post Code");
-            if RecTransp.Añadir = 2 then
-                PAGINAWEB := PAGINAWEB + Format(nexpefinal) + '/' +
-                    Format(SalesShptHeader."Ship-to Post Code");
-            if RecTransp.Añadir = 3 then
-                PAGINAWEB := PAGINAWEB + Format(nexpefinal) +
-                    Format(Date2DMY(SalesShptHeader."Posting Date", 3));
-            if RecTransp.Añadir = RecTransp.Añadir::"Nº Seguimiento" then begin
-                PAGINAWEB := PAGINAWEB + SalesShptHeader."Numero segumiento";
-            end;
+        // if RecTransp."Link transporte" <> '' then begin
+        //     PAGINAWEB := RecTransp."Link transporte";
+        //     if RecTransp.Añadir = 0 then PAGINAWEB := PAGINAWEB + Format(nexpefinal);
+        //     if RecTransp.Añadir = 1 then
+        //         PAGINAWEB := PAGINAWEB + Format(nexpefinal) +
+        //             Format(SalesShptHeader."Ship-to Post Code");
+        //     if RecTransp.Añadir = 2 then
+        //         PAGINAWEB := PAGINAWEB + Format(nexpefinal) + '/' +
+        //             Format(SalesShptHeader."Ship-to Post Code");
+        //     if RecTransp.Añadir = 3 then
+        //         PAGINAWEB := PAGINAWEB + Format(nexpefinal) +
+        //             Format(Date2DMY(SalesShptHeader."Posting Date", 3));
+        //     if RecTransp.Añadir = RecTransp.Añadir::"Nº Seguimiento" then begin
+        //         PAGINAWEB := PAGINAWEB + SalesShptHeader."Numero segumiento";
+        //     end;
 
-            SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
-            SalesShptHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
-            SalesShptHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
+        //     SalesShptHeader."Enlace transporte" := CopyStr(PAGINAWEB, 1, 250);
+        //     SalesShptHeader."Enlace transporte 2" := CopyStr(PAGINAWEB, 251, 250);
+        //     SalesShptHeader."Enlace transporte 3" := CopyStr(PAGINAWEB, 501, 250);
 
-        end;
+        // end;
     end;
 
     [EventSubscriber(ObjectType::report, report::"Standard Sales - Invoice", 'OnBeforeLineOnAfterGetRecord', '', false, false)]
