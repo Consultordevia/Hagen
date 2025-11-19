@@ -86,6 +86,28 @@ pageextension 50040 CustomerList extends "Customer List"
 
                 end;
             }
+            action(EnviaraadaiaClie)
+            {
+
+                ApplicationArea = Suite;
+                Caption = 'Envar a Adaia Cliente';
+                trigger OnAction()
+                var
+
+                    CU_adaia: Codeunit "Automaticos Cartas";
+
+
+                begin
+
+
+
+                    CU_adaia.TERCEROSMODIFclie(Rec);
+                    MESSAGE('hecho');
+
+
+
+                end;
+            }
         }
     }
 }
