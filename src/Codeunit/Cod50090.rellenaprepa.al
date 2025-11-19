@@ -4750,7 +4750,7 @@ Codeunit 50090 "rellenaprepa"
         nexpe: code[20];
         codprepa: code[20];
 
-
+        Preparador: Record Preparador;
 
     procedure graba()
     var
@@ -4771,6 +4771,16 @@ Codeunit 50090 "rellenaprepa"
             repeat
                 if CopyStr(RecCV2."Nº expedición", 1, 7) = nexpe then begin
                     RecCV2.Preparador := codprepa;
+                    Preparador.Reset();
+                    Preparador.SetRange("Codigo preparador", codprepa);
+                    if not Preparador.FindFirst() then begin
+                        Preparador.Reset();
+                        Preparador.Init();
+                        Preparador."Codigo preparador" := codprepa;
+                        Preparador.Activo := true;
+                        Preparador.Insert();
+                    end;
+                    RecCV2.PreparadorIncidencia := Preparador."Codigo preparador";
                     RecCV2.MODIFY;
                 end;
             until RecCV2.Next = 0;

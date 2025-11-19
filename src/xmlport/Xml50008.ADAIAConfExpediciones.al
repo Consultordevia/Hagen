@@ -318,6 +318,16 @@ XmlPort 50008 "ADAIA_Conf. Expediciones"
                                         RecCV2.SetRange(RecCV2."Nº expedición", NPEDIDO);
                                         if RecCV2.FindSet then
                                             repeat
+                                                Preparador.Reset();
+                                                Preparador.SetRange("Codigo preparador", CANTI);
+                                                if not Preparador.FindFirst() then begin
+                                                    Preparador.Reset();
+                                                    Preparador.Init();
+                                                    Preparador."Codigo preparador" := CANTI;
+                                                    Preparador.Activo := true;
+                                                    Preparador.Insert();
+                                                end;
+                                                RecCV2.PreparadorIncidencia := Preparador."Codigo preparador";
                                                 RecCV2.Preparador := CANTI;
                                                 RecCV2.Modify;
                                             until RecCV2.next = 0;
@@ -771,6 +781,7 @@ XmlPort 50008 "ADAIA_Conf. Expediciones"
         Rec1102: Record "Sales Shipment Header";
         ArchiveManagement: Codeunit ArchiveManagement;
         CodeCV: Codeunit "Automaticos Cartas";
+        Preparador: Record Preparador;
 
     local procedure InitializeGlobals()
     var
