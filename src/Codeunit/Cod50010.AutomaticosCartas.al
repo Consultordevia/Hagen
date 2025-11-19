@@ -1406,6 +1406,27 @@ Codeunit 50010 "Automaticos Cartas"
 
     end;
 
+    procedure ENVIATERCEROSMODIFclie()
+    begin
+
+
+
+        /// Exportación a ADAIA TODOS LOS TERCEROS
+
+        TERCEROSMODIF;
+
+        /*    RecCE.Get;
+            RUTA := RecCE."Ruta salida de_gestion";
+            TIPO := 3;
+            BUSCAEXTENSION;
+            DAT2 := 'TRTER.' + EXTEN + Format(ALEA);
+            TempBlob.CreateInStream(InStream);
+            FicherosHagen.CrearFichero(RUTA, DAT2, InStream);
+            */
+
+    end;
+
+
 
     procedure ENVIAARTICULOSMODIF()
     begin
@@ -1673,6 +1694,142 @@ Codeunit 50010 "Automaticos Cartas"
 
                 Recterri.Modify;
             until Recterri.Next = 0;
+
+        Data.Write(OutStream);
+
+        RecCE.Get;
+        RUTA := RecCE."Ruta salida de_gestion";
+        TIPO := 3;
+        BUSCAEXTENSION;
+        DAT2 := 'TRTER.' + EXTEN + Format(ALEA);
+        TempBlob.CreateInStream(InStream);
+        FicherosHagen.CrearFichero(RUTA, DAT2, InStream, '50010 - TercerosModif');
+    end;
+
+
+    procedure TERCEROSMODIFclie(var Rec: Record Customer)
+    var
+        TempBlob: Codeunit "Temp Blob";
+        OutStream: OutStream;
+        FileName: Text;
+        InStream: InStream;
+        FicherosHagen: Codeunit FicherosHagen;
+        CarriageReturn: Char;
+        LineFeed: Char;
+        Data: BigText;
+        Data1: BigText;
+        Data2: BigText;
+        Data3: BigText;
+        Data4: BigText;
+        Data5: BigText;
+        OutTxt: Text;
+
+    begin
+
+
+
+        CarriageReturn := 13; // 13 es el valor ASCII para Carriage Return (CR)
+        LineFeed := 10;       // 10 es el valor ASCII para Line Feed (LF)
+
+        Clear(TempBlob);
+        TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
+
+
+
+
+        ////////VENTANA.Update(1, 'TERCEROS');
+        Clie.Init;
+        Clie.Reset;
+        clie.setrange("No.", Rec."No.");
+        if Clie.FindSet then
+            repeat
+                ///VENTANA.Update(2, Clie."No.");
+                DESNOM := ConvertStr(CopyStr(Clie.Name, 1, 30), 'ª', '.');
+                DESNOM := ConvertStr(DESNOM, 'º', '.');
+                DESNOM2 := ConvertStr(CopyStr(Clie."Search Name", 1, 30), 'ª', '.');
+                DESNOM2 := ConvertStr(DESNOM2, 'º', '.');
+                DESNOM3 := ConvertStr(CopyStr(Clie.Address, 1, 30), 'ª', '.');
+                DESNOM3 := ConvertStr(DESNOM3, 'º', '.');
+                DESNOM4 := ConvertStr(CopyStr(Clie.City, 1, 30), 'ª', '.');
+                DESNOM4 := ConvertStr(DESNOM4, 'º', '.');
+                TIPOPA := '';
+                RC := '';
+
+                OutTxt := 'TE' + '|' +       //1
+                                'AG' + '|' +       //2
+                                Format(Clie."No.") + '|' +  //3
+                                Format(DESNOM, 40) + '|' +   //4
+                                Format(Clie."No.") + '|' +  //5
+                                Format(DESNOM2, 12) + '|' +   //6
+                                'CLI' + '|' +               //7
+                                Format(DESNOM3, 40) + '|' +  //8
+                                Format(DESNOM4, 40) + '|' +  //9
+                                 '|' +  //10
+                                 '|' +  //11
+                                Format(Clie."Post Code", 6) + '|' + //12
+                                Format(Clie.County, 4) + '|' +  //13
+                                'N|' +                           //14
+                                '|' +                     //15
+                                '|' +                     //16
+                                '|' +                     //17
+                                '|' +                     //18
+                                '|' +                      //19
+                                '|';                   //20                                    
+
+                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                data.AddText(OutTxt);
+
+                Clie.Modify;
+
+            until Clie.Next = 0;
+
+        Clie.Init;
+        Clie.Reset;
+        clie.setrange("No.", Rec."No.");
+        if Clie.FindSet then
+            repeat
+                ///   ///VENTANA.Update(2, Clie."No.");
+                DESNOM := ConvertStr(CopyStr(Clie.Name, 1, 30), 'ª', '.');
+                DESNOM := ConvertStr(DESNOM, 'º', '.');
+                DESNOM2 := ConvertStr(CopyStr(Clie."Search Name", 1, 30), 'ª', '.');
+                DESNOM2 := ConvertStr(DESNOM2, 'º', '.');
+                DESNOM3 := ConvertStr(CopyStr(Clie.Address, 1, 30), 'ª', '.');
+                DESNOM3 := ConvertStr(DESNOM3, 'º', '.');
+                DESNOM4 := ConvertStr(CopyStr(Clie.City, 1, 30), 'ª', '.');
+                DESNOM4 := ConvertStr(DESNOM4, 'º', '.');
+                TIPOPA := '';
+                RC := '';
+
+                OutTxt := 'TE' + '|' +       //1
+                                'MO' + '|' +       //2
+                                Format(Clie."No.") + '|' +  //3
+                                Format(DESNOM, 40) + '|' +   //4
+                                Format(Clie."No.") + '|' +  //5
+                                Format(DESNOM2, 12) + '|' +   //6
+                                'CLI' + '|' +               //7
+                                Format(DESNOM3, 40) + '|' +  //8
+                                Format(DESNOM4, 40) + '|' +  //9
+                                 '|' +  //10
+                                 '|' +  //11
+                                Format(Clie."Post Code", 6) + '|' + //12
+                                Format(Clie.County, 4) + '|' +  //13
+                                'N|' +                           //14
+                                '|' +                     //15
+                                '|' +                     //16
+                                '|' +                     //17
+                                '|' +                     //18
+                                '|' +                      //19
+                                '|';                   //20                                    
+
+                OutTxt += Format(CarriageReturn) + Format(LineFeed);
+                data.AddText(OutTxt);
+
+                Clie.Modify;
+
+            until Clie.Next = 0;
+
+
+
 
         Data.Write(OutStream);
 
