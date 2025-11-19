@@ -49,7 +49,7 @@ Codeunit 50019 Canarias
                                 Rec37."Document Type" := 2;
                                 Rec37."Document No." := Rec110."No.";
                                 Rec37."Line No." := Rec111."Line No.";
-                                Rec37.Validate(Rec37.Type, 2);
+                                Rec37.Validate(Rec37.Type, Rec111.Type);
                                 ///Rec37.Validate(Rec37."No.", '70000000');
                                 Rec37.Validate(Rec37."No.", Rec111."No.");
                                 Rec37.Description := Rec111.Description;
