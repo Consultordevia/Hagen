@@ -838,6 +838,7 @@ codeunit 50002 Eventos
         SalesInvoiceHeader2: Record "Sales Invoice Header";
         SalesCrMemoHeader2: Record "Sales Cr.Memo Header";
         nexpefinal: code[20];
+        Preparador: REcord Preparador;
     begin
         if RecClie.Get(SalesShptHeader."Sell-to Customer No.") then begin
             if ((RecClie."Tipo facturación" = 2) or (RecClie."Tipo facturación" = 1)) and
@@ -947,6 +948,18 @@ codeunit 50002 Eventos
                 SalesShptHeader."Total bultos" := SalesShptHeader."Total bultos" + SalesShptHeader."Incrementa bultos";
             end;
 
+        end;
+        if SalesShptHeader.PreparadorIncidencia = '' then begin
+            Preparador.Reset();
+            Preparador.SetRange("Codigo preparador", SalesShptHeader.Preparador);
+            if not Preparador.FindFirst() then begin
+                Preparador.Reset();
+                Preparador.Init();
+                Preparador."Codigo preparador" := SalesShptHeader.Preparador;
+                Preparador.Activo := true;
+                Preparador.Insert();
+            end;
+            SalesShptHeader.PreparadorIncidencia := Preparador."Codigo preparador";
         end;
     end;
 
