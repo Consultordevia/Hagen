@@ -22,6 +22,11 @@ Page 50077 "Productos Lista"
                 {
                     ApplicationArea = Basic;
                 }
+
+                field("Precio medio ponderado"; pmp)
+                {
+                    ApplicationArea = Basic;
+                }
                 field("Cantidad inner"; Rec."Cantidad inner")
                 {
                     ApplicationArea = Basic;
@@ -1790,9 +1795,17 @@ Page 50077 "Productos Lista"
             LonguiUds := ItemUnitofMeasure.Length;
 
         end;
+        pmp := 0;
+        InventarioPMP.RESET;
+        InventarioPMP.SETRANGE(InventarioPMP."Item No.", Rec."No.");
+        IF InventarioPMP.FINDLAST THEN BEGIN
+            pmp := InventarioPMP."Unit Cost";
+        END;
+
     end;
 
     var
+        InventarioPMP: Record "Inventario PMP";
         Item: Record Item;
         ventana: Dialog;
         TariffNumber: Record "Tariff Number";
@@ -1801,6 +1814,14 @@ Page 50077 "Productos Lista"
         AnchoUds: Decimal;
         LonguiUds: Decimal;
         ItemUnitofMeasure: Record "Item Unit of Measure";
-    /////- gramosplastico: XmlPort UnknownXmlPort50052;
+        pmp: Decimal;
+
+
+
+
+
+
+
+
 }
 
