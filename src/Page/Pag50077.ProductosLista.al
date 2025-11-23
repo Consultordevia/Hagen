@@ -27,6 +27,11 @@ Page 50077 "Productos Lista"
                 {
                     ApplicationArea = Basic;
                 }
+                field("Clasificación A,B,C"; Rec."Clasificación A,B,C")
+                {
+                    ApplicationArea = Basic;
+                }
+
                 field("Cantidad inner"; Rec."Cantidad inner")
                 {
                     ApplicationArea = Basic;
