@@ -10,6 +10,7 @@ Codeunit 50019 Canarias
 
 
         CUCanarias.run;
+        Commit();
 
 
         RecVYC.Get;
@@ -50,7 +51,6 @@ Codeunit 50019 Canarias
                                 Rec37."Document No." := Rec110."No.";
                                 Rec37."Line No." := Rec111."Line No.";
                                 Rec37.Validate(Rec37.Type, Rec111.Type);
-                                ///Rec37.Validate(Rec37."No.", '70000000');
                                 Rec37.Validate(Rec37."No.", Rec111."No.");
                                 Rec37.Description := Rec111.Description;
                                 Rec37.Validate(Rec37.Quantity, Rec111.Quantity);
@@ -61,11 +61,11 @@ Codeunit 50019 Canarias
                                 if prod.Get(Rec111."No.") then begin
                                     ivaigic := prod."IVA IGIC";
                                     Rec37."ean canarias" := prod.ean;
-                                end;
-                                Rec37.Validate(Rec37."VAT Prod. Posting Group", ivaigic);
-                                Rec37.Validate(Rec37."VAT Bus. Posting Group", 'IGIC');
+                                    Rec37.Validate(Rec37."VAT Prod. Posting Group", ivaigic);
+                                    Rec37.Validate(Rec37."VAT Bus. Posting Group", 'IGIC');
+                                    Rec37.Validate(Rec37."Line Discount %", Rec111."Line Discount %");
+                                END;
                                 Rec37."Precio base" := Rec111."Unit Price";
-                                Rec37.Validate(Rec37."Line Discount %", Rec111."Line Discount %");
                                 Rec37."Description 2" := Rec111."No.";
                                 Rec37.Insert;
                             end;
@@ -134,7 +134,7 @@ Codeunit 50019 Canarias
                             Rec39."Document Type" := 2;
                             Rec39."Document No." := contadorfac;
                             Rec39."Line No." := Rec113."Line No.";
-                            Rec39.Validate(Rec39.Type, 2);
+                            Rec39.Validate(Rec39.Type, Rec113.Type);
                             ///Rec39.Validate(Rec39."No.", '60000000');
                             Rec39.Validate(Rec39."No.", Rec113."No.");
                             Rec39.Description := Rec113.Description;
