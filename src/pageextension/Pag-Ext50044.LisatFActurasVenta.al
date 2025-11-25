@@ -22,11 +22,13 @@ pageextension 50044 LisatFActurasVenta extends "Posted Sales Invoices"
         Rec113.SetRange(Type, rec113.Type::Item);
         if Rec113.FindFirst() then
             repeat
-                PriceListLine.reset;
-                PriceListLine.SetRange("Asset No.", Rec113."No.");
-                PriceListLine.SetRange("Source No.", Rec113."Customer Price Group");
-                IF PriceListLine.FindLast() THEN BEGIN
-                    ImporteTarifaFull := ImporteTarifaFull + round(Rec113.Quantity * PriceListLine."Unit Price", 0.01);
+                if Rec113."No." <> 'TRAN' THEN BEGIN
+                    PriceListLine.reset;
+                    PriceListLine.SetRange("Asset No.", Rec113."No.");
+                    PriceListLine.SetRange("Source No.", Rec113."Customer Price Group");
+                    IF PriceListLine.FindLast() THEN BEGIN
+                        ImporteTarifaFull := ImporteTarifaFull + round(Rec113.Quantity * PriceListLine."Unit Price", 0.01);
+                    END;
                 END;
             until rec113.next = 0;
         Diferencia := Rec.Amount - ImporteTarifaFull;
