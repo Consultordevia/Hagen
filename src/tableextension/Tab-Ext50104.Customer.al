@@ -300,6 +300,7 @@ tableextension 50104 Customer extends "Customer"
             OptionCaption = 'X7-No viene identificado,X6-Sí esta identificado';
             OptionMembers = "X7-No viene identificado","X6-Sí esta identificado";
         }
+
         field(50100; "Email facturacion 1"; Text[60])
         {
         }

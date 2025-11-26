@@ -66,6 +66,7 @@ Report 50001 "_A,B,C productos"
             column(CONTA; CONTA) { }
             column(No; RecItem."No.") { }
             column(Description; RecItem.Description) { }
+            column(ClasiComercial; RecItem."Clasificación Comercial") { }
             column(Amount2; "Item Amount"."Amount 2") { }
             column(tantoa; tantoa) { }
             column(Amount; "Item Amount".Amount) { }

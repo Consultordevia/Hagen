@@ -207,6 +207,24 @@ pageextension 50020 "Item List" extends "Item List"
                 end;
 
             }
+            action(ClaseComercial)
+            {
+                ApplicationArea = All;
+                Caption = 'Importar Clasi. Comercial';
+                Image = Order;
+
+
+                trigger OnAction()
+                var
+                    XMLCla: XmlPort ClasComerProd;
+                begin
+
+                    clear(XMLCla);
+                    XMLCla.Run();
+
+                end;
+
+            }
         }
     }
 

@@ -674,6 +674,12 @@ tableextension 50113 Item extends Item
         field(50092; "Producto NO automatico"; Boolean)
         {
         }
+        field(50093; "Clasificación Comercial"; Option)
+        {
+            Editable = true;
+            InitValue = Rojo;
+            OptionMembers = Rojo,Azul,Verde;
+        }
         field(50097; "Fecha en picking"; Date)
         {
         }

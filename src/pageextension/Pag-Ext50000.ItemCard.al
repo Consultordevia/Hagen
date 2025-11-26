@@ -5,6 +5,12 @@ pageextension 50000 "Item Card" extends "Item Card"
 
     {
 
+
+        addafter("Sales Blocked")
+        {
+            field("Clasificación Comercial"; Rec."Clasificación Comercial") { ApplicationArea = ALL; }
+        }
+
         addafter("Unit Price")
         {
             field("PVP-Web"; Rec."PVP-Web") { ApplicationArea = ALL; }
