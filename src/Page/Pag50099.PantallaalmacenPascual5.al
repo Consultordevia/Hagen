@@ -456,7 +456,9 @@ Page 50099 "Pantalla almacen Pascual5"
 
                     trigger OnAction()
                     begin
-
+                        if Rec."Nº expedición" = '' then begin
+                            Error('Falta nº expedicion.');
+                        end;
                         NPEDIDO := Rec."Nº expedición";
                         ImprimeEtiPortugal2;
                     end;
