@@ -797,6 +797,13 @@ tableextension 50104 Customer extends "Customer"
             Caption = 'Tipo de id.';
         }
 
+        field(50728; "Avisar NTL"; Boolean)
+        {
+            Caption = 'Avisar NTL';
+        }
+
+
+
 
 
 

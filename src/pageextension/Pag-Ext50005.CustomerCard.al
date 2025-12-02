@@ -2,6 +2,11 @@ pageextension 50005 "Customer Card" extends "Customer Card"
 {
     layout
     {
+
+        addafter(Reserve)
+        {
+            field("Avisar NTL"; Rec."Avisar NTL") { ApplicationArea = All; }
+        }
         modify("Post Code")
         {
             trigger OnLookup(var Text: Text): Boolean
