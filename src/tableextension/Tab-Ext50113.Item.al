@@ -437,6 +437,7 @@ tableextension 50113 Item extends Item
                                                                  "Posting Date" = field("Date Filter"),
                                                                  "Sell-to Country/Region Code" = field("Filtro Pais"),
                                                                  "Sell-to Customer No." = field("Filtro Cliente"),
+                                                                 "Shortcut Dimension 1 Code" = field("Global Dimension 1 Filter"),
                                                                  "Grupo clientes" = field("Filtro Grupo clientes")));
             Editable = false;
             FieldClass = FlowField;
@@ -447,6 +448,7 @@ tableextension 50113 Item extends Item
                                                                   "Posting Date" = field("Date Filter"),
                                                                   "Sell-to Country/Region Code" = field("Filtro Pais"),
                                                                   "Sell-to Customer No." = field("Filtro Cliente"),
+                                                                  "Shortcut Dimension 1 Code" = field("Global Dimension 1 Filter"),
                                                                   "Grupo clientes" = field("Filtro Grupo clientes")));
             Editable = false;
             FieldClass = FlowField;
