@@ -8,7 +8,7 @@ tableextension 50115 SalesLine extends "Sales Line"
             trigger OnAfterValidate()
             var
                 SalesCommentLine: Record "Sales Comment Line";
-                codpadre: code[20];                
+                codpadre: code[20];
                 LINL: integer;
                 PrecioPROD: Decimal;
                 RecItemPadre: Record Item;
@@ -32,7 +32,7 @@ tableextension 50115 SalesLine extends "Sales Line"
 
                 codpadre := Rec."Producto Padre";
 
-                
+
             end;
         }
 
@@ -575,7 +575,7 @@ tableextension 50115 SalesLine extends "Sales Line"
         }
         field(50119; ean; Code[20])
         {
-            CalcFormula = lookup(Item.ean where("No." = field("No.")));
+            CalcFormula = lookup(Item.GTIN where("No." = field("No.")));
             FieldClass = FlowField;
         }
         field(50120; Referencia; Code[20])
