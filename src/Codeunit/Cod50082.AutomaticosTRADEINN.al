@@ -349,7 +349,7 @@ Codeunit 50082 "Automaticos TRADE INN"
                                               Format(DISPONI) + ';' +
                                               ';' +
                                               Format(DedimalCode(PRECIO)) + ';' +
-                                              Format('37') + ';' +
+                                              Format('30') + ';' +
                                               Format(DedimalCode(pvpr));
 
 
