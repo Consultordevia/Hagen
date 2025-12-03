@@ -5,7 +5,7 @@ XmlPort 50016 "prodd laz"
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -70,7 +70,7 @@ XmlPort 50016 "prodd laz"
         CODENVIO: Code[20];
         Item: Record Item;
         valorpbp: Decimal;
-        stock: Record "Cesta compra";
+
         CANTIDE: Decimal;
         conta: Integer;
         ventana: Dialog;

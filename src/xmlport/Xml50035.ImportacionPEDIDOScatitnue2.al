@@ -149,7 +149,7 @@ XmlPort 50035 "Importacion PEDIDOS catit nue2"
         CODENVIO: Code[20];
         Item: Record Item;
         valorpbp: Decimal;
-        stock: Record "Cesta compra";
+
         CANTIDE: Decimal;
         conta: Integer;
         ventana: Dialog;

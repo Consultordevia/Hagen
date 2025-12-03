@@ -79,7 +79,7 @@ XmlPort 50025 "Importacion PEDIDOS compra"
         CODENVIO: Code[20];
         Item: Record Item;
         valorpbp: Decimal;
-        stock: Record "Cesta compra";
+
         CANTIDE: Decimal;
         conta: Integer;
         ventana: Dialog;

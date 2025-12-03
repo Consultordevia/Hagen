@@ -5,7 +5,7 @@ XmlPort 50015 cuentas
     Direction = Import;
     FieldSeparator = ';';
     Format = VariableText;
-    TextEncoding =  UTF16;
+    TextEncoding = UTF16;
 
     schema
     {
@@ -76,7 +76,7 @@ XmlPort 50015 cuentas
         CODENVIO: Code[20];
         Item: Record Item;
         valorpbp: Decimal;
-        stock: Record "Cesta compra";
+
         CANTIDE: Decimal;
         conta: Integer;
         ventana: Dialog;

@@ -555,20 +555,8 @@ codeunit 50002 Eventos
     [EventSubscriber(ObjectType::Table, 37, 'OnCopyFromItemOnAfterCheck', '', false, false)]
     local procedure OnCopyFromItemOnAfterCheck(var SalesLine: Record "Sales Line"; Item: Record Item)
     var
-        CestaCompra: Record "Cesta compra";
         UserSetup: Record "User Setup";
     begin
-        SalesLine."Producto Padre" := Item."Producto PADRE";
-        SalesLine."Exit Point" := Item."Exit Point";
-        if (SalesLine."Document Type" = 1) or (SalesLine."Document Type" = 0) then begin
-            if not Cestacompra.Get(0, SalesLine."Sell-to Customer No.", SalesLine."No.") then begin
-                Cestacompra.Código := SalesLine."Sell-to Customer No.";
-                Cestacompra.Tipo := 0;
-                Cestacompra.Referencia := SalesLine."No.";
-                Cestacompra.Insert(true);
-            end;
-        end;
-
 
         if SalesLine."Document Type" = SalesLine."document type"::Order then begin
             if Item."Prohibido Amazon" then begin

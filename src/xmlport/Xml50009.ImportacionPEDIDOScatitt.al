@@ -173,7 +173,6 @@ XmlPort 50009 "Importacion PEDIDOS catitt"
         CODENVIO: Code[20];
         Item: Record Item;
         valorpbp: Decimal;
-        stock: Record "Cesta compra";
         CANTIDE: Decimal;
         conta: Integer;
         ventana: Dialog;

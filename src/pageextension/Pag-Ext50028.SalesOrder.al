@@ -125,8 +125,6 @@ pageextension 50028 SalesOrder extends "Sales Order"
                     Customer: Record Customer;
                     dtoconse: Decimal;
                     CustInvoiceDisc: Record "Cust. Invoice Disc.";
-                    Cestadelacompra: Page "Cesta de la compra";
-                    Cestacompra: Record "Cesta compra";
                     Rec91: Record "User Setup";
                     ImportacionPEDIDOSMASKOcome: XMLport "Importacion PEDIDOS MASKO-come";
                     NoSeriesManagement: Codeunit "No. Series"; //v27

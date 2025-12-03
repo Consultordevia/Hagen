@@ -750,47 +750,47 @@ Page 50250 "Nuevo presupuesto copia"
                         ImportarPedido;
                     end;
                 }
-                action("Cesta compra")
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'Cesta compra';
-                    Ellipsis = true;
-                    Image = Purchase;
-                    Promoted = true;
-                    PromotedIsBig = true;
-                    PromotedOnly = true;
+                // action("Cesta compra")
+                // {
+                //     ApplicationArea = Basic;
+                //     Caption = 'Cesta compra';
+                //     Ellipsis = true;
+                //     Image = Purchase;
+                //     Promoted = true;
+                //     PromotedIsBig = true;
+                //     PromotedOnly = true;
 
-                    trigger OnAction()
-                    begin
+                //     trigger OnAction()
+                //     begin
 
 
-                        Rec91.Get(UserId);
-                        Rec91."Nº cliente" := Rec."Sell-to Customer No.";
-                        Rec91."Es pedido o oferta" := 0;
-                        Rec91."Nº pedido" := Rec."No.";
-                        Rec91.Modify;
-                        Cestacompra.SetCurrentkey(Tipo, Código, Comprar);
-                        Cestacompra.SetRange(Tipo, 0);
-                        Cestacompra.SetRange(Código, Rec."Sell-to Customer No.");
-                        Cestacompra.SetRange(Comprar, true);
-                        if Cestacompra.FindFirst then
-                            repeat
-                                Cestacompra."Cantidad a Comprar" := 0;
-                                Cestacompra.Comprar := false;
-                                Cestacompra.Modify;
-                            until Cestacompra.Next = 0;
+                //         Rec91.Get(UserId);
+                //         Rec91."Nº cliente" := Rec."Sell-to Customer No.";
+                //         Rec91."Es pedido o oferta" := 0;
+                //         Rec91."Nº pedido" := Rec."No.";
+                //         Rec91.Modify;
+                //         Cestacompra.SetCurrentkey(Tipo, Código, Comprar);
+                //         Cestacompra.SetRange(Tipo, 0);
+                //         Cestacompra.SetRange(Código, Rec."Sell-to Customer No.");
+                //         Cestacompra.SetRange(Comprar, true);
+                //         if Cestacompra.FindFirst then
+                //             repeat
+                //                 Cestacompra."Cantidad a Comprar" := 0;
+                //                 Cestacompra.Comprar := false;
+                //                 Cestacompra.Modify;
+                //             until Cestacompra.Next = 0;
 
-                        Clear(Cestadelacompra);
-                        Cestacompra.Reset;
-                        Cestacompra.SetCurrentkey(Tipo, Código, Línea, Familia, Subfamilia);
-                        Cestacompra.SetRange(Tipo, 0);
-                        Cestacompra.SetRange(Código, Rec."Sell-to Customer No.");
-                        if Cestacompra.FindFirst then begin
-                            Cestadelacompra.SetTableview(Cestacompra);
-                            Cestadelacompra.Run;
-                        end;
-                    end;
-                }
+                //         Clear(Cestadelacompra);
+                //         Cestacompra.Reset;
+                //         Cestacompra.SetCurrentkey(Tipo, Código, Línea, Familia, Subfamilia);
+                //         Cestacompra.SetRange(Tipo, 0);
+                //         Cestacompra.SetRange(Código, Rec."Sell-to Customer No.");
+                //         if Cestacompra.FindFirst then begin
+                //             Cestadelacompra.SetTableview(Cestacompra);
+                //             Cestadelacompra.Run;
+                //         end;
+                //     end;
+                // }
                 action(Statistics)
                 {
                     ApplicationArea = Advanced;
@@ -1145,8 +1145,6 @@ Page 50250 "Nuevo presupuesto copia"
         Customer: Record Customer;
         dtoconse: Decimal;
         CustInvoiceDisc: Record "Cust. Invoice Disc.";
-        Cestadelacompra: Page "Cesta de la compra";
-        Cestacompra: Record "Cesta compra";
         Rec91: Record "User Setup";
         /////-ImportacionPEDIDOSMASKOcome: XmlPort UnknownXmlPort50072;
         NoSeriesManagement: Codeunit "No. Series";
