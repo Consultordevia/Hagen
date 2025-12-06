@@ -111,7 +111,7 @@ tableextension 50018 SalesShipmentLine extends "Sales Shipment Line"
         }
         field(50119; "cod ean"; Code[20])
         {
-            CalcFormula = lookup(Item.ean where("No." = field("No.")));
+            CalcFormula = lookup(Item.GTIN where("No." = field("No.")));
             FieldClass = FlowField;
         }
         field(50125; "Cantidad master"; Decimal)
