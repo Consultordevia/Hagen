@@ -1,25 +1,26 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
 Codeunit 50004 AutomaticosIncremento
 {
-   
+
 
 
     trigger OnRun()
     var
-    RecSP: Record "Sales Price";
+        RecSP: Record "Sales Price";
     begin
 
-        if RecSP.FindFirst() then repeat
-            RecSP.CalcFields("Unidades Venta");
-            RecSP.INCREMENTO:=RecSP."Unidades Venta";
-            recsp.modify;            
-        until recsp.next=0;
-        
-   
+        if RecSP.FindFirst() then
+            repeat
+                RecSP.CalcFields("Unidades Venta");
+                RecSP.INCREMENTO := RecSP."Unidades Venta";
+                recsp.modify;
+            until recsp.next = 0;
 
-        
 
- end;
+
+
+
+    end;
 
     var
         ExistenciaHAGEN: Decimal;
@@ -1503,18 +1504,20 @@ Codeunit 50004 AutomaticosIncremento
 
                 Item."Fecha disponible Web" := FECHARECEP;
                 Item."Fecha en picking" := 0D;
-                Multitabla.Reset;
-                Multitabla.SetRange(Tabla, Multitabla.Tabla::Ubicaciones);
-                Multitabla.SetRange(Multitabla.Producto, Item."No.");
-                if Multitabla.FindFirst then
-                    repeat
-                        L1 := StrLen(Multitabla.Ubicacion);
-                        if (CopyStr(Multitabla.Ubicacion, 1, 3) = '010') and
-                           ((CopyStr(Multitabla.Ubicacion, L1 - 1, 2) = '01') or
-                            (CopyStr(Multitabla.Ubicacion, L1 - 1, 2) = '02')) then begin
-                            Item."Fecha en picking" := Multitabla."Fecha caducidad";
-                        end;
-                    until Multitabla.Next = 0;
+                if Item."Criterio rotacion" = Item."Criterio rotacion"::FC then begin
+                    Multitabla.Reset;
+                    Multitabla.SetRange(Tabla, Multitabla.Tabla::Ubicaciones);
+                    Multitabla.SetRange(Multitabla.Producto, Item."No.");
+                    if Multitabla.FindFirst then
+                        repeat
+                            L1 := StrLen(Multitabla.Ubicacion);
+                            if (CopyStr(Multitabla.Ubicacion, 1, 3) = '010') and
+                               ((CopyStr(Multitabla.Ubicacion, L1 - 1, 2) = '01') or
+                                (CopyStr(Multitabla.Ubicacion, L1 - 1, 2) = '02')) then begin
+                                Item."Fecha en picking" := Multitabla."Fecha caducidad";
+                            end;
+                        until Multitabla.Next = 0;
+                end;
 
 
 
