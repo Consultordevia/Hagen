@@ -1,22 +1,7 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
 Page 50008 Modifica
 {
-    // 
-    //                                         1234567891234561212312345612
-    //                                         1234567890123456789012345678
-    //   RecCV."Observación para transporte":='Entregar:'+FORMAT(COPYSTR(D11,1,6)+COPYSTR(D11,9,2))+' - '+FORMAT(COPYSTR(D12,1,6)+COPYSTR(D12,9,2));
-    // 
-    // EnabledField No.Field NameData TypeLengthDescription
-    // Yes12Ship-to CodeCode10
-    // Yes13Ship-to NameText50
-    // Yes14Ship-to Name 2Text50
-    // Yes15Ship-to AddressText50
-    // Yes16Ship-to Address 2Text50
-    // Yes17Ship-to CityText50
-    // Yes18Ship-to ContactText50
-    // Yes91Ship-to Post CodeCode20
-    // Yes92Ship-to CountyText50
-    // Yes93Ship-to Country/Region CodeCode10
+
 
     Caption = 'Modifica EXPEDICIONES';
     DeleteAllowed = false;
