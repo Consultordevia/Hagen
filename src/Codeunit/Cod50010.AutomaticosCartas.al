@@ -16758,9 +16758,9 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if ServiceItem."Ship-to Phone No." <> '' then begin
             NTEL2 := Format(RecCusto."Mobile Phone No.");
         end;
-        ///IF Rec110."Envio a-Nº Telefono"<>'' THEN BEGIN
-        ///     NTEL2:=FORMAT(Rec110."Envio a-Nº Telefono");
-        ///END
+        IF Rec110."Envio a-Nº Telefono" <> '' THEN BEGIN
+            NTEL2 := FORMAT(Rec110."Envio a-Nº Telefono");
+        END;
         REEMBOLSO := '';
 
 
