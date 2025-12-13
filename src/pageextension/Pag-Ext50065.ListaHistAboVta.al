@@ -1,12 +1,10 @@
-pageextension 50044 LisatFActurasVenta extends "Posted Sales Invoices"
+pageextension 50065 ListaHistAboVta extends "Posted Sales Credit Memos"
 {
-
     layout
     {
-
         addafter("Posting Date")
         {
-            field(GLN; Rec.GLN) { ApplicationArea = All; }
+
             field(Tarifa; ImporteTarifaFull) { ApplicationArea = All; }
             field(Diferencia; Diferencia) { ApplicationArea = All; }
             field("%Des."; PORCENTAJE) { ApplicationArea = All; }
@@ -60,13 +58,11 @@ pageextension 50044 LisatFActurasVenta extends "Posted Sales Invoices"
 
         ImporteTarifaFull: Decimal;
         PriceListLine: Record "Price List Line";
-        Rec113: Record "Sales Invoice Line";
+        Rec113: Record "Sales Cr.Memo Line";
         PORCENTAJE: Decimal;
         Diferencia: Decimal;
         pmp: Decimal;
         InventarioPMP: Record "Inventario PMP";
         coste: Decimal;
         MargendeBeneficio: Decimal;
-
 }
-
