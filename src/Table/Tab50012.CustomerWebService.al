@@ -41,6 +41,15 @@ table 50012 CustomerWebService
             OptionMembers = "1","2";
         }
         field(25; IBAN; Code[50]) { }
+        field(26; Fichero; Blob)
+        {
+            Caption = 'File content (Base64)';
+        }
+
+        field(27; "Nombre fichero"; Text[250])
+        {
+            Caption = 'File name';
+        }
     }
 
     keys

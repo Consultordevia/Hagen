@@ -30,6 +30,12 @@ codeunit 50018 "Customer WS Mgt"
         RecLink: Record "Record Link";
         RecLinkMgt: Codeunit "Record Link Management";
         NotaTxt: Text;
+        DocAttach: Record "Document Attachment";
+        TempBlob: Codeunit "Temp Blob";
+        RecRef: RecordRef;
+        InStr: InStream;
+        OutStr: OutStream;
+        FileName: Text;
     begin
         if WS."Cliente creado" then
             exit;
@@ -138,9 +144,25 @@ codeunit 50018 "Customer WS Mgt"
 
         ShipTo.Insert(true);
 
-
         Cust."Ship-to Code" := ShipTo.Code;
         Cust.Modify(true);
+
+
+        WS.CalcFields(Fichero);
+        WS.Fichero.CreateInStream(InStr);
+
+        if InStr.Length > 0 then begin
+            FileName := WS."Nombre fichero";
+            if FileName = '' then
+                FileName := 'Adjunto.pdf';
+
+            TempBlob.CreateOutStream(OutStr);
+            CopyStream(OutStr, InStr);
+
+            RecRef.GetTable(Cust);
+            DocAttach.SaveAttachment(RecRef, FileName, TempBlob);
+        end;
+
 
         WS."Cliente creado" := true;
         WS.Modify(true);

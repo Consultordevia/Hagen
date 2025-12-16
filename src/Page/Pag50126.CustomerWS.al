@@ -105,7 +105,35 @@ page 50126 CustomerWS
                 field("Cod. vendedor"; Rec."Cod. vendedor") { }
                 field("Forma pago"; Rec."Forma pago") { }
                 field(IBAN; Rec.IBAN) { }
+                field(fileContent; FileContentBase64)
+                {
+                    Caption = 'Fichero (Base64)';
+
+                    trigger OnValidate()
+                    var
+                        Convert: Codeunit "Base64 Convert";
+                        OutStr: OutStream;
+                    begin
+                        Clear(Rec.Fichero);
+
+                        if FileContentBase64 = '' then
+                            exit;
+
+                        Rec.Fichero.CreateOutStream(OutStr);
+                        Convert.FromBase64(FileContentBase64, OutStr);
+                        Rec.Modify(true);
+                    end;
+                }
+
+                field("Nombre fichero"; Rec."Nombre fichero")
+                {
+                    Caption = 'Nombre fichero';
+                    ToolTip = 'Nombre del fichero adjunto.';
+                }
             }
         }
     }
+    var
+        FileContentBase64: Text;
+
 }
