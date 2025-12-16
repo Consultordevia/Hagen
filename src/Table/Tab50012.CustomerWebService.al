@@ -36,6 +36,11 @@ table 50012 CustomerWebService
         field(21; "Email envio"; Text[150]) { Caption = 'Email envio'; }
         field(22; "Cod. vendedor"; Code[20]) { }
         field(23; "Cliente creado"; Boolean) { InitValue = false; Editable = false; }
+        field(24; "Forma pago"; Option)
+        {
+            OptionMembers = "1","2";
+        }
+        field(25; IBAN; Code[50]) { }
     }
 
     keys

@@ -103,6 +103,8 @@ page 50126 CustomerWS
                 }
 
                 field("Cod. vendedor"; Rec."Cod. vendedor") { }
+                field("Forma pago"; Rec."Forma pago") { }
+                field(IBAN; Rec.IBAN) { }
             }
         }
     }

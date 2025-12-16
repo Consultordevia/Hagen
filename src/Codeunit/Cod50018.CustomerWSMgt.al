@@ -26,6 +26,10 @@ codeunit 50018 "Customer WS Mgt"
         Cont: Record Contact;
         isHandled: Boolean;
         CustTemplMgt: Codeunit "Customer Templ. Mgt.";
+        Banco: Record "Customer Bank Account";
+        RecLink: Record "Record Link";
+        RecLinkMgt: Codeunit "Record Link Management";
+        NotaTxt: Text;
     begin
         if WS."Cliente creado" then
             exit;
@@ -52,6 +56,21 @@ codeunit 50018 "Customer WS Mgt"
         Cust."Email facturacion 1" := WS."Email facturas";
         Cust.Contact := WS."Nombre contacto";
         Cust."Salesperson Code" := WS."Cod. vendedor";
+
+        if WS."Forma pago" = WS."Forma pago"::"1" then begin
+            Cust."Payment Method Code" := 'P.ANTICIPA';
+        end else if WS."Forma pago" = WS."Forma pago"::"2" then begin
+            Cust."Payment Method Code" := 'GIRO';
+            if WS.IBAN <> '' then begin
+                Banco.Init();
+                Banco.Validate("Customer No.", Cust."No.");
+                Banco.Code := '01';
+                Banco.IBAN := WS.IBAN;
+                Banco.Insert(true);
+
+                Cust."Preferred Bank Account Code" := Banco.Code;
+            end;
+        end;
         Cust.Modify(true);
 
         if WS."Nombre contacto" <> '' then begin
@@ -65,7 +84,21 @@ codeunit 50018 "Customer WS Mgt"
 
             Cust."Primary Contact No." := Cont."No.";
             Cust.Modify(true);
+            NotaTxt := StrSubstNo('IBAN: %1', WS.IBAN);
+
+            RecLink.Init();
+            RecLink."Record ID" := Cust.RecordId;
+            RecLink.Company := CompanyName;
+            RecLink.Type := RecLink.Type::Note;
+            RecLink.Created := CurrentDateTime;
+            RecLink."User ID" := UserId();
+            RecLink.Description := 'IBAN';
+
+            RecLink.Insert(true);
+            RecLinkMgt.WriteNote(RecLink, NotaTxt);
+            RecLink.Modify(true);
         end;
+
 
         ShipTo.Init();
         ShipTo.Validate("Customer No.", Cust."No.");
@@ -104,6 +137,7 @@ codeunit 50018 "Customer WS Mgt"
             ShipTo."E-Mail" := WS."Email facturas";
 
         ShipTo.Insert(true);
+
 
         Cust."Ship-to Code" := ShipTo.Code;
         Cust.Modify(true);
