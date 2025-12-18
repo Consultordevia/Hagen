@@ -110,7 +110,7 @@ codeunit 50018 "Customer WS Mgt"
         ShipTo.Validate("Customer No.", Cust."No.");
         ShipTo.Code := '01';
 
-        ShipTo.Name := WS."Contacto envio";
+        ShipTo.Name := WS."Nombre comercial";
         if ShipTo.Name = '' then
             ShipTo.Name := WS."Nombre comercial";
         if ShipTo.Name = '' then
@@ -146,7 +146,8 @@ codeunit 50018 "Customer WS Mgt"
             ShipTo."Direccion habitual" := true;
 
         if WS."Email notificacion envio" <> '' then begin
-            ShipTo.Contact := WS."Email notificacion envio";
+            // ShipTo.Contact := WS."Email notificacion envio";
+            ShipTo.Contact := WS."Contacto envio";
             Cust."Email Notificacion Envio EM" := WS."Email notificacion envio";
         end;
 
