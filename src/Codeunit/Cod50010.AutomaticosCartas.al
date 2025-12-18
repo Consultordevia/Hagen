@@ -5002,8 +5002,8 @@ OutStream.Write('Tercera línea después del salto');
         if RecCusto."Mobile Phone No." <> '' then begin
             NTEL2 := Format(RecCusto."Mobile Phone No.");
         end;
-        if Rec110."Ship-to Phone No." <> '' then begin
-            NTEL2 := Format(Rec110."Ship-to Phone No.");
+        if Rec110."Sell-to Phone No." <> '' then begin
+            NTEL2 := Format(Rec110."Sell-to Phone No.");
         end;
 
 
@@ -14645,8 +14645,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if RecCusto."Mobile Phone No." <> '' then begin
             NTEL2 := Format(RecCusto."Mobile Phone No.");
         end;
-        if SalesHeader."Ship-to Phone No." <> '' then begin
-            NTEL2 := Format(SalesHeader."Ship-to Phone No.");
+        if SalesHeader."Sell-to Phone No." <> '' then begin
+            NTEL2 := Format(SalesHeader."Sell-to Phone No.");
         end;
 
         REEMBOLSO := '';
@@ -16765,8 +16765,8 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
         if ServiceItem."Ship-to Phone No." <> '' then begin
             NTEL2 := Format(RecCusto."Mobile Phone No.");
         end;
-        IF Rec110."Ship-to Phone No." <> '' THEN BEGIN
-            NTEL2 := FORMAT(Rec110."Ship-to Phone No.");
+        IF Rec110."Sell-to Phone No." <> '' THEN BEGIN
+            NTEL2 := FORMAT(Rec110."Sell-to Phone No.");
         END;
         REEMBOLSO := '';
 
@@ -17353,8 +17353,8 @@ Format('EXTRA_20');///86
         if RecCusto."Mobile Phone No." <> '' then begin
             NTEL2 := Format(RecCusto."Mobile Phone No.");
         end;
-        if Rec110."Ship-to Phone No." <> '' then begin
-            NTEL2 := Format(Rec110."Ship-to Phone No.");
+        if Rec110."Sell-to Phone No." <> '' then begin
+            NTEL2 := Format(Rec110."Sell-to Phone No.");
         end;
 
         if CopyStr(NTEL2, 1, 1) = '+' then begin
