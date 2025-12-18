@@ -142,6 +142,14 @@ codeunit 50018 "Customer WS Mgt"
         if ShipTo."E-Mail" = '' then
             ShipTo."E-Mail" := WS."Email facturas";
 
+        if WS."Direccion habitual" then
+            ShipTo."Direccion habitual" := true;
+
+        if WS."Email notificacion envio" <> '' then begin
+            ShipTo.Contact := WS."Email notificacion envio";
+            Cust."Email Notificacion Envio EM" := WS."Email notificacion envio";
+        end;
+
         ShipTo.Insert(true);
 
         Cust."Ship-to Code" := ShipTo.Code;

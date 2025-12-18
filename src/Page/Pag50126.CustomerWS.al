@@ -130,6 +130,8 @@ page 50126 CustomerWS
                     Caption = 'Nombre fichero';
                     ToolTip = 'Nombre del fichero adjunto.';
                 }
+                field("Email notificacion envio"; Rec."Email notificacion envio") { }
+                field("Direccion habitual"; Rec."Direccion habitual") { }
             }
         }
     }

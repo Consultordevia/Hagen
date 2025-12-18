@@ -36,6 +36,12 @@
       "name": "IncidenciasPreparacion",
       "publisher": "DevConsultIA",
       "version": "1.0.0.0"
+    }      ,
+    {
+      "appId": "682ba0ef-6191-406c-a570-b82ba5b6b8e0",
+      "name": "Emails",
+      "publisher": "DevConsultIA",
+      "version": "1.0.0.8"
     }  
   ],
   "screenshots": [],

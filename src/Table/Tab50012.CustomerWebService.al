@@ -50,6 +50,8 @@ table 50012 CustomerWebService
         {
             Caption = 'File name';
         }
+        field(28; "Email notificacion envio"; Text[150]) { }
+        field(29; "Direccion habitual"; Boolean) { }
     }
 
     keys
