@@ -12,7 +12,7 @@ codeunit 50018 "Customer WS Mgt"
         WS.Reset();
         WS.SetRange("Cliente creado", false);
 
-        if WS.FindSet(true) then
+        if WS.FindSet() then
             repeat
                 ProcesarAlta(WS);
             until WS.Next() = 0;
@@ -72,12 +72,12 @@ codeunit 50018 "Customer WS Mgt"
                 Banco.Validate("Customer No.", Cust."No.");
                 Banco.Code := '01';
                 Banco.IBAN := WS.IBAN;
-                Banco.Insert(true);
+                Banco.Insert();
 
                 Cust."Preferred Bank Account Code" := Banco.Code;
             end;
         end;
-        Cust.Modify(true);
+        Cust.Modify();
 
         if WS."Nombre contacto" <> '' then begin
             Cont.Init();
@@ -86,10 +86,10 @@ codeunit 50018 "Customer WS Mgt"
             Cont."E-Mail" := WS."Email acceso";
             Cont."Phone No." := WS.Telefono;
             Cont."Mobile Phone No." := WS."Movil whatsapp";
-            Cont.Insert(true);
+            Cont.Insert();
 
             Cust."Primary Contact No." := Cont."No.";
-            Cust.Modify(true);
+            Cust.Modify();
             NotaTxt := StrSubstNo('IBAN: %1', WS.IBAN);
 
             RecLink.Init();
@@ -100,9 +100,9 @@ codeunit 50018 "Customer WS Mgt"
             RecLink."User ID" := UserId();
             RecLink.Description := 'IBAN';
 
-            RecLink.Insert(true);
+            RecLink.Insert();
             RecLinkMgt.WriteNote(RecLink, NotaTxt);
-            RecLink.Modify(true);
+            RecLink.Modify();
         end;
 
 
@@ -151,10 +151,10 @@ codeunit 50018 "Customer WS Mgt"
             Cust."Email Notificacion Envio EM" := WS."Email notificacion envio";
         end;
 
-        ShipTo.Insert(true);
+        ShipTo.Insert();
 
         Cust."Ship-to Code" := ShipTo.Code;
-        Cust.Modify(true);
+        Cust.Modify();
 
 
         WS.CalcFields(Fichero);
@@ -174,6 +174,6 @@ codeunit 50018 "Customer WS Mgt"
 
 
         WS."Cliente creado" := true;
-        WS.Modify(true);
+        WS.Modify();
     end;
 }
