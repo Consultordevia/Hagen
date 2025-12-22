@@ -5228,19 +5228,17 @@ OutStream.Write('Tercera línea después del salto');
         */
 
 
-        if RecTra.Potyugal then begin
+        if RecTra.Potyugal then
             RecCus.GET(Rec110."Sell-to Customer No.");
-            IF RecCus."Avisar NTL" THEN BEGIN
-                TextoSalida7 := TextoSalida7 + Format('S', 1);
-            END;
-            IF NOT RecCus."Avisar NTL" THEN BEGIN
-                TextoSalida7 := TextoSalida7 + Format('', 1);
-            END;
-        END;
-        if not RecTra.Potyugal then begin
-            RecCus.GET(Rec110."Sell-to Customer No.");
+        IF RecCus."Avisar NTL" = true THEN begin
+            TextoSalida7 := TextoSalida7 + Format('S', 1);
+        end;
+        IF RecCus."Avisar NTL" = false THEN BEGIN
             TextoSalida7 := TextoSalida7 + Format('', 1);
-        END;
+        END
+        else
+            TextoSalida7 := TextoSalida7 + Format('', 1);
+
 
         OutStream.Writetext(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7);
 
