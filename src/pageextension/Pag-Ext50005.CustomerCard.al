@@ -53,6 +53,7 @@ pageextension 50005 "Customer Card" extends "Customer Card"
             group(Hagen)
             {
 
+                field("Des.Comision Vendedor"; Rec."Des.Comision Vendedor") { ApplicationArea = All; }
                 field("Etiqueta Kiwoko"; Rec."Etiqueta Kiwoko") { ApplicationArea = All; }
                 field(Plantilla_Cliente; Rec.Plantilla_Cliente) { ApplicationArea = All; }
                 field("Permite fraccionar unidad de venta"; Rec."Permite fraccionar unidad de venta") { ApplicationArea = All; }

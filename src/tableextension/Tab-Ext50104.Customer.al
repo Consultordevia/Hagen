@@ -198,6 +198,10 @@ tableextension 50104 Customer extends "Customer"
         {
             Editable = false;
         }
+        field(50047; "Des.Comision Vendedor"; Decimal)
+        {
+
+        }
         field(50048; "Contacto en factura"; Boolean)
         {
             InitValue = true;
