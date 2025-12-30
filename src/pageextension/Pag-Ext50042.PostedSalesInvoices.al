@@ -15,6 +15,8 @@ pageextension 50042 PostedSalesInvoices extends "Posted Sales Invoices"
 
             field("Your Reference"; Rec."Your Reference") { ApplicationArea = All; }
 
+            field("Sell-to Customer Name 2"; Rec."Sell-to Customer Name 2") { ApplicationArea = All; }
+            field("Bill-to Name 2"; Rec."Bill-to Name 2") { ApplicationArea = All; }
             field(NombreVender; NombreVender) { ApplicationArea = All; }
             field("Nº expedición"; Rec."Nº expedición") { ApplicationArea = All; }
             field("Nº expedición dropshp"; Rec."Nº expedición dropshp") { ApplicationArea = All; }
