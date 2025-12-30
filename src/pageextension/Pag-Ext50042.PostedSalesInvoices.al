@@ -14,13 +14,13 @@ pageextension 50042 PostedSalesInvoices extends "Posted Sales Invoices"
         {
 
             field("Your Reference"; Rec."Your Reference") { ApplicationArea = All; }
+
+            field(NombreVender; NombreVender) { ApplicationArea = All; }
             field("Nº expedición"; Rec."Nº expedición") { ApplicationArea = All; }
             field("Nº expedición dropshp"; Rec."Nº expedición dropshp") { ApplicationArea = All; }
             field("EDI factueas enviar"; Rec."EDI factueas enviar") { ApplicationArea = All; }
             field("EDI factueas enviado"; Rec."EDI factueas enviado") { ApplicationArea = All; }
             field("EDI Facturas Fecha enviado"; Rec."EDI Facturas Fecha enviado") { ApplicationArea = All; }
-            ///field(COSTEFAC; COSTEFAC) { ApplicationArea = All; }
-            ///field(margen; margen) { ApplicationArea = All; }
 
 
         }
@@ -132,6 +132,8 @@ pageextension 50042 PostedSalesInvoices extends "Posted Sales Invoices"
         Rec113: Record "Sales Invoice Line";
         DATOSCOSTE: Decimal;
         esmedia: Decimal;
+        RecVende: Record "Salesperson/Purchaser";
+
 
 
     begin
@@ -191,6 +193,13 @@ pageextension 50042 PostedSalesInvoices extends "Posted Sales Invoices"
                 portescobrados := Rec113.Amount;
             end;
         end;
+        NombreVender := '';
+        IF RecVende.get(Rec."Salesperson Code") THEN BEGIN
+            NombreVender := RecVende.Name;
+        END;
+
     end;
 
+    var
+        NombreVender: Text;
 }
