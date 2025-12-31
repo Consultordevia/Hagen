@@ -79,31 +79,31 @@ codeunit 50018 "Customer WS Mgt"
         end;
         Cust.Modify();
 
-        if WS."Nombre contacto" <> '' then begin
-            Cont.Init();
-            Cont.Validate(Type, Cont.Type::Person);
-            Cont.Name := WS."Nombre contacto";
-            Cont."E-Mail" := WS."Email acceso";
-            Cont."Phone No." := WS.Telefono;
-            Cont."Mobile Phone No." := WS."Movil whatsapp";
-            Cont.Insert();
+        //if WS."Nombre contacto" <> '' then begin
+        //Cont.Init();
+        //Cont.Validate(Type, Cont.Type::Person);
+        //Cont.Name := WS."Nombre contacto";
+        //Cont."E-Mail" := WS."Email acceso";
+        //Cont."Phone No." := WS.Telefono;
+        //Cont."Mobile Phone No." := WS."Movil whatsapp";
+        //Cont.Insert();
 
-            Cust."Primary Contact No." := Cont."No.";
-            Cust.Modify();
-            NotaTxt := StrSubstNo('IBAN: %1', WS.IBAN);
+        //Cust."Primary Contact No." := Cont."No.";
+        //Cust.Modify();
+        //NotaTxt := StrSubstNo('IBAN: %1', WS.IBAN);
 
-            RecLink.Init();
-            RecLink."Record ID" := Cust.RecordId;
-            RecLink.Company := CompanyName;
-            RecLink.Type := RecLink.Type::Note;
-            RecLink.Created := CurrentDateTime;
-            RecLink."User ID" := UserId();
-            RecLink.Description := 'IBAN';
+        //RecLink.Init();
+        //RecLink."Record ID" := Cust.RecordId;
+        //RecLink.Company := CompanyName;
+        //RecLink.Type := RecLink.Type::Note;
+        //RecLink.Created := CurrentDateTime;
+        //RecLink."User ID" := UserId();
+        //RecLink.Description := 'IBAN';
 
-            RecLink.Insert();
-            RecLinkMgt.WriteNote(RecLink, NotaTxt);
-            RecLink.Modify();
-        end;
+        //RecLink.Insert();
+        //RecLinkMgt.WriteNote(RecLink, NotaTxt);
+        //RecLink.Modify();
+        //end;
 
 
         ShipTo.Init();
