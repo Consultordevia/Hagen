@@ -60,7 +60,7 @@ codeunit 50018 "Customer WS Mgt"
         Cust."Name 2" := WS."Nombre comercial";
         Cust."Search Name" := WS."Nombre comercial";
         Cust."Email facturacion 1" := WS."Email facturas";
-        Cust.Contact := WS."Nombre contacto";
+        //Cust.Contact := WS."Nombre contacto";
         Cust."Salesperson Code" := WS."Cod. vendedor";
 
         if WS."Forma pago" = WS."Forma pago"::"1" then begin
