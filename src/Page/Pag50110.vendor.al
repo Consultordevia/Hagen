@@ -90,6 +90,24 @@ Page 50110 vendor
 
             }
 
+            action(RepComisionesNuevas)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Comisiones Nuevas';
+                trigger OnAction()
+                begin
+                    SalespersonPurchaser.Reset();
+                    SalespersonPurchaser.SetRange(Code, Rec."No.");
+                    if SalespersonPurchaser.FindSet then begin
+                        clear(RepComisionesNuevas);
+                        RepComisionesNuevas.SetTableView(ObjetivoVendrdorComi);
+                        RepComisionesNuevas.Run();
+                    end;
+                end;
+
+
+            }
+
             action(DescuentoAzul)
             {
                 ApplicationArea = Suite;
@@ -119,5 +137,6 @@ Page 50110 vendor
         RepComisiones: Report "Comisiones";
         PageDescuentoAzul: Page "Descuento Azul";
         SalespersonPurchaser: Record "Salesperson/Purchaser";
+        RepComisionesNuevas: Report NuevasComisiones;
 }
 
