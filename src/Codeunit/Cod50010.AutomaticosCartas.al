@@ -5170,7 +5170,7 @@ OutStream.Write('Tercera línea después del salto');
                           Format(RecTra."Texto final fichero", 30) +
                           Format(codpais, 2) +
                           Format(cospostat, 8) +
-                          Format('S', 1);
+                          Format('', 1);
             TextoSalida5 := '';
             if ShippingAgentServices.Get(Rec110."Shipping Agent Code", Rec110."Shipping Agent Service Code") then begin
 
@@ -5228,16 +5228,18 @@ OutStream.Write('Tercera línea después del salto');
         */
 
 
-        if RecTra.Potyugal then
+        if RecTra.Potyugal then begin
             RecCus.GET(Rec110."Sell-to Customer No.");
-        IF RecCus."Avisar NTL" = true THEN begin
-            TextoSalida7 := TextoSalida7 + Format('S', 1);
+            IF RecCus."Avisar NTL" = true THEN begin
+                TextoSalida7 := TextoSalida7 + Format('S', 1);
+            end;
+            IF RecCus."Avisar NTL" = false THEN BEGIN
+                TextoSalida7 := TextoSalida7 + Format('', 1);
+            end;
+        END;
+        if not RecTra.Potyugal then begin
+            TextoSalida7 := TextoSalida7 + Format('', 1);
         end;
-        IF RecCus."Avisar NTL" = false THEN BEGIN
-            TextoSalida7 := TextoSalida7 + Format('', 1);
-        END
-        else
-            TextoSalida7 := TextoSalida7 + Format('', 1);
 
 
         OutStream.Writetext(TextoSalida1 + TextoSalida2 + TextoSalida3 + TextoSalida4 + TextoSalida5 + TextoSalida6 + TextoSalida7);
