@@ -18,9 +18,15 @@ Codeunit 50070 "Calculo PMP DIARIO"
             repeat
                 afecha := Recdate."Period Start";
                 VENTANA.Update(1, afecha);
+                /// Rec83PMP.Reset;
+                ///Rec83PMP.SetRange("Journal Template Name", 'PMP');
+                ///Rec83PMP.SetRange("Item No.", RecItem."No.");
+                ////Rec83PMP.SetRange("Posting Date", afecha);
+                ////if NOT Rec83PMP.FindFirst then begin
+
                 LIN := 1;
                 RecItem.Reset;
-                /////RecItem.SETRANGE("No.",'A595');
+                RecItem.SetRange("Date Filter", 20000101D, afecha);
                 if RecItem.FindFirst then
                     repeat
                         if RecItem."Producto almacenable" then begin
@@ -41,7 +47,7 @@ Codeunit 50070 "Calculo PMP DIARIO"
                                 Rec83PMP."Nombre Vendedor" := Vendor.Name;
                             end;
                             Rec83PMP.Insert;
-                            RecItem.CalcFields(RecItem.Inventory);
+                            RecItem.CalcFields(RecItem."Net Change");
                             Rec123Temp.Reset;
                             if Rec123Temp.FindFirst then
                                 repeat
@@ -54,7 +60,7 @@ Codeunit 50070 "Calculo PMP DIARIO"
                                     Rec123Temp2.Delete;
                                 until (Rec123Temp2.Next = 0);
 
-                            ST1 := RecItem.Inventory;
+                            ST1 := RecItem."Net Change";
 
                             STOCKTOTAL := ST1;
 
@@ -311,7 +317,7 @@ Codeunit 50070 "Calculo PMP DIARIO"
                             end;
                         end;
                     until RecItem.Next = 0;
-
+            ////END;
 
             until Recdate.Next = 0;
         VENTANA.Close;
@@ -598,6 +604,7 @@ Codeunit 50070 "Calculo PMP DIARIO"
         sincompras: Boolean;
         ndoc: Code[20];
         numdoc: Integer;
+        dia: date;
 
 
 }

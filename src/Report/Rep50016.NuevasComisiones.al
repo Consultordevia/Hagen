@@ -4,6 +4,9 @@ Report 50016 NuevasComisiones
     DefaultLayout = RDLC;
     RDLCLayout = './Layouts/ComisionesNuevas.rdlc';
     Caption = 'Comisiones';
+    ApplicationArea = All;
+    UsageCategory = Lists;
+
 
     dataset
     {
