@@ -170,6 +170,10 @@ Report 50016 NuevasComisiones
                 column(Porcentaje; Porcentaje)
                 {
                 }
+                column(PorcentajeNew; PorcentajeNew)
+                {
+                }
+
                 column(TasaAplica; TasaAplica)
                 {
                 }
@@ -215,6 +219,16 @@ Report 50016 NuevasComisiones
                 column(DatoEscalado; DatoEscalado)
                 {
                 }
+                column(impverde; impverde)
+                {
+                }
+                column(improjo; improjo)
+                {
+                }
+                column(impazul; impazul)
+                {
+                }
+
 
 
 
@@ -233,6 +247,9 @@ Report 50016 NuevasComisiones
 
 
 
+                    impverde := 0;
+                    improjo := 0;
+                    impazul := 0;
 
 
                     if "Cust. Ledger Entry"."Customer No." = '6445' then begin
@@ -370,7 +387,7 @@ Report 50016 NuevasComisiones
                         end;
 
 
-                        PORCENTAJE := 0;
+                        PORCENTAJEnew := 0;
                         coste := 0;
                         Diferencia := 0;
                         ImporteTarifaFull := 0;
@@ -399,11 +416,11 @@ Report 50016 NuevasComisiones
                         SalesInvoiceHeader.CalcFields(Amount);
                         Diferencia := SalesInvoiceHeader.Amount - ImporteTarifaFull;
                         if ImporteTarifaFull <> 0 then begin
-                            PORCENTAJE := round(Diferencia * 100 / ImporteTarifaFull, 0.01) * -1;
+                            PORCENTAJEnew := round(Diferencia * 100 / ImporteTarifaFull, 0.01) * -1;
                         end;
                         RecCusto.Get(SalesInvoiceHeader."Sell-to Customer No.");
                         if RecCusto."Des.Comision Vendedor" <> 0 then begin
-                            Porcentaje := RecCusto."Des.Comision Vendedor";
+                            Porcentajenew := RecCusto."Des.Comision Vendedor";
                         end;
 
 
@@ -412,7 +429,7 @@ Report 50016 NuevasComisiones
                         RecEscalado.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
                         if RecEscalado.FindFirst() then
                             repeat
-                                if (Porcentaje >= RecEscalado.Desde) and (Porcentaje <= RecEscalado.Hasta) then begin
+                                if (Porcentajenew >= RecEscalado.Desde) and (Porcentajenew <= RecEscalado.Hasta) then begin
                                     DatoEscalado := RecEscalado.Comision;
                                 end;
                             until RecEscalado.next = 0;
@@ -426,6 +443,7 @@ Report 50016 NuevasComisiones
                                 if Rec113."No." <> 'TRAN' THEN BEGIN
                                     IF RecItem.GET(Rec113."No.") THEN begin
                                         IF RecItem."Clasificación Comercial" = RecItem."Clasificación Comercial"::Azul THEN begin
+                                            impazul := impazul + Rec113.Amount;
                                             RecClasiComer.Reset();
                                             RecClasiComer.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
                                             IF RecClasiComer.FindFirst() THEN begin
@@ -433,6 +451,7 @@ Report 50016 NuevasComisiones
                                             end;
                                         end;
                                         IF RecItem."Clasificación Comercial" = RecItem."Clasificación Comercial"::Rojo THEN begin
+                                            improjo := improjo + Rec113.Amount;
                                             RecClasiComer.Reset();
                                             RecClasiComer.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
                                             IF RecClasiComer.FindFirst() THEN begin
@@ -440,6 +459,7 @@ Report 50016 NuevasComisiones
                                             end;
                                         end;
                                         IF RecItem."Clasificación Comercial" = RecItem."Clasificación Comercial"::Verde THEN begin
+                                            impverde := impverde + Rec113.Amount;
                                             RecClasiComer.Reset();
                                             RecClasiComer.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
                                             IF RecClasiComer.FindFirst() THEN begin
@@ -1021,6 +1041,7 @@ Report 50016 NuevasComisiones
         Objetivosvendedores: Record "Objetivos vendedores";
         ImporteFac: Decimal;
         Porcentaje: Decimal;
+        PorcentajeNew: Decimal;
         SalesInvoiceHeader: Record "Sales Invoice Header";
         SalesCrMemoHeader: Record "Sales Cr.Memo Header";
         totalVende: Decimal;
@@ -1114,6 +1135,9 @@ Report 50016 NuevasComisiones
         hastaFecha: Date;
         Bonus: Decimal;
         DatoBonus: Decimal;
+        impverde: Decimal;
+        improjo: Decimal;
+        impazul: Decimal;
 
 }
 
