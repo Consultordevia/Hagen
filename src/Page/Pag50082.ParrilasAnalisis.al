@@ -910,15 +910,16 @@ Page 50082 "Parrilas Analisis"
                             end;
                             CUANTALIN := CUANTALIN + 1;
 
-                            pmp:=Rec113."Unit Cost (LCY)";                             
+                            pmp := Rec113."Unit Cost (LCY)";
                             PMP := 0;
                             RecPMP.RESET;
                             RecPMP.SETCURRENTKEY(RecPMP."Item No.", RecPMP."Posting Date");
                             RecPMP.SETRANGE(RecPMP."Item No.", rec113."No.");
                             RecPMP.SETRANGE(RecPMP."Posting Date", 0D, Rec113."Posting Date");
+                            RecPMP.SETFILTER("Unit Cost", '<>0');
                             IF RecPMP.FINDLAST THEN BEGIN
                                 PMP := RecPMP."Unit Cost";
-                            END;                            
+                            END;
 
                             if Rec113."VAT Base Amount" <> 0 then begin
                                 margenlin := margenlin + (100 - (100 * (PMP * Rec113.Quantity) / (Rec113."VAT Base Amount")));
@@ -1010,17 +1011,18 @@ Page 50082 "Parrilas Analisis"
                                 SUMAPF := SUMAPF + Rec115.Amount;
                             end;
                             CUANTALIN := CUANTALIN + 1;
-                            pmp:=Rec115."Unit Cost (LCY)";
+                            pmp := Rec115."Unit Cost (LCY)";
                             PMP := 0;
                             RecPMP.RESET;
                             RecPMP.SETCURRENTKEY(RecPMP."Item No.", RecPMP."Posting Date");
                             RecPMP.SETRANGE(RecPMP."Item No.", rec115."No.");
                             RecPMP.SETRANGE(RecPMP."Posting Date", 0D, Rec115."Posting Date");
+                            RecPMP.SETFILTER("Unit Cost", '<>0');
                             IF RecPMP.FINDLAST THEN BEGIN
                                 PMP := RecPMP."Unit Cost";
-                            END;                            
+                            END;
 
-                            if Rec115."VAT Base Amount" <> 0 then begin                                
+                            if Rec115."VAT Base Amount" <> 0 then begin
                                 margenlin := margenlin + (100 - (100 * (pmp * Rec115.Quantity) / (Rec115."VAT Base Amount")));
                             end;
                             sumaventas := sumaventas + Rec115."VAT Base Amount";
@@ -1034,7 +1036,7 @@ Page 50082 "Parrilas Analisis"
                     if SalesCrMemoHeader.Amount <> 0 then begin
                         Margen := ROUND((SalesCrMemoHeader.Amount - COSTEFAC) / SalesCrMemoHeader.Amount * 100, 0.01);
                     end;
-                    
+
                     Rec115.Reset;
                     Rec115.SetCurrentKey("Document No.", Type);
                     Rec115.SetRange(Rec115."Document No.", SalesCrMemoHeader."No.");
@@ -1247,6 +1249,7 @@ Page 50082 "Parrilas Analisis"
                 RecPMP.SETCURRENTKEY(RecPMP."Item No.", RecPMP."Posting Date");
                 RecPMP.SETRANGE(RecPMP."Item No.", codprod);
                 RecPMP.SETRANGE(RecPMP."Posting Date", 0D, Rec32."Posting Date");
+                RecPMP.SETFILTER("Unit Cost", '<>0');
                 IF RecPMP.FINDLAST THEN BEGIN
                     PMP := RecPMP."Unit Cost";
                 END;
