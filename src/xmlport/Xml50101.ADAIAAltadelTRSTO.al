@@ -312,8 +312,8 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
             RecMT."Fecha caducidad" := fechacadu;
             RecMT.Lote := codlote;
             RecMT.INSERT;
-            if (CopyStr(UBICA, 1, 3) = '010') then begin
-                LL := STRLEN(UBICA);
+            if ((CopyStr(UBICA, 1, 3) = '010') OR
+                                (CopyStr(UBICA, 1, 3) = '011')) then begin
 
                 ulimoscc := UPPERCASE(COPYSTR(UBICA, LL - 1, 2));
                 IF (ulimoscc = '01') OR (ulimoscc = '02') then begin

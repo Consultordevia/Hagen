@@ -1511,9 +1511,10 @@ Codeunit 50004 AutomaticosIncremento
                     if Multitabla.FindFirst then
                         repeat
                             L1 := StrLen(Multitabla.Ubicacion);
-                            if (CopyStr(Multitabla.Ubicacion, 1, 3) = '010') and
-                               ((CopyStr(Multitabla.Ubicacion, L1 - 1, 2) = '01') or
-                                (CopyStr(Multitabla.Ubicacion, L1 - 1, 2) = '02')) then begin
+                            if ((CopyStr(Multitabla.Ubicacion, 1, 3) = '010') OR
+                              (CopyStr(Multitabla.Ubicacion, 1, 3) = '011')) AND
+                             ((CopyStr(Multitabla.Ubicacion, L1 - 1, 2) = '01') or
+                              (CopyStr(Multitabla.Ubicacion, L1 - 1, 2) = '02')) then begin
                                 Item."Fecha en picking" := Multitabla."Fecha caducidad";
                             end;
                         until Multitabla.Next = 0;
