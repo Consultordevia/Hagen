@@ -48,18 +48,30 @@ codeunit 50018 "Customer WS Mgt"
 
         CustTemplMgt.CreateCustomerFromTemplate(Cust, isHandled, CustTempl.Code);
 
-        Cust.Name := WS."Nombre fiscal";
-        Cust."VAT Registration No." := WS.CIF;
-        Cust.Address := WS.Direccion;
-        Cust.City := WS.Poblacion;
-        Cust."Post Code" := WS."Codigo postal";
-        Cust.County := WS.Provincia;
-        Cust."Phone No." := WS.Telefono;
-        Cust."E-Mail" := WS."Email acceso";
-        Cust."Mobile Phone No." := WS."Movil whatsapp";
-        Cust."Name 2" := WS."Nombre comercial";
-        Cust."Search Name" := WS."Nombre comercial";
-        Cust."Email facturacion 1" := WS."Email facturas";
+        // Cust.Name := WS."Nombre fiscal";
+        // Cust."VAT Registration No." := WS.CIF;
+        // Cust.Address := WS.Direccion;
+        // Cust.City := WS.Poblacion;
+        // Cust."Post Code" := WS."Codigo postal";
+        // Cust.County := WS.Provincia;
+        // Cust."Phone No." := WS.Telefono;
+        // Cust."E-Mail" := WS."Email acceso";
+        // Cust."Mobile Phone No." := WS."Movil whatsapp";
+        // Cust."Name 2" := WS."Nombre comercial";
+        // Cust."Search Name" := WS."Nombre comercial";
+        // Cust."Email facturacion 1" := WS."Email facturas";
+        Cust.Name := CopyStr(WS."Nombre fiscal", 1, MaxStrLen(Cust.Name));                           // Text[100]
+        Cust."VAT Registration No." := CopyStr(WS.CIF, 1, MaxStrLen(Cust."VAT Registration No."));   // Text[20]
+        Cust.Address := CopyStr(WS.Direccion, 1, MaxStrLen(Cust.Address));                           // Text[100]
+        Cust.City := CopyStr(WS.Poblacion, 1, MaxStrLen(Cust.City));                                 // Text[30]
+        Cust."Post Code" := CopyStr(WS."Codigo postal", 1, MaxStrLen(Cust."Post Code"));             // Code[20]
+        Cust.County := CopyStr(WS.Provincia, 1, MaxStrLen(Cust.County));                             // Text[30]
+        Cust."Phone No." := CopyStr(WS.Telefono, 1, MaxStrLen(Cust."Phone No."));                    // Text[30]
+        Cust."E-Mail" := CopyStr(WS."Email acceso", 1, MaxStrLen(Cust."E-Mail"));                    // Text[80]
+        Cust."Mobile Phone No." := CopyStr(WS."Movil whatsapp", 1, MaxStrLen(Cust."Mobile Phone No.")); // Text[30]
+        Cust."Name 2" := CopyStr(WS."Nombre comercial", 1, MaxStrLen(Cust."Name 2"));                // Text[50]
+        Cust."Search Name" := CopyStr(WS."Nombre comercial", 1, MaxStrLen(Cust."Search Name"));      // Code[100]
+        Cust."Email facturacion 1" := CopyStr(WS."Email facturas", 1, MaxStrLen(Cust."Email facturacion 1")); // Text[60]
         //Cust.Contact := WS."Nombre contacto";
         Cust."Salesperson Code" := WS."Cod. vendedor";
 
@@ -79,81 +91,70 @@ codeunit 50018 "Customer WS Mgt"
         end;
         Cust.Modify();
 
-        //if WS."Nombre contacto" <> '' then begin
-        //Cont.Init();
-        //Cont.Validate(Type, Cont.Type::Person);
-        //Cont.Name := WS."Nombre contacto";
-        //Cont."E-Mail" := WS."Email acceso";
-        //Cont."Phone No." := WS.Telefono;
-        //Cont."Mobile Phone No." := WS."Movil whatsapp";
-        //Cont.Insert();
-
-        //Cust."Primary Contact No." := Cont."No.";
-        //Cust.Modify();
-        //NotaTxt := StrSubstNo('IBAN: %1', WS.IBAN);
-
-        //RecLink.Init();
-        //RecLink."Record ID" := Cust.RecordId;
-        //RecLink.Company := CompanyName;
-        //RecLink.Type := RecLink.Type::Note;
-        //RecLink.Created := CurrentDateTime;
-        //RecLink."User ID" := UserId();
-        //RecLink.Description := 'IBAN';
-
-        //RecLink.Insert();
-        //RecLinkMgt.WriteNote(RecLink, NotaTxt);
-        //RecLink.Modify();
-        //end;
-
-
         ShipTo.Init();
         ShipTo.Validate("Customer No.", Cust."No.");
         ShipTo.Code := '01';
 
-        ShipTo.Name := WS."Nombre comercial";
+        ShipTo.Name := CopyStr(WS."Nombre comercial", 1, MaxStrLen(ShipTo.Name));
         if ShipTo.Name = '' then
-            ShipTo.Name := WS."Nombre comercial";
+            ShipTo.Name := CopyStr(WS."Nombre comercial", 1, MaxStrLen(ShipTo.Name));
         if ShipTo.Name = '' then
-            ShipTo.Name := WS."Nombre fiscal";
+            ShipTo.Name := CopyStr(WS."Nombre fiscal", 1, MaxStrLen(ShipTo.Name));
 
-        ShipTo.Address := WS."Direccion envio";
+        // ShipTo.Address := WS."Direccion envio";
+        ShipTo.Address := CopyStr(WS."Direccion envio", 1, MaxStrLen(ShipTo.Address));
         if ShipTo.Address = '' then
-            ShipTo.Address := WS.Direccion;
+            // ShipTo.Address := WS.Direccion;
+            ShipTo.Address := CopyStr(WS.Direccion, 1, MaxStrLen(ShipTo.Address));
 
-        ShipTo.City := WS."Poblacion envio";
+        // ShipTo.City := WS."Poblacion envio";
+        ShipTo.City := CopyStr(WS."Poblacion envio", 1, MaxStrLen(ShipTo.City));
         if ShipTo.City = '' then
-            ShipTo.City := WS.Poblacion;
+            ShipTo.City := CopyStr(WS."Poblacion", 1, MaxStrLen(ShipTo.City));
+        // ShipTo.City := WS.Poblacion;
 
-        ShipTo."Post Code" := WS."Codigo postal envio";
+        // ShipTo."Post Code" := WS."Codigo postal envio";
+        ShipTo."Post Code" := CopyStr(WS."Codigo postal envio", 1, MaxStrLen(ShipTo."Post Code"));
         if ShipTo."Post Code" = '' then
-            ShipTo."Post Code" := WS."Codigo postal";
+            ShipTo."Post Code" := CopyStr(WS."Codigo postal", 1, MaxStrLen(ShipTo."Post Code"));
+        // ShipTo."Post Code" := WS."Codigo postal";
 
-        ShipTo.County := WS."Provincia envio";
+        // ShipTo.County := WS."Provincia envio";
+        ShipTo.County := CopyStr(WS."Provincia envio", 1, MaxStrLen(ShipTo.County));
         if ShipTo.County = '' then
-            ShipTo.County := WS.Provincia;
+            ShipTo.County := CopyStr(WS."Provincia", 1, MaxStrLen(ShipTo.County));
+        // ShipTo.County := WS.Provincia;
 
-        ShipTo."Country/Region Code" := Cust."Country/Region Code";
+        // ShipTo."Country/Region Code" := Cust."Country/Region Code";
+        ShipTo."Country/Region Code" := CopyStr(Cust."Country/Region Code", 1, MaxStrLen(ShipTo."Country/Region Code"));
 
-        ShipTo."Phone No." := WS."Telefono envio";
+        // ShipTo."Phone No." := WS."Telefono envio";
+        ShipTo."Phone No." := CopyStr(WS."Telefono envio", 1, MaxStrLen(ShipTo."Phone No."));
         if ShipTo."Phone No." = '' then
-            ShipTo."Phone No." := WS.Telefono;
+            ShipTo."Phone No." := CopyStr(WS.Telefono, 1, MaxStrLen(ShipTo."Phone No."));
+        // ShipTo."Phone No." := WS.Telefono;
 
-        ShipTo."E-Mail" := WS."Email envio";
+        // ShipTo."E-Mail" := WS."Email envio";
+        ShipTo."E-Mail" := CopyStr(WS."Email envio", 1, MaxStrLen(ShipTo."E-Mail"));
         if ShipTo."E-Mail" = '' then
-            ShipTo."E-Mail" := WS."Email facturas";
+            ShipTo."E-Mail" := CopyStr(WS."Email facturas", 1, MaxStrLen(ShipTo."E-Mail"));
+        // ShipTo."E-Mail" := WS."Email facturas";
 
         if WS."Direccion habitual" then
             ShipTo."Direccion habitual" := true;
 
         if WS."Email notificacion envio" <> '' then begin
             // ShipTo.Contact := WS."Email notificacion envio";
-            ShipTo.Contact := WS."Contacto envio";
-            Cust."Email Notificacion Envio EM" := WS."Email notificacion envio";
+            // ShipTo.Contact := WS."Contacto envio";
+            ShipTo.Contact := CopyStr(WS."Contacto envio", 1, MaxStrLen(ShipTo.Contact));
+            Cust."Email Notificacion Envio EM" := CopyStr(WS."Email notificacion envio", 1, MaxStrLen(Cust."Email Notificacion Envio EM"));
+            // Cust."Email Notificacion Envio EM" := WS."Email notificacion envio";
         end;
 
         ShipTo.Insert();
 
-        Cust."Ship-to Code" := ShipTo.Code;
+        // Cust."Ship-to Code" := ShipTo.Code;
+        Cust."Ship-to Code" := CopyStr(ShipTo.Code, 1, MaxStrLen(Cust."Ship-to Code"));
         Cust.Modify();
 
 
