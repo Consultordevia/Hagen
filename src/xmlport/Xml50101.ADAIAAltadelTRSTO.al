@@ -285,45 +285,72 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
 
 
         v.update(1, d4 + ' ' + d3);
+
         UBICA := D3;
 
         REF := D4;
 
+
         Evaluate(DCanti, D5);
 
+
         FC := D10;
+
         codlote := D14;
 
-        IF FC <> '' THEN BEGIN
-            IF FC <> '|' THEN BEGIN
-                a1 := COPYSTR(FC, 1, 4);
-                m1 := COPYSTR(FC, 5, 2);
-                Dd1 := COPYSTR(FC, 7, 2);
-                EVALUATE(a2, a1);
-                EVALUATE(m2, m1);
-                EVALUATE(Dd2, Dd1);
-                fechacadu := DMY2DATE(dD2, m2, a2);
-            END;
-        END;
-        IF RecItem2.GET(REF) THEN BEGIN
-            conta := conta + 1;
-            RecMT.INIT;
-            RecMT.Tabla := 17;
-            RecMT.Codigo := FORMAT(conta);
-            RecMT.Producto := REF;
-            RecMT.Ubicacion := UBICA;
-            RecMT.Cantidad := DCanti;
-            RecMT."Fecha caducidad" := fechacadu;
-            RecMT.Lote := codlote;
-            RecMT.INSERT;
-            if ((CopyStr(UBICA, 1, 3) = '010') OR
-                                (CopyStr(UBICA, 1, 3) = '011')) then begin
 
-                ulimoscc := UPPERCASE(COPYSTR(UBICA, LL - 1, 2));
-                IF (ulimoscc = '01') OR (ulimoscc = '02') then begin
-                    RecItem2."Ubicacion picking" := ubica;
-                    RecItem2.Modify();
-                end;
+        IF FC <> '' THEN BEGIN
+
+            IF FC <> '|' THEN BEGIN
+
+                a1 := COPYSTR(FC, 1, 4);
+
+                m1 := COPYSTR(FC, 5, 2);
+
+                Dd1 := COPYSTR(FC, 7, 2);
+
+                EVALUATE(a2, a1);
+
+                EVALUATE(m2, m1);
+
+                EVALUATE(Dd2, Dd1);
+
+                fechacadu := DMY2DATE(dD2, m2, a2);
+
+            END;
+
+        END;
+
+        IF RecItem2.GET(REF) THEN BEGIN
+
+            conta := conta + 1;
+
+            RecMT.INIT;
+
+            RecMT.Tabla := 17;
+
+            RecMT.Codigo := FORMAT(conta);
+
+            RecMT.Producto := REF;
+
+            RecMT.Ubicacion := UBICA;
+
+            RecMT.Cantidad := DCanti;
+
+            RecMT."Fecha caducidad" := fechacadu;
+
+            RecMT.Lote := codlote;
+
+            RecMT.INSERT;
+
+            LL := StrLen(Ubica);
+            if ((CopyStr(Ubica, 1, 3) = '010') OR
+               (CopyStr(Ubica, 1, 3) = '011')) AND
+                             ((CopyStr(Ubica, LL - 1, 2) = '01') or
+                              (CopyStr(Ubica, LL - 1, 2) = '02')) then begin
+                RecItem2."Ubicacion picking" := ubica;
+                RecItem2.Modify();
+
             end;
         END;
         IF Item.GET(REF) THEN BEGIN

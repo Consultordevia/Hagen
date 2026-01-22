@@ -727,6 +727,22 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                 end;
             }
 
+            action(ImportacionTRSTO)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Importacion TRSTO';
+                trigger OnAction()
+                var
+                    ADAIAAltadelTRSTO: XmlPort "ADAIA_Alta del TRSTO";
+                begin
+                    Clear(ADAIAAltadelTRSTO);
+                    ADAIAAltadelTRSTO.Run();
+                    MESSAGE('Hecho.');
+                end;
+            }
+
+
+
             action(LineasOfertaaExcel)
             {
                 ApplicationArea = Suite;
