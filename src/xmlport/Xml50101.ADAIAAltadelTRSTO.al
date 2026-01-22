@@ -8,8 +8,10 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
     TextEncoding = UTF16;
     UseRequestPage = false;
 
-    ///    1   2    3        4        5     6      7    8        9   10     11 12 13      14   15 16 17   18   19   20
-    ///  STSI|MO|010A00101|S2510|000000028|UD|00000001|000000000| |20121213|  |  |OK|010A00101|  |EU|   |    |E130|
+    ///    1   2    3          4        5       6      7         8       9   10      11 12 13      14   15 16 17   18   19   20
+    ///  STSI |MO |010A00101 |S2510 |000000028 |UD |00000001 |000000000 | |20121213 |  |  |OK|010A00101|  |EU|   |    |E130|
+    ///  STSI1|MO2|010A001013|S25104|0000000285|UD6|000000017|0000000008|9|2012121310|11|12|OK13|010A0010114|15|EU16|17|18|E13019|
+
 
     schema
     {
@@ -103,7 +105,7 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
     trigger OnPreXmlPort()
     begin
 
-
+        v.Open('#1####################################');
         RecMT.RESET;
         RecMT.SETRANGE(RecMT.Tabla, 17);
         RecMT.deleteall;
@@ -276,18 +278,20 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
 
         ulimoscc: Code[2];
 
+        v: Dialog;
 
     local procedure ValidateHeaderTag()
     begin
 
 
+        v.update(1, d4 + ' ' + d3);
         UBICA := D3;
 
         REF := D4;
 
         Evaluate(DCanti, D5);
 
-        FC := D9;
+        FC := D10;
         codlote := D14;
 
         IF FC <> '' THEN BEGIN
