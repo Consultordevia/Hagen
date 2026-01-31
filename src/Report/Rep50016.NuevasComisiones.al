@@ -228,6 +228,24 @@ Report 50016 NuevasComisiones
                 column(impazul; impazul)
                 {
                 }
+                column(D1; D1) { }
+                column(D2; D2) { }
+                column(D3; D3) { }
+                column(D4; D4) { }
+                column(D5; D5) { }
+                column(D6; D6) { }
+                column(D7; D7) { }
+                column(D8; D8) { }
+                column(D9; D9) { }
+                column(D10; D10) { }
+                column(D11; D11) { }
+                column(D12; D12) { }
+                column(D13; D13) { }
+                column(D14; D14) { }
+                column(D15; D15) { }
+                column(D16; D16) { }
+                column(D17; D17) { }
+                column(D18; D18) { }
 
 
 
@@ -281,8 +299,9 @@ Report 50016 NuevasComisiones
                         if MES = 10 then TOTALVENTAV := Rec3.Octubre;
                         if MES = 11 then TOTALVENTAV := Rec3.Noviembre;
                         if MES = 12 then TOTALVENTAV := Rec3.Diciembre;
-
                     end;
+                    D13 := TOTALVENTAV;
+
 
 
 
@@ -316,6 +335,27 @@ Report 50016 NuevasComisiones
                                             end;
                                         until SalesInvoiceLine.Next = 0;
                                 end;
+                                if CustLedgerEntry."Document Type" = CustLedgerEntry."document type"::"Credit Memo" then begin
+                                    SalesCrMemoHeader.Init;
+                                    if SalesCrMemoHeader.Get(CustLedgerEntry."Document No.") then begin
+                                        NombreCliente := SalesCrMemoHeader."Sell-to Customer Name";
+                                    end;
+                                    if SalesCrMemoHeader."Customer Disc. Group" = '' then begin
+                                        SalesCrMemoHeader."Customer Disc. Group" := 'DC30';
+                                    end;
+                                    SUMAPORTES := 0;
+                                    SalesCrMemoLine.Reset;
+                                    SalesCrMemoLine.SetRange(SalesCrMemoLine."Document No.", CustLedgerEntry."Document No.");
+                                    if SalesCrMemoLine.FindSet then
+                                        repeat
+                                            if SalesCrMemoLine."No." = '62400000' then begin
+                                                SUMAPORTES := SUMAPORTES + SalesCrMemoLine.Amount * -1;
+                                            end;
+                                            if SalesCrMemoLine."No." = 'TRAN' then begin
+                                                SUMAPORTES := SUMAPORTES + SalesCrMemoLine.Amount * -1;
+                                            end;
+                                        until SalesCrMemoLine.Next = 0;
+                                end;
                                 TotalVentaAntes := TotalVentaAntes + (CustLedgerEntry."Sales (LCY)" - SUMAPORTES);
                             end;
                         until CustLedgerEntry.next = 0;
@@ -333,10 +373,16 @@ Report 50016 NuevasComisiones
                             until RecBonusBuenos.next = 0;
                     end;
 
+
                     Porcentaje := 0;
                     Objetivosvendedores.Reset;
                     Objetivosvendedores.SetRange(Objetivosvendedores.Vendedor, "Salesperson/Purchaser".Code);
-                    Objetivosvendedores.SetRange(Objetivosvendedores.Código, SalesInvoiceHeader."Customer Disc. Group");
+                    if CustLedgerEntry."Document Type" = CustLedgerEntry."document type"::Invoice then begin
+                        Objetivosvendedores.SetRange(Objetivosvendedores.Código, SalesInvoiceHeader."Customer Disc. Group");
+                    end;
+                    if CustLedgerEntry."Document Type" = CustLedgerEntry."document type"::"Credit Memo" then begin
+                        Objetivosvendedores.SetRange(Objetivosvendedores.Código, SalesCrMemoHeader."Customer Disc. Group");
+                    end;
                     Objetivosvendedores.SetRange(Tipo, Objetivosvendedores.Tipo::"Comi-dto");
                     if Objetivosvendedores.FindSet then begin
                         Porcentaje := Objetivosvendedores."Decremento comisión";
@@ -422,6 +468,7 @@ Report 50016 NuevasComisiones
                         if RecCusto."Des.Comision Vendedor" <> 0 then begin
                             Porcentajenew := RecCusto."Des.Comision Vendedor";
                         end;
+                        D1 := Porcentajenew;
 
 
                         DatoEscalado := 0;
@@ -433,6 +480,7 @@ Report 50016 NuevasComisiones
                                     DatoEscalado := RecEscalado.Comision;
                                 end;
                             until RecEscalado.next = 0;
+                        D3 := DatoEscalado;
 
                         ImpComision := 0;
                         Rec113.Reset();
@@ -447,7 +495,7 @@ Report 50016 NuevasComisiones
                                             RecClasiComer.Reset();
                                             RecClasiComer.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
                                             IF RecClasiComer.FindFirst() THEN begin
-                                                DatoClasi := RecClasiComer.Azul;
+                                                DatoClasiAzul := RecClasiComer.Azul;
                                             end;
                                         end;
                                         IF RecItem."Clasificación Comercial" = RecItem."Clasificación Comercial"::Rojo THEN begin
@@ -455,7 +503,7 @@ Report 50016 NuevasComisiones
                                             RecClasiComer.Reset();
                                             RecClasiComer.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
                                             IF RecClasiComer.FindFirst() THEN begin
-                                                DatoClasi := RecClasiComer.Rojo;
+                                                DatoClasiRojo := RecClasiComer.Rojo;
                                             end;
                                         end;
                                         IF RecItem."Clasificación Comercial" = RecItem."Clasificación Comercial"::Verde THEN begin
@@ -463,23 +511,27 @@ Report 50016 NuevasComisiones
                                             RecClasiComer.Reset();
                                             RecClasiComer.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
                                             IF RecClasiComer.FindFirst() THEN begin
-                                                DatoClasi := RecClasiComer.Verde;
+                                                DatoClasiVerde := RecClasiComer.Verde;
                                             end;
                                         end;
-                                        ImpComision := ImpComision + (DatoClasi + DatoEscalado + DatoBonus / 100) / 100 * Rec113.Amount;
+                                        ///ImpComision := ImpComision + (DatoClasi + DatoEscalado + DatoBonus / 100) / 100 * Rec113.Amount;
                                     end;
                                 end;
                             until rec113.next = 0;
+                        D4 := improjo;
+                        D5 := DatoClasiRojo;
+                        D6 := Round(improjo * DatoClasiRojo / 100, 0.01);
+                        D7 := impazul;
+                        D8 := DatoClasiAzul;
+                        D9 := Round(impazul * DatoClasiAzul / 100, 0.01);
+                        D10 := impverde;
+                        D11 := DatoClasiVerde;
+                        D12 := Round(impverde * DatoClasiVerde / 100, 0.01);
 
 
                     end;
 
 
-
-
-
-
-                    /// 0,Pago,Factura,Abono,Docs. interés,Recordatorio,Reembolso,,,,,,,,,,,,,,,Efecto
                     if "Cust. Ledger Entry"."Document Type" = "Cust. Ledger Entry"."document type"::"Credit Memo" then begin
                         SalesCrMemoHeader.Init;
                         if SalesCrMemoHeader.Get("Cust. Ledger Entry"."Document No.") then begin
@@ -490,17 +542,17 @@ Report 50016 NuevasComisiones
                         end;
                         SUMAPORTES := 0;
                         SalesCrMemoLine.Reset;
-                        SalesCrMemoLine.SetRange("Document No.", "Cust. Ledger Entry"."Document No.");
+                        SalesCrMemoLine.SetRange(SalesCrMemoLine."Document No.", "Cust. Ledger Entry"."Document No.");
                         if SalesCrMemoLine.FindSet then
                             repeat
                                 if SalesCrMemoLine."No." = '62400000' then begin
-                                    SUMAPORTES := SUMAPORTES + SalesCrMemoLine.Amount;
+                                    SUMAPORTES := SUMAPORTES + SalesCrMemoLine.Amount * -1;
                                 end;
-                                if SalesCrMemoLine."No." = 'TRAN' then begin
-                                    SUMAPORTES := SUMAPORTES + SalesCrMemoLine.Amount;
+                                if SalesInvoiceLine."No." = 'TRAN' then begin
+                                    SUMAPORTES := SUMAPORTES + SalesCrMemoLine.Amount * -1;
                                 end;
                             until SalesCrMemoLine.Next = 0;
-                        TOTALPORTES := TOTALPORTES - SUMAPORTES;
+                        TOTALPORTES := TOTALPORTES + SUMAPORTES;
 
                         Porcentaje := 0;
                         Objetivosvendedores.Reset;
@@ -510,20 +562,161 @@ Report 50016 NuevasComisiones
                         if Objetivosvendedores.FindSet then begin
                             Porcentaje := Objetivosvendedores."Decremento comisión";
                             TasaAplica := "Salesperson/Purchaser"."Commission %" - ((Porcentaje * "Salesperson/Purchaser"."Commission %") / 100);
-                            AdjProfit := ROUND(("Sales (LCY)" + SUMAPORTES) * (TasaAplica / 100));
-                            TotalVenta := TotalVenta + ("Sales (LCY)" + SUMAPORTES);
-
+                            AdjProfit := ROUND(("Sales (LCY)" - SUMAPORTES) * (TasaAplica / 100));
+                            TotalVenta := TotalVenta + ("Sales (LCY)" - SUMAPORTES);
                         end;
+
+
+                        PORCENTAJEnew := 0;
+                        coste := 0;
+                        Diferencia := 0;
+                        ImporteTarifaFull := 0;
+
+                        Rec115.Reset();
+                        Rec115.SetRange("Document No.", "Cust. Ledger Entry"."Document No.");
+                        Rec115.SetRange(Type, rec115.Type::Item);
+                        if Rec115.FindFirst() then
+                            repeat
+                                if Rec115."No." <> 'TRAN' THEN BEGIN
+                                    PriceListLine.reset;
+                                    PriceListLine.SetRange("Asset No.", Rec115."No.");
+                                    PriceListLine.SetRange("Source No.", Rec115."Customer Price Group");
+                                    IF PriceListLine.FindLast() THEN BEGIN
+                                        ImporteTarifaFull := ImporteTarifaFull + round(Rec115.Quantity * PriceListLine."Unit Price", 0.01);
+                                    END;
+                                    pmp := 0;
+                                    InventarioPMP.RESET;
+                                    InventarioPMP.SETRANGE(InventarioPMP."Item No.", Rec115."No.");
+                                    IF InventarioPMP.FINDLAST THEN BEGIN
+                                        pmp := InventarioPMP."Unit Cost";
+                                    END;
+                                    coste := coste + Rec115.Quantity * pmp;
+                                end;
+                            until rec115.next = 0;
+                        SalesCrMemoHeader.CalcFields(Amount);
+                        Diferencia := SalesCrMemoHeader.Amount - ImporteTarifaFull;
+                        if ImporteTarifaFull <> 0 then begin
+                            PORCENTAJEnew := round(Diferencia * 100 / ImporteTarifaFull, 0.01) * -1;
+                        end;
+                        RecCusto.Get(SalesCrMemoHeader."Sell-to Customer No.");
+                        if RecCusto."Des.Comision Vendedor" <> 0 then begin
+                            Porcentajenew := RecCusto."Des.Comision Vendedor";
+                        end;
+
+
+                        DatoEscalado := 0;
+                        RecEscalado.Reset();
+                        RecEscalado.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
+                        if RecEscalado.FindFirst() then
+                            repeat
+                                if (Porcentajenew >= RecEscalado.Desde) and (Porcentajenew <= RecEscalado.Hasta) then begin
+                                    DatoEscalado := RecEscalado.Comision;
+                                end;
+                            until RecEscalado.next = 0;
+
+                        ImpComision := 0;
+                        Rec115.Reset();
+                        Rec115.SetRange("Document No.", "Cust. Ledger Entry"."Document No.");
+                        Rec115.SetRange(Type, rec115.Type::Item);
+                        if Rec115.FindFirst() then
+                            repeat
+                                if Rec113."No." <> 'TRAN' THEN BEGIN
+                                    IF RecItem.GET(Rec115."No.") THEN begin
+                                        IF RecItem."Clasificación Comercial" = RecItem."Clasificación Comercial"::Azul THEN begin
+                                            impazul := impazul + Rec115.Amount * -1;
+                                            RecClasiComer.Reset();
+                                            RecClasiComer.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
+                                            IF RecClasiComer.FindFirst() THEN begin
+                                                DatoClasiAzul := RecClasiComer.Azul;
+                                            end;
+                                        end;
+                                        IF RecItem."Clasificación Comercial" = RecItem."Clasificación Comercial"::Rojo THEN begin
+                                            improjo := improjo + Rec115.Amount * -1;
+                                            RecClasiComer.Reset();
+                                            RecClasiComer.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
+                                            IF RecClasiComer.FindFirst() THEN begin
+                                                DatoClasiRojo := RecClasiComer.Rojo;
+                                            end;
+                                        end;
+                                        IF RecItem."Clasificación Comercial" = RecItem."Clasificación Comercial"::Verde THEN begin
+                                            impverde := impverde + Rec115.Amount * -1;
+                                            RecClasiComer.Reset();
+                                            RecClasiComer.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
+                                            IF RecClasiComer.FindFirst() THEN begin
+                                                DatoClasiVerde := RecClasiComer.Verde;
+                                            end;
+                                        end;
+                                        ///ImpComision := ImpComision + (DatoClasi + DatoEscalado + DatoBonus / 100) / 100 * Rec115.Amount * -1;
+                                    end;
+                                end;
+                            until rec115.next = 0;
+
+
                     end;
 
+
+                    D14 := TotalVentaAntes;
+                    D15 := Bonus;
+                    D16 := DatoBonus;
                     VentaLinea := "Sales (LCY)";
+                    D17 := round(DatoBonus / 100 * VentaLinea / 100, 0.01);
+                    D2 := round(VentaLinea / 100 * D3, 0.01);
 
-                    TotalComisionLinea := AdjProfit;
-                    TotalComision := TotalComision + AdjProfit;
+                    D18 := D2 + D6 + D9 + D12 + D17;
 
 
 
-                    ///// Customer Disc. Group
+
+                    /*
+                                        /// 0,Pago,Factura,Abono,Docs. interés,Recordatorio,Reembolso,,,,,,,,,,,,,,,Efecto
+                                        if "Cust. Ledger Entry"."Document Type" = "Cust. Ledger Entry"."document type"::"Credit Memo" then begin
+                                            SalesCrMemoHeader.Init;
+                                            if SalesCrMemoHeader.Get("Cust. Ledger Entry"."Document No.") then begin
+                                                NombreCliente := SalesCrMemoHeader."Sell-to Customer Name";
+                                            end;
+                                            if SalesCrMemoHeader."Customer Disc. Group" = '' then begin
+                                                SalesCrMemoHeader."Customer Disc. Group" := 'DC30';
+                                            end;
+                                            SUMAPORTES := 0;
+                                            SalesCrMemoLine.Reset;
+                                            SalesCrMemoLine.SetRange("Document No.", "Cust. Ledger Entry"."Document No.");
+                                            if SalesCrMemoLine.FindSet then
+                                                repeat
+                                                    if SalesCrMemoLine."No." = '62400000' then begin
+                                                        SUMAPORTES := SUMAPORTES + SalesCrMemoLine.Amount;
+                                                    end;
+                                                    if SalesCrMemoLine."No." = 'TRAN' then begin
+                                                        SUMAPORTES := SUMAPORTES + SalesCrMemoLine.Amount;
+                                                    end;
+                                                until SalesCrMemoLine.Next = 0;
+                                            TOTALPORTES := TOTALPORTES - SUMAPORTES;
+
+                                            Porcentaje := 0;
+                                            Objetivosvendedores.Reset;
+                                            Objetivosvendedores.SetRange(Objetivosvendedores.Vendedor, "Salesperson/Purchaser".Code);
+                                            Objetivosvendedores.SetRange(Objetivosvendedores.Código, SalesCrMemoHeader."Customer Disc. Group");
+                                            Objetivosvendedores.SetRange(Tipo, Objetivosvendedores.Tipo::"Comi-dto");
+                                            if Objetivosvendedores.FindSet then begin
+                                                Porcentaje := Objetivosvendedores."Decremento comisión";
+                                                TasaAplica := "Salesperson/Purchaser"."Commission %" - ((Porcentaje * "Salesperson/Purchaser"."Commission %") / 100);
+                                                AdjProfit := ROUND(("Sales (LCY)" + SUMAPORTES) * (TasaAplica / 100));
+                                                TotalVenta := TotalVenta + ("Sales (LCY)" + SUMAPORTES);
+
+                                            end;
+                                        end;
+
+                                        VentaLinea := "Sales (LCY)";
+
+                                        TotalComisionLinea := AdjProfit;
+                                        TotalComision := TotalComision + AdjProfit;
+
+
+
+
+
+                                        ///// Customer Disc. Group
+
+                                        */
 
                     /*
                     
@@ -687,6 +880,28 @@ Report 50016 NuevasComisiones
                                             end;
                                         until SalesInvoiceLine.Next = 0;
                                 end;
+                                if CustLedgerEntry."Document Type" = CustLedgerEntry."document type"::"Credit Memo" then begin
+                                    SalesCrMemoHeader.Init;
+                                    if SalesCrMemoHeader.Get(CustLedgerEntry."Document No.") then begin
+                                        NombreCliente := SalesCrMemoHeader."Sell-to Customer Name";
+                                    end;
+                                    if SalesCrMemoHeader."Customer Disc. Group" = '' then begin
+                                        SalesCrMemoHeader."Customer Disc. Group" := 'DC30';
+                                    end;
+                                    SUMAPORTES := 0;
+                                    SalesCrMemoLine.Reset;
+                                    SalesCrMemoLine.SetRange("Document No.", CustLedgerEntry."Document No.");
+                                    if SalesCrMemoLine.FindSet then
+                                        repeat
+                                            if SalesInvoiceLine."No." = '62400000' then begin
+                                                SUMAPORTES := SUMAPORTES + SalesInvoiceLine.Amount * -1;
+                                            end;
+                                            if SalesInvoiceLine."No." = 'TRAN' then begin
+                                                SUMAPORTES := SUMAPORTES + SalesInvoiceLine.Amount * -1;
+                                            end;
+                                        until SalesCrMemoLine.Next = 0;
+                                end;
+
                                 TotalVentaAntes := TotalVentaAntes + (CustLedgerEntry."Sales (LCY)" - SUMAPORTES);
                             end;
                         until CustLedgerEntry.next = 0;
@@ -1127,7 +1342,9 @@ Report 50016 NuevasComisiones
         Rec112: Record "Sales Invoice Header";
         DatoEscalado: Decimal;
         RecCusto: Record Customer;
-        DatoClasi: Decimal;
+        DatoClasiRojo: Decimal;
+        DatoClasiAzul: Decimal;
+        DatoClasiVerde: Decimal;
         ImpComision: Decimal;
         TotalVentaAntes: Decimal;
         CustLedgerEntry: Record "Cust. Ledger Entry";
@@ -1138,6 +1355,26 @@ Report 50016 NuevasComisiones
         impverde: Decimal;
         improjo: Decimal;
         impazul: Decimal;
+        Rec115: Record "Sales Cr.Memo Line";
+        D1: Decimal;
+        D2: Decimal;
+        D3: Decimal;
+        D4: Decimal;
+        D5: Decimal;
+        D6: Decimal;
+        D7: Decimal;
+        D8: Decimal;
+        D9: Decimal;
+        D10: Decimal;
+        D11: Decimal;
+        D12: Decimal;
+        D13: Decimal;
+        D14: Decimal;
+        D15: Decimal;
+        D16: Decimal;
+        D17: Decimal;
+        D18: Decimal;
+
 
 }
 
