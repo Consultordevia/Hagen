@@ -246,6 +246,7 @@ Report 50016 NuevasComisiones
                 column(D16; D16) { }
                 column(D17; D17) { }
                 column(D18; D18) { }
+                column(D19; D19) { }
 
 
 
@@ -659,10 +660,12 @@ Report 50016 NuevasComisiones
                     D15 := Bonus;
                     D16 := DatoBonus;
                     VentaLinea := "Sales (LCY)";
-                    D17 := round(DatoBonus / 100 * VentaLinea / 100, 0.01);
+
                     D2 := round(VentaLinea / 100 * D3, 0.01);
 
-                    D18 := D2 + D6 + D9 + D12 + D17;
+                    D18 := D2 + D6 + D9 + D12;
+                    D17 := round((DatoBonus / 100) * D18, 0.01);
+                    D19 := D2 + D6 + D9 + D12 + D17;
 
 
 
@@ -1374,6 +1377,8 @@ Report 50016 NuevasComisiones
         D16: Decimal;
         D17: Decimal;
         D18: Decimal;
+
+        D19: Decimal;
 
 
 }

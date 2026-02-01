@@ -202,7 +202,18 @@ tableextension 50001 SalesInvoiceLine extends "Sales Invoice Line"
             ///FieldClass = FlowField;
 
 
+
         }
+        field(50093; "Clasificación Comercial"; Option)
+        {
+            Editable = true;
+            InitValue = Rojo;
+            OptionMembers = Rojo,Azul,Verde;
+            CalcFormula = lookup(Item."Clasificación Comercial" where("No." = field("No.")));
+            FieldClass = FlowField;
+
+        }
+
 
     }
 
