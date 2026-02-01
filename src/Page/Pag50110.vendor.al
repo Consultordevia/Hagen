@@ -127,6 +127,78 @@ Page 50110 vendor
 
             }
 
+            action(EscaladoComercial)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Escalado Comercial';
+                trigger OnAction()
+                begin
+                    EscaladoComercial.Reset();
+                    EscaladoComercial.SetRange(Vendedor, Rec."No.");
+                    if EscaladoComercial.FindSet then begin
+                        clear(PageEscaladoComercial);
+                        PageEscaladoComercial.SetTableView(EscaladoComercial);
+                        PageEscaladoComercial.Run();
+                    end;
+                end;
+
+
+            }
+            action(ClasifiacionComercial)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Clasifiacion Comercial';
+                trigger OnAction()
+                begin
+                    ClasifiacionComercial.Reset();
+                    ClasifiacionComercial.SetRange(Vendedor, Rec."No.");
+                    if ClasifiacionComercial.FindSet then begin
+                        clear(PageClasifiacio);
+                        PageClasifiacio.SetTableView(ClasifiacionComercial);
+                        PageClasifiacio.Run();
+                    end;
+                end;
+            }
+            action(BonusBuenos)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Bonus Buenos';
+                trigger OnAction()
+                begin
+                    RecBonusBuenos.Reset();
+                    RecBonusBuenos.SetRange(Vendedor, Rec."No.");
+                    if RecBonusBuenos.FindSet then begin
+                        clear(PageBonusBuenos);
+                        PageBonusBuenos.SetTableView(RecBonusBuenos);
+                        PageBonusBuenos.Run();
+                    end;
+                end;
+
+
+            }
+            action(BonusMalos)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Bonus Malos';
+                trigger OnAction()
+                begin
+                    RecBuenosMalos.Reset();
+                    RecBuenosMalos.SetRange(Vendedor, Rec."No.");
+                    if RecBuenosMalos.FindSet then begin
+                        clear(PAgeBuenosMalos);
+                        PAgeBuenosMalos.SetTableView(RecBuenosMalos);
+                        PAgeBuenosMalos.Run();
+                    end;
+                end;
+
+
+            }
+
+
+
+
+
+
 
 
         }
@@ -138,5 +210,17 @@ Page 50110 vendor
         PageDescuentoAzul: Page "Descuento Azul";
         SalespersonPurchaser: Record "Salesperson/Purchaser";
         RepComisionesNuevas: Report NuevasComisiones;
+        EscaladoComercial: Record EscaladoComercial;
+        PageEscaladoComercial: page EscaladoComercial;
+        ClasifiacionComercial: Record ClasificacionComercial;
+        PageClasifiacio: page ClasifiacionComercial;
+        RecBonusBuenos: Record BonusBuenos;
+        RecBuenosMalos: Record BonusMalos;
+        PageBonusBuenos: page BonusBuenos;
+        PAgeBuenosMalos: page BonusMalos;
+
+
+
 }
+
 
