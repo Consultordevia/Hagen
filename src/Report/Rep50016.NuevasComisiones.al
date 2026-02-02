@@ -364,14 +364,29 @@ Report 50016 NuevasComisiones
                     Bonus := 0;
                     if TOTALVENTAV <> 0 then begin
                         Bonus := Round((TotalVentaAntes * 100 / TOTALVENTAV) - 100, 0.01);
-                        RecBonusBuenos.Reset();
-                        RecBonusBuenos.SetRange(Vendedor, "Salesperson/Purchaser".Code);
-                        if RecBonusBuenos.FindFirst() then
-                            repeat
-                                if (Bonus >= RecBonusBuenos.Incremento) then begin
-                                    DatoBonus := RecBonusBuenos.Aumento;
-                                end;
-                            until RecBonusBuenos.next = 0;
+                        if bonus > 0 then begin
+                            RecBonusBuenos.Reset();
+                            RecBonusBuenos.SetRange(Vendedor, "Salesperson/Purchaser".Code);
+                            if RecBonusBuenos.FindFirst() then
+                                repeat
+                                    if (Bonus >= RecBonusBuenos.Incremento) then begin
+                                        DatoBonus := RecBonusBuenos.Aumento;
+                                    end;
+                                until RecBonusBuenos.next = 0;
+                        end;
+                        if bonus < 0 then begin
+                            bonus := bonus * -1;
+                            RecBuenosMalos.Reset();
+                            RecBuenosMalos.SetRange(Vendedor, "Salesperson/Purchaser".Code);
+                            if RecBuenosMalos.FindFirst() then
+                                repeat
+                                    if (Bonus >= RecBuenosMalos.Incremento) then begin
+                                        DatoBonus := RecBuenosMalos.Aumento * -1;
+                                    end;
+                                until RecBuenosMalos.next = 0;
+                        end;
+
+
                     end;
 
 
