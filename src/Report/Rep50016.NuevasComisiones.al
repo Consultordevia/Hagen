@@ -636,7 +636,7 @@ Report 50016 NuevasComisiones
                         Rec115.SetRange(Type, rec115.Type::Item);
                         if Rec115.FindFirst() then
                             repeat
-                                if Rec113."No." <> 'TRAN' THEN BEGIN
+                                if Rec115."No." <> 'TRAN' THEN BEGIN
                                     IF RecItem.GET(Rec115."No.") THEN begin
                                         IF RecItem."Clasificación Comercial" = RecItem."Clasificación Comercial"::Azul THEN begin
                                             impazul := impazul + Rec115.Amount * -1;
@@ -667,6 +667,15 @@ Report 50016 NuevasComisiones
                                 end;
                             until rec115.next = 0;
 
+                        D4 := improjo;
+                        D5 := DatoClasiRojo;
+                        D6 := Round(improjo * DatoClasiRojo / 100, 0.01);
+                        D7 := impazul;
+                        D8 := DatoClasiAzul;
+                        D9 := Round(impazul * DatoClasiAzul / 100, 0.01);
+                        D10 := impverde;
+                        D11 := DatoClasiVerde;
+                        D12 := Round(impverde * DatoClasiVerde / 100, 0.01);
 
                     end;
 
