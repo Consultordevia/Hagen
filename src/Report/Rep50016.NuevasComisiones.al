@@ -384,6 +384,7 @@ Report 50016 NuevasComisiones
                                         DatoBonus := RecBuenosMalos.Aumento * -1;
                                     end;
                                 until RecBuenosMalos.next = 0;
+                            bonus := bonus * -1;
                         end;
 
 
