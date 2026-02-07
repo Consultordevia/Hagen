@@ -663,7 +663,6 @@ Report 50016 NuevasComisiones
                                                 DatoClasiVerde := RecClasiComer.Verde;
                                             end;
                                         end;
-                                        ///ImpComision := ImpComision + (DatoClasi + DatoEscalado + DatoBonus / 100) / 100 * Rec115.Amount * -1;
                                     end;
                                 end;
                             until rec115.next = 0;
@@ -695,180 +694,12 @@ Report 50016 NuevasComisiones
 
 
 
-                    /*
-                                        /// 0,Pago,Factura,Abono,Docs. interés,Recordatorio,Reembolso,,,,,,,,,,,,,,,Efecto
-                                        if "Cust. Ledger Entry"."Document Type" = "Cust. Ledger Entry"."document type"::"Credit Memo" then begin
-                                            SalesCrMemoHeader.Init;
-                                            if SalesCrMemoHeader.Get("Cust. Ledger Entry"."Document No.") then begin
-                                                NombreCliente := SalesCrMemoHeader."Sell-to Customer Name";
-                                            end;
-                                            if SalesCrMemoHeader."Customer Disc. Group" = '' then begin
-                                                SalesCrMemoHeader."Customer Disc. Group" := 'DC30';
-                                            end;
-                                            SUMAPORTES := 0;
-                                            SalesCrMemoLine.Reset;
-                                            SalesCrMemoLine.SetRange("Document No.", "Cust. Ledger Entry"."Document No.");
-                                            if SalesCrMemoLine.FindSet then
-                                                repeat
-                                                    if SalesCrMemoLine."No." = '62400000' then begin
-                                                        SUMAPORTES := SUMAPORTES + SalesCrMemoLine.Amount;
-                                                    end;
-                                                    if SalesCrMemoLine."No." = 'TRAN' then begin
-                                                        SUMAPORTES := SUMAPORTES + SalesCrMemoLine.Amount;
-                                                    end;
-                                                until SalesCrMemoLine.Next = 0;
-                                            TOTALPORTES := TOTALPORTES - SUMAPORTES;
-
-                                            Porcentaje := 0;
-                                            Objetivosvendedores.Reset;
-                                            Objetivosvendedores.SetRange(Objetivosvendedores.Vendedor, "Salesperson/Purchaser".Code);
-                                            Objetivosvendedores.SetRange(Objetivosvendedores.Código, SalesCrMemoHeader."Customer Disc. Group");
-                                            Objetivosvendedores.SetRange(Tipo, Objetivosvendedores.Tipo::"Comi-dto");
-                                            if Objetivosvendedores.FindSet then begin
-                                                Porcentaje := Objetivosvendedores."Decremento comisión";
-                                                TasaAplica := "Salesperson/Purchaser"."Commission %" - ((Porcentaje * "Salesperson/Purchaser"."Commission %") / 100);
-                                                AdjProfit := ROUND(("Sales (LCY)" + SUMAPORTES) * (TasaAplica / 100));
-                                                TotalVenta := TotalVenta + ("Sales (LCY)" + SUMAPORTES);
-
-                                            end;
-                                        end;
-
-                                        VentaLinea := "Sales (LCY)";
-
-                                        TotalComisionLinea := AdjProfit;
-                                        TotalComision := TotalComision + AdjProfit;
-
-
-
-
-
-                                        ///// Customer Disc. Group
-
-                                        */
-
-                    /*
-                    
-                    aumneto:=0;
-                    
-                    IF TOTALVENTAV<>0 THEN BEGIN
-                         divisor:=((TotalVenta/TOTALVENTAV)*100)-100;
-                         IF divisor>0 THEN BEGIN
-                              IF divisor>10 THEN BEGIN
-                                   textoaumento:='BONUS';
-                                   aumneto:=ROUND((TotalComision+TOTASUMA2+TotalImpaga+Totalrecupera)*10/100,0.01);
-                              END;
-                              IF divisor>20 THEN BEGIN
-                                   aumneto:=ROUND((TotalComision+TOTASUMA2+TotalImpaga+Totalrecupera)*20/100,0.01);
-                              END;
-                              IF divisor>30 THEN BEGIN
-                                   aumneto:=ROUND((TotalComision+TOTASUMA2+TotalImpaga+Totalrecupera)*30/100,0.01);
-                              END;
-                              IF divisor>40 THEN BEGIN
-                                   aumneto:=ROUND((TotalComision+TOTASUMA2+TotalImpaga+Totalrecupera)*40/100,0.01);
-                              END;
-                              TOTALC:=TotalComision+TOTASUMA2-entregadoaceunta+TotalImpaga+Totalrecupera+aumneto;
-                         END;
-                         IF "Salesperson/Purchaser".Autonomo=FALSE THEN BEGIN
-                              IF divisor<0 THEN BEGIN
-                                   divisor:=divisor*-1;
-                                   IF (divisor>10) THEN BEGIN
-                                        aumneto:=ROUND((TotalComision+TOTASUMA2+TotalImpaga+Totalrecupera)*10/100,0.01)*-1;
-                                        textoaumento:='MALUS';
-                                   END;
-                                   IF (divisor>20) THEN BEGIN
-                                        aumneto:=ROUND((TotalComision+TOTASUMA2+TotalImpaga+Totalrecupera)*20/100,0.01)*-1;
-                                   END;
-                                   IF (divisor>30) THEN BEGIN
-                                        aumneto:=ROUND((TotalComision+TOTASUMA2+TotalImpaga+Totalrecupera)*30/100,0.01)*-1;
-                                   END;
-                                   TOTALC:=TotalComision+TOTASUMA2-entregadoaceunta+TotalImpaga+Totalrecupera+aumneto;
-                                   IF divisor>40 THEN BEGIN
-                                        aumneto:=0;
-                                        TOTALC:=0;
-                                        sincomision:=TRUE;
-                                        /////TotalComision:=0;
-                                  END;
-                             END;
-                        END;
-                    END;
-                    
-                    TOTALC:=TotalComision+aumneto;
-                    
-                    mediacomi:=0;
-                    IF TotalVenta<>0 THEN BEGIN
-                         mediacomi:=ROUND(TotalComision/TotalVenta*100,0.01);
-                    END;
-                    comisiontotal:=TotalComision+TOTASUMA2+TotalImpaga+Totalrecupera;
-                    
-                    IF sincomision THEN BEGIN
-                        comisiontotal:=0;
-                        TOTALC:=0;
-                    END;
-                    */
 
                 end;
 
                 trigger OnPostDataItem()
                 begin
 
-                    /*
-                    aumneto:=0;
-                    
-                    IF TOTALVENTAV<>0 THEN BEGIN
-                         divisor:=((TotalVenta/TOTALVENTAV)*100)-100;
-                         IF divisor>0 THEN BEGIN
-                              IF divisor>10 THEN BEGIN
-                                   textoaumento:='BONUS';
-                                   aumneto:=ROUND((TotalComision+TOTASUMA2+TotalImpaga+Totalrecupera)*10/100,0.01);
-                              END;
-                              IF divisor>20 THEN BEGIN
-                                   aumneto:=ROUND((TotalComision+TOTASUMA2+TotalImpaga+Totalrecupera)*20/100,0.01);
-                              END;
-                              IF divisor>30 THEN BEGIN
-                                   aumneto:=ROUND((TotalComision+TOTASUMA2+TotalImpaga+Totalrecupera)*30/100,0.01);
-                              END;
-                              IF divisor>40 THEN BEGIN
-                                   aumneto:=ROUND((TotalComision+TOTASUMA2+TotalImpaga+Totalrecupera)*40/100,0.01);
-                              END;
-                              TOTALC:=TotalComision+TOTASUMA2-entregadoaceunta+TotalImpaga+Totalrecupera+aumneto;
-                         END;
-                         IF "Salesperson/Purchaser".Autonomo=FALSE THEN BEGIN
-                              IF divisor<0 THEN BEGIN
-                                   divisor:=divisor*-1;
-                                   IF (divisor>10) THEN BEGIN
-                                        aumneto:=ROUND((TotalComision+TOTASUMA2+TotalImpaga+Totalrecupera)*10/100,0.01)*-1;
-                                        textoaumento:='MALUS';
-                                   END;
-                                   IF (divisor>20) THEN BEGIN
-                                        aumneto:=ROUND((TotalComision+TOTASUMA2+TotalImpaga+Totalrecupera)*20/100,0.01)*-1;
-                                   END;
-                                   IF (divisor>30) THEN BEGIN
-                                        aumneto:=ROUND((TotalComision+TOTASUMA2+TotalImpaga+Totalrecupera)*30/100,0.01)*-1;
-                                   END;
-                                   TOTALC:=TotalComision+TOTASUMA2-entregadoaceunta+TotalImpaga+Totalrecupera+aumneto;
-                                   IF divisor>40 THEN BEGIN
-                                        aumneto:=0;
-                                        TOTALC:=0;
-                                        sincomision:=TRUE;
-                                        /////TotalComision:=0;
-                                  END;
-                             END;
-                        END;
-                    END;
-                    
-                    TOTALC:=TotalComision+aumneto;
-                    
-                    mediacomi:=0;
-                    IF TotalVenta<>0 THEN BEGIN
-                         mediacomi:=ROUND(TotalComision/TotalVenta*100,0.01);
-                    END;
-                    comisiontotal:=TotalComision+TOTASUMA2+TotalImpaga+Totalrecupera;
-                    
-                    IF sincomision THEN BEGIN
-                        comisiontotal:=0;
-                        TOTALC:=0;
-                    END;
-                    */
 
                 end;
 
@@ -950,6 +781,23 @@ Report 50016 NuevasComisiones
 
                 end;
             }
+
+            /*
+                        dataitem(CustLedgerEntry2; "Cust. Ledger Entry") ; 
+                        {
+
+                            DataItemLink = "Salesperson Code" = field(Code);
+                            DataItemTableView = sorting("Salesperson Code", "Posting Date") where("Document Type" = filter(Invoice | "Credit Memo"));
+                            RequestFilterFields = "Posting Date";
+
+
+
+
+                        }
+
+            */
+
+
             dataitem("Integer"; "Integer")
             {
                 MaxIteration = 1;
