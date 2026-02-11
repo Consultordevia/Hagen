@@ -17,10 +17,6 @@ Page 50030 "Menu Almacen"
                     AccessByPermission = TableData "Sales Shipment Header" = R;
                     ApplicationArea = Basic, Suite;
                 }
-                part(KPIIncidencias; KPIIncidencias)
-                {
-                    ApplicationArea = Basic, Suite;
-                }
             }
         }
     }

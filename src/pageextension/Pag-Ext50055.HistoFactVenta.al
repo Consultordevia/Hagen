@@ -38,32 +38,7 @@ pageextension 50055 HistoFactVenta extends "Posted Sales Invoices"
                 end;
             }
 
-            action(RellenaPreparador)
-            {
 
-                ApplicationArea = Suite;
-                Caption = 'RellenaPreparador';
-
-                trigger OnAction()
-                var
-
-                    cu: Codeunit rellenaprepa;
-
-
-
-                begin
-                    clear(cu);
-                    cu.Run();
-
-                    Message('hecho');
-
-
-
-
-
-
-                end;
-            }
             action(Rellenamovbanco)
             {
 
@@ -72,10 +47,7 @@ pageextension 50055 HistoFactVenta extends "Posted Sales Invoices"
 
                 trigger OnAction()
                 var
-
                     cu: Codeunit rellenamovbanco;
-
-
 
                 begin
                     clear(cu);

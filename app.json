@@ -22,25 +22,7 @@
       "name": "Shopify Connector",
       "publisher": "Microsoft",
       "version": "25.0.23364.25481"
-    },
-    {
-      "appId": "1db6d111-5289-4831-93e7-bcd57680015b",
-      "name": "Mirakl",
-      "publisher": "DevConsultIA",
-      "version": "1.0.0.2"
-    }     ,
-    {
-      "appId": "c447b3f6-2913-4c37-a41a-595c5c980d3e",
-      "name": "IncidenciasPreparacion",
-      "publisher": "DevConsultIA",
-      "version": "1.0.0.0"
-    }      ,
-    {
-      "appId": "682ba0ef-6191-406c-a570-b82ba5b6b8e0",
-      "name": "Emails",
-      "publisher": "DevConsultIA",
-      "version": "1.0.0.8"
-    }  
+    }
   ],
   "screenshots": [],
   "platform": "1.0.0.0",

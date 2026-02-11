@@ -419,7 +419,7 @@ codeunit 50999 FicherosHagen
                             Xmlport.Import(Xmlport::"ADAIATRREC", InStream);
                         end;
                         if CopyStr(FileText, 1, 4) = 'CECA' then begin
-                            Xmlport.Import(Xmlport::"ADAIATREXP", InStream);
+                            Xmlport.Import(50077, InStream);
                         end;
 
 
