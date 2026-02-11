@@ -294,7 +294,7 @@ XmlPort 50101 "ADAIA_Alta del TRSTO"
         Evaluate(DCanti, D5);
 
 
-        FC := D10;
+        FC := D9;
 
         codlote := D14;
 

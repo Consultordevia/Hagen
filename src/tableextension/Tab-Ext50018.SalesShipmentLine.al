@@ -152,6 +152,16 @@ tableextension 50018 SalesShipmentLine extends "Sales Shipment Line"
             OptionCaption = ' ,1';
             OptionMembers = " ","1";
         }
+        field(50093; "Clasificación Comercial"; Option)
+        {
+            Editable = true;
+            InitValue = Rojo;
+            OptionMembers = Rojo,Azul,Verde;
+            CalcFormula = lookup(Item."Clasificación Comercial" where("No." = field("No.")));
+            FieldClass = FlowField;
+
+        }
+
     }
 
     keys

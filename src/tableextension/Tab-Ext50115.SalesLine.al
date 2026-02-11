@@ -834,6 +834,15 @@ tableextension 50115 SalesLine extends "Sales Line"
 
 
         }
+        field(50093; "Clasificación Comercial"; Option)
+        {
+            Editable = true;
+            InitValue = Rojo;
+            OptionMembers = Rojo,Azul,Verde;
+            CalcFormula = lookup(Item."Clasificación Comercial" where("No." = field("No.")));
+            FieldClass = FlowField;
+
+        }
 
 
 

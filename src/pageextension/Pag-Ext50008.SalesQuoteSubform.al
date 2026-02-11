@@ -11,8 +11,10 @@ pageextension 50008 "Sales Quote Subform" extends "Sales Quote Subform"
         addafter(Quantity)
         {
             field(Estado; Rec.Estado) { ApplicationArea = All; }
-            field("Contenedor 95%"; FECHA1) { ApplicationArea = All;  Editable = false;}
-            field("Fecha prox."; FECHA2) { ApplicationArea = All;  Editable = false;}
+            field("Contenedor 95%"; FECHA1) { ApplicationArea = All; Editable = false; }
+            field("Fecha prox."; FECHA2) { ApplicationArea = All; Editable = false; }
+            field("Clasificación Comercial"; Rec."Clasificación Comercial") { ApplicationArea = All; }
+
         }
         /*
         addlast(content)

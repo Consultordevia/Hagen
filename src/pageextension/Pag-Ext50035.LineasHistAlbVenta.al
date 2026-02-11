@@ -9,6 +9,7 @@ pageextension 50035 LineasHistAlbVenta extends "Posted Sales Shpt. Subform"
     layout
     {
 
+
     }
 
 

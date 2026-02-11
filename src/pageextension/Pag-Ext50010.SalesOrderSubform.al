@@ -5,6 +5,7 @@ pageextension 50010 "Sales Order Subform" extends "Sales Order Subform"
         addafter("No.")
         {
             field(RefLinProdWeb; Rec.RefLinProdWeb) { ApplicationArea = All; }
+            field("Clasificación Comercial"; Rec."Clasificación Comercial") { ApplicationArea = All; }
         }
 
         /*

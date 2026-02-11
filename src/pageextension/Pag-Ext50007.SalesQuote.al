@@ -25,6 +25,9 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
             field("Estado pedido"; Rec."Estado pedido") { ApplicationArea = All; }
             field(Urgente; Rec.Urgente) { ApplicationArea = All; }
             field("Super urgente"; Rec."Super urgente") { ApplicationArea = All; }
+
+
+
         }
 
         /////addlast(content)

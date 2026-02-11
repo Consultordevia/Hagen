@@ -121,6 +121,15 @@ tableextension 50020 SalesCrMemoLine extends "Sales Cr.Memo Line"
             CalcFormula = lookup(Customer."Grupo clientes" where("No." = field("Sell-to Customer No.")));
             FieldClass = FlowField;
         }
+        field(50093; "Clasificación Comercial"; Option)
+        {
+            Editable = true;
+            InitValue = Rojo;
+            OptionMembers = Rojo,Azul,Verde;
+            CalcFormula = lookup(Item."Clasificación Comercial" where("No." = field("No.")));
+            FieldClass = FlowField;
+
+        }
     }
 
     keys

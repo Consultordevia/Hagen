@@ -6,7 +6,8 @@ pageextension 50062 LineasdeFactura extends "Posted Sales Invoice Subform"
         {
 
 
-
+            field("Clasificación Comercial"; Rec."Clasificación Comercial")
+            { ApplicationArea = All; }
             field("Allow Line Disc."; Rec."Allow Line Disc.")
             { ApplicationArea = All; }
             field("Cód. arancelario"; Rec."Cód. arancelario")
