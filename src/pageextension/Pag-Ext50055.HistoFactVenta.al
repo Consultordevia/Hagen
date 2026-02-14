@@ -3,7 +3,15 @@ pageextension 50055 HistoFactVenta extends "Posted Sales Invoices"
 
 {
 
+    layout
+    {
+        addafter("Your Reference")
+        {
+            field("Payment Method Code"; Rec."Payment Method Code") { ApplicationArea = All; }
 
+
+        }
+    }
 
     actions
     {
