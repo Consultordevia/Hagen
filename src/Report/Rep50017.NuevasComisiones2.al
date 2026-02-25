@@ -481,7 +481,7 @@ Report 50017 NuevasComisiones2
                                 Acumulaclieamount := Acumulaclieamount + Rec113.Amount;
                             until rec113.next = 0;
 
-                        /*Rec115.Reset();
+                        Rec115.Reset();
                         Rec115.SetRange("Posting Date", desdeFecha, hastaFecha);
                         /////Rec115.SetRange("Document No.", "Cust. Ledger Entry"."Document No.");
                         Rec115.SetRange("Bill-to Customer No.", "Cust. Ledger Entry"."Sell-to Customer No.");
@@ -503,9 +503,9 @@ Report 50017 NuevasComisiones2
                                     END;
                                     coste := coste + Rec115.Quantity * pmp;
                                 end;
-                                Acumulaclieamount := Acumulaclieamount + Rec113.Amount * -1;
+                                Acumulaclieamount := Acumulaclieamount + Rec115.Amount * -1;
                             until rec115.next = 0;
-                            */
+
 
                         Diferencia := Acumulaclieamount - ImporteTarifaFull;
                         if ImporteTarifaFull <> 0 then begin
