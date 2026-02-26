@@ -123,6 +123,10 @@ page 50126 CustomerWS
                 }
                 field("Email notificacion envio"; Rec."Email notificacion envio") { }
                 field("Direccion habitual"; Rec."Direccion habitual") { }
+                field(Localidad; Rec.Localidad) { }
+                field(Fecha; Rec.Fecha) { }
+                field("Terminos pago"; Rec."Terminos pago") { }
+                field(SWIFT; Rec.SWIFT) { }
             }
         }
     }
