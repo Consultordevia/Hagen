@@ -2,7 +2,7 @@
 Report 50017 NuevasComisiones2
 {
     DefaultLayout = RDLC;
-    RDLCLayout = './Layouts/ComisionesNuevas.rdlc';
+    RDLCLayout = './Layouts/ComisionesNuevas2.rdlc';
     Caption = 'Comisiones2';
     ApplicationArea = All;
     UsageCategory = Lists;
@@ -449,134 +449,134 @@ Report 50017 NuevasComisiones2
                             TotalVenta := TotalVenta + ("Sales (LCY)" - SUMAPORTES);
                         end;
 
-
-                        PORCENTAJEnew := 0;
-                        coste := 0;
-                        Diferencia := 0;
-                        ImporteTarifaFull := 0;
-                        Acumulaclieamount := 0;
-
-                        Rec113.Reset();
-                        Rec113.SetRange("Posting Date", desdeFecha, hastaFecha);
-                        /////Rec113.SetRange("Document No.", "Cust. Ledger Entry"."Document No.");
-                        Rec113.SetRange("Bill-to Customer No.", "Cust. Ledger Entry"."Sell-to Customer No.");
-                        Rec113.SetRange(Type, rec113.Type::Item);
-                        if Rec113.FindFirst() then
-                            repeat
-                                if Rec113."No." <> 'TRAN' THEN BEGIN
-                                    PriceListLine.reset;
-                                    PriceListLine.SetRange("Asset No.", Rec113."No.");
-                                    PriceListLine.SetRange("Source No.", Rec113."Customer Price Group");
-                                    IF PriceListLine.FindLast() THEN BEGIN
-                                        ImporteTarifaFull := ImporteTarifaFull + round(Rec113.Quantity * PriceListLine."Unit Price", 0.01);
-                                    END;
-                                    pmp := 0;
-                                    InventarioPMP.RESET;
-                                    InventarioPMP.SETRANGE(InventarioPMP."Item No.", Rec113."No.");
-                                    IF InventarioPMP.FINDLAST THEN BEGIN
-                                        pmp := InventarioPMP."Unit Cost";
-                                    END;
-                                    coste := coste + Rec113.Quantity * pmp;
-                                end;
-                                Acumulaclieamount := Acumulaclieamount + Rec113.Amount;
-                            until rec113.next = 0;
-
-                        Rec115.Reset();
-                        Rec115.SetRange("Posting Date", desdeFecha, hastaFecha);
-                        /////Rec115.SetRange("Document No.", "Cust. Ledger Entry"."Document No.");
-                        Rec115.SetRange("Bill-to Customer No.", "Cust. Ledger Entry"."Sell-to Customer No.");
-                        Rec115.SetRange(Type, rec115.Type::Item);
-                        if Rec115.FindFirst() then
-                            repeat
-                                if Rec115."No." <> 'TRAN' THEN BEGIN
-                                    PriceListLine.reset;
-                                    PriceListLine.SetRange("Asset No.", Rec115."No.");
-                                    PriceListLine.SetRange("Source No.", Rec115."Customer Price Group");
-                                    IF PriceListLine.FindLast() THEN BEGIN
-                                        ImporteTarifaFull := ImporteTarifaFull + round(Rec115.Quantity * PriceListLine."Unit Price", 0.01);
-                                    END;
-                                    pmp := 0;
-                                    InventarioPMP.RESET;
-                                    InventarioPMP.SETRANGE(InventarioPMP."Item No.", Rec115."No.");
-                                    IF InventarioPMP.FINDLAST THEN BEGIN
-                                        pmp := InventarioPMP."Unit Cost";
-                                    END;
-                                    coste := coste + Rec115.Quantity * pmp;
-                                end;
-                                Acumulaclieamount := Acumulaclieamount + Rec115.Amount * -1;
-                            until rec115.next = 0;
-
-
-                        Diferencia := Acumulaclieamount - ImporteTarifaFull;
-                        if ImporteTarifaFull <> 0 then begin
-                            PORCENTAJEnew := round(Diferencia * 100 / ImporteTarifaFull, 0.01) * -1;
-                        end;
-                        RecCusto.Get(SalesInvoiceHeader."Sell-to Customer No.");
-                        if RecCusto."Des.Comision Vendedor" <> 0 then begin
-                            Porcentajenew := RecCusto."Des.Comision Vendedor";
-                        end;
-                        D1 := Porcentajenew;
-
-
-                        DatoEscalado := 0;
-                        RecEscalado.Reset();
-                        RecEscalado.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
-                        if RecEscalado.FindFirst() then
-                            repeat
-                                if (Porcentajenew >= RecEscalado.Desde) and (Porcentajenew <= RecEscalado.Hasta) then begin
-                                    DatoEscalado := RecEscalado.Comision;
-                                end;
-                            until RecEscalado.next = 0;
-                        D3 := DatoEscalado;
-
-                        ImpComision := 0;
-                        Rec113.Reset();
-                        Rec113.SetRange("Document No.", "Cust. Ledger Entry"."Document No.");
-                        Rec113.SetRange(Type, rec113.Type::Item);
-                        if Rec113.FindFirst() then
-                            repeat
-                                if Rec113."No." <> 'TRAN' THEN BEGIN
-                                    IF RecItem.GET(Rec113."No.") THEN begin
-                                        IF RecItem."Clasificación Comercial" = RecItem."Clasificación Comercial"::Azul THEN begin
-                                            impazul := impazul + Rec113.Amount;
-                                            RecClasiComer.Reset();
-                                            RecClasiComer.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
-                                            IF RecClasiComer.FindFirst() THEN begin
-                                                DatoClasiAzul := RecClasiComer.Azul;
-                                            end;
-                                        end;
-                                        IF RecItem."Clasificación Comercial" = RecItem."Clasificación Comercial"::Rojo THEN begin
-                                            improjo := improjo + Rec113.Amount;
-                                            RecClasiComer.Reset();
-                                            RecClasiComer.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
-                                            IF RecClasiComer.FindFirst() THEN begin
-                                                DatoClasiRojo := RecClasiComer.Rojo;
-                                            end;
-                                        end;
-                                        IF RecItem."Clasificación Comercial" = RecItem."Clasificación Comercial"::Verde THEN begin
-                                            impverde := impverde + Rec113.Amount;
-                                            RecClasiComer.Reset();
-                                            RecClasiComer.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
-                                            IF RecClasiComer.FindFirst() THEN begin
-                                                DatoClasiVerde := RecClasiComer.Verde;
-                                            end;
-                                        end;
-                                        ///ImpComision := ImpComision + (DatoClasi + DatoEscalado + DatoBonus / 100) / 100 * Rec113.Amount;
-                                    end;
-                                end;
-                            until rec113.next = 0;
-                        D4 := improjo;
-                        D5 := DatoClasiRojo;
-                        D6 := Round(improjo * DatoClasiRojo / 100, 0.01);
-                        D7 := impazul;
-                        D8 := DatoClasiAzul;
-                        D9 := Round(impazul * DatoClasiAzul / 100, 0.01);
-                        D10 := impverde;
-                        D11 := DatoClasiVerde;
-                        D12 := Round(impverde * DatoClasiVerde / 100, 0.01);
-
-
                     end;
+                    PORCENTAJEnew := 0;
+                    coste := 0;
+                    Diferencia := 0;
+                    ImporteTarifaFull := 0;
+                    Acumulaclieamount := 0;
+
+                    Rec113.Reset();
+                    Rec113.SetRange("Posting Date", desdeFecha, hastaFecha);
+                    /////Rec113.SetRange("Document No.", "Cust. Ledger Entry"."Document No.");
+                    Rec113.SetRange("Bill-to Customer No.", "Cust. Ledger Entry"."Sell-to Customer No.");
+                    Rec113.SetRange(Type, rec113.Type::Item);
+                    if Rec113.FindFirst() then
+                        repeat
+                            if Rec113."No." <> 'TRAN' THEN BEGIN
+                                PriceListLine.reset;
+                                PriceListLine.SetRange("Asset No.", Rec113."No.");
+                                PriceListLine.SetRange("Source No.", Rec113."Customer Price Group");
+                                IF PriceListLine.FindLast() THEN BEGIN
+                                    ImporteTarifaFull := ImporteTarifaFull + round(Rec113.Quantity * PriceListLine."Unit Price", 0.01);
+                                END;
+                                pmp := 0;
+                                InventarioPMP.RESET;
+                                InventarioPMP.SETRANGE(InventarioPMP."Item No.", Rec113."No.");
+                                IF InventarioPMP.FINDLAST THEN BEGIN
+                                    pmp := InventarioPMP."Unit Cost";
+                                END;
+                                coste := coste + Rec113.Quantity * pmp;
+                            end;
+                            Acumulaclieamount := Acumulaclieamount + Rec113.Amount;
+                        until rec113.next = 0;
+
+                    Rec115.Reset();
+                    Rec115.SetRange("Posting Date", desdeFecha, hastaFecha);
+                    /////Rec115.SetRange("Document No.", "Cust. Ledger Entry"."Document No.");
+                    Rec115.SetRange("Bill-to Customer No.", "Cust. Ledger Entry"."Sell-to Customer No.");
+                    Rec115.SetRange(Type, rec115.Type::Item);
+                    if Rec115.FindFirst() then
+                        repeat
+                            if Rec115."No." <> 'TRAN' THEN BEGIN
+                                PriceListLine.reset;
+                                PriceListLine.SetRange("Asset No.", Rec115."No.");
+                                PriceListLine.SetRange("Source No.", Rec115."Customer Price Group");
+                                IF PriceListLine.FindLast() THEN BEGIN
+                                    ImporteTarifaFull := ImporteTarifaFull + round(Rec115.Quantity * PriceListLine."Unit Price", 0.01);
+                                END;
+                                pmp := 0;
+                                InventarioPMP.RESET;
+                                InventarioPMP.SETRANGE(InventarioPMP."Item No.", Rec115."No.");
+                                IF InventarioPMP.FINDLAST THEN BEGIN
+                                    pmp := InventarioPMP."Unit Cost";
+                                END;
+                                coste := coste + Rec115.Quantity * pmp;
+                            end;
+                            Acumulaclieamount := Acumulaclieamount + Rec115.Amount;
+                        until rec115.next = 0;
+
+
+                    Diferencia := Acumulaclieamount - ImporteTarifaFull;
+                    if ImporteTarifaFull <> 0 then begin
+                        PORCENTAJEnew := round(Diferencia * 100 / ImporteTarifaFull, 0.01) * -1;
+                    end;
+                    RecCusto.Get(SalesInvoiceHeader."Sell-to Customer No.");
+                    if RecCusto."Des.Comision Vendedor" <> 0 then begin
+                        Porcentajenew := RecCusto."Des.Comision Vendedor";
+                    end;
+                    D1 := Porcentajenew;
+
+
+                    DatoEscalado := 0;
+                    RecEscalado.Reset();
+                    RecEscalado.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
+                    if RecEscalado.FindFirst() then
+                        repeat
+                            if (Porcentajenew >= RecEscalado.Desde) and (Porcentajenew <= RecEscalado.Hasta) then begin
+                                DatoEscalado := RecEscalado.Comision;
+                            end;
+                        until RecEscalado.next = 0;
+                    D3 := DatoEscalado;
+
+                    ImpComision := 0;
+                    Rec113.Reset();
+                    Rec113.SetRange("Document No.", "Cust. Ledger Entry"."Document No.");
+                    Rec113.SetRange(Type, rec113.Type::Item);
+                    if Rec113.FindFirst() then
+                        repeat
+                            if Rec113."No." <> 'TRAN' THEN BEGIN
+                                IF RecItem.GET(Rec113."No.") THEN begin
+                                    IF RecItem."Clasificación Comercial" = RecItem."Clasificación Comercial"::Azul THEN begin
+                                        impazul := impazul + Rec113.Amount;
+                                        RecClasiComer.Reset();
+                                        RecClasiComer.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
+                                        IF RecClasiComer.FindFirst() THEN begin
+                                            DatoClasiAzul := RecClasiComer.Azul;
+                                        end;
+                                    end;
+                                    IF RecItem."Clasificación Comercial" = RecItem."Clasificación Comercial"::Rojo THEN begin
+                                        improjo := improjo + Rec113.Amount;
+                                        RecClasiComer.Reset();
+                                        RecClasiComer.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
+                                        IF RecClasiComer.FindFirst() THEN begin
+                                            DatoClasiRojo := RecClasiComer.Rojo;
+                                        end;
+                                    end;
+                                    IF RecItem."Clasificación Comercial" = RecItem."Clasificación Comercial"::Verde THEN begin
+                                        impverde := impverde + Rec113.Amount;
+                                        RecClasiComer.Reset();
+                                        RecClasiComer.SetRange(Vendedor, SalesInvoiceHeader."Salesperson Code");
+                                        IF RecClasiComer.FindFirst() THEN begin
+                                            DatoClasiVerde := RecClasiComer.Verde;
+                                        end;
+                                    end;
+                                    ///ImpComision := ImpComision + (DatoClasi + DatoEscalado + DatoBonus / 100) / 100 * Rec113.Amount;
+                                end;
+                            end;
+                        until rec113.next = 0;
+                    D4 := improjo;
+                    D5 := DatoClasiRojo;
+                    D6 := Round(improjo * DatoClasiRojo / 100, 0.01);
+                    D7 := impazul;
+                    D8 := DatoClasiAzul;
+                    D9 := Round(impazul * DatoClasiAzul / 100, 0.01);
+                    D10 := impverde;
+                    D11 := DatoClasiVerde;
+                    D12 := Round(impverde * DatoClasiVerde / 100, 0.01);
+
+
+
 
 
                     if "Cust. Ledger Entry"."Document Type" = "Cust. Ledger Entry"."document type"::"Credit Memo" then begin
