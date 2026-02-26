@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-﻿{"Added":[],"Modified":[],"Removed":[]}
-=======
-﻿{"Added":[],"Modified":[{"Id":50055,"Kind":16,"Name":"HistoFactVenta","Namespace":""}],"Removed":[{"Kind":106,"Name":"RequestOptionsPage","Namespace":""},{"Id":50103,"Kind":15,"Name":"ADAIATREXP","Namespace":""},{"Id":50090,"Kind":11,"Name":"rellenaprepa","Namespace":""},{"Id":50008,"Kind":15,"Name":"ADAIA_Conf. Expediciones","Namespace":""},{"Id":50018,"Kind":11,"Name":"Customer WS Mgt","Namespace":""}]}
->>>>>>> ac7e8cdd2276fe62bd9177ec912e5f7da61d06ab
+﻿{"Added":[{"Id":50017,"Kind":13,"Name":"NuevasComisiones2","Namespace":""}],"Modified":[{"Kind":106,"Name":"RequestOptionsPage","Namespace":""}],"Removed":[{"Id":50016,"Kind":13,"Name":"NuevasComisiones","Namespace":""}]}
