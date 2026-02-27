@@ -248,6 +248,11 @@ Report 50016 NuevasComisiones
                 column(D18; D18) { }
                 column(D19; D19) { }
 
+                column(Diferencia; Diferencia) { }
+                column(SalesInvoiceHeaderAmount; SalesInvoiceHeader.Amount) { }
+                column(ImporteTarifaFull; ImporteTarifaFull) { }
+
+
 
 
 
