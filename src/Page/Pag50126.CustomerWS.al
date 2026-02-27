@@ -14,7 +14,6 @@ page 50126 CustomerWS
             repeater(General)
             {
                 Caption = 'General';
-                // 1
                 field("Tipo_plantilla"; Rec."Tipo plantilla")
                 {
                     ToolTip = 'Specifies the value of the Tipo plantilla field.', Comment = '%';
@@ -47,14 +46,10 @@ page 50126 CustomerWS
                 {
                     ToolTip = 'Specifies the value of the Telefono field.', Comment = '%';
                 }
-
-                // 2
                 field("Nombre_comercial"; Rec."Nombre comercial")
                 {
                     ToolTip = 'Specifies the value of the Nombre comercial field.', Comment = '%';
                 }
-
-                // 3
                 field("Nombre_contacto"; Rec."Nombre contacto")
                 {
                     ToolTip = 'Specifies the value of the Nombre contacto field.', Comment = '%';
@@ -71,8 +66,6 @@ page 50126 CustomerWS
                 {
                     ToolTip = 'Specifies the value of the Movil whatsapp field.', Comment = '%';
                 }
-
-                // 4
                 field("Direccion_envio"; Rec."Direccion envio")
                 {
                     ToolTip = 'Specifies the value of the Direccion envio field.', Comment = '%';
@@ -101,7 +94,6 @@ page 50126 CustomerWS
                 {
                     ToolTip = 'Specifies the value of the Email envio field.', Comment = '%';
                 }
-
                 field("Cod. vendedor"; Rec."Cod. vendedor") { }
                 field("Forma pago"; Rec."Forma pago") { }
                 field(IBAN; Rec.IBAN) { }
@@ -124,7 +116,6 @@ page 50126 CustomerWS
                         Rec.Modify(true);
                     end;
                 }
-
                 field("Nombre fichero"; Rec."Nombre fichero")
                 {
                     Caption = 'Nombre fichero';
@@ -132,6 +123,10 @@ page 50126 CustomerWS
                 }
                 field("Email notificacion envio"; Rec."Email notificacion envio") { }
                 field("Direccion habitual"; Rec."Direccion habitual") { }
+                field(Localidad; Rec.Localidad) { }
+                field(Fecha; Rec.Fecha) { }
+                field("Terminos pago"; Rec."Terminos pago") { }
+                field(SWIFT; Rec.SWIFT) { }
             }
         }
     }

@@ -52,6 +52,10 @@ table 50012 CustomerWebService
         }
         field(28; "Email notificacion envio"; Text[150]) { }
         field(29; "Direccion habitual"; Boolean) { }
+        field(30; SWIFT; Code[20]) { }
+        field(31; "Terminos pago"; Code[10]) { }
+        field(32; Fecha; Date) { }
+        field(33; Localidad; Text[100]) { }
     }
 
     keys
