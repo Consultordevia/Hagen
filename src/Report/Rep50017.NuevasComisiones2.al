@@ -130,7 +130,7 @@ Report 50017 NuevasComisiones2
                 column(Cust__Ledger_Entry__Document_No__; "Document No.")
                 {
                 }
-                column(Cust__Ledger_Entry__Customer_No__; "Customer No.")
+                column(Cust__Ledger_Entry__Customer_No__; "Sell-to Customer No.")
                 {
                 }
                 column(Cust__Ledger_Entry__Sales__LCY__; "Sales (LCY)")
@@ -459,7 +459,7 @@ Report 50017 NuevasComisiones2
                     Rec113.Reset();
                     Rec113.SetRange("Posting Date", desdeFecha, hastaFecha);
                     /////Rec113.SetRange("Document No.", "Cust. Ledger Entry"."Document No.");
-                    Rec113.SetRange("Bill-to Customer No.", "Cust. Ledger Entry"."Sell-to Customer No.");
+                    Rec113.SetRange("Sell-to Customer No.", "Cust. Ledger Entry"."Sell-to Customer No.");
                     Rec113.SetRange(Type, rec113.Type::Item);
                     if Rec113.FindFirst() then
                         repeat
@@ -484,7 +484,7 @@ Report 50017 NuevasComisiones2
                     Rec115.Reset();
                     Rec115.SetRange("Posting Date", desdeFecha, hastaFecha);
                     /////Rec115.SetRange("Document No.", "Cust. Ledger Entry"."Document No.");
-                    Rec115.SetRange("Bill-to Customer No.", "Cust. Ledger Entry"."Sell-to Customer No.");
+                    Rec115.SetRange("Sell-to Customer No.", "Cust. Ledger Entry"."Sell-to Customer No.");
                     Rec115.SetRange(Type, rec115.Type::Item);
                     if Rec115.FindFirst() then
                         repeat
