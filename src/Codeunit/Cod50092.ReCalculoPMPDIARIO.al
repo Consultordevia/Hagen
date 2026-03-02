@@ -13,7 +13,7 @@ Codeunit 50092 "ReCalculo PMP DIARIO"
 
         Recdate.Reset;
         Recdate.SetRange(Recdate."Period Type", 0);
-        Recdate.SetRange(Recdate."Period Start", 20260101D, TODAY);
+        Recdate.SetRange(Recdate."Period Start", 20240101D, 20241231D);
         if Recdate.FindFirst then
             repeat
                 afecha := Recdate."Period Start";
