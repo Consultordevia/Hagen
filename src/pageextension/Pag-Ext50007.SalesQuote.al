@@ -788,6 +788,26 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                     MESSAGE('Hecho.');
                 end;
             }
+            action(PresupuestoVentaProductos)
+            {
+                ApplicationArea = All;
+                Caption = 'Presupuesto Venta Productos';
+                Image = Report;
+                Promoted = true;
+                PromotedCategory = Report;
+                PromotedIsBig = true;
+
+                trigger OnAction()
+                var
+                    ReportPresup: Report "Presupuesto Venta Productos";
+                    SalesHeaderFilter: Record "Sales Header";
+                begin
+                    SalesHeaderFilter.SetRange("Document Type", Rec."Document Type");
+                    SalesHeaderFilter.SetRange("No.", Rec."No.");
+                    ReportPresup.SetTableView(SalesHeaderFilter);
+                    ReportPresup.RunModal();
+                end;
+            }
 
 
 
