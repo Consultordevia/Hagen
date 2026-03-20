@@ -10,9 +10,13 @@ reportextension 50100 StandardSalesInvoice extends "Standard Sales - Invoice"
         }
         add(Line)
         {
-            column(Precio_base; FormattedPrecioBase) { }
+            column(Precio_base; FormattedPrecioBase)
+            {
+            }
             column(Dto_2009; FormattedDto_2009) { }
-            column(Precio_final; FormattedPrecio_final) { }
+            column(Precio_final; FormattedPrecio_final)
+            {
+            }
             column(Ean; Ean) { }
         }
         modify(Line)
@@ -43,9 +47,9 @@ reportextension 50100 StandardSalesInvoice extends "Standard Sales - Invoice"
                     FormattedDto_2009 := '';
                     FormattedPrecio_final := '';
                 end else begin
-                    FormattedPrecioBase := Format("Precio base");
+                    FormattedPrecioBase := Format("Precio base", 0, '<Precision,2:2><Standard Format,0>');
                     FormattedDto_2009 := Format("Line Discount %") + dtofac;
-                    FormattedPrecio_final := Format("Precio final");
+                    FormattedPrecio_final := Format("Precio final", 0, '<Precision,2:2><Standard Format,0>');
                 end;
 
 
