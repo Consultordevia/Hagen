@@ -340,7 +340,7 @@ pageextension 50001 "Salespersons/Purchasers" extends "Salespersons/Purchasers"
         RecBuenosMalos: Record BonusMalos;
         PageBonusBuenos: page BonusBuenos;
         PAgeBuenosMalos: page BonusMalos;
-        RepCominuevo: report NuevasComisiones;
+        RepCominuevo: report NuevasComisiones2;
 
 }
 
