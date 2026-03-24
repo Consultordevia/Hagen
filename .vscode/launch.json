@@ -13,11 +13,10 @@
             "breakOnError": "All",
             "launchBrowser": true,
             "enableLongRunningSqlStatements": true,
-            "enableSqlInformationDebugger": true,
-            "schemaUpdateMode": "ForceSync"
+            "enableSqlInformationDebugger": true
         },
         {
-         "name": "PROD",
+            "name": "PROD",
             "request": "launch",
             "type": "al",
             "environmentType": "OnPrem",

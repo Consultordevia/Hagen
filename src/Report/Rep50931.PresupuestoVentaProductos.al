@@ -74,6 +74,8 @@ Report 50931 "Presupuesto Venta Productos"
                 column(ItemTariffNo; ItemTariffNo) { }
                 column(ItemPicture; ItemPictureBase64) { }
                 column(ItemDescription; ItemDescription) { }
+                column(ItemStockDisponible; ItemStockDisponible) { }
+                column(ItemProximaLlegada; ItemProximaLlegada) { }
 
                 // Datos logísticos del producto (unidad)
                 column(ItemAlto; ItemAlto) { }
@@ -106,18 +108,22 @@ Report 50931 "Presupuesto Venta Productos"
 
                     if (Type = Type::Item) and ("No." <> '') then begin
                         if RecItem.Get("No.") then begin
-                            RecItem.CalcFields("Cantidad inner", "Cantidad master", "EAN INNER", "EAN MASTER");
+                            RecItem.CalcFields("Cantidad inner", "Cantidad master", "EAN INNER", "EAN MASTER", Inventory, "Fecha proxima recepción conten");
 
                             // Imagen del producto
                             GetItemPicture(RecItem);
 
                             // Datos principales
                             ItemEAN := RecItem.ean;
-                            ItemMarca := RecItem.Marca;
-                            ItemPVP := RecItem."PVP 2025DC00";
+                            if RecItem.Marca <> '' then
+                                if RecMultitabla.Get(RecMultitabla.Tabla::Marcas, RecItem.Marca) then
+                                    ItemMarca := RecMultitabla.Descripcion;
+                            ItemPVP := RecItem."PVP-Web";
                             ItemCountryOfOrigin := RecItem."Country/Region of Origin Code";
                             ItemTariffNo := RecItem."Tariff No.";
                             ItemDescription := RecItem.Description;
+                            ItemStockDisponible := RecItem.Inventory;
+                            ItemProximaLlegada := RecItem."Fecha proxima recepción conten";
 
                             // Dimensiones producto unitario
                             ItemAlto := RecItem.Alto;
@@ -152,7 +158,7 @@ Report 50931 "Presupuesto Venta Productos"
                             ItemPesoMaster := RecItem."Kilos Master";
 
                             // Compra mínima y precio final
-                            ItemCompraMin := RecItem."Cantidad inner";
+                            ItemCompraMin := RecItem."Unidades venta";
                             ItemPrecioFinal := "Unit Price" * (1 - "Line Discount %" / 100);
                         end;
                     end;
@@ -208,6 +214,7 @@ Report 50931 "Presupuesto Venta Productos"
     var
         RecItem: Record Item;
         RecUMP: Record "Item Unit of Measure";
+        RecMultitabla: Record Multitabla;
         CompanyInfo: Record "Company Information";
         RecSalesperson: Record "Salesperson/Purchaser";
         RecPaymentTerms: Record "Payment Terms";
@@ -221,13 +228,15 @@ Report 50931 "Presupuesto Venta Productos"
 
         // Variables producto
         ItemEAN: Code[20];
-        ItemMarca: Code[20];
+        ItemMarca: Text[100];
         ItemPVP: Decimal;
         ItemCompraMin: Decimal;
         ItemPrecioFinal: Decimal;
         ItemCountryOfOrigin: Code[10];
         ItemTariffNo: Code[20];
         ItemDescription: Text[100];
+        ItemStockDisponible: Decimal;
+        ItemProximaLlegada: Date;
 
         // Dimensiones unitarias
         ItemAlto: Decimal;
@@ -283,6 +292,8 @@ Report 50931 "Presupuesto Venta Productos"
         ItemCountryOfOrigin := '';
         ItemTariffNo := '';
         ItemDescription := '';
+        ItemStockDisponible := 0;
+        ItemProximaLlegada := 0D;
         ItemAlto := 0;
         ItemAncho := 0;
         ItemLargo := 0;
