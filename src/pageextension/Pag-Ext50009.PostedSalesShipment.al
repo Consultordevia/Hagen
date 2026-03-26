@@ -177,6 +177,19 @@ pageextension 50009 "Posted Sales Shipment" extends "Posted Sales Shipments"
 
 
             }
+            action(EtiquetaDevol)
+            {
+                ApplicationArea = All;
+                Caption = 'Etiqueta Devolución';
+                Image = PrintReport;
+                trigger OnAction()
+                var
+                    SalesShipmentHeader: Record "Sales Shipment Header";
+                begin
+                    SalesShipmentHeader.SetRange("No.", Rec."No.");
+                    Report.RunModal(Report::"Etiqueta grande envio", true, true, SalesShipmentHeader);
+                end;
+            }
         }
     }
 
