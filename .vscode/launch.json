@@ -17,7 +17,7 @@
             "schemaUpdateMode": "ForceSync"
         },
         {
-         "name": "PROD",
+            "name": "PROD",
             "request": "launch",
             "type": "al",
             "environmentType": "OnPrem",

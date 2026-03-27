@@ -20,16 +20,16 @@ Report 50041 "Etiqueta grande envio"
                 column(SalesShipmentHeaderSell_toCustomerNo__CustAddr1; "Sales Shipment Header"."Sell-to Customer No." + '  ' + CustAddr[1])
                 {
                 }
-                column(SalesShipmentHeaderShip_toPostCode__SalesShipmentHeaderShip_; SToA."Post Code" + ' ' + SToA."City")
+                column(SalesShipmentHeaderShip_toPostCode__SalesShipmentHeaderShip_; "Sales Shipment Header"."Ship-to Post Code" + ' ' + "Sales Shipment Header"."Ship-to City")
                 {
                 }
-                column(SalesShipmentHeaderShip_toAddress__SalesShipmentHeaderShip_t; SToA."Address" + ' ' + SToA."Address 2")
+                column(SalesShipmentHeaderShip_toAddress__SalesShipmentHeaderShip_t; "Sales Shipment Header"."Ship-to Address" + ' ' + "Sales Shipment Header"."Ship-to Address 2")
                 {
                 }
                 column(Telefono__TELEFONO; 'Telefono: ' + TELEFONO)
                 {
                 }
-                column(SalesShipmentHeaderShip_toCountry_RegionCode__SalesShipmentH; SToA."Country/Region Code" + '  ' + SToA."County")
+                column(SalesShipmentHeaderShip_toCountry_RegionCode__SalesShipmentH; "Sales Shipment Header"."Ship-to Country/Region Code" + '  ' + "Sales Shipment Header"."Ship-to County")
                 {
                 }
                 column(Totalbultos; 'Bulto: ' + Format(cobtablu) + '/' + Format("Sales Shipment Header"."Nº bultos"))
@@ -48,25 +48,25 @@ Report 50041 "Etiqueta grande envio"
                 column(SalesHeaderYourReference; "Sales Shipment Header"."Your Reference")
                 {
                 }
-                column(SalesHeaderShip_toCounty; SToA."County")
+                column(SalesHeaderShip_toCounty; "Sales Shipment Header"."Ship-to County")
                 {
                 }
-                column(SalesHeaderShip_toPostCode__SalesHeaderShip_toCity; SToA."Post Code" + '   ' + SToA."City")
+                column(SalesHeaderShip_toPostCode__SalesHeaderShip_toCity; "Sales Shipment Header"."Ship-to Post Code" + '   ' + "Sales Shipment Header"."Ship-to City")
                 {
                 }
-                column(SalesHeaderShip_toAddress; SToA."Address")
+                column(SalesHeaderShip_toAddress; "Sales Shipment Header"."Ship-to Address")
                 {
                 }
-                column(SalesHeaderShip_toName; SToA."Name")
+                column(SalesHeaderShip_toName; "Sales Shipment Header"."Ship-to Name")
                 {
                 }
-                column(SShip_toContacto; SToA."Contact")
+                column(SShip_toContacto; "Sales Shipment Header"."Ship-to Contact")
                 {
                 }
-                column(SShip_toPhone; SToA."Phone No.")
+                column(SShip_toPhone; "Sales Shipment Header"."Ship-to Phone No.")
                 {
                 }
-                column(SShip_toEmail; SToA."E-MAIL")
+                column(SShip_toEmail; "Sales Shipment Header"."E-MAIL")
                 {
                 }
 
@@ -101,12 +101,6 @@ Report 50041 "Etiqueta grande envio"
             trigger OnAfterGetRecord();
             begin
 
-                StoA.Reset();
-                StoA.SetRange("Customer No.", "Sales Shipment Header"."Sell-to Customer No.");
-                StoA.SetRange("Imprime Etiqueta envio", true);
-                if StoA.FindFirst() then begin
-
-                end;
                 if "Sales Shipment Header"."Total bultos" = 0 then begin
                     ////	 CurrReport.SKIP;
                 end;
@@ -252,7 +246,6 @@ Report 50041 "Etiqueta grande envio"
         Rec1102: Record "Sales Shipment Header";
         REC1112: Record "Sales Shipment Line";
         decre: Decimal;
-        SToA: Record "Ship-to Address";
 
     local procedure MakeWOHeader()
     begin
