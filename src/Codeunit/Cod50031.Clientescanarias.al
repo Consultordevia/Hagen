@@ -91,6 +91,10 @@ Codeunit 50031 "Clientes canarias"
         RecClie: Record Customer;
         RecBCC: Record "Customer Bank Account";
 
+        Rec222: Record "Ship-to Address";
+        Rec2222: Record "Ship-to Address";
+
+
 
     local procedure ClientesHagenCanarias()
     begin
@@ -125,7 +129,6 @@ Codeunit 50031 "Clientes canarias"
                             RecClieC."Fin. Charge Terms Code" := RecClieH."Fin. Charge Terms Code";
                             RecClieC."Salesperson Code" := RecClieH."Salesperson Code";
                             RecClieC."Shipment Method Code" := RecClieH."Shipment Method Code";
-                            ;
                             RecClieC."Shipping Agent Code" := RecClieH."Shipping Agent Code";
                             RecClieC."Place of Export" := RecClieH."Place of Export";
                             RecClieC."Invoice Disc. Code" := RecClieH."Invoice Disc. Code";
@@ -290,6 +293,62 @@ Codeunit 50031 "Clientes canarias"
                                     end;
 
                                 until RecBCH.Next = 0;
+                            Rec222.Reset;
+                            Rec222.SetRange("Customer No.", codclie);
+                            if Rec222.FindFirst then
+                                repeat
+                                    Rec2222.Reset;
+                                    Rec2222.ChangeCompany('HAGEN CANARIAS S.C.');
+                                    if Rec2222.Get(Rec222."Customer No.", Rec222.Code) then begin
+                                        Rec2222.Address := Rec222.Address;
+                                        Rec2222."Address 2" := Rec222."Address 2";
+                                        Rec2222.City := Rec222.City;
+                                        Rec2222."Cod. entrega ECI" := Rec222."Cod. entrega ECI";
+                                        Rec2222."Cod. forma de pago" := Rec222."Cod. forma de pago";
+                                        Rec2222.Contact := Rec222.Contact;
+                                        Rec2222."Country/Region Code" := Rec222."Country/Region Code";
+                                        Rec2222.County := Rec222.County;
+                                        Rec2222.Dir_Shopyfi := Rec222.Dir_Shopyfi;
+                                        Rec2222."Direccion habitual" := Rec222."Direccion habitual";
+                                        Rec2222."Direccion postal" := Rec222."Direccion postal";
+                                        Rec2222."Direccion Ruta" := Rec222."Direccion Ruta";
+                                        Rec2222.Dni := Rec222.Dni;
+                                        Rec2222.Dropshipping := Rec222.Dropshipping;
+                                        Rec2222."E-Mail" := Rec222."E-Mail";
+                                        Rec2222."Enviar a Web Distribuidor" := Rec222."Enviar a Web Distribuidor";
+                                        Rec2222."Estatus del cliente" := Rec222."Estatus del cliente";
+                                        Rec2222.GLN := Rec222.GLN;
+                                        Rec2222."Grupo clientes" := Rec222."Grupo clientes";
+                                        Rec2222."Home Page" := Rec222."Home Page";
+                                        Rec2222."Imprime Etiqueta envio" := Rec222."Imprime Etiqueta envio";
+                                        Rec2222."Location Code" := Rec222."Location Code";
+                                        Rec2222.Name := Rec222.Name;
+                                        Rec2222."Name 2" := Rec222."Name 2";
+                                        Rec2222."Nº Movil" := Rec222."Nº Movil";
+                                        Rec2222."Phone No." := Rec222."Phone No.";
+                                        Rec2222."Place of Export" := Rec222."Place of Export";
+                                        Rec2222."Post Code" := Rec222."Post Code";
+                                        Rec2222."Salesperson Code" := Rec222."Salesperson Code";
+                                        Rec2222."Salesperson Code2" := Rec222."Salesperson Code2";
+                                        Rec2222."Service Zone Code" := Rec222."Service Zone Code";
+                                        Rec2222."Shipment Method Code" := Rec222."Shipment Method Code";
+                                        Rec2222."Shipping Agent Service Code" := Rec222."Shipping Agent Service Code";
+                                        Rec2222."Tax Area Code" := Rec222."Tax Area Code";
+                                        Rec2222."Tax Liable" := Rec222."Tax Liable";
+                                        Rec2222."Telex Answer Back" := Rec222."Telex Answer Back";
+                                        Rec2222."Telex No." := Rec222."Telex No.";
+                                        Rec2222."Transportista ficha cliente" := Rec222."Transportista ficha cliente";
+                                        Rec2222.Modify;
+                                        Commit;
+                                    end;
+                                    if not Rec2222.Get(Rec222."Customer No.", Rec222.Code) then begin
+                                        Rec2222 := Rec222;
+                                        Rec2222.Insert;
+                                        Commit;
+                                    end;
+
+                                until Rec222.Next = 0;
+
                         end;
                         if not RecClieC.Get(codclie) then begin
                             RecClieC.Init;
@@ -329,6 +388,62 @@ Codeunit 50031 "Clientes canarias"
                                         Commit;
                                     end;
                                 until RecBCH.Next = 0;
+                            Rec222.Reset;
+                            Rec222.SetRange("Customer No.", codclie);
+                            if Rec222.FindFirst then
+                                repeat
+                                    Rec2222.Reset;
+                                    Rec2222.ChangeCompany('HAGEN CANARIAS S.C.');
+                                    if Rec2222.Get(Rec222."Customer No.", Rec222.Code) then begin
+                                        Rec2222.Address := Rec222.Address;
+                                        Rec2222."Address 2" := Rec222."Address 2";
+                                        Rec2222.City := Rec222.City;
+                                        Rec2222."Cod. entrega ECI" := Rec222."Cod. entrega ECI";
+                                        Rec2222."Cod. forma de pago" := Rec222."Cod. forma de pago";
+                                        Rec2222.Contact := Rec222.Contact;
+                                        Rec2222."Country/Region Code" := Rec222."Country/Region Code";
+                                        Rec2222.County := Rec222.County;
+                                        Rec2222.Dir_Shopyfi := Rec222.Dir_Shopyfi;
+                                        Rec2222."Direccion habitual" := Rec222."Direccion habitual";
+                                        Rec2222."Direccion postal" := Rec222."Direccion postal";
+                                        Rec2222."Direccion Ruta" := Rec222."Direccion Ruta";
+                                        Rec2222.Dni := Rec222.Dni;
+                                        Rec2222.Dropshipping := Rec222.Dropshipping;
+                                        Rec2222."E-Mail" := Rec222."E-Mail";
+                                        Rec2222."Enviar a Web Distribuidor" := Rec222."Enviar a Web Distribuidor";
+                                        Rec2222."Estatus del cliente" := Rec222."Estatus del cliente";
+                                        Rec2222.GLN := Rec222.GLN;
+                                        Rec2222."Grupo clientes" := Rec222."Grupo clientes";
+                                        Rec2222."Home Page" := Rec222."Home Page";
+                                        Rec2222."Imprime Etiqueta envio" := Rec222."Imprime Etiqueta envio";
+                                        Rec2222."Location Code" := Rec222."Location Code";
+                                        Rec2222.Name := Rec222.Name;
+                                        Rec2222."Name 2" := Rec222."Name 2";
+                                        Rec2222."Nº Movil" := Rec222."Nº Movil";
+                                        Rec2222."Phone No." := Rec222."Phone No.";
+                                        Rec2222."Place of Export" := Rec222."Place of Export";
+                                        Rec2222."Post Code" := Rec222."Post Code";
+                                        Rec2222."Salesperson Code" := Rec222."Salesperson Code";
+                                        Rec2222."Salesperson Code2" := Rec222."Salesperson Code2";
+                                        Rec2222."Service Zone Code" := Rec222."Service Zone Code";
+                                        Rec2222."Shipment Method Code" := Rec222."Shipment Method Code";
+                                        Rec2222."Shipping Agent Service Code" := Rec222."Shipping Agent Service Code";
+                                        Rec2222."Tax Area Code" := Rec222."Tax Area Code";
+                                        Rec2222."Tax Liable" := Rec222."Tax Liable";
+                                        Rec2222."Telex Answer Back" := Rec222."Telex Answer Back";
+                                        Rec2222."Telex No." := Rec222."Telex No.";
+                                        Rec2222."Transportista ficha cliente" := Rec222."Transportista ficha cliente";
+                                        Rec2222.Modify;
+                                        Commit;
+                                    end;
+                                    if not Rec2222.Get(Rec222."Customer No.", Rec222.Code) then begin
+                                        Rec2222 := Rec222;
+                                        Rec2222.Insert;
+                                        Commit;
+                                    end;
+
+                                until Rec222.Next = 0;
+
                         end;
                     end;
                 until RecCli.Next = 0;
