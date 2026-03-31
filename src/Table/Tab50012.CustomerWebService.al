@@ -56,6 +56,15 @@ table 50012 CustomerWebService
         field(31; "Terminos pago"; Code[10]) { }
         field(32; Fecha; Date) { }
         field(33; Localidad; Text[100]) { }
+        field(34; "Cod. Pais Region"; Code[10])
+        {
+            Caption = 'Cod. Pais Region';
+            TableRelation = "Country/Region";
+        }
+        field(35; "CCC Cod. banco"; Code[4])
+        {
+            Caption = 'CCC Cod. banco';
+        }
     }
 
     keys

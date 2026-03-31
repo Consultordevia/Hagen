@@ -11,10 +11,12 @@ Report 50931 "Presupuesto Venta Productos"
     {
         dataitem(SalesHeader; "Sales Header")
         {
-            DataItemTableView = sorting("Document Type", "No.") where("Document Type" = const(Quote));
-            RequestFilterFields = "No.", "Sell-to Customer No.";
+            DataItemTableView = sorting("Document Type", "No.");
+            RequestFilterFields = "Document Type", "No.", "Sell-to Customer No.";
             RequestFilterHeading = 'Presupuesto Venta';
 
+            column(EsOferta; "Document Type" = "Document Type"::Quote) { }
+            column(Document_Type; "Document Type") { }
             column(No_Presupuesto; "No.") { }
             column(SellToCustomerNo; "Sell-to Customer No.") { }
             column(SellToCustomerName; "Sell-to Customer Name") { }

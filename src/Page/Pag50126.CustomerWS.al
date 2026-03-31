@@ -7,7 +7,7 @@ page 50126 CustomerWS
     SourceTable = CustomerWebService;
     Editable = true;
 
-    layout
+    layout  //Ship-to Address,Ship-to Address 2,Ship-to City,Ship-to Post Code
     {
         area(Content)
         {
@@ -127,6 +127,8 @@ page 50126 CustomerWS
                 field(Fecha; Rec.Fecha) { }
                 field("Terminos pago"; Rec."Terminos pago") { }
                 field(SWIFT; Rec.SWIFT) { }
+                field("Cod. Pais Region"; Rec."Cod. Pais Region") { }
+                field("CCC Cod. banco"; Rec."CCC Cod. banco") { }
             }
         }
     }
