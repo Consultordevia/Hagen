@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-﻿{"Added":[],"Modified":[{"Id":50001,"Kind":16,"Name":"Salespersons/Purchasers","Namespace":""},{"Id":50092,"Kind":11,"Name":"ReCalculo PMP DIARIO","Namespace":""},{"Id":50031,"Kind":11,"Name":"Clientes canarias","Namespace":""}],"Removed":[]}
-=======
-﻿{"Added":[],"Modified":[],"Removed":[]}
->>>>>>> 4830ad24c20359b299e399e6f14fa3107ea4f979
+﻿{"Added":[],"Modified":[{"Kind":106,"Name":"RequestOptionsPage","Namespace":""},{"Id":50001,"Kind":16,"Name":"Salespersons/Purchasers","Namespace":""},{"Id":50010,"Kind":15,"Name":"Importa Datos Productos","Namespace":""},{"Id":50092,"Kind":11,"Name":"ReCalculo PMP DIARIO","Namespace":""},{"Id":50019,"Kind":11,"Name":"Canarias","Namespace":""},{"Id":50031,"Kind":11,"Name":"Clientes canarias","Namespace":""}],"Removed":[]}
