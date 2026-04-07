@@ -64,6 +64,7 @@ Report 50931 "Presupuesto Venta Productos"
                 column(LineAmount; "Line Amount") { }
                 column(Amount; Amount) { }
                 column(AmountIncludingVAT; "Amount Including VAT") { }
+                column(VATPercent; "VAT %") { }
                 column(PrecioTarifa; "Precio Tarifa") { }
 
                 // Datos del producto (desde Item)
@@ -76,6 +77,8 @@ Report 50931 "Presupuesto Venta Productos"
                 column(ItemTariffNo; ItemTariffNo) { }
                 column(ItemPicture; ItemPictureBase64) { }
                 column(ItemDescription; ItemDescription) { }
+                column(ItemMarcaPicture; ItemMarcaPictureBase64) { }
+                column(GLAccountPicture; GLAccountPictureBase64) { }
                 column(ItemStockDisponible; ItemStockDisponible) { }
                 column(ItemProximaLlegada; ItemProximaLlegada) { }
 
@@ -106,7 +109,15 @@ Report 50931 "Presupuesto Venta Productos"
 
                 trigger OnAfterGetRecord()
                 begin
+                    if Type = Type::" " then
+                        CurrReport.Skip();
+
                     ClearItemVars();
+
+                    if (Type = Type::"G/L Account") and ("No." <> '') then begin
+                        if RecGLAccount.Get("No.") then
+                            GetGLAccountPicture(RecGLAccount);
+                    end;
 
                     if (Type = Type::Item) and ("No." <> '') then begin
                         if RecItem.Get("No.") then begin
@@ -118,8 +129,11 @@ Report 50931 "Presupuesto Venta Productos"
                             // Datos principales
                             ItemEAN := RecItem.ean;
                             if RecItem.Marca <> '' then
-                                if RecMultitabla.Get(RecMultitabla.Tabla::Marcas, RecItem.Marca) then
+                                if RecMultitabla.Get(RecMultitabla.Tabla::Marcas, RecItem.Marca) then begin
                                     ItemMarca := RecMultitabla.Descripcion;
+                                    RecMultitabla.CalcFields(Picture);
+                                    GetMarcaPicture(RecMultitabla);
+                                end;
                             ItemPVP := RecItem."PVP-Web";
                             ItemCountryOfOrigin := RecItem."Country/Region of Origin Code";
                             ItemTariffNo := RecItem."Tariff No.";
@@ -217,6 +231,7 @@ Report 50931 "Presupuesto Venta Productos"
         RecItem: Record Item;
         RecUMP: Record "Item Unit of Measure";
         RecMultitabla: Record Multitabla;
+        RecGLAccount: Record "G/L Account";
         CompanyInfo: Record "Company Information";
         RecSalesperson: Record "Salesperson/Purchaser";
         RecPaymentTerms: Record "Payment Terms";
@@ -227,6 +242,8 @@ Report 50931 "Presupuesto Venta Productos"
         PaymentTermsDesc: Text[100];
         ShipmentMethodDesc: Text[100];
         ItemPictureBase64: Text;
+        ItemMarcaPictureBase64: Text;
+        GLAccountPictureBase64: Text;
 
         // Variables producto
         ItemEAN: Code[20];
@@ -265,6 +282,37 @@ Report 50931 "Presupuesto Venta Productos"
         ItemPesoMaster: Decimal;
         ItemVolumenMaster: Decimal;
 
+    local procedure GetGLAccountPicture(var GLAccount: Record "G/L Account")
+    var
+        InStr: InStream;
+        Base64Convert: Codeunit "Base64 Convert";
+    begin
+        GLAccountPictureBase64 := '';
+        GLAccount.CalcFields(Picture);
+        if not GLAccount.Picture.HasValue() then
+            exit;
+        GLAccount.Picture.CreateInStream(InStr);
+        GLAccountPictureBase64 := Base64Convert.ToBase64(InStr);
+    end;
+
+    local procedure GetMarcaPicture(var Multitabla: Record Multitabla)
+    var
+        TenantMedia: Record "Tenant Media";
+        InStr: InStream;
+        Base64Convert: Codeunit "Base64 Convert";
+    begin
+        ItemMarcaPictureBase64 := '';
+        if Multitabla.Picture.Count = 0 then
+            exit;
+        if TenantMedia.Get(Multitabla.Picture.Item(1)) then begin
+            TenantMedia.CalcFields(Content);
+            if TenantMedia.Content.HasValue() then begin
+                TenantMedia.Content.CreateInStream(InStr);
+                ItemMarcaPictureBase64 := Base64Convert.ToBase64(InStr);
+            end;
+        end;
+    end;
+
     local procedure GetItemPicture(var Item: Record Item)
     var
         TenantMedia: Record "Tenant Media";
@@ -286,6 +334,8 @@ Report 50931 "Presupuesto Venta Productos"
     local procedure ClearItemVars()
     begin
         ItemPictureBase64 := '';
+        ItemMarcaPictureBase64 := '';
+        GLAccountPictureBase64 := '';
         ItemEAN := '';
         ItemMarca := '';
         ItemPVP := 0;

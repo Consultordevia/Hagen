@@ -9,7 +9,7 @@
       <am:Name>MSRB</am:Name>
       <am:Version>15.0.20283.0</am:Version>
     </am:UpdatedBy>
-    <am:LastModifiedTimestamp>2026-03-30T11:35:55.8853722Z</am:LastModifiedTimestamp>
+    <am:LastModifiedTimestamp>2026-04-01T10:52:12.6348222Z</am:LastModifiedTimestamp>
   </am:AuthoringMetadata>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -672,7 +672,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!LineDiscountPercent.Value</Value>
+                                  <Value>=Fields!VATPercent.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1166,7 +1166,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>="Marca: " &amp; Fields!ItemMarca.Value</Value>
+                                  <Value>Marca:</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1184,10 +1184,23 @@
                             <PaddingBottom>1pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>2</ColSpan>
                       </CellContents>
                     </TablixCell>
-                    <TablixCell />
+                    <TablixCell>
+                      <CellContents>
+                        <Image Name="Image3">
+                          <Source>Database</Source>
+                          <Value>=Fields!ItemMarcaPicture.Value</Value>
+                          <MIMEType>image/jpeg</MIMEType>
+                          <Sizing>FitProportional</Sizing>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Image>
+                      </CellContents>
+                    </TablixCell>
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox31">
@@ -1288,10 +1301,37 @@
                             <PaddingBottom>1pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>2</ColSpan>
                       </CellContents>
                     </TablixCell>
-                    <TablixCell />
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox6">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox6</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>1pt</PaddingTop>
+                            <PaddingBottom>1pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox32">
@@ -2222,33 +2262,14 @@
                         <CellContents>
                           <Image Name="Image2">
                             <Source>Database</Source>
-                            <Value>=Fields!ItemPicture.Value</Value>
+                            <Value>=IIf(Fields!Type.Value = 1, Fields!ItemPicture.Value,
+    IIf(Fields!Type.Value = 2, Fields!GLAccountPicture.Value, Nothing))</Value>
                             <MIMEType>image/png</MIMEType>
                             <Sizing>FitProportional</Sizing>
                             <Style>
                               <Border>
                                 <Style>Solid</Style>
                               </Border>
-                              <TopBorder>
-                                <Color>Black</Color>
-                                <Style>Solid</Style>
-                                <Width>1pt</Width>
-                              </TopBorder>
-                              <BottomBorder>
-                                <Color>Black</Color>
-                                <Style>Solid</Style>
-                                <Width>1pt</Width>
-                              </BottomBorder>
-                              <LeftBorder>
-                                <Color>Black</Color>
-                                <Style>Solid</Style>
-                                <Width>1pt</Width>
-                              </LeftBorder>
-                              <RightBorder>
-                                <Color>Black</Color>
-                                <Style>Solid</Style>
-                                <Width>1pt</Width>
-                              </RightBorder>
                             </Style>
                           </Image>
                         </CellContents>
@@ -2785,7 +2806,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>="Oferta venta " &amp; Fields!No_Presupuesto.Value</Value>
+                      <Value>=IIf(Fields!EsOferta.Value, "Oferta venta", "Pedido") &amp; " " &amp; Fields!No_Presupuesto.Value</Value>
                       <Style>
                         <FontSize>14pt</FontSize>
                       </Style>
@@ -3082,6 +3103,12 @@ End Function
         <Field Name="AmountIncludingVATFormat">
           <DataField>AmountIncludingVATFormat</DataField>
         </Field>
+        <Field Name="VATPercent">
+          <DataField>VATPercent</DataField>
+        </Field>
+        <Field Name="VATPercentFormat">
+          <DataField>VATPercentFormat</DataField>
+        </Field>
         <Field Name="PrecioTarifa">
           <DataField>PrecioTarifa</DataField>
         </Field>
@@ -3123,6 +3150,12 @@ End Function
         </Field>
         <Field Name="ItemDescription">
           <DataField>ItemDescription</DataField>
+        </Field>
+        <Field Name="ItemMarcaPicture">
+          <DataField>ItemMarcaPicture</DataField>
+        </Field>
+        <Field Name="GLAccountPicture">
+          <DataField>GLAccountPicture</DataField>
         </Field>
         <Field Name="ItemStockDisponible">
           <DataField>ItemStockDisponible</DataField>

@@ -366,6 +366,10 @@ Table 50005 Multitabla
         field(60020; "EDICON Grupo Sonae"; Boolean)
         {
         }
+        field(60021; Picture; MediaSet)
+        {
+            Caption = 'Picture', comment = 'ESP="Imagen"';
+        }
     }
 
     keys

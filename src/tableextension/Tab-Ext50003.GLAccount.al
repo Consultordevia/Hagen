@@ -10,5 +10,9 @@ tableextension 50003 "G/LAccount" extends "G/L Account"
             Caption = 'Advance', comment = 'ESP="Advance"';
             DataClassification = ToBeClassified;
         }
+        field(50651; "Imagen Cuenta"; MediaSet)
+        {
+            Caption = 'Imagen', comment = 'ESP="Imagen"';
+        }
     }
 }
