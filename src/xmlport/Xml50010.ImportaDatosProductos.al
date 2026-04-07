@@ -27,28 +27,7 @@ XmlPort 50010 "Importa Datos Productos"
                 textelement(D2)
                 {
                 }
-                textelement(D3)
-                {
-                }
-                textelement(D4)
-                {
-                }
-                textelement(D5)
-                {
-                }
-                textelement(D6)
-                {
-                }
-                textelement(D7)
-                {
-                }
                 textelement(D8)
-                {
-                }
-                textelement(D9)
-                {
-                }
-                textelement(D10)
                 {
                 }
                 textelement(D11)
@@ -93,19 +72,10 @@ XmlPort 50010 "Importa Datos Productos"
                 textelement(D24)
                 {
                 }
-                textelement(D25)
-                {
-                }
                 textelement(D26)
                 {
                 }
                 textelement(D27)
-                {
-                }
-                textelement(D28)
-                {
-                }
-                textelement(D29)
                 {
                 }
                 textelement(D30)
@@ -202,24 +172,6 @@ XmlPort 50010 "Importa Datos Productos"
                 {
                 }
                 textelement(D61)
-                {
-                }
-                textelement(D62)
-                {
-                }
-                textelement(D63)
-                {
-                }
-                textelement(D64)
-                {
-                }
-                textelement(D65)
-                {
-                }
-                textelement(D66)
-                {
-                }
-                textelement(D67)
                 {
 
                     trigger OnAfterAssignVariable()
@@ -432,6 +384,8 @@ XmlPort 50010 "Importa Datos Productos"
         conta: Integer;
         CASCII: Codeunit "ANSI <-> ASCII converter2";
 
+
+
     local procedure InitializeGlobals()
     var
         DataExchDef: Record "Data Exch. Def";
@@ -533,45 +487,46 @@ XmlPort 50010 "Importa Datos Productos"
 
             end;
 
-            if (D3 <> '') then begin
-                D3DESWEB := D3;
-                if D3DESWEB <> '' then begin
-                    if RecItem.Get(D1) then begin
-                        D3DESWEB := CASCII.Ascii2Ansi(D3DESWEB);
-                        ///RecItem."Descripcion web" := D3DESWEB;
-                        /////RecItem."Imagen Articulo WEB" := 'c:\imagenes\' + D1 + '.jpg';
-                        /////RecItem."Imagen Articulo WEB 2" := 'c:\imagenes\' + D1 + '-2.jpg';
-                        /////RecItem."Imagen Articulo WEB 3" := 'c:\imagenes\' + D1 + '-3.jpg';
-                        /////RecItem."Imagen Articulo WEB 4" := 'c:\imagenes\' + D1 + '-4.jpg';
-                        RecItem.Modify;
-                    end;
-                end;
 
-            end;
-            if (D4 <> '') then begin
-                if RecItem.Get(D1) then begin
-                    RecItem.CodVariante1 := D4;
-                    RecItem.Modify;
-                END;
-            end;
-            if (D5 <> '') then begin
-                if RecItem.Get(D1) then begin
-                    RecItem."Dato Variante1" := D5;
-                    RecItem.Modify;
-                END;
-            end;
-            if (D6 <> '') then begin
-                if RecItem.Get(D1) then begin
-                    RecItem.CodVariante2 := D6;
-                    RecItem.Modify;
-                END;
-            end;
-            if (D7 <> '') then begin
-                if RecItem.Get(D1) then begin
-                    RecItem."Dato Variante2" := D7;
-                    RecItem.Modify;
-                END;
-            end;
+            /////if (D3 <> '') then begin
+            /////D3DESWEB := D3;
+            /////if D3DESWEB <> '' then begin
+            /////if RecItem.Get(D1) then begin
+            /////D3DESWEB := CASCII.Ascii2Ansi(D3DESWEB);
+            ///RecItem."Descripcion web" := D3DESWEB;
+            /////RecItem."Imagen Articulo WEB" := 'c:\imagenes\' + D1 + '.jpg';
+            /////RecItem."Imagen Articulo WEB 2" := 'c:\imagenes\' + D1 + '-2.jpg';
+            /////RecItem."Imagen Articulo WEB 3" := 'c:\imagenes\' + D1 + '-3.jpg';
+            /////RecItem."Imagen Articulo WEB 4" := 'c:\imagenes\' + D1 + '-4.jpg';
+            /////RecItem.Modify;
+            /////end;
+            /////end;
+
+            /////end;
+            /////if (D4 <> '') then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem.CodVariante1 := D4;
+            /////RecItem.Modify;
+            /////END;
+            /////end;
+            /////if (D5 <> '') then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem."Dato Variante1" := D5;
+            /////RecItem.Modify;
+            /////END;
+            /////end;
+            /////if (D6 <> '') then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem.CodVariante2 := D6;
+            /////RecItem.Modify;
+            /////END;
+            /////end;
+            /////if (D7 <> '') then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem."Dato Variante2" := D7;
+            /////RecItem.Modify;
+            /////END;
+            /////end;
 
 
 
@@ -598,32 +553,32 @@ XmlPort 50010 "Importa Datos Productos"
 
 
 
-            if (D9 <> '') then begin
-                D7ENVIARAWEB := D9;
-                if D7ENVIARAWEB = 'S' then begin
-                    if RecItem.Get(D1) then begin
-                        RecItem."Enviar a web" := true;
-                        RecItem."Actualizar WEB" := true;
-                        RecItem.Modify;
-                    end;
-                end;
-                if D7ENVIARAWEB = 'N' then begin
-                    if RecItem.Get(D1) then begin
-                        RecItem."Enviar a web" := false;
-                        RecItem."Actualizar WEB" := false;
-                        RecItem.Modify;
-                    end;
-                end;
+            /////if (D9 <> '') then begin
+            /////D7ENVIARAWEB := D9;
+            /////if D7ENVIARAWEB = 'S' then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem."Enviar a web" := true;
+            /////RecItem."Actualizar WEB" := true;
+            /////RecItem.Modify;
+            /////end;
+            /////end;
+            /////if D7ENVIARAWEB = 'N' then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem."Enviar a web" := false;
+            /////RecItem."Actualizar WEB" := false;
+            /////RecItem.Modify;
+            /////end;
+            /////end;
 
-            end;
+            /////end;
 
 
-            if (D10 <> '') then begin
-                if RecItem.Get(D1) then begin
-                    RecItem.Gama := D10;
-                    RecItem.Modify;
-                end;
-            end;
+            /////if (D10 <> '') then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem.Gama := D10;
+            /////RecItem.Modify;
+            /////end;
+            /////end;
 
 
             if (D11 <> '') then begin
@@ -796,7 +751,8 @@ XmlPort 50010 "Importa Datos Productos"
                 D15EAN := codprod;
                 if D15EAN <> '' then begin
                     if RecItem.Get(D1) then begin
-                        RecItem.Validate(RecItem.ean, D15EAN);
+                        RecItem.Validate(ean, D15EAN);
+                        RecItem.Validate(GTIN, D15EAN);
                         RecItem.Modify;
                     end;
                 end;
@@ -955,23 +911,21 @@ XmlPort 50010 "Importa Datos Productos"
                         end;
                     end;*/
 
-            if (D25 <> '') then begin
-                D21ESTADO := UpperCase(D25);
-
-                if D21ESTADO = 'S' then begin
-                    if RecItem.Get(D1) then begin
-                        RecItem."Estatus Web" := RecItem."Estatus Web"::Activo;
-                        RecItem.Modify;
-                    end;
-                end;
-                if D21ESTADO <> 'S' then begin
-                    if RecItem.Get(D1) then begin
-                        RecItem."Estatus Web" := RecItem."Estatus Web"::Inactivo;
-                        RecItem.Modify;
-                    end;
-                end;
-
-            end;
+            /////if (D25 <> '') then begin
+            /////D21ESTADO := UpperCase(D25);
+            /////if D21ESTADO = 'S' then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem."Estatus Web" := RecItem."Estatus Web"::Activo;
+            /////RecItem.Modify;
+            /////end;
+            /////end;
+            /////if D21ESTADO <> 'S' then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem."Estatus Web" := RecItem."Estatus Web"::Inactivo;
+            /////RecItem.Modify;
+            /////end;
+            /////end;
+            /////end;
 
 
             if (D26 <> '') then begin
@@ -994,24 +948,24 @@ XmlPort 50010 "Importa Datos Productos"
                     end;
                 end;
             end;
-            if (D28 <> '') then begin
-                D24GRIVAPROD := D28;
-                if D24GRIVAPROD <> '' then begin
-                    if RecItem.Get(D1) then begin
-                        RecItem.Level2 := D24GRIVAPROD;
-                        RecItem.Modify;
-                    end;
-                end;
-            end;
-            if (D29 <> '') then begin
-                D24GRIVAPROD := D29;
-                if D24GRIVAPROD <> '' then begin
-                    if RecItem.Get(D1) then begin
-                        RecItem.Level3 := D24GRIVAPROD;
-                        RecItem.Modify;
-                    end;
-                end;
-            end;
+            /////if (D28 <> '') then begin
+            /////D24GRIVAPROD := D28;
+            /////if D24GRIVAPROD <> '' then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem.Level2 := D24GRIVAPROD;
+            /////RecItem.Modify;
+            /////end;
+            /////end;
+            /////end;
+            /////if (D29 <> '') then begin
+            /////D24GRIVAPROD := D29;
+            /////if D24GRIVAPROD <> '' then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem.Level3 := D24GRIVAPROD;
+            /////RecItem.Modify;
+            /////end;
+            /////end;
+            /////end;
 
 
 
@@ -1673,48 +1627,48 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
 
-            if (D61 <> '') then begin
-                if RecItem.Get(D1) then begin
-                    RecItem."Item Category Code" := D61;
-                    RecItem.Modify;
-                end;
-            end;
-            if (D62 <> '') then begin
-                if RecItem.Get(D1) then begin
-                    RecItem.Etiquetas1 := D62;
-                    RecItem.Modify;
-                end;
-            end;
-            if (D63 <> '') then begin
-                if RecItem.Get(D1) then begin
-                    RecItem.Etiquetas2 := D63;
-                    RecItem.Modify;
-                end;
-            end;
-            if (D64 <> '') then begin
-                if RecItem.Get(D1) then begin
-                    RecItem.Etiquetas3 := D64;
-                    RecItem.Modify;
-                end;
-            end;
-            if (D65 <> '') then begin
-                if RecItem.Get(D1) then begin
-                    RecItem.Etiquetas4 := D65;
-                    RecItem.Modify;
-                end;
-            end;
-            if (D66 <> '') then begin
-                if RecItem.Get(D1) then begin
-                    RecItem.Etiquetas5 := D66;
-                    RecItem.Modify;
-                end;
-            end;
-            if (D67 <> '') then begin
-                if RecItem.Get(D1) then begin
-                    RecItem.Etiquetas6 := D67;
-                    RecItem.Modify;
-                end;
-            end;
+            /////if (D61 <> '') then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem."Item Category Code" := D61;
+            /////RecItem.Modify;
+            /////end;
+            /////end;
+            /////if (D62 <> '') then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem.Etiquetas1 := D62;
+            /////RecItem.Modify;
+            /////end;
+            /////end;
+            /////if (D63 <> '') then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem.Etiquetas2 := D63;
+            /////RecItem.Modify;
+            /////end;
+            /////end;
+            /////if (D64 <> '') then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem.Etiquetas3 := D64;
+            /////RecItem.Modify;
+            /////end;
+            /////end;
+            /////if (D65 <> '') then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem.Etiquetas4 := D65;
+            /////RecItem.Modify;
+            /////end;
+            /////end;
+            /////if (D66 <> '') then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem.Etiquetas5 := D66;
+            /////RecItem.Modify;
+            /////end;
+            /////end;
+            /////if (D67 <> '') then begin
+            /////if RecItem.Get(D1) then begin
+            /////RecItem.Etiquetas6 := D67;
+            /////RecItem.Modify;
+            /////end;
+            /////end;
 
 
             /*

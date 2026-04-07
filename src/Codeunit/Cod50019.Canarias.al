@@ -37,6 +37,16 @@ Codeunit 50019 Canarias
                     Rec36."Your Reference" := Rec110."No.";
                     Rec36."External Document No." := Rec110."No.";
                     Rec36."Nº expedición" := Rec110."Nº expedición";
+                    Rec36."Ship-to Address" := Rec36."Ship-to Address";
+                    Rec36."Ship-to Address 2" := Rec36."Ship-to Address 2";
+                    Rec36."Ship-to City" := Rec36."Ship-to City";
+                    Rec36."Ship-to Code" := Rec36."Ship-to Code";
+                    Rec36."Ship-to Contact" := Rec36."Ship-to Contact";
+                    Rec36."Ship-to Country/Region Code" := Rec36."Ship-to Country/Region Code";
+                    Rec36."Ship-to County" := Rec36."Ship-to County";
+                    Rec36."Ship-to Name" := Rec36."Ship-to Name";
+                    Rec36."Ship-to Name 2" := Rec36."Ship-to Name 2";
+                    Rec36."Ship-to Post Code" := Rec36."Ship-to Post Code";
                     Rec36.Insert(true);
                     Rec36."Posting No. Series" := 'V-FAC+';
                     Rec36.Modify(true);

@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 ﻿{"Added":[],"Modified":[{"Id":50931,"Kind":13,"Name":"Presupuesto Venta Productos","Namespace":""},{"Kind":106,"Name":"RequestOptionsPage","Namespace":""}],"Removed":[]}
+=======
+﻿{"Added":[],"Modified":[{"Kind":106,"Name":"RequestOptionsPage","Namespace":""},{"Id":50001,"Kind":16,"Name":"Salespersons/Purchasers","Namespace":""},{"Id":50010,"Kind":15,"Name":"Importa Datos Productos","Namespace":""},{"Id":50092,"Kind":11,"Name":"ReCalculo PMP DIARIO","Namespace":""},{"Id":50019,"Kind":11,"Name":"Canarias","Namespace":""},{"Id":50031,"Kind":11,"Name":"Clientes canarias","Namespace":""}],"Removed":[]}
+>>>>>>> 34c61ab3300af10e69d89b8b9d6c9883971d8f11
