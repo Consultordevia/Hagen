@@ -54,6 +54,8 @@ Report 50931 "Presupuesto Venta Productos"
 
                 // Datos de la línea de presupuesto
                 column(LineNo; "Line No.") { }
+                column(EsArticulo; Type = Type::Item) { }
+                column(EsCuentaContable; Type = Type::"G/L Account") { }
                 column(Type; Type) { }
                 column(ItemNo; "No.") { }
                 column(Description; Description) { }
@@ -131,7 +133,6 @@ Report 50931 "Presupuesto Venta Productos"
                             if RecItem.Marca <> '' then
                                 if RecMultitabla.Get(RecMultitabla.Tabla::Marcas, RecItem.Marca) then begin
                                     ItemMarca := RecMultitabla.Descripcion;
-                                    RecMultitabla.CalcFields(Picture);
                                     GetMarcaPicture(RecMultitabla);
                                 end;
                             ItemPVP := RecItem."PVP-Web";
@@ -284,15 +285,20 @@ Report 50931 "Presupuesto Venta Productos"
 
     local procedure GetGLAccountPicture(var GLAccount: Record "G/L Account")
     var
+        TenantMedia: Record "Tenant Media";
         InStr: InStream;
         Base64Convert: Codeunit "Base64 Convert";
     begin
         GLAccountPictureBase64 := '';
-        GLAccount.CalcFields(Picture);
-        if not GLAccount.Picture.HasValue() then
+        if GLAccount."Imagen Cuenta".Count = 0 then
             exit;
-        GLAccount.Picture.CreateInStream(InStr);
-        GLAccountPictureBase64 := Base64Convert.ToBase64(InStr);
+        if TenantMedia.Get(GLAccount."Imagen Cuenta".Item(1)) then begin
+            TenantMedia.CalcFields(Content);
+            if TenantMedia.Content.HasValue() then begin
+                TenantMedia.Content.CreateInStream(InStr);
+                GLAccountPictureBase64 := Base64Convert.ToBase64(InStr);
+            end;
+        end;
     end;
 
     local procedure GetMarcaPicture(var Multitabla: Record Multitabla)

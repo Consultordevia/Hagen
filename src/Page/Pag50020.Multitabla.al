@@ -457,6 +457,11 @@ page 50020 Multitabla
                 {
                     ToolTip = 'Specifies the value of the mas de 18 meses field.', Comment = '%';
                 }
+                field(Picture; Rec.Picture)
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the image associated with this entry.', Comment = 'ESP="Imagen asociada a este registro"';
+                }
             }
         }
     }
