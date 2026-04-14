@@ -104,6 +104,9 @@ Codeunit 50085 "Importacion NTL"
         numeroc: Code[20];
         ADAIA: RECORD adaia;
 
-
+    [IntegrationEvent(false, false)]
+    procedure OnBeforeActualizarSSHNTL(var SalesShipmentHeader: Record "Sales Shipment Header")
+    begin
+    end;
 }
 

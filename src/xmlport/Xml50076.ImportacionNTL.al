@@ -87,6 +87,7 @@ XmlPort 50076 "Importacion NTL"
         WrongHeaderErr: label 'The imported file contains unexpected formatting. One or more headers are incorrect.';
         DataExchLineDefCode: Code[20];
         SalesShipmentHeader: Record "Sales Shipment Header";
+        ImportacionNTLCU: Codeunit "Importacion NTL";
         CODPROD: Code[20];
         CODENVIO: Code[20];
         valorpbp: Decimal;
@@ -325,7 +326,8 @@ XmlPort 50076 "Importacion NTL"
                     SalesShipmentHeader."Hora entrega" := choras;
                     SalesShipmentHeader."Total horas" := totalhoras;
                     SalesShipmentHeader."Numero segumiento" := D2;
-                    SalesShipmentHeader.Modify;
+                    ImportacionNTLCU.OnBeforeActualizarSSHNTL(SalesShipmentHeader);
+                    SalesShipmentHeader.Modify(false);
                 until SalesShipmentHeader.Next = 0;
 
             SalesShipmentHeader.Reset;
@@ -374,7 +376,8 @@ XmlPort 50076 "Importacion NTL"
                     SalesShipmentHeader."Hora entrega" := choras;
                     SalesShipmentHeader."Total horas" := totalhoras;
                     SalesShipmentHeader."Numero segumiento" := D2;
-                    SalesShipmentHeader.Modify;
+                    ImportacionNTLCU.OnBeforeActualizarSSHNTL(SalesShipmentHeader);
+                    SalesShipmentHeader.Modify(false);
                 until SalesShipmentHeader.Next = 0;
             SalesShipmentHeader.Reset;
             SalesShipmentHeader.SetCurrentkey("Nº expedición dropshp");
@@ -423,7 +426,8 @@ XmlPort 50076 "Importacion NTL"
                     SalesShipmentHeader."Hora entrega" := choras;
                     SalesShipmentHeader."Total horas" := totalhoras;
                     SalesShipmentHeader."Numero segumiento" := D2;
-                    SalesShipmentHeader.Modify;
+                    ImportacionNTLCU.OnBeforeActualizarSSHNTL(SalesShipmentHeader);
+                    SalesShipmentHeader.Modify(false);
                 until SalesShipmentHeader.Next = 0;
             Commit;
         end;

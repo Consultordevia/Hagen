@@ -22,334 +22,6 @@
       <rd:DataSourceID>cca912e7-4d02-4782-93c6-aebc5918117d</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="EsOferta">
-          <DataField>EsOferta</DataField>
-        </Field>
-        <Field Name="Document_Type">
-          <DataField>Document_Type</DataField>
-        </Field>
-        <Field Name="No_Presupuesto">
-          <DataField>No_Presupuesto</DataField>
-        </Field>
-        <Field Name="SellToCustomerNo">
-          <DataField>SellToCustomerNo</DataField>
-        </Field>
-        <Field Name="SellToCustomerName">
-          <DataField>SellToCustomerName</DataField>
-        </Field>
-        <Field Name="SellToAddress">
-          <DataField>SellToAddress</DataField>
-        </Field>
-        <Field Name="SellToAddress2">
-          <DataField>SellToAddress2</DataField>
-        </Field>
-        <Field Name="SellToCity">
-          <DataField>SellToCity</DataField>
-        </Field>
-        <Field Name="SellToPostCode">
-          <DataField>SellToPostCode</DataField>
-        </Field>
-        <Field Name="SellToCounty">
-          <DataField>SellToCounty</DataField>
-        </Field>
-        <Field Name="DocumentDate">
-          <DataField>DocumentDate</DataField>
-        </Field>
-        <Field Name="DueDate">
-          <DataField>DueDate</DataField>
-        </Field>
-        <Field Name="ExternalDocumentNo">
-          <DataField>ExternalDocumentNo</DataField>
-        </Field>
-        <Field Name="YourReference">
-          <DataField>YourReference</DataField>
-        </Field>
-        <Field Name="SalespersonCode">
-          <DataField>SalespersonCode</DataField>
-        </Field>
-        <Field Name="CurrencyCode">
-          <DataField>CurrencyCode</DataField>
-        </Field>
-        <Field Name="ShipToName">
-          <DataField>ShipToName</DataField>
-        </Field>
-        <Field Name="ShipToAddress">
-          <DataField>ShipToAddress</DataField>
-        </Field>
-        <Field Name="ShipToAddress2">
-          <DataField>ShipToAddress2</DataField>
-        </Field>
-        <Field Name="ShipToCity">
-          <DataField>ShipToCity</DataField>
-        </Field>
-        <Field Name="ShipToPostCode">
-          <DataField>ShipToPostCode</DataField>
-        </Field>
-        <Field Name="CompanyName">
-          <DataField>CompanyName</DataField>
-        </Field>
-        <Field Name="CompanyAddress">
-          <DataField>CompanyAddress</DataField>
-        </Field>
-        <Field Name="CompanyPostCode">
-          <DataField>CompanyPostCode</DataField>
-        </Field>
-        <Field Name="CompanyCity">
-          <DataField>CompanyCity</DataField>
-        </Field>
-        <Field Name="CompanyCounty">
-          <DataField>CompanyCounty</DataField>
-        </Field>
-        <Field Name="CompanyLogo">
-          <DataField>CompanyLogo</DataField>
-        </Field>
-        <Field Name="SalespersonName">
-          <DataField>SalespersonName</DataField>
-        </Field>
-        <Field Name="PaymentTermsDesc">
-          <DataField>PaymentTermsDesc</DataField>
-        </Field>
-        <Field Name="ShipmentMethodDesc">
-          <DataField>ShipmentMethodDesc</DataField>
-        </Field>
-        <Field Name="LineNo">
-          <DataField>LineNo</DataField>
-        </Field>
-        <Field Name="EsArticulo">
-          <DataField>EsArticulo</DataField>
-        </Field>
-        <Field Name="EsCuentaContable">
-          <DataField>EsCuentaContable</DataField>
-        </Field>
-        <Field Name="Type">
-          <DataField>Type</DataField>
-        </Field>
-        <Field Name="ItemNo">
-          <DataField>ItemNo</DataField>
-        </Field>
-        <Field Name="Description">
-          <DataField>Description</DataField>
-        </Field>
-        <Field Name="Quantity">
-          <DataField>Quantity</DataField>
-        </Field>
-        <Field Name="QuantityFormat">
-          <DataField>QuantityFormat</DataField>
-        </Field>
-        <Field Name="UnitOfMeasureCode">
-          <DataField>UnitOfMeasureCode</DataField>
-        </Field>
-        <Field Name="UnitPrice">
-          <DataField>UnitPrice</DataField>
-        </Field>
-        <Field Name="UnitPriceFormat">
-          <DataField>UnitPriceFormat</DataField>
-        </Field>
-        <Field Name="LineDiscountPercent">
-          <DataField>LineDiscountPercent</DataField>
-        </Field>
-        <Field Name="LineDiscountPercentFormat">
-          <DataField>LineDiscountPercentFormat</DataField>
-        </Field>
-        <Field Name="LineAmount">
-          <DataField>LineAmount</DataField>
-        </Field>
-        <Field Name="LineAmountFormat">
-          <DataField>LineAmountFormat</DataField>
-        </Field>
-        <Field Name="Amount">
-          <DataField>Amount</DataField>
-        </Field>
-        <Field Name="AmountFormat">
-          <DataField>AmountFormat</DataField>
-        </Field>
-        <Field Name="AmountIncludingVAT">
-          <DataField>AmountIncludingVAT</DataField>
-        </Field>
-        <Field Name="AmountIncludingVATFormat">
-          <DataField>AmountIncludingVATFormat</DataField>
-        </Field>
-        <Field Name="VATPercent">
-          <DataField>VATPercent</DataField>
-        </Field>
-        <Field Name="VATPercentFormat">
-          <DataField>VATPercentFormat</DataField>
-        </Field>
-        <Field Name="PrecioTarifa">
-          <DataField>PrecioTarifa</DataField>
-        </Field>
-        <Field Name="PrecioTarifaFormat">
-          <DataField>PrecioTarifaFormat</DataField>
-        </Field>
-        <Field Name="ItemEAN">
-          <DataField>ItemEAN</DataField>
-        </Field>
-        <Field Name="ItemMarca">
-          <DataField>ItemMarca</DataField>
-        </Field>
-        <Field Name="ItemPVP">
-          <DataField>ItemPVP</DataField>
-        </Field>
-        <Field Name="ItemPVPFormat">
-          <DataField>ItemPVPFormat</DataField>
-        </Field>
-        <Field Name="ItemCompraMin">
-          <DataField>ItemCompraMin</DataField>
-        </Field>
-        <Field Name="ItemCompraMinFormat">
-          <DataField>ItemCompraMinFormat</DataField>
-        </Field>
-        <Field Name="ItemPrecioFinal">
-          <DataField>ItemPrecioFinal</DataField>
-        </Field>
-        <Field Name="ItemPrecioFinalFormat">
-          <DataField>ItemPrecioFinalFormat</DataField>
-        </Field>
-        <Field Name="ItemCountryOfOrigin">
-          <DataField>ItemCountryOfOrigin</DataField>
-        </Field>
-        <Field Name="ItemTariffNo">
-          <DataField>ItemTariffNo</DataField>
-        </Field>
-        <Field Name="ItemPicture">
-          <DataField>ItemPicture</DataField>
-        </Field>
-        <Field Name="ItemDescription">
-          <DataField>ItemDescription</DataField>
-        </Field>
-        <Field Name="ItemMarcaPicture">
-          <DataField>ItemMarcaPicture</DataField>
-        </Field>
-        <Field Name="GLAccountPicture">
-          <DataField>GLAccountPicture</DataField>
-        </Field>
-        <Field Name="ItemStockDisponible">
-          <DataField>ItemStockDisponible</DataField>
-        </Field>
-        <Field Name="ItemStockDisponibleFormat">
-          <DataField>ItemStockDisponibleFormat</DataField>
-        </Field>
-        <Field Name="ItemProximaLlegada">
-          <DataField>ItemProximaLlegada</DataField>
-        </Field>
-        <Field Name="ItemAlto">
-          <DataField>ItemAlto</DataField>
-        </Field>
-        <Field Name="ItemAltoFormat">
-          <DataField>ItemAltoFormat</DataField>
-        </Field>
-        <Field Name="ItemAncho">
-          <DataField>ItemAncho</DataField>
-        </Field>
-        <Field Name="ItemAnchoFormat">
-          <DataField>ItemAnchoFormat</DataField>
-        </Field>
-        <Field Name="ItemLargo">
-          <DataField>ItemLargo</DataField>
-        </Field>
-        <Field Name="ItemLargoFormat">
-          <DataField>ItemLargoFormat</DataField>
-        </Field>
-        <Field Name="ItemPeso">
-          <DataField>ItemPeso</DataField>
-        </Field>
-        <Field Name="ItemPesoFormat">
-          <DataField>ItemPesoFormat</DataField>
-        </Field>
-        <Field Name="ItemVolumen">
-          <DataField>ItemVolumen</DataField>
-        </Field>
-        <Field Name="ItemVolumenFormat">
-          <DataField>ItemVolumenFormat</DataField>
-        </Field>
-        <Field Name="ItemEanInner">
-          <DataField>ItemEanInner</DataField>
-        </Field>
-        <Field Name="ItemCantidadInner">
-          <DataField>ItemCantidadInner</DataField>
-        </Field>
-        <Field Name="ItemCantidadInnerFormat">
-          <DataField>ItemCantidadInnerFormat</DataField>
-        </Field>
-        <Field Name="ItemAltoInner">
-          <DataField>ItemAltoInner</DataField>
-        </Field>
-        <Field Name="ItemAltoInnerFormat">
-          <DataField>ItemAltoInnerFormat</DataField>
-        </Field>
-        <Field Name="ItemAnchoInner">
-          <DataField>ItemAnchoInner</DataField>
-        </Field>
-        <Field Name="ItemAnchoInnerFormat">
-          <DataField>ItemAnchoInnerFormat</DataField>
-        </Field>
-        <Field Name="ItemLargoInner">
-          <DataField>ItemLargoInner</DataField>
-        </Field>
-        <Field Name="ItemLargoInnerFormat">
-          <DataField>ItemLargoInnerFormat</DataField>
-        </Field>
-        <Field Name="ItemPesoInner">
-          <DataField>ItemPesoInner</DataField>
-        </Field>
-        <Field Name="ItemPesoInnerFormat">
-          <DataField>ItemPesoInnerFormat</DataField>
-        </Field>
-        <Field Name="ItemVolumenInner">
-          <DataField>ItemVolumenInner</DataField>
-        </Field>
-        <Field Name="ItemVolumenInnerFormat">
-          <DataField>ItemVolumenInnerFormat</DataField>
-        </Field>
-        <Field Name="ItemEanMaster">
-          <DataField>ItemEanMaster</DataField>
-        </Field>
-        <Field Name="ItemCantidadMaster">
-          <DataField>ItemCantidadMaster</DataField>
-        </Field>
-        <Field Name="ItemCantidadMasterFormat">
-          <DataField>ItemCantidadMasterFormat</DataField>
-        </Field>
-        <Field Name="ItemAltoMaster">
-          <DataField>ItemAltoMaster</DataField>
-        </Field>
-        <Field Name="ItemAltoMasterFormat">
-          <DataField>ItemAltoMasterFormat</DataField>
-        </Field>
-        <Field Name="ItemAnchoMaster">
-          <DataField>ItemAnchoMaster</DataField>
-        </Field>
-        <Field Name="ItemAnchoMasterFormat">
-          <DataField>ItemAnchoMasterFormat</DataField>
-        </Field>
-        <Field Name="ItemLargoMaster">
-          <DataField>ItemLargoMaster</DataField>
-        </Field>
-        <Field Name="ItemLargoMasterFormat">
-          <DataField>ItemLargoMasterFormat</DataField>
-        </Field>
-        <Field Name="ItemPesoMaster">
-          <DataField>ItemPesoMaster</DataField>
-        </Field>
-        <Field Name="ItemPesoMasterFormat">
-          <DataField>ItemPesoMasterFormat</DataField>
-        </Field>
-        <Field Name="ItemVolumenMaster">
-          <DataField>ItemVolumenMaster</DataField>
-        </Field>
-        <Field Name="ItemVolumenMasterFormat">
-          <DataField>ItemVolumenMasterFormat</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -1869,7 +1541,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>="Ancho: " &amp; Fields!ItemAncho.Value</Value>
+                                  <Value>="Ancho: " &amp; Format(Fields!ItemAncho.Value, "F2")</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1976,7 +1648,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>="Largo: " &amp; Fields!ItemLargo.Value</Value>
+                                  <Value>="Largo: " &amp; Format(Fields!ItemLargo.Value, "F2")</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -3907,12 +3579,6 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
   <Code>Public Function BlankZero(ByVal Value As Decimal)
     if Value = 0 then
         Return ""
@@ -3952,4 +3618,332 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="EsOferta">
+          <DataField>EsOferta</DataField>
+        </Field>
+        <Field Name="Document_Type">
+          <DataField>Document_Type</DataField>
+        </Field>
+        <Field Name="No_Presupuesto">
+          <DataField>No_Presupuesto</DataField>
+        </Field>
+        <Field Name="SellToCustomerNo">
+          <DataField>SellToCustomerNo</DataField>
+        </Field>
+        <Field Name="SellToCustomerName">
+          <DataField>SellToCustomerName</DataField>
+        </Field>
+        <Field Name="SellToAddress">
+          <DataField>SellToAddress</DataField>
+        </Field>
+        <Field Name="SellToAddress2">
+          <DataField>SellToAddress2</DataField>
+        </Field>
+        <Field Name="SellToCity">
+          <DataField>SellToCity</DataField>
+        </Field>
+        <Field Name="SellToPostCode">
+          <DataField>SellToPostCode</DataField>
+        </Field>
+        <Field Name="SellToCounty">
+          <DataField>SellToCounty</DataField>
+        </Field>
+        <Field Name="DocumentDate">
+          <DataField>DocumentDate</DataField>
+        </Field>
+        <Field Name="DueDate">
+          <DataField>DueDate</DataField>
+        </Field>
+        <Field Name="ExternalDocumentNo">
+          <DataField>ExternalDocumentNo</DataField>
+        </Field>
+        <Field Name="YourReference">
+          <DataField>YourReference</DataField>
+        </Field>
+        <Field Name="SalespersonCode">
+          <DataField>SalespersonCode</DataField>
+        </Field>
+        <Field Name="CurrencyCode">
+          <DataField>CurrencyCode</DataField>
+        </Field>
+        <Field Name="ShipToName">
+          <DataField>ShipToName</DataField>
+        </Field>
+        <Field Name="ShipToAddress">
+          <DataField>ShipToAddress</DataField>
+        </Field>
+        <Field Name="ShipToAddress2">
+          <DataField>ShipToAddress2</DataField>
+        </Field>
+        <Field Name="ShipToCity">
+          <DataField>ShipToCity</DataField>
+        </Field>
+        <Field Name="ShipToPostCode">
+          <DataField>ShipToPostCode</DataField>
+        </Field>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
+        </Field>
+        <Field Name="CompanyAddress">
+          <DataField>CompanyAddress</DataField>
+        </Field>
+        <Field Name="CompanyPostCode">
+          <DataField>CompanyPostCode</DataField>
+        </Field>
+        <Field Name="CompanyCity">
+          <DataField>CompanyCity</DataField>
+        </Field>
+        <Field Name="CompanyCounty">
+          <DataField>CompanyCounty</DataField>
+        </Field>
+        <Field Name="CompanyLogo">
+          <DataField>CompanyLogo</DataField>
+        </Field>
+        <Field Name="SalespersonName">
+          <DataField>SalespersonName</DataField>
+        </Field>
+        <Field Name="PaymentTermsDesc">
+          <DataField>PaymentTermsDesc</DataField>
+        </Field>
+        <Field Name="ShipmentMethodDesc">
+          <DataField>ShipmentMethodDesc</DataField>
+        </Field>
+        <Field Name="LineNo">
+          <DataField>LineNo</DataField>
+        </Field>
+        <Field Name="EsArticulo">
+          <DataField>EsArticulo</DataField>
+        </Field>
+        <Field Name="EsCuentaContable">
+          <DataField>EsCuentaContable</DataField>
+        </Field>
+        <Field Name="Type">
+          <DataField>Type</DataField>
+        </Field>
+        <Field Name="ItemNo">
+          <DataField>ItemNo</DataField>
+        </Field>
+        <Field Name="Description">
+          <DataField>Description</DataField>
+        </Field>
+        <Field Name="Quantity">
+          <DataField>Quantity</DataField>
+        </Field>
+        <Field Name="QuantityFormat">
+          <DataField>QuantityFormat</DataField>
+        </Field>
+        <Field Name="UnitOfMeasureCode">
+          <DataField>UnitOfMeasureCode</DataField>
+        </Field>
+        <Field Name="UnitPrice">
+          <DataField>UnitPrice</DataField>
+        </Field>
+        <Field Name="UnitPriceFormat">
+          <DataField>UnitPriceFormat</DataField>
+        </Field>
+        <Field Name="LineDiscountPercent">
+          <DataField>LineDiscountPercent</DataField>
+        </Field>
+        <Field Name="LineDiscountPercentFormat">
+          <DataField>LineDiscountPercentFormat</DataField>
+        </Field>
+        <Field Name="LineAmount">
+          <DataField>LineAmount</DataField>
+        </Field>
+        <Field Name="LineAmountFormat">
+          <DataField>LineAmountFormat</DataField>
+        </Field>
+        <Field Name="Amount">
+          <DataField>Amount</DataField>
+        </Field>
+        <Field Name="AmountFormat">
+          <DataField>AmountFormat</DataField>
+        </Field>
+        <Field Name="AmountIncludingVAT">
+          <DataField>AmountIncludingVAT</DataField>
+        </Field>
+        <Field Name="AmountIncludingVATFormat">
+          <DataField>AmountIncludingVATFormat</DataField>
+        </Field>
+        <Field Name="VATPercent">
+          <DataField>VATPercent</DataField>
+        </Field>
+        <Field Name="VATPercentFormat">
+          <DataField>VATPercentFormat</DataField>
+        </Field>
+        <Field Name="PrecioTarifa">
+          <DataField>PrecioTarifa</DataField>
+        </Field>
+        <Field Name="PrecioTarifaFormat">
+          <DataField>PrecioTarifaFormat</DataField>
+        </Field>
+        <Field Name="ItemEAN">
+          <DataField>ItemEAN</DataField>
+        </Field>
+        <Field Name="ItemMarca">
+          <DataField>ItemMarca</DataField>
+        </Field>
+        <Field Name="ItemPVP">
+          <DataField>ItemPVP</DataField>
+        </Field>
+        <Field Name="ItemPVPFormat">
+          <DataField>ItemPVPFormat</DataField>
+        </Field>
+        <Field Name="ItemCompraMin">
+          <DataField>ItemCompraMin</DataField>
+        </Field>
+        <Field Name="ItemCompraMinFormat">
+          <DataField>ItemCompraMinFormat</DataField>
+        </Field>
+        <Field Name="ItemPrecioFinal">
+          <DataField>ItemPrecioFinal</DataField>
+        </Field>
+        <Field Name="ItemPrecioFinalFormat">
+          <DataField>ItemPrecioFinalFormat</DataField>
+        </Field>
+        <Field Name="ItemCountryOfOrigin">
+          <DataField>ItemCountryOfOrigin</DataField>
+        </Field>
+        <Field Name="ItemTariffNo">
+          <DataField>ItemTariffNo</DataField>
+        </Field>
+        <Field Name="ItemPicture">
+          <DataField>ItemPicture</DataField>
+        </Field>
+        <Field Name="ItemDescription">
+          <DataField>ItemDescription</DataField>
+        </Field>
+        <Field Name="ItemMarcaPicture">
+          <DataField>ItemMarcaPicture</DataField>
+        </Field>
+        <Field Name="GLAccountPicture">
+          <DataField>GLAccountPicture</DataField>
+        </Field>
+        <Field Name="ItemStockDisponible">
+          <DataField>ItemStockDisponible</DataField>
+        </Field>
+        <Field Name="ItemStockDisponibleFormat">
+          <DataField>ItemStockDisponibleFormat</DataField>
+        </Field>
+        <Field Name="ItemProximaLlegada">
+          <DataField>ItemProximaLlegada</DataField>
+        </Field>
+        <Field Name="ItemAlto">
+          <DataField>ItemAlto</DataField>
+        </Field>
+        <Field Name="ItemAltoFormat">
+          <DataField>ItemAltoFormat</DataField>
+        </Field>
+        <Field Name="ItemAncho">
+          <DataField>ItemAncho</DataField>
+        </Field>
+        <Field Name="ItemAnchoFormat">
+          <DataField>ItemAnchoFormat</DataField>
+        </Field>
+        <Field Name="ItemLargo">
+          <DataField>ItemLargo</DataField>
+        </Field>
+        <Field Name="ItemLargoFormat">
+          <DataField>ItemLargoFormat</DataField>
+        </Field>
+        <Field Name="ItemPeso">
+          <DataField>ItemPeso</DataField>
+        </Field>
+        <Field Name="ItemPesoFormat">
+          <DataField>ItemPesoFormat</DataField>
+        </Field>
+        <Field Name="ItemVolumen">
+          <DataField>ItemVolumen</DataField>
+        </Field>
+        <Field Name="ItemVolumenFormat">
+          <DataField>ItemVolumenFormat</DataField>
+        </Field>
+        <Field Name="ItemEanInner">
+          <DataField>ItemEanInner</DataField>
+        </Field>
+        <Field Name="ItemCantidadInner">
+          <DataField>ItemCantidadInner</DataField>
+        </Field>
+        <Field Name="ItemCantidadInnerFormat">
+          <DataField>ItemCantidadInnerFormat</DataField>
+        </Field>
+        <Field Name="ItemAltoInner">
+          <DataField>ItemAltoInner</DataField>
+        </Field>
+        <Field Name="ItemAltoInnerFormat">
+          <DataField>ItemAltoInnerFormat</DataField>
+        </Field>
+        <Field Name="ItemAnchoInner">
+          <DataField>ItemAnchoInner</DataField>
+        </Field>
+        <Field Name="ItemAnchoInnerFormat">
+          <DataField>ItemAnchoInnerFormat</DataField>
+        </Field>
+        <Field Name="ItemLargoInner">
+          <DataField>ItemLargoInner</DataField>
+        </Field>
+        <Field Name="ItemLargoInnerFormat">
+          <DataField>ItemLargoInnerFormat</DataField>
+        </Field>
+        <Field Name="ItemPesoInner">
+          <DataField>ItemPesoInner</DataField>
+        </Field>
+        <Field Name="ItemPesoInnerFormat">
+          <DataField>ItemPesoInnerFormat</DataField>
+        </Field>
+        <Field Name="ItemVolumenInner">
+          <DataField>ItemVolumenInner</DataField>
+        </Field>
+        <Field Name="ItemVolumenInnerFormat">
+          <DataField>ItemVolumenInnerFormat</DataField>
+        </Field>
+        <Field Name="ItemEanMaster">
+          <DataField>ItemEanMaster</DataField>
+        </Field>
+        <Field Name="ItemCantidadMaster">
+          <DataField>ItemCantidadMaster</DataField>
+        </Field>
+        <Field Name="ItemCantidadMasterFormat">
+          <DataField>ItemCantidadMasterFormat</DataField>
+        </Field>
+        <Field Name="ItemAltoMaster">
+          <DataField>ItemAltoMaster</DataField>
+        </Field>
+        <Field Name="ItemAltoMasterFormat">
+          <DataField>ItemAltoMasterFormat</DataField>
+        </Field>
+        <Field Name="ItemAnchoMaster">
+          <DataField>ItemAnchoMaster</DataField>
+        </Field>
+        <Field Name="ItemAnchoMasterFormat">
+          <DataField>ItemAnchoMasterFormat</DataField>
+        </Field>
+        <Field Name="ItemLargoMaster">
+          <DataField>ItemLargoMaster</DataField>
+        </Field>
+        <Field Name="ItemLargoMasterFormat">
+          <DataField>ItemLargoMasterFormat</DataField>
+        </Field>
+        <Field Name="ItemPesoMaster">
+          <DataField>ItemPesoMaster</DataField>
+        </Field>
+        <Field Name="ItemPesoMasterFormat">
+          <DataField>ItemPesoMasterFormat</DataField>
+        </Field>
+        <Field Name="ItemVolumenMaster">
+          <DataField>ItemVolumenMaster</DataField>
+        </Field>
+        <Field Name="ItemVolumenMasterFormat">
+          <DataField>ItemVolumenMasterFormat</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>
