@@ -72,6 +72,7 @@ pageextension 50000 "Item Card" extends "Item Card"
                 field("Fecha última modificación"; Rec."Fecha última modificación") { ApplicationArea = All; }
                 field("Acumu. A,B,C"; Rec."Acumu. A,B,C") { ApplicationArea = All; }
                 field("Clase logistica"; Rec."Clase logistica") { ApplicationArea = All; }
+                field("Transportista artículo"; Rec."Transportista artículo") { ApplicationArea = All; }
                 field("Envíos (cdad.)"; Rec."Envíos (cdad.)") { ApplicationArea = All; }
                 field("Ajustes (cdad.)"; Rec."Ajustes (cdad.)") { ApplicationArea = All; }
                 field("Pro.Ped.Compra (cdad.)"; Rec."Pro.Ped.Compra (cdad.)") { ApplicationArea = All; }
@@ -211,6 +212,7 @@ pageextension 50000 "Item Card" extends "Item Card"
             }
             group(Hagen_Producto)
             {
+                field("No visualizar en presupuesto"; Rec."No visualizar en presupuesto") { ApplicationArea = All; }
                 field("ean"; Rec."ean") { ApplicationArea = All; }
                 field("Estado Producto"; Rec."Estado Producto") { ApplicationArea = All; }
                 field("Marca"; Rec."Marca") { ApplicationArea = All; }

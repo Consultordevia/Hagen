@@ -972,9 +972,6 @@ tableextension 50115 SalesLine extends "Sales Line"
         "Fecha alta" := Today;
         "Hora alta" := Time;
 
-
-
-
         if ("Document Type" = 1) or ("Document Type" = 0) then begin
             SalesHeader.Get("Document Type", "Document No.");
             "Shortcut Dimension 1 Code" := SalesHeader."Salesperson Code";

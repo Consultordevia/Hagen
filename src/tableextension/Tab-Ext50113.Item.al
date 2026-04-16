@@ -1465,6 +1465,18 @@ tableextension 50113 Item extends Item
         field(50567; "Ubicacion picking"; code[20]) { }
         field(50900; FechaHoraModificacionWeb; DateTime) { }
 
+        field(50901; "Transportista artículo"; Code[10])
+        {
+            Caption = 'Transportista artículo';
+            TableRelation = "Shipping Agent";
+        }
+
+        field(50902; "No visualizar en presupuesto"; Boolean)
+        {
+            Caption = 'No visualizar en presupuesto';
+            DataClassification = CustomerContent;
+        }
+
     }
 
     keys

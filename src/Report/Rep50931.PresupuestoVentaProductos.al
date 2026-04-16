@@ -123,6 +123,8 @@ Report 50931 "Presupuesto Venta Productos"
 
                     if (Type = Type::Item) and ("No." <> '') then begin
                         if RecItem.Get("No.") then begin
+                            if RecItem."No visualizar en presupuesto" then
+                                CurrReport.Skip();
                             RecItem.CalcFields("Cantidad inner", "Cantidad master", "EAN INNER", "EAN MASTER", Inventory, "Fecha proxima recepción conten");
 
                             // Imagen del producto
