@@ -1476,6 +1476,32 @@ tableextension 50113 Item extends Item
             Caption = 'No visualizar en presupuesto';
             DataClassification = CustomerContent;
         }
+        field(50903; "Codigo arancelario Canarias"; Code[20])
+        {
+            Caption = 'Codigo arancelario Canarias.';
+            TableRelation = "Tariff Number";
+            ValidateTableRelation = false;
+
+            trigger OnValidate()
+            var
+                TariffNumber: Record "Tariff Number";
+            begin
+                if "Codigo arancelario Canarias" = '' then
+                    exit;
+
+                if (not TariffNumber.WritePermission) or
+                   (not TariffNumber.ReadPermission)
+                then
+                    exit;
+
+                if TariffNumber.Get("Codigo arancelario Canarias") then
+                    exit;
+
+                TariffNumber.Init();
+                TariffNumber."No." := "Codigo arancelario Canarias";
+                TariffNumber.Insert();
+            end;
+        }
 
     }
 

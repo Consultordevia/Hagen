@@ -139,6 +139,8 @@ pageextension 50020 "Item List" extends "Item List"
 
             /////field(subido;Rec.subido) { ApplicationArea = All; }
 
+
+            field("Codigo arancelario Canarias"; Rec."Codigo arancelario Canarias") { ApplicationArea = All; }
             field("Clasificación Comercial"; Rec."Clasificación Comercial") { ApplicationArea = All; }
             field("Ubicacion picking"; Rec."Ubicacion picking") { ApplicationArea = All; }
             field("PVP-Web"; Rec."PVP-Web") { ApplicationArea = All; }
