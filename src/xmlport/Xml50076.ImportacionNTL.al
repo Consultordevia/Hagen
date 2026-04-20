@@ -279,10 +279,10 @@ XmlPort 50076 "Importacion NTL"
 
         ///MESSAGE('%1',D3);
 
-        if D1 <> '' then begin
+        if D2 <> '' then begin
             SalesShipmentHeader.Reset;
             SalesShipmentHeader.SetCurrentkey(ASN);
-            SalesShipmentHeader.SetRange(ASN, D1);
+            SalesShipmentHeader.SetRange(ASN, D2);
             if SalesShipmentHeader.FindFirst then
                 repeat
                     fecha2 := SalesShipmentHeader."Posting Date";
@@ -332,7 +332,7 @@ XmlPort 50076 "Importacion NTL"
 
             SalesShipmentHeader.Reset;
             SalesShipmentHeader.SetCurrentkey("Nº expedición");
-            SalesShipmentHeader.SetRange("Nº expedición", D1);
+            SalesShipmentHeader.SetRange("Nº expedición", D2);
             if SalesShipmentHeader.FindFirst then
                 repeat
                     fecha2 := SalesShipmentHeader."Posting Date";
@@ -381,7 +381,7 @@ XmlPort 50076 "Importacion NTL"
                 until SalesShipmentHeader.Next = 0;
             SalesShipmentHeader.Reset;
             SalesShipmentHeader.SetCurrentkey("Nº expedición dropshp");
-            SalesShipmentHeader.SetRange("Nº expedición dropshp", D1);
+            SalesShipmentHeader.SetRange("Nº expedición dropshp", D2);
             if SalesShipmentHeader.FindFirst then
                 repeat
                     fecha2 := SalesShipmentHeader."Posting Date";

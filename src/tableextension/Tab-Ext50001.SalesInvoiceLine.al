@@ -187,6 +187,11 @@ tableextension 50001 SalesInvoiceLine extends "Sales Invoice Line"
             CalcFormula = lookup(Item."Tariff No." where("No." = field("No.")));
             FieldClass = FlowField;
         }
+        field(50688; "Codigo arancelario Canarias"; Code[20])
+        {
+            CalcFormula = lookup(Item."Codigo arancelario Canarias" where("No." = field("No.")));
+            FieldClass = FlowField;
+        }
         field(50315; "IVA IGIC"; Code[10])
         {
             Caption = 'IVA IGIC';

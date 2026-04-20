@@ -15,6 +15,10 @@ pageextension 50000 "Item Card" extends "Item Card"
         {
             field("PVP-Web"; Rec."PVP-Web") { ApplicationArea = ALL; }
         }
+        addafter("Tariff No.")
+        {
+            field("Codigo arancelario Canarias"; Rec."Codigo arancelario Canarias") { ApplicationArea = ALL; }
+        }
 
 
         addlast(InventoryGrp)
