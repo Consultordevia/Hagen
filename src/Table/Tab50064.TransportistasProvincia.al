@@ -1,7 +1,7 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
 table 50064 "Transportistas Provincia"
 {
-    Caption = 'Transportistas por Provincia';
+    Caption = 'Transportistas Prohibidos por Provincia';
     DataClassification = CustomerContent;
     LookupPageId = "Transportistas por Provincia";
     DrillDownPageId = "Transportistas por Provincia";
@@ -42,7 +42,6 @@ table 50064 "Transportistas Provincia"
         {
             Caption = 'Cód. Transportista';
             TableRelation = "Shipping Agent";
-            NotBlank = true;
         }
         field(6; "Nombre Transportista"; Text[50])
         {
@@ -55,7 +54,7 @@ table 50064 "Transportistas Provincia"
 
     keys
     {
-        key(Key1; "Cod. Pais", "Cod. Provincia")
+        key(Key1; "Cod. Pais", "Cod. Provincia", "Cod. Transportista")
         {
             Clustered = true;
         }

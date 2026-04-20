@@ -2,7 +2,7 @@
 page 50132 "Transportistas por Provincia"
 {
     ApplicationArea = All;
-    Caption = 'Transportistas por Provincia';
+    Caption = 'Transportistas Prohibidos por Provincia';
     PageType = List;
     SourceTable = "Transportistas Provincia";
     UsageCategory = Administration;

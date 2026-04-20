@@ -18,29 +18,83 @@ pageextension 50024 "Inventary Setup" extends "Inventory Setup"
         }
     }
 
-    /*actions
+    actions
     {
-        addafter("Import Item Pictures")
+        addlast(processing)
         {
-            action(Prueba)
+            action(ExportarImagenesProducto)
             {
                 ApplicationArea = All;
-                Caption = 'Caption', comment = 'NLB="YourLanguageCaption"';
+                Caption = 'Exportar imágenes de producto';
                 Promoted = true;
                 PromotedCategory = Process;
                 PromotedIsBig = true;
-                Image = Image;
+                Image = ExportFile;
                 trigger OnAction()
                 var
-                    Customer: Record Customer;
+                    RecItem: Record Item;
+                    TenantMedia: Record "Tenant Media";
+                    DataCompression: Codeunit "Data Compression";
+                    TempBlob: Codeunit "Temp Blob";
+                    InStr: InStream;
+                    ZipOutStr: OutStream;
+                    ZipInStr: InStream;
+                    EntryName: Text;
+                    FileName: Text;
+                    Counter: Integer;
                 begin
-                    Customer.Init();
-                    Customer.Name := 'Prueba';
-                    Customer.ContactoAInsertar := 'Prueba';
-                    Customer.Insert(true);
+                    DataCompression.CreateZipArchive();
+                    Counter := 0;
+
+                    RecItem.Reset();
+                    if RecItem.FindSet() then
+                        repeat
+                            if RecItem.Picture.Count > 0 then begin
+                                if TenantMedia.Get(RecItem.Picture.Item(1)) then begin
+                                    TenantMedia.CalcFields(Content);
+                                    if TenantMedia.Content.HasValue() then begin
+                                        TenantMedia.Content.CreateInStream(InStr);
+                                        EntryName := RecItem."No." + GetImageExtension(TenantMedia."Mime Type");
+                                        DataCompression.AddEntry(InStr, EntryName);
+                                        Counter += 1;
+                                    end;
+                                end;
+                            end;
+                        until RecItem.Next() = 0;
+
+                    if Counter = 0 then begin
+                        Message('No se encontraron imágenes de productos.');
+                        exit;
+                    end;
+
+                    TempBlob.CreateOutStream(ZipOutStr);
+                    DataCompression.SaveZipArchive(ZipOutStr);
+                    DataCompression.CloseZipArchive();
+
+                    TempBlob.CreateInStream(ZipInStr);
+                    FileName := 'ImagenesProductos.zip';
+                    DownloadFromStream(ZipInStr, 'Exportar imágenes de producto', '', 'Archivos ZIP (*.zip)|*.zip', FileName);
                 end;
             }
         }
-    }*/
+    }
+
+    local procedure GetImageExtension(MimeType: Text): Text
+    begin
+        case LowerCase(MimeType) of
+            'image/jpeg', 'image/jpg':
+                exit('.jpg');
+            'image/png':
+                exit('.png');
+            'image/gif':
+                exit('.gif');
+            'image/bmp':
+                exit('.bmp');
+            'image/webp':
+                exit('.webp');
+            else
+                exit('.jpg');
+        end;
+    end;
 
 }

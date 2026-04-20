@@ -6,8 +6,6 @@ pageextension 50008 "Sales Quote Subform" extends "Sales Quote Subform"
 
     layout
     {
-
-
         addafter(Quantity)
         {
             field(Estado; Rec.Estado) { ApplicationArea = All; }
