@@ -127,7 +127,8 @@ page 50126 CustomerWS
                 field(Fecha; Rec.Fecha) { }
                 field("Terminos pago"; Rec."Terminos pago") { }
                 field(SWIFT; Rec.SWIFT) { }
-                field(CPais; Rec.CPais) { }
+                field(CodPaisCliente; Rec.CodPaisCliente) { }
+                field(CodPaisBanco; Rec.CodPaisBanco) { }
                 field(CodBanco; Rec.CodBanco) { }
             }
         }
