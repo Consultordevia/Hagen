@@ -1121,7 +1121,7 @@ Page 50099 "Pantalla almacen Pascual5"
                 {
                     ApplicationArea = Basic;
                     Caption = 'PDF ETI. envio agrupado d';
-                    Image = PDF;
+                    visible = false;
                     Promoted = true;
                     PromotedIsBig = true;
                     PromotedOnly = true;
@@ -1135,7 +1135,7 @@ Page 50099 "Pantalla almacen Pascual5"
                 {
                     ApplicationArea = Basic;
                     Caption = 'PDF ETI. envio agrupado d2';
-                    Image = PDF;
+                    visible = false;
                     Promoted = true;
                     PromotedIsBig = true;
                     PromotedOnly = true;
@@ -1149,7 +1149,7 @@ Page 50099 "Pantalla almacen Pascual5"
                 {
                     ApplicationArea = Basic;
                     Caption = 'PDF ETI. envio agrupado Arena';
-                    Image = PDF;
+                    visible = false;
                     Promoted = true;
                     PromotedIsBig = true;
                     PromotedOnly = true;
@@ -1163,7 +1163,7 @@ Page 50099 "Pantalla almacen Pascual5"
                 {
                     ApplicationArea = Basic;
                     Caption = 'PDF ETI. envio agrupado';
-                    Image = PDF;
+                    visible = false;
                     Promoted = true;
                     PromotedIsBig = true;
                     PromotedOnly = true;
@@ -1177,7 +1177,7 @@ Page 50099 "Pantalla almacen Pascual5"
                 {
                     ApplicationArea = Basic;
                     Caption = 'PDF ETI. envio agrupado ka';
-                    Image = PDF;
+                    visible = false;
                     Promoted = true;
                     PromotedIsBig = true;
                     PromotedOnly = true;
