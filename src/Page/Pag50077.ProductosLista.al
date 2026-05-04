@@ -22,7 +22,7 @@ Page 50077 "Productos Lista"
                 {
                     ApplicationArea = Basic;
                 }
-
+                
                 field("Clasificación Comercial"; Rec."Clasificación Comercial")
                 {
                     ApplicationArea = Basic;
