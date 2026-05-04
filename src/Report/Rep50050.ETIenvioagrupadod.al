@@ -226,7 +226,8 @@ Report 50050 "ETI. envio agrupado d"
                 if "Sales Header".Dropshipping then begin
                     dropship := 'DROPSHIPPING';
                 end;
-                RecCust.Get("Sales Header"."Sell-to Customer No.");
+                if "Sales Header"."Sell-to Customer No." <> '' then
+                    RecCust.Get("Sales Header"."Sell-to Customer No.");
                 NOMULTIPEDIDO := false;
                 obs1 := '';
                 obs2 := '';

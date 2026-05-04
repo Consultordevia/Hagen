@@ -61,6 +61,13 @@ Page 50099 "Pantalla almacen Pascual5"
                     ApplicationArea = Basic;
                     Editable = false;
                 }
+                field("Nº expedición agrupada"; Rec."Nº expedición agrupada")
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'Nº expedición agrupada';
+                    Editable = false;
+                    StyleExpr = ESTILOLINEA;
+                }
                 field("Ampliacion del pedido nº"; Rec."Ampliacion del pedido nº")
                 {
                     ApplicationArea = Basic;
@@ -191,13 +198,6 @@ Page 50099 "Pantalla almacen Pascual5"
                 {
                     ApplicationArea = Basic;
                     Caption = 'No agrupar en ADAIA';
-                    Editable = false;
-                    StyleExpr = ESTILOLINEA;
-                }
-                field("Nº expedición agrupada"; Rec."Nº expedición agrupada")
-                {
-                    ApplicationArea = Basic;
-                    Caption = 'Nº expedición agrupada';
                     Editable = false;
                     StyleExpr = ESTILOLINEA;
                 }
@@ -1117,6 +1117,76 @@ Page 50099 "Pantalla almacen Pascual5"
                             until SalesHeader4.next = 0;
                     end;
                 }
+                action("PDF ETI. envio agrupado d")
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'PDF ETI. envio agrupado d';
+                    visible = false;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+
+                    trigger OnAction()
+                    begin
+                        DescargarEtiquetaPDF50050();
+                    end;
+                }
+                action("PDF ETI. envio agrupado d2")
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'PDF ETI. envio agrupado d2';
+                    visible = false;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+
+                    trigger OnAction()
+                    begin
+                        DescargarEtiquetaPDF50051();
+                    end;
+                }
+                action("PDF ETI. envio agrupado Arena")
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'PDF ETI. envio agrupado Arena';
+                    visible = false;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+
+                    trigger OnAction()
+                    begin
+                        DescargarEtiquetaPDF50055();
+                    end;
+                }
+                action("PDF ETI. envio agrupado")
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'PDF ETI. envio agrupado';
+                    visible = false;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+
+                    trigger OnAction()
+                    begin
+                        DescargarEtiquetaPDF50025();
+                    end;
+                }
+                action("PDF ETI. envio agrupado ka")
+                {
+                    ApplicationArea = Basic;
+                    Caption = 'PDF ETI. envio agrupado ka';
+                    visible = false;
+                    Promoted = true;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+
+                    trigger OnAction()
+                    begin
+                        DescargarEtiquetaPDF50052();
+                    end;
+                }
                 action("Listado AMAZON")
                 {
                     ApplicationArea = Basic;
@@ -1962,6 +2032,7 @@ Page 50099 "Pantalla almacen Pascual5"
                         if SalesHeader3."Shipping Agent Code" <> 'ECI' then begin
                             SalesHeader22.Get(SalesHeader3."Document Type", SalesHeader3."No.");
                             contadordeagrup := IncStr(contadordeagrup);
+                            SalesHeader22."Nº expedición agrupada" := contadordeagrup;
                             EXPEDROP := '';
                             if (Rec.Dropshipping = true) and (Rec."Marcar para agrupar" = true) then begin
                                 EXPEDROP := NoSeriesManagement.GetNextNo('ADAIADROP', Today, true);
@@ -4692,6 +4763,155 @@ Page 50099 "Pantalla almacen Pascual5"
 
 
 
+    end;
+
+    local procedure DescargarEtiquetaPDF50050()
+    var
+        SHExp: Record "Sales Header";
+        Rep: Report "ETI. envio agrupado d";
+        TempBlob: Codeunit "Temp Blob";
+        OutStr: OutStream;
+        InStr: InStream;
+        NomFich: Text;
+    begin
+        if Rec."Nº expedición" = '' then
+            Error('El pedido no tiene Nº de expedición.');
+        SHExp.Reset();
+        SHExp.SetRange("Document Type", SHExp."Document Type"::Order);
+        SHExp.SetRange("Nº expedición", Rec."Nº expedición");
+        if not SHExp.FindFirst() then
+            Error('No se han encontrado pedidos para la expedición %1.', Rec."Nº expedición");
+        Clear(Rep);
+        Rep.SetTableView(SHExp);
+        TempBlob.CreateOutStream(OutStr);
+        Rep.SaveAs('', ReportFormat::Pdf, OutStr);
+        TempBlob.CreateInStream(InStr);
+        NomFich := 'ETI_agrupado_d_' + Rec."Nº expedición" + '.pdf';
+        DownloadFromStream(InStr, 'Descargar PDF', '', 'PDF Files (*.pdf)|*.pdf', NomFich);
+    end;
+
+    local procedure DescargarEtiquetaPDF50051()
+    var
+        SHExp: Record "Sales Header";
+        Rep: Report "ETI. envio agrupado d2";
+        TempBlob: Codeunit "Temp Blob";
+        OutStr: OutStream;
+        InStr: InStream;
+        NomFich: Text;
+    begin
+        if Rec."Nº expedición" = '' then
+            Error('El pedido no tiene Nº de expedición.');
+        SHExp.Reset();
+        SHExp.SetRange("Document Type", SHExp."Document Type"::Order);
+        SHExp.SetRange("Nº expedición", Rec."Nº expedición");
+        if not SHExp.FindFirst() then
+            Error('No se han encontrado pedidos para la expedición %1.', Rec."Nº expedición");
+        Clear(Rep);
+        Rep.SetTableView(SHExp);
+        TempBlob.CreateOutStream(OutStr);
+        Rep.SaveAs('', ReportFormat::Pdf, OutStr);
+        TempBlob.CreateInStream(InStr);
+        NomFich := 'ETI_agrupado_d2_' + Rec."Nº expedición" + '.pdf';
+        DownloadFromStream(InStr, 'Descargar PDF', '', 'PDF Files (*.pdf)|*.pdf', NomFich);
+    end;
+
+    local procedure DescargarEtiquetaPDF50025()
+    var
+        SHExp: Record "Sales Header";
+        Rep: Report "ETI. envio agrupado";
+        TempBlob: Codeunit "Temp Blob";
+        OutStr: OutStream;
+        InStr: InStream;
+        NomFich: Text;
+    begin
+        if Rec."Nº expedición" = '' then
+            Error('El pedido no tiene Nº de expedición.');
+        SHExp.Reset();
+        SHExp.SetRange("Document Type", SHExp."Document Type"::Order);
+        SHExp.SetRange("Nº expedición", Rec."Nº expedición");
+        if not SHExp.FindFirst() then
+            Error('No se han encontrado pedidos para la expedición %1.', Rec."Nº expedición");
+        Clear(Rep);
+        Rep.SetTableView(SHExp);
+        TempBlob.CreateOutStream(OutStr);
+        Rep.SaveAs('', ReportFormat::Pdf, OutStr);
+        TempBlob.CreateInStream(InStr);
+        NomFich := 'ETI_agrupado_' + Rec."Nº expedición" + '.pdf';
+        DownloadFromStream(InStr, 'Descargar PDF', '', 'PDF Files (*.pdf)|*.pdf', NomFich);
+    end;
+
+    local procedure DescargarEtiquetaPDF50052()
+    var
+        SHExp: Record "Sales Header";
+        Rep: Report "ETI. envio agrupado ka";
+        TempBlob: Codeunit "Temp Blob";
+        OutStr: OutStream;
+        InStr: InStream;
+        NomFich: Text;
+    begin
+        if Rec."Nº expedición" = '' then
+            Error('El pedido no tiene Nº de expedición.');
+        SHExp.Reset();
+        SHExp.SetRange("Document Type", SHExp."Document Type"::Order);
+        SHExp.SetRange("Nº expedición", Rec."Nº expedición");
+        if not SHExp.FindFirst() then
+            Error('No se han encontrado pedidos para la expedición %1.', Rec."Nº expedición");
+        Clear(Rep);
+        Rep.SetTableView(SHExp);
+        TempBlob.CreateOutStream(OutStr);
+        Rep.SaveAs('', ReportFormat::Pdf, OutStr);
+        TempBlob.CreateInStream(InStr);
+        NomFich := 'ETI_agrupado_ka_' + Rec."Nº expedición" + '.pdf';
+        DownloadFromStream(InStr, 'Descargar PDF', '', 'PDF Files (*.pdf)|*.pdf', NomFich);
+    end;
+
+    local procedure DescargarEtiquetaPDF50055()
+    var
+        SHExp: Record "Sales Header";
+        Rep: Report "ETIenvioagrupadoArena";
+        TempBlob: Codeunit "Temp Blob";
+        OutStr: OutStream;
+        InStr: InStream;
+        RecItem3: Record Item;
+        RecLine: Record "Sales Line";
+        tieneArena: Boolean;
+        NomFich: Text;
+    begin
+        if Rec."Nº expedición" = '' then
+            Error('El pedido no tiene Nº de expedición.');
+        SHExp.Reset();
+        SHExp.SetRange("Document Type", SHExp."Document Type"::Order);
+        SHExp.SetRange("Nº expedición", Rec."Nº expedición");
+        if not SHExp.FindFirst() then
+            Error('No se han encontrado pedidos para la expedición %1.', Rec."Nº expedición");
+        tieneArena := false;
+        SHExp.FindSet();
+        repeat
+            RecLine.Reset();
+            RecLine.SetRange("Document Type", SHExp."Document Type");
+            RecLine.SetRange("Document No.", SHExp."No.");
+            RecLine.SetRange(Type, RecLine.Type::Item);
+            if RecLine.FindSet() then
+                repeat
+                    if RecItem3.Get(RecLine."No.") then
+                        if RecItem3."Bultos en caja" then
+                            tieneArena := true;
+                until RecLine.Next() = 0;
+        until SHExp.Next() = 0;
+        if not tieneArena then begin
+            Message('No hay artículos con "Bultos en caja" en esta expedición.');
+            exit;
+        end;
+        SHExp.Reset();
+        SHExp.SetRange("Document Type", SHExp."Document Type"::Order);
+        SHExp.SetRange("Nº expedición", Rec."Nº expedición");
+        Clear(Rep);
+        Rep.SetTableView(SHExp);
+        TempBlob.CreateOutStream(OutStr);
+        Rep.SaveAs('', ReportFormat::Pdf, OutStr);
+        TempBlob.CreateInStream(InStr);
+        NomFich := 'ETI_agrupado_arena_' + Rec."Nº expedición" + '.pdf';
+        DownloadFromStream(InStr, 'Descargar PDF', '', 'PDF Files (*.pdf)|*.pdf', NomFich);
     end;
 
 

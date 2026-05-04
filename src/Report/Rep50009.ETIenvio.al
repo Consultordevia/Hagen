@@ -46,7 +46,8 @@ Report 50009 "ETI. envio"
                 if "Sales Header".Dropshipping then begin
                     dropship := 'DROPSHIPPING';
                 end;
-                RecCust.Get("Sales Header"."Sell-to Customer No.");
+                if "Sales Header"."Sell-to Customer No." <> '' then
+                    RecCust.Get("Sales Header"."Sell-to Customer No.");
                 valorado := 'NO';
                 if RecCust."Albaran sin detalle" then begin
                     valorado := 'SI';
