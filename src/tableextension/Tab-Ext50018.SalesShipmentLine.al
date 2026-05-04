@@ -74,7 +74,7 @@ tableextension 50018 SalesShipmentLine extends "Sales Shipment Line"
         field(50026; "Exento rappel"; Boolean)
         {
         }
-        field(50027; "Nº expedición"; Code[10])
+        field(50027; "Nº expedición"; Code[20])
         {
         }
         field(50033; "Oferta de descuento"; Boolean)

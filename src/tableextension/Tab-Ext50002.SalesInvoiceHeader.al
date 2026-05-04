@@ -101,7 +101,7 @@ tableextension 50002 SalesInvoiceHeader extends "Sales Invoice Header"
         field(50035; "Permite multiplos distintos"; Boolean)
         {
         }
-        field(50041; "Nº expedición"; Code[10])
+        field(50041; "Nº expedición"; Code[20])
         {
         }
         field(50044; "No Enviar factura en exp."; Boolean)

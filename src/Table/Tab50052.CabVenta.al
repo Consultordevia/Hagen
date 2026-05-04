@@ -1380,7 +1380,7 @@ table 50052 CabVenta
 
 
         }
-        field(50041; "Nº expedición"; Code[10])
+        field(50041; "Nº expedición"; Code[20])
         {
         }
         field(50042; "Recibido de adaia"; Boolean)
