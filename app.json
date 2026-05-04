@@ -23,6 +23,13 @@
       "publisher": "Microsoft",
       "version": "25.0.23364.25481"
     }
+    ,{
+    
+      "id": "247f6ddf-9440-47ec-9586-65424b9e01a9",
+      "name": "SupplyChainPlanning",
+      "publisher": "DevConsultIA",
+      "version": "1.0.0.0"
+  }
   ],
   "screenshots": [],
   "platform": "1.0.0.0",

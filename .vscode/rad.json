@@ -1,1 +1,5 @@
-﻿{"Added":[],"Modified":[],"Removed":[]}
+<<<<<<< HEAD
+﻿{"Added":[],"Modified":[{"Id":50001,"Kind":17,"Name":"SalesInvoiceLine","Namespace":""},{"Id":50018,"Kind":17,"Name":"SalesShipmentLine","Namespace":""},{"Id":50012,"Kind":10,"Name":"CustomerWebService","Namespace":""},{"Id":50076,"Kind":15,"Name":"Importacion NTL","Namespace":""},{"Id":50000,"Kind":16,"Name":"Item Card","Namespace":""},{"Id":50931,"Kind":13,"Name":"Presupuesto Venta Productos","Namespace":""},{"Kind":106,"Name":"RequestOptionsPage","Namespace":""},{"Id":50053,"Kind":16,"Name":"Posted Sales Invoice Lines","Namespace":""},{"Id":50062,"Kind":16,"Name":"LineasdeFactura","Namespace":""},{"Id":50115,"Kind":17,"Name":"SalesLine","Namespace":""},{"Id":50126,"Kind":12,"Name":"CustomerWS","Namespace":""},{"Id":50069,"Kind":16,"Name":"Sales Quote Subform Hagen","Namespace":""},{"Id":50113,"Kind":17,"Name":"Item","Namespace":""},{"Id":50020,"Kind":16,"Name":"Item List","Namespace":""}],"Removed":[]}
+=======
+﻿{"Added":[],"Modified":[{"Id":50099,"Kind":12,"Name":"Pantalla almacen Pascual5","Namespace":""},{"Id":50055,"Kind":13,"Name":"ETIenvioagrupadoArena","Namespace":""}],"Removed":[{"Kind":106,"Name":"RequestOptionsPage","Namespace":""}]}
+>>>>>>> fec0240e328f3191ce3796205fa19851970291e6
