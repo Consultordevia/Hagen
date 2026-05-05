@@ -839,7 +839,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                 end;
             end;
         }
-        field(50221; "Nº expedición agrupada"; Code[10])
+        field(50221; "Nº expedición agrupada"; Code[20])
         {
         }
         field(50222; "Frecuencia visita comercial"; Code[10])
@@ -866,7 +866,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
         field(50238; "Importe total pedido WEB"; Decimal)
         {
         }
-        field(50245; "Nº expedición dropshp"; Code[10])
+        field(50245; "Nº expedición dropshp"; Code[20])
         {
         }
         field(50293; "NO MULTIPEDIDO"; Boolean)

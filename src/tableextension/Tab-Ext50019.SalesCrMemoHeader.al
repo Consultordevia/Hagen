@@ -126,7 +126,7 @@ tableextension 50019 SalesCrMemoHeader extends "Sales Cr.Memo Header"
         field(50200; "Logo cabecera"; Blob)
         {
         }
-        field(50245; "Nº expedición dropshp"; Code[10])
+        field(50245; "Nº expedición dropshp"; Code[20])
         {
         }
         field(50280; "Tipo rectificativa"; Option)

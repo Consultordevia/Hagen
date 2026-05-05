@@ -221,7 +221,7 @@ tableextension 50002 SalesInvoiceHeader extends "Sales Invoice Header"
         field(50220; Dropshipping; Boolean)
         {
         }
-        field(50221; "Nº expedición agrupada"; Code[10])
+        field(50221; "Nº expedición agrupada"; Code[20])
         {
         }
         field(50223; "E-MAIL"; Text[80])
@@ -251,7 +251,7 @@ tableextension 50002 SalesInvoiceHeader extends "Sales Invoice Header"
         field(50240; "Importe seguro envio"; Decimal)
         {
         }
-        field(50245; "Nº expedición dropshp"; Code[10])
+        field(50245; "Nº expedición dropshp"; Code[20])
         {
         }
         field(50305; "Tipo cliente"; Boolean)
