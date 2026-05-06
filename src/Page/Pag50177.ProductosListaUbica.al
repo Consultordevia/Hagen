@@ -759,7 +759,7 @@ Page 50177 "Productos Lista Ubica"
                 {
                     ApplicationArea = Basic;
                 }
-                field("Scheduled Need (Qty.)"; Rec."Scheduled Need (Qty.)")
+                field("Qty. on Component Lines"; Rec."Qty. on Component Lines")
                 {
                     ApplicationArea = Basic;
                 }

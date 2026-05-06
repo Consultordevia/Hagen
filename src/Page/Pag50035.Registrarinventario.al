@@ -399,7 +399,7 @@ Page 50035 "Registrar inventario"
 
                         trigger OnAction()
                         begin
-                            ItemAvailFormsMgt.ShowItemAvailFromItemJnlLine(Rec, ItemAvailFormsMgt.ByEvent)
+                            ItemAvailFormsMgt.ShowItemAvailabilityFromItemJnlLine(Rec, 0)
                         end;
                     }
                     action(Period)
@@ -412,7 +412,7 @@ Page 50035 "Registrar inventario"
 
                         trigger OnAction()
                         begin
-                            ItemAvailFormsMgt.ShowItemAvailFromItemJnlLine(Rec, ItemAvailFormsMgt.ByPeriod)
+                            ItemAvailFormsMgt.ShowItemAvailabilityFromItemJnlLine(Rec, 1)
                         end;
                     }
                     action(Variant)
@@ -425,7 +425,7 @@ Page 50035 "Registrar inventario"
 
                         trigger OnAction()
                         begin
-                            ItemAvailFormsMgt.ShowItemAvailFromItemJnlLine(Rec, ItemAvailFormsMgt.ByVariant)
+                            ItemAvailFormsMgt.ShowItemAvailabilityFromItemJnlLine(Rec, 2)
                         end;
                     }
                     action(Location)
@@ -439,7 +439,7 @@ Page 50035 "Registrar inventario"
 
                         trigger OnAction()
                         begin
-                            ItemAvailFormsMgt.ShowItemAvailFromItemJnlLine(Rec, ItemAvailFormsMgt.ByLocation)
+                            ItemAvailFormsMgt.ShowItemAvailabilityFromItemJnlLine(Rec, 3)
                         end;
                     }
                     action("BOM Level")
@@ -452,7 +452,7 @@ Page 50035 "Registrar inventario"
 
                         trigger OnAction()
                         begin
-                            ItemAvailFormsMgt.ShowItemAvailFromItemJnlLine(Rec, ItemAvailFormsMgt.ByBOM)
+                            ItemAvailFormsMgt.ShowItemAvailabilityFromItemJnlLine(Rec, 4)
                         end;
                     }
                 }

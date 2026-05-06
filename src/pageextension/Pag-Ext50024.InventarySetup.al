@@ -22,6 +22,21 @@ pageextension 50024 "Inventary Setup" extends "Inventory Setup"
     {
         addlast(processing)
         {
+            action(EliminarImagenesProducto)
+            {
+                ApplicationArea = All;
+                Caption = 'Eliminar imágenes de producto';
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                Image = ClearLog;
+                trigger OnAction()
+                var
+                    EliminacionImagenesPage: Page "Eliminacion Imagenes";
+                begin
+                    EliminacionImagenesPage.RunModal();
+                end;
+            }
             action(ExportarImagenesProducto)
             {
                 ApplicationArea = All;

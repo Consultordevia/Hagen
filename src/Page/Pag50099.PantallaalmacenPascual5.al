@@ -2033,6 +2033,8 @@ Page 50099 "Pantalla almacen Pascual5"
                             SalesHeader22.Get(SalesHeader3."Document Type", SalesHeader3."No.");
                             contadordeagrup := IncStr(contadordeagrup);
                             SalesHeader22."Nº expedición agrupada" := contadordeagrup;
+                            SalesHeader22.Dropshipping := true;
+                            SalesHeader22."Albaran sin detalle" := false;
                             EXPEDROP := '';
                             if (Rec.Dropshipping = true) and (Rec."Marcar para agrupar" = true) then begin
                                 EXPEDROP := NoSeriesManagement.GetNextNo('ADAIADROP', Today, true);
@@ -3964,6 +3966,8 @@ Page 50099 "Pantalla almacen Pascual5"
                             SalesHeader22.Get(SalesHeader3."Document Type", SalesHeader3."No.");
                             contadordeagrup := IncStr(contadordeagrup);
                             SalesHeader22."Nº expedición agrupada" := contadordeagrup;
+                            SalesHeader22.Dropshipping := true;
+                            SalesHeader22."Albaran sin detalle" := false;
                             EXPEDROP := '';
                             if (RecSH2.Dropshipping = true) and (RecSH2."Marcar para agrupar" = true) then begin
                                 EXPEDROP := NoSeriesManagement.GetNextNo('ADAIADROP', Today, true);
@@ -4345,6 +4349,8 @@ Page 50099 "Pantalla almacen Pascual5"
                             SalesHeader22.Get(SalesHeader3."Document Type", SalesHeader3."No.");
                             contadordeagrup := IncStr(contadordeagrup);
                             SalesHeader22."Nº expedición agrupada" := contadordeagrup;
+                            SalesHeader22.Dropshipping := true;
+                            SalesHeader22."Albaran sin detalle" := false;
                             EXPEDROP := '';
                             if (RecSH2.Dropshipping = true) and (RecSH2."Marcar para agrupar" = true) then begin
                                 EXPEDROP := NoSeriesManagement.GetNextNo('ADAIADROP', Today, true);

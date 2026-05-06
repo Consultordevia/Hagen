@@ -142,10 +142,6 @@ tableextension 50018 SalesShipmentLine extends "Sales Shipment Line"
             CalcFormula = lookup(Customer."Grupo clientes" where("No." = field("Sell-to Customer No.")));
             FieldClass = FlowField;
         }
-        field(50602; "Your Reference"; Text[35])
-        {
-            Caption = 'Your Reference';
-        }
         field(50603; ESTADO; Option)
         {
             InitValue = "1";
