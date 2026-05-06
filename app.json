@@ -2,7 +2,7 @@
   "id": "4c82943b-44ff-4cd2-9606-25a7de64c606",
   "name": "Hagen",
   "publisher": "DevConsultIA",
-  "version": "1.0.0.1705", 
+  "version": "1.0.0.1713", 
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -33,7 +33,7 @@
   ],
   "screenshots": [],
   "platform": "1.0.0.0",
-  "application": "24.0.0.0",
+  "application": "28.0.0.0",
   "idRanges": [
     {
       "from": 50000,
@@ -45,7 +45,7 @@
     "allowDownloadingSource": true,
     "includeSourceInSymbolFile": true
   },
-  "runtime": "13.0",
+  "runtime": "17.0",
   "features": [
     "NoImplicitWith"
   ],

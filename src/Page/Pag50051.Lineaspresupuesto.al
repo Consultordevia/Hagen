@@ -442,7 +442,7 @@ Page 50051 "Lineas presupuesto"
 
                         trigger OnAction()
                         begin
-                            ItemAvailFormsMgt.ShowItemAvailFromSalesLine(Rec, ItemAvailFormsMgt.ByEvent)
+                            SalesAvailMgt.ShowItemAvailabilityFromSalesLine(Rec, 0)
                         end;
                     }
                     action(Period)
@@ -454,7 +454,7 @@ Page 50051 "Lineas presupuesto"
 
                         trigger OnAction()
                         begin
-                            ItemAvailFormsMgt.ShowItemAvailFromSalesLine(Rec, ItemAvailFormsMgt.ByPeriod)
+                            SalesAvailMgt.ShowItemAvailabilityFromSalesLine(Rec, 1)
                         end;
                     }
                     action(Variant)
@@ -466,7 +466,7 @@ Page 50051 "Lineas presupuesto"
 
                         trigger OnAction()
                         begin
-                            ItemAvailFormsMgt.ShowItemAvailFromSalesLine(Rec, ItemAvailFormsMgt.ByVariant)
+                            SalesAvailMgt.ShowItemAvailabilityFromSalesLine(Rec, 2)
                         end;
                     }
                     action(Location)
@@ -479,7 +479,7 @@ Page 50051 "Lineas presupuesto"
 
                         trigger OnAction()
                         begin
-                            ItemAvailFormsMgt.ShowItemAvailFromSalesLine(Rec, ItemAvailFormsMgt.ByLocation)
+                            SalesAvailMgt.ShowItemAvailabilityFromSalesLine(Rec, 3)
                         end;
                     }
                     action("BOM Level")
@@ -492,7 +492,7 @@ Page 50051 "Lineas presupuesto"
 
                         trigger OnAction()
                         begin
-                            ItemAvailFormsMgt.ShowItemAvailFromSalesLine(Rec, ItemAvailFormsMgt.ByBOM)
+                            SalesAvailMgt.ShowItemAvailabilityFromSalesLine(Rec, 4)
                         end;
                     }
                 }
@@ -689,7 +689,7 @@ Page 50051 "Lineas presupuesto"
         TempOptionLookupBuffer: Record "Option Lookup Buffer" temporary;
         TransferExtendedText: Codeunit "Transfer Extended Text";
         SalesPriceCalcMgt: Codeunit "Sales Price Calc. Mgt.";
-        ItemAvailFormsMgt: Codeunit "Item Availability Forms Mgt";
+        SalesAvailMgt: Codeunit "Sales Availability Mgt.";
         SalesCalcDiscByType: Codeunit "Sales - Calc Discount By Type";
         DocumentTotals: Codeunit "Document Totals";
         VATAmount: Decimal;

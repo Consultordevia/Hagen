@@ -322,14 +322,6 @@ page 50182 Lista3
                 SubPageLink = "No." = field("No.");
                 Visible = CRMIsCoupledToRecord and CRMIntegrationEnabled;
             }
-            part("Attached Documents"; "Document Attachment Factbox")
-            {
-                ApplicationArea = All;
-                Caption = 'Attachments';
-                SubPageLink = "Table ID" = const(Database::Customer),
-                              "No." = field("No.");
-                Visible = not IsOfficeAddin;
-            }
             part(SalesHistSelltoFactBox; "Sales Hist. Sell-to FactBox")
             {
                 ApplicationArea = Basic, Suite;
@@ -1831,7 +1823,6 @@ page 50182 Lista3
         //SetCaption(CaptionTxt);
         CurrPage.Caption(CaptionTxt);
 
-        CurrPage.PowerBIEmbeddedReportPart.PAGE.InitPageRatio(PowerBIServiceMgt.GetFactboxRatio());
         CurrPage.PowerBIEmbeddedReportPart.PAGE.SetPageContext(CurrPage.ObjectId(false));
 
         SetWorkflowManagementEnabledState();

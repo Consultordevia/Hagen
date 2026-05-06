@@ -54,7 +54,7 @@ tableextension 50012 UserSetup extends "User Setup"
         field(50017; "Permite fraccionar uni. venta"; Boolean)
         {
         }
-        field(50018; "Es el cliente nº"; Code[10])
+        field(50018; "Es el cliente nº"; Code[20])
         {
             TableRelation = Customer;
         }

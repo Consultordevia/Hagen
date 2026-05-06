@@ -179,7 +179,7 @@ tableextension 50001 SalesInvoiceLine extends "Sales Invoice Line"
         field(50685; "Nº expedición ECI"; Code[10])
         {
         }
-        field(50686; "Num expedicion grabado"; Code[10])
+        field(50686; "Num expedicion grabado"; Code[20])
         {
         }
         field(50687; "Cód. arancelario"; Code[20])

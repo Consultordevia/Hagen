@@ -130,6 +130,8 @@ page 50126 CustomerWS
                 field(CodPaisCliente; Rec.CodPaisCliente) { }
                 field(CodPaisBanco; Rec.CodPaisBanco) { }
                 field(CodBanco; Rec.CodBanco) { }
+                field(MasComerciales; Rec.MasComerciales) { }
+                field(NumCliente; Rec.NumCliente) { }
             }
         }
     }

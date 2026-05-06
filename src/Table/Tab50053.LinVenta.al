@@ -1503,7 +1503,7 @@ table 50053 LinVenta
         field(50024; "Importe dto. vendedor"; Decimal)
         {
         }
-        field(50027; "Nº expedición"; Code[10])
+        field(50027; "Nº expedición"; Code[20])
         {
         }
         field(50028; "Linea Nº expedición"; Integer)

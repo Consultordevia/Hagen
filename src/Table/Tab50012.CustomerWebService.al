@@ -70,6 +70,8 @@ table 50012 CustomerWebService
             Caption = 'CodPaisCliente';
             TableRelation = "Country/Region";
         }
+        field(37; MasComerciales; Text[150]) { Caption = 'Mas comerciales'; }
+        field(38; NumCliente; Code[20]) { Caption = 'No. cliente'; }
     }
 
     keys
