@@ -449,6 +449,7 @@ Codeunit 50033 "ColaCanarias"
                     RecItemC.Gama := RecItemE.Gama;
                     RecItemC.FechaHoraModificacionWeb := RecItemE.FechaHoraModificacionWeb;
                     RecItemC."VAT Prod. Posting Group" := RecItemE."IVA IGIC";
+                    RecItemC."Clasificación Comercial" := RecItemE."Clasificación Comercial";
                     RecItemC.Modify;
                 end;
                 IF NOT RecItemC.FindFirst() THEN begin
