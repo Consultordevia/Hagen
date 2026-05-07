@@ -1605,7 +1605,7 @@ Page 50099 "Pantalla almacen Pascual5"
                     until SalesHeader4.Next = 0;
 
                 SalesHeader3.Reset;
-                SalesHeader3.SetCurrentkey("Document Type", "Sell-to Customer No.", "Estado pedido");
+                SalesHeader3.SetCurrentkey("Document Type", "No.");
                 SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
                 if Rec."Marcar para agrupar" = false then begin
                     SalesHeader3.SetRange(SalesHeader3."Sell-to Customer No.", Rec."Sell-to Customer No.");
@@ -1967,7 +1967,7 @@ Page 50099 "Pantalla almacen Pascual5"
                 until SalesHeader4.Next = 0;
 
             SalesHeader3.Reset;
-            SalesHeader3.SetCurrentkey("Document Type", "Sell-to Customer No.", "Estado pedido");
+            SalesHeader3.SetCurrentkey("Document Type", "No.");
             SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
             if Rec."Marcar para agrupar" = false then begin
                 SalesHeader3.SetRange(SalesHeader3."Sell-to Customer No.", Rec."Sell-to Customer No.");
@@ -2391,7 +2391,7 @@ Page 50099 "Pantalla almacen Pascual5"
                     until SalesHeader4.Next = 0;
 
                 SalesHeader3.Reset;
-                SalesHeader3.SetCurrentkey("Document Type", "Sell-to Customer No.", "Estado pedido");
+                SalesHeader3.SetCurrentkey("Document Type", "No.");
                 SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
                 if Rec."Marcar para agrupar" = false then begin
                     SalesHeader3.SetRange(SalesHeader3."Sell-to Customer No.", Rec."Sell-to Customer No.");
@@ -2725,7 +2725,7 @@ Page 50099 "Pantalla almacen Pascual5"
 
 
                 SalesHeader3.Reset;
-                SalesHeader3.SetCurrentkey("Document Type", "Sell-to Customer No.", "Estado pedido");
+                SalesHeader3.SetCurrentkey("Document Type", "No.");
                 SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
                 if Rec."Marcar para agrupar" = false then begin
                     SalesHeader3.SetRange(SalesHeader3."Sell-to Customer No.", Rec."Sell-to Customer No.");
@@ -3901,7 +3901,7 @@ Page 50099 "Pantalla almacen Pascual5"
 
 
             SalesHeader3.Reset;
-            SalesHeader3.SetCurrentkey("Document Type", "Sell-to Customer No.", "Estado pedido");
+            SalesHeader3.SetCurrentkey("Document Type", "No.");
             SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
             if RecSH2."Marcar para agrupar" = false then begin
                 SalesHeader3.SetRange(SalesHeader3."Sell-to Customer No.", RecSH2."Sell-to Customer No.");
@@ -4284,7 +4284,7 @@ Page 50099 "Pantalla almacen Pascual5"
 
 
             SalesHeader3.Reset;
-            SalesHeader3.SetCurrentkey("Document Type", "Sell-to Customer No.", "Estado pedido");
+            SalesHeader3.SetCurrentkey("Document Type", "No.");
             SalesHeader3.SetRange(SalesHeader3."Document Type", 1);
             if RecSH2."Marcar para agrupar" = false then begin
                 SalesHeader3.SetRange(SalesHeader3."Sell-to Customer No.", RecSH2."Sell-to Customer No.");

@@ -14,7 +14,7 @@ tableextension 50029 "GenProductPostingGroup" extends "Gen. Product Posting Grou
             CalcFormula = count(Item where("Gen. Prod. Posting Group" = field(Code)));
             FieldClass = FlowField;
         }
-        field(50003; "Filtro Cliente"; Code[10])
+        field(50003; "Filtro Cliente"; Code[20])
         {
             FieldClass = FlowFilter;
             TableRelation = Customer;

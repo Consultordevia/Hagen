@@ -87,7 +87,7 @@ Table 50049 Promociones
         field(16; "Cantiada a regalar"; Decimal)
         {
         }
-        field(17; Cliente; Code[10])
+        field(17; Cliente; Code[20])
         {
             TableRelation = Customer;
         }
