@@ -48,7 +48,7 @@ Table 50000 "Relación comisiones"
             Enabled = false;
             TableRelation = "Gen. Product Posting Group";
         }
-        field(16; Cliente; Code[10])
+        field(16; Cliente; Code[20])
         {
             TableRelation = Customer;
         }
