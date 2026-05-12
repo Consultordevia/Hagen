@@ -64,6 +64,27 @@ tableextension 50033 CustomerBankAccount extends "Customer Bank Account"
             CalcFormula = lookup(Customer."Country/Region Code" where("No." = field("Customer No.")));
             FieldClass = FlowField;
         }
+        field(50002; "IBAN Enmascarado"; Text[50])
+        {
+            Caption = 'IBAN Enmascarado';
+            Editable = false;
+            DataClassification = CustomerContent;
+        }
+        modify(IBAN)
+        {
+            trigger OnAfterValidate()
+            var
+                Cust: Record Customer;
+            begin
+                "IBAN Enmascarado" := EnmascaraIBAN(IBAN);
+                // Propagar al Customer si esta cuenta es la preferida
+                if Cust.Get("Customer No.") then
+                    if Cust."Preferred Bank Account Code" = Code then begin
+                        Cust."IBAN Enmascarado" := "IBAN Enmascarado";
+                        Cust.Modify(false);
+                    end;
+            end;
+        }
     }
 
     trigger OnBeforeInsert()
@@ -73,15 +94,18 @@ tableextension 50033 CustomerBankAccount extends "Customer Bank Account"
         if Customer.Get("Customer No.") then begin
             "Country/Region Code" := Customer."Country/Region Code";
         end;
+        "IBAN Enmascarado" := EnmascaraIBAN(IBAN);
     end;
 
     trigger OnBeforeModify()
     var
         Customer: Record Customer;
     begin
+        "IBAN Enmascarado" := EnmascaraIBAN(IBAN);
         if Customer.Get("Customer No.") then begin
             Customer."Preferred Bank Account Code" := Code;
-            Customer.Modify;
+            Customer."IBAN Enmascarado" := "IBAN Enmascarado";
+            Customer.Modify(false);
         end;
     end;
 
@@ -299,5 +323,22 @@ tableextension 50033 CustomerBankAccount extends "Customer Bank Account"
         if "CCC Bank No." = '9091' then "SWIFT Code" := 'XBCNESBBXXX';
         if "CCC Bank No." = '9092' then "SWIFT Code" := 'XRBVES2BXXX';
         if "CCC Bank No." = '9093' then "SWIFT Code" := 'XRVVESVVXXX';
+    end;
+
+    procedure EnmascaraIBAN(ValorIBAN: Code[50]): Text[50]
+    var
+        Len: Integer;
+        i: Integer;
+        Resultado: Text[50];
+    begin
+        Len := StrLen(ValorIBAN);
+        if Len = 0 then
+            exit('');
+        if Len <= 4 then
+            exit(ValorIBAN);
+        for i := 1 to Len - 4 do
+            Resultado += '*';
+        Resultado += CopyStr(ValorIBAN, Len - 3, 4);
+        exit(Resultado);
     end;
 }
