@@ -108,6 +108,19 @@ pageextension 50042 PostedSalesInvoices extends "Posted Sales Invoices"
 
             ///AutomaticosEDICOMalbaran.GrabaEDICOM("No.");
 
+            action(ConvertirTicketAFacturaLista)
+            {
+                ApplicationArea = All;
+                Caption = 'Convertir a Factura';
+                ToolTip = 'Convierte esta factura simplificada (ticket) en una factura ordinaria asociada a un cliente.';
+                Image = Invoice;
+                trigger OnAction()
+                var
+                    CU: Codeunit "Convertir Ticket Factura";
+                begin
+                    CU.ConvertirTicket(Rec);
+                end;
+            }
 
         }
 

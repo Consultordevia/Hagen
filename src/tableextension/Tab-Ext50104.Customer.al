@@ -806,6 +806,13 @@ tableextension 50104 Customer extends "Customer"
             Caption = 'Avisar NTL';
         }
 
+        field(50729; "IBAN Enmascarado"; Text[50])
+        {
+            Caption = 'IBAN Enmascarado';
+            Editable = false;
+            DataClassification = CustomerContent;
+        }
+
 
 
 
