@@ -511,7 +511,7 @@ Codeunit 50057 "Crear Cajas AMAZON"
                                 TextoSalida := TextoSalida + Format(Q[X + 8]) + ';' + Format(F[X + 8]) + ';' + Format(L[X + 8]) + ';';
                                 TextoSalida := TextoSalida + Format(Q[X + 9]) + ';' + Format(F[X + 9]) + ';' + Format(L[X + 9]) + ';';
                                 TextoSalida := TextoSalida + Format(Q[X + 10]) + ';' + Format(F[X + 10]) + ';' + Format(L[X + 10]) + ';';
-                            until X = 500;
+                            until X = 490;
                             ///// ArchSalida4.WRITE(TextoSalida);
                             LineasAMAZON.Init;
                             LineasAMAZON.nexpe := SalesShipmentLine."Nº expedición";
@@ -1589,7 +1589,7 @@ Codeunit 50057 "Crear Cajas AMAZON"
                                 TextoSalida := TextoSalida + Format(Q[X + 8]) + ';' + Format(F[X + 8]) + ';' + Format(L[X + 8]) + ';';
                                 TextoSalida := TextoSalida + Format(Q[X + 9]) + ';' + Format(F[X + 9]) + ';' + Format(L[X + 9]) + ';';
                                 TextoSalida := TextoSalida + Format(Q[X + 10]) + ';' + Format(F[X + 10]) + ';' + Format(L[X + 10]) + ';';
-                            until X = 500;
+                            until X = 490;
 
                             LineasAMAZON.Init;
                             LineasAMAZON.nexpe := SalesShipmentLine."Nº expedición";
@@ -2670,7 +2670,7 @@ Codeunit 50057 "Crear Cajas AMAZON"
                                 TextoSalida := TextoSalida + Format(Q[X + 8]) + ';' + Format(F[X + 8]) + ';' + Format(L[X + 8]) + ';';
                                 TextoSalida := TextoSalida + Format(Q[X + 9]) + ';' + Format(F[X + 9]) + ';' + Format(L[X + 9]) + ';';
                                 TextoSalida := TextoSalida + Format(Q[X + 10]) + ';' + Format(F[X + 10]) + ';' + Format(L[X + 10]) + ';';
-                            until X = 500;
+                            until X = 490;
 
                             NCAJAS := Q_Inners;
                             CONTA := 0;
@@ -2709,7 +2709,7 @@ Codeunit 50057 "Crear Cajas AMAZON"
                                 TextoSalida := TextoSalida + Format(Q[X + 8]) + ';' + Format(F[X + 8]) + ';' + Format(L[X + 8]) + ';';
                                 TextoSalida := TextoSalida + Format(Q[X + 9]) + ';' + Format(F[X + 9]) + ';' + Format(L[X + 9]) + ';';
                                 TextoSalida := TextoSalida + Format(Q[X + 10]) + ';' + Format(F[X + 10]) + ';' + Format(L[X + 10]) + ';';
-                            until X = 500;
+                            until X = 490;
 
                             /////ArchSalida4.WRITE(TextoSalida);
                             LineasAMAZON.Init;
@@ -4437,7 +4437,7 @@ Codeunit 50057 "Crear Cajas AMAZON"
                                 TextoSalida := TextoSalida + Format(Q[X + 8]) + ';' + Format(F[X + 8]) + ';' + Format(L[X + 8]) + ';';
                                 TextoSalida := TextoSalida + Format(Q[X + 9]) + ';' + Format(F[X + 9]) + ';' + Format(L[X + 9]) + ';';
                                 TextoSalida := TextoSalida + Format(Q[X + 10]) + ';' + Format(F[X + 10]) + ';' + Format(L[X + 10]) + ';';
-                            until X = 500;
+                            until X = 490;
                             ///// ArchSalida4.WRITE(TextoSalida);
                             LineasAMAZON.Init;
                             LineasAMAZON.nexpe := SalesLine."Nº expedición";
@@ -5520,7 +5520,7 @@ Codeunit 50057 "Crear Cajas AMAZON"
                                 TextoSalida := TextoSalida + Format(Q[X + 8]) + ';' + Format(F[X + 8]) + ';' + Format(L[X + 8]) + ';';
                                 TextoSalida := TextoSalida + Format(Q[X + 9]) + ';' + Format(F[X + 9]) + ';' + Format(L[X + 9]) + ';';
                                 TextoSalida := TextoSalida + Format(Q[X + 10]) + ';' + Format(F[X + 10]) + ';' + Format(L[X + 10]) + ';';
-                            until X = 500;
+                            until X = 490;
                             ///// ArchSalida4.WRITE(TextoSalida);
                             LineasAMAZON.Init;
                             LineasAMAZON.nexpe := SalesLine."Nº expedición";
@@ -6605,7 +6605,7 @@ Codeunit 50057 "Crear Cajas AMAZON"
                                 TextoSalida := TextoSalida + Format(Q[X + 8]) + ';' + Format(F[X + 8]) + ';' + Format(L[X + 8]) + ';';
                                 TextoSalida := TextoSalida + Format(Q[X + 9]) + ';' + Format(F[X + 9]) + ';' + Format(L[X + 9]) + ';';
                                 TextoSalida := TextoSalida + Format(Q[X + 10]) + ';' + Format(F[X + 10]) + ';' + Format(L[X + 10]) + ';';
-                            until X = 500;
+                            until X = 490;
 
                             NCAJAS := Q_Inners;
                             CONTA := 0;
@@ -6644,7 +6644,7 @@ Codeunit 50057 "Crear Cajas AMAZON"
                                 TextoSalida := TextoSalida + Format(Q[X + 8]) + ';' + Format(F[X + 8]) + ';' + Format(L[X + 8]) + ';';
                                 TextoSalida := TextoSalida + Format(Q[X + 9]) + ';' + Format(F[X + 9]) + ';' + Format(L[X + 9]) + ';';
                                 TextoSalida := TextoSalida + Format(Q[X + 10]) + ';' + Format(F[X + 10]) + ';' + Format(L[X + 10]) + ';';
-                            until X = 500;
+                            until X = 490;
 
                             /////ArchSalida4.WRITE(TextoSalida);
                             LineasAMAZON.Init;
