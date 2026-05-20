@@ -813,6 +813,18 @@ tableextension 50104 Customer extends "Customer"
             DataClassification = CustomerContent;
         }
 
+        field(50730; "Requiere Prepago"; Boolean)
+        {
+            Caption = 'Requiere Pago Anticipado';
+            DataClassification = CustomerContent;
+        }
+
+        field(50731; "Banco Prepago Empresa"; Code[20])
+        {
+            Caption = 'Banco empresa cobros anticipados';
+            TableRelation = "Bank Account";
+            DataClassification = CustomerContent;
+        }
 
 
 

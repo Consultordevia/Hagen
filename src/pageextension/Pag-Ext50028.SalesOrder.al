@@ -27,6 +27,20 @@ pageextension 50028 SalesOrder extends "Sales Order"
             field("E-MAIL"; Rec."E-MAIL") { ApplicationArea = All; }
             field(Dropshipping; Rec.Dropshipping) { ApplicationArea = All; }
             field("Tipo facturación"; Rec."Tipo facturación") { ApplicationArea = All; }
+            field("Importe Prepago"; Rec."Importe Prepago")
+            {
+                ApplicationArea = All;
+                Caption = 'Cobro Anticipado';
+                Editable = false;
+                StyleExpr = PrepagoCampoStyle;
+            }
+            field("Estado Prepago"; Rec."Estado Prepago")
+            {
+                ApplicationArea = All;
+                Caption = 'Estado Cobro';
+                Editable = false;
+                StyleExpr = PrepagoCampoStyle;
+            }
 
         }
 
@@ -55,11 +69,61 @@ pageextension 50028 SalesOrder extends "Sales Order"
 
 
         }
+
+        addlast(factboxes)
+        {
+            part(PrepagosFactBox; "Hagen Prepagos FactBox")
+            {
+                ApplicationArea = All;
+                Caption = 'Pagos Anticipados';
+                SubPageLink = "Sales Order No." = field("No.");
+                UpdatePropagation = Both;
+            }
+        }
     }
     actions
     {
         addlast(processing)
         {
+
+            action(RegistrarPrepago)
+            {
+                ApplicationArea = All;
+                Caption = 'Registrar Pago Anticipado';
+                Image = Payment;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                PromotedOnly = true;
+                Visible = EsPagoAnticipadoVar;
+
+                trigger OnAction()
+                var
+                    PrepagoPedido: Record "Hagen Prepago Pedido";
+                    RegistroPrepago: Page "Hagen Registro Prepago";
+                    PrepagoMgt: Codeunit "Hagen Prepago Mgt.";
+                begin
+                    PrepagoPedido.Reset();
+                    PrepagoPedido.SetRange("Sales Order No.", Rec."No.");
+                    if not PrepagoPedido.FindFirst() then begin
+                        PrepagoPedido.Init();
+                        PrepagoPedido."Sales Order No." := Rec."No.";
+                        PrepagoPedido."Customer No." := Rec."Sell-to Customer No.";
+                        PrepagoPedido."Posting Date" := WorkDate();
+                        Rec.CalcFields("Amount Including VAT");
+                        PrepagoPedido.Amount := Rec."Amount Including VAT";
+                        PrepagoPedido."Bank Account No." :=
+                            PrepagoMgt.GetDefaultBankAccount(Rec."Sell-to Customer No.");
+                        PrepagoPedido."Company Bank Account No." :=
+                            PrepagoMgt.GetDefaultCompanyBankAccount(Rec."Sell-to Customer No.");
+                        PrepagoPedido.Insert();
+                    end;
+                    Commit();
+                    RegistroPrepago.SetRecord(PrepagoPedido);
+                    RegistroPrepago.RunModal();
+                    CurrPage.Update(false);
+                end;
+            }
 
             action("Crear EXPEDICION")
             {
@@ -1088,6 +1152,28 @@ pageextension 50028 SalesOrder extends "Sales Order"
         end;
     end;
 
+    var
+        PrepagoCampoStyle: Text;
+        EsPagoAnticipadoVar: Boolean;
+
+    trigger OnAfterGetRecord()
+    var
+        PrepagoMgt: Codeunit "Hagen Prepago Mgt.";
+    begin
+        EsPagoAnticipadoVar := PrepagoMgt.EsPagoAnticipado(Rec."Payment Method Code");
+
+        Rec.CalcFields("Estado Prepago", "Importe Prepago");
+        case Rec."Estado Prepago" of
+            Rec."Estado Prepago"::Pendiente:
+                PrepagoCampoStyle := 'Unfavorable';
+            Rec."Estado Prepago"::Registrado:
+                PrepagoCampoStyle := 'Favorable';
+            Rec."Estado Prepago"::Aplicado:
+                PrepagoCampoStyle := 'StrongAccent';
+            else
+                PrepagoCampoStyle := 'None';
+        end;
+    end;
 
 
 

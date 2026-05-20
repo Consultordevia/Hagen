@@ -250,6 +250,21 @@ pageextension 50005 "Customer Card" extends "Customer Card"
                 field("Top produccto.10"; Rec."Top produccto 10") { ApplicationArea = All; }
 
             }
+            group(PrepagosCliente)
+            {
+                Caption = 'Pagos Anticipados';
+
+                field("Requiere Prepago"; Rec."Requiere Prepago")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Requiere pago anticipado';
+                }
+                field("Banco Prepago Empresa"; Rec."Banco Prepago Empresa")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Banco empresa cobros anticipados';
+                }
+            }
         }
     }
 }

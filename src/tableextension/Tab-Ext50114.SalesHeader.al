@@ -1030,6 +1030,25 @@ tableextension 50114 SalesHeader extends "Sales Header"
             Editable = false;
         }
 
+        field(60010; "Importe Prepago"; Decimal)
+        {
+            Caption = 'Importe Pago Anticipado';
+            FieldClass = FlowField;
+            CalcFormula = sum("Hagen Prepago Pedido".Amount
+                where("Sales Order No." = field("No."),
+                      Status = filter(Registrado | Aplicado)));
+            Editable = false;
+        }
+
+        field(60011; "Estado Prepago"; Enum "Hagen Prepago Status")
+        {
+            Caption = 'Estado Pago Anticipado';
+            FieldClass = FlowField;
+            CalcFormula = max("Hagen Prepago Pedido".Status
+                where("Sales Order No." = field("No.")));
+            Editable = false;
+        }
+
 
 
     }

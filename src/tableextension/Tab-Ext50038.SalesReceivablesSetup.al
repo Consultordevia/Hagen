@@ -288,5 +288,10 @@ tableextension 50038 "Sales&ReceivablesSetup" extends "Sales & Receivables Setup
         field(50091; "Ruta fiche. Stock mano mano pe"; Text[60])
         {
         }
+        field(50092; "Banco Prepago"; Code[20])
+        {
+            Caption = 'Banco cobros anticipados';
+            TableRelation = "Bank Account";
+        }
     }
 }
