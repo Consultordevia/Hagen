@@ -220,6 +220,15 @@ Codeunit 50082 "Automaticos TRADE INN"
                         if RecItem221."FIJO Excluir de dropbox" = true then begin
                             ENTRA := false;
                         end;
+                        if RecItem221."Excluir de dropbox" = true then begin
+                            ENTRA := false;
+                        end;
+                        if (DISPONI <= 0) and (Item."Estado Producto" = Item."Estado Producto"::Descatalogado) then begin
+                            ENTRA := false;
+                        end;
+
+
+
                         if ENTRA then begin
                             if DISPONI > 90 then begin
                                 DISPONI := 90;
