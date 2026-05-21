@@ -58,10 +58,14 @@ Codeunit 50017 "ImprimirAlbaranes"
             end;
         END;
         If SHH."Shipping Agent Code" = 'ECI' then begin
-            SHH3.Reset();
-            SHH3.SetRange("No.", SHH."No.");
-            IF SHH3.FindFirst() THEN //BEGIN
-                Report.Run(50905, false, false, SHH3);
+            if SHH."Albaran sin detalle" = true then begin
+                if SHH.Dropshipping = false then begin
+                    SHH3.Reset();
+                    SHH3.SetRange("No.", SHH."No.");
+                    IF SHH3.FindFirst() THEN
+                        Report.Run(50905, false, false, SHH3);
+                end;
+            end;
         end;
         StoA.Reset();
         StoA.SetRange("Customer No.", RecClie."No.");
