@@ -193,13 +193,11 @@ Codeunit 50082 "Automaticos TRADE INN"
                         Clear(TextoSalida2);
                         Item.CalcFields(Inventory, "Existencia FOB", Item."Existencia SILLA", Item."Qty. on Sales Order", Item."Existencia OPER", "Existencia TENERIFE");
 
-                        ///DISPONI:=Item."Existencia OPER"+Item."Existencia SILLA"-Item."Qty. on Sales Order";
                         DISPONI := Item.Inventory - Item."Existencia FOB" - Item."Qty. on Sales Order" - Item."Stock para Catit" - Item."Existencia TENERIFE";
                         if Item."Stock para la web" > Item."Stock para Catit" then begin
                             DISPONI := Item."Stock para la web" + Item."Stock para Catit";
                         end;
 
-                        /////IF (DISPONI<0) AND ((Item."Existencia OPER"+Item."Existencia SILLA"<=0)) THEN BEGIN
                         if (DISPONI < 0) and ((Item.Inventory - Item."Existencia FOB" <= 0)) then begin
                             DISPONI := 0;
                         end;
@@ -214,17 +212,9 @@ Codeunit 50082 "Automaticos TRADE INN"
                         if (DISPONI <= 0) and (Item."Estado Producto" = 1) then begin
                             ENTRA := true;
                             DISPONI := 0;
-                            /*RecItem221.GET(Item."No.");
-                            RecItem221."Excluir de dropbox":=TRUE;
-                            RecItem221."Estado WEB Inactivo":=TRUE;
-                            RecItem221.MODIFY;*/
                         end;
                         if (DISPONI > 0) and (Item."Estado Producto" = 1) then begin
                             ENTRA := true;
-                            /*RecItem221.GET(Item."No.");
-                            RecItem221."Excluir de dropbox":=FALSE;
-                            RecItem221."Estado WEB Inactivo":=FALSE;
-                            RecItem221.MODIFY;                   */
                         end;
                         RecItem221.Get(Item."No.");
                         if RecItem221."FIJO Excluir de dropbox" = true then begin
@@ -233,9 +223,6 @@ Codeunit 50082 "Automaticos TRADE INN"
                         if ENTRA then begin
                             if DISPONI > 90 then begin
                                 DISPONI := 90;
-                            end;
-                            if Item."Producto con reserva" then begin
-                                /////DISPONI:=0;
                             end;
                             UNIMEDAD := Item."Unidades venta";
                             if Item."Permite fraccionar venta" then begin
@@ -283,23 +270,14 @@ Codeunit 50082 "Automaticos TRADE INN"
                             end;
 
                             PRECIO := 0;
-                            //DESCUENTO := 0;
                             PriceListLine.Reset;
                             PriceListLine.SetRange("Product No.", Item."No.");
                             PriceListLine.SetRange("Source No.", 'INN');
+                            PriceListLine.SetRange("Source Type", PriceListLine."Source Type"::"Customer Price Group");
                             if PriceListLine.FindLast then begin
                                 PRECIO := PriceListLine."Unit Price";
                                 pvpr := round(item."PVP-Web", 0.01);
                             end;
-
-                            //SalesLineDiscount.Reset;
-                            //SalesLineDiscount.SetRange(Code, Item."No.");
-                            //SalesLineDiscount.SetRange("Sales Code", 'INN');
-                            //SalesLineDiscount.SetRange("Starting Date", 0D, Today);
-                            //SalesLineDiscount.SetRange("Ending Date", Today, 20501231D);
-                            //if SalesLineDiscount.FindLast then begin
-                            //DESCUENTO := SalesLineDiscount."Line Discount %";
-                            //end;
 
                             IVA := 0;
                             if VATPostingSetup.Get('NACIONAL', Item."VAT Prod. Posting Group") then begin
@@ -335,8 +313,6 @@ Codeunit 50082 "Automaticos TRADE INN"
                             end;
                             invmanestoc := 'yes';
 
-                            ///PRECIO:=PRECIO+ROUND(SalesPrice."Unit Price"*IVA/100,0.01);
-                            ///PRECIO:=PRECIO+ROUND(SalesPrice."Unit Price",0.01);
                             PRECIO := ROUND(PRECIO, 0.01);
 
                             if Item."Estatus Web" = Item."estatus web"::Activo then begin estatus := 'Active'; end;
@@ -373,8 +349,6 @@ Codeunit 50082 "Automaticos TRADE INN"
         IF ADAIA.FindSet() THEN begin
             nomdir := ADAIA.Ruta;
         end;
-        ///TempBlob.CreateInStream(InStream);
-        ///FicherosHagen.CrearFichero(NOMDIR, 'INN.csv', InStream);
 
         Data.Write(OutStream);
         TempBlob.CreateInStream(InStream, TextEncoding::Windows);
