@@ -7,10 +7,10 @@ codeunit 50800 "Hagen Prepago Mgt."
         SalesHeader: Record "Sales Header";
         CustLedgerEntry: Record "Cust. Ledger Entry";
         SourceCodeSetup: Record "Source Code Setup";
+        SalesSetup: Record "Sales & Receivables Setup";
         MaxEntryNo: Integer;
     begin
         PrepagoPedido.TestField("Sales Order No.");
-        PrepagoPedido.TestField("Bank Account No.");
         PrepagoPedido.TestField(Amount);
         PrepagoPedido.TestField("Posting Date");
 
@@ -56,6 +56,11 @@ codeunit 50800 "Hagen Prepago Mgt."
         // Vincular el pago al pedido: BC aplicará automáticamente al facturar
         SalesHeader."Applies-to Doc. Type" := SalesHeader."Applies-to Doc. Type"::Payment;
         SalesHeader."Applies-to Doc. No." := PrepagoPedido."Document No.";
+
+        SalesSetup.Get();
+        if SalesSetup."Forma pago PAGADO" <> '' then
+            SalesHeader."Payment Method Code" := SalesSetup."Forma pago PAGADO";
+
         SalesHeader.Modify();
 
         // Guardar el Nº de movimiento de cliente generado

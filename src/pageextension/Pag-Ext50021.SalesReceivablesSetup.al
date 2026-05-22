@@ -36,6 +36,11 @@ pageextension 50021 "Sales & Receivables Setup" extends "Sales & Receivables Set
                 field("Ruta fiche. pedido Verdecora"; Rec."Ruta fiche. pedido Verdecora") { ApplicationArea = All; }
                 field("Ruta fiche. Stock Leroy Merlin"; Rec."Ruta fiche. Stock Leroy Merlin") { ApplicationArea = All; }
                 field("Ruta fiche. Stock mano mano pe"; Rec."Ruta fiche. Stock mano mano pe") { ApplicationArea = All; }
+                field("Forma pago PAGADO"; Rec."Forma pago PAGADO")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Forma de pago al registrar cobro';
+                }
                 field("Banco Prepago"; Rec."Banco Prepago")
                 {
                     ApplicationArea = All;

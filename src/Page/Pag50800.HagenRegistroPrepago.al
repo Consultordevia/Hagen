@@ -31,13 +31,6 @@ page 50800 "Hagen Registro Prepago"
                     Caption = 'Fecha Cobro';
                     Editable = Rec.Status = Rec.Status::Pendiente;
                 }
-                field("Bank Account No."; Rec."Bank Account No.")
-                {
-                    ApplicationArea = All;
-                    Caption = 'Cta. Bancaria Cliente';
-                    Editable = Rec.Status = Rec.Status::Pendiente;
-                    ToolTip = 'Cuenta bancaria del cliente desde la que se realizó el pago.';
-                }
                 field("Company Bank Account No."; Rec."Company Bank Account No.")
                 {
                     ApplicationArea = All;
@@ -127,8 +120,6 @@ page 50800 "Hagen Registro Prepago"
         PrepagoMgt: Codeunit "Hagen Prepago Mgt.";
     begin
         Rec."Posting Date" := WorkDate();
-        if Rec."Customer No." <> '' then
-            Rec."Bank Account No." := PrepagoMgt.GetDefaultBankAccount(Rec."Customer No.");
         Rec."Company Bank Account No." := PrepagoMgt.GetDefaultCompanyBankAccount(Rec."Customer No.");
     end;
 
