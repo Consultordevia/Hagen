@@ -469,6 +469,7 @@ Report 50016 NuevasComisiones
                                     PriceListLine.reset;
                                     PriceListLine.SetRange("Asset No.", Rec113."No.");
                                     PriceListLine.SetRange("Source No.", Rec113."Customer Price Group");
+                                    PriceListLine.SetRange("Source Type", PriceListLine."Source Type"::"Customer Price Group");
                                     IF PriceListLine.FindLast() THEN BEGIN
                                         ImporteTarifaFull := ImporteTarifaFull + round(Rec113.Quantity * PriceListLine."Unit Price", 0.01);
                                     END;
@@ -603,6 +604,7 @@ Report 50016 NuevasComisiones
                                     PriceListLine.reset;
                                     PriceListLine.SetRange("Asset No.", Rec115."No.");
                                     PriceListLine.SetRange("Source No.", Rec115."Customer Price Group");
+                                    PriceListLine.SetRange("Source Type", PriceListLine."Source Type"::"Customer Price Group");
                                     IF PriceListLine.FindLast() THEN BEGIN
                                         ImporteTarifaFull := ImporteTarifaFull + round(Rec115.Quantity * PriceListLine."Unit Price", 0.01);
                                     END;
