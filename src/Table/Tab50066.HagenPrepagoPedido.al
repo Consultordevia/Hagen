@@ -1,4 +1,4 @@
-table 50066 "Hagen Prepago Pedido"
+table 50200 "Hagen Prepago Pedido"
 {
     Caption = 'Prepago Pedido';
     DataClassification = CustomerContent;

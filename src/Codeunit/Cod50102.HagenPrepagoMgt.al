@@ -1,4 +1,4 @@
-codeunit 50102 "Hagen Prepago Mgt."
+codeunit 50200 "Hagen Prepago Mgt."
 {
     procedure RegisterPayment(var PrepagoPedido: Record "Hagen Prepago Pedido")
     var

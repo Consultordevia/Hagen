@@ -1,4 +1,4 @@
-enum 50800 "Hagen Prepago Status"
+enum 50200 "Hagen Prepago Status"
 {
     Extensible = false;
 

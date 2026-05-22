@@ -1,4 +1,4 @@
-codeunit 50103 "Hagen Prepago Event Sub."
+codeunit 50201 "Hagen Prepago Event Sub."
 {
     // El check de prepago se realiza únicamente en el momento del registro (albaran/factura),
     // no al liberar el pedido, para permitir la creación desde Shopify y otros canales sin bloqueos.
