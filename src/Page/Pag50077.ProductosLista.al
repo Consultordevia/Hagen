@@ -23,14 +23,6 @@ Page 50077 "Productos Lista"
                     ApplicationArea = Basic;
                 }
 
-                field("SCP Exclude From Calculation"; Rec."SCP Exclude From Calculation")
-                {
-                    ApplicationArea = Basic;
-                }
-                field("SCP Safety Stock Days"; Rec."SCP Safety Stock Days")
-                {
-                    ApplicationArea = Basic;
-                }
 
                 field("Clasificación Comercial"; Rec."Clasificación Comercial")
                 {

@@ -25,6 +25,26 @@ page 50257 "Hagen Registro Prepago"
                     Caption = 'Cliente';
                     Editable = false;
                 }
+                field("Invoice to Other Customer"; Rec."Invoice to Other Customer")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Factura a otro cliente';
+                    Editable = Rec.Status = Rec.Status::Pendiente;
+
+                    trigger OnValidate()
+                    begin
+                        if not Rec."Invoice to Other Customer" then
+                            Rec."Invoice Customer No." := '';
+                        CurrPage.Update(false);
+                    end;
+                }
+                field("Invoice Customer No."; Rec."Invoice Customer No.")
+                {
+                    ApplicationArea = All;
+                    Caption = 'Cliente Facturación';
+                    Editable = Rec."Invoice to Other Customer" and (Rec.Status = Rec.Status::Pendiente);
+                    ShowMandatory = Rec."Invoice to Other Customer";
+                }
                 field("Posting Date"; Rec."Posting Date")
                 {
                     ApplicationArea = All;

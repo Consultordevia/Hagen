@@ -1196,6 +1196,71 @@ fgeHVghbha6tAwrCcq/ZW5QDmejFgaqSRuUmecSMjv7zb5Srfv9XuD2pqrRT3m2KtspvTrKdQeb5
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="PreparadorLabel">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Preparador</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>PreparadorLabel</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Preparador">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Preparador.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Preparador</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.6cm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Textbox1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -1290,6 +1355,7 @@ fgeHVghbha6tAwrCcq/ZW5QDmejFgaqSRuUmecSMjv7zb5Srfv9XuD2pqrRT3m2KtspvTrKdQeb5
                     <TablixMember />
                     <TablixMember />
                     <TablixMember />
+                    <TablixMember />
                   </TablixMembers>
                 </TablixMember>
               </TablixMembers>
@@ -1298,7 +1364,7 @@ fgeHVghbha6tAwrCcq/ZW5QDmejFgaqSRuUmecSMjv7zb5Srfv9XuD2pqrRT3m2KtspvTrKdQeb5
             <PageBreak>
               <BreakLocation>End</BreakLocation>
             </PageBreak>
-            <Height>10.2cm</Height>
+            <Height>10.8cm</Height>
             <Width>8.24556cm</Width>
             <Style>
               <Border>
@@ -1307,7 +1373,7 @@ fgeHVghbha6tAwrCcq/ZW5QDmejFgaqSRuUmecSMjv7zb5Srfv9XuD2pqrRT3m2KtspvTrKdQeb5
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>10.2cm</Height>
+        <Height>10.8cm</Height>
         <Style />
       </Body>
       <Width>8.24556cm</Width>
@@ -1348,6 +1414,9 @@ fgeHVghbha6tAwrCcq/ZW5QDmejFgaqSRuUmecSMjv7zb5Srfv9XuD2pqrRT3m2KtspvTrKdQeb5
         </Field>
         <Field Name="Totalbultos">
           <DataField>Totalbultos</DataField>
+        </Field>
+        <Field Name="Preparador">
+          <DataField>Preparador</DataField>
         </Field>
         <Field Name="Noexpedicion__SalesShipmentHeaderNoexpedicion">
           <DataField>Noexpedicion__SalesShipmentHeaderNoexpedicion</DataField>

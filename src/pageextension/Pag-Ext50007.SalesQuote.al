@@ -809,6 +809,23 @@ pageextension 50007 "Sales Quote" extends "Sales Quote"
                 end;
             }
 
+            action(DescargarImagenesOferta)
+            {
+                ApplicationArea = All;
+                Caption = 'Descargar imágenes (ZIP)';
+                Image = Picture;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+
+                trigger OnAction()
+                var
+                    DescargarImagenesOferta: Codeunit "Descargar Imagenes Oferta";
+                begin
+                    DescargarImagenesOferta.DescargarImagenesProducto(Rec);
+                end;
+            }
+
 
 
 

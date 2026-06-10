@@ -51,8 +51,6 @@ Codeunit 50017 "ImprimirAlbaranes"
     var
         RecClie: Record Customer;
         StoA: Record "Ship-to Address";
-        RepEtiquetaEnvio: Report "Etiqueta grande envio";
-        RepEtiquetaKiwoko: Report "Etiqueta Kiwoko";
         SHH3: Record "Sales Shipment Header";
     begin
         RecClie.Get(SHH."Sell-to Customer No.");
@@ -62,20 +60,14 @@ Codeunit 50017 "ImprimirAlbaranes"
         if StoA.FindFirst() then begin
             SHH3.Reset();
             SHH3.SetRange("No.", SHH."No.");
-            IF SHH3.FindFirst() THEN BEGIN
-                Clear(RepEtiquetaEnvio);
-                RepEtiquetaEnvio.SetTableView(SHH3);
-                RepEtiquetaEnvio.Run();
-            END;
+            IF SHH3.FindFirst() THEN
+                Report.Run(Report::"Etiqueta grande envio", false, false, SHH3);
         end;
         IF RecClie."Etiqueta Kiwoko" THEN begin
             SHH3.Reset();
             SHH3.SetRange("No.", SHH."No.");
-            IF SHH3.FindFirst() THEN BEGIN
-                Clear(RepEtiquetaKiwoko);
-                RepEtiquetaKiwoko.SetTableView(SHH3);
-                RepEtiquetaKiwoko.Run();
-            end;
+            IF SHH3.FindFirst() THEN
+                Report.Run(Report::"Etiqueta Kiwoko", false, false, SHH3);
         end;
     end;
 }

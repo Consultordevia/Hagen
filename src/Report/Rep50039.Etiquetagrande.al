@@ -32,7 +32,10 @@ Report 50039 "Etiqueta grande"
                 column(SalesShipmentHeaderShip_toCountry_RegionCode__SalesShipmentH; SToA."Country/Region Code" + '  ' + SToA."County")
                 {
                 }
-                column(Totalbultos__FORMAT_SalesShipmentHeaderTotalbultos__FORMAT_c; 'Total bultos: ' + Format("Sales Shipment Header"."Total bultos") + '	 ' + Format(cobtablu) + '/' + Format("Sales Shipment Header"."Total bultos"))
+                column(Totalbultos; 'Bulto: ' + Format(cobtablu) + '/' + Format("Sales Shipment Header"."Total bultos"))
+                {
+                }
+                column(Preparador; 'Preparador: ' + nombreprepara)
                 {
                 }
                 column(Noexpedicion__SalesShipmentHeaderNoexpedicion; 'Nº expedicion: ' + "Sales Shipment Header"."Nº expedición")
@@ -128,7 +131,7 @@ Report 50039 "Etiqueta grande"
                 if cuantas = 0 then begin
                     cuantas := 1;
                 end;
-                nombreprepara := '';
+                nombreprepara := CopyStr(EventosEtiquetas.ObtenerPreparador("Sales Shipment Header"), 1, MaxStrLen(nombreprepara));
                 TELEFONO := '';
                 if RecCusto.Get("Sales Shipment Header"."Sell-to Customer No.") then begin
                     TELEFONO := RecCusto."Phone No.";
@@ -263,6 +266,7 @@ Report 50039 "Etiqueta grande"
         REC1112: Record "Sales Shipment Line";
         decre: Decimal;
         SToA: Record "Ship-to Address";
+        EventosEtiquetas: Codeunit "Eventos Etiquetas Hagen";
 
     local procedure MakeWOHeader()
     begin

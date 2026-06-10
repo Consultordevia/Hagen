@@ -35,6 +35,9 @@ Report 50041 "Etiqueta grande envio"
                 column(Totalbultos; 'Bulto: ' + Format(cobtablu) + '/' + Format("Sales Shipment Header"."Nº bultos"))
                 {
                 }
+                column(Preparador; 'Preparador: ' + nombreprepara)
+                {
+                }
                 column(Noexpedicion__SalesShipmentHeaderNoexpedicion; 'Nº expedicion: ' + "Sales Shipment Header"."Nº expedición")
                 {
                 }
@@ -112,7 +115,7 @@ Report 50041 "Etiqueta grande envio"
                 if cuantas = 0 then begin
                     cuantas := 1;
                 end;
-                nombreprepara := '';
+                nombreprepara := CopyStr(EventosEtiquetas.ObtenerPreparador("Sales Shipment Header"), 1, MaxStrLen(nombreprepara));
                 TELEFONO := '';
                 if RecCusto.Get("Sales Shipment Header"."Sell-to Customer No.") then begin
                     TELEFONO := RecCusto."Phone No.";
@@ -246,6 +249,7 @@ Report 50041 "Etiqueta grande envio"
         Rec1102: Record "Sales Shipment Header";
         REC1112: Record "Sales Shipment Line";
         decre: Decimal;
+        EventosEtiquetas: Codeunit "Eventos Etiquetas Hagen";
 
     local procedure MakeWOHeader()
     begin

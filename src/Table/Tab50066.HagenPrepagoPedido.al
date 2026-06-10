@@ -63,6 +63,15 @@ table 50200 "Hagen Prepago Pedido"
             Caption = 'Cuenta Bancaria Empresa';
             TableRelation = "Bank Account";
         }
+        field(13; "Invoice to Other Customer"; Boolean)
+        {
+            Caption = 'Factura a otro cliente';
+        }
+        field(14; "Invoice Customer No."; Code[20])
+        {
+            Caption = 'Cliente Facturación';
+            TableRelation = Customer;
+        }
     }
 
     keys

@@ -17,6 +17,9 @@ codeunit 50200 "Hagen Prepago Mgt."
         if PrepagoPedido.Status <> PrepagoPedido.Status::Pendiente then
             Error('Este pago ya fue registrado. Estado actual: %1.', PrepagoPedido.Status);
 
+        if PrepagoPedido."Invoice to Other Customer" then
+            PrepagoPedido.TestField("Invoice Customer No.");
+
         SalesHeader.Get(SalesHeader."Document Type"::Order, PrepagoPedido."Sales Order No.");
 
         if (SalesHeader."Applies-to Doc. No." <> '') and (SalesHeader."Applies-to Doc. No." <> PrepagoPedido."Document No.") then
@@ -48,7 +51,7 @@ codeunit 50200 "Hagen Prepago Mgt."
         GenJnlLine."Account Type" := GenJnlLine."Account Type"::"Bank Account";
         GenJnlLine.Validate("Account No.", PrepagoPedido."Company Bank Account No.");
         GenJnlLine."Bal. Account Type" := GenJnlLine."Bal. Account Type"::Customer;
-        GenJnlLine.Validate("Bal. Account No.", SalesHeader."Sell-to Customer No.");
+        GenJnlLine.Validate("Bal. Account No.", GetBillingCustomerNo(PrepagoPedido, SalesHeader."Sell-to Customer No."));
         GenJnlLine.Validate(Amount, PrepagoPedido.Amount);
 
         GenJnlPostLine.RunWithCheck(GenJnlLine);
@@ -65,7 +68,7 @@ codeunit 50200 "Hagen Prepago Mgt."
 
         // Guardar el Nº de movimiento de cliente generado
         CustLedgerEntry.Reset();
-        CustLedgerEntry.SetRange("Customer No.", SalesHeader."Sell-to Customer No.");
+        CustLedgerEntry.SetRange("Customer No.", GetBillingCustomerNo(PrepagoPedido, SalesHeader."Sell-to Customer No."));
         CustLedgerEntry.SetFilter("Entry No.", '>%1', MaxEntryNo);
         CustLedgerEntry.SetRange("Document No.", PrepagoPedido."Document No.");
         if CustLedgerEntry.FindFirst() then
@@ -112,7 +115,7 @@ codeunit 50200 "Hagen Prepago Mgt."
         GenJnlLine.Validate("Account No.", PrepagoPedido."Company Bank Account No.");
         GenJnlLine."Bal. Account Type" := GenJnlLine."Bal. Account Type"::Customer;
         SalesHeader.Get(SalesHeader."Document Type"::Order, PrepagoPedido."Sales Order No.");
-        GenJnlLine.Validate("Bal. Account No.", SalesHeader."Sell-to Customer No.");
+        GenJnlLine.Validate("Bal. Account No.", GetBillingCustomerNo(PrepagoPedido, SalesHeader."Sell-to Customer No."));
         GenJnlLine.Validate(Amount, -PrepagoPedido.Amount);
         GenJnlLine."Applies-to Doc. Type" := GenJnlLine."Applies-to Doc. Type"::Payment;
         GenJnlLine."Applies-to Doc. No." := PrepagoPedido."Document No.";
@@ -203,5 +206,12 @@ codeunit 50200 "Hagen Prepago Mgt."
 
         SalesSetup.Get();
         exit(SalesSetup."Banco Prepago");
+    end;
+
+    local procedure GetBillingCustomerNo(PrepagoPedido: Record "Hagen Prepago Pedido"; SellToCustomerNo: Code[20]): Code[20]
+    begin
+        if PrepagoPedido."Invoice to Other Customer" and (PrepagoPedido."Invoice Customer No." <> '') then
+            exit(PrepagoPedido."Invoice Customer No.");
+        exit(SellToCustomerNo);
     end;
 }

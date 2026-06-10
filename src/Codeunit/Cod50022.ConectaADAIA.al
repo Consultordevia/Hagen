@@ -1017,6 +1017,7 @@ Codeunit 50022 "Conecta ADAIA"
             "DAÑO": Integer;
             FFCAD: Date;
             RecTra: Record "Shipping Agent";
+            ImprimeEtiGrande: Boolean;
             decre: Decimal;
             REC110: Record "Sales Shipment Header";
             REC111: Record "Sales Shipment Line";
@@ -1679,11 +1680,14 @@ Codeunit 50022 "Conecta ADAIA"
                                 if Rec1102."Bill-to Customer No."='10925' then begin
                                      ficehrocovaldroper;
                                 end;
-                                if Customer.Get(REC110."Sell-to Customer No.") then begin
-                                    if Customer."Enviar etiqueta grande" then begin
-                                        Report.RunModal(50039,false,false,REC110);
-                                    end;
-                                end;
+                                ImprimeEtiGrande := false;
+                                if Customer.Get(REC110."Sell-to Customer No.") then
+                                    ImprimeEtiGrande := Customer."Enviar etiqueta grande";
+                                if not ImprimeEtiGrande then
+                                    if RecTra.Get(REC110."Shipping Agent Code") then
+                                        ImprimeEtiGrande := RecTra."Sacar etiqueta envio GRA";
+                                if ImprimeEtiGrande then
+                                    Report.RunModal(50039,false,false,REC110);
                            until REC110.Next=0;
 
 

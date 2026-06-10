@@ -140,14 +140,7 @@ pageextension 50020 "Item List" extends "Item List"
             /////field(subido;Rec.subido) { ApplicationArea = All; }
 
 
-            field("SCP Exclude From Calculation"; Rec."SCP Exclude From Calculation")
-            {
-                ApplicationArea = Basic;
-            }
-            field("SCP Safety Stock Days"; Rec."SCP Safety Stock Days")
-            {
-                ApplicationArea = Basic;
-            }
+
 
             field("Codigo arancelario Canarias"; Rec."Codigo arancelario Canarias") { ApplicationArea = All; }
             field("Clasificación Comercial"; Rec."Clasificación Comercial") { ApplicationArea = All; }
