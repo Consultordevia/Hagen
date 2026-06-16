@@ -13,6 +13,7 @@ codeunit 50093 "Convertir Ticket Factura"
         PoblacionDialog: Text[30];
         CodPostalDialog: Code[20];
         EmailNotifDialog: Text[250];
+        ClienteCATITDialog: Boolean;
     begin
         if CabFactura."Invoice Type" <> CabFactura."Invoice Type"::"F2 Simplified Invoice" then
             Error('Solo se pueden convertir facturas simplificadas (tipo F2).');
@@ -33,10 +34,16 @@ codeunit 50093 "Convertir Ticket Factura"
         PoblacionDialog := DialogoCliente.ObtenerPoblacion();
         CodPostalDialog := DialogoCliente.ObtenerCodigoPostal();
         EmailNotifDialog := DialogoCliente.ObtenerEmailNotificacion();
+        ClienteCATITDialog := DialogoCliente.ObtenerClienteCATIT();
 
         // 2. Buscar o crear el cliente por CIF
         NumCliente := BuscarOCrearCliente(CIFDialog, NombreDialog, DireccionDialog, Direccion2Dialog,
             CodPaisDialog, PoblacionDialog, CodPostalDialog, EmailNotifDialog, CabFactura);
+
+        // Cliente CATIT (Shopify): se borra el email de la ficha de cliente inicial para que no
+        // queden dos fichas con el mismo email y los futuros pedidos de Shopify se asignen a la nueva.
+        if ClienteCATITDialog then
+            BorrarEmailClienteInicial(CabFactura."Sell-to Customer No.", NumCliente);
 
         // 3. Nota de abono correctiva estándar de BC
         CrearYRegistrarAbono(CabFactura);
@@ -86,6 +93,8 @@ codeunit 50093 "Convertir Ticket Factura"
             Cliente."Customer Posting Group" := ClientePlantilla."Customer Posting Group";
             Cliente."Gen. Bus. Posting Group" := ClientePlantilla."Gen. Bus. Posting Group";
             Cliente."VAT Bus. Posting Group" := ClientePlantilla."VAT Bus. Posting Group";
+            Cliente."Customer Price Group" := ClientePlantilla."Customer Price Group";
+            Cliente."Customer Disc. Group" := ClientePlantilla."Customer Disc. Group";
             Cliente."Payment Terms Code" := ClientePlantilla."Payment Terms Code";
             Cliente."Payment Method Code" := ClientePlantilla."Payment Method Code";
             Cliente."Currency Code" := ClientePlantilla."Currency Code";
@@ -94,6 +103,24 @@ codeunit 50093 "Convertir Ticket Factura"
         OnBeforeModificarCliente(Cliente, EmailNotif);
         Cliente.Modify(true);
         exit(Cliente."No.");
+    end;
+
+    local procedure BorrarEmailClienteInicial(NumClienteInicial: Code[20]; NumClienteNuevo: Code[20])
+    var
+        ClienteInicial: Record Customer;
+    begin
+        // Si la nueva ficha es la misma que la inicial no hay nada que limpiar.
+        if NumClienteInicial = NumClienteNuevo then
+            exit;
+
+        if not ClienteInicial.Get(NumClienteInicial) then
+            exit;
+
+        if ClienteInicial."E-Mail" = '' then
+            exit;
+
+        ClienteInicial."E-Mail" := '';
+        ClienteInicial.Modify(true);
     end;
 
     local procedure CrearYRegistrarAbono(CabFactura: Record "Sales Invoice Header")
@@ -108,6 +135,10 @@ codeunit 50093 "Convertir Ticket Factura"
         CabAbono."Document Type" := CabAbono."Document Type"::"Credit Memo";
         CabAbono.Insert(true);
         CabAbono.Validate("Sell-to Customer No.", CabFactura."Sell-to Customer No.");
+
+        // El ticket lleva precios con IVA incluido: hay que replicar el flag para que el
+        // Unit Price copiado se interprete como importe con IVA y no se vuelva a sumar el IVA.
+        CabAbono.Validate("Prices Including VAT", CabFactura."Prices Including VAT");
 
         // Sell-to del ticket
         CabAbono."Sell-to Customer Name" := CabFactura."Sell-to Customer Name";
@@ -181,6 +212,10 @@ codeunit 50093 "Convertir Ticket Factura"
         // Validar cliente → BC configura grupos de contabilización, condiciones de pago, etc.
         NuevaCab.Validate("Sell-to Customer No.", NumCliente);
 
+        // El ticket lleva precios con IVA incluido: hay que replicar el flag para que el
+        // Unit Price copiado se interprete como importe con IVA y no se vuelva a sumar el IVA.
+        NuevaCab.Validate("Prices Including VAT", CabFacturaOrigen."Prices Including VAT");
+
         // Sell-to: datos del diálogo (sobreescriben lo que haya puesto el Validate)
         NuevaCab."Sell-to Customer Name" := CopyStr(NombreFacturacion, 1, MaxStrLen(NuevaCab."Sell-to Customer Name"));
         NuevaCab."Sell-to Address" := CopyStr(DireccionFacturacion, 1, MaxStrLen(NuevaCab."Sell-to Address"));
@@ -211,11 +246,11 @@ codeunit 50093 "Convertir Ticket Factura"
         NuevaCab."Ship-to County" := CabFacturaOrigen."Ship-to County";
         NuevaCab."Ship-to Contact" := CabFacturaOrigen."Ship-to Contact";
 
-        // Referencias y fechas del ticket
+        // Referencias del ticket; la fecha de registro/documento es la del día en curso
         NuevaCab."External Document No." := CabFacturaOrigen."No.";
         NuevaCab."Your Reference" := CabFacturaOrigen."Your Reference";
-        NuevaCab."Posting Date" := CabFacturaOrigen."Posting Date";
-        NuevaCab."Document Date" := CabFacturaOrigen."Document Date";
+        NuevaCab."Posting Date" := WorkDate();
+        NuevaCab."Document Date" := WorkDate();
         NuevaCab.Modify(true);
 
         // Copiar líneas del ticket a la nueva factura

@@ -78,6 +78,12 @@ page 50190 "Dialogo Convertir Ticket"
                     Caption = 'Email Notificación Envío';
                     ToolTip = 'Email al que se enviarán las comunicaciones automáticas para este cliente.';
                 }
+                field(ClienteCATIT; ClienteCATIT)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Cliente CATIT';
+                    ToolTip = 'Marca si es un cliente CATIT (Shopify). Al activarlo, se borrará el email de la ficha de cliente inicial para que los futuros pedidos de Shopify se asignen a la nueva ficha.';
+                }
             }
         }
     }
@@ -106,6 +112,7 @@ page 50190 "Dialogo Convertir Ticket"
         Poblacion: Text[30];
         CodigoPostal: Code[20];
         EmailNotificacion: Text[250];
+        ClienteCATIT: Boolean;
 
     procedure ObtenerCIF(): Text[20]
     begin
@@ -145,6 +152,11 @@ page 50190 "Dialogo Convertir Ticket"
     procedure ObtenerEmailNotificacion(): Text[250]
     begin
         exit(EmailNotificacion);
+    end;
+
+    procedure ObtenerClienteCATIT(): Boolean
+    begin
+        exit(ClienteCATIT);
     end;
 
     procedure SetDatosShipTo(CabFactura: Record "Sales Invoice Header")
