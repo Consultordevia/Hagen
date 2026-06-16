@@ -9900,6 +9900,10 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             if RecTra.Añadir = 2 then
                                 Body := Body + Format(NEXPEDI) + '/' +
                                 Format(SalesInvHeader."Ship-to Post Code");
+                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia Codigo postal" then begin
+                                Body := Body + Format(NEXPEDI) + ',,' +
+                                Format(SalesInvHeader."Ship-to Post Code");
+                            end;
                             /////                         FORMAT(SalesInvHeader."Ship-to Post Code");
                             Body := Body + ', a partir de hoy a las 22:00.' +
                               '<br><br>';
@@ -10069,6 +10073,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             if RecTra.Añadir = 2 then
                                 Body := Body + Format(NEXPEDI) + '/' +
                                 Format(SalesInvHeader."Ship-to Post Code");
+                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia Codigo postal" then begin
+                                Body := Body + Format(NEXPEDI) + ',,' +
+                                Format(SalesInvHeader."Ship-to Post Code");
+                            end;
+
                             Body := Body + '<br><br>' + ', a partir de hoje as 22:00.' + '<br><br>';
 
                         end;
@@ -11608,6 +11617,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                 Body := Body + Format(NEXPEDI) + '/' +
         Format(Rec110."Ship-to Post Code");
                             /////                         FORMAT(Rec110."Ship-to Post Code");
+                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia Codigo postal" then begin
+                                Body := Body + Format(NEXPEDI) + ',,' +
+                                Format(SalesInvHeader."Ship-to Post Code");
+                            end;
+
                             Body := Body + ', a partir de hoy a las 22:00.';
 
                         end;
@@ -13618,12 +13632,22 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                 if RecTra.Añadir = 2 then
                                     Body := Body + Format(SalesInvHeader."Nº expedición") + '/' +
             Format(SalesInvHeader."Ship-to Post Code");
+                                if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia Codigo postal" then begin
+                                    Body := Body + Format(NEXPEDI) + ',,' +
+                                    Format(SalesInvHeader."Ship-to Post Code");
+                                end;
+
                             end;
                             if SalesInvHeader."Nº expedición dropshp" <> '' then begin
                                 if RecTra.Añadir = 0 then Body := Body + Format(SalesInvHeader."Nº expedición dropshp");
                                 if RecTra.Añadir = 2 then
                                     Body := Body + Format(SalesInvHeader."Nº expedición dropshp") + '/' +
             Format(SalesInvHeader."Ship-to Post Code");
+                                if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia Codigo postal" then begin
+                                    Body := Body + Format(NEXPEDI) + ',,' +
+                                    Format(SalesInvHeader."Ship-to Post Code");
+                                end;
+
                             end;
                             /////                         FORMAT(SalesInvHeader."Ship-to Post Code");                             
                             Body := Body +
@@ -14990,6 +15014,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             if RecTra.Añadir = 2 then
                                 Body := Body + Format(NEXPEDI) + '/' +
         Format(SalesInvHeader."Ship-to Post Code");
+                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia Codigo postal" then begin
+                                Body := Body + Format(NEXPEDI) + ',,' +
+                                Format(SalesInvHeader."Ship-to Post Code");
+                            end;
+
                             /////                         FORMAT(SalesInvHeader."Ship-to Post Code");
                             Body := Body + ', a partir de hoy a las 22:00.';
 
@@ -15108,6 +15137,11 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             if RecTra.Añadir = 2 then
                                 Body := Body + Format(NEXPEDI) + '/' +
         Format(SalesInvHeader."Ship-to Post Code");
+                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia Codigo postal" then begin
+                                Body := Body + Format(NEXPEDI) + ',,' +
+                                Format(SalesInvHeader."Ship-to Post Code");
+                            end;
+
                             Body := Body + ', a partir de hoje as 22:00.';
 
                         end;
