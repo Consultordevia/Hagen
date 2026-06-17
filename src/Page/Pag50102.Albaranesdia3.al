@@ -561,6 +561,11 @@ Page 50102 "Albaranes dia-3"
                                 if RecTra.Añadir = RecTra."Añadir"::"En Medio" then
                                     paginaweb := paginaweb + Format(codexpe) + RecTra."Link transporte2";
 
+                                if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia coma coma Codigo postal" then begin
+                                    paginaweb := paginaweb + Format(codexpe) + ',,' +
+                                    Format(Rec."Ship-to Post Code");
+                                end;
+
                                 Hyperlink(paginaweb);
                             end;
 
