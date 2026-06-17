@@ -9900,7 +9900,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             if RecTra.Añadir = 2 then
                                 Body := Body + Format(NEXPEDI) + '/' +
                                 Format(SalesInvHeader."Ship-to Post Code");
-                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia Codigo postal" then begin
+                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia coma coma Codigo postal" then begin
                                 Body := Body + Format(NEXPEDI) + ',,' +
                                 Format(SalesInvHeader."Ship-to Post Code");
                             end;
@@ -10073,7 +10073,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             if RecTra.Añadir = 2 then
                                 Body := Body + Format(NEXPEDI) + '/' +
                                 Format(SalesInvHeader."Ship-to Post Code");
-                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia Codigo postal" then begin
+                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia coma coma Codigo postal" then begin
                                 Body := Body + Format(NEXPEDI) + ',,' +
                                 Format(SalesInvHeader."Ship-to Post Code");
                             end;
@@ -11617,7 +11617,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                 Body := Body + Format(NEXPEDI) + '/' +
         Format(Rec110."Ship-to Post Code");
                             /////                         FORMAT(Rec110."Ship-to Post Code");
-                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia Codigo postal" then begin
+                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia coma coma Codigo postal" then begin
                                 Body := Body + Format(NEXPEDI) + ',,' +
                                 Format(SalesInvHeader."Ship-to Post Code");
                             end;
@@ -13632,7 +13632,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                 if RecTra.Añadir = 2 then
                                     Body := Body + Format(SalesInvHeader."Nº expedición") + '/' +
             Format(SalesInvHeader."Ship-to Post Code");
-                                if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia Codigo postal" then begin
+                                if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia coma coma Codigo postal" then begin
                                     Body := Body + Format(NEXPEDI) + ',,' +
                                     Format(SalesInvHeader."Ship-to Post Code");
                                 end;
@@ -13643,7 +13643,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                                 if RecTra.Añadir = 2 then
                                     Body := Body + Format(SalesInvHeader."Nº expedición dropshp") + '/' +
             Format(SalesInvHeader."Ship-to Post Code");
-                                if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia Codigo postal" then begin
+                                if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia coma coma Codigo postal" then begin
                                     Body := Body + Format(NEXPEDI) + ',,' +
                                     Format(SalesInvHeader."Ship-to Post Code");
                                 end;
@@ -15014,7 +15014,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             if RecTra.Añadir = 2 then
                                 Body := Body + Format(NEXPEDI) + '/' +
         Format(SalesInvHeader."Ship-to Post Code");
-                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia Codigo postal" then begin
+                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia coma coma Codigo postal" then begin
                                 Body := Body + Format(NEXPEDI) + ',,' +
                                 Format(SalesInvHeader."Ship-to Post Code");
                             end;
@@ -15137,7 +15137,7 @@ TextoSalida5 :=           FORMAT(Rec110."Ship-to Post Code",5)+
                             if RecTra.Añadir = 2 then
                                 Body := Body + Format(NEXPEDI) + '/' +
         Format(SalesInvHeader."Ship-to Post Code");
-                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia Codigo postal" then begin
+                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia coma coma Codigo postal" then begin
                                 Body := Body + Format(NEXPEDI) + ',,' +
                                 Format(SalesInvHeader."Ship-to Post Code");
                             end;

@@ -226,6 +226,9 @@ Codeunit 50082 "Automaticos TRADE INN"
                         if (DISPONI <= 0) and (Item."Estado Producto" = Item."Estado Producto"::Descatalogado) then begin
                             ENTRA := false;
                         end;
+                        if Item."No permite pedido" then begin
+                            DISPONI := 0;
+                        end;
 
 
 

@@ -412,7 +412,7 @@ Page 50026 "Albaranes dia"
         Format(Rec."Ship-to Post Code");
                             if RecTra.Añadir = RecTra."Añadir"::"En Medio" then
                                 paginaweb := paginaweb + Format(Rec."Nº expedición") + RecTra."Link transporte2";
-                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia Codigo postal" then begin
+                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia coma coma Codigo postal" then begin
                                 paginaweb := paginaweb + Format(Rec."Nº expedición") + ',,' +
                                 Format(Rec."Ship-to Post Code");
                             end;
