@@ -1,6 +1,6 @@
 reportextension 50100 StandardSalesInvoice extends "Standard Sales - Invoice"
 {
-    WordLayout = './src/ReportExtension/Layouts/OK Nueva Factura Venta.docx';
+    WordLayout = './src/ReportExtension/Layouts/prueba.docx';
 
     dataset
     {
