@@ -85,8 +85,23 @@ page 50190 "Dialogo Convertir Ticket"
                     ToolTip = 'Marca si es un cliente CATIT (Shopify). Al activarlo, se borrará el email de la ficha de cliente inicial para que los futuros pedidos de Shopify se asignen a la nueva ficha.';
                 }
             }
+            group(OpcionesFactura)
+            {
+                Caption = 'Opciones de facturación';
+                field(ConIVAIncluido; ConIVAIncluido)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Precios con IVA incluido';
+                    ToolTip = 'Si está marcado, la factura se generará con precios con IVA incluido (conservando el importe total del ticket). Desmárcalo para generarla con precios sin IVA.';
+                }
+            }
         }
     }
+
+    trigger OnOpenPage()
+    begin
+        ConIVAIncluido := true;
+    end;
 
     trigger OnQueryClosePage(CloseAction: Action): Boolean
     begin
@@ -113,6 +128,7 @@ page 50190 "Dialogo Convertir Ticket"
         CodigoPostal: Code[20];
         EmailNotificacion: Text[250];
         ClienteCATIT: Boolean;
+        ConIVAIncluido: Boolean;
 
     procedure ObtenerCIF(): Text[20]
     begin
@@ -157,6 +173,11 @@ page 50190 "Dialogo Convertir Ticket"
     procedure ObtenerClienteCATIT(): Boolean
     begin
         exit(ClienteCATIT);
+    end;
+
+    procedure ObtenerConIVAIncluido(): Boolean
+    begin
+        exit(ConIVAIncluido);
     end;
 
     procedure SetDatosShipTo(CabFactura: Record "Sales Invoice Header")

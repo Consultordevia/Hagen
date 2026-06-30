@@ -14,6 +14,7 @@ codeunit 50093 "Convertir Ticket Factura"
         CodPostalDialog: Code[20];
         EmailNotifDialog: Text[250];
         ClienteCATITDialog: Boolean;
+        ConIVAIncluidoDialog: Boolean;
     begin
         if CabFactura."Invoice Type" <> CabFactura."Invoice Type"::"F2 Simplified Invoice" then
             Error('Solo se pueden convertir facturas simplificadas (tipo F2).');
@@ -35,6 +36,7 @@ codeunit 50093 "Convertir Ticket Factura"
         CodPostalDialog := DialogoCliente.ObtenerCodigoPostal();
         EmailNotifDialog := DialogoCliente.ObtenerEmailNotificacion();
         ClienteCATITDialog := DialogoCliente.ObtenerClienteCATIT();
+        ConIVAIncluidoDialog := DialogoCliente.ObtenerConIVAIncluido();
 
         // 2. Buscar o crear el cliente por CIF
         NumCliente := BuscarOCrearCliente(CIFDialog, NombreDialog, DireccionDialog, Direccion2Dialog,
@@ -50,7 +52,7 @@ codeunit 50093 "Convertir Ticket Factura"
 
         // 4. Crear la nueva factura de venta con sell-to/ship-to del ticket y bill-to del diálogo
         NuevaCabecera := CrearFactura(CabFactura, NumCliente, NombreDialog, DireccionDialog,
-            Direccion2Dialog, CodPaisDialog, PoblacionDialog, CodPostalDialog, CIFDialog);
+            Direccion2Dialog, CodPaisDialog, PoblacionDialog, CodPostalDialog, CIFDialog, ConIVAIncluidoDialog);
 
         // 5. Mostrar la factura para que el usuario la revise y registre
         Page.Run(Page::"Sales Invoice", NuevaCabecera);
@@ -198,12 +200,14 @@ codeunit 50093 "Convertir Ticket Factura"
     local procedure CrearFactura(CabFacturaOrigen: Record "Sales Invoice Header"; NumCliente: Code[20];
         NombreFacturacion: Text[100]; DireccionFacturacion: Text[100]; Direccion2Facturacion: Text[50];
         CodPaisFacturacion: Code[10]; PoblacionFacturacion: Text[30]; CodPostalFacturacion: Code[20];
-        CIFFacturacion: Text[20]): Record "Sales Header"
+        CIFFacturacion: Text[20]; ConIVAIncluido: Boolean): Record "Sales Header"
     var
         NuevaCab: Record "Sales Header";
         NuevaLin: Record "Sales Line";
         LinFactura: Record "Sales Invoice Line";
         NumLinea: Integer;
+        PrecioUnitario: Decimal;
+        FactorIVA: Decimal;
     begin
         NuevaCab.Init();
         NuevaCab."Document Type" := NuevaCab."Document Type"::Invoice;
@@ -212,9 +216,10 @@ codeunit 50093 "Convertir Ticket Factura"
         // Validar cliente → BC configura grupos de contabilización, condiciones de pago, etc.
         NuevaCab.Validate("Sell-to Customer No.", NumCliente);
 
-        // El ticket lleva precios con IVA incluido: hay que replicar el flag para que el
-        // Unit Price copiado se interprete como importe con IVA y no se vuelva a sumar el IVA.
-        NuevaCab.Validate("Prices Including VAT", CabFacturaOrigen."Prices Including VAT");
+        // El flag de IVA incluido lo decide el usuario en el diálogo (por defecto, con IVA incluido).
+        // Si difiere del que tenía el ticket origen, más abajo se ajusta el Unit Price de cada línea
+        // para conservar el importe total del ticket.
+        NuevaCab.Validate("Prices Including VAT", ConIVAIncluido);
 
         // Sell-to: datos del diálogo (sobreescriben lo que haya puesto el Validate)
         NuevaCab."Sell-to Customer Name" := CopyStr(NombreFacturacion, 1, MaxStrLen(NuevaCab."Sell-to Customer Name"));
@@ -268,7 +273,21 @@ codeunit 50093 "Convertir Ticket Factura"
                     NuevaLin.Validate("No.", LinFactura."No.");
                     NuevaLin.Validate("Unit of Measure Code", LinFactura."Unit of Measure Code");
                     NuevaLin.Validate(Quantity, LinFactura.Quantity);
-                    NuevaLin.Validate("Unit Price", LinFactura."Unit Price");
+
+                    // Si el flag de IVA incluido de la nueva factura difiere del ticket origen,
+                    // convertir el precio unitario para que el importe total no varíe:
+                    //   neto -> con IVA: multiplicar por (1 + IVA%)
+                    //   con IVA -> neto: dividir entre (1 + IVA%)
+                    PrecioUnitario := LinFactura."Unit Price";
+                    if ConIVAIncluido <> CabFacturaOrigen."Prices Including VAT" then begin
+                        FactorIVA := 1 + (LinFactura."VAT %" / 100);
+                        if FactorIVA <> 0 then
+                            if ConIVAIncluido then
+                                PrecioUnitario := PrecioUnitario * FactorIVA
+                            else
+                                PrecioUnitario := PrecioUnitario / FactorIVA;
+                    end;
+                    NuevaLin.Validate("Unit Price", PrecioUnitario);
                     NuevaLin.Validate("Line Discount %", LinFactura."Line Discount %");
                 end;
                 NuevaLin.Description := LinFactura.Description;
