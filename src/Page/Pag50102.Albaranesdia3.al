@@ -472,7 +472,7 @@ Page 50102 "Albaranes dia-3"
                          END;
                     END;
                     
-                    */
+                    
 
                     codexpe := Rec."Nº expedición";
                     if Rec."Nº expedición dropshp" <> '' then begin
@@ -578,6 +578,31 @@ Page 50102 "Albaranes dia-3"
 
                         end;
                     end;
+                    */
+                    paginaweb := Rec."Enlace transporte";
+                    if RecTra.Code = 'LUCH' then begin
+                        codexpe := Rec."Nº expedición";
+                        if Rec."Nº expedición dropshp" <> '' then begin
+                            codexpe := Rec."Nº expedición dropshp";
+                        end;
+                        if Rec.ASN <> '' then begin
+                            codexpe := Rec.ASN;
+                        end;
+                        codigopostal := Format(Rec."Ship-to Post Code");
+                        if Rec."Bill-to Country/Region Code" = 'PT' then begin
+                            codigopostal := CopyStr(codigopostal, 1, 4) + '-' + CopyStr(codigopostal, 6);
+                        end;
+
+                        if Rec."Shipping Agent Code" = 'GLSP' then begin
+                            codigopostal := CopyStr(codigopostal, 1, 4) + '-' + CopyStr(codigopostal, 6);
+                        end;
+
+                        paginaweb := paginaweb + Format(codexpe) + ',,' +
+                        Format(Rec."Ship-to Post Code");
+
+                    end;
+
+                    HYPERLINK(paginaweb);
 
                 end;
             }
