@@ -128,8 +128,20 @@ pageextension 50041 SalesInvoice extends "Sales Invoice"
                     Rec37."Sell-to Customer No." := Rec."Sell-to Customer No.";
                     Rec37."Bill-to Customer No." := Rec."Bill-to Customer No.";
                     Rec37.Type := 0;
-                    Rec37.Description := textoaran;
+                    Rec37.Description := CopyStr(textoaran, 1, 100);
                     Rec37.INSERT;
+                    if StrLen(textoaran) > 100 then begin
+                        Rec37.INIT;
+                        Rec37."Document Type" := Rec."Document Type";
+                        Rec37."Document No." := Rec."No.";
+                        Rec37."Line No." := 60;
+                        Rec37."Sell-to Customer No." := Rec."Sell-to Customer No.";
+                        Rec37."Bill-to Customer No." := Rec."Bill-to Customer No.";
+                        Rec37.Type := 0;
+                        Rec37.Description := CopyStr(textoaran, 101, 100);
+                        Rec37.INSERT;
+
+                    end;
 
 
 
