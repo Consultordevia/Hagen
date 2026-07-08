@@ -3753,20 +3753,11 @@ End Function
         <Field Name="LineAmount">
           <DataField>LineAmount</DataField>
         </Field>
-        <Field Name="LineAmountFormat">
-          <DataField>LineAmountFormat</DataField>
-        </Field>
         <Field Name="Amount">
           <DataField>Amount</DataField>
         </Field>
-        <Field Name="AmountFormat">
-          <DataField>AmountFormat</DataField>
-        </Field>
         <Field Name="AmountIncludingVAT">
           <DataField>AmountIncludingVAT</DataField>
-        </Field>
-        <Field Name="AmountIncludingVATFormat">
-          <DataField>AmountIncludingVATFormat</DataField>
         </Field>
         <Field Name="VATPercent">
           <DataField>VATPercent</DataField>

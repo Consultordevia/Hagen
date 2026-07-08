@@ -6,17 +6,18 @@ Report 50932 "Presup. Venta Prod. Sin Valor"
     RDLCLayout = './Layouts/PresupuestoVentaProductosSinValorar.rdlc';
     PreviewMode = PrintLayout;
     UsageCategory = ReportsAndAnalysis;
+    Permissions = TableData "Sales Shipment Line" = r;
 
     dataset
     {
-        dataitem(SalesHeader; "Sales Header")
+        dataitem(SalesHeader; "Sales Shipment Header")
         {
-            DataItemTableView = sorting("Document Type", "No.");
-            RequestFilterFields = "Document Type", "No.", "Sell-to Customer No.";
-            RequestFilterHeading = 'Presupuesto Venta';
+            DataItemTableView = sorting("No.");
+            RequestFilterFields = "No.", "Sell-to Customer No.";
+            RequestFilterHeading = 'Albarán Registrado';
 
-            column(EsOferta; "Document Type" = "Document Type"::Quote) { }
-            column(Document_Type; "Document Type") { }
+            column(EsOferta; true) { }
+            column(Document_Type; '') { }
             column(No_Presupuesto; "No.") { }
             column(SellToCustomerNo; "Sell-to Customer No.") { }
             column(SellToCustomerName; "Sell-to Customer Name") { }
@@ -26,7 +27,7 @@ Report 50932 "Presup. Venta Prod. Sin Valor"
             column(SellToPostCode; "Sell-to Post Code") { }
             column(SellToCounty; "Sell-to County") { }
             column(DocumentDate; "Document Date") { }
-            column(DueDate; "Due Date") { }
+            column(DueDate; 0D) { }
             column(ExternalDocumentNo; "External Document No.") { }
             column(YourReference; "Your Reference") { }
             column(SalespersonCode; "Salesperson Code") { }
@@ -47,12 +48,12 @@ Report 50932 "Presup. Venta Prod. Sin Valor"
             column(ShipmentMethodDesc; ShipmentMethodDesc) { }
 
 
-            dataitem(SalesLine; "Sales Line")
+            dataitem(SalesLine; "Sales Shipment Line")
             {
-                DataItemLink = "Document Type" = field("Document Type"), "Document No." = field("No.");
-                DataItemTableView = sorting("Document Type", "Document No.", "Line No.");
+                DataItemLink = "Document No." = field("No.");
+                DataItemTableView = sorting("Document No.", "Line No.");
 
-                // Datos de la línea de presupuesto
+                // Datos de la línea de albarán
                 column(LineNo; "Line No.") { }
                 column(EsArticulo; Type = Type::Item) { }
                 column(EsCuentaContable; Type = Type::"G/L Account") { }
@@ -63,9 +64,9 @@ Report 50932 "Presup. Venta Prod. Sin Valor"
                 column(UnitOfMeasureCode; "Unit of Measure Code") { }
                 column(UnitPrice; "Unit Price") { }
                 column(LineDiscountPercent; "Line Discount %") { }
-                column(LineAmount; "Line Amount") { }
-                column(Amount; Amount) { }
-                column(AmountIncludingVAT; "Amount Including VAT") { }
+                column(LineAmount; 0) { }
+                column(Amount; 0) { }
+                column(AmountIncludingVAT; 0) { }
                 column(VATPercent; "VAT %") { }
                 column(PrecioTarifa; "Precio Tarifa") { }
 
