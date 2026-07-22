@@ -666,7 +666,13 @@ Report 50901 "OK Albaran Valorado"
             }
 
             trigger OnAfterGetRecord()
+            var
+                LogReports: Codeunit "Gestion Log Reports";
             begin
+                // Log de auditoría (albarán valorado: no se aplica la guarda de "sin detalle", pero sí el modo prueba global).
+                if not LogReports.ProcesarImpresionAlbaran("Sales Shipment Header", 50901, 'OK Albaran Valorado', 'REPORT', false) then
+                    CurrReport.Skip();
+
                 // CurrReport.Language := Language.GetLanguageIdOrDefault("Language Code");
                 FormatAddressFields("Sales Shipment Header");
                 FormatDocumentFields("Sales Shipment Header");

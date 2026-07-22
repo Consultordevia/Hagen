@@ -691,7 +691,12 @@ Report 50035 "Albaran de venta Canarias"
             trigger OnAfterGetRecord();
             var
                 LanguageLocal: Codeunit "Language";
+                LogReports: Codeunit "Gestion Log Reports";
             begin
+                // Log de auditoría (albarán Canarias: no se aplica la guarda de "sin detalle", pero sí el modo prueba global).
+                if not LogReports.ProcesarImpresionAlbaran("Sales Shipment Header", 50035, 'Albaran de venta Canarias', 'REPORT', false) then
+                    CurrReport.Skip();
+
                 CurrReport.LANGUAGE := LanguageLocal.GetLanguageIdOrDefault("Language Code");
                 ///NALBA:=COPYSTR("Sales Shipment Header"."Order No.",2,3)+COPYSTR("Sales Shipment Header"."Order No.",6,4);
                 NALBA := CopyStr("Sales Shipment Header"."Order No.", 3, 2) + CopyStr("Sales Shipment Header"."Order No.", 6, 5);

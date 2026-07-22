@@ -660,7 +660,13 @@ Report 50902 "OK Albaran NO valorado"
             }
 
             trigger OnAfterGetRecord()
+            var
+                LogReports: Codeunit "Gestion Log Reports";
             begin
+                // Log + guarda: en sesión automática omite el albarán si no tiene el check "Albaran sin detalle".
+                if not LogReports.ProcesarImpresionAlbaran("Sales Shipment Header", 50902, 'OK Albaran NO valorado', 'REPORT', true) then
+                    CurrReport.Skip();
+
                 ////CurrReport.Language := Language.GetLanguageID("Language Code");
 
                 FormatAddressFields("Sales Shipment Header");

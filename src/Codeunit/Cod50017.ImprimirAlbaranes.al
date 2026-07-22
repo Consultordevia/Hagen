@@ -7,6 +7,7 @@ Codeunit 50017 "ImprimirAlbaranes"
     var
         SHH: Record "Sales Shipment Header";
         SHH2: Record "Sales Shipment Header";
+        LogReports: Codeunit "Gestion Log Reports";
     begin
         // Pass 1: albaranes — solo registros con Albaran sin detalle y sin dropshipping
         SHH.Reset();
@@ -16,7 +17,8 @@ Codeunit 50017 "ImprimirAlbaranes"
         SHH.SetRange(Dropshipping, false);
         IF SHH.FindSet() THEN
             REPEAT
-                ImprimirAlbaran(SHH);
+                // Consumir el retorno de la TryFunction para que capture errores (un albarán malo no debe tumbar la cola).
+                if ImprimirAlbaran(SHH) then;
             UNTIL SHH.NEXT = 0;
 
         // Pass 2: etiquetas para todos los no impresos + marcar como impreso
@@ -25,10 +27,13 @@ Codeunit 50017 "ImprimirAlbaranes"
         SHH.SetRange(ImpresoporImporesora, false);
         IF SHH.FindSet() THEN
             REPEAT
-                ImprimirEtiquetas(SHH);
-                SHH2.GET(SHH."No.");
-                SHH2.ImpresoporImporesora := TRUE;
-                SHH2.Modify();
+                if ImprimirEtiquetas(SHH) then;
+                // En modo prueba NO marcar como impreso, para que queden pendientes al pasar a real.
+                if not LogReports.ImpresionDesactivada() then begin
+                    SHH2.GET(SHH."No.");
+                    SHH2.ImpresoporImporesora := TRUE;
+                    SHH2.Modify();
+                end;
             UNTIL SHH.NEXT = 0;
     end;
 
@@ -36,14 +41,18 @@ Codeunit 50017 "ImprimirAlbaranes"
     procedure ImprimirAlbaran(SHH: Record "Sales Shipment Header")
     var
         SHH3: Record "Sales Shipment Header";
+        LogReports: Codeunit "Gestion Log Reports";
     begin
         SHH3.Reset();
         SHH3.SetRange("No.", SHH."No.");
         IF SHH3.FindFirst() THEN
-            if SHH."Shipping Agent Code" <> 'ECI' then
-                Report.Run(1308, false, false, SHH3)
-            else
-                Report.Run(50905, false, false, SHH3);
+            if SHH."Shipping Agent Code" <> 'ECI' then begin
+                // Guarda de seguridad + log: en la cola no debe imprimir albaranes sin el check marcado.
+                if LogReports.ProcesarImpresionAlbaran(SHH3, 1308, 'Sales - Shipment', 'COLA-50017', true) then
+                    Report.Run(1308, false, false, SHH3);
+            end else
+                if LogReports.ProcesarImpresionAlbaran(SHH3, 50905, 'OK Albaran NO valorado ECI', 'COLA-50017', true) then
+                    Report.Run(50905, false, false, SHH3);
     end;
 
     [TryFunction]
@@ -52,8 +61,14 @@ Codeunit 50017 "ImprimirAlbaranes"
         RecClie: Record Customer;
         StoA: Record "Ship-to Address";
         SHH3: Record "Sales Shipment Header";
+        LogReports: Codeunit "Gestion Log Reports";
     begin
-        RecClie.Get(SHH."Sell-to Customer No.");
+        // Modo prueba: tampoco imprimir etiquetas.
+        if LogReports.ImpresionDesactivada() then
+            exit;
+        // Cliente vacío o inexistente: no imprimir etiquetas (evita error que tumbaba la cola).
+        if not RecClie.Get(SHH."Sell-to Customer No.") then
+            exit;
         StoA.Reset();
         StoA.SetRange("Customer No.", RecClie."No.");
         StoA.SetRange("Imprime Etiqueta envio", true);

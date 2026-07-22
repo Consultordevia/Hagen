@@ -822,20 +822,20 @@ tableextension 50114 SalesHeader extends "Sales Header"
             begin
 
                 if Dropshipping = true then begin
-                    "No Enviar albaran en exp." := true;
-                    "No Enviar factura en exp." := true;
-                    "No imprimir albaran valorado" := true;
-                    "Albaran sin detalle" := false;
-                    "No imprimir facturas" := true;
+                    rec."No Enviar albaran en exp." := true;
+                    rec."No Enviar factura en exp." := true;
+                    rec."No imprimir albaran valorado" := true;
+                    rec."Albaran sin detalle" := false;
+                    rec."No imprimir facturas" := true;
                 end;
 
                 if Dropshipping = false then begin
                     Cust.Get("Sell-to Customer No.");
-                    "No Enviar factura en exp." := Cust."No Enviar factura en exp.";
-                    "No Enviar albaran en exp." := Cust."No Enviar albaran en exp.";
-                    "No imprimir albaran valorado" := Cust."No imprimir albaran valorado";
-                    "Albaran sin detalle" := Cust."Albaran sin detalle";
-                    "No imprimir facturas" := Cust."No imprimir facturas";
+                    rec."No Enviar factura en exp." := Cust."No Enviar factura en exp.";
+                    rec."No Enviar albaran en exp." := Cust."No Enviar albaran en exp.";
+                    rec."No imprimir albaran valorado" := Cust."No imprimir albaran valorado";
+                    rec."Albaran sin detalle" := Cust."Albaran sin detalle";
+                    rec."No imprimir facturas" := Cust."No imprimir facturas";
                 end;
             end;
         }
@@ -1289,7 +1289,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
             RecIE.Get;
 
             ///// IF COPYSTR(RecIE.Name,1,4)='PEPE' THEN BEGIN
-            ///if "Usuario alta" <> 'USERNWS' then begin
+            //if "Usuario alta" <> 'USERNWS' then begin
             if CopyStr("No.", 3, 3) <> 'B2B' then begin
 
 
