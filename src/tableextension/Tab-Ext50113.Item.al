@@ -1502,6 +1502,16 @@ tableextension 50113 Item extends Item
                 TariffNumber.Insert();
             end;
         }
+        field(50904; ProductoenSILUM; Boolean)
+        {
+            Caption = 'Producto en SILUM';
+            DataClassification = CustomerContent;
+        }
+        field(50905; FechaenSILUM; Date)
+        {
+            Caption = 'Fecha en SILUM';
+            DataClassification = CustomerContent;
+        }
 
     }
 

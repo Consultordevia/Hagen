@@ -6,6 +6,12 @@ pageextension 50000 "Item Card" extends "Item Card"
     {
 
 
+        addafter("Include Inventory")
+        {
+            field(ProductoenSILUM; Rec.ProductoenSILUM) { ApplicationArea = ALL; }
+            field(FechaenSILUM; Rec.FechaenSILUM) { ApplicationArea = ALL; }
+        }
+
         addafter("Sales Blocked")
         {
             field("Clasificación Comercial"; Rec."Clasificación Comercial") { ApplicationArea = ALL; }

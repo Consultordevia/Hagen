@@ -844,6 +844,11 @@ tableextension 50115 SalesLine extends "Sales Line"
 
         }
 
+        field(50687; "Cód. arancelario"; Code[20])
+        {
+            CalcFormula = lookup(Item."Tariff No." where("No." = field("No.")));
+            FieldClass = FlowField;
+        }
 
 
     }
