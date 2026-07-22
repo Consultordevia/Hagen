@@ -13,6 +13,7 @@ pageextension 50008 "Sales Quote Subform" extends "Sales Quote Subform"
             field("Fecha prox."; FECHA2) { ApplicationArea = All; Editable = false; }
             field("Clasificación Comercial"; Rec."Clasificación Comercial") { ApplicationArea = All; }
 
+            field("Cód. arancelario"; Rec."Cód. arancelario") { ApplicationArea = All; }
         }
         /*
         addlast(content)
