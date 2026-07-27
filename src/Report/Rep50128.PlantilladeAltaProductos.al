@@ -121,7 +121,8 @@ Report 50128 "Plantilla de Alta Productos"
             column(AnchoMaster; AnchoMaster) { }
             column(AltoMaster; AltoMaster) { }
 
-
+            column(pvpweb; Item."PVP-Web") { }
+            column(Codarance; Item."Tariff No.") { }
 
 
 
