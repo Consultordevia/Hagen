@@ -1,7 +1,7 @@
 Report 50039 "Etiqueta grande"
 {
     Caption = 'Etiqueta grande';
-    RDLCLayout = './Layouts/Etiquetagrande.rdlc';
+    RDLCLayout = './Layouts/Etiquetagrande39.rdlc';
 
     DefaultLayout = RDLC;
 
