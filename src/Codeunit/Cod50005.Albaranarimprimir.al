@@ -324,22 +324,16 @@ Codeunit 50005 "Albaranar + imprimir"
                                     /////     REPORT.RUN(50906,FALSE,FALSE,SalesShptHeader);
                                 end;
                             end;
-                            if SalesShptHeader."No Enviar albaran en exp." = false then begin
-                                if SalesShptHeader."No imprimir albaran valorado" = false then begin
-                                    if RecClie."Albaran valorado" = true then begin
-                                        if SalesShptHeader.Dropshipping = true then begin
-                                            ///if Preparadores.Get(SalesShptHeader.Preparador) then begin
-                                                ///if UpperCase(CopyStr(Preparadores."Printer Name", 1, 13)) <> 'RICOH DERECHA' then begin
-                                                Report.Run(50901, false, false, SalesShptHeader);
-                                                ///end;
-                                                ///if UpperCase(CopyStr(Preparadores."Printer Name", 1, 13)) = 'RICOH DERECHA' then begin
-                                                ///Report.Run(50915, false, false, SalesShptHeader);
-                                                ///end;
-                                            ///end;
-                                        end;
-                                    end;
-                                end;
-                            end;
+                            ///// El albarán valorado (50901) no se imprime a ningún cliente.
+                            ///if SalesShptHeader."No Enviar albaran en exp." = false then begin
+                            ///    if SalesShptHeader."No imprimir albaran valorado" = false then begin
+                            ///        if RecClie."Albaran valorado" = true then begin
+                            ///            if SalesShptHeader.Dropshipping = true then begin
+                            ///                Report.Run(50901, false, false, SalesShptHeader);
+                            ///            end;
+                            ///        end;
+                            ///    end;
+                            ///end;
                             if SalesShptHeader."Albaran sin detalle" = true then begin
                                 if SalesShptHeader.Dropshipping = true then begin
                                     if Preparadores.Get(SalesShptHeader.Preparador) then begin

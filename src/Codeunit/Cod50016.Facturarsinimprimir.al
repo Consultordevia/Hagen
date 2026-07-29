@@ -122,9 +122,10 @@ Codeunit 50016 "Facturar sin imprimir"
                    if not SalesShptHeader."No Enviar albaran en exp." then begin
                         Report.Run(ReportSelection."Report ID",false,false,SalesShptHeader);
                    end;
-                   if SalesShptHeader."No Enviar albaran en exp." then begin
-                        Report.Run(50901,false,false,SalesShptHeader);
-                   end;
+                   ///// El albarán valorado (50901) no se imprime a ningún cliente.
+                   ///if SalesShptHeader."No Enviar albaran en exp." then begin
+                   ///     Report.Run(50901,false,false,SalesShptHeader);
+                   ///end;
                    ///IF SalesHeader."Albaran sin detalle" THEN BEGIN
                         ///REPORT.RUN(50902,FALSE,FALSE,SalesShptHeader);
                    ///END;
