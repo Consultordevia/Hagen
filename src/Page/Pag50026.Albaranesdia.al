@@ -345,85 +345,30 @@ Page 50026 "Albaranes dia"
 
 
 
-
-                    if RecTra.Get(Rec."Shipping Agent Code") then begin
-                        if RecTra."Link transporte" = '' then begin
-                            if Rec."Shipping Agent Code" = 'DHL' then begin
-                                paginaweb := 'http://www.dhl.es/services_es/seg_3dd/integra/SeguimientoDocumentos.aspx?codigo=' +
-                                Format(Rec."Nº expedición") + '&anno=2012&lang=sp&refCli=1';
-                                Hyperlink(paginaweb);
-                            end;
-                            if Rec."Shipping Agent Code" = 'TNT' then begin
-                                paginaweb := 'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=' +
-                                'REF&respLang=ES&respCountry=ES&sourceID=1&sourceCountry=' +
-                                'ES&sourceID=1&sourceCountry=ww&cons=' +
-                                Format(Rec."Nº expedición");
-                                Hyperlink(paginaweb);
-                            end;
-                            if Rec."Shipping Agent Code" = 'CRON' then begin
-                                paginaweb := 'http://www.chronoexpres.com/chronoExtraNET/env/verEnvio.seam?usuario=f4429f061740b2' +
-                                'a5528f4aa361d36dac&tipo=&valor=' + Format(Rec."Nº expedición") + '&cp=' + Format(Rec."Ship-to Post Code");
-                                /////            HYPERLINK(paginaweb);
-                                /////     'a5528f4aa361d36dac&tipo=referencia&valor='+FORMAT("Nº expedición")+'&cp='+FORMAT("Ship-to Post Code");
-                                paginaweb := 'https://www.correosexpress.com/url/v?s=' + Format(Rec."Nº expedición") + '&cp=' + Format(Rec."Ship-to Post Code");
-                                Hyperlink(paginaweb);
-                            end;
-                            if Rec."Shipping Agent Code" = 'CORR' then begin
-                                paginaweb := 'http://www.correos.es/ss/Satellite/site/pagina-localizador_envios/busqueda-sidioma=es_ES?numero=' +
-                                Format(Rec."Nº expedición");
-                                Hyperlink(paginaweb);
-                            end;
-                            if COMPANYNAME <> 'PEPE' then begin
-                                if Rec."Shipping Agent Code" = 'TIPSA' then begin
-                                    paginaweb := 'http://www.tip-sa.com/cliente/datos.php?id=04600400393' + Format(Rec."Nº expedición") +
-                                    Format(Rec."Your Reference") + Format(Rec."Ship-to Post Code");
-                                    Hyperlink(paginaweb);
-                                end;
-                            end;
-                            if COMPANYNAME = 'PEPE' then begin
-                                if Rec."Shipping Agent Code" = 'TIPSA' then begin
-                                    paginaweb := 'http://www.tip-sa.com/cliente/datos.php?id=04600400393' + Format(Rec."Nº expedición") + ' - ' +
-                                    Format(Rec."Your Reference") + ' - ' +
-                                    Format(Rec."Order No.") +
-                                    Format(Rec."Ship-to Post Code");
-                                    paginaweb := 'http://www.tip-sa.com/cliente/datos.php?id=04600400393' + Format(Rec."Nº expedición") +
-                                    Format(Rec."Your Reference") + Format(Rec."Ship-to Post Code");
-                                    Hyperlink(paginaweb);
-                                end;
-                            end;
-                            if COMPANYNAME = 'PEPE' then begin
-                                if Rec."Shipping Agent Code" = 'TNT' then begin
-                                    paginaweb :=
-                                      'http://webtracker.tnt.com/webtracker/tracking.do?requestType=GEN&searchType=REF&respLang=' +
-                                       'ES&respCountry=ES&sourceID=1&sourceCountry=' +
-                                     'ES&sourceID=1&sourceCountry=ww&cons=' + Format(Rec."Nº expedición");
-                                    Hyperlink(paginaweb);
-                                end;
-                            end;
+                    paginaweb := Rec."Enlace transporte";
+                    if RecTra.Code = 'LUCH' then begin
+                        codexpe := Rec."Nº expedición";
+                        if Rec."Nº expedición dropshp" <> '' then begin
+                            codexpe := Rec."Nº expedición dropshp";
                         end;
-                        if RecTra."Link transporte" <> '' then begin
-                            paginaweb := RecTra."Link transporte";
-                            if RecTra.Añadir = 0 then paginaweb := paginaweb + Format(Rec."Nº expedición");
-                            if RecTra.Añadir = 1 then
-                                paginaweb := paginaweb + Format(Rec."Nº expedición") +
-        Format(Rec."Ship-to Post Code");
-                            if RecTra.Añadir = 2 then
-                                paginaweb := paginaweb + Format(Rec."Nº expedición") + '/' +
-        Format(Rec."Ship-to Post Code");
-                            if RecTra.Añadir = RecTra."Añadir"::"En Medio" then
-                                paginaweb := paginaweb + Format(Rec."Nº expedición") + RecTra."Link transporte2";
-                            if RecTra."Añadir" = RecTra."Añadir"::"Nº expedición Adaia coma coma Codigo postal" then begin
-                                paginaweb := paginaweb + Format(Rec."Nº expedición") + ',,' +
-                                Format(Rec."Ship-to Post Code");
-                            end;
-
-
-
-                            Hyperlink(paginaweb);
-
+                        if Rec.ASN <> '' then begin
+                            codexpe := Rec.ASN;
                         end;
+                        codigopostal := Format(Rec."Ship-to Post Code");
+                        if Rec."Bill-to Country/Region Code" = 'PT' then begin
+                            codigopostal := CopyStr(codigopostal, 1, 4) + '-' + CopyStr(codigopostal, 6);
+                        end;
+
+                        if Rec."Shipping Agent Code" = 'GLSP' then begin
+                            codigopostal := CopyStr(codigopostal, 1, 4) + '-' + CopyStr(codigopostal, 6);
+                        end;
+
+                        paginaweb := paginaweb + Format(codexpe) + ',,' +
+                        Format(Rec."Ship-to Post Code");
 
                     end;
+
+
 
                 end;
             }
@@ -474,6 +419,9 @@ Page 50026 "Albaranes dia"
         /////-OKAlbaranValorado: Report UnknownReport50901;
         /////-OKAlbaranNOvalorado: Report UnknownReport50902;
         paginaweb: Text[500];
-    /////-OKAlbaranValoradoCANARIAS: Report UnknownReport50908;
+        /////-OKAlbaranValoradoCANARIAS: Report UnknownReport50908;
+        codigopostal: Code[20];
+        codexpe: Code[20];
+
 }
 
