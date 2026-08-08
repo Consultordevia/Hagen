@@ -101,6 +101,7 @@ pageextension 50009 "Posted Sales Shipment" extends "Posted Sales Shipments"
                         Format(Rec."Ship-to Post Code");
 
                     end;
+                    HYPERLINK(paginaweb);
 
 
 

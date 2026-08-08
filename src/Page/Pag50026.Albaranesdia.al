@@ -367,6 +367,7 @@ Page 50026 "Albaranes dia"
                         Format(Rec."Ship-to Post Code");
 
                     end;
+                    HYPERLINK(paginaweb);
 
 
 

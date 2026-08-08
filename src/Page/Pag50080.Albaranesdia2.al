@@ -364,6 +364,7 @@ Page 50080 "Albaranes dia-2"
                         Format(Rec."Ship-to Post Code");
 
                     end;
+                    HYPERLINK(paginaweb);
 
                 end;
             }
