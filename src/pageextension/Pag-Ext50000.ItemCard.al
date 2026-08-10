@@ -186,6 +186,7 @@ pageextension 50000 "Item Card" extends "Item Card"
                 field("Importe total ABC"; Rec."Importe total ABC") { ApplicationArea = All; }
                 field("Cantidad colchon web"; Rec."Cantidad colchon web") { ApplicationArea = All; }
                 field("Stock para la web"; Rec."Stock para la web") { ApplicationArea = All; }
+                field(StockMarket; Rec.StockMarket) { ApplicationArea = All; }
                 field("Stock en HAGEN"; Rec."Stock en HAGEN") { ApplicationArea = All; }
                 field("PVP Recomendado 2019"; Rec."PVP Recomendado 2019") { ApplicationArea = All; }
                 field("CUANTOS UDS EANS"; Rec."CUANTOS UDS EANS") { ApplicationArea = All; }

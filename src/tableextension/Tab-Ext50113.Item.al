@@ -1512,6 +1512,13 @@ tableextension 50113 Item extends Item
             Caption = 'Fecha en SILUM';
             DataClassification = CustomerContent;
         }
+        field(50906; StockMarket; Decimal)
+        {
+            Caption = 'Stock seguridad marketplaces';
+            DataClassification = CustomerContent;
+            MinValue = 0;
+            ToolTip = 'Unidades que se reservan y NO se ofrecen en Mirakl ni en Shoppingfeed. El stock que se les envía sale de restar esta cantidad al disponible; si el resultado es negativo se envía cero.';
+        }
 
     }
 
