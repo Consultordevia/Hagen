@@ -44,6 +44,7 @@ Codeunit 50001 Automaticos
 
     var
         ExistenciaHAGEN: Decimal;
+        StockWeb: Codeunit StockWeb;
         Item2: Record Item;
         ELMIN: Decimal;
         RecBom: Record "BOM Component";
@@ -1498,29 +1499,9 @@ Codeunit 50001 Automaticos
                     end;
                     Item."Stock para la web" := 0;
                 end;
-                if (Item."No permite pedido" = false) and (Item."Producto con reserva" = false) then begin
-                    Item.CalcFields("Existencia SILLA", Item."Qty. on Sales Order");
-                    Item."Stock para la web" := Item."Existencia SILLA" - Item."Qty. on Sales Order" + Item."Cantidad colchon web";
-                end;
-                Item.CalcFields("Assembly BOM");
-                if (Item."Producto almacenable" = false) and (Item."Assembly BOM") then begin
-                    ELMIN := 9999;
-                    BOMComponent.Reset;
-                    BOMComponent.SetRange(BOMComponent."Parent Item No.", Item."No.");
-                    if BOMComponent.FindSet then
-                        repeat
-                            if Item2.Get(BOMComponent."No.") then begin
-                                Item2.CalcFields(Item2."Existencia SILLA");
-                                if Item2."Existencia SILLA" <= ELMIN then begin
-                                    ELMIN := Item2."Existencia SILLA";
-                                end;
-                            end;
-                        until BOMComponent.Next = 0;
-                    if ELMIN = 9999 then begin
-                        ELMIN := 0;
-                    end;
-                    Item."Stock para la web" := ELMIN;
-                end;
+                // REQ-000145: el calculo vive ahora en el codeunit StockWeb, que es
+                // el unico sitio donde se decide que stock se ofrece en la web.
+                Item."Stock para la web" := StockWeb.Calcular(Item);
 
                 Item."Fecha disponible Web" := FECHARECEP;
                 Item."Fecha en picking" := 0D;
