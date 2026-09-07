@@ -571,6 +571,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 ///dtext1 := CASCII.Ascii2Ansi(Item.Familia);
                                 ///ItemtempR.Familia := CopyStr(dtext1, 1, 50);
                                 ItemtempR.Level1 := Item.Etiquetas6;
+                                ItemtempR.Level1 := Item."Gen. Prod. Posting Group";
                                 ItemtempR.Level2 := Item.Level2;
                                 PRECIO := 0;
                                 SalesPrice.Reset;
@@ -581,6 +582,7 @@ Codeunit 50055 "Fichero Stock.csv"
                                 end;
 
                                 ItemtempR."Unit Price" := precio;
+                                ItemtempR."Unit Price" := Item."Unit Price";
                                 ItemtempR."Unit Cost" := Item."PVP Recomendado 2021";
                                 ItemtempR."Maximum Inventory" := DISPONI;
                                 ItemtempR."Unidad compra" := UNIMEDAD;
@@ -1525,13 +1527,13 @@ Codeunit 50055 "Fichero Stock.csv"
 
                                 ItemtempR.Insert;
 
-                                TextoSalida1 := Format(ItemTempR."No. 2") + ';' +
-                                                Format(ItemTempR."No.") + ';' +
-                                                Format(ItemTempR.Description) + ';' +
-                                                Format(ItemTempR."Description 2") + ';';
-                                TextoSalida2 := Format(ItemTempR.Level1) + ';' +
-                                              Format(ItemTempR.Level2) + ';' +
-                                              Format(ItemTempR."Unit Price") + ';' +
+                                TextoSalida1 := Format(ItemTempR."No. 2") + ';' +  //a
+                                                Format(ItemTempR."No.") + ';' +     //b
+                                                Format(ItemTempR.Description) + ';' +   //c 
+                                                Format(ItemTempR."Description 2") + ';';   //d
+                                TextoSalida2 := Format(ItemTempR.Level1) + ';' +   //e
+                                                                                   ///Format(ItemTempR.Level2) + ';' +     //f
+                                              Format(ItemTempR."Unit Price") + ';' +   //g
                                               Format(ItemTempR."Unit Cost") + ';' +
                                               Format(ItemTempR."Maximum Inventory") + ';' +
                                               Format(ItemTempR."Unidad compra") + ';' +

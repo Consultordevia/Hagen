@@ -121,7 +121,7 @@ Page 50018 Productos
     {
         area(Processing)
         {
-            
+
             action("ImportaDatosPVPWEB")
             {
                 ApplicationArea = Basic;
@@ -153,7 +153,24 @@ Page 50018 Productos
                 end;
 
             }
-     
+            action("Importapvp")
+            {
+                ApplicationArea = Basic;
+                Caption = 'Importa precios PVP';
+
+                trigger OnAction()
+                var
+                    xmlImportaDatosProductos: XmlPort "Importa datos precio venta";
+                begin
+                    clear(xmlImportaDatosProductos);
+                    xmlImportaDatosProductos.run;
+                    Message('hecho');
+
+                end;
+
+            }
+
+
         }
 
 
@@ -184,8 +201,8 @@ Page 50018 Productos
             PVPrecomendado := SalesPrice."Precio recomendado";
         end;
 
-        Rec.CalcFields(Rec.Inventory, Rec."Existencia FOB", Rec."Qty. on Sales Order","Existencia CATIT");
-        Existencia := Rec.Inventory - Rec."Existencia FOB" - Rec."Qty. on Sales Order"-Rec."Existencia CATIT";
+        Rec.CalcFields(Rec.Inventory, Rec."Existencia FOB", Rec."Qty. on Sales Order", "Existencia CATIT");
+        Existencia := Rec.Inventory - Rec."Existencia FOB" - Rec."Qty. on Sales Order" - Rec."Existencia CATIT";
     end;
 
     trigger OnOpenPage()
