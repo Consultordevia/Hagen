@@ -1,4 +1,4 @@
-tableextension 50044 ItemUnitofMeasure extends "Item Unit of Measure"
+﻿tableextension 50044 ItemUnitofMeasure extends "Item Unit of Measure"
 {
     fields
     {
@@ -114,13 +114,20 @@ tableextension 50044 ItemUnitofMeasure extends "Item Unit of Measure"
         "enviar a adaia" := true;
 
 
-        if CopyStr(COMPANYNAME, 1, 4) = 'ROLF' then begin
-            RecItem.Reset;
-            RecItem.SetRange("No.", Rec."Item No.");
-            if RecItem.FindFirst then begin
-                CUADAIA.MODIFPROD(RecItem);
-            end;
-        end;
+        // Desactivado: dar de alta una unidad de medida lanzaba el envío del artículo a ADAIA
+        // por el proceso antiguo, que escribe cuatro ficheros de golpe en la carpeta de salida
+        // (TRART, TRARPR, TRAREA y TRARUB). De ahí el goteo continuo de ficheros.
+        //
+        // Los artículos los envía ahora la extensión ADAIA, en un único fichero TRART que ya
+        // lleva dentro esos mismos registros.
+        //
+        // if CopyStr(COMPANYNAME, 1, 4) = 'ROLF' then begin
+        //     RecItem.Reset;
+        //     RecItem.SetRange("No.", Rec."Item No.");
+        //     if RecItem.FindFirst then begin
+        //         CUADAIA.MODIFPROD(RecItem);
+        //     end;
+        // end;
 
 
         if GuiAllowed then begin

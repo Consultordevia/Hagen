@@ -1,4 +1,4 @@
-codeunit 50002 Eventos
+﻿codeunit 50002 Eventos
 {
     Permissions = tabledata "Sales Invoice Header" = rmid, tabledata "G/L Entry" = RMID;
 
@@ -11,7 +11,7 @@ codeunit 50002 Eventos
         UpdateContFromCust: Codeunit "CustCont-Update";
     begin
 
-        EnvioFicheros.ALTACLIENTES(Customer);
+        // EnvioFicheros.ALTACLIENTES(Customer);   // ADAIA antiguo desactivado: lo hace la extensión ADAIA.
 
         //Commit;
         if Customer.ContactoAInsertar <> '' then begin
@@ -49,7 +49,7 @@ codeunit 50002 Eventos
     var
         EnvioFicheros: Codeunit "Automaticos Cartas";
     begin
-        EnvioFicheros.ALTAPROVEE(Vendor);
+        // EnvioFicheros.ALTAPROVEE(Vendor);   // ADAIA antiguo desactivado: lo hace la extensión ADAIA.
     end;
 
     [EventSubscriber(ObjectType::Table, 23, OnAfterModifyEvent, '', true, true)]

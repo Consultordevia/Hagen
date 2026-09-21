@@ -1,4 +1,4 @@
-#pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
+﻿#pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
 Page 50083 "Productos Lista ubicaciones"
 {
     PageType = List;
@@ -167,13 +167,20 @@ Page 50083 "Productos Lista ubicaciones"
     var
         CUADAIA: Codeunit "Automaticos Cartas";
 
+    /// <summary>Desactivado: enviaba el artículo a ADAIA por el proceso antiguo, que escribe
+    /// cuatro ficheros de golpe en la carpeta de salida (TRART, TRARPR, TRAREA y TRARUB).
+    /// Como se llamaba desde OnModifyRecord, cualquier cambio en la lista los generaba.
+    ///
+    /// Los artículos los envía ahora la extensión ADAIA, en un único fichero TRART que ya
+    /// lleva dentro esos mismos registros. Se deja el procedimiento vacío para no tocar los
+    /// puntos desde los que se llama.</summary>
     local procedure EnviaAadaia()
     begin
-        if CopyStr(COMPANYNAME, 1, 4) = 'ROLF' then begin
-            Commit();
-            CUADAIA.MODIFPROD(Rec);
-            Commit();
-        end;
+        // if CopyStr(COMPANYNAME, 1, 4) = 'ROLF' then begin
+        //     Commit();
+        //     CUADAIA.MODIFPROD(Rec);
+        //     Commit();
+        // end;
     end;
 }
 

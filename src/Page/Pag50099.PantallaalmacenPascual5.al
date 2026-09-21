@@ -1,4 +1,4 @@
-#pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
+﻿#pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
 Page 50099 "Pantalla almacen Pascual5"
 {
     // 
@@ -326,6 +326,7 @@ Page 50099 "Pantalla almacen Pascual5"
                 Image = ReleaseDoc;
                 action("Enviar a ADAIA")
                 {
+                    Visible = false;   // ADAIA antiguo: lo hace "ADAIA - Pantalla almacén".
                     ApplicationArea = Basic;
                     Caption = 'Enviar a ADAIA';
                     Ellipsis = true;
@@ -343,6 +344,7 @@ Page 50099 "Pantalla almacen Pascual5"
                 }
                 action("Reenviar a ADAIA")
                 {
+                    Visible = false;   // ADAIA antiguo: lo hace "ADAIA - Pantalla almacén".
                     ApplicationArea = Basic;
                     Caption = 'Reenviar a ADAIA';
                     Ellipsis = true;
@@ -365,6 +367,7 @@ Page 50099 "Pantalla almacen Pascual5"
                 */
                 action("Enviar Seleccionados")
                 {
+                    Visible = false;   // ADAIA antiguo: lo hace "ADAIA - Pantalla almacén".
                     ApplicationArea = Basic;
                     Caption = 'Enviar Seleccionados';
                     Ellipsis = true;
@@ -389,6 +392,7 @@ Page 50099 "Pantalla almacen Pascual5"
                 }
                 action("Reenviar Seleccionados")
                 {
+                    Visible = false;   // ADAIA antiguo: lo hace "ADAIA - Pantalla almacén".
                     ApplicationArea = Basic;
                     Caption = 'Reenviar Seleccionados';
                     Ellipsis = true;
@@ -413,6 +417,7 @@ Page 50099 "Pantalla almacen Pascual5"
                 }
                 action("Incrementa")
                 {
+                    Visible = false;   // ADAIA antiguo: lo hace "ADAIA - Pantalla almacén".
                     ApplicationArea = Basic;
                     Caption = 'Incrementa';
                     Ellipsis = true;
@@ -441,6 +446,7 @@ Page 50099 "Pantalla almacen Pascual5"
 
                 action("Crear EXPEDICION")
                 {
+                    Visible = false;   // ADAIA antiguo: lo hace "ADAIA - Pantalla almacén".
                     ApplicationArea = Basic;
                     Caption = 'Crear EXPEDICION';
                     Ellipsis = true;
@@ -456,6 +462,7 @@ Page 50099 "Pantalla almacen Pascual5"
                 }
                 action("Modifica expedicion")
                 {
+                    Visible = false;   // ADAIA antiguo: lo hace "ADAIA - Pantalla almacén".
                     ApplicationArea = Basic;
                     Caption = 'Modifica expedicion';
                     Ellipsis = true;
@@ -770,6 +777,7 @@ Page 50099 "Pantalla almacen Pascual5"
                 /*
                 action(DESMARCAR)
                 {
+                    Visible = false;   // ADAIA antiguo: lo hace "ADAIA - Pantalla almacén".
                     ApplicationArea = Basic;
                     Caption = 'DESMARCAR';
                     Ellipsis = true;
@@ -840,6 +848,7 @@ Page 50099 "Pantalla almacen Pascual5"
                 */
                 action("Marcar como SERVIDO")
                 {
+                    Visible = false;   // ADAIA antiguo: lo hace "ADAIA - Pantalla almacén".
                     ApplicationArea = Basic;
 
                     trigger OnAction()
@@ -1212,6 +1221,7 @@ Page 50099 "Pantalla almacen Pascual5"
                 }
                 action("Eliminar envio a ADAIA")
                 {
+                    Visible = false;   // ADAIA antiguo: lo hace "ADAIA - Pantalla almacén".
                     ApplicationArea = Basic;
                     Caption = 'Eliminar envio a ADAIA';
 
@@ -2228,7 +2238,7 @@ Page 50099 "Pantalla almacen Pascual5"
     var
         AutomaticosAdaiaLocal: Codeunit "Automaticos Cartas";
     begin
-        AutomaticosAdaiaLocal.ENVIAEXPEDICIONES(SalesHeaderRec);
+        // AutomaticosAdaiaLocal.ENVIAEXPEDICIONES(SalesHeaderRec);   // ADAIA antiguo desactivado: lo hace la extensión ADAIA.
     end;
 
 
@@ -2295,7 +2305,7 @@ Page 50099 "Pantalla almacen Pascual5"
     [TryFunction]
     local procedure TryEnviarExpedicion(var SalesHeader3: Record "Sales Header")
     begin
-        AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);
+        // AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);   // ADAIA antiguo desactivado: lo hace la extensión ADAIA.
     end;
 
     /*
@@ -2573,7 +2583,7 @@ Page 50099 "Pantalla almacen Pascual5"
             SalesHeader3.SetRange(SalesHeader3."Nº expedición", NPEDIDO);
             if SalesHeader3.FindFirst then begin
                 Clear(AutomaticosAdaia);
-                AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);
+                // AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);   // ADAIA antiguo desactivado: lo hace la extensión ADAIA.
 
                 if LogAdaiaFicheros.get(NPEDIDO) then begin
                     LogAdaiaFicheros.Error := false;
@@ -2912,7 +2922,7 @@ Page 50099 "Pantalla almacen Pascual5"
             SalesHeader3.SetRange(SalesHeader3."Nº expedición", NPEDIDO);
             if SalesHeader3.FindFirst then begin
                 Clear(AutomaticosAdaia);
-                AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);
+                // AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);   // ADAIA antiguo desactivado: lo hace la extensión ADAIA.
 
 
                 if LogAdaiaFicheros.get(NPEDIDO) then begin
@@ -3005,7 +3015,7 @@ Page 50099 "Pantalla almacen Pascual5"
         SalesHeader3.SetRange(SalesHeader3."Nº expedición", NPEDIDO);
         if SalesHeader3.FindFirst then begin
             Clear(AutomaticosAdaia);
-            AutomaticosAdaia.ENVIAEXPEDICIONES2(SalesHeader3);
+            // AutomaticosAdaia.ENVIAEXPEDICIONES2(SalesHeader3);   // ADAIA antiguo desactivado: lo hace la extensión ADAIA.
             SalesHeader3.FechaReenvioAdaia := CreateDateTime(today, time);
             SalesHeader3.Modify();
 
@@ -4089,7 +4099,7 @@ Page 50099 "Pantalla almacen Pascual5"
         SalesHeader3.SetRange(SalesHeader3."Nº expedición", NPEDIDO);
         if SalesHeader3.FindFirst then begin
             Clear(AutomaticosAdaia);
-            AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);
+            // AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);   // ADAIA antiguo desactivado: lo hace la extensión ADAIA.
 
 
             if LogAdaiaFicheros.get(NPEDIDO) then begin
@@ -4472,7 +4482,7 @@ Page 50099 "Pantalla almacen Pascual5"
         SalesHeader3.SetRange(SalesHeader3."Nº expedición", NPEDIDO);
         if SalesHeader3.FindFirst then begin
             Clear(AutomaticosAdaia);
-            AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);
+            // AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);   // ADAIA antiguo desactivado: lo hace la extensión ADAIA.
 
 
             if LogAdaiaFicheros.get(NPEDIDO) then begin

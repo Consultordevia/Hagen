@@ -1,4 +1,4 @@
-#pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
+﻿#pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
 Codeunit 50015 "Importacion ADAIA"
 {
 
@@ -8,25 +8,30 @@ Codeunit 50015 "Importacion ADAIA"
         Tipo: enum Ficherets;
         adaia: Record adaia;
     begin
+        // Cola desactivada: leía de la carpeta los ficheros de movimientos de stock que
+        // manda ADAIA (TRSTOMOV). Esa lectura la hace ahora la extensión ADAIA, con su
+        // propia cola de recepción y su registro de ficheros.
 
 
 
-        RecCP.Get;
-        nomdir := RecCP."Ruta salida a_gestion";
-        RUTACOPIA := RecCP."Ruta salida a_gestion copia";
-        ruta2 := RecCP."Ruta salida de_gestion";
-        Commit;
+
+        // RecCP.Get;
+        // nomdir := RecCP."Ruta salida a_gestion";
+        // RUTACOPIA := RecCP."Ruta salida a_gestion copia";
+        // ruta2 := RecCP."Ruta salida de_gestion";
+        // Commit;
 
 
-        ADAIA.Reset();
-        ADAIA.SetRange(texto, 'ADAIA-IMPORTACION TRSTOMOV');
-        IF ADAIA.FindSet() THEN begin
-            nomdir := ADAIA.Ruta;
-            RUTACOPIA := ADAIA.Ruta + 'copia/';
-        end;
-        Commit;
-        tipo := Tipo::TRSTOMOV;
-        FicherosHagen.LeerArchivosCarpeta(nomdir, RUTACOPIA, Tipo)
+        // ADAIA.Reset();
+        // ADAIA.SetRange(texto, 'ADAIA-IMPORTACION TRSTOMOV');
+        // IF ADAIA.FindSet() THEN begin
+        // nomdir := ADAIA.Ruta;
+        // RUTACOPIA := ADAIA.Ruta + 'copia/';
+        // end;
+        // Commit;
+        // tipo := Tipo::TRSTOMOV;
+        // FicherosHagen.LeerArchivosCarpeta(nomdir, RUTACOPIA, Tipo)
+
 
 
         /*

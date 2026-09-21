@@ -1,4 +1,4 @@
-pageextension 50061 ShpfyActivitiesExt extends "Shpfy Activities"
+﻿pageextension 50061 ShpfyActivitiesExt extends "Shpfy Activities"
 {
     layout
     {
@@ -26,6 +26,9 @@ pageextension 50061 ShpfyActivitiesExt extends "Shpfy Activities"
                 {
                     ApplicationArea = all;
                     Caption = 'Pedidos Pte Asignar ADAIA';
+                    // Oculto: llevaba a la pantalla de almacén antigua, que ya no envía a
+                    // ADAIA. El indicador equivalente está en el panel de la extensión ADAIA.
+                    Visible = false;
                     trigger OnDrillDown()
                     var
                         SalesHeader: Record "Sales Header";

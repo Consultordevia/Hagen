@@ -1,4 +1,4 @@
-#pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
+﻿#pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
 Page 50044 "Pantalla almacen Pascual4"
 {
     // 
@@ -285,6 +285,7 @@ Page 50044 "Pantalla almacen Pascual4"
                 Image = ReleaseDoc;
                 action("Enviar a ADAIA")
                 {
+                    Visible = false;   // ADAIA antiguo: lo hace "ADAIA - Pantalla almacén".
                     ApplicationArea = Basic;
                     Caption = 'Enviar a ADAIA';
                     Ellipsis = true;
@@ -300,6 +301,7 @@ Page 50044 "Pantalla almacen Pascual4"
                 }
                 action("Modifica expedicion")
                 {
+                    Visible = false;   // ADAIA antiguo: lo hace "ADAIA - Pantalla almacén".
                     ApplicationArea = Basic;
                     Caption = 'Modifica expedicion';
                     Ellipsis = true;
@@ -482,6 +484,7 @@ Page 50044 "Pantalla almacen Pascual4"
                 }
                 action("Eliminar envio a ADAIA")
                 {
+                    Visible = false;   // ADAIA antiguo: lo hace "ADAIA - Pantalla almacén".
                     ApplicationArea = Basic;
                     Caption = 'Eliminar envio a ADAIA';
 
@@ -956,7 +959,7 @@ Page 50044 "Pantalla almacen Pascual4"
         SalesHeader3.SetRange(SalesHeader3."Nº expedición", NPEDIDO);
         if SalesHeader3.FindFirst then begin
             Clear(AutomaticosAdaia);
-            AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);
+            // AutomaticosAdaia.ENVIAEXPEDICIONES(SalesHeader3);   // ADAIA antiguo desactivado: lo hace la extensión ADAIA.
 
         end;
 

@@ -1,4 +1,4 @@
-pageextension 50014 "Purchase Order" extends "Purchase Order"
+﻿pageextension 50014 "Purchase Order" extends "Purchase Order"
 {
     layout
     {
@@ -57,6 +57,7 @@ pageextension 50014 "Purchase Order" extends "Purchase Order"
         {
             action("Enviar a adaia")
             {
+                Visible = false;   // ADAIA antiguo: lo hace "ADAIA - Pantalla almacén".
                 ApplicationArea = All;
                 Caption = 'Enviar a adaia';
                 Promoted = true;
@@ -75,7 +76,7 @@ pageextension 50014 "Purchase Order" extends "Purchase Order"
                     PurchaseHeader.SETRANGE("Document Type", Rec."Document Type");
                     PurchaseHeader.SETRANGE("No.", Rec."No.");
                     IF PurchaseHeader.FINDFIRST THEN BEGIN
-                        AutomaticosAdaia.ENVIARECEPCIONES(PurchaseHeader);
+                        // AutomaticosAdaia.ENVIARECEPCIONES(PurchaseHeader);   // ADAIA antiguo desactivado: lo hace la extensión ADAIA.
                         PurchaseHeader."Enviado adaia" := TRUE;
                         PurchaseHeader."Fecha enviado adaia" := TODAY;
                         PurchaseHeader."Usuario enviado adaia" := USERID;

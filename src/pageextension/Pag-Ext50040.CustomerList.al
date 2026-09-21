@@ -1,4 +1,4 @@
-pageextension 50040 CustomerList extends "Customer List"
+﻿pageextension 50040 CustomerList extends "Customer List"
 {
     layout
     {
@@ -65,6 +65,7 @@ pageextension 50040 CustomerList extends "Customer List"
             }
             action(Enviaraadaia)
             {
+                Visible = false;   // ADAIA antiguo: lo hace "ADAIA - Pantalla almacén".
 
                 ApplicationArea = Suite;
                 Caption = 'Envar a Adaia';
@@ -79,7 +80,7 @@ pageextension 50040 CustomerList extends "Customer List"
 
 
 
-                    CU_adaia.ENVIATERCEROSMODIF;
+                    // CU_adaia.ENVIATERCEROSMODIF;   // ADAIA antiguo desactivado: lo hace la extensión ADAIA.
                     MESSAGE('hecho');
 
 
@@ -88,6 +89,7 @@ pageextension 50040 CustomerList extends "Customer List"
             }
             action(EnviaraadaiaClie)
             {
+                Visible = false;   // ADAIA antiguo: lo hace "ADAIA - Pantalla almacén".
 
                 ApplicationArea = Suite;
                 Caption = 'Envar a Adaia Cliente';
@@ -101,7 +103,7 @@ pageextension 50040 CustomerList extends "Customer List"
 
 
 
-                    CU_adaia.TERCEROSMODIFclie(Rec);
+                    // CU_adaia.TERCEROSMODIFclie(Rec);   // ADAIA antiguo desactivado: lo hace la extensión ADAIA.
                     MESSAGE('hecho');
 
 
