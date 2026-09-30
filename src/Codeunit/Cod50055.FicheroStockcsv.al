@@ -355,7 +355,7 @@ Codeunit 50055 "Fichero Stock.csv"
         ///TempBlob.CreateOutStream(OutStream);
 
 
-        OutTxt := 'Ean;Referencia;Descripcion;Estado;Línea;Familia;Tarifa;PVPR;Disponibilidad;Und. Mínimo Compra;Fecha Prox.;Pesos;Largo;Alto;Ancho;Volumen;Marca;Iva;Fecha Lanzamiento;' +
+        OutTxt := 'Ean;Referencia;Descripcion;Estado;Línea;Tarifa;PVPR;Disponibilidad;Und. Mínimo Compra;Fecha Prox.;Pesos;Largo;Alto;Ancho;Volumen;Marca;Iva;Fecha Lanzamiento;' +
         'Cantidad_1;Descuento_1;Cantidad_2;Descuento_2;Cantidad_3;Descuento_3';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
@@ -1334,7 +1334,7 @@ Codeunit 50055 "Fichero Stock.csv"
         TempBlob.CreateOutStream(OutStream, TextEncoding::Windows);
 
 
-        OutTxt := 'Ean;Referencia;Descripcion;Estado;Línea;Familia;Tarifa;PVPR;Disponibilidad;Und. Mínimo Compra;Fecha Prox.;Pesos;Largo;Alto;Ancho;Volumen;Marca;Iva;Fecha Lanzamiento;' +
+        OutTxt := 'Ean;Referencia;Descripcion;Estado;Línea;Tarifa;PVPR;Disponibilidad;Und. Mínimo Compra;Fecha Prox.;Pesos;Largo;Alto;Ancho;Volumen;Marca;Iva;Fecha Lanzamiento;' +
         'Cantidad_1;Descuento_1;Cantidad_2;Descuento_2;Cantidad_3;Descuento_3';
         OutTxt += Format(CarriageReturn) + Format(LineFeed);
         data.AddText(OutTxt);
