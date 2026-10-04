@@ -173,6 +173,10 @@ XmlPort 50010 "Importa Datos Productos"
                 }
                 textelement(D61)
                 {
+                }
+                // REQ-001331: columna AZ de la plantilla (Gr. descuento). Es la última columna, así que la fila se procesa aquí.
+                textelement(D62)
+                {
 
                     trigger OnAfterAssignVariable()
                     begin
@@ -385,6 +389,47 @@ XmlPort 50010 "Importa Datos Productos"
         CASCII: Codeunit "ANSI <-> ASCII converter2";
 
 
+
+    /// <summary>
+    /// REQ-001331: la tarifa del proveedor (columna Q) se graba también como línea de lista de
+    /// precios de compra del proveedor, que es lo que muestra su ficha con los precios nuevos.
+    /// </summary>
+    local procedure GrabaPrecioCompra(ItemNo: Code[20]; VendorNo: Code[20]; Coste: Text)
+    var
+        PriceListLine: Record "Price List Line";
+        PriceListHeader: Record "Price List Header";
+        PriceListMgt: Codeunit "Price List Management";
+        CosteDec: Decimal;
+        LineNo: Integer;
+    begin
+        if not Evaluate(CosteDec, Coste) then
+            exit;
+        PriceListLine.SetRange("Price Type", PriceListLine."Price Type"::Purchase);
+        PriceListLine.SetRange("Source Type", PriceListLine."Source Type"::Vendor);
+        PriceListLine.SetRange("Source No.", VendorNo);
+        PriceListLine.SetRange("Asset Type", PriceListLine."Asset Type"::Item);
+        PriceListLine.SetRange("Asset No.", ItemNo);
+        if PriceListLine.FindLast() then begin
+            PriceListLine.Validate("Direct Unit Cost", CosteDec);
+            PriceListLine.Modify(true);
+            exit;
+        end;
+        PriceListHeader.Get(PriceListMgt.DefineDefaultPriceList("Price Type"::Purchase, "Price Source Group"::Vendor));
+        PriceListLine.Reset();
+        PriceListLine.SetRange("Price List Code", PriceListHeader.Code);
+        if PriceListLine.FindLast() then
+            LineNo := PriceListLine."Line No.";
+        PriceListLine.Init();
+        PriceListLine."Price List Code" := PriceListHeader.Code;
+        PriceListLine."Line No." := LineNo + 10000;
+        PriceListLine.CopyFrom(PriceListHeader);
+        PriceListLine.Validate("Source Type", PriceListLine."Source Type"::Vendor);
+        PriceListLine.Validate("Source No.", VendorNo);
+        PriceListLine.Validate("Asset Type", PriceListLine."Asset Type"::Item);
+        PriceListLine.Validate("Asset No.", ItemNo);
+        PriceListLine.Validate("Direct Unit Cost", CosteDec);
+        PriceListLine.Insert(true);
+    end;
 
     local procedure InitializeGlobals()
     var
@@ -615,7 +660,7 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
 
-            if (D20 <> '') then begin
+            if (D12 <> '') then begin
                 D10LARGOUNI := D12;
                 if D10LARGOUNI <> '' then begin
                     if RecItem.Get(D1) then begin
@@ -1490,6 +1535,8 @@ XmlPort 50010 "Importa Datos Productos"
                             end;
                             RecPC.Insert;
                         end;
+                        if D22COSTEUNIDIC <> '' then
+                            GrabaPrecioCompra(D1, D51ODPROVEE, D22COSTEUNIDIC);
                         RecTCP.Reset;
                         RecTCP.SetRange(RecTCP."Vendor No.", D51ODPROVEE);
                         RecTCP.SetRange(RecTCP."Item No.", D1);
@@ -1627,12 +1674,18 @@ XmlPort 50010 "Importa Datos Productos"
                 end;
             end;
 
-            /////if (D61 <> '') then begin
-            /////if RecItem.Get(D1) then begin
-            /////RecItem."Item Category Code" := D61;
-            /////RecItem.Modify;
-            /////end;
-            /////end;
+            if (D61 <> '') then begin
+                if RecItem.Get(D1) then begin
+                    RecItem.Validate("Item Category Code", D61);
+                    RecItem.Modify;
+                end;
+            end;
+            if (D62 <> '') then begin
+                if RecItem.Get(D1) then begin
+                    RecItem.Validate("Item Disc. Group", D62);
+                    RecItem.Modify;
+                end;
+            end;
             /////if (D62 <> '') then begin
             /////if RecItem.Get(D1) then begin
             /////RecItem.Etiquetas1 := D62;
