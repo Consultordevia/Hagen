@@ -372,6 +372,8 @@ XmlPort 50010 "Importa Datos Productos"
         D49ZONAPICK: Code[20];
         D50PRODALMA: Code[20];
         RecUMP: Record "Item Unit of Measure";
+        AltaPrecios: Codeunit "Alta Precios Listas";
+        PrecioLista: Decimal;
         D51ODPROVEE: Code[20];
         RecPC: Record "Purchase Price";
         D52EANINNE: Code[20];
@@ -389,47 +391,6 @@ XmlPort 50010 "Importa Datos Productos"
         CASCII: Codeunit "ANSI <-> ASCII converter2";
 
 
-
-    /// <summary>
-    /// REQ-001331: la tarifa del proveedor (columna Q) se graba también como línea de lista de
-    /// precios de compra del proveedor, que es lo que muestra su ficha con los precios nuevos.
-    /// </summary>
-    local procedure GrabaPrecioCompra(ItemNo: Code[20]; VendorNo: Code[20]; Coste: Text)
-    var
-        PriceListLine: Record "Price List Line";
-        PriceListHeader: Record "Price List Header";
-        PriceListMgt: Codeunit "Price List Management";
-        CosteDec: Decimal;
-        LineNo: Integer;
-    begin
-        if not Evaluate(CosteDec, Coste) then
-            exit;
-        PriceListLine.SetRange("Price Type", PriceListLine."Price Type"::Purchase);
-        PriceListLine.SetRange("Source Type", PriceListLine."Source Type"::Vendor);
-        PriceListLine.SetRange("Source No.", VendorNo);
-        PriceListLine.SetRange("Asset Type", PriceListLine."Asset Type"::Item);
-        PriceListLine.SetRange("Asset No.", ItemNo);
-        if PriceListLine.FindLast() then begin
-            PriceListLine.Validate("Direct Unit Cost", CosteDec);
-            PriceListLine.Modify(true);
-            exit;
-        end;
-        PriceListHeader.Get(PriceListMgt.DefineDefaultPriceList("Price Type"::Purchase, "Price Source Group"::Vendor));
-        PriceListLine.Reset();
-        PriceListLine.SetRange("Price List Code", PriceListHeader.Code);
-        if PriceListLine.FindLast() then
-            LineNo := PriceListLine."Line No.";
-        PriceListLine.Init();
-        PriceListLine."Price List Code" := PriceListHeader.Code;
-        PriceListLine."Line No." := LineNo + 10000;
-        PriceListLine.CopyFrom(PriceListHeader);
-        PriceListLine.Validate("Source Type", PriceListLine."Source Type"::Vendor);
-        PriceListLine.Validate("Source No.", VendorNo);
-        PriceListLine.Validate("Asset Type", PriceListLine."Asset Type"::Item);
-        PriceListLine.Validate("Asset No.", ItemNo);
-        PriceListLine.Validate("Direct Unit Cost", CosteDec);
-        PriceListLine.Insert(true);
-    end;
 
     local procedure InitializeGlobals()
     var
@@ -855,6 +816,9 @@ XmlPort 50010 "Importa Datos Productos"
                         Evaluate(RecSP."Unit Price", D18PRECIOTAR);
                         RecSP.Insert;
                     end;
+                    // REQ-001340: la tarifa del código de ventas (L, precio de la M), también en la lista de precios.
+                    if Evaluate(PrecioLista, D18PRECIOTAR) then
+                        AltaPrecios.PrecioVenta(D1, D17CODVENTA, PrecioLista);
 
                 end;
             end;
@@ -1535,8 +1499,9 @@ XmlPort 50010 "Importa Datos Productos"
                             end;
                             RecPC.Insert;
                         end;
-                        if D22COSTEUNIDIC <> '' then
-                            GrabaPrecioCompra(D1, D51ODPROVEE, D22COSTEUNIDIC);
+                        // REQ-001331: la tarifa del proveedor (Q), también en la lista de precios de compra.
+                        if Evaluate(PrecioLista, D22COSTEUNIDIC) then
+                            AltaPrecios.PrecioCompra(D1, D51ODPROVEE, PrecioLista);
                         RecTCP.Reset;
                         RecTCP.SetRange(RecTCP."Vendor No.", D51ODPROVEE);
                         RecTCP.SetRange(RecTCP."Item No.", D1);
