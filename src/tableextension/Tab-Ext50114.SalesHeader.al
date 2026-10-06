@@ -1279,7 +1279,14 @@ tableextension 50114 SalesHeader extends "Sales Header"
         Fechavto: date;
         SEPASA: Boolean;
         Rec21: Record "Cust. Ledger Entry";
+        IsHandled: Boolean;
     begin
+        // REQ-001380 (DevConsultIA): el puente del portal se salta este control SOLO
+        // mientras crea un pedido del portal; despues lo deja en «Pdte. comercial» por la
+        // deuda. Antes el pedido fallaba al poner el cliente y no llegaba a BC.
+        OnBeforeChequeoFechaVtos(Rec, IsHandled);
+        if IsHandled then
+            exit;
 
 
 
@@ -1322,4 +1329,10 @@ tableextension 50114 SalesHeader extends "Sales Header"
 
 
 
+
+    /// <summary>REQ-001380: permite a otra app saltarse ChequeoFechaVtos en casos concretos.</summary>
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeChequeoFechaVtos(var SalesHeader: Record "Sales Header"; var IsHandled: Boolean)
+    begin
+    end;
 }
