@@ -277,11 +277,8 @@ Page 50200 "Sales Order List2"
                     PromotedCategory = Process;
                     ShortCutKey = 'F7';
                     ToolTip = 'View statistical information, such as the value of posted entries, for the record.';
-
-                    trigger OnAction()
-                    begin
-                        Rec.OpenSalesOrderStatistics;
-                    end;
+                    RunObject = Page "Sales Order Statistics";
+                    RunPageOnRec = true;
                 }
                 action(Approvals)
                 {

@@ -119,11 +119,8 @@ Page 50015 "Comercial Pedidos"
                     Promoted = true;
                     PromotedCategory = Process;
                     ShortCutKey = 'F7';
-
-                    trigger OnAction()
-                    begin
-                        Rec.OpenSalesOrderStatistics;
-                    end;
+                    RunObject = Page "Sales Order Statistics";
+                    RunPageOnRec = true;
                 }
                 action(Approvals)
                 {
