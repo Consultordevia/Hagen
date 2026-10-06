@@ -84,7 +84,7 @@ tableextension 50017 SalesShipmentHeader extends "Sales Shipment Header"
         field(50017; "Anula restos"; Boolean)
         {
         }
-        field(50018; "Usuario activo"; Code[25])
+        field(50018; "Usuario activo"; Code[30])
         {
             Editable = false;
         }

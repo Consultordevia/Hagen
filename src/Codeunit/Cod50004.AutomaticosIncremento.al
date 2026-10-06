@@ -1443,6 +1443,8 @@ Codeunit 50004 AutomaticosIncremento
     end;
 
     local procedure FechaDispoWeb()
+    var
+        FechaPicking: Codeunit RellenaFechaPicking;
     begin
 
 
@@ -1484,22 +1486,7 @@ Codeunit 50004 AutomaticosIncremento
                 Item."Stock para la web" := StockWeb.Calcular(Item);
 
                 Item."Fecha disponible Web" := FECHARECEP;
-                Item."Fecha en picking" := 0D;
-                if Item."Criterio rotacion" = Item."Criterio rotacion"::FC then begin
-                    Multitabla.Reset;
-                    Multitabla.SetRange(Tabla, Multitabla.Tabla::Ubicaciones);
-                    Multitabla.SetRange(Multitabla.Producto, Item."No.");
-                    if Multitabla.FindFirst then
-                        repeat
-                            L1 := StrLen(Multitabla.Ubicacion);
-                            if ((CopyStr(Multitabla.Ubicacion, 1, 3) = '010') OR
-                              (CopyStr(Multitabla.Ubicacion, 1, 3) = '011')) AND
-                             ((CopyStr(Multitabla.Ubicacion, L1 - 1, 2) = '01') or
-                              (CopyStr(Multitabla.Ubicacion, L1 - 1, 2) = '02')) then begin
-                                Item."Fecha en picking" := Multitabla."Fecha caducidad";
-                            end;
-                        until Multitabla.Next = 0;
-                end;
+                Item."Fecha en picking" := FechaPicking.CalcularFechaEnPicking(Item); // REQ-001407: una sola regla, ver codeunit 50008
 
 
 

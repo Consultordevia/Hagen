@@ -468,8 +468,11 @@ Report 50017 NuevasComisiones2
                                 PriceListLine.SetRange("Asset No.", Rec113."No.");
                                 PriceListLine.SetRange("Source No.", Rec113."Customer Price Group");
                                 PriceListLine.SetRange("Source Type", PriceListLine."Source Type"::"Customer Price Group");
-                                IF PriceListLine.FindLast() THEN BEGIN
+                                // REQ-001409: lo cobrado solo suma si la línea tiene precio en la tarifa
+                                // del grupo; si no, el % de descuento salía negativo (6854: -212,80 %).
+                                IF PriceListLine.FindLast() and (PriceListLine."Unit Price" <> 0) THEN BEGIN
                                     ImporteTarifaFull := ImporteTarifaFull + round(Rec113.Quantity * PriceListLine."Unit Price", 0.01);
+                                    Acumulaclieamount := Acumulaclieamount + Rec113.Amount;
                                 END;
                                 pmp := 0;
                                 InventarioPMP.RESET;
@@ -479,7 +482,6 @@ Report 50017 NuevasComisiones2
                                 END;
                                 coste := coste + Rec113.Quantity * pmp;
                             end;
-                            Acumulaclieamount := Acumulaclieamount + Rec113.Amount;
                         until rec113.next = 0;
 
                     Rec115.Reset();
@@ -494,8 +496,11 @@ Report 50017 NuevasComisiones2
                                 PriceListLine.SetRange("Asset No.", Rec115."No.");
                                 PriceListLine.SetRange("Source No.", Rec115."Customer Price Group");
                                 PriceListLine.SetRange("Source Type", PriceListLine."Source Type"::"Customer Price Group");
-                                IF PriceListLine.FindLast() THEN BEGIN
+                                // REQ-001409: lo cobrado solo suma si la línea tiene precio en la tarifa
+                                // del grupo; si no, el % de descuento salía negativo (6854: -212,80 %).
+                                IF PriceListLine.FindLast() and (PriceListLine."Unit Price" <> 0) THEN BEGIN
                                     ImporteTarifaFull := ImporteTarifaFull + round(Rec115.Quantity * PriceListLine."Unit Price", 0.01);
+                                    Acumulaclieamount := Acumulaclieamount + Rec115.Amount;
                                 END;
                                 pmp := 0;
                                 InventarioPMP.RESET;
@@ -505,7 +510,6 @@ Report 50017 NuevasComisiones2
                                 END;
                                 coste := coste + Rec115.Quantity * pmp;
                             end;
-                            Acumulaclieamount := Acumulaclieamount + Rec115.Amount;
                         until rec115.next = 0;
 
 

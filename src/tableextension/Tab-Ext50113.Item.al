@@ -122,6 +122,16 @@ tableextension 50113 Item extends Item
                           "Fecha Descatalogación":=0D;
                      END;
                      */
+                // REQ-001429: como en Navision, la fecha de descatalogación se pone sola al
+                // descatalogar y se quita al volver a Activo (Alexis, 6-oct-2026). La copia a
+                // la empresa PEPE de arriba sigue apagada.
+                if "Estado Producto" = xRec."Estado Producto" then
+                    exit;
+                if "Estado Producto" = "Estado Producto"::Descatalogado then
+                    "Fecha Descatalogación" := Today()
+                else
+                    if "Estado Producto" = "Estado Producto"::Activo then
+                        "Fecha Descatalogación" := 0D;
 
             end;
         }

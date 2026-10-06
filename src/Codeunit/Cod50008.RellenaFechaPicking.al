@@ -167,22 +167,7 @@ Codeunit 50008 RellenaFechaPicking
                 Item."Stock para la web" := StockWeb.Calcular(Item);
 
                 Item."Fecha disponible Web" := FECHARECEP;
-                Item."Fecha en picking" := 0D;
-                if Item."Criterio rotacion" = Item."Criterio rotacion"::FC then begin
-                    Multitabla.Reset;
-                    Multitabla.SetRange(Tabla, Multitabla.Tabla::Ubicaciones);
-                    Multitabla.SetRange(Multitabla.Producto, Item."No.");
-                    if Multitabla.FindFirst then
-                        repeat
-                            L1 := StrLen(Multitabla.Ubicacion);
-                            if ((CopyStr(Multitabla.Ubicacion, 1, 3) = '010') OR
-                                (CopyStr(Multitabla.Ubicacion, 1, 3) = '011')) AND
-                               ((CopyStr(Multitabla.Ubicacion, L1 - 1, 2) = '01') OR
-                                (CopyStr(Multitabla.Ubicacion, L1 - 1, 2) = '02')) then begin
-                                Item."Fecha en picking" := Multitabla."Fecha caducidad";
-                            end;
-                        until Multitabla.Next = 0;
-                end;
+                Item."Fecha en picking" := CalcularFechaEnPicking(Item); // REQ-001407: una sola regla, ver codeunit 50008
 
 
 
@@ -191,6 +176,41 @@ Codeunit 50008 RellenaFechaPicking
             until Item.Next = 0;
     end;
 
+    /// <summary>
+    /// REQ-001407 - «Fecha en picking» del artículo: UNA sola regla para todas las colas que
+    /// la recalculan (50001, 50004, 50008, 50012, 50025, 50060 la tenían copiada cada una).
+    ///
+    /// Primero pregunta (OnBeforeCalcularFechaEnPicking): la app ADAIA contesta con la
+    /// caducidad más próxima de las ubicaciones de picking con stock que manda el SGA, para
+    /// todos los artículos (Alexis, 6-oct-2026). Si nadie contesta, la regla de siempre: la
+    /// Multitabla de ubicaciones, solo artículos FC, pasillo 010/011 y altura 01/02.
+    /// </summary>
+    procedure CalcularFechaEnPicking(var Item: Record Item): Date
+    var
+        Ubicaciones: Record Multitabla;
+        Fecha: Date;
+        Handled: Boolean;
+        Largo: Integer;
+    begin
+        OnBeforeCalcularFechaEnPicking(Item, Fecha, Handled);
+        if Handled then
+            exit(Fecha);
+        if Item."Criterio rotacion" <> Item."Criterio rotacion"::FC then
+            exit(0D);
+        Ubicaciones.SetRange(Tabla, Ubicaciones.Tabla::Ubicaciones);
+        Ubicaciones.SetRange(Producto, Item."No.");
+        if Ubicaciones.FindSet() then
+            repeat
+                Largo := StrLen(Ubicaciones.Ubicacion);
+                if ((CopyStr(Ubicaciones.Ubicacion, 1, 3) = '010') or (CopyStr(Ubicaciones.Ubicacion, 1, 3) = '011')) and
+                   ((CopyStr(Ubicaciones.Ubicacion, Largo - 1, 2) = '01') or (CopyStr(Ubicaciones.Ubicacion, Largo - 1, 2) = '02')) then
+                    Fecha := Ubicaciones."Fecha caducidad";
+            until Ubicaciones.Next() = 0;
+        exit(Fecha);
+    end;
 
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeCalcularFechaEnPicking(var Item: Record Item; var Fecha: Date; var Handled: Boolean)
+    begin
+    end;
 }
-
