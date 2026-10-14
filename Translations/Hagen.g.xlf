@@ -57378,6 +57378,16 @@
           <note from="Developer" annotates="general" priority="2"></note>
           <note from="Xliff Generator" annotates="general" priority="3">EnumExtension SalesCommentDocumentType - EnumValue DetalleProd - Property Caption</note>
         </trans-unit>
+        <trans-unit id="ReportExtension 4159245432 - NamedType 4094328295" size-unit="char" translate="yes" xml:space="preserve" al-object-target="ReportExtension 4159245432">
+          <source>Importe RE</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">ReportExtension StandardSalesCreditMemo - NamedType ImporteRELbl</note>
+        </trans-unit>
+        <trans-unit id="ReportExtension 3149657238 - NamedType 4094328295" size-unit="char" translate="yes" xml:space="preserve" al-object-target="ReportExtension 3149657238">
+          <source>Importe RE</source>
+          <note from="Developer" annotates="general" priority="2"></note>
+          <note from="Xliff Generator" annotates="general" priority="3">ReportExtension StandardSalesInvoice - NamedType ImporteRELbl</note>
+        </trans-unit>
       </group>
     </body>
   </file>

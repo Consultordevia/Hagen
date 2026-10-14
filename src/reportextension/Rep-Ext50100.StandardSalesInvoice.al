@@ -19,6 +19,48 @@ reportextension 50100 StandardSalesInvoice extends "Standard Sales - Invoice"
             }
             column(Ean; Ean) { }
         }
+        // REQ-001792: el estándar hace TotalECAmount := (no +=) en cada línea y el total del
+        // R.E. sale con el importe de un solo tipo de IVA. Se suma aquí, sobre la especificación.
+        add(Totals)
+        {
+            column(TotalRE_Hagen; TotalRE)
+            {
+                AutoFormatExpression = Header."Currency Code";
+                AutoFormatType = 1;
+            }
+        }
+        addafter(Totals)
+        {
+            // Solo tiene registro si la factura lleva R.E.: así la línea del resumen no sale en las demás
+            dataitem(ResumenRE_Hagen; Integer)
+            {
+                DataItemTableView = sorting(Number) where(Number = const(1));
+                column(ResumenRE_Lbl; ImporteRELbl) { }
+                column(ResumenRE_Importe; TotalRE)
+                {
+                    AutoFormatExpression = Header."Currency Code";
+                    AutoFormatType = 1;
+                }
+
+                trigger OnPreDataItem()
+                begin
+                    if TotalRE = 0 then
+                        CurrReport.Break();
+                end;
+            }
+        }
+        modify(VATAmountLine)
+        {
+            trigger OnBeforePreDataItem()
+            begin
+                TotalRE := 0;
+            end;
+
+            trigger OnAfterAfterGetRecord()
+            begin
+                TotalRE += VATAmountLine."EC Amount";
+            end;
+        }
         modify(Line)
         {
             trigger OnAfterAfterGetRecord()
@@ -64,4 +106,6 @@ reportextension 50100 StandardSalesInvoice extends "Standard Sales - Invoice"
         FormattedPrecio_final: text;
         dif: Decimal;
         dtofac: code[20];
+        TotalRE: Decimal;
+        ImporteRELbl: Label 'Importe RE';
 }
