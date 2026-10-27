@@ -23,17 +23,19 @@ Esta skill nace de **incidentes reales**: hay secretos commiteados en claro en v
 - Configuración funcional de una app (setup tables, parámetros de negocio, feature flags): usa la skill del stack correspondiente (`devconsultia-al-standard`, `devconsultia-al-integrations`, `devconsultia-node-standard`).
 - Patrones de llamada HTTP/autenticación desde AL: `devconsultia-al-integrations`.
 
-## 1. Inventario de exposiciones conocidas (verificado a 2026-07-06)
+## 1. Inventario de exposiciones conocidas (creado 2026-07-06, revisado 2026-10-27)
 
-Todos estos secretos están **en el historial de git** (y en cualquier clon), así que borrar el archivo o el valor no remedia nada: **la remediación es rotar la credencial**.
+Todos siguen **en el historial de git** y en cualquier clon: quitarlos del fichero no los borra de ahí.
 
-| Repo / archivo | Qué hay expuesto | Estado |
-|---|---|---|
-| `IABC__IABC/copilot_bc/config.py` | `OPENAI_API_KEY` (formato `sk-proj-...`) en claro, línea 14; además credenciales SQL de demo (`pruebas`/contraseña trivial) en `DB_CONFIG` | En historial de git → rotar la key de OpenAI |
-| `IABC__IABC/Navision/database.py` | Connection string SQL Server con `UID=sa` y `PWD=...` en claro (servidor interno 192.168.202.111, BD de cliente), líneas 15-21 | En historial de git → rotar la password de `sa` en ese servidor |
-| `Portal Devconsultia__Portal Devconsultia/docs/HANDOFF.md` | 2 client secrets de Entra (líneas ~151 y ~178) marcados en el propio doc como "(quemado, rotar)", más `NEXTAUTH_SECRET` y bloque `.env` completo (líneas ~198-219) | Documentado como quemado desde su creación (se pegaron en chats). Checklist pendiente en líneas ~711-712 → rotar en Azure Portal |
-| `Portal Devconsultia__Portal Devconsultia/README.md` | Tenant IDs y client IDs (líneas ~197-199), referencia a los 2 client_secrets quemados (línea ~188) | IDs no son secretos por sí solos, pero el README confirma la deuda de rotación |
-| `Factoria/.env.local.example` | `BC_CLIENT_SECRET` real de Entra en claro (más tenant/client/company IDs y nombre de environment Sandbox). El `.gitignore` excluye `.env.local` pero el **example está trackeado y commiteado con valores reales** en vez de placeholders | Detectado 2026-07-07. En historial de git → rotar el client secret en Azure Portal y dejar el example solo con placeholders |
+| Repo / archivo | Qué hay expuesto | Visto | Estado a 2026-10-27 |
+|---|---|---|---|
+| `IABC__IABC/copilot_bc/config.py`, `p1/config.py`, `Navision/config.py` | `OPENAI_API_KEY` (la misma en los tres) y SQL de demo en `DB_CONFIG` | 2026-07-06 | Limpio desde REQ-002749: del entorno (`.env.example`); la clave no va a la bóveda (decisión de xavi). En el historial |
+| `IABC__IABC/Navision/database.py` | `UID=sa` y `PWD=...` en claro (SQL Server de cliente) | 2026-07-06 | Limpio desde REQ-002749 (también `p1/chatbot.py`): del entorno. En el historial |
+| `Portal Devconsultia__Portal Devconsultia/docs/HANDOFF.md` | 2 client secrets de Entra "(quemado, rotar)", `NEXTAUTH_SECRET` y un `.env` completo | 2026-07-06 | **Sigue en el fichero vivo** (5 líneas en `master`). Pendiente |
+| `Portal Devconsultia__Portal Devconsultia/README.md` | Tenant IDs y client IDs, referencia a los 2 client secrets quemados | 2026-07-06 | Los IDs no son secretos. Nada que hacer |
+| `Factoria/.env.local.example` | `BC_CLIENT_SECRET` real de Entra en el primer commit (2026-07-07) | 2026-07-07 | Marcador desde 2026-08-06 (REQ-000256), también en el commit del 27-sep. En el historial |
+| `Utilidades__Memoria` (dos memorias) | Usuarios y contraseñas de instancias de producto en una tabla y en «pass `valor`» | 2026-10-27 | Limpio desde REQ-002749: en la bóveda; el filtro ya ve tablas. En el historial |
+| `~/.claude/deepseek-api-key.dpapi` | Clave de DeepSeek sin uso, fuera de la bóveda | 2026-10-27 | En la bóveda (`deepseek-api-key`) y fichero archivado (REQ-002749) |
 
 Si al auditar encuentras una exposición nueva, añádela a esta tabla y ejecuta el runbook.
 

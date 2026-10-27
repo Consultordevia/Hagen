@@ -9,7 +9,7 @@
 
 ---
 name: devconsultia-al-integrations
-description: 'Patrones de integración externa desde AL: HttpClient, auth (API key, OAuth, mTLS AEAT), transportistas, AEAT/VeriFactu, EDICOM, KSeF, reintentos. Usar al llamar a un servicio externo desde AL. Triggers: "HttpClient", "webhook", "transportista", "AEAT", "EDICOM", "KSeF".'
+description: 'Integraciones externas desde AL: HttpClient, auth (API key, OAuth, mTLS AEAT), transportistas, AEAT/VeriFactu, EDICOM, KSeF, reintentos idempotentes. Usar al llamar a un servicio externo desde AL. Triggers: "HttpClient", "webhook", "EDICOM", "KSeF", "idempotencia".'
 ---
 
 # Integraciones externas desde AL en DevConsultIA
@@ -211,12 +211,129 @@ En la tabla de setup deja solo un flag (`"API Key Set": Boolean`, estilo HubSpot
 
 **Patrón recomendado (PROPUESTA) para una integración nueva con volumen:**
 
-1. Estado por documento con enum (`Pendiente → Enviado → Error`, estilo `EstadoWS` de Carriers) — idempotencia: antes de enviar, comprueba que no haya expedición en curso (`Utilidades.HayExpedicionEnCurso`).
+1. Estado por documento con enum (`Pendiente → Enviado → Error`, estilo `EstadoWS` de Carriers). Comprobar que no haya expedición en curso (`Utilidades.HayExpedicionEnCurso`) no basta si la marca se revierte con la transacción: aplica el §5.1.
 2. Codeunit de proceso ejecutable por Job Queue que recorre pendientes; cada documento dentro de `if not Codeunit.Run(...)` o TryFunction para que uno fallido no tumbe el lote, guardando `GetLastErrorText()` en el registro.
 3. Reintento HTTP solo para 429/5xx/transporte, estilo KSeF (máx. 3-4, con Sleep). Errores 4xx de validación NO se reintentan: se marcan Error con mensaje accionable.
 4. Despliega la app `MonitorizaciónJobQueue` en el cliente para el auto-restart y las alertas; no reinventes notificaciones.
 5. `Commit()` tras escribir el log HTTP (como hace `KSeFHttpLog`), para que el rastro sobreviva a un rollback posterior.
 6. Tabla de log HTTP por app, calcada de `Tab7149543.KSeFHttpLog.al`: `Entry No.` (AutoIncrement), `Date Time`, FK al documento, `Direction` (Request/Response), `HTTP Method`, `URL` Text[250], `Status Code`, `Body` Blob (OutStream UTF8), `Error Message`. TaxIA (`TIAPresentationLog`) añade `Environment`, `CSV` y request+response en el mismo registro — también válido.
+
+### 5.1 Efectos externos idempotentes (REGLA)
+
+**Todo efecto externo lanzado desde AL tiene que poder repetirse sin repetirse fuera.**
+Efecto externo es lo que cambia algo en otro sistema: crear una expedición o una recogida,
+enviar una factura o un pedido, aceptar un pedido de marketplace, subir un tracking, mandar
+un email. Una lectura (consultar seguimiento, descargar pedidos) no lo es, pero lo que se
+crea en BC a partir de ella sí tiene que comprobar que no existe ya.
+
+**Por qué.** En BC, un `Error()` revierte todo lo escrito desde el último `Commit()`, pero
+la llamada HTTP ya salió y el otro sistema no se entera del rollback. Si el estado
+«Enviado» o el nº de expedición se guardan en la misma transacción que un paso posterior
+que falla (parsear la respuesta, imprimir la etiqueta, registrar), el documento vuelve a
+«Pendiente» y el siguiente intento de la Job Queue, del auto-restart de
+`MonitorizaciónJobQueue` o del usuario que pulsa otra vez crea un segundo envío. Lo mismo
+con un timeout en el que el servidor sí aplicó el cambio. Patrón descrito por Stefano
+Demiliani (1-sep-2026, «Why your Business Central Job Queue needs idempotent external
+effects»); aquí, adaptado a la casa.
+
+Las cuatro reglas:
+
+1. **Una clave estable por efecto.** Se genera **una vez**, cuando nace el efecto (la fila
+   de la outbox), y se reutiliza en cada intento: el `SystemId` de esa fila o un `Guid`
+   creado al insertarla. Nunca `CreateGuid()` en el momento de enviar, ni nº de documento
+   + fecha/hora. Un efecto nuevo legítimo (reenviar tras anular) es una fila nueva con
+   clave nueva. La clave viaja en la cabecera `Idempotency-Key` si la API la admite y, si
+   no, en el campo de referencia del cliente que el proveedor devuelve y deja buscar.
+2. **Se registra antes de llamar.** Fila en estado `EnCurso` con la clave y `Commit()`
+   **antes** del `Client.Send`. Así la marca sobrevive a cualquier `Error()` posterior. La
+   llamada no va dentro de una transacción de registro ni en un suscriptor `OnAfterPost…`:
+   el registro encola la fila y la Job Queue la procesa aparte.
+3. **Al reintentar, se consulta primero.** Una fila `EnCurso` significa «un intento llegó a
+   llamar y no sabemos qué pasó». Antes de volver a enviar, se pregunta al sistema externo
+   por la clave o la referencia; si el efecto existe, se marca `Confirmado` con su
+   referencia y no se envía. Tras confirmar, `Commit()` y solo entonces los pasos locales
+   (etiqueta, email, registro): si fallan, se reintentan ellos, no el envío.
+4. **Qué respuesta deja reintentar.** Fallo de transporte, timeout o 5xx: la fila sigue
+   `EnCurso` (resultado desconocido, regla 3). 4xx de validación: `Error` con el motivo;
+   ahí no hubo efecto y se corrige el dato. Al anular o borrar fuera, un 404 en el
+   reintento es éxito: ya no existe.
+
+**Si el sistema externo no admite claves de idempotencia**, en este orden:
+
+- **Operación idempotente por naturaleza.** Upsert/PUT por clave de negocio, valores
+  absolutos (stock = 12, nunca +2), borrado con 404 como éxito. Repetirla no duplica.
+- **Buscar antes de crear.** Se manda nuestra referencia (nº de albarán, la clave) en un
+  campo que el proveedor guarde y deje consultar, y la regla 3 busca por ella. Hay una
+  ventana de carrera si dos procesos tratan la misma fila: un solo proceso por fila
+  (`LockTable` al pasarla a `EnCurso`).
+- **Ni clave ni búsqueda.** Una fila `EnCurso` no se reenvía sola: pasa a `Incierto` y la
+  revisa una persona en el portal del proveedor (con aviso, p. ej. por
+  `MonitorizaciónJobQueue`). Un envío doble cuesta más que una revisión manual. Solo se
+  reintenta solo lo que falló **antes** de `Client.Send` (construir el payload, el token).
+
+Ejemplo (PROPUESTA, sin probar; prefijo `XXX` de la app):
+
+```al
+// Outbox: una fila por efecto externo. SystemId = clave de idempotencia.
+// Campos: "Entry No." (AutoIncrement), "Effect Type" (enum), "Source SystemId" (Guid),
+// Status (enum Pendiente, EnCurso, Confirmado, Error, Incierto), Attempts, "External Ref", "Last Error".
+procedure ProcessEffect(var Effect: Record "XXX External Effect")
+var
+    Connector: Codeunit "XXX Http Client";
+    ExternalRef: Text;
+    ResponseBody: Text;
+    StatusCode: Integer;
+    IdemKey: Text;
+begin
+    if Effect.Status in [Effect.Status::Confirmado, Effect.Status::Incierto] then
+        exit;
+    IdemKey := Format(Effect.SystemId, 0, 4);
+
+    // Regla 3: un intento anterior llegó a llamar; preguntar antes de repetir
+    if Effect.Status = Effect.Status::EnCurso then
+        if Connector.FindByKey(IdemKey, ExternalRef) then begin
+            MarkConfirmed(Effect, ExternalRef);
+            exit;
+        end else
+            if not Connector.SupportsLookup() then begin
+                Effect.Status := Effect.Status::Incierto; // sin forma de saberlo: persona
+                Effect.Modify(true);
+                Commit();
+                exit;
+            end;
+
+    // Regla 2: registrar antes de llamar, y que sobreviva a un Error posterior
+    Effect.LockTable();
+    Effect.Get(Effect."Entry No.");
+    Effect.Status := Effect.Status::EnCurso;
+    Effect.Attempts += 1;
+    Effect.Modify(true);
+    Commit();
+
+    if not Connector.Send(Effect.GetPayload(), IdemKey, ResponseBody, StatusCode) then begin
+        if StatusCode in [400 .. 499] then begin   // validación: no hubo efecto
+            Effect.Status := Effect.Status::Error;
+            Effect."Last Error" := CopyStr(ResponseBody, 1, MaxStrLen(Effect."Last Error"));
+            Effect.Modify(true);
+        end;                                      // transporte/timeout/5xx: sigue EnCurso
+        Commit();
+        exit;
+    end;
+    MarkConfirmed(Effect, Connector.ParseExternalRef(ResponseBody));
+end;
+
+local procedure MarkConfirmed(var Effect: Record "XXX External Effect"; ExternalRef: Text)
+begin
+    Effect.Status := Effect.Status::Confirmado;
+    Effect."External Ref" := CopyStr(ExternalRef, 1, MaxStrLen(Effect."External Ref"));
+    Effect.Modify(true);
+    Commit(); // a partir de aquí, etiqueta/email/registro pueden fallar sin reenviar
+end;
+```
+
+Al revisar una integración existente, la pregunta es una: **si salta un `Error()` justo
+después de cada `Client.Send`, ¿qué hace el siguiente intento?** Si la respuesta es
+«enviar otra vez», es un hallazgo.
 
 ## 6. Errores históricos: síntoma → causa → prevención
 
@@ -242,6 +359,7 @@ Fuente: git log de Carriers (`git log --oneline`) y código resultante. El "GLS 
 4. **Codeunit de integración** `IntegracionXXX` con: envío de expedición, obtención de etiqueta, anulación y seguimiento, siguiendo la capa HTTP de §1. SOAP → §2.2; REST → §3. Token con caché y margen de renovación (§6, patrón CTT).
 5. **Saneado de datos salientes**: CopyStr a los límites documentados del proveedor, fechas/decimales con máscara explícita, transliteración de acentos si el proveedor lo exige, teléfono normalizado (§6).
 6. **Respuesta**: parsea código/URL de etiqueta/nº seguimiento; si falta el dato clave, marca `EstadoWS::Error` — nunca OK silencioso. Guarda request+response (tabla de log §5 o `GuardarDatosEnvio`).
+6b. **Idempotencia** (§5.1): clave estable por envío, fila `EnCurso` con `Commit()` antes de llamar, y búsqueda por referencia antes de reenviar. Anota si el transportista admite clave o deja buscar por referencia; si no, el reintento pasa a revisión manual.
 7. **Etiqueta**: base64 → `ImprimirEtiquetaPDF` (vía PrintNode, dependencia real: commit `52624bd`) y `DescargarEtiquetaPDF` de `Cod50752.UtilidadesCarriers.al`.
 8. **Cablea el dispatcher**: alta en `Cod50760.EventosCarriers.al` / `Cod50761.EnvioPedidosWSAuto.al` y en `Cod50755.ActualizacionSeguimientos.al` para el seguimiento por Job Queue.
 9. **Enlace de tracking** para el cliente (campo `EnlaceXXX` en ConfigCarrier) y plantilla de email si aplica (`Cod50764.EnviarEmailsSeguimiento.al`).
@@ -250,7 +368,7 @@ Fuente: git log de Carriers (`git log --oneline`) y código resultante. El "GLS 
 
 ## Provenance y mantenimiento
 
-Escrito el 2026-07-06 a partir del código real de doce apps de la casa (transportistas, AEAT, EDI, facturación electrónica, mensajería, CRM, impresión, almacenamiento en la nube, marketplaces y monitorización de Job Queue). Neutralizada el 2026-08-16 bajo REQ-000380: las rutas concretas viven ahora en `devconsultia-portfolio-estado` (interno), porque esta skill se empaqueta en repositorios de cliente. Todo lo no etiquetado como PROPUESTA está verificado en el código. Re-verificación:
+Escrito el 2026-07-06 a partir del código real de doce apps de la casa (transportistas, AEAT, EDI, facturación electrónica, mensajería, CRM, impresión, almacenamiento en la nube, marketplaces y monitorización de Job Queue). Neutralizada el 2026-08-16 bajo REQ-000380: las rutas concretas viven ahora en `devconsultia-portfolio-estado` (interno), porque esta skill se empaqueta en repositorios de cliente. Ampliada el 2026-10-24 bajo REQ-002468 con el §5.1 (efectos externos idempotentes). Todo lo no etiquetado como PROPUESTA está verificado en el código. Re-verificación:
 
 ```powershell
 # ¿Sigue el anti-patrón SOAP por concatenación?

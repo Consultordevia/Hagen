@@ -39,7 +39,7 @@ usó. Nuestro BC ya va por el Admin Center, con la app de integración (certific
 publicar. Cada cliente necesita en su tenant el permiso, con consentimiento del
 administrador, **y** la app en «Authorized Microsoft Entra apps» del Admin Center: sin eso da
 401/403 (REQ-000976); el script avisa y sigue por la Automation API. Autorizarla lo decide
-Xavier. Con esa vía existen `--programar inmediato|ventana|proxima-menor|proxima-mayor` y
+la persona del puesto. Con esa vía existen `--programar inmediato|ventana|proxima-menor|proxima-mayor` y
 `--con-dependencias`. Instalar por API acepta el EULA del proveedor (`acceptIsvEula`): Xavier
 lo aceptó para lo nuestro el 2026-09-25.
 
@@ -52,6 +52,8 @@ va por detrás de un `.app` ya compilado (`--instalada x.y.z.w` para comparar ad
 entorno). Las apps on-prem antiguas (BC13/14) compilan con el mismo `alc`: si la carpeta de
 símbolos mezcla versiones mayores de Microsoft, se compila con una copia que solo lleva las
 de la `application` del `app.json`, y se añaden las carpetas del .NET Framework de Windows.
+
+**ALCops** (sucesor de LinterCop): `--alcops` o `"devconsultia.alcops": true` en el settings.json; baja solo, versión y SHA-512 fijados, modo aviso. `docs/alcops.md`.
 
 ### Antes de compilar
 
@@ -307,26 +309,30 @@ El inventario de qué pipeline está ya migrado y cuál no vive en el conocimien
 
 ### Los pipelines
 
-Los cuatro despliegan a Azure App Service Linux con `AzureWebApp@1` (una web nueva o migrada usa OneDeploy con `--clean`, §2.0), trigger por push a la rama principal, `pr: none`, y terminan con smoke test HTTP con reintentos (`continueOnError: true`, o sea: el smoke test avisa pero no revierte). Se escribieron con `vmImage: ubuntu-latest`; el pool tiene que ser `name: Default` (§2.00), y un pipeline que siga con `vmImage` falla.
+Los cuatro despliegan a Azure App Service Linux con `AzureWebApp@1` (una web nueva o migrada usa OneDeploy con `--clean`, §2.0), `pr: none`, y terminan con smoke test HTTP con reintentos (`continueOnError: true`, o sea: el smoke test avisa pero no revierte). Se escribieron con `vmImage: ubuntu-latest`; el pool tiene que ser `name: Default` (§2.00), y un pipeline que siga con `vmImage` falla.
+
+**Fusionar a la rama principal NO despliega siempre.** Hay productos con `trigger: none` que se lanzan a mano eligiendo instancias, pipelines que solo compilan y webs sin pipeline que se despliegan con una receta escrita. Antes de decir que algo «ya está desplegado», o de fusionar algo que no quieres en producción, mira el `trigger` del `azure-pipelines.yml` de tu repo en `origin` y la tabla repo a repo del Manual: `C:/DevConsultIA-repos/.claude/docs/pipelines-que-despliegan.md`.
 
 Van descritos por **arquetipo**, no por nombre: cuando toques un `azure-pipelines.yml` concreto reconocerás cuál de los cuatro es y sabrás qué esperar. Lo que cambia entre uno y otro es dónde viven los secretos y qué runtime arranca; el esqueleto es el mismo.
 
 ### 2.1 Arquetipo A — portal Next.js con secretos en variable group
-- Trigger: push a la rama principal. Node **24.x**, pnpm vía corepack.
+> Desde el 2026-10-24 un portal Next nuevo, o uno que se toca, se despliega como el arquetipo F (§2.6): el `npm install` del arranque de abajo es lo que se quita.
+- Trigger: el del `yml` de cada repo; muchos son `none` (`.claude/docs/pipelines-que-despliegan.md`). Node **24.x**, pnpm vía corepack.
 - Gates: `pnpm run typecheck` + `pnpm run lint` (si fallan, no se publica).
 - **Variable group** en la biblioteca de Azure DevOps con los secretos de build (secreto de cliente de BC, secreto de NextAuth, clave pública VAPID…). Ojo: una clave `NEXT_PUBLIC_*` se **incrusta en el bundle** durante el build — sólo valores públicos ahí.
 - Artefacto: `.next` + `public` + `package.json` + `next.config.mjs`, **sin node_modules**; genera un `package-lock.json` en un directorio limpio para que el `npm install --omit=dev` del arranque sea reproducible.
 - Destino: App Service `NODE|24-lts`, startup `npm install --omit=dev && npm start`. Smoke test contra la URL `*.azurewebsites.net` del App Service.
 
 ### 2.2 Arquetipo B — portal Next.js con la configuración en Application Settings
-- Trigger: push a la rama principal. Node **22.x**, pnpm vía corepack.
+> Desde el 2026-10-24 lo que se migra a `Default` se hace como el arquetipo F (§2.6), no «cámbialo al artefacto del arquetipo A» como dice abajo.
+- Trigger: el del `yml` de cada repo; muchos son `none` (`.claude/docs/pipelines-que-despliegan.md`). Node **22.x**, pnpm vía corepack.
 - Gates: `typecheck` + `lint`. **Sin variable group**: la docena de env vars (NEXTAUTH_*, AZURE_AD_*, BC_*) viven como **Application Settings del App Service**; en build sólo se fija el flag de mock de auth a `false`.
 - Artefacto: `.next` + public + configs, con `pnpm install --prod --frozen-lockfile --shamefully-hoist` **dentro** del artefacto (a diferencia del arquetipo A, aquí las dependencias viajan resueltas). **Incompatible con el agente macOS ARM** (§2.00, trampa 4): los binarios nativos saldrían darwin-arm64. Antes de pasarlo a `Default`, cámbialo al artefacto del arquetipo A.
 - Destino: App Service `NODE|22-lts`, startup `npm start`.
 - Ojo: alguno de estos repos arrastra además un **GitHub workflow legado** (Node 20, publish profile) que ya no es el vigente. Si ves dos mecanismos de deploy, el bueno es el de Azure DevOps.
 
 ### 2.3 Arquetipo C — SPA + backend FastAPI sobre Oryx
-- Trigger: push a la rama principal. Node **24.x** (frontend Vite/React, `npm ci` + build) + Python **3.14** (backend FastAPI).
+- Trigger: el del `yml` de cada repo; muchos son `none` (`.claude/docs/pipelines-que-despliegan.md`). Node **24.x** (frontend Vite/React, `npm ci` + build) + Python **3.14** (backend FastAPI).
 - Gates: build del frontend + "backend import" (`pip install -r requirements.txt` y `import app.main`: barato, y caza la mitad de los errores de despliegue).
 - Artefacto: `backend/` (sin venv/db/pycache) + `frontend/dist` + `requirements.txt` **en la raíz** (Oryx instala deps; requiere `SCM_DO_BUILD_DURING_DEPLOYMENT=true` en App Settings, y el flag propio de la app si embebe simuladores).
 - Destino: App Service `PYTHON|3.14`, startup gunicorn+uvicorn `--chdir backend app.main:app`. Si la app va detrás de Easy Auth (Entra), el smoke test debe aceptar **200/302/401**: un 401 ahí significa que la app vive, no que falle.
@@ -516,6 +522,15 @@ Y en su pipeline, `npmAuthenticate@0` sobre ese fichero **antes** del `pnpm inst
 
 **Runbook deploy web:** la checklist web (§6).
 
+### 2.6 Arquetipo F — portal Next.js con el paquete montado: standalone, node_modules de Linux y RUN_FROM_PACKAGE (añadido 2026-10-24, REQ-002465)
+
+**Es el que se usa en un portal Next nuevo o al tocar el pipeline de uno de A o B** (el `npm install` del arranque de §2.1 y §2.2 es lo que se quita).
+
+- **Zip:** el `standalone` de Next (`output: 'standalone'`) + `.next/static` + `public` + un `node_modules` instalado **para Linux x64** (`npm ci --omit=dev --ignore-scripts --os=linux --cpu=x64 --libc=glibc`): el agente es macOS ARM y el PC win32, su `node_modules` no vale en el servidor.
+- **Arranque:** `WEBSITE_RUN_FROM_PACKAGE=1` y comando de inicio `node server.js`. Se despliega sin `--clean` ni parar el sitio. Medido en el Mac mini: humo de 9-14 min a 83 s en un B1; en portales que ya iban en 3-4 min, 0 a 2 min: no migres por migrar.
+- **Humo:** un 200 de `/login` lo da también el contenedor viejo. Sondea cada 5 s `/_next/static/<BUILD_ID>/_buildManifest.js` o un `/api/salud` con el commit.
+- **Trampas:** `node_modules/.bin` son enlaces en macOS y el zip no los guarda (se borran); los externalizados de Turbopack (`sharp-<hash>`, `pg-<hash>`) pasan a carpetas reales; `@devconsultia/bc-client` sigue en `devDependencies` y el paquete no lleva el `.npmrc`; dependencia nueva con binario nativo, se revisa para linux-x64.
+- **Plantilla con scripts, pipeline, primera ejecución y vuelta atrás:** `C:/DevConsultIA-repos/.claude/plantillas/web-standalone/README.md`. Variante Python (C y D): ver README.
 ---
 
 ## 3. Versionado
@@ -532,7 +547,7 @@ Y en su pipeline, `npmAuthenticate@0` sobre ese fichero **antes** del `pnpm inst
 ## 4. Ramas
 
 - Rama principal: **`master`** en la mayoría de repos (AL y web); **`main`** en unos pocos, casi siempre los más recientes; y en algunos la rama por defecto del remoto es otra (`Fix`, `Independiente`, `V13`…). Míralo antes de hacer push: no lo des por hecho.
-- El trabajo va en una rama de la petición (`REQ-nnnnnn-…`) y entra por PR en Azure DevOps; en web, fusionar a la rama principal despliega. Algunos repos tienen política de rama que lo exige.
+- El trabajo va en una rama de la petición (`REQ-nnnnnn-…`) y entra por PR en Azure DevOps; en web, fusionar despliega solo donde lo dice el `trigger` del `yml` (tabla en `.claude/docs/pipelines-que-despliegan.md`). Algunos repos tienen política de rama que lo exige.
 - Hay ramas muertas sin merge en varios repos (experimentos de fix, pruebas de parámetros, intentos de quitar una dependencia). Antes de dar una rama por la buena, mira cuál es la de por defecto y de cuál salió lo instalado.
 
 ---
@@ -571,6 +586,7 @@ steps:
 - Todo bajo `$(Agent.TempDirectory)`: nada de `dotnet tool install --global` en una máquina compartida.
 - Los **símbolos** (`.alpackages`) tienen que llegar de algún sitio (descarga desde almacenamiento, o desde el sandbox con credenciales de la bóveda): sin ellos no compila en ningún sistema.
 - La herramienta `al` que instala el paquete sirve para utilidades, no para compilar: el compilador es `alc.dll`.
+- Con ALCops: plantilla `plantillas/azure-pipelines/compilar-al.yml` del Manual.
 
 En ambas opciones el criterio de éxito es el mismo: **el `.app` de producción sale de un build de CI, no de la máquina de nadie, y deja de commitearse al repo.**
 
