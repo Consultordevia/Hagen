@@ -9,7 +9,7 @@
 
 ---
 name: devconsultia-testing-and-qa
-description: 'Testing y QA en DevConsultIA: qué cuenta como evidencia de calidad, estándar mínimo por stack (AL, Python, Node) y validación pre-entrega en sandbox. Skill de núcleo, viaja a cualquier repo incluidos los de cliente. Triggers: "test", "QA", "pytest", "cobertura", "validar antes de entregar".'
+description: 'Testing y QA en DevConsultIA: qué cuenta como evidencia de calidad, estándar mínimo por stack (AL, Python, Node) y validación pre-entrega en sandbox. Triggers: "test", "QA", "pytest", "cobertura", "validar antes de entregar".'
 ---
 
 # DevConsultIA · Testing y QA
@@ -124,6 +124,8 @@ codeunit 50290 "XXX Calculo Comision Tests"
 ```
 
 Ejecuta con AL Test Runner (VS Code) o `Run-ALTest` en el contenedor Docker de desarrollo. Sustituye `XXX` por el acrónimo real de la app y usa un ID del rango del `devconsultia-id-registry`.
+
+**Vuelta rápida sin BC (AL Runner, alpha):** `node C:/DevConsultIA-repos/.claude/herramientas/probar-al.mjs --proyecto <app> [--dep <app nuestra>]` ejecuta las codeunits `[Test]` en memoria con CRONUS ES: 1-5 s por vuelta, frente a minutos en sandbox. **Pasa** es buena señal, no prueba: lo que cuenta sigue siendo el Sandbox (§6, §8). **No ejecutada** es lo que AL Runner aún no sabe hacer; no se toca la app por eso. **Falla** se confirma en sandbox antes de cambiar código: salen falsos fallos, fallos por datos que CRONUS no tiene y pruebas que con el runner estándar fallan (`Commit` con `AutoRollback`, `Confirm` sin handler). No ve ejecutores propios lanzados por API, concede todos los permisos y no tiene red. No es puerta de pipeline mientras sea alpha.
 
 **Datos de prueba: delega en las librerías estándar, no repliques CRONUS a mano.** Antes de montar tu propio helper para crear un Customer/Item/Sales Header de prueba, comprueba si ya existe un codeunit `Library - ...` de Microsoft (Test Library de BC) que lo haga; añade una capa propia solo para los campos que tu extensión añade encima. Los helpers no llevan variables globales: reciben lo que necesitan y devuelven el registro creado, para que dos tests no compartan estado por accidente.
 
@@ -277,7 +279,7 @@ Esto **no** es licencia para crear worktree ni cambiar de carpeta en trabajo sup
 
 Regla dura: **no se declara nada terminado sin evidencia fresca, ejecutada en este momento.** "Debería funcionar" o citar una ejecución de hace media hora no son evidencia.
 
-Antes de decir "hecho" (a un compañero, a Xavier, o en la descripción de una PR):
+Antes de decir "hecho" (también en una PR):
 
 1. **Identifica el comando que demuestra la afirmación** — el test que reproduce el bug, la suite del módulo, el build, el linter.
 2. **Ejecútalo entero, ahora**, no de memoria ni copiando un resultado anterior.
@@ -287,9 +289,9 @@ Antes de decir "hecho" (a un compañero, a Xavier, o en la descripción de una P
 
 Vale también para lo que te cuente un sub-agente u otra sesión: se comprueba antes de darlo por bueno y se repite tras el último cambio.
 
-Aplicado aquí: en AL, "verificado" significa que has instalado o publicado el `.app` y ejecutado la checklist de sandbox (sección 4) o el codeunit de test, no que has releído el código. Si no hay comando que lo demuestre (típico en UI), la evidencia es la checklist de sandbox seguida paso a paso, no una relectura del código.
+Aplicado aquí: en AL, "verificado" significa que has instalado o publicado el `.app` y ejecutado la checklist de sandbox (sección 4) o el codeunit de test, no que has releído el código. Sin comando (típico en UI), la evidencia es la checklist de sandbox paso a paso.
 
-**Recibo.** Un repo con `verificacion.json` no abre PR sin recibo: tras el último commit, `node C:/DevConsultIA-repos/.claude/herramientas/verificar.mjs run` ejecuta lo que pide el diff y lo ata al HEAD.
+**Recibo y revisión.** Con `verificacion.json`, la PR pide tras el último commit `node C:/DevConsultIA-repos/.claude/herramientas/verificar.mjs run` (atado al HEAD) y, si lleva `revision`, `verificar.mjs revisar`: otro Claude, sin tu contexto, revisa el diff con el `REVIEW.md` del repo, y cada hallazgo se cierra. Vuelta atrás: `volver-atras.mjs`. Detalle: `docs/revision-antes-de-pr.md` del Manual.
 
 ---
 

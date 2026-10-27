@@ -37,7 +37,8 @@ paquetes y dos convenciones de variables a la vez.
 | **zod** | 4.x | Validación de entrada y de entorno. |
 | **SWR** | 2.x | Fetching en cliente cuando haga falta revalidar. |
 | **Vitest** | 4.x | Tests. |
-| **Astro** | 6.x → **subir a 7** | Sólo la web corporativa. |
+| **Astro** | **7.2.x** | Sólo la web corporativa (en 7.2.0 desde oct-2026). |
+| **Rust** | **1.98.1**, edición 2024 | Sólo los productos en Rust. Crates y reglas: «Rust», abajo. |
 
 **Fijar versiones, no rangos abiertos** en lo que decide el comportamiento (Next, React,
 TypeScript). `engines` y `packageManager` van siempre: sin ellos el proyecto compila con lo
@@ -67,7 +68,7 @@ BC_CLIENT_SECRET=…    # el Value del secret, no su ID
 BC_ENVIRONMENT=…      # nombre del entorno (Production, Sandbox…), no un GUID
 BC_COMPANY_ID=…       # GUID de la empresa, NO su nombre
 
-# Sólo si se consume una API custom de una extensión AL:
+# API propia (nunca api/v2.0):
 BC_API_PUBLISHER=devconsultia
 BC_API_GROUP=…        # ojo: distingue mayúsculas
 BC_API_VERSION=v1.0
@@ -77,13 +78,13 @@ BC_API_VERSION=v1.0
 variables de arriba.
 
 ```
-BC_BASE_URL  = https://api.businesscentral.dynamics.com/v2.0/{BC_TENANT_ID}/{BC_ENVIRONMENT}/api/v2.0
+BC_BASE_URL  = https://api.businesscentral.dynamics.com/v2.0/{BC_TENANT_ID}/{BC_ENVIRONMENT}/api/{publisher}/{group}/{version}
 BC_TOKEN_URL = https://login.microsoftonline.com/{BC_TENANT_ID}/oauth2/v2.0/token
 BC_SCOPE     = https://api.businesscentral.dynamics.com/.default   (constante, no es config)
 ```
 
 Por qué esta y no la otra: con tenant y entorno sueltos se puede construir **cualquier**
-URL —la API estándar y la custom—, mientras que a partir de una `BC_BASE_URL` ya montada no
+URL, mientras que a partir de una `BC_BASE_URL` ya montada no
 se puede ir hacia atrás. Además es la que entiende el paquete compartido y la que usa la
 bóveda de credenciales (`devconsultia-credenciales`).
 
@@ -190,6 +191,38 @@ hechos en el portfolio; si trabajas en un repo que lo tenga, cópialo de ahí.
    botón gris con motivo, nada solo con el ratón, buscar sin mayúsculas ni tildes, volver sin
    perder el filtro, un robot que mira todas las pantallas… Con sus pruebas en verde y, para lo
    heredado, topes que solo bajan.
+10. **Los portales Next despliegan en `standalone`.** El paquete lleva ya su `node_modules` de
+   Linux y el App Service arranca con `node server.js`, sin instalar nada al arrancar. Ver
+   «Despliegue standalone», abajo.
+
+### Despliegue standalone de un portal Next (REQ-002404, 2026-10-23)
+
+Con `npm install` en el arranque, cada despliegue dejaba la web caída mientras instalaba
+(mediana ~500 s, de 400 a 837 s, en 24 despliegues medidos) y la resolución de dependencias
+del servidor no era la que pasó los tests. En `standalone`, la web nueva sirvió a los 89 s de
+la subida, y la subida tardó 5 s. La receta, probada en producción:
+
+1. `next.config.mjs`: `output: 'standalone'` y `experimental: { isrFlushToDisk: false }`. Con
+   `next/image`, además `images: { maximumDiskCacheSize: 0 }`: wwwroot es de solo lectura.
+2. El pipeline (`pool: name: Default`), tras `pnpm run build`, arma el paquete: standalone,
+   `.next/static`, `public` y un `node_modules` **de linux-x64, sin enlaces simbólicos**, y para
+   si encuentra un binario darwin o win32 (sharp, swc…). Los scripts de referencia (preparar
+   paquete, `node_modules` de Linux, zip POSIX, manifiesto) se copian del portal que ya lo hace:
+   está en el inventario interno. Toda dependencia con binario nativo se revisa para linux-x64.
+3. App Service con `WEBSITE_RUN_FROM_PACKAGE=1` y comando de inicio `node server.js`. Deploy con
+   `az webapp deploy --type zip --track-status false`, **sin `--clean` y sin parar el sitio**.
+   Fuera `arrancar.sh`, `relink-turbopack-externals.js` y el `npm install` del arranque.
+4. Humo cada 5 s contra un `/api/salud` que devuelva el número de despliegue (un
+   `despliegue.txt` que mete el paquete) y que toque BC: un 200 sin el número nuevo no vale.
+5. La primera vez hay ~1 min sin servicio, porque cambiar los dos ajustes reinicia el sitio.
+   Vuelta atrás: quitar `WEBSITE_RUN_FROM_PACKAGE`, volver al comando anterior y redesplegar el
+   commit previo.
+
+Pendiente conocido de la receta: el `node_modules` de Linux se resuelve con npm a partir de las
+versiones de primer nivel de pnpm, así que las transitivas pueden no ser las del lockfile. Se
+arregla instalando con pnpm (`node-linker=hoisted`, `pnpm.supportedArchitectures` a
+linux/x64/glibc, `pnpm install --prod --frozen-lockfile --ignore-scripts`); probado en local,
+aún no en el pipeline.
 
 ### Cada pantalla con su dirección (REQ-001271, 2026-10-01)
 
@@ -397,8 +430,108 @@ minutos gratuitos. El YAML lleva `pool: name: Default`; un `vmImage` hace fallar
 De ahí salen dos reglas de stack: **el artefacto nunca lleva `node_modules` ni venvs
 instalados en el agente** (serían binarios darwin-arm64) y **los scripts del pipeline son
 POSIX o Node/Python, no GNU/Linux**. Detalle y trampas: `devconsultia-release-and-deploy` §2.00.
-La plantilla todavía trae `vmImage: ubuntu-latest` (comprobado 2026-09-24): cámbialo por
-`pool: name: Default` antes del primer push.
+La plantilla `plantilla-web` ya trae `pool: name: Default` (comprobado 22-oct-2026). Si copias el
+YAML de un repo viejo y lleva `vmImage`, cámbialo antes del primer push.
+
+## Rust (decidido el 2026-09-17, REQ-000748; ampliado el 2026-10-24, REQ-002488)
+
+Para los productos que son sistema de registro (fabricación, contabilidad, fiscalidad), donde
+un error es una multa o una parada de planta y no una pantalla mal pintada. Hay dos en Rust y
+**los dos usan las mismas piezas y versiones**; un tercero las hereda, no las elige.
+**Rust de punta a punta:** Axum, SQLx, PostgreSQL 16 y Leptos (plan B: HTMX servido por Axum).
+
+### Toolchain
+
+`rust-toolchain.toml` en la raíz, con **versión concreta**, nunca `channel = "stable"`:
+
+```toml
+[toolchain]
+channel = "1.98.1"
+profile = "default"
+components = ["rustfmt", "clippy"]
+targets = ["wasm32-unknown-unknown"]   # Leptos: sin él no compila ni en local
+```
+
+- **Edición 2024** y `resolver = "3"` en todos los crates; `rust-version` en el `Cargo.toml`
+  del workspace, igual que el canal.
+- Se sube **en un commit propio** que solo toca el toolchain, y en todos los productos a la vez.
+- `cargo check` y `cargo clippy` **no enlazan**: verde en ellos no prueba que el binario se
+  construya. Para eso, `cargo build`.
+
+### Crates (versiones de 2026-09-17, en `[workspace.dependencies]`)
+
+| Crate | Versión | Notas |
+|---|---|---|
+| axum | 0.8.9 | |
+| tokio | 1.53.1 | `macros, rt-multi-thread, signal, time, sync`; `full` no |
+| tower-http | 0.7.1 | `trace, compression-gzip, cors, timeout` |
+| sqlx | 0.9.0 | `default-features = false`; `postgres, runtime-tokio, tls-rustls-ring, macros, uuid, time, json, rust_decimal, migrate` |
+| serde / serde_json | 1.0.229 / 1.0.151 | |
+| thiserror / anyhow | 2.0.20 / 1.0.104 | ver «Errores» |
+| tracing / tracing-subscriber | 0.1.44 / 0.3.23 | `env-filter, json`: el log lo lee App Service |
+| uuid | 1.26.1 | `v4, v7, serde`; **v7 para claves nuevas** (no fragmenta el índice) |
+| time | 0.3.55 | `serde, macros, formatting, parsing`; **`chrono` prohibido en código nuestro** |
+| rust_decimal | 1.43.0 | `serde-with-str` (+ `macros` donde se usa `dec!` en tests). **Todo importe es `Decimal`, nunca `f64`** |
+| leptos / leptos_axum | 0.8.20 / 0.8.10 | se fijan por separado y se suben juntas a mano |
+| reqwest | 0.13.5 | `default-features = false`; `json, rustls, http2, gzip` |
+| oauth2 | 5.0.0 | `rustls-tls`; `client_credentials` contra BC |
+| openidconnect | 4.0.1 | `reqwest, rustls-tls`; login con Entra (valida el ID token) |
+
+Un crate nuevo entra con su versión en esta tabla. `Cargo.lock` **se versiona** (son binarios).
+
+**TLS solo por rustls**, con `default-features = false`: con las de por defecto cada crate
+arrastra `native-tls` y la imagen necesita OpenSSL dentro. Los nombres de la feature **no
+coinciden** entre crates (`tls-rustls-ring`, `rustls`, `rustls-tls`): cópialos de la tabla.
+
+### Reglas
+
+1. **Una versión por dependencia**, en `[workspace.dependencies]`; los crates ponen
+   `{ workspace = true }` sin número. `cargo tree --duplicates` debe salir limpio.
+2. **El dominio no tiene I/O.** El crate `core` no depende de `tokio`, `sqlx`, `reqwest` ni
+   `std::fs`; las flechas van hacia él y nunca entre hermanos (`db` no habla con `bc`: los
+   orquesta `api` o `worker`).
+3. **Errores:** `thiserror` en librerías (enum con variantes para que el que llama decida:
+   reintentar un 429, no un 400) y `anyhow` solo en binarios. La regla 3 general, en Rust: la
+   variante lleva el `StatusCode`; el `Display` que sale al HTTP es un mensaje nuestro y el
+   detalle de BC va a `tracing`.
+4. **`#![deny(unsafe_code)]`** en todo `lib.rs` y `main.rs`. Solo un crate FFI puede usar
+   `unsafe`, con API segura hacia fuera y `// SAFETY:` en cada bloque.
+5. **Lints del workspace:** clippy `all` en deny, `unwrap_used = "deny"`, `expect_used =
+   "warn"`, `todo = "deny"`; `cargo clippy --workspace --all-targets --all-features -- -D
+   warnings` y `cargo fmt --all --check`. `rustfmt.toml` solo con `edition = "2024"`. Todo
+   `#[allow]` lleva su motivo al lado.
+6. **SQLx con macros verificadas** (`query!`, `query_as!`) en toda consulta nueva, `.sqlx/`
+   versionado y `SQLX_OFFLINE=true` en el pipeline. Tras tocar una consulta o migración,
+   `cargo sqlx prepare --workspace` **en el mismo commit**; el pipeline lo comprueba con
+   `--check`. La compilación no se conecta a ninguna base.
+7. **Migraciones** en un solo sitio, `sqlx migrate`; una aplicada no se edita nunca. Las
+   ejecuta un paso explícito del despliegue (la CLI), no el arranque de la API: dos instancias
+   migrarían a la vez en el relevo. Primero se deja de leer una columna, luego se borra.
+   `sqlx-cli` en la versión exacta de la librería (`--locked`).
+8. **Variables de BC: la convención única** de arriba. Lo propio del producto va con su
+   prefijo (`<PRODUCTO>_DATABASE_URL`), nunca `DATABASE_URL` o `PORT` a secas.
+9. **El cliente de BC se construye perezosamente:** `from_env()` devuelve `Result` (sin
+   `panic!`), nada lee el entorno en un `static`/`LazyLock` de módulo ni en un `build.rs`.
+10. **Al paginar, orden estable:** `$orderby` en OData y `ORDER BY` con clave única en SQL.
+
+### Pipeline
+
+En el agente de la casa (`pool: name: Default`), en este orden: `cargo fmt --check` →
+clippy → `cargo test --workspace` → `cargo build --release` → `cargo leptos build --release`
+(no `trunk`) → prueba en navegador → imagen → deploy → humo.
+
+- **Imagen multi-stage con base final distroless** (`gcr.io/distroless/cc-debian12:nonroot`).
+- **Humo que compara el sello de versión:** `/health` devuelve hash del commit y número de
+  build inyectados al compilar, y el paso falla si no coincide con lo desplegado. Un 200 solo
+  no prueba nada. `/health` no lleva versiones de dependencias ni nada de BC.
+- Postgres 16 de los tests es el **servicio local del Mac**, con ICU `es-ES` (el orden de
+  texto cambia los resultados) y un rol con `CREATEDB`: cada test crea y borra su base.
+- `~/.cargo` y `target/` sobreviven en el agente; `target/` se topa por tamaño. Los binarios
+  salen darwin-arm64: no se publican como artefacto para Linux.
+- **El paso de tests no se salta «porque solo cambió el frontend»**: los tipos son compartidos.
+
+Comprobar antes de fiarse de esta sección: `rustc --version`, `cargo tree --duplicates`,
+`cargo tree -i chrono` (vacío o solo transitivo) y `cargo update --dry-run`.
 
 ## Qué queda por converger (2026-08-09)
 
@@ -409,7 +542,8 @@ El portfolio todavía no cumple esto al cien por cien. Los frentes abiertos, por
 | ~~Next 14 → 16~~ | **hecho** (REQ-000312, 313, 316): no queda ninguna app en Next 14 |
 | ~~Variables de BC a la convención única~~ | **hecho** (REQ-000317, 328) |
 | `engines` + `packageManager` | falta declararlos en algún proyecto web |
-| Astro 6 → 7 | pendiente en la web corporativa |
+| ~~Astro 6 → 7~~ | **hecho**: la web corporativa va en 7.2.0 (comprobado 24-oct-2026) |
+| Despliegue standalone (regla 10) | hecho en un portal (REQ-002404); pendiente en el resto de portales Next |
 | Adoptar `bc-client` | pendiente donde todavía haya un cliente de BC propio |
 | Deshacer un fork entre dos portales que comparten origen | pendiente |
 | Dirección por pantalla y ficha (regla 7) en las webs anteriores al estándar | pendiente donde la pantalla se elige con estado en memoria |
