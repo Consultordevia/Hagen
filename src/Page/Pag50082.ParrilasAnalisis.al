@@ -856,6 +856,9 @@ Page 50082 "Parrilas Analisis"
         COSTEFAC: Decimal;
         RecPMP: Record "Inventario PMP";
         PMP: Decimal;
+        Rec112: Record "Sales Invoice Header";
+        Rec114: Record "Sales Cr.Memo Header";
+
 
 
     begin
@@ -889,11 +892,15 @@ Page 50082 "Parrilas Analisis"
                     Rec113.SetRange(Rec113.Type, 2);
                     if Rec113.Findset then
                         repeat
+                            Rec112.get(Rec113."Document No.");
                             V.Update(1, 'ventas:' + Rec113."Document No." + ' ' +
                             Rec113."No." + ' ' +
                             SalesInvoiceHeader."Sell-to Customer No." + ' ' + Format(SalesInvoiceHeader."Posting Date"));
                             if Rec113."No." = 'TRAN' then begin
                                 portescobrados := Rec113.Amount;
+                                if Rec112."Currency Factor" <> 0 then begin
+                                    portescobrados := Rec113.Amount / Rec112."Currency Factor";
+                                end;
                             end;
                             SUMA := true;
                             if (Rec113."Line Discount %" = 100) and (Rec113.Regalo = false) then begin
@@ -906,7 +913,13 @@ Page 50082 "Parrilas Analisis"
                                 if Rec113."Precio base" = 0 then begin
                                     SUMAPB := SUMAPB + Rec113.Quantity * Rec113."Unit Price";
                                 end;
-                                SUMAPF := SUMAPF + Rec113.Amount;
+                                if Rec112."Currency Factor" = 0 then begin
+                                    SUMAPF := SUMAPF + Rec113.Amount;
+                                end;
+                                if Rec112."Currency Factor" <> 0 then begin
+                                    SUMAPF := SUMAPF + Rec113.Amount / Rec112."Currency Factor";
+                                end;
+
                             end;
                             CUANTALIN := CUANTALIN + 1;
 
@@ -921,10 +934,25 @@ Page 50082 "Parrilas Analisis"
                                 PMP := RecPMP."Unit Cost";
                             END;
 
-                            if Rec113."VAT Base Amount" <> 0 then begin
-                                margenlin := margenlin + (100 - (100 * (PMP * Rec113.Quantity) / (Rec113."VAT Base Amount")));
+                            if Rec112."Currency Factor" <> 0 then begin
+                                if Rec113."VAT Base Amount" <> 0 then begin
+                                    margenlin := margenlin + (100 - (100 * (PMP * Rec113.Quantity) / (Rec113."VAT Base Amount" / Rec112."Currency Factor")));
+                                end;
                             end;
-                            sumaventas := sumaventas + Rec113."VAT Base Amount";
+                            if Rec112."Currency Factor" = 0 then begin
+                                if Rec113."VAT Base Amount" <> 0 then begin
+                                    margenlin := margenlin + (100 - (100 * (PMP * Rec113.Quantity) / (Rec113."VAT Base Amount")));
+                                end;
+                            end;
+
+
+                            if Rec112."Currency Factor" <> 0 then begin
+                                sumaventas := sumaventas + Rec113."VAT Base Amount" / Rec112."Currency Factor";
+                            end;
+                            if Rec112."Currency Factor" = 0 then begin
+                                sumaventas := sumaventas + Rec113."VAT Base Amount";
+                            end;
+
                             HASTAFEC := HASTAFECHA[X];
                             ///DATOSCOSTE:=CalculaCoste(Rec113."No.");                    
                             DATOSCOSTE := pmp;
@@ -932,7 +960,13 @@ Page 50082 "Parrilas Analisis"
                             COSTEFAC := COSTEFAC + DATOSCOSTE * Rec113.Quantity;
                         until Rec113.Next = 0;
                     if SalesInvoiceHeader.Amount <> 0 then begin
-                        Margen := ROUND((SalesInvoiceHeader.Amount - COSTEFAC) / SalesInvoiceHeader.Amount * 100, 0.01);
+                        if Rec112."Currency Factor" <> 0 then begin
+                            Margen := ROUND((SalesInvoiceHeader.Amount - COSTEFAC) / (SalesInvoiceHeader.Amount / Rec112."Currency Factor") * 100, 0.01);
+                        end;
+                        if Rec112."Currency Factor" = 0 then begin
+                            Margen := ROUND((SalesInvoiceHeader.Amount - COSTEFAC) / SalesInvoiceHeader.Amount * 100, 0.01);
+                        end;
+
                     end;
                     Rec113.Reset;
                     Rec113.SetCurrentKey("Document No.", Type);
@@ -940,7 +974,12 @@ Page 50082 "Parrilas Analisis"
                     Rec113.SetRange(Rec113.Type, 1);
                     if Rec113.Findset then begin
                         if Rec113."No." = '62400000' then begin
-                            portescobrados := Rec113.Amount;
+                            if Rec112."Currency Factor" <> 0 then begin
+                                portescobrados := Rec113.Amount / Rec112."Currency Factor";
+                            end;
+                            if Rec112."Currency Factor" = 0 then begin
+                                portescobrados := Rec113.Amount;
+                            end;
                         end;
                     end;
 
@@ -988,6 +1027,7 @@ Page 50082 "Parrilas Analisis"
                     sumaventas := 0;
                     sumacostes := 0;
                     portescobrados := 0;
+                    Rec114.get(SalesCrMemoHeader."No.");
                     Rec115.Reset;
                     Rec115.SetCurrentKey("Document No.", Type);
                     Rec115.SetRange(Rec115."Document No.", SalesCrMemoHeader."No.");
@@ -995,7 +1035,12 @@ Page 50082 "Parrilas Analisis"
                     if Rec115.Findset then
                         repeat
                             if Rec115."No." = 'TRAN' then begin
-                                portescobrados := Rec115.Amount;
+                                if Rec114."Currency Factor" <> 0 then begin
+                                    portescobrados := Rec115.Amount / Rec114."Currency Factor";
+                                end;
+                                if Rec114."Currency Factor" = 0 then begin
+                                    portescobrados := Rec115.Amount;
+                                end;
                             end;
                             SUMA := true;
                             if (Rec115."Line Discount %" = 100) then begin
@@ -1023,9 +1068,20 @@ Page 50082 "Parrilas Analisis"
                             END;
 
                             if Rec115."VAT Base Amount" <> 0 then begin
-                                margenlin := margenlin + (100 - (100 * (pmp * Rec115.Quantity) / (Rec115."VAT Base Amount")));
+                                if Rec114."Currency Factor" <> 0 then begin
+                                    margenlin := margenlin + (100 - (100 * (pmp * Rec115.Quantity) / ((Rec115."VAT Base Amount" / Rec114."Currency Factor"))));
+                                end;
+                                if Rec114."Currency Factor" = 0 then begin
+                                    margenlin := margenlin + (100 - (100 * (pmp * Rec115.Quantity) / (Rec115."VAT Base Amount")));
+                                end;
                             end;
-                            sumaventas := sumaventas + Rec115."VAT Base Amount";
+                            if Rec114."Currency Factor" <> 0 then begin
+                                sumaventas := sumaventas + Rec115."VAT Base Amount" / Rec114."Currency Factor";
+                            end;
+                            if Rec114."Currency Factor" = 0 then begin
+                                sumaventas := sumaventas + Rec115."VAT Base Amount";
+                            end;
+
 
                             HASTAFEC := HASTAFECHA[X];
                             ////DATOSCOSTE:=CalculaCoste(Rec115."No.");
@@ -1034,7 +1090,12 @@ Page 50082 "Parrilas Analisis"
                             COSTEFAC := COSTEFAC + DATOSCOSTE * Rec115.Quantity;
                         until Rec115.Next = 0;
                     if SalesCrMemoHeader.Amount <> 0 then begin
-                        Margen := ROUND((SalesCrMemoHeader.Amount - COSTEFAC) / SalesCrMemoHeader.Amount * 100, 0.01);
+                        if Rec114."Currency Factor" <> 0 then begin
+                            Margen := ROUND((SalesCrMemoHeader.Amount - COSTEFAC) / (SalesCrMemoHeader.Amount / Rec114."Currency Factor") * 100, 0.01);
+                        end;
+                        if Rec114."Currency Factor" = 0 then begin
+                            Margen := ROUND((SalesCrMemoHeader.Amount - COSTEFAC) / SalesCrMemoHeader.Amount * 100, 0.01);
+                        end;
                     end;
 
                     Rec115.Reset;
@@ -1043,7 +1104,12 @@ Page 50082 "Parrilas Analisis"
                     Rec115.SetRange(Rec115.Type, 1);
                     if Rec115.FindSet then begin
                         if Rec115."No." = '62400000' then begin
-                            portescobrados := Rec115.Amount;
+                            if Rec114."Currency Factor" <> 0 then begin
+                                portescobrados := Rec115.Amount / Rec114."Currency Factor";
+                            end;
+                            if Rec114."Currency Factor" = 0 then begin
+                                portescobrados := Rec115.Amount;
+                            end;
                         end;
                     end;
 
@@ -1378,6 +1444,8 @@ Page 50082 "Parrilas Analisis"
         esmedia: Decimal;
         COSTEFAC: Decimal;
         InventarioPMP: Record "Inventario PMP";
+        Rec112: Record "Sales Invoice Header";
+        Rec114: Record "Sales Cr.Memo Header";
     begin
 
 
@@ -1404,6 +1472,7 @@ Page 50082 "Parrilas Analisis"
                     sumaventas := 0;
                     sumacostes := 0;
                     portescobrados := 0;
+                    Rec112.get(SalesInvoiceHeader."No.");
                     Rec113.Reset;
                     Rec113.SetCurrentKey("Document No.", Type);
                     Rec113.SetRange(Rec113."Document No.", SalesInvoiceHeader."No.");
@@ -1414,8 +1483,14 @@ Page 50082 "Parrilas Analisis"
                          Rec113."No." + ' ' +
                          SalesInvoiceHeader."Sell-to Customer No." + ' ' + Format(SalesInvoiceHeader."Posting Date"));
                             if Rec113."No." = 'TRAN' then begin
-                                MATRIX_CellDataPortes[X] := MATRIX_CellDataPortes[X] + Rec113.Amount;
-                                MATRIX_CellDataPortes[13] := MATRIX_CellDataPortes[13] + Rec113.Amount;
+                                if Rec112."Currency Factor" <> 0 then begin
+                                    MATRIX_CellDataPortes[X] := MATRIX_CellDataPortes[X] + Rec113.Amount / Rec112."Currency Factor";
+                                    MATRIX_CellDataPortes[13] := MATRIX_CellDataPortes[13] + Rec113.Amount / Rec112."Currency Factor";
+                                end;
+                                if Rec112."Currency Factor" = 0 then begin
+                                    MATRIX_CellDataPortes[X] := MATRIX_CellDataPortes[X] + Rec113.Amount;
+                                    MATRIX_CellDataPortes[13] := MATRIX_CellDataPortes[13] + Rec113.Amount;
+                                end;
                             end;
                         until Rec113.Next = 0;
                     Rec113.Reset;
@@ -1424,8 +1499,15 @@ Page 50082 "Parrilas Analisis"
                     Rec113.SetRange(Rec113.Type, 1);
                     if Rec113.Findset then begin
                         if Rec113."No." = '62400000' then begin
-                            MATRIX_CellDataPortes[X] := MATRIX_CellDataPortes[X] + Rec113.Amount;
-                            MATRIX_CellDataPortes[13] := MATRIX_CellDataPortes[13] + Rec113.Amount;
+                            if Rec112."Currency Factor" <> 0 then begin
+                                MATRIX_CellDataPortes[X] := MATRIX_CellDataPortes[X] + Rec113.Amount / Rec112."Currency Factor";
+                                MATRIX_CellDataPortes[13] := MATRIX_CellDataPortes[13] + Rec113.Amount / Rec112."Currency Factor";
+                            end;
+                            if Rec112."Currency Factor" = 0 then begin
+                                MATRIX_CellDataPortes[X] := MATRIX_CellDataPortes[X] + Rec113.Amount;
+                                MATRIX_CellDataPortes[13] := MATRIX_CellDataPortes[13] + Rec113.Amount;
+                            end;
+
                         end;
                     end;
 
@@ -1456,6 +1538,7 @@ Page 50082 "Parrilas Analisis"
                     sumaventas := 0;
                     sumacostes := 0;
                     portescobrados := 0;
+                    Rec114.get(SalesCrMemoHeader."No.");
 
                     Rec115.Reset;
                     Rec115.SetCurrentKey("Document No.", Type);
@@ -1464,8 +1547,14 @@ Page 50082 "Parrilas Analisis"
                     if Rec115.Findset then
                         repeat
                             if Rec115."No." = 'TRAN' then begin
-                                MATRIX_CellDataPortes[X] := MATRIX_CellDataPortes[X] + Rec115.Amount * -1;
-                                MATRIX_CellDataPortes[13] := MATRIX_CellDataPortes[13] + Rec115.Amount * -1;
+                                if Rec114."Currency Factor" <> 0 then begin
+                                    MATRIX_CellDataPortes[X] := MATRIX_CellDataPortes[X] + Rec115.Amount * -1 / Rec114."Currency Factor";
+                                    MATRIX_CellDataPortes[13] := MATRIX_CellDataPortes[13] + Rec115.Amount * -1 / Rec114."Currency Factor";
+                                end;
+                                if Rec114."Currency Factor" = 0 then begin
+                                    MATRIX_CellDataPortes[X] := MATRIX_CellDataPortes[X] + Rec115.Amount * -1;
+                                    MATRIX_CellDataPortes[13] := MATRIX_CellDataPortes[13] + Rec115.Amount * -1;
+                                end;
                             end;
                         until Rec115.Next = 0;
                     Rec115.Reset;
@@ -1474,8 +1563,14 @@ Page 50082 "Parrilas Analisis"
                     Rec115.SetRange(Rec115.Type, 1);
                     if Rec115.Findset then begin
                         if Rec115."No." = '62400000' then begin
-                            MATRIX_CellDataPortes[X] := MATRIX_CellDataPortes[X] + Rec115.Amount * -1;
-                            MATRIX_CellDataPortes[13] := MATRIX_CellDataPortes[13] + Rec115.Amount * -1;
+                            if Rec114."Currency Factor" <> 0 then begin
+                                MATRIX_CellDataPortes[X] := MATRIX_CellDataPortes[X] + Rec115.Amount * -1 / Rec114."Currency Factor";
+                                MATRIX_CellDataPortes[13] := MATRIX_CellDataPortes[13] + Rec115.Amount * -1 / Rec114."Currency Factor";
+                            end;
+                            if Rec114."Currency Factor" = 0 then begin
+                                MATRIX_CellDataPortes[X] := MATRIX_CellDataPortes[X] + Rec115.Amount * -1;
+                                MATRIX_CellDataPortes[13] := MATRIX_CellDataPortes[13] + Rec115.Amount * -1;
+                            end;
                         end;
                     end;
 
@@ -1560,6 +1655,7 @@ Page 50082 "Parrilas Analisis"
         esmedia: Decimal;
         COSTEFAC: Decimal;
         InventarioPMP: Record "Inventario PMP";
+        Rec112: Record "Sales Invoice Header";
     begin
 
 
