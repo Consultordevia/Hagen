@@ -858,6 +858,7 @@ Page 50082 "Parrilas Analisis"
         PMP: Decimal;
         Rec112: Record "Sales Invoice Header";
         Rec114: Record "Sales Cr.Memo Header";
+        Rec254: Record "VAT Entry";
 
 
 
@@ -872,6 +873,7 @@ Page 50082 "Parrilas Analisis"
             SalesInvoiceHeader.SetCurrentKey("Sell-to Customer No.", "Posting Date");
             SalesInvoiceHeader.SetRange("Sell-to Customer No.", Customer."No.");
             SalesInvoiceHeader.SetRange("Posting Date", DESDEFECHA[X], HASTAFECHA[X]);
+            /////SalesInvoiceHeader.SetRange("No.", '26FV061177');
             if SalesInvoiceHeader.FindSet then
                 repeat
                     ///V.Update(1,'ventas:'+SalesInvoiceHeader."Sell-to Customer No."+' '+Format(SalesInvoiceHeader."Posting Date"));
@@ -886,6 +888,15 @@ Page 50082 "Parrilas Analisis"
                     sumaventas := 0;
                     sumacostes := 0;
                     portescobrados := 0;
+
+                    Rec254.Reset();
+                    Rec254.SetCurrentKey("Document No.");
+                    Rec254.SetRange("Document No.", SalesInvoiceHeader."No.");
+                    if Rec254.FindFirst() then
+                        repeat
+                            sumaventas := sumaventas + Rec254.Base;
+                        until Rec254.next = 0;
+
                     Rec113.Reset;
                     Rec113.SetCurrentKey("Document No.", Type);
                     Rec113.SetRange(Rec113."Document No.", SalesInvoiceHeader."No.");
@@ -908,10 +919,20 @@ Page 50082 "Parrilas Analisis"
                             end;
                             if SUMA then begin
                                 if Rec113."Precio base" <> 0 then begin
-                                    SUMAPB := SUMAPB + Rec113.Quantity * Rec113."Precio base";
+                                    if Rec112."Currency Factor" = 0 then begin
+                                        SUMAPB := SUMAPB + Rec113.Quantity * Rec113."Precio base";
+                                    end;
+                                    if Rec112."Currency Factor" <> 0 then begin
+                                        SUMAPB := SUMAPB + Rec113.Quantity * Rec113."Precio base" / Rec112."Currency Factor";
+                                    end;
                                 end;
                                 if Rec113."Precio base" = 0 then begin
-                                    SUMAPB := SUMAPB + Rec113.Quantity * Rec113."Unit Price";
+                                    if Rec112."Currency Factor" = 0 then begin
+                                        SUMAPB := SUMAPB + Rec113.Quantity * Rec113."Unit Price";
+                                    end;
+                                    if Rec112."Currency Factor" <> 0 then begin
+                                        SUMAPB := SUMAPB + Rec113.Quantity * Rec113."Unit Price" / Rec112."Currency Factor";
+                                    end;
                                 end;
                                 if Rec112."Currency Factor" = 0 then begin
                                     SUMAPF := SUMAPF + Rec113.Amount;
@@ -946,12 +967,12 @@ Page 50082 "Parrilas Analisis"
                             end;
 
 
-                            if Rec112."Currency Factor" <> 0 then begin
-                                sumaventas := sumaventas + Rec113."VAT Base Amount" / Rec112."Currency Factor";
-                            end;
-                            if Rec112."Currency Factor" = 0 then begin
-                                sumaventas := sumaventas + Rec113."VAT Base Amount";
-                            end;
+                            /////if Rec112."Currency Factor" <> 0 then begin
+                            /////sumaventas := sumaventas + Rec113."VAT Base Amount" / Rec112."Currency Factor";
+                            /////end;
+                            /////if Rec112."Currency Factor" = 0 then begin
+                            /////sumaventas := sumaventas + Rec113."VAT Base Amount";
+                            /////end;
 
                             HASTAFEC := HASTAFECHA[X];
                             ///DATOSCOSTE:=CalculaCoste(Rec113."No.");                    
@@ -997,8 +1018,17 @@ Page 50082 "Parrilas Analisis"
                     MATRIX_CellDataDescuento[X] := MATRIX_CellDataDescuento[X] + DTOAPLICADO;
                     MATRIX_CellDataDescuento[13] := MATRIX_CellDataDescuento[13] + DTOAPLICADO;
                     SalesInvoiceHeader.CalcFields(Amount);
-                    MATRIX_CellDataImporte[X] := MATRIX_CellDataImporte[X] + SalesInvoiceHeader.Amount;
-                    MATRIX_CellDataImporte[13] := MATRIX_CellDataImporte[13] + SalesInvoiceHeader.Amount;
+                    if Rec112."Currency Factor" <> 0 then begin
+                        MATRIX_CellDataImporte[X] := MATRIX_CellDataImporte[X] + SalesInvoiceHeader.Amount / Rec112."Currency Factor";
+                        ;
+                        MATRIX_CellDataImporte[13] := MATRIX_CellDataImporte[13] + SalesInvoiceHeader.Amount / Rec112."Currency Factor";
+                        ;
+                    end;
+                    if Rec112."Currency Factor" = 0 then begin
+                        MATRIX_CellDataImporte[X] := MATRIX_CellDataImporte[X] + SalesInvoiceHeader.Amount;
+                        MATRIX_CellDataImporte[13] := MATRIX_CellDataImporte[13] + SalesInvoiceHeader.Amount;
+                    end;
+
 
 
                     MATRIX_CellDataCoste[X] := MATRIX_CellDataCoste[X] + COSTEFAC;
@@ -1027,6 +1057,14 @@ Page 50082 "Parrilas Analisis"
                     sumaventas := 0;
                     sumacostes := 0;
                     portescobrados := 0;
+                    Rec254.Reset();
+                    Rec254.SetCurrentKey("Document No.");
+                    Rec254.SetRange("Document No.", SalesCrMemoHeader."No.");
+                    if Rec254.FindFirst() then
+                        repeat
+                            sumaventas := sumaventas + Rec254.Base;
+                        until Rec254.next = 0;
+
                     Rec114.get(SalesCrMemoHeader."No.");
                     Rec115.Reset;
                     Rec115.SetCurrentKey("Document No.", Type);
@@ -1048,12 +1086,29 @@ Page 50082 "Parrilas Analisis"
                             end;
                             if SUMA then begin
                                 if Rec115."Precio base" <> 0 then begin
-                                    SUMAPB := SUMAPB + Rec115.Quantity * Rec115."Precio base";
+                                    if Rec114."Currency Factor" <> 0 then begin
+                                        SUMAPB := SUMAPB + Rec115.Quantity * Rec115."Precio base" / Rec114."Currency Factor";
+                                        ;
+                                    end;
+                                    if Rec114."Currency Factor" = 0 then begin
+                                        SUMAPB := SUMAPB + Rec115.Quantity * Rec115."Precio base";
+                                    end;
                                 end;
                                 if Rec115."Precio base" = 0 then begin
-                                    SUMAPB := SUMAPB + Rec115.Quantity * Rec115."Unit Price";
+                                    if Rec114."Currency Factor" = 0 then begin
+                                        SUMAPB := SUMAPB + Rec115.Quantity * Rec115."Unit Price";
+                                    end;
+                                    if Rec114."Currency Factor" <> 0 then begin
+                                        SUMAPB := SUMAPB + Rec115.Quantity * Rec115."Unit Price" / Rec114."Currency Factor";
+                                    end;
                                 end;
-                                SUMAPF := SUMAPF + Rec115.Amount;
+                                if Rec114."Currency Factor" <> 0 then begin
+                                    SUMAPF := SUMAPF + Rec115.Amount / Rec114."Currency Factor";
+                                end;
+                                if Rec114."Currency Factor" = 0 then begin
+                                    SUMAPF := SUMAPF + Rec115.Amount;
+                                end;
+
                             end;
                             CUANTALIN := CUANTALIN + 1;
                             pmp := Rec115."Unit Cost (LCY)";
@@ -1075,12 +1130,12 @@ Page 50082 "Parrilas Analisis"
                                     margenlin := margenlin + (100 - (100 * (pmp * Rec115.Quantity) / (Rec115."VAT Base Amount")));
                                 end;
                             end;
-                            if Rec114."Currency Factor" <> 0 then begin
-                                sumaventas := sumaventas + Rec115."VAT Base Amount" / Rec114."Currency Factor";
-                            end;
-                            if Rec114."Currency Factor" = 0 then begin
-                                sumaventas := sumaventas + Rec115."VAT Base Amount";
-                            end;
+                            /////if Rec114."Currency Factor" <> 0 then begin
+                            /////sumaventas := sumaventas + Rec115."VAT Base Amount" / Rec114."Currency Factor";
+                            /////end;
+                            /////if Rec114."Currency Factor" = 0 then begin
+                            //////sumaventas := sumaventas + Rec115."VAT Base Amount";
+                            //////end;
 
 
                             HASTAFEC := HASTAFECHA[X];
@@ -1458,6 +1513,7 @@ Page 50082 "Parrilas Analisis"
             SalesInvoiceHeader.SetCurrentKey("Sell-to Customer No.", "Posting Date");
             SalesInvoiceHeader.SetRange("Sell-to Customer No.", Customer."No.");
             SalesInvoiceHeader.SetRange("Posting Date", DESDEFECHA[X], HASTAFECHA[X]);
+            /////SalesInvoiceHeader.SetRange("No.", '26FV061177');
             if SalesInvoiceHeader.FindSet then
                 repeat
                     ///V.Update(1,'Ventas2:'+SalesInvoiceHeader."Sell-to Customer No."+' '+Format(SalesInvoiceHeader."Posting Date"));
