@@ -1,8 +1,10 @@
 #pragma warning disable AA0005, AA0008, AA0018, AA0021, AA0072, AA0137, AA0201, AA0204, AA0206, AA0218, AA0228, AL0254, AL0424, AS0011, AW0006 // ForNAV settings
 Table 50005 Multitabla
 {
-    //DrillDownPageID = UnknownPage50054;
-    //LookupPageID = UnknownPage50054;
+    // REQ-003705: sin página propia, BC genera una búsqueda de solo lectura y no se
+    // pueden crear ni editar grupos (de clientes, de ventas...) desde la ficha del cliente.
+    DrillDownPageID = "Lista multitabla";
+    LookupPageID = "Lista multitabla";
 
     fields
     {
