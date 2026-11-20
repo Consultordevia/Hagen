@@ -141,7 +141,7 @@ tableextension 50005 PurchaseHeader extends "Purchase Header"
                 usersetup: Record "User Setup";
             begin
 
-                UserSetup.Get(UserId);
+                if not UserSetup.Get(UserId()) then Clear(UserSetup); // REQ-003953: sin ficha en Configuración usuarios no da error (usuario de partner)
                 if not UserSetup."Permite fraccionar uni. venta" then begin
                     Error('No se puede modificar este campo.');
                 end;

@@ -81,7 +81,7 @@ pageextension 50026 ClientesLista extends "Customer List"
 
                     RecCusto."No." := codclie;
                     RecCusto."Fecha alta" := TODAY;
-                    RecCusto."Usuario alta" := USERID;
+                    RecCusto."Usuario alta" := CopyStr(UserId(), 1, MaxStrLen(RecCusto."Usuario alta"));
                     RecCusto.Name := 'COPIA ' + COPYSTR(Rec.Name, 1, 53);
                     RecCusto."Usuario Web" := '';
                     RecCusto."Contraseña WEB" := '';
@@ -112,7 +112,7 @@ pageextension 50026 ClientesLista extends "Customer List"
     var
         UserSetup: Record "User Setup";
     begin
-        UserSetup.GET(USERID);
+        if not UserSetup.Get(UserId()) then Clear(UserSetup); // REQ-003953: sin ficha en Configuración usuarios no da error (usuario de partner)
         IF UserSetup."Salespers./Purch. Code" <> '' THEN BEGIN
             rec.SETRANGE("Salesperson Code", UserSetup."Salespers./Purch. Code");
         END;

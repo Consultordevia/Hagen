@@ -32,7 +32,7 @@ pageextension 50043 CustomerLookup extends "Customer Lookup"
     var
         UserSetup: Record "User Setup";
     begin
-        UserSetup.GET(USERID);
+        if not UserSetup.Get(UserId()) then Clear(UserSetup); // REQ-003953: sin ficha en Configuración usuarios no da error (usuario de partner)
         IF UserSetup."Salespers./Purch. Code" <> '' THEN BEGIN
             rec.SETRANGE("Salesperson Code", UserSetup."Salespers./Purch. Code");
         END;

@@ -35,7 +35,7 @@
         EnvioFicheros: Codeunit "Automaticos Cartas";
         RecUS: Record "User Setup";
     begin
-        RecUS.get(UserId);
+        if not RecUS.Get(UserId()) then Clear(RecUS); // REQ-003953: sin ficha en Configuración usuarios no da error (usuario de partner)
         IF RecUS."Editar tabla Clientes/Comercia" = FALSE THEN begin
             Error('No tiene permiso para modificar clientes.');
         end;

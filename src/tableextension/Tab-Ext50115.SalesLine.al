@@ -460,7 +460,7 @@ tableextension 50115 SalesLine extends "Sales Line"
             begin
                 /*
                 IF "Estado linea"=4 THEN BEGIN
-                     Rec91.GET(USERID);
+                     if not Rec91.Get(UserId()) then Clear(Rec91); // REQ-003953: sin ficha en Configuración usuarios no da error (usuario de partner)
                      IF NOT Rec91."Permite modificar estado lin.p" THEN BEGIN
                           ERROR('No tiene permiso para cambiar el estado linea.');
                      END;
@@ -476,7 +476,7 @@ tableextension 50115 SalesLine extends "Sales Line"
             begin
                 /*
                 
-                Rec91.GET(USERID);
+                if not Rec91.Get(UserId()) then Clear(Rec91); // REQ-003953: sin ficha en Configuración usuarios no da error (usuario de partner)
                 IF NOT Rec91."Permiso Defectuoso" THEN BEGIN
                      ERROR('No puede utilizar este campo.');
                 END;
@@ -945,7 +945,7 @@ tableextension 50115 SalesLine extends "Sales Line"
         UserSetup: Record "User Setup";
     begin
         if "Document Type" = 1 then begin
-            UserSetup.Get(UserId);
+            if not UserSetup.Get(UserId()) then Clear(UserSetup); // REQ-003953: sin ficha en Configuración usuarios no da error (usuario de partner)
             if UserSetup.Comercial <> '' then begin
                 SalesHeader.Get("Document Type", "Document No.");
                 if SalesHeader."Estado pedido" <> 2 then begin
@@ -973,7 +973,7 @@ tableextension 50115 SalesLine extends "Sales Line"
     var
         SalesHeader: Record "Sales Header";
     begin
-        "Usuario alta" := UserId;
+        "Usuario alta" := CopyStr(UserId(), 1, MaxStrLen("Usuario alta"));
         "Fecha alta" := Today;
         "Hora alta" := Time;
 
@@ -1002,7 +1002,7 @@ tableextension 50115 SalesLine extends "Sales Line"
                 RecLCV.Comment := copystr('Ref. eliminada: ' + Format("No.") + ' ' + Format(Description) + ' Cantidad:' + Format(Quantity) +
                 ' Por: ' + Format(UserId) + ' ' + Format(Today) + ' ' + Format(Time), 1, 80);
                 RecLCV."No se puede eliminar" := true;
-                RecLCV."Usuario alta" := UserId;
+                RecLCV."Usuario alta" := CopyStr(UserId(), 1, MaxStrLen(RecLCV."Usuario alta"));
                 RecLCV."Fecha alta" := Today;
                 RecLCV."Hora alta" := Time;
                 RecLCV.Date := Today;
@@ -1015,7 +1015,7 @@ tableextension 50115 SalesLine extends "Sales Line"
                 RecLCV.Comment := copystr('Ref. eliminada: ' + Format("No.") + ' ' + Format(Description) + ' Cantidad:' + Format(Quantity) +
                 ' Por: ' + Format(UserId) + ' ' + Format(Today) + ' ' + Format(Time), 1, 80);
                 RecLCV."No se puede eliminar" := true;
-                RecLCV."Usuario alta" := UserId;
+                RecLCV."Usuario alta" := CopyStr(UserId(), 1, MaxStrLen(RecLCV."Usuario alta"));
                 RecLCV."Fecha alta" := Today;
                 RecLCV."Hora alta" := Time;
                 RecLCV.Date := Today;

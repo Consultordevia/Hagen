@@ -79,7 +79,7 @@
                         // AutomaticosAdaia.ENVIARECEPCIONES(PurchaseHeader);   // ADAIA antiguo desactivado: lo hace la extensión ADAIA.
                         PurchaseHeader."Enviado adaia" := TRUE;
                         PurchaseHeader."Fecha enviado adaia" := TODAY;
-                        PurchaseHeader."Usuario enviado adaia" := USERID;
+                        PurchaseHeader."Usuario enviado adaia" := CopyStr(UserId(), 1, MaxStrLen(PurchaseHeader."Usuario enviado adaia"));
                         PurchaseHeader.MODIFY;
                     END;
                     MESSAGE('Enviado.');

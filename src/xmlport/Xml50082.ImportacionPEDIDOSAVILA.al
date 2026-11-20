@@ -253,7 +253,7 @@ XmlPort 50082 "Importacion PEDIDOS AVILA"
                 RecCV.Validate(RecCV."Sell-to Customer No.", clie);
                 RecCV.Validate("Ship-to Code", rec222.Code);
                 RecCV."Estado pedido" := 2;
-                RecCV."Usuario alta" := UserId;
+                RecCV."Usuario alta" := CopyStr(UserId(), 1, MaxStrLen(RecCV."Usuario alta"));
                 RecCV."Fecha alta" := Today;
                 RecCV."Hora alta" := Time;
                 SalesSetup.Get;

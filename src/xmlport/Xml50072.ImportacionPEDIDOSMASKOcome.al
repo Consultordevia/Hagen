@@ -279,7 +279,7 @@ XmlPort 50072 "Importacion PEDIDOS MASKO-come"
                     RecCV."Posting Description" := 'Pedido nº ' + codacti;
                     RecCV.Validate(RecCV."Sell-to Customer No.", clie);
                     RecCV."Estado pedido" := RecCV."estado pedido"::Retenido;
-                    RecCV."Usuario alta" := UserId;
+                    RecCV."Usuario alta" := CopyStr(UserId(), 1, MaxStrLen(RecCV."Usuario alta"));
                     RecCV."Fecha alta" := Today;
                     RecCV."Hora alta" := Time;
                     SalesSetup.Get;

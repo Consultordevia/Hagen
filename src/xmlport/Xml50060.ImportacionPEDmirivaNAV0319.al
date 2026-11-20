@@ -492,7 +492,7 @@ XmlPort 50060 "Importacion PED miriva NAV0319"
                     RecCV."Super urgente" := true;
                     RecCV."No incluir portes" := true;
                     RecCV."No agrupar en ADAIA" := false;
-                    RecCV."Usuario alta" := UserId;
+                    RecCV."Usuario alta" := CopyStr(UserId(), 1, MaxStrLen(RecCV."Usuario alta"));
                     RecCV."Fecha alta" := Today;
                     RecCV."Hora alta" := Time;
                     RecCV."No. Series" := SalesSetup."Order Nos.";

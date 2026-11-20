@@ -40,7 +40,7 @@
 
                     RecCusto."No." := codclie;
                     RecCusto."Fecha alta" := TODAY;
-                    RecCusto."Usuario alta" := USERID;
+                    RecCusto."Usuario alta" := CopyStr(UserId(), 1, MaxStrLen(RecCusto."Usuario alta"));
                     RecCusto.Name := 'COPIA ' + COPYSTR(Rec.Name, 1, 53);
                     RecCusto."Usuario Web" := '';
                     RecCusto."Contraseña WEB" := '';
