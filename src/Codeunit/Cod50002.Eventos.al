@@ -35,7 +35,7 @@
         EnvioFicheros: Codeunit "Automaticos Cartas";
         RecUS: Record "User Setup";
     begin
-        RecUS.get(UserId);
+        if not RecUS.Get(UserId()) then Clear(RecUS); // REQ-003953: sin ficha en Configuración usuarios no da error (usuario de partner)
         IF RecUS."Editar tabla Clientes/Comercia" = FALSE THEN begin
             Error('No tiene permiso para modificar clientes.');
         end;
@@ -486,6 +486,23 @@
         if (SalesHeader."Document Type" = 1) then begin
             SalesHeader.ChequeoFechaVtos;
         end;
+    end;
+
+    // REQ-003953 - Al facturar al 6445 (Hagen Canarias), BC pone el vendedor del cliente que
+    // factura (el 100). La venta es del vendedor del cliente que compra (Alexis, 20-nov-2026).
+    // Va antes de que BC cree las dimensiones, así que también salen con el vendedor bueno.
+    [EventSubscriber(ObjectType::Table, Database::"Sales Header", 'OnAfterSetFieldsBilltoCustomer', '', false, false)]
+    local procedure VendedorDelClienteQueCompra(var SalesHeader: Record "Sales Header"; Customer: Record Customer)
+    var
+        SellToCust: Record Customer;
+    begin
+        if (SalesHeader."Bill-to Customer No." <> '6445') or (SalesHeader."Sell-to Customer No." = '6445') then
+            exit;
+        SellToCust.SetLoadFields("Salesperson Code");
+        if not SellToCust.Get(SalesHeader."Sell-to Customer No.") then
+            exit;
+        if SellToCust."Salesperson Code" <> '' then
+            SalesHeader."Salesperson Code" := SellToCust."Salesperson Code";
     end;
 
     [EventSubscriber(ObjectType::Table, 36, 'OnBeforeUpdateShipToCodeFromCust', '', false, false)]

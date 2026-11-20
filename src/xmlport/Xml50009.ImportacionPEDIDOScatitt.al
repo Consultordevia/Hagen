@@ -418,7 +418,7 @@ XmlPort 50009 "Importacion PEDIDOS catitt"
                     RecCV."Super urgente" := true;
                     RecCV."No incluir portes" := true;
                     RecCV."No agrupar en ADAIA" := false;
-                    RecCV."Usuario alta" := UserId;
+                    RecCV."Usuario alta" := CopyStr(UserId(), 1, MaxStrLen(RecCV."Usuario alta"));
                     RecCV."Fecha alta" := Today;
                     RecCV."Hora alta" := Time;
                     RecCV."No. Series" := SalesSetup."Order Nos.";
@@ -511,7 +511,7 @@ XmlPort 50009 "Importacion PEDIDOS catitt"
                     RecLV.Type := 2;
                     RecLV.Validate(RecLV."No.", CODPROD);
                     ///// RecLV.INSERT(TRUE);
-                    RecLV."Usuario alta" := UserId;
+                    RecLV."Usuario alta" := CopyStr(UserId(), 1, MaxStrLen(RecLV."Usuario alta"));
                     RecLV."Fecha alta" := Today;
                     RecLV."Hora alta" := Time;
                     RecLV."Shortcut Dimension 1 Code" := RecCV."Salesperson Code";

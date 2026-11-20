@@ -162,7 +162,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
             begin
 
 
-                UserSetup.Get(UserId);
+                if not UserSetup.Get(UserId()) then Clear(UserSetup); // REQ-003953: sin ficha en Configuración usuarios no da error (usuario de partner)
 
 
                 if "Estado pedido" = 0 then begin
@@ -324,7 +324,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                     if "Shipping Agent Code" = 'CASH' then begin
                         "Observación para transporte" := "Observación para transporte" + ' CASH&CARRY'
                     end;
-                    UserSetup.Get(UserId);
+                    if not UserSetup.Get(UserId()) then Clear(UserSetup); // REQ-003953: sin ficha en Configuración usuarios no da error (usuario de partner)
                     ChequeoFechaVtos;
                     Rec372.Reset;
                     Rec372.SetRange(Rec372."Document Type", "Document Type");
@@ -358,7 +358,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                 end;
 
                 if "Estado pedido" = 1 then begin
-                    UserSetup.Get(UserId);
+                    if not UserSetup.Get(UserId()) then Clear(UserSetup); // REQ-003953: sin ficha en Configuración usuarios no da error (usuario de partner)
                     if PaymentMethod.Get("Payment Method Code") then begin
                         if PaymentMethod."Pago anticipado" then begin
                             if UserSetup."Permite env.  ANTICIPOS" = false then begin
@@ -402,7 +402,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                 /////   0,         1       ,      2        ,    3  , 4 
                 ///// en BC ya se puede
                 if (Rec."Estado pedido" <> 0) and (xRec."Estado pedido" = 0) then begin
-                    UserSetup.Get(UserId);
+                    if not UserSetup.Get(UserId()) then Clear(UserSetup); // REQ-003953: sin ficha en Configuración usuarios no da error (usuario de partner)
                     if UserSetup.Comercial <> '' then begin
                         /////Error('No puede modificar el estado del pedido.2');
                     end;
@@ -412,7 +412,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                 end;
 
                 if xRec."Estado pedido" = 1 then begin
-                    UserSetup.Get(UserId);
+                    if not UserSetup.Get(UserId()) then Clear(UserSetup); // REQ-003953: sin ficha en Configuración usuarios no da error (usuario de partner)
                     if not UserSetup."Cambio de Activo a Retenido" then begin
                         Error('No puede modificar el estado del pedido.3');
                     end;
@@ -432,7 +432,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                               RecLCV."Line No.":=RecLCV."Line No."+10000;
                               RecLCV.Date:=TODAY;
                               RecLCV.Comment:='El pedido pasa de retenido a activo';
-                              RecLCV."Usuario alta":=USERID;
+                              RecLCV."Usuario alta" := CopyStr(UserId(), 1, MaxStrLen(RecLCV."Usuario alta"));
                               RecLCV."Fecha alta":=TODAY;
                               RecLCV."Hora alta":=TIME;
                               RecLCV.INSERT;
@@ -443,7 +443,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                               RecLCV."Line No.":=RecLCV."Line No."+10000;
                               RecLCV.Date:=TODAY;
                               RecLCV.Comment:='El pedido pasa de retenido a activo';
-                              RecLCV."Usuario alta":=USERID;
+                              RecLCV."Usuario alta" := CopyStr(UserId(), 1, MaxStrLen(RecLCV."Usuario alta"));
                               RecLCV."Fecha alta":=TODAY;
                               RecLCV."Hora alta":=TIME;
                               RecLCV.INSERT;
@@ -460,14 +460,14 @@ tableextension 50114 SalesHeader extends "Sales Header"
 
                 ///Retenido,Para preparar,Pdte. comercial,Servido,Pendiente stock
                 if "Estado pedido" = 1 then begin
-                    "Usuario para preparar" := UserId;
+                    "Usuario para preparar" := CopyStr(UserId(), 1, MaxStrLen("Usuario para preparar"));
                     "Fecha para preparar" := Today;
                     "Hora para preparar" := Time;
                     if "Customer Price Group" = 'ECI' then begin
                         "Shipping No. Series" := 'ALBECI'
                     end;
                     /////"Pedido pendiente":=TRUE;
-                    UserSetup.Get(UserId);
+                    if not UserSetup.Get(UserId()) then Clear(UserSetup); // REQ-003953: sin ficha en Configuración usuarios no da error (usuario de partner)
                     if UserSetup.Comercial <> '' then begin
                         ///// en bc si puede
                         /////Error('No puede ponerlo en para preparar.');
@@ -481,7 +481,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
                 end;
 
                 if "Estado pedido" = 0 then begin
-                    "Usuario Retenido" := UserId;
+                    "Usuario Retenido" := CopyStr(UserId(), 1, MaxStrLen("Usuario Retenido"));
                     "Fecha Retenido" := Today;
                     "Hora Retenido" := Time;
                     "Usuario para preparar" := '';
@@ -546,7 +546,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
             trigger OnValidate()
             begin
                 /*
-                RecUs.GET(USERID);
+                if not RecUs.Get(UserId()) then Clear(RecUs); // REQ-003953: sin ficha en Configuración usuarios no da error (usuario de partner)
                 IF NOT RecUs."Permiso pedidos urgentes" THEN BEGIN
                      ERROR('No tiene permiso para este campo.');
                 END;
@@ -1085,7 +1085,7 @@ tableextension 50114 SalesHeader extends "Sales Header"
 
     trigger OnAfterInsert()
     begin
-        "Usuario alta" := UserId;
+        "Usuario alta" := CopyStr(UserId(), 1, MaxStrLen("Usuario alta"));
         "Fecha alta" := Today;
         "Hora alta" := Time;
 

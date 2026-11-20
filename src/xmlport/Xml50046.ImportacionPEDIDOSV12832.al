@@ -285,7 +285,7 @@ XmlPort 50046 "Importacion PEDIDOS V-12832"
                 RecCV."Posting Description" := 'Pedido nº ' + codacti;
                 RecCV.Validate(RecCV."Sell-to Customer No.", clie);
                 RecCV."Estado pedido" := 2;
-                RecCV."Usuario alta" := UserId;
+                RecCV."Usuario alta" := CopyStr(UserId(), 1, MaxStrLen(RecCV."Usuario alta"));
                 RecCV."Fecha alta" := Today;
                 RecCV."Hora alta" := Time;
                 SalesSetup.Get;

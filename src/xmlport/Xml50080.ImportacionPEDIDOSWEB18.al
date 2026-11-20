@@ -550,7 +550,7 @@ XmlPort 50080 "Importacion PEDIDOS WEB18"
             RecCV."Posting Description" := 'Pedido nº ' + d4;
             RecCV.Validate(RecCV."Sell-to Customer No.", d3);
             RecCV."Estado pedido" := 2;
-            RecCV."Usuario alta" := UserId;
+            RecCV."Usuario alta" := CopyStr(UserId(), 1, MaxStrLen(RecCV."Usuario alta"));
             RecCV."Fecha alta" := Today;
             RecCV."Hora alta" := Time;
             SalesSetup.Get;
