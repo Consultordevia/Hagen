@@ -488,6 +488,23 @@
         end;
     end;
 
+    // REQ-003953 - Al facturar al 6445 (Hagen Canarias), BC pone el vendedor del cliente que
+    // factura (el 100). La venta es del vendedor del cliente que compra (Alexis, 20-nov-2026).
+    // Va antes de que BC cree las dimensiones, así que también salen con el vendedor bueno.
+    [EventSubscriber(ObjectType::Table, Database::"Sales Header", 'OnAfterSetFieldsBilltoCustomer', '', false, false)]
+    local procedure VendedorDelClienteQueCompra(var SalesHeader: Record "Sales Header"; Customer: Record Customer)
+    var
+        SellToCust: Record Customer;
+    begin
+        if (SalesHeader."Bill-to Customer No." <> '6445') or (SalesHeader."Sell-to Customer No." = '6445') then
+            exit;
+        SellToCust.SetLoadFields("Salesperson Code");
+        if not SellToCust.Get(SalesHeader."Sell-to Customer No.") then
+            exit;
+        if SellToCust."Salesperson Code" <> '' then
+            SalesHeader."Salesperson Code" := SellToCust."Salesperson Code";
+    end;
+
     [EventSubscriber(ObjectType::Table, 36, 'OnBeforeUpdateShipToCodeFromCust', '', false, false)]
     local procedure OnBeforeUpdateShipToCodeFromCust(var SalesHeader: Record "Sales Header"; var Customer: Record Customer; var IsHandled: Boolean)
     var
